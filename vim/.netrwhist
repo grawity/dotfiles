@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/grawity/@sine/usr'
+let g:netrw_dirhist_2='/home/grawity/@sine/usr/src'
+let g:netrw_dirhist_3='/home/grawity/@sine/usr/src/rockbox'
+let g:netrw_dirhist_4='/var/www/wikileaks.equal.cluenet.org/cable'
+let g:netrw_dirhist_5='/usr/local/sbin'
+let g:netrw_dirhist_6='/var/www/equal.cluenet.org/mail'
+let g:netrw_dirhist_7='/opt/qwebirc/js/ui'
+let g:netrw_dirhist_8='/opt/qwebirc/js'

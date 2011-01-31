@@ -1,0 +1,11 @@
+startup_message off
+altscreen on
+vbell off
+
+hardstatus off # do not send status messages to hardstatus
+hardstatus lastline # when not supported by terminal
+defhstatus "^%t (window ^%n)"
+# use GUI titlebar
+termcapinfo xterm*|rxvt*|kterm*|Eterm*|cygwin hs:ts=\E]0;:fs=\007:ds=\E]0;\007
+
+dinfo

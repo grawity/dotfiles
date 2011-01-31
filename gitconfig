@@ -1,0 +1,50 @@
+[core]
+	excludesfile = ~/.gitignore
+[user]
+	name = Mantas Mikulėnas
+	email = grawity@nullroute.eu.org
+[alias]
+	a = add
+	ci = commit
+	co = checkout
+	st = status
+	br = branch
+	staged = diff --cached
+	unstaged = diff
+	unstage = reset HEAD
+	lg = log --oneline --decorate
+	tg = log --oneline --decorate --graph
+	ls = ls-files
+	sg = diff --cached
+	stat = diff --stat
+	statg = diff --cached --stat
+	amend = commit --amend
+	undo = reset --soft HEAD^
+	remaster = rebase --autosquash -i master
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+	ui = auto
+[color "diff"]
+	whitespace = red reverse
+[diff]
+	renames = copies
+[advice]
+	statusHints = false
+[url "git@github.com:"]
+	pushInsteadOf = git://github.com/
+[url "git@gist.github.com:"]
+	pushInsteadOf = git://gist.github.com/
+[tig]
+	show-date = relative
+	show-author = abbreviated
+	author-width = 10
+	line-graphics = true
+	tab-size = 4
+[tig "color"]
+	cursor = black green
+	title-focus = white blue
+[github]
+	user = grawity
+	token = !getnetrc -df %p api.github.com grawity

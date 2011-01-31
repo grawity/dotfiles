@@ -1,0 +1,170 @@
+### generic
+set realname="Mantas Mikulėnas"
+set from="grawity@nullroute.eu.org"
+
+unset beep
+set beep_new
+
+alternates "^grawity@gmail\.com$"
+alternates "^grawity@(\w+\.)?cluenet\.org$"
+alternates "^grawity@anubis\.nickserver\.net$"
+
+subscribe "^9fans@9fans\.net$"
+subscribe "^flos-freeware@freelists\.org$"
+subscribe "^gnupg-users@gnupg\.org$"
+subscribe "^nanog@(nanog\.org|merit\.edu)$"
+subscribe "^devl@freenetproject\.org$"
+
+### reading (mail storage)
+set folder="imap://equal.cluenet.org/"
+set spoolfile="+INBOX"
+set postponed="+drafts"
+set record="+sent"
+mailboxes =INBOX =lists =spam
+
+set mbox_type="maildir"
+unset confirmappend
+set confirmcreate
+set delete
+
+# Caching
+#set header_cache="~/.cache/mutt"
+#set message_cachedir="~/.cache/mutt"
+
+# Remote mail
+set imap_user="grawity"
+set connect_timeout=10
+set mail_check=10
+set timeout=20
+
+# Hooks
+account-hook . 'unset tunnel; unset imap_pass'
+account-hook '^imap://localhost/$' 'set tunnel="~/bin/imap"'
+account-hook '^imaps://imap\.gmail\.com/$' 'source "muttauth imap.gmail.com|"'
+
+folder-hook . 'unset spoolfile'
+
+### composing
+unmy_hdr *
+unset user_agent
+
+set alias_file="~/.muttaliases"
+source $alias_file
+set query_command="~/bin/muttbook --query '%s'"
+
+### sending
+set use_envelope_from # give -f $from to sendmail
+
+#set hostname="nullroute.eu.org"
+#set use_8bitmime
+#set smtp_url="smtp://grawity@mail.nullroute.eu.org"
+
+### list view
+set sort=threads
+set auto_tag # auto-add tag prefix
+
+spam "^X-Bogosity: Spam,.* spamicity=([0-9.]+)" "bogus"
+set spam_separator=", "
+
+### message view
+ignore *
+unignore From: Subject: To: Cc: Date:
+unignore X-Bogosity:
+hdr_order Date From To Cc Subject
+
+unset digest_collapse
+set pager_index_lines=0
+unset markers
+set smart_wrap
+set tilde
+
+alternative_order text/enriched text/plain text
+auto_view text/html
+auto_view application/zip
+
+### generic appearance
+color normal default default
+color index white default ~A
+	#color index red default '~h "^X-Bogosity: Spam,"'
+	color index brightyellow default ~U
+	color index brightblack default ~D
+	color index white blue ~T
+color indicator black white
+color status cyan default
+color message yellow default
+color error brightwhite red
+color hdrdefault green default
+	color header brightgreen default "^From:"
+	color header brightgreen default "^Subject:"
+	color header brightblack default "^X-Bogosity:"
+	color header yellow default "^X-Bogosity: Spam,"
+color attachment yellow default
+color quoted cyan default
+color signature blue default
+color tilde blue default
+color search black brightyellow
+
+set index_format="%4C %Z %{%b %d} %-15.15F (%?l?%4l&%4c?) %s"
+
+### keybindings
+bind generic,pager <Backspace> exit
+bind index <Backspace> quit
+bind pager <Delete> delete-message
+bind generic,pager ,w what-key
+bind pager <PageUp> half-up
+bind pager <PageDown> half-down
+
+bind pager G bottom
+
+bind index <Esc>[1~ first-entry
+bind index <Esc>[4~ last-entry
+bind pager <Esc>[1~ top
+bind pager <Esc>[4~ bottom
+
+macro generic,index,pager <Esc>f "<enter-command>set from=grawity@"
+
+macro index,pager ,h "<copy-message>=spam/ham"
+macro index,pager ,s "<copy-message>=spam/spam"
+
+folder-hook . '\
+bind index,pager d delete-message;\
+bind index,pager D delete-message;\
+bind index,pager \cD delete-thread'
+
+folder-hook '^imap://(localhost|equal\.cluenet\.org)/' '\
+macro index,pager d "<save-message>=spam/ham\n";\
+macro index,pager D "<save-message>=spam/spam\n";\
+macro index,pager \cD "<tag-thread><untag-pattern>~D\n<save-message>=spam/ham\n"'
+
+folder-hook '/spam/' '\
+bind index,pager d delete-message;\
+bind index,pager D delete-message;\
+bind index,pager \cD delete-thread'
+
+account-hook . '\
+bind index . buffy-list'
+
+account-hook '^imaps?://' '\
+macro index . "<imap-fetch-mail><refresh>"'
+
+### encryption and signing (PGP)
+#set crypt_use_gpgme
+source "[ \"$GPG_AGENT_INFO\" ] && echo 'set crypt_use_gpgme'|"
+set crypt_use_pka
+
+# commands taken from Arch /etc/Muttrc.gpg.dist
+set pgp_decode_command="gpg --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
+set pgp_verify_command="gpg --status-fd=2 --no-verbose --quiet --batch --output - --verify %s %f"
+set pgp_decrypt_command="gpg --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
+set pgp_sign_command="gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --detach-sign --textmode %?a?-u %a? %f"
+#set pgp_clearsign_command="gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --textmode --clearsign %?a?-u %a? %f"
+#set pgp_encrypt_only_command="pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f"
+#set pgp_encrypt_sign_command="pgpewrap gpg %?p?--passphrase-fd 0? --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f"
+#set pgp_import_command="gpg --no-verbose --import %f"
+#set pgp_export_command="gpg --no-verbose --export --armor %r"
+#set pgp_verify_key_command="gpg --verbose --batch --fingerprint --check-sigs %r"
+#set pgp_list_pubring_command="gpg --no-verbose --batch --quiet --with-colons --list-keys %r" 
+#set pgp_list_secring_command="gpg --no-verbose --batch --quiet --with-colons --list-secret-keys %r" 
+set pgp_good_sign="^\\[GNUPG:\\] GOODSIG"
+
+source "silentcat ~/.muttrc-local|"

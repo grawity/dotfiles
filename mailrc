@@ -1,0 +1,36 @@
+# interface
+set quiet
+#set verbose
+#set prompt="& "
+
+# listing
+set autothread
+
+# composing
+set ask
+unset askcc
+set editheaders
+set dot
+
+set indentprefix=">"
+set signature="~/.signature"
+
+# mail storage
+set hold # don't move to mbox
+set keep # don't delete $MAIL
+
+set folder="mail/"
+set record="+sent"
+
+# remote storage
+set pop3-use-starttls
+set imap-use-starttls
+set smtp-use-starttls
+account nullroute {
+        set from="grawity@nullroute.eu.org"
+        set folder="imap://grawity@mail.nullroute.eu.org"
+        set smtp="mail.nullroute.eu.org:587"
+        set imap-auth="gssapi"
+        set smtp-auth="gssapi"
+}
+set folder=mail

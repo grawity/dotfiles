@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+dir=~/.dotfiles
+full=false
+
+if [ "$1" == "-f" ]; then
+	full=true
+fi
+
+link() {
+	local target="$dir/${1%/}" link=$2
+	if [ -e "$link" ] && [ ! -h "$link" ]; then
+		echo "Not overwriting $link" >&2
+	else
+		rm -f "$link"
+		sym -vf "$target" "$link"
+	fi
+}
+sym() {
+	~/code/sym.pl "$@"
+}
+
+link	bashrc		~/.bashrc
+link	gitconfig	~/.gitconfig
+link	profile		~/.profile
+link	vimrc		~/.vimrc
+$full || exit 0
+
+link	muttrc		~/.muttrc
+link	screenrc	~/.screenrc
+link	tmux.conf	~/.tmux.conf
+link	vim/		~/.vim
