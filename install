@@ -21,6 +21,7 @@ sym() {
 
 link	bashrc		~/.bashrc
 link	gitconfig	~/.gitconfig
+link	gitignore	~/.gitignore
 link	profile		~/.profile
 link	vimrc		~/.vimrc
 $full || exit 0
