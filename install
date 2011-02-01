@@ -5,9 +5,10 @@ dir=~/lib/dotfiles
 all=false
 force=false
 
-while getopts af OPT; do
+while getopts ad:f OPT; do
 	case $OPT in
 	a)	all=true;;
+	d)	dir=$OPTARG;;
 	f)	force=true;;
 	esac
 done
@@ -21,9 +22,7 @@ link() {
 		sym -vf "$target" "$link"
 	fi
 }
-sym() {
-	~/code/sym.pl "$@"
-}
+hash sym || sym() { ~/code/sym.pl "$@"; }
 
 mkdir -pm 0700 ~/.ssh
 link	bashrc		~/.bashrc
