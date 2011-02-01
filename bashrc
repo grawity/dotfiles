@@ -69,7 +69,7 @@ if [[ $havecolor ]]; then
 	cx_func="\e[33m"
 	cx_norm="\e[m"
 fi
-if [[ $(whoami) == "grawity" ]]; then
+if (( $(id -u) -eq 0 )) || [[ $(whoami) == "grawity" ]]; then
 	PS1="\h"
 else
 	PS1="\u@\h"
