@@ -12,7 +12,7 @@ let s:cpo_save = &cpo
 set cpo&vim
 
 syn match   pamconfService          '^[[:graph:]]\+'
-                                    \ nextgroup=pamconfType,
+                                    \ nextgroup=pamconfNolog,pamconfType,
                                     \ pamconfServiceLineCont skipwhite
 
 syn keyword pamconfTodo             contained TODO FIXME XXX NOTE
@@ -21,8 +21,11 @@ syn region  pamconfComment          display oneline start='#' end='$'
                                     \ contains=pamconfTodo,@Spell
 
 syn match   pamconfServiceLineCont  contained '\\$'
-                                    \ nextgroup=pamconfType,
+                                    \ nextgroup=pamconfNolog,pamconfType,
                                     \ pamconfServiceLineCont skipwhite skipnl
+
+syn match   pamconfNolog            '-'
+                                    \ nextgroup=pamconfType
 
 syn keyword pamconfType             account auth password session
                                     \ nextgroup=pamconfControl,
@@ -102,6 +105,7 @@ hi def link pamconfTodo             Todo
 hi def link pamconfComment          Comment
 hi def link pamconfService          Statement
 hi def link pamconfServiceLineCont  Special
+hi def link pamconfNolog            Operator
 hi def link pamconfType             Type
 hi def link pamconfTypeLineCont     pamconfServiceLineCont
 hi def link pamconfControl          Macro
