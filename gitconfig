@@ -19,6 +19,7 @@
 	stat = diff --stat
 	statg = diff --cached --stat
 	amend = commit --amend
+	mend = commit --amend --reuse-message HEAD
 	undo = reset --soft HEAD^
 	remaster = rebase --autosquash -i master
 [color]
