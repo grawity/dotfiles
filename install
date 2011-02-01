@@ -30,10 +30,10 @@ link	gitconfig	~/.gitconfig
 link	gitignore	~/.gitignore
 link	profile		~/.profile
 link	vimrc		~/.vimrc
+link	vim/		~/.vim
 $all || exit 0
 
 link	mailrc		~/.mailrc
 link	muttrc		~/.muttrc
 link	screenrc	~/.screenrc
 link	tmux.conf	~/.tmux.conf
-link	vim/		~/.vim
