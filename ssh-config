@@ -1,0 +1,101 @@
+## Will be available on 5.7:
+#Host *.*
+#	Hostname %h
+#Host foo, bar
+#	Hostname %h.acme.org
+#Host *
+#	Hostname %h.example.com
+
+# host aliases
+
+Host abacus
+	Hostname abacus.cluenet.org
+	Port 222
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+Host abscissa
+	Hostname abscissa.cluenet.org
+	Port 22222
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+Host anubis
+	Hostname anubis.nickserver.net
+	Port 2574
+	# 22222, 8234 and 2574
+	ForwardAgent yes
+
+Host equal
+	Hostname equal.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+Host gamma
+	Hostname gamma.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+Host imaginary
+	Hostname imaginary.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+Host moose
+	Hostname lotl.mine.nu
+	ForwardAgent yes
+
+Host panther
+	Hostname panther.nathan7.eu
+	ForwardAgent yes
+
+Host sine
+	Hostname sine.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+Host sleet
+	Hostname sleet.nullroute.eu.org
+	Port 27330
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+Host snowflake
+	Hostname snowflake.nullroute.eu.org
+	ForwardAgent yes
+	ForwardX11 yes
+
+# *.cluenet.org
+
+Host abacus.cluenet.org
+	Port 222
+
+Host abscissa.cluenet.org
+	Port 22222
+
+Host *.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+# other domains
+
+Host *.vistech.net
+	User grwty
+
+# global options
+
+Host *
+	Protocol 2
+	ForwardX11Trusted yes
+	VerifyHostKeyDNS yes
+	NoHostAuthenticationForLocalhost yes
+	HashKnownHosts no
+
