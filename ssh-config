@@ -47,6 +47,13 @@ Host imaginary
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
+Host negative
+	Hostname negative.mypopmadness.com
+	HostkeyAlias negative.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
 Host moose
 	Hostname lotl.mine.nu
 	ForwardAgent yes
