@@ -1,28 +1,36 @@
 #!/usr/bin/env bash
 set -e
 
-dir=~/lib/dotfiles
-all=false
-force=false
+link() {
+	local target="$dir/${1%/}" link=$2
+	if [ -e "$link" ] && [ ! -h "$link" ]; then
+		trash "$link"
+	fi
+	echo "link ${link/#$HOME/~}"
+	sym -f "$target" "$link"
+}
 
-while getopts ad:f OPT; do
+sym() { ~/code/sym.pl "$@"; }
+
+trash() {
+	for file; do
+		[ -e "$file" ] || continue
+		[ -d "$trash" ] || mkdir -pm 0700 "$trash"
+		echo "trash ${file/#$HOME/~} to ${trash/#$HOME/~}"
+		mv "$file" "$trash"
+	done
+}
+
+dir=~/lib/dotfiles
+trash=~/trash
+all=false
+
+while getopts ad: OPT; do
 	case $OPT in
 	a)	all=true;;
 	d)	dir=$OPTARG;;
-	f)	force=true;;
 	esac
 done
-
-link() {
-	local target="$dir/${1%/}" link=$2
-	if [ -e "$link" ] && [ ! -h "$link" ] && ! $force; then
-		echo "Not overwriting $link" >&2
-	else
-		rm -f "$link"
-		sym -vf "$target" "$link"
-	fi
-}
-sym() { ~/code/sym.pl "$@"; }
 
 mkdir -pm 0700 ~/.ssh
 link	bashrc		~/.bashrc
@@ -32,6 +40,9 @@ link	profile		~/.profile
 link	ssh-config	~/.ssh/config
 link	vimrc		~/.vimrc
 link	vim/		~/.vim
+
+trash	~/.bash_{login,profile,logout}
+
 $all || exit 0
 
 link	mailrc		~/.mailrc
