@@ -46,12 +46,11 @@ umask 022
 
 if [ -z "$GPG_AGENT_INFO" ] && have gpg-agent; then
 	# mutt requires GPG_AGENT_INFO despite presence of S.gpg-agent
-	env=~/.gnupg/agent.env
+	env=/tmp/env.$LOGNAME@$HOSTNAME.gpg-agent
 	if [ -f "$env" ]; then
 		. "$env"
-		if gpg-agent 2>/dev/null; then
-			export GPG_AGENT_INFO
-		else
+		export GPG_AGENT_INFO
+		if ! gpg-agent 2>/dev/null; then
 			unset GPG_AGENT_INFO
 		fi
 	fi
