@@ -76,7 +76,7 @@ else
 fi
 PS1="${c_uh}${PS1}${c_no} ${c_wd}\w${c_no} \\\$ "
 PS2="${c_dk}...${c_no} "
-PS4="+${cx_file}\${BASH_SOURCE:-stdin}:${cx_line}\$LINENO${cx_norm}:\${FUNCNAME:+${cx_func}\$FUNCNAME${cx_norm}:} "
+export PS4="+${cx_file}\${BASH_SOURCE:-stdin}:${cx_line}\$LINENO${cx_norm}:\${FUNCNAME:+${cx_func}\$FUNCNAME${cx_norm}:} "
 unset ${!c_*} ${!cx_*}
 
 title() { printf "$titlestring" "$*"; }
