@@ -3,10 +3,13 @@ set -e
 
 link() {
 	local target="$dir/${1%/}" link=$2
-	if [ -e "$link" ] && [ ! -h "$link" ]; then
-		trash "$link"
+	if [ -e "$link" ]; then
+		if [ -h "$link" ]; then
+			rm -f "$link"
+		else
+			trash "$link"
+		fi
 	fi
-	echo "link ${link/#$HOME/~}"
 	sym -f "$target" "$link"
 }
 
@@ -16,7 +19,7 @@ trash() {
 	for file; do
 		[ -e "$file" ] || continue
 		[ -d "$trash" ] || mkdir -pm 0700 "$trash"
-		echo "trash ${file/#$HOME/~} to ${trash/#$HOME/~}"
+		echo "Backing up ${file/#$HOME/~} to ${trash/#$HOME/~}"
 		mv "$file" "$trash"
 	done
 }
