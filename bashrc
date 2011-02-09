@@ -156,7 +156,6 @@ alias tidiff='infocmp -Ld'
 alias tube='youtube-dl --console-title --title'
 up() { local p= i=${1:-1}; while (( i-- )); do p+=../; done; cd "$p$2" && pwd; }
 alias w='PROCPS_USERLEN=16 w -shu'
-who() { if [[ $1 ]]; then command who "$@"; else users; fi; }
 alias xx='chmod a+x'
 X() { ("$@" &> /dev/null &); }
 alias '~'='preg'
