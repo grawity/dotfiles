@@ -3,7 +3,6 @@ set from="m@nullroute.eu.org"
 # interface
 set quiet
 #set verbose
-#set prompt="& "
 
 # reading
 retain From To Sender Date Subject X-Bogosity
@@ -33,8 +32,8 @@ set imap-use-starttls
 set smtp-use-starttls
 account nullroute {
 	set from="grawity@nullroute.eu.org"
-	set folder="imap://grawity@mail.nullroute.eu.org"
-	set smtp="mail.nullroute.eu.org:587"
+	set folder="imap://grawity@equal.cluenet.org"
+	set smtp="equal.cluenet.org:587"
 	set imap-auth="gssapi"
 	set smtp-auth="gssapi"
 }
