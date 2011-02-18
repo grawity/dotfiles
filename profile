@@ -61,11 +61,13 @@ if [ -t 0 ]; then
 	echo $(uptime)
 fi
 
-if [ "$BASH_VERSION" ]; then
-	[ -f ~/.bashrc ] && . ~/.bashrc
+rc=~/.profile-$(hostname)
+if [ -f "$rc" ]; then
+	. "$rc"
 fi
 
-rc=~/.profile-$(hostname)
-[ -f "$rc" ] && . "$rc"
+if [ "$BASH_VERSION" ] && [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
 
 true
