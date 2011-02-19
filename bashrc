@@ -88,7 +88,10 @@ show_status() {
 	fi
 }
 update_title() {
-	title "$USER@$HOSTNAME ${PWD/#$HOME/~}"
+	local title="$USER@$HOSTNAME ${PWD/#$HOME/~}"
+	[[ $SSH_TTY && $DISPLAY ]] &&
+		title+=" (display=$DISPLAY)"
+	title "$title"
 }
 
 PROMPT_COMMAND="show_status; update_title"
@@ -323,6 +326,13 @@ export SUDO_PROMPT=$(printf 'sudo password for %%u@\e[30;43m%%h\e[m: ')
 
 # fixes PuTTY, doesn't hurt otherwise
 export NCURSES_NO_UTF8_ACS=1
+
+if [[ $DISPLAY == :* ]] && have gvim; then
+	alias vim='gvim'
+	if [[ $EDITOR == vim ]]; then
+		EDITOR=gvim
+	fi
+fi
 
 if [[ -f ~/lib/kc.bash ]]; then
 	. ~/lib/kc.bash
