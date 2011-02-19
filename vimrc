@@ -28,15 +28,15 @@ endif
 if has("gui_running")
 	silent! color zenburn
 	silent! color evening
-	map		<silent>	<C-Tab>		:tabnext<CR>
+	map	<silent>	<C-Tab>		:tabnext<CR>
 	imap	<silent>	<C-Tab>		<Esc>:tabnext<CR>
-	map		<silent>	<C-S-Tab>	:tabprevious<CR>
+	map	<silent>	<C-S-Tab>	:tabprevious<CR>
 	imap	<silent>	<C-S-Tab>	<Esc>:tabprevious<CR>
-	map		<silent>	<C-S>		:w<CR>
+	map	<silent>	<C-S>		:w<CR>
 	imap	<silent>	<C-S>		<Esc>:w<CR>
-	map		<silent>	<C-Q>		:q<CR>
+	map	<silent>	<C-Q>		:q<CR>
 	imap	<silent>	<S-Insert>	<Esc>"+pa
-	imap				<C-BS>		<C-W>
+	imap			<C-BS>		<C-W>
 endif
 if has("syntax")
 	syntax on
