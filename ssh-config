@@ -62,6 +62,10 @@ Host panther
 	Hostname panther.nathan7.eu
 	ForwardAgent yes
 
+Host panther/console
+	Hostname mercury.hexxeh.net
+	User panthernathan7do
+
 Host sine
 	Hostname sine.cluenet.org
 	GSSAPIAuthentication yes
