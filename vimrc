@@ -16,8 +16,11 @@ set number
 silent! set numberwidth=1
 silent! color slate
 if has("gui")
-	let &guifont="Monospace 9"
-	let &guifont="Consolas:h9"
+	if has("gui_gtk")
+		let &guifont="Monospace 9"
+	elseif has("gui_win32")
+		let &guifont="Consolas:h9"
+	endif
 	set guioptions+=gm
 	set guioptions-=tT
 	let g:zenburn_high_Contrast=1
