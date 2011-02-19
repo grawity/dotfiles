@@ -1,21 +1,10 @@
 #!bash
 have() { command -v "$@" >& /dev/null; }
-pref() { local x; for x do if have "$x"; then echo "$x"; return; fi; done; false; }
-#setpref() { local x=$(pref "${@:2}"); unset "$1"; [[ $x ]] && export "$1=$x"; }
-
-### Common environment
 
 # For Cygwin
 [[ $USER ]] || export USER=$LOGNAME
 [[ $USER ]] || export USER=$(id -un)
 
-export EDITOR=vim
-export PAGER=less
-export BROWSER=$(pref w3m elinks false)
-unset VISUAL
-
-export TZ="Europe/Vilnius"
-export EMAIL="grawity@nullroute.eu.org"
 export GPG_TTY=$(tty)
 
 [[ -t 0 ]] || return # stdin is tty

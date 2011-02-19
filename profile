@@ -42,6 +42,14 @@ esac
 export LANG
 unset LC_ALL
 
+export PAGER=less
+export EDITOR=vim
+unset VISUAL
+export BROWSER=open-browser
+
+export TZ=Europe/Vilnius
+export EMAIL="grawity@nullroute.eu.org"
+
 umask 022
 
 if [ -z "$GPG_AGENT_INFO" ] && have gpg-agent; then
