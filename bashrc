@@ -287,6 +287,11 @@ abs() {
 	fi
 }
 
+fixlog() {
+	local file=$1; shift
+	perl -i -n -e "unless ($*) {print;}" "$file"
+}
+
 if [[ $PLAN9 ]]; then
 	9man() { MANPATH=$PLAN9/man man "$@"; }
 fi
