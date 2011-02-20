@@ -292,6 +292,17 @@ fixlog() {
 	perl -i -n -e "unless ($*) {print;}" "$file"
 }
 
+catlog() {
+	local prefix=$1
+	printf '%s\n' "$prefix" "$prefix".* | sort -rn | while read -r file; do
+		if [[ $file == *.gz ]]; then
+			zcat "$file"
+		else
+			cat "$file"
+		fi
+	done
+}
+
 if [[ $PLAN9 ]]; then
 	9man() { MANPATH=$PLAN9/man man "$@"; }
 fi
