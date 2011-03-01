@@ -1,4 +1,4 @@
-set from="m@nullroute.eu.org"
+#set from="m@nullroute.eu.org"
 
 # interface
 set quiet
@@ -16,12 +16,14 @@ unset askcc
 set editheaders
 set dot
 
-set indentprefix=">"
+set indentprefix="> "
 set signature="~/.signature"
 
 # mail storage
 set hold # don't move to mbox
 set keep # don't delete $MAIL
+
+set sendcharsets=utf-8
 
 set folder="mail/"
 set record="+sent"

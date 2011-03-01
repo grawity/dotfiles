@@ -39,6 +39,7 @@ mkdir -pm 0700 ~/.ssh
 link	bashrc		~/.bashrc
 link	gitconfig	~/.gitconfig
 link	gitignore	~/.gitignore
+link	inputrc		~/.inputrc
 link	profile		~/.profile
 link	ssh-config	~/.ssh/config
 link	vimrc		~/.vimrc
