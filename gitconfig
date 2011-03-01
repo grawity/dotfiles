@@ -22,6 +22,7 @@
 	mend = commit --amend --reuse-message HEAD
 	undo = reset --soft HEAD^
 	remaster = rebase --autosquash -i master
+	local = log --oneline origin/master..HEAD
 [color]
 	branch = auto
 	diff = auto
