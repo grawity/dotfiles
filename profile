@@ -2,6 +2,13 @@
 have() { command -v "$@" >& /dev/null; }
 
 export LOCAL="$HOME/usr"
+
+export PYTHONPATH="$HOME/lib/python:$LOCAL/lib/python"
+export PERL5LIB="$HOME/lib/perl5:$LOCAL/lib/perl5"
+export PERL_MM_OPT="INSTALL_BASE='$LOCAL'"
+export PERL_MB_OPT="--install_base '$LOCAL'"
+export GEM_HOME="$LOCAL/ruby/gems"
+
 export PATH="\
 $HOME/bin:\
 $LOCAL/bin:\
@@ -20,18 +27,13 @@ $LOCAL/bin:\
 /usr/lib/perl5/vendor_perl/bin:\
 /usr/lib/perl5/core_perl/bin:\
 /usr/bin/perlbin/vendor:\
+$GEM_HOME/bin:\
 $HOME/.gem/ruby/1.9.1/bin"
 
 if [ -d /opt/plan9 ]; then
 	export PLAN9=/opt/plan9
 	PATH="$PATH:$PLAN9/bin"
 fi
-
-export PYTHONPATH="$HOME/lib/python:$LOCAL/lib/python"
-export PERL5LIB="$HOME/lib/perl5:$LOCAL/lib/perl5"
-export PERL_MM_OPT="INSTALL_BASE='$LOCAL'"
-export PERL_MB_OPT="--install_base '$LOCAL'"
-export GEM_HOME="$LOCAL/ruby/gems"
 
 case $TERM in
 vt*|ansi)
