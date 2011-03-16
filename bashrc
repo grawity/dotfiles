@@ -226,7 +226,7 @@ wiki() { web "http://en.wikipedia.org/w/index.php?search=$(urlencode "$*")"; }
 
 todo() {
 	if [[ $1 ]]; then
-		echo "$*" >> ~/todo
+		echo "($(date +"%b %d")) $*" >> ~/todo
 		nl ~/todo | tail -n 1
 	else
 		nl ~/todo
