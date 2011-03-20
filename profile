@@ -50,10 +50,9 @@ unset VISUAL
 export BROWSER=open-browser
 
 export TZ=Europe/Vilnius
+export NAME='Mantas Mikulėnas'
 export EMAIL="grawity@nullroute.eu.org"
-if [ -e /etc/dpkg ]; then
-	export DEBFULLNAME='Mantas Mikulėnas'
-fi
+unset DEBFULLNAME DEBEMAIL
 
 umask 022
 
