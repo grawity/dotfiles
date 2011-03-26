@@ -119,11 +119,12 @@ alias ls="$ls_opt"
 alias grep="$grep_opt"
 unset ls_opt grep_opt
 
-editor() { eval "$EDITOR" '"$@"'; }
-browser() { eval "$BROWSER" '"$@"'; }
-pager() { eval "$PAGER" '"$@"'; }
+editor() { eval "${EDITOR:-vim}" '"$@"'; }
+browser() { eval "${BROWSER:-lynx}" '"$@"'; }
+pager() { eval "${PAGER:-less}" '"$@"'; }
 
 alias cur='cur '
+alias df='df -Th'
 alias egrep='grep -E'
 entity()	{ printf '&%s;' "$@" | w3m -dump -T text/html; }
 g() { egrep -rn "$@" .; }
