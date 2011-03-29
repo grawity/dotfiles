@@ -153,6 +153,14 @@ alias xx='chmod a+x'
 X() { ("$@" &> /dev/null &); }
 alias '~'='preg'
 
+alias sd='systemctl'
+alias tsd='tree /etc/systemd/system'
+alias cgls='systemd-cgls | pager'
+
+alias lp='sudo netstat -lptu --numeric-hosts'
+alias lpt='sudo netstat -lpt --numeric-hosts'
+alias lpu='sudo netstat -lpu --numeric-hosts'
+
 # list package contents
 lspkg() {
 	if [[ -z $1 ]]; then
