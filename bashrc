@@ -157,6 +157,13 @@ alias sd='systemctl'
 alias tsd='tree /etc/systemd/system'
 cgls() { systemd-cgls "$@" | pager; }
 
+if have systemd; then
+	alias start='systemctl start'
+	alias stop='systemctl stop'
+	alias restart='systemctl restart'
+	alias status='systemctl status'
+fi
+
 alias lp='sudo netstat -lptu --numeric-hosts'
 alias lpt='sudo netstat -lpt --numeric-hosts'
 alias lpu='sudo netstat -lpu --numeric-hosts'
