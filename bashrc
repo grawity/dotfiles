@@ -155,7 +155,7 @@ alias '~'='preg'
 
 alias sd='systemctl'
 alias tsd='tree /etc/systemd/system'
-alias cgls='systemd-cgls | pager'
+cgls() { systemd-cgls "$@" | pager; }
 
 alias lp='sudo netstat -lptu --numeric-hosts'
 alias lpt='sudo netstat -lpt --numeric-hosts'
