@@ -269,16 +269,36 @@ alias mimedate='date "+%a, %d %b %Y %H:%M:%S %z"' # RFC 2822
 alias isodate='date "+%Y-%m-%dT%H:%M:%S%z"' # ISO 8601
 
 x509() {
-	[[ $1 ]] && [[ -t 0 ]] && set -- -in "$@"
-	openssl x509 -noout -text -certopt no_pubkey,no_sigdump "$@"
+	local file=${1:-/dev/stdin}
+	if have certtool; then
+		certtool -i <"$file" | sed -r '/^-----BEGIN/,/^-----END/d;
+			/^\t*([0-9a-f][0-9a-f]:)+[0-9a-f][0-9a-f]$/d'
+	elif have openssl; then
+		openssl x509 -noout -text -certopt no_pubkey,no_sigdump <"$file"
+	fi
 }
 x509fp() {
-	[[ $1 ]] && [[ -t 0 ]] && set -- -in "$@"
-	openssl x509 -noout -fingerprint -sha1 "$@" | sed 's/^.*=//; y/ABCDEF/abcdef/'
+	local file=${1:-/dev/stdin}
+	openssl x509 -noout -fingerprint -sha1 -in "$file" |
+		sed 's/^.*=//; y/ABCDEF/abcdef/'
+}
+
+escape_addr() {
+	local addr
+	for addr; do
+		if [[ $addr == *:* ]]; then
+			addr="[$addr]"
+		fi
+		echo "$addr"
+	done
 }
 
 sslcert() {
-	openssl s_client -no_ign_eof -connect "$@" </dev/null 2>/dev/null | openssl x509
+	if have gnutls-cli; then
+		gnutls-cli "$1" -p "$2" --insecure --print-cert </dev/null | openssl x509
+	elif have openssl; then
+		openssl s_client -no_ign_eof -connect "$(escape_addr "$1"):$2" </dev/null 2>/dev/null | openssl x509
+	fi
 }
 sshfp() {
 	local key=$(mktemp)
