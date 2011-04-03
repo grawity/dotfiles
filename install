@@ -16,6 +16,7 @@ link() {
 sym() { ~/code/sym.pl "$@"; }
 
 trash() {
+	local file
 	for file; do
 		[ -e "$file" ] || continue
 		[ -d "$trash" ] || mkdir -pm 0700 "$trash"
