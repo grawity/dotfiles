@@ -23,6 +23,7 @@ $LOCAL/bin:\
 /usr/X11R7/bin:\
 /usr/X11R6/bin:\
 /usr/games:\
+/usr/bin/core_perl:\
 /usr/lib/perl5/site_perl/bin:\
 /usr/lib/perl5/vendor_perl/bin:\
 /usr/lib/perl5/core_perl/bin:\
