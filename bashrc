@@ -156,6 +156,7 @@ alias '~'='preg'
 alias sd='systemctl'
 alias tsd='tree /etc/systemd/system'
 cgls() { systemd-cgls "$@" | pager; }
+psls() { systemd-cgls "/user/$USER" | pager; }
 
 if have systemd; then
 	alias start='systemctl start'
