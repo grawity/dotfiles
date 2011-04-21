@@ -159,9 +159,12 @@ cgls() { systemd-cgls "$@" | pager; }
 psls() { systemd-cgls "/user/$USER" | pager; }
 
 if have systemd; then
-	alias start='systemctl start'
-	alias stop='systemctl stop'
-	alias restart='systemctl restart'
+	start() { sudo systemctl start "$@"; systemctl status "$@"; }
+	stop() { sudo systemctl stop "$@"; systemctl status "$@"; }
+	restart() { sudo systemctl restart "$@"; systemctl status "$@"; }
+	#alias start='systemctl start'
+	#alias stop='systemctl stop'
+	#alias restart='systemctl restart'
 	alias status='systemctl status'
 fi
 
