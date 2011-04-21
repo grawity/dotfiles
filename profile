@@ -5,8 +5,10 @@ export LOCAL="$HOME/usr"
 
 export PYTHONPATH="$HOME/lib/python:$LOCAL/lib/python"
 export PERL5LIB="$HOME/lib/perl5:$LOCAL/lib/perl5"
-export PERL_MM_OPT="INSTALL_BASE='$LOCAL'"
-export PERL_MB_OPT="--install_base '$LOCAL'"
+if [ ! -e "$LOCAL/lib/perl5/prefer-systemwide" ]; then
+	export PERL_MM_OPT="INSTALL_BASE='$LOCAL'"
+	export PERL_MB_OPT="--install_base '$LOCAL'"
+fi
 export GEM_HOME="$LOCAL/ruby/gems"
 
 export PATH="\
