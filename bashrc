@@ -312,7 +312,7 @@ sshfp() {
 }
 
 abs() {
-	local repo=$(pacman -Si "$1" | sed -nr 's/^Repository *: *(.+)$/\1/{p;q}')
+	local repo=$(pacman -Si "$1" | sed -nr 's/^Repository *: *(.+)$/\1/p' | sed 1q)
 	[[ $repo ]] || return 1
 	local package="$repo/$1"
 	local dir="$ABSROOT/$package"
