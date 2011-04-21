@@ -340,6 +340,22 @@ catlog() {
 	done
 }
 
+pwhich() {
+	local package= perlpath=() file= results=0
+	perlpath=( $(perl -e 'print "@INC"') )
+	for package; do
+		package=${package//:://}
+		for dir in "${perlpath[@]}"; do
+			file=$dir/$package.pm
+			if [[ -f $file ]]; then
+				echo "$file"
+				(( ++results ))
+			fi
+		done
+	done
+	(( results ))
+}
+
 if [[ $PLAN9 ]]; then
 	9man() { MANPATH=$PLAN9/man man "$@"; }
 fi
