@@ -97,7 +97,8 @@ color hdrdefault green default
 	color header brightgreen default "^From:"
 	color header brightgreen default "^Subject:"
 	color header brightblack default "^X-Bogosity:"
-	color header yellow default "^X-Bogosity: Spam,"
+	color header yellow default "^X-Bogosity: Unsure,"
+	color header brightyellow default "^X-Bogosity: Spam,"
 color attachment yellow default
 color quoted cyan default
 color signature blue default
