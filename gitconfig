@@ -23,6 +23,8 @@
 	undo = reset --soft HEAD^
 	remaster = rebase --autosquash -i master
 	local = log --oneline origin/master..HEAD
+	export = !touch $(git rev-parse --git-dir)/git-daemon-export-ok
+	unexport = !rm -v $(git rev-parse --git-dir)/git-daemon-export-ok
 [color]
 	branch = auto
 	diff = auto
