@@ -126,7 +126,8 @@ pager() { eval "${PAGER:-less}" '"$@"'; }
 alias cur='cur '
 alias df='df -Th'
 alias egrep='grep -E'
-entity()	{ printf '&%s;' "$@" | w3m -dump -T text/html; }
+entity() { printf '&%s;' "$@" | w3m -dump -T text/html; }
+finge() { [[ $1 == r* ]] && set -- "${1:1}" "${@:2}"; finger "$@"; }
 g() { egrep -rn "$@" .; }
 gg() { g --color=always "$@" | pager; }
 alias hex='xxd -p'
