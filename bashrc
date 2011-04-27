@@ -153,6 +153,10 @@ alias w='PROCPS_USERLEN=16 w -shu'
 alias xx='chmod a+x'
 X() { ("$@" &> /dev/null &); }
 alias '~'='preg'
+slurpy() {
+	echo "I think you meant 'cower'." >/dev/tty
+	cower "$@"
+}
 
 alias sd='systemctl'
 alias tsd='tree /etc/systemd/system'
