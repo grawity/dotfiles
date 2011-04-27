@@ -26,8 +26,8 @@ if has("gui")
 	let g:zenburn_high_Contrast=1
 endif
 if has("gui_running")
+	silent! color desert
 	silent! color zenburn
-	silent! color evening
 	map	<silent>	<C-Tab>		:tabnext<CR>
 	imap	<silent>	<C-Tab>		<Esc>:tabnext<CR>
 	map	<silent>	<C-S-Tab>	:tabprevious<CR>
