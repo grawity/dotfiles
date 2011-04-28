@@ -85,9 +85,15 @@ auto_view application/zip
 ### generic appearance
 color normal default default
 color index white default ~A
-	#color index red default '~h "^X-Bogosity: Spam,"'
+	color index red default '~h "^X-Bogosity: Spam,"'
+	color index blue default '~f "@postmaster\.twitter\.com$"'
+	# flagged
+	color index brightwhite default ~F
+	# unseen
 	color index brightyellow default ~U
+	# deleted
 	color index brightblack default ~D
+	# tagged
 	color index white blue ~T
 color indicator black white
 color status cyan default
