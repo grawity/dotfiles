@@ -25,8 +25,8 @@ Host abscissa
 
 Host anubis
 	Hostname anubis.nickserver.net
-	Port 2574
-	# 22222, 8234 and 2574
+	Port 2084
+	# also 22022
 	ForwardAgent yes
 
 Host equal
