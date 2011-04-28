@@ -7,13 +7,18 @@ have() { command -v "$@" >& /dev/null; }
 
 export GPG_TTY=$(tty)
 
+LOGDIR=~/tmp/log
+[[ -d $LOGDIR ]] || mkdir -pm 0700 "$LOGDIR"
+RUNDIR=~/tmp/run
+[[ -d $RUNDIR ]] || mkdir -pm 0700 "$RUNDIR"
+
 [[ -t 0 ]] || return # stdin is tty
 [[ $- = *i* ]] || return # mode is interactive
 
 ### Interactive-only options
 
 # history
-HISTFILE=~/tmp/bash.history
+HISTFILE=$LOGDIR/bash.history
 HISTCONTROL=ignoreboth
 shopt -s cmdhist		# store multi-line commands as single history entry
 shopt -s histappend		# append to $HISTFILE on exit
@@ -136,7 +141,6 @@ alias iprules='iptables -L --line-numbers -n'
 #irc() { screen -dr irc || screen -S irc irssi "$@"; }
 irc() { tmux attach -t irc || tmux new -s irc -n irssi "irssi $*"; }
 alias ll='ls -l'
-mail() { if [[ $1 ]]; then mutt -x "$@"; else mutt -Z; fi; }
 alias md='mkdir'
 alias p='pager'
 alias preg='grep -P'
@@ -153,10 +157,7 @@ alias w='PROCPS_USERLEN=16 w -shu'
 alias xx='chmod a+x'
 X() { ("$@" &> /dev/null &); }
 alias '~'='preg'
-slurpy() {
-	echo "I think you meant 'cower'." >/dev/tty
-	cower "$@"
-}
+alias slurpy='cower'
 
 alias sd='systemctl'
 alias tsd='tree /etc/systemd/system'
@@ -170,6 +171,8 @@ if have systemd; then
 	#alias start='systemctl start'
 	#alias stop='systemctl stop'
 	#alias restart='systemctl restart'
+	alias enable='systemctl enable'
+	alias disable='systemctl disable'
 	alias status='systemctl status'
 fi
 
@@ -317,9 +320,12 @@ sshfp() {
 }
 
 abs() {
-	local repo=$(pacman -Si "$1" | sed -nr 's/^Repository *: *(.+)$/\1/p' | sed 1q)
-	[[ $repo ]] || return 1
-	local package="$repo/$1"
+	local package=$1
+	if [[ $package != */* ]]; then
+		local repo=$(pacman -Si "$1" | sed -nr 's/^Repository *: *(.+)$/\1/p' | sed 1q)
+		[[ $repo ]] || return 1
+		package="$repo/$package"
+	fi
 	local dir="$ABSROOT/$package"
 	if [[ -d $dir ]]; then
 		echo "==> Already downloaded to $dir"
@@ -334,6 +340,10 @@ abs() {
 
 fixlog() {
 	local file=$1; shift
+	if ! [[ $file ]]; then
+		echo "Usage: fixlog <file> <perl_condition>" >&2
+		return 2
+	fi
 	perl -i -n -e "unless ($*) {print;}" "$file"
 }
 
@@ -382,11 +392,11 @@ export ACK_PAGER=$PAGER
 # for gethostbyname; see hostname(7)
 export HOSTALIASES=~/.hosts
 export LESS="-eMqR -FX"
-export LESSHISTFILE=~/tmp/less.history
-export MYSQL_HISTFILE=~/tmp/mysql.history
+export LESSHISTFILE="$LOGDIR/less.history"
+export MYSQL_HISTFILE="$LOGDIR/mysql.history"
 if [[ -f ~/.pythonrc ]]; then
 	export PYTHONSTARTUP=~/.pythonrc
-	export PYTHONHISTFILE=~/tmp/python.history
+	export PYTHONHISTFILE="$LOGDIR/python.history"
 fi
 export SUDO_PROMPT=$(printf 'sudo password for %%u@\e[30;43m%%h\e[m: ')
 
