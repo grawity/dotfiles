@@ -14,6 +14,9 @@ subscribe "^flos-freeware@freelists\.org$"
 subscribe "^gnupg-users@gnupg\.org$"
 subscribe "^nanog@(nanog\.org|merit\.edu)$"
 subscribe "^devl@freenetproject\.org$"
+subscribe "^systemd-devel@lists\.freedesktop\.org$"
+
+lists ".*@lists\.freedesktop\.org$"
 
 ### reading (mail storage)
 set folder="imap://equal.cluenet.org/"
@@ -28,19 +31,16 @@ set confirmcreate
 set delete
 
 # Caching
-#set header_cache="~/.cache/mutt"
-#set message_cachedir="~/.cache/mutt"
+set header_cache="~/.cache/mutt"
+set message_cachedir="~/.cache/mutt"
 
 # Remote mail
 set imap_user="grawity"
 set connect_timeout=10
 set mail_check=10
 set timeout=20
-
-# Hooks
-account-hook . 'unset tunnel; unset imap_pass'
-account-hook '^imap://localhost/$' 'set tunnel="~/bin/imap"'
-account-hook '^imaps://imap\.gmail\.com/$' 'source "muttauth imap.gmail.com|"'
+account-hook . 'unset tunnel imap_pass; set imap_user="grawity"'
+source "silentcat ~/.muttauth|"
 
 folder-hook . 'unset spoolfile'
 
