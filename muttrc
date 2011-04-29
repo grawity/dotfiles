@@ -9,13 +9,11 @@ alternates "^grawity@gmail\.com$"
 alternates "^grawity@(\w+\.)?cluenet\.org$"
 alternates "^grawity@anubis\.nickserver\.net$"
 
-subscribe "^9fans@9fans\.net$"
 subscribe "^flos-freeware@freelists\.org$"
-subscribe "^gnupg-users@gnupg\.org$"
-subscribe "^nanog@(nanog\.org|merit\.edu)$"
 subscribe "^devl@freenetproject\.org$"
 subscribe "^systemd-devel@lists\.freedesktop\.org$"
 
+lists ".*@freelists\.org$"
 lists ".*@lists\.freedesktop\.org$"
 
 ### reading (mail storage)
@@ -86,7 +84,10 @@ auto_view application/zip
 color normal default default
 color index white default ~A
 	color index red default '~h "^X-Bogosity: Spam,"'
-	color index blue default '~f "@postmaster\.twitter\.com$"'
+	color index blue default '~h "^Auto-Submitted: auto-generated$"'
+	color index blue default '~h "^X-List-Administrivia: yes$"'
+	color index blue default '~h "^From: Cron Daemon <root@.+>$"'
+	color index brightblue default '~f "@postmaster\.twitter\.com$"'
 	# flagged
 	color index brightwhite default ~F
 	# unseen
