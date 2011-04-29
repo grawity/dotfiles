@@ -158,6 +158,7 @@ alias xx='chmod a+x'
 X() { ("$@" &> /dev/null &); }
 alias '~'='preg'
 alias slurpy='cower'
+count() { sort | uniq -c | sort -n -r | pager; }
 
 alias sd='systemctl'
 alias tsd='tree /etc/systemd/system'
