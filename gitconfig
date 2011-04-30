@@ -41,6 +41,8 @@
 	pushInsteadOf = https://github.com/
 [url "git@gist.github.com:"]
 	pushInsteadOf = git://gist.github.com/
+[url "equal.cluenet.org:"]
+	pushInsteadOf = git://equal.cluenet.org/
 [tig]
 	show-date = relative
 	show-author = abbreviated
