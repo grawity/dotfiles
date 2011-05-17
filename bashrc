@@ -160,6 +160,8 @@ alias '~'='preg'
 alias slurpy='cower'
 count() { sort | uniq -c | sort -n -r | pager; }
 
+userports() { netstat -lte --numeric-host | sort -k 7; }
+
 alias sd='systemctl'
 alias tsd='tree /etc/systemd/system'
 cgls() { systemd-cgls "$@" | pager; }
