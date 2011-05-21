@@ -35,7 +35,7 @@ if has("gui_running")
 	map	<silent>	<C-S>		:w<CR>
 	imap	<silent>	<C-S>		<Esc>:w<CR>
 	map	<silent>	<C-Q>		:q<CR>
-	imap	<silent>	<S-Insert>	<Esc>"+pa
+	imap	<silent>	<S-Insert>	<Esc>"*pa
 	imap			<C-BS>		<C-W>
 endif
 if has("syntax")
@@ -193,3 +193,4 @@ silent! autocmd BufNewFile,BufRead .muttaliases set ft=muttrc
 silent! autocmd BufNewFile,BufRead
 \ /etc/systemd/*,/lib/systemd/*
 \ set ft=dosini
+silent! autocmd BufNewFile,BufRead /tmp/bash-fc-* set ft=sh

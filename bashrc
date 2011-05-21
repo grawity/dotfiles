@@ -408,9 +408,6 @@ export NCURSES_NO_UTF8_ACS=1
 
 if [[ $DISPLAY == :* ]] && have gvim; then
 	alias vim='gvim'
-	if [[ $EDITOR == vim ]]; then
-		EDITOR=gvim
-	fi
 fi
 
 if [[ -f ~/lib/kc.bash ]]; then
