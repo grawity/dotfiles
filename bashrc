@@ -12,8 +12,7 @@ LOGDIR=~/tmp/log
 RUNDIR=~/tmp/run
 [[ -d $RUNDIR ]] || mkdir -pm 0700 "$RUNDIR"
 
-[[ -t 0 ]] || return # stdin is tty
-[[ $- = *i* ]] || return # mode is interactive
+[[ $- = *i* ]] || return 0	# mode is interactive
 
 ### Interactive-only options
 
