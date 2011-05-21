@@ -322,6 +322,12 @@ sshfp() {
 	rm -f "$key"
 }
 
+tcp() {
+	local host=$1 port=$2
+	[[ $host = *:* ]] && host="[$host]"
+	socat stdio tcp:"$host":"$port"
+}
+
 abs() {
 	local package=$1
 	if [[ $package != */* ]]; then
