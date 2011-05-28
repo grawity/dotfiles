@@ -1,0 +1,24 @@
+gtk-theme-name		= "Clearlooks"
+gtk-font-name		= "Tahoma 8"
+gtk-menu-images		= 1
+gtk-button-images	= 0
+gtk-toolbar-style	= GTK_TOOLBAR_BOTH_HORIZ
+gtk-can-change-accels	= 0
+gtk-error-bell		= 0
+
+style "custom"
+{
+	# Fix red selected item bug in Clearlooks
+	# base[ACTIVE]	= shade (0.9, @selected_bg_color)
+	base[ACTIVE]	= @selected_bg_color
+	#base[ACTIVE]	= "#85b3df"
+
+	#GtkIMHtml::hyperlink-color = "#FFFFFF"
+	#GtkIMHtml::hyperlink-visited-color = "#FFFFFF"
+	#GtkIMHtml::send-name-color = "#FFFFFF"
+	#GtkIMHtml::receive-name-color = "#FFFFFF"
+	#GtkIMHtml::highlight-name-color = "#FFFFFF"
+	#GtkIMHtml::action-name-color = "#FFFFFF"
+	#GtkIMHtml::typing-notification-color = "#FFFFFF"
+}
+widget_class "*" style "custom"
