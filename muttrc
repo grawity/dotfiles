@@ -82,30 +82,38 @@ auto_view application/zip
 
 ### generic appearance
 color normal default default
-color index white default ~A
-	color index red default '~h "^X-Bogosity: Spam,"'
-	color index blue default '~h "^Auto-Submitted: auto-generated$"'
-	color index blue default '~h "^X-List-Administrivia: yes$"'
-	color index blue default '~h "^From: Cron Daemon <root@.+>$"'
-	color index brightblue default '~f "@postmaster\.twitter\.com$"'
+### last rule overrides
+	color index white default	~A
+	# important
+	color index brightred default	'~h "^X-Priority: [12]$"'
+	color index brightred default	'~h "^X-Facebook-Notify: login_notification;"'
+	# notifications
+	color index cyan default	'~f "@postmaster\.twitter\.com$"'
+	color index cyan default	'~h "^From: Cron Daemon <root@.+>$"'
+	#color index cyan default	'~h "^List-Unsubscribe:"
+	# administrivia
+	color index blue default	'~h "^X-List-Administrivia: yes$"'
+	# spam
+	color index yellow default	'~h "^X-Bogosity: Spam,"'
 	# flagged
-	color index brightwhite default ~F
+	color index brightwhite	default		~F
 	# unseen
-	color index brightyellow default ~U
+	color index brightyellow default	~U
 	# deleted
-	color index brightblack default ~D
+	color index brightblack default		~D
 	# tagged
-	color index white blue ~T
+	color index white blue			~T
+
 color indicator black white
 color status cyan default
 color message yellow default
 color error brightwhite red
 color hdrdefault green default
-	color header brightgreen default "^From:"
-	color header brightgreen default "^Subject:"
-	color header brightblack default "^X-Bogosity:"
-	color header yellow default "^X-Bogosity: Unsure,"
-	color header brightyellow default "^X-Bogosity: Spam,"
+	color header brightgreen default	"^From:"
+	color header brightgreen default	"^Subject:"
+	color header brightblack default	"^X-Bogosity:"
+	color header yellow default		"^X-Bogosity: Unsure,"
+	color header brightyellow default	"^X-Bogosity: Spam,"
 color attachment yellow default
 color quoted cyan default
 color signature blue default
