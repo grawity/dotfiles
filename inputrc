@@ -13,6 +13,9 @@ set visible-stats on
 # Ctrl-arrows
 "\e[1;5D": backward-word
 "\e[1;5C": forward-word
+# Ctrl-arrows (PuTTY)
+"\e[OD": backward-word
+"\e[OC": forward-word
 # Page Up/Down
 "\e[5~": ""
 "\e[6~": menu-complete
