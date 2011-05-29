@@ -30,6 +30,15 @@ shopt -s no_empty_cmd_completion
 
 ### Terminal
 
+if [[ -z $COLORTERM ]]; then
+	# auto-detect a 256-color-capable terminal
+	comm=$(ps -o 'comm=' $PPID)
+	case $comm in
+		gnome-terminal|konsole|xterm|yakuake)
+			COLORTERM=$comm;;
+	esac
+fi
+
 if [[ $TERM == "xterm" ]] && [[ $COLORTERM ]]; then
 	TERM="$TERM-256color"
 fi
