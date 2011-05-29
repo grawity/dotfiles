@@ -74,6 +74,8 @@ unset ${!c_*} ${!cx_*}
 
 title() { printf "$titlestring" "$*"; }
 
+wname() { printf '\ek%s\e\\' "$*"; }
+
 show_status() {
 	local status=$?
 	if (( status )); then
