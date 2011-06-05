@@ -84,13 +84,15 @@ auto_view application/zip
 color normal default default
 ### last rule overrides
 	color index white default	~A
-	# important
+	# important notifications
 	color index brightred default	'~h "^X-Priority: [12]$"'
 	color index brightred default	'~h "^X-Facebook-Notify: login_notification;"'
-	# notifications
+	# mentions and PMs
+	color index brightcyan default	'~f "^mention-.*@postmaster\.twitter\.com$"'
+	# "stuff happened" notifications; and mailing lists
 	color index cyan default	'~f "@postmaster\.twitter\.com$"'
 	color index cyan default	'~h "^From: Cron Daemon <root@.+>$"'
-	#color index cyan default	'~h "^List-Unsubscribe:"
+	#color index cyan default	'~h "^List-Unsubscribe:"'
 	# administrivia
 	color index blue default	'~h "^X-List-Administrivia: yes$"'
 	# spam
