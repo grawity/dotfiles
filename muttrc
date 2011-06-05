@@ -29,7 +29,7 @@ set confirmcreate
 set delete
 
 # Caching
-set header_cache="~/.cache/mutt"
+#set header_cache="~/.cache/mutt"
 set message_cachedir="~/.cache/mutt"
 
 # Remote mail
