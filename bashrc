@@ -422,10 +422,6 @@ export SUDO_PROMPT=$(printf 'sudo password for %%u@\e[30;43m%%h\e[m: ')
 # fixes PuTTY, doesn't hurt otherwise
 export NCURSES_NO_UTF8_ACS=1
 
-if [[ $DISPLAY == :* ]] && have gvim; then
-	alias vim='gvim'
-fi
-
 if [[ -f ~/lib/kc.bash ]]; then
 	. ~/lib/kc.bash
 fi
