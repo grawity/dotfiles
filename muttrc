@@ -47,7 +47,7 @@ unmy_hdr *
 unset user_agent
 
 set alias_file="~/.muttaliases"
-source $alias_file
+source "silentcat ~/.muttaliases|"
 set query_command="~/bin/muttbook --query '%s'"
 
 ### sending
