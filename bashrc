@@ -175,7 +175,15 @@ userports() { netstat -lte --numeric-host | sort -k 7; }
 alias sd='systemctl'
 alias tsd='tree /etc/systemd/system'
 cgls() { systemd-cgls "$@" | pager; }
-psls() { systemd-cgls "/user/$USER" | pager; }
+psls() {
+	if [[ $1 == "-a" ]]; then
+		cgls "/user/$USER"
+	elif [[ $1 ]]; then
+		cgls "/user/$1"
+	else
+		cgls "/user/$USER/${XDG_SESSION_ID:-$(</proc/self/sessionid)}"
+	fi
+}
 
 if have systemd; then
 	start() { sudo systemctl start "$@"; systemctl status "$@"; }
