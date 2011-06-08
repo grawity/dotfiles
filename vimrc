@@ -186,8 +186,8 @@ silent! autocmd BufNewFile,BufRead
 \ authorized_keys.*
 \ set ft=conf
 silent! autocmd BufReadPost host-acls %!sexp-conv -w 0
-silent! autocmd BufNewFile,BufRead lib/passwd set ft=passwd
-silent! autocmd BufNewFile,BufRead lib/group set ft=group
+silent! autocmd BufNewFile,BufRead lib/hesiod/passwd set ft=passwd
+silent! autocmd BufNewFile,BufRead lib/hesiod/group set ft=group
 silent! autocmd BufNewFile,BufRead */pam.d/* set ft=pamconf
 silent! autocmd BufNewFile,BufRead .muttaliases set ft=muttrc
 silent! autocmd BufNewFile,BufRead
