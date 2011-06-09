@@ -47,7 +47,6 @@ unmy_hdr *
 unset user_agent
 
 set alias_file="~/.muttaliases"
-source "silentcat ~/.muttaliases|"
 set query_command="~/bin/muttbook --query '%s'"
 
 ### sending
@@ -185,4 +184,4 @@ set pgp_sign_command="gpg --no-verbose --batch --quiet --output - %?p?--passphra
 #set pgp_list_secring_command="gpg --no-verbose --batch --quiet --with-colons --list-secret-keys %r" 
 set pgp_good_sign="^\\[GNUPG:\\] GOODSIG"
 
-source "silentcat ~/.muttrc-local|"
+source "silentcat ~/.muttaliases ~/.muttrc-local|"
