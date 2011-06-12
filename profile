@@ -11,27 +11,29 @@ if [ ! -e "$LOCAL/lib/perl5/prefer-systemwide" ]; then
 fi
 export GEM_HOME="$LOCAL/ruby/gems"
 
-export PATH="\
-$HOME/bin:\
-$LOCAL/bin:\
-/usr/local/sbin:\
-/usr/local/bin:\
-/usr/sbin:\
-/usr/bin:\
-/usr/pkg/sbin:\
-/usr/pkg/bin:\
-/sbin:\
-/bin:\
-/usr/X11R7/bin:\
-/usr/X11R6/bin:\
-/usr/games:\
-/usr/bin/core_perl:\
-/usr/lib/perl5/site_perl/bin:\
-/usr/lib/perl5/vendor_perl/bin:\
-/usr/lib/perl5/core_perl/bin:\
-/usr/bin/perlbin/vendor:\
-$GEM_HOME/bin:\
-$HOME/.gem/ruby/1.9.1/bin"
+#export PATH="\
+#$HOME/bin:\
+#$LOCAL/bin:\
+#/usr/local/sbin:\
+#/usr/local/bin:\
+#/usr/sbin:\
+#/usr/bin:\
+#/usr/pkg/sbin:\
+#/usr/pkg/bin:\
+#/sbin:\
+#/bin:\
+#/usr/X11R7/bin:\
+#/usr/X11R6/bin:\
+#/usr/games:\
+#/usr/bin/core_perl:\
+#/usr/lib/perl5/site_perl/bin:\
+#/usr/lib/perl5/vendor_perl/bin:\
+#/usr/lib/perl5/core_perl/bin:\
+#/usr/bin/perlbin/vendor:\
+#$GEM_HOME/bin:\
+#$HOME/.gem/ruby/1.9.1/bin"
+
+PATH="$HOME/bin:$LOCAL/bin:${PATH}:/usr/local/sbin:/usr/sbin:/sbin"
 
 if [ -d /opt/plan9 ]; then
 	export PLAN9=/opt/plan9
