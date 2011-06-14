@@ -6,44 +6,57 @@ have() { command -v "$@" >& /dev/null; }
 [[ $USER ]] || export USER=$(id -un)
 
 export GPG_TTY=$(tty)
+export HOSTALIASES=~/.hosts
+export NCURSES_NO_UTF8_ACS=1
 
-LOGDIR=~/tmp/log
-[[ -d $LOGDIR ]] || mkdir -pm 0700 "$LOGDIR"
-RUNDIR=~/tmp/run
-[[ -d $RUNDIR ]] || mkdir -pm 0700 "$RUNDIR"
-
-[[ $- = *i* ]] || return 0	# mode is interactive
+[[ -d ~/.cache ]] && mkdir -pm 0700 ~/.cache
 
 ### Interactive-only options
 
-# history
-HISTFILE=$LOGDIR/bash.history
-HISTCONTROL=ignoreboth
-shopt -s cmdhist		# store multi-line commands as single history entry
-shopt -s histappend		# append to $HISTFILE on exit
-shopt -s histreedit		# allow re-editing failed history subst
+[[ $- = *i* ]] || return 0
 
 shopt -os physical		# resolve symlinks on 'cd'
 shopt -s checkjobs 2> /dev/null	# print job status on exit
 shopt -s checkwinsize		# update $ROWS/$COLUMNS after command
 shopt -s no_empty_cmd_completion
 
+shopt -s cmdhist		# store multi-line commands as single history entry
+shopt -s histappend		# append to $HISTFILE on exit
+shopt -s histreedit		# allow re-editing failed history subst
+
+HISTFILE=~/.cache/bash.history
+HISTCONTROL=ignoreboth
+
+### Command line completion
+
+HOSTFILE=~/.hosts
+
+complete -A directory cd
+
+__expand_tilde_by_ref() { true; }
+
 ### Terminal
 
-if [[ -z $COLORTERM ]]; then
-	# auto-detect a 256-color-capable terminal
-	comm=$(ps -o 'comm=' $PPID)
-	case $comm in
-		gnome-terminal|konsole|xterm|yakuake)
-			COLORTERM=$comm;;
-	esac
-fi
+if [[ $TERM == xterm ]]; then
+	havecolor=y
 
-if [[ $TERM == "xterm" ]] && [[ $COLORTERM ]]; then
-	TERM="$TERM-256color"
+	if [[ -z $COLORTERM ]]; then
+		# auto-detect a 256-color-capable terminal
+		comm=$(ps -o 'comm=' $PPID)
+		case $comm in
+			gnome-terminal|konsole|xterm|yakuake)
+				COLORTERM=$comm;;
+		esac
+		unset comm
+	fi
+	if [[ $COLORTERM ]]; then
+		TERM="$TERM-256color"
+	fi
+elif [[ $TERM == xterm-* ]]; then
+	havecolor=y
+else
+	havecolor=$(tput setaf 0; tput sgr0)
 fi
-
-havecolor=$(tput setaf 0)
 
 # terminal window title
 case $TERM in
@@ -53,12 +66,12 @@ case $TERM in
 	#	titlestring='\ek%s\e\\';;
 esac
 
-unset ${!c_*} ${!cx_*} ${!PS*}
+unset ${!c_*} ${!cx_*}
 if [[ $havecolor ]]; then
 	c_no="\[\e[m\]"
-	if [[ $(id -u) -eq 0 ]]; then
+	if (( $UID == 0 )); then
 		c_uh="\[\e[;1;37;41m\]"
-	elif [[ $(whoami) == "grawity" ]]; then
+	elif [[ $USER == "grawity" ]]; then
 		c_uh="\[\e[;1;32m\]"
 	else
 		c_uh="\[\e[;1;33m\]"
@@ -71,7 +84,7 @@ if [[ $havecolor ]]; then
 	cx_func="\e[33m"
 	cx_norm="\e[m"
 fi
-if (( $(id -u) == 0 )) || [[ $(whoami) == "grawity" ]]; then
+if (( $UID == 0 )) || [[ $USER == "grawity" ]]; then
 	PS1="\h"
 else
 	PS1="\u@\h"
@@ -87,9 +100,7 @@ wname() { printf '\ek%s\e\\' "$*"; }
 
 show_status() {
 	local status=$?
-	if (( status )); then
-		printf "\e[;33m%s\e[m\n" "(returned $status)"
-	fi
+	(( status )) && printf "\e[;33m%s\e[m\n" "(returned $status)"
 }
 update_title() {
 	local title="$USER@$HOSTNAME ${PWD/#$HOME/~}"
@@ -99,10 +110,11 @@ update_title() {
 }
 
 PROMPT_COMMAND="show_status; update_title"
-PROMPT_DIRTRIM=2
+PROMPT_DIRTRIM=3
 
 ### Aliases
 unalias -a
+
 a() {
 	if [[ $1 ]]; then
 		alias "$@"
@@ -116,28 +128,29 @@ a() {
 	fi
 }
 
-ls_opt="ls -Fh"
-grep_opt="grep"
+LSOPT="ls -Fh"
+GREPOPT="grep"
 if [[ $havecolor ]]; then
-	grep_opt="$grep_opt --color=auto"
+	GREPOPT="$GREPOPT --color=auto"
 	case "$(uname)" in
 		Linux|CYGWIN_*)
-			ls_opt="$ls_opt --color=auto"
-			eval "$(dircolors --sh)"
+			LSOPT="$LSOPT --color=auto"
+			eval $(dircolors --sh)
 			;;
 		FreeBSD)
-			ls_opt="$ls_opt -G"
+			LSOPT="$LSOPT -G"
 			;;
 	esac
 fi
-alias ls="$ls_opt"
-alias grep="$grep_opt"
-unset ls_opt grep_opt
+alias ls="$LSOPT"
+alias grep="$GREPOPT"
+unset LSOPT GREPOPT
 
 editor() { eval "${EDITOR:-vim}" '"$@"'; }
 browser() { eval "${BROWSER:-lynx}" '"$@"'; }
 pager() { eval "${PAGER:-less}" '"$@"'; }
 
+count() { sort | uniq -c | sort -n -r | pager; }
 alias cur='cur '
 alias df='df -Th'
 alias egrep='grep -E'
@@ -148,11 +161,11 @@ gg() { g --color=always "$@" | pager; }
 alias hex='xxd -p'
 alias hup='pkill -HUP -x'
 alias iprules='iptables -L --line-numbers -n'
-#irc() { screen -dr irc || screen -S irc irssi "$@"; }
 irc() { tmux attach -t irc || tmux new -s irc -n irssi "irssi $*"; }
 alias ll='ls -l'
 alias md='mkdir'
 alias p='pager'
+path() { echo "${PATH//:/$'\n'}"; }
 alias preg='grep -P'
 alias py='python'
 alias py2='python2'
@@ -167,8 +180,6 @@ alias w='PROCPS_USERLEN=16 w -shu'
 alias xx='chmod a+x'
 X() { ("$@" &> /dev/null &); }
 alias '~'='preg'
-alias slurpy='cower'
-count() { sort | uniq -c | sort -n -r | pager; }
 
 userports() { netstat -lte --numeric-host | sort -k 7; }
 
@@ -185,7 +196,7 @@ psls() {
 	fi
 }
 
-if have systemd; then
+if have systemctl; then
 	start() { sudo systemctl start "$@"; systemctl status "$@"; }
 	stop() { sudo systemctl stop "$@"; systemctl status "$@"; }
 	restart() { sudo systemctl restart "$@"; systemctl status "$@"; }
@@ -206,19 +217,21 @@ lspkg() {
 	if [[ -z $1 ]]; then
 		echo "$FUNCNAME: package not specified" >&2
 		return 2
-	fi
-	if have dpkg;		then dpkg -L "$@"
+	elif have dpkg;		then dpkg -L "$@"
 	elif have pacman;	then pacman -Qql "$@"
 	elif have rpm;		then rpm -ql "$@"
 	elif have pkg_info;	then pkg_info -Lq "$@"
 	else echo "no package manager" >&2; return 1; fi
 }
+
 lcpkg() {
 	lspkg "$@" | xargs -d '\n' ls -d --color=always 2>/dev/null | pager
 }
+
 llpkg() {
 	lspkg "$@" | xargs -d '\n' ls -ld --color=always 2>/dev/null | pager
 }
+
 # list installed packages
 lspkgs() {
 	if have dpkg;		then dpkg -l | awk '/^i/ {print $2}'
@@ -226,12 +239,14 @@ lspkgs() {
 	elif have pkg_info;	then pkg_info
 	else echo "no package manager" >&2; return 1; fi
 }
+
 # list leftover configs from removed packages
 lscruft() {
 	if have dpkg;		then dpkg -l | awk '/^r/ {print $2}'
 	elif have pacman;	then find /etc -name '*.pacsave'
 	else echo "no package manager or configs not tracked" >&2; return 1; fi
 }
+
 owns() {
 	local file=$1
 	if [[ $file != */* ]] && have "$file"; then
@@ -243,8 +258,9 @@ owns() {
 	elif have rpm;		then rpm -q --whatprovides "$file"
 	else echo "no package manager" >&2; return 1; fi
 }
+
 # install a package
-get() {
+getpkg() {
 	if [[ -f $1 ]]; then
 		if have dpkg;		then sudo dpkg -i "$@"
 		elif have pacman;	then sudo pacman -U "$@"
@@ -262,22 +278,23 @@ get() {
 	fi
 }
 
-web() {
-	if pgrep -xu "$USER" firefox > /dev/null; then
-		firefox "$@"
-	else
-		browser "$@"
-	fi
+google() {
+	browser "http://www.google.com/search?q=$(urlencode "$*")"
 }
-google() { web "http://www.google.com/search?q=$(urlencode "$*")"; }
-rfc() { web "http://tools.ietf.org/html/rfc$1"; }
-wiki() { web "http://en.wikipedia.org/w/index.php?search=$(urlencode "$*")"; }
+
+rfc() {
+	browser "http://tools.ietf.org/html/rfc$1"
+}
+
+wiki() {
+	browser "http://en.wikipedia.org/w/index.php?search=$(urlencode "$*")"
+}
 
 todo() {
 	if [[ $1 ]]; then
 		echo "($(date +"%b %d")) $*" >> ~/todo
 		nl ~/todo | tail -n 1
-	else
+	elif [[ -s ~/todo ]]; then
 		nl ~/todo
 	fi
 }
@@ -297,42 +314,36 @@ fi
 
 alias sdate='date "+%Y-%m-%d %H:%M"'
 alias ldate='date "+%A, %B %-d, %Y %H:%M"'
-alias mboxdate='date "+%a %b %_d %H:%M:%S %Y"'
-alias mimedate='date "+%a, %d %b %Y %H:%M:%S %z"' # RFC 2822
-alias isodate='date "+%Y-%m-%dT%H:%M:%S%z"' # ISO 8601
+alias mboxdate='date "+%a %b %_d %H:%M:%S %Y"'		# mbox
+alias mimedate='date "+%a, %d %b %Y %H:%M:%S %z"'	# RFC 2822
+alias isodate='date "+%Y-%m-%dT%H:%M:%S%z"'		# ISO 8601
 
 x509() {
 	local file=${1:-/dev/stdin}
 	if have certtool; then
-		certtool -i <"$file" | sed -r '/^-----BEGIN/,/^-----END/d;
+		certtool -i <"$file" |
+		sed -r '/^-----BEGIN/,/^-----END/d;
 			/^\t*([0-9a-f][0-9a-f]:)+[0-9a-f][0-9a-f]$/d'
-	elif have openssl; then
+	else
 		openssl x509 -noout -text -certopt no_pubkey,no_sigdump <"$file"
 	fi
 }
+
 x509fp() {
 	local file=${1:-/dev/stdin}
 	openssl x509 -noout -fingerprint -sha1 -in "$file" |
 		sed 's/^.*=//; y/ABCDEF/abcdef/'
 }
 
-escape_addr() {
-	local addr
-	for addr; do
-		if [[ $addr == *:* ]]; then
-			addr="[$addr]"
-		fi
-		echo "$addr"
-	done
-}
-
 sslcert() {
 	if have gnutls-cli; then
 		gnutls-cli "$1" -p "$2" --insecure --print-cert </dev/null | openssl x509
 	elif have openssl; then
-		openssl s_client -no_ign_eof -connect "$(escape_addr "$1"):$2" </dev/null 2>/dev/null | openssl x509
+		openssl s_client -no_ign_eof -connect "$(escape_addr "$1"):$2" \
+			</dev/null 2>/dev/null | openssl x509
 	fi
 }
+
 sshfp() {
 	local key=$(mktemp)
 	ssh-keyscan -t rsa,dsa "$@" >> "$key"
@@ -347,31 +358,25 @@ tcp() {
 }
 
 abs() {
-	local package=$1
-	if [[ $package != */* ]]; then
-		local repo=$(pacman -Si "$1" | sed -nr 's/^Repository *: *(.+)$/\1/p' | sed 1q)
+	local pkg=$1
+	if [[ $pkg != */* ]]; then
+		local repo=$(pacman -Si "$pkg" | sed -nr 's/^Repository *: *(.+)$/\1/p' | sed 1q)
 		[[ $repo ]] || return 1
-		package="$repo/$package"
+		pkg="$repo/$pkg"
 	fi
-	local dir="$ABSROOT/$package"
-	if [[ -d $dir ]]; then
-		echo "==> Already downloaded to $dir"
-		cd "$dir"
-	else
-		echo "==> Downloading $package to $dir"
-		command abs "$package" && cd "$dir" && \
-			find ~/lib/abs-patches/ -name "$1-*.patch" \
-			-print -exec patch -i {} \;
-	fi
+	echo "Downloading $pkg"
+	command abs "$pkg" && cd "$ABSROOT/$pkg"
 }
 
 fixlog() {
-	local file=$1; shift
+	local file=$1 temp=; shift
 	if ! [[ $file ]]; then
 		echo "Usage: fixlog <file> <perl_condition>" >&2
 		return 2
 	fi
-	perl -i -n -e "unless ($*) {print;}" "$file"
+	temp=$(mktemp /tmp/log.XXXXXXXX)
+	cp "$file" "$temp" && perl -ne "unless ($*) {print}" "$temp" > "$file"
+	rm -f "$temp"
 }
 
 catlog() {
@@ -386,12 +391,12 @@ catlog() {
 }
 
 pwhich() {
-	local package= perlpath=() file= results=0
+	local pkg= perlpath=() file= results=0
 	perlpath=( $(perl -e 'print "@INC"') )
-	for package; do
-		package=${package//:://}
+	for pkg; do
+		pkg=${pkg//:://}
 		for dir in "${perlpath[@]}"; do
-			file=$dir/$package.pm
+			file=$dir/$pkg.pm
 			if [[ -f $file ]]; then
 				echo "$file"
 				(( ++results ))
@@ -401,39 +406,21 @@ pwhich() {
 	(( results ))
 }
 
-if [[ $PLAN9 ]]; then
-	9man() { MANPATH=$PLAN9/man man "$@"; }
-fi
-
-### completion
-
-HOSTFILE=~/.hosts
-complete -A directory cd
-# stop bash_completion from expanding ~/
-__expand_tilde_by_ref() { true; }
-
-### misc environ
+### Environment
 
 export ABSROOT=~/build
 export ACK_PAGER=$PAGER
-# for gethostbyname; see hostname(7)
-export HOSTALIASES=~/.hosts
 export LESS="-eMqR -FX"
-export LESSHISTFILE="$LOGDIR/less.history"
-export MYSQL_HISTFILE="$LOGDIR/mysql.history"
+export LESSHISTFILE=~/.cache/less.history
+export MYSQL_HISTFILE=~/.cache/mysql.history
 if [[ -f ~/.pythonrc ]]; then
 	export PYTHONSTARTUP=~/.pythonrc
-	export PYTHONHISTFILE="$LOGDIR/python.history"
+	export PYTHONHISTFILE=~/.cache/python.history
 fi
-export SUDO_PROMPT=$(printf 'sudo password for %%u@\e[30;43m%%h\e[m: ')
-
-# fixes PuTTY, doesn't hurt otherwise
-export NCURSES_NO_UTF8_ACS=1
+export SUDO_PROMPT=$(printf 'sudo: Password for %%u@\e[30;43m%%h\e[m: ')
 
 if [[ -f ~/lib/kc.bash ]]; then
 	. ~/lib/kc.bash
 fi
 
-if [[ -f ~/todo ]]; then
-	todo
-fi
+todo

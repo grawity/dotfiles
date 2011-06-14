@@ -1,6 +1,11 @@
 #!/bin/bash
 have() { command -v "$@" >& /dev/null; }
 
+localconfig=~/.config/profile-$HOSTNAME.conf
+if [ -f "$localconfig" ]; then
+	. "$localconfig"
+fi
+
 export LOCAL="$HOME/usr"
 
 export PYTHONPATH="$HOME/lib/python:$LOCAL/lib/python"
@@ -35,43 +40,48 @@ export GEM_HOME="$LOCAL/ruby/gems"
 
 PATH="$HOME/bin:$LOCAL/bin:${PATH}:/usr/local/sbin:/usr/sbin:/sbin"
 
-if [ -d /opt/plan9 ]; then
-	export PLAN9=/opt/plan9
-	PATH="$PATH:$PLAN9/bin"
-fi
-
-case $TERM in
-vt*|ansi)
-	LANG="en_US";;
-*)
-	LANG="en_US.utf-8";;
-esac
-export LANG
 unset LC_ALL
 
-export PAGER=less
-export EDITOR=vim
-unset VISUAL
-export BROWSER=open-browser
+case $TERM in
+	vt*|ansi)	export LANG="en_US";;
+	*)		export LANG="en_US.utf-8";;
+esac
 
-export TZ=Europe/Vilnius
+export PAGER='less'
+export EDITOR='vim'
+unset VISUAL
+export BROWSER='open-browser'
+
+export TZ='Europe/Vilnius'
 export NAME='Mantas Mikulėnas'
 export EMAIL="grawity@nullroute.eu.org"
-unset DEBFULLNAME DEBEMAIL
+unset DEBFULLNAME
+unset DEBEMAIL
 
 umask 022
 
-if [ -z "$GPG_AGENT_INFO" ] && have gpg-agent; then
-	# mutt requires GPG_AGENT_INFO despite presence of S.gpg-agent
-	env=/tmp/env.$LOGNAME@$HOSTNAME.gpg-agent
-	if [ -f "$env" ]; then
-		. "$env"
-		export GPG_AGENT_INFO
-		if ! gpg-agent 2>/dev/null; then
-			unset GPG_AGENT_INFO
-		fi
+run-gpg-agent() {
+	local active=false env="$HOME/.cache/gpg-agent.$HOSTNAME.env"
+
+	if ! have gpg-agent; then
+		return 1
+	elif gpg-agent 2>/dev/null; then
+		active=true
+	else
+		[ -f "$env" ] && . "$env"
 	fi
-fi
+
+	if $active || gpg-agent 2>/dev/null; then
+		# mutt/gpgme requires the envvar
+		if [ -z "$GPG_AGENT_INFO" ] && [ -S ~/.gnupg/S.gpg-agent ]; then
+			export GPG_AGENT_INFO="$HOME/.gnupg/S.gpg-agent:0:1"
+		fi
+	else
+		eval $(gpg-agent --daemon --use-standard-socket --write-env-file "$env")
+	fi
+}
+
+run-gpg-agent
 
 if [ -t 0 ]; then
 	[ -f ~/.hushlogin ] && [ -x ~/code/motd ] && ~/code/motd -q
