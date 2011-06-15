@@ -50,7 +50,7 @@ set alias_file="~/.muttaliases"
 set query_command="~/bin/muttbook --query '%s'"
 
 ### sending
-set use_envelope_from # give -f $from to sendmail
+set use_envelope_from # give -f $from to sendmail; useful for msmtp
 
 #set hostname="nullroute.eu.org"
 #set use_8bitmime
