@@ -6,7 +6,9 @@ export LOCAL="$HOME/usr"
 
 export PYTHONPATH="$HOME/lib/python:$LOCAL/lib/python"
 export PERL5LIB="$HOME/lib/perl5:$LOCAL/lib/perl5"
-if [ ! -e "$LOCAL/lib/perl5/prefer-systemwide" ]; then
+if [ -e "$LOCAL/lib/perl5/prefer-systemwide" ]; then
+	export PERL_CPANM_OPT='--sudo'
+else
 	export PERL_MM_OPT="INSTALL_BASE='$LOCAL'"
 	export PERL_MB_OPT="--install_base '$LOCAL'"
 fi
