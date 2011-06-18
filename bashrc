@@ -298,7 +298,10 @@ todo() {
 		nl ~/todo
 	fi
 }
-rmtodo() { sed -i "${1:-\$}d" ~/todo && todo; }
+rmtodo() {
+	sed -i "${1:-\$}d" ~/todo
+	[[ -s ~/todo ]] || rm ~/todo
+}
 
 if have xclip; then
 	alias psel='xclip -out -selection primary'
