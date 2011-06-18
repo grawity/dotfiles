@@ -1,6 +1,8 @@
 #!/bin/bash
-have() { command -v "$@" >& /dev/null; }
+have() { command -v "$1" >/dev/null; }
 
+: ${HOSTNAME:=`hostname`}
+: ${UID:=`id -u`}
 
 export LOCAL="$HOME/usr"
 
