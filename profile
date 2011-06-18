@@ -17,6 +17,7 @@ export GEM_HOME="$LOCAL/ruby/gems"
 export PATH="\
 $HOME/bin:\
 $LOCAL/bin:\
+$HOME/code/tools:\
 ${PATH}:\
 /usr/local/sbin:\
 /usr/sbin:\
