@@ -14,6 +14,8 @@ set wildmenu
 set display+=lastline
 set number
 silent! set numberwidth=1
+
+let g:zenburn_high_Contrast=1
 silent! color slate
 if has("gui")
 	if has("gui_gtk")
@@ -23,7 +25,6 @@ if has("gui")
 	endif
 	set guioptions+=gm
 	set guioptions-=tT
-	let g:zenburn_high_Contrast=1
 endif
 if has("gui_running")
 	silent! color desert
