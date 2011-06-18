@@ -39,6 +39,10 @@ export TZ='Europe/Vilnius'
 export NAME='Mantas Mikulėnas'
 export EMAIL='grawity@nullroute.eu.org'
 
+if [ ! -f ~/.mailrc ]; then
+	export NAILRC=~/lib/dotfiles/mailrc
+fi
+
 umask 022
 
 if [ -t 0 ]; then
@@ -53,6 +57,14 @@ fi
 
 if [ "$BASH_VERSION" ] && [ -f ~/.bashrc ]; then
 	. ~/.bashrc
+fi
+
+if have klist && klist -5s && have pklist; then
+	case `pklist -P` in
+		*@CLUENET.ORG|*@NULLROUTE.EU.ORG)
+			inc
+			;;
+	esac
 fi
 
 true
