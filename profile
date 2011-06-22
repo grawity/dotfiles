@@ -20,6 +20,7 @@ export PATH="\
 $HOME/bin:\
 $LOCAL/bin:\
 $HOME/code/tools:\
+$HOME/cluenet/bin:\
 ${PATH}:\
 /usr/local/sbin:\
 /usr/sbin:\
