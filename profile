@@ -63,7 +63,7 @@ fi
 if have klist && klist -5s && have pklist; then
 	case `pklist -P` in
 		*@CLUENET.ORG|*@NULLROUTE.EU.ORG)
-			(k5sshinit 2>/dev/null &)
+			(k5sshinit -h equal.cluenet.org 2>/dev/null &)
 			inc
 			;;
 	esac
