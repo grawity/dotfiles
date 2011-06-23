@@ -135,7 +135,7 @@ if [[ $havecolor ]]; then
 	case "$(uname)" in
 		Linux|CYGWIN_*)
 			LSOPT="$LSOPT --color=auto"
-			eval $(dircolors --sh)
+			eval $(dircolors --sh ~/lib/dotfiles/dircolors)
 			;;
 		FreeBSD)
 			LSOPT="$LSOPT -G"
@@ -180,6 +180,12 @@ alias w='PROCPS_USERLEN=16 w -shu'
 alias xx='chmod a+x'
 X() { ("$@" &> /dev/null &); }
 alias '~'='preg'
+
+case $DESKTOP_SESSION in
+gnome)
+	alias logout='gnome-session-quit --logout --force --no-prompt'
+	;;
+esac
 
 userports() { netstat -lte --numeric-host | sort -k 7; }
 
