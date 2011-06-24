@@ -52,6 +52,9 @@ $all || exit 0
 
 #link	mailrc		~/.mailrc
 link	msmtprc		~/.msmtprc
-link	muttrc		~/.muttrc
+#link	muttrc		~/.muttrc
 link	screenrc	~/.screenrc
 link	tmux.conf	~/.tmux.conf
+
+[[ -f ~/.muttrc ]] ||
+	echo 'source "~/lib/dotfiles/muttrc"' > ~/.muttrc
