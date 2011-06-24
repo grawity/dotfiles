@@ -30,7 +30,7 @@ set delete
 
 # Caching
 #set header_cache="~/.cache/mutt"
-set message_cachedir="~/.cache/mutt"
+#set message_cachedir="~/.cache/mutt"
 
 # Remote mail
 set imap_user="grawity"
