@@ -28,4 +28,4 @@ set sendcharsets=utf-8
 set folder="mail/"
 set record="+sent"
 
-source "~/lib/dotfiles/nailrc"
+set NAIL_EXTRA_RC="~/lib/dotfiles/nailrc"

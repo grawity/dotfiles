@@ -43,8 +43,6 @@ export EMAIL='grawity@nullroute.eu.org'
 if [ ! -f ~/.mailrc ]; then
 	export NAILRC=~/lib/dotfiles/mailrc
 fi
-# doesn't work:
-#export NAIL_EXTRA_RC=~/lib/dotfiles/nailrc
 
 umask 022
 

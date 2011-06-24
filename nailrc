@@ -1,3 +1,5 @@
+set bsdcompat
+
 # remote storage
 set pop3-use-starttls
 set imap-use-starttls
@@ -9,3 +11,11 @@ account nullroute {
 	set imap-auth="gssapi"
 	set smtp-auth="gssapi"
 }
+
+# local storage
+#set imap-cache="~/.cache/mailx"
+
+# security
+set nss-config-dir="sql:$HOME/.pki/nssdb"
+set ssl-ca-dir="~/.pki/ca"
+set smime-ca-dir="~/.pki/ca"
