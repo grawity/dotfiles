@@ -1,0 +1,11 @@
+# remote storage
+set pop3-use-starttls
+set imap-use-starttls
+set smtp-use-starttls
+account nullroute {
+	set from="grawity@nullroute.eu.org"
+	set folder="imap://grawity@equal.cluenet.org"
+	set smtp="equal.cluenet.org:587"
+	set imap-auth="gssapi"
+	set smtp-auth="gssapi"
+}

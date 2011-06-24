@@ -50,7 +50,7 @@ trash	~/.bash_{login,profile,logout}
 
 $all || exit 0
 
-link	mailrc		~/.mailrc
+#link	mailrc		~/.mailrc
 link	muttrc		~/.muttrc
 link	screenrc	~/.screenrc
 link	tmux.conf	~/.tmux.conf
