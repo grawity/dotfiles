@@ -1,6 +1,7 @@
 set show-all-if-ambiguous on
 set blink-matching-parent on
 set visible-stats on
+set revert-all-at-newline on
 
 # Home/End
 "\e[1~": beginning-of-line
