@@ -137,7 +137,7 @@ if [[ $havecolor ]]; then
 	case $OSTYPE in
 		Linux|CYGWIN_*)
 			LSOPT="$LSOPT --color=auto"
-			eval $(dircolors --sh ~/lib/dotfiles/dircolors)
+			eval $(dircolors ~/lib/dotfiles/dircolors)
 			;;
 		FreeBSD)
 			LSOPT="$LSOPT -G"
