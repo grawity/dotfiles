@@ -282,6 +282,7 @@ getpkg() {
 		elif have pacman;	then sudo pacman -S "$@"
 		elif have yum;		then sudo yum install "$@"
 		elif have pkg_add;	then sudo pkg_add "$@"
+		elif have mingw-get;	then mingw-get install "$@"
 		else echo "no package manager" >&2; return 1; fi
 	fi
 }
