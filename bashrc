@@ -158,8 +158,7 @@ alias df='df -Th'
 alias egrep='grep -E'
 entity() { printf '&%s;' "$@" | w3m -dump -T text/html; }
 finge() { [[ $1 == r* ]] && set -- "${1:1}" "${@:2}"; finger "$@"; }
-g() { egrep -rn "$@" .; }
-gg() { g --color=always "$@" | pager; }
+g() { egrep -rn --color=always "$@" . | pager; }
 alias hex='xxd -p'
 alias hup='pkill -HUP -x'
 alias iprules='iptables -L --line-numbers -n'
