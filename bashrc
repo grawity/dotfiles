@@ -4,7 +4,7 @@ have() { command -v "$@" >& /dev/null; }
 # For Cygwin
 [[ $USER ]] || export USER=$LOGNAME
 [[ $USER ]] || export USER=$(id -un)
-[[ $OSTYPE ]] || export OSTYPE=$(uname)
+[[ $OSNAME ]] || export OSNAME=$(uname)
 
 export GPG_TTY=$(tty)
 export HOSTALIASES=~/.hosts
@@ -40,7 +40,7 @@ __expand_tilde_by_ref() { true; }
 
 if [[ $TERM == xterm ]]; then
 	havecolor=y
-	if [[ -z $COLORTERM ]] && [[ $OSTYPE == Linux ]]; then
+	if [[ -z $COLORTERM ]] && [[ $OSNAME == Linux ]]; then
 		# auto-detect a 256-color-capable terminal
 		comm=$(ps -o 'comm=' $PPID)
 		case $comm in
@@ -134,8 +134,10 @@ LSOPT="ls -Fh"
 GREPOPT="grep"
 if [[ $havecolor ]]; then
 	GREPOPT="$GREPOPT --color=auto"
+	#case $OSNAME in
 	case $OSTYPE in
-		Linux|CYGWIN_*)
+		#Linux|CYGWIN_*)
+		linux-gnu|cygwin)
 			LSOPT="$LSOPT --color=auto"
 			eval $(dircolors ~/lib/dotfiles/dircolors)
 			;;
