@@ -401,22 +401,6 @@ catlog() {
 	done
 }
 
-pwhich() {
-	local pkg= perlpath=() file= results=0
-	perlpath=( $(perl -e 'print "@INC"') )
-	for pkg; do
-		pkg=${pkg//:://}
-		for dir in "${perlpath[@]}"; do
-			file=$dir/$pkg.pm
-			if [[ -f $file ]]; then
-				echo "$file"
-				(( ++results ))
-			fi
-		done
-	done
-	(( results ))
-}
-
 ### Environment
 
 export ABSROOT=~/build
