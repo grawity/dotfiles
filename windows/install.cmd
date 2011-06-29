@@ -1,5 +1,5 @@
 @echo off & setlocal
-set srcdir=%USERPROFILE%\lib\dotfiles
+set srcdir=%~dp0\..
 
 pushd "%srcdir%"
 call git pull
