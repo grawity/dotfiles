@@ -4,7 +4,7 @@ have() { command -v "$1" >/dev/null; }
 : ${HOSTNAME:=`hostname`}
 : ${UID:=`id -u`}
 
-export LOCAL="$HOME/usr"
+export LOCAL="$HOME/.local"
 
 export PYTHONPATH="$HOME/lib/python:$LOCAL/lib/python"
 export PERL5LIB="$HOME/lib/perl5:$LOCAL/lib/perl5"
