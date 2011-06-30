@@ -16,7 +16,7 @@ else
 	export PERL_MM_OPT="INSTALL_BASE='$LOCAL'"
 	export PERL_MB_OPT="--install_base '$LOCAL'"
 fi
-export GEM_HOME="$LOCAL/ruby/gems"
+export GEM_HOME="$LOCAL/ruby"
 
 mkpath \
 	"$HOME/bin" \
