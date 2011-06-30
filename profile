@@ -21,6 +21,7 @@ $HOME/bin:\
 $LOCAL/bin:\
 $HOME/code/tools:\
 $HOME/cluenet/bin:\
+$GEM_HOME/bin:\
 ${PATH}:\
 /usr/local/sbin:\
 /usr/sbin:\
