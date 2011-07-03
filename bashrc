@@ -1,11 +1,11 @@
 #!bash
 have() { command -v "$@" >& /dev/null; }
 
-# For Cygwin
-[[ $USER ]] || export USER=$LOGNAME
-[[ $USER ]] || export USER=$(id -un)
-[[ $OSNAME ]] || export OSNAME=$(uname)
-
+[[ $UNAME ]]	|| UNAME=$(uname)
+[[ $SHELL ]]	|| SHELL=$XTERM_SHELL
+[[ $USER ]]	|| USER=$LOGNAME
+[[ $USER ]]	|| USER=$(id -un)
+export UNAME SHELL USER
 export GPG_TTY=$(tty)
 export HOSTALIASES=~/.hosts
 export NCURSES_NO_UTF8_ACS=1
@@ -38,27 +38,31 @@ __expand_tilde_by_ref() { true; }
 
 ### Terminal
 
-if [[ $TERM == xterm ]]; then
-	havecolor=y
-	if [[ -z $COLORTERM ]] && [[ $OSNAME == Linux ]]; then
-		# auto-detect a 256-color-capable terminal
-		comm=$(ps -o 'comm=' $PPID)
-		case $comm in
-			gnome-terminal|konsole|xterm|yakuake)
-				COLORTERM=$comm;;
-		esac
-		unset comm
-	fi
-	if [[ $COLORTERM ]]; then
-		TERM="$TERM-256color"
-	fi
-elif [[ $TERM == xterm-* ]]; then
-	havecolor=y
-elif have tput; then
-	havecolor=$(tput setaf 0; tput sgr0)
-else
-	unset havecolor
-fi
+# color capabilities
+case $TERM in
+	xterm)
+		havecolor=y
+		if [[ -z $COLORTERM ]] && [[ -f /proc/$PPID/cmdline ]]; then
+			read -r -d '' comm < /proc/$PPID/cmdline
+			comm=${comm##*/}
+			case $comm in
+				gnome-terminal|konsole|xterm|yakuake)
+					COLORTERM=$comm
+					;;
+			esac
+			unset comm
+		fi
+		if [[ $COLORTERM ]]; then
+			TERM="$TERM-256color"
+		fi
+		;;
+	xterm-*)
+		havecolor=y
+		;;
+	*)
+		havecolor=$(have tput && tput setaf)
+		;;
+esac
 
 # terminal window title
 case $TERM in
@@ -68,33 +72,28 @@ case $TERM in
 	#	titlestring='\ek%s\e\\';;
 esac
 
-unset ${!c_*} ${!cx_*}
 if [[ $havecolor ]]; then
-	c_no="\[\e[m\]"
+	export -n PS1=""
 	if (( $UID == 0 )); then
-		c_uh="\[\e[;1;37;41m\]"
+		PS1+="\[\e[;1;37;41m\]\h\[\e[m\]"
 	elif [[ $USER == "grawity" ]]; then
-		c_uh="\[\e[;1;32m\]"
+		PS1+="\[\e[;1;32m\]\h\[\e[m\]"
 	else
-		c_uh="\[\e[;1;33m\]"
+		PS1+="\[\e[;1;33m\]\u@\h\[\e[m\]"
 	fi
-	c_wd="\[\e[;36m\]"
-	c_dk="\[\e[;1;30m\]"
-
-	cx_file="\e[34m"
-	cx_line="\e[1m"
-	cx_func="\e[33m"
-	cx_norm="\e[m"
-fi
-if (( $UID == 0 )) || [[ $USER == "grawity" ]]; then
-	PS1="\h"
+	PS1+=" \[\e[36m\]\w\[\e[m\]"
+	PS1+="\n\[\e[1m\]\\\$\[\e[m\] "
+	export -n PS2="\[\e[;1;30m\]...\[\e[m\] "
+	export PS4=""
+	PS4+="+\e[34m\${BASH_SOURCE:-stdin}"
+	PS4+=":\e[1m\$LINENO\e[m"
+	PS4+=":\${FUNCNAME:+\e[33m\$FUNCNAME\e[m}"
+	PS4+=" "
 else
-	PS1="\u@\h"
+	export -n PS1="\u@\h \w\n\$ "
+	export -n PS2="... "
+	export PS4="+\${BASH_SOURCE:-stdin}:\$LINENO:\$FUNCNAME "
 fi
-PS1="${c_uh}${PS1}${c_no} ${c_wd}\w${c_no} \\\$ "
-PS2="${c_dk}...${c_no} "
-export PS4="+${cx_file}\${BASH_SOURCE:-stdin}:${cx_line}\$LINENO${cx_norm}:\${FUNCNAME:+${cx_func}\$FUNCNAME${cx_norm}:} "
-unset ${!c_*} ${!cx_*}
 
 title() { printf "$titlestring" "$*"; }
 
@@ -107,12 +106,12 @@ show_status() {
 update_title() {
 	local title="$USER@$HOSTNAME ${PWD/#$HOME/~}"
 	[[ $SSH_TTY && $DISPLAY ]] &&
-		title+=" (display=$DISPLAY)"
+		title+=" (X11 on $DISPLAY)"
 	title "$title"
 }
 
 PROMPT_COMMAND="show_status; update_title"
-PROMPT_DIRTRIM=3
+PROMPT_DIRTRIM=5
 
 ### Aliases
 unalias -a
@@ -134,14 +133,15 @@ LSOPT="ls -Fh"
 GREPOPT="grep"
 if [[ $havecolor ]]; then
 	GREPOPT="$GREPOPT --color=auto"
-	#case $OSNAME in
+	#case $UNAME in
 	case $OSTYPE in
 		#Linux|CYGWIN_*)
 		linux-gnu|cygwin)
 			LSOPT="$LSOPT --color=auto"
 			eval $(dircolors ~/lib/dotfiles/dircolors)
 			;;
-		FreeBSD)
+		#FreeBSD)
+		freebsd*)
 			LSOPT="$LSOPT -G"
 			;;
 	esac
@@ -311,6 +311,10 @@ todo() {
 rmtodo() {
 	sed -i "${1:-\$}d" ~/todo
 	[[ -s ~/todo ]] || rm ~/todo
+}
+
+cpans() {
+	PERL_MM_OPT= PERL_MB_OPT= cpanm --sudo "$@"
 }
 
 if have xclip; then
