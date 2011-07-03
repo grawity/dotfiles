@@ -4,6 +4,8 @@ have() { command -v "$1" >/dev/null; }
 : ${HOSTNAME:=`hostname`}
 : ${UID:=`id -u`}
 
+mkpath() { local IFS=":"; export PATH="$*"; }
+
 export LOCAL="$HOME/.local"
 
 export PYTHONPATH="$HOME/lib/python:$LOCAL/lib/python"
@@ -16,21 +18,22 @@ else
 fi
 export GEM_HOME="$LOCAL/ruby/gems"
 
-export PATH="\
-$HOME/bin:\
-$LOCAL/bin:\
-$HOME/code/tools:\
-$HOME/cluenet/bin:\
-$GEM_HOME/bin:\
-${PATH}:\
-/usr/local/sbin:\
-/usr/sbin:\
-/sbin"
+mkpath \
+	"$HOME/bin" \
+	"$LOCAL/bin" \
+	"$HOME/code/tools" \
+	"$HOME/cluenet/bin" \
+	"$GEM_HOME/bin" \
+	"$PATH" \
+	"/usr/local/sbin" \
+	"/usr/sbin" \
+	"/sbin"
 
 export PAGER='less'
 export EDITOR='vim'
 unset VISUAL
-export BROWSER='open-browser'
+have open-browser &&
+	export BROWSER='open-browser'
 
 unset LC_ALL
 case $TERM in
@@ -47,18 +50,19 @@ fi
 
 umask 022
 
+# login processes
+
+if [ "$BASH_VERSION" ] && [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
 if [ -t 0 ]; then
 	[ -f ~/.hushlogin ] && [ -x ~/code/motd ] && ~/code/motd -q
 	echo $(uptime)
 fi
 
-rc=~/.profile-$(hostname)
-if [ -f "$rc" ]; then
-	. "$rc"
-fi
-
-if [ "$BASH_VERSION" ] && [ -f ~/.bashrc ]; then
-	. ~/.bashrc
+if [ -f ~/.profile-$HOSTNAME ]; then
+	. ~/.profile-$HOSTNAME
 fi
 
 if have klist && klist -5s && have pklist; then
