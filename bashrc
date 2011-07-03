@@ -73,7 +73,7 @@ case $TERM in
 esac
 
 if [[ $havecolor ]]; then
-	export -n PS1=""
+	export -n PS1="\n"
 	if (( $UID == 0 )); then
 		PS1+="\[\e[;1;37;41m\]\h\[\e[m\]"
 	elif [[ $USER == "grawity" ]]; then
