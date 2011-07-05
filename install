@@ -55,6 +55,7 @@ link	msmtprc		~/.msmtprc
 #link	muttrc		~/.muttrc
 link	screenrc	~/.screenrc
 link	tmux.conf	~/.tmux.conf
+link	Xresources	~/.Xresources
 
 [[ -f ~/.muttrc ]] ||
 	echo 'source "~/lib/dotfiles/muttrc"' > ~/.muttrc
