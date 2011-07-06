@@ -179,7 +179,7 @@ alias sudo='sudo ' # for alias expansion in sudo args
 alias tidiff='infocmp -Ld'
 alias tube='youtube-dl --console-title --title'
 up() { local p= i=${1:-1}; while (( i-- )); do p+=../; done; cd "$p$2" && pwd; }
-alias w='PROCPS_USERLEN=16 w -shu'
+alias w='PROCPS_USERLEN=16 w -s -h'
 alias xx='chmod a+x'
 X() { ("$@" &> /dev/null &); }
 alias '~'='preg'
