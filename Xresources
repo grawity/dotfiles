@@ -1,25 +1,27 @@
 ! Xterm
 
+XTerm*termName:		xterm-256color
 XTerm*metaSendsEscape:	true
+XTerm*allowTcapOps:	false
 
 XTerm*vt100.faceName:	DejaVu Sans Mono
 XTerm*vt100.faceSize:	10
 XTerm*vt100.background:	black
-XTerm*vt100.foreground:	#d3d3d7d7cfcf
+XTerm*vt100.foreground:	#d3d7cf
 XTerm*toolBar:		false
 
-XTerm*color0:	#000000000000
-XTerm*color1:	#cccc00000000
-XTerm*color2:	#4e4e9a9a0606
-XTerm*color3:	#c4c4a0a00000
-XTerm*color4:	#34346565a4a4
-XTerm*color5:	#757550507b7b
-XTerm*color6:	#060698989a9a
-XTerm*color7:	#d3d3d7d7cfcf
-XTerm*color8:	#555557575353
-XTerm*color9:	#efef29292929
-XTerm*color10:	#8a8ae2e23434
-XTerm*color11:	#fcfce9e94f4f
-XTerm*color12:	#72729f9fcfcf
-XTerm*color13:	#adad7f7fa8a8
-XTerm*color14:	#3434e2e2e2e2
+XTerm*color0:	#000000
+XTerm*color1:	#cc0000
+XTerm*color2:	#4e9a06
+XTerm*color3:	#c4a000
+XTerm*color4:	#3465a4
+XTerm*color5:	#75507b
+XTerm*color6:	#06989a
+XTerm*color7:	#d3d7cf
+XTerm*color8:	#555753
+XTerm*color9:	#ef2929
+XTerm*color10:	#8ae234
+XTerm*color11:	#fce94f
+XTerm*color12:	#729fcf
+XTerm*color13:	#ad7fa8
+XTerm*color14:	#34e2e2
