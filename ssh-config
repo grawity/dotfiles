@@ -66,6 +66,13 @@ Host panther/console
 	Hostname mercury.hexxeh.net
 	User panthernathan7do
 
+Host rain rain.local
+	Hostname rain.nullroute.eu.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+	ForwardX11 yes
+
 Host sine
 	Hostname sine.cluenet.org
 	GSSAPIAuthentication yes
@@ -78,6 +85,13 @@ Host sleet
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
+
+Host snow snow.local
+	Hostname snow.nullroute.eu.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+	ForwardX11 yes
 
 Host snowflake
 	Hostname snowflake.nullroute.eu.org
