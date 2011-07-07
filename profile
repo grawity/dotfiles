@@ -9,7 +9,7 @@ mkpath() { local IFS=":"; export PATH="$*"; }
 export LOCAL="$HOME/.local"
 
 export PYTHONPATH="$HOME/lib/python:$LOCAL/lib/python"
-export PERL5LIB="$HOME/lib/perl5:$LOCAL/lib/perl5"
+export PERL5LIB="$HOME/lib/perl5:$LOCAL/lib/perl5:$HOME/cluenet/perl5"
 if [ -e "$LOCAL/lib/perl5/prefer-systemwide" ]; then
 	export PERL_CPANM_OPT='--sudo'
 else
