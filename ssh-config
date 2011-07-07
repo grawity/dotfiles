@@ -68,8 +68,9 @@ Host panther/console
 
 Host rain rain.local
 	Hostname rain.nullroute.eu.org
-	GSSAPIAuthentication yes
+	#GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
+	VerifyHostKeyDNS no
 	ForwardAgent yes
 	ForwardX11 yes
 
@@ -88,8 +89,9 @@ Host sleet
 
 Host snow snow.local
 	Hostname snow.nullroute.eu.org
-	GSSAPIAuthentication yes
+	#GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
+	VerifyHostKeyDNS no
 	ForwardAgent yes
 	ForwardX11 yes
 
