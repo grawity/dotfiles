@@ -70,7 +70,6 @@ Host rain rain.local
 	Hostname rain.nullroute.eu.org
 	#GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
-	VerifyHostKeyDNS no
 	ForwardAgent yes
 	ForwardX11 yes
 
@@ -91,7 +90,6 @@ Host snow snow.local
 	Hostname snow.nullroute.eu.org
 	#GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
-	VerifyHostKeyDNS no
 	ForwardAgent yes
 	ForwardX11 yes
 
@@ -131,7 +129,7 @@ Host _sshkeys
 Host *
 	Protocol 2
 	ForwardX11Trusted yes
-	VerifyHostKeyDNS yes
+	#VerifyHostKeyDNS yes
 	NoHostAuthenticationForLocalhost yes
 	HashKnownHosts no
 
