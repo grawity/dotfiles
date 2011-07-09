@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+have() { command -v "$@" >/dev/null; }
+
 link() {
 	local target="$dir/${1%/}" link=$2
 	if [ -e "$link" ]; then
@@ -50,14 +52,22 @@ trash	~/.bash_{login,profile,logout}
 
 $all || exit 0
 
-#link	mailrc		~/.mailrc
-link	msmtprc		~/.msmtprc
-#link	muttrc		~/.muttrc
-link	screenrc	~/.screenrc
-link	tmux.conf	~/.tmux.conf
-link	Xresources	~/.Xresources
-
-chmod 600 ~/.msmtprc
-
-[[ -f ~/.muttrc ]] ||
-	echo 'source "~/lib/dotfiles/muttrc"' > ~/.muttrc
+have mail &&
+	: link	mailrc		~/.mailrc
+have makepkg &&
+	link	makepkg.conf	~/.makepkg.conf
+have msmtp && {
+	link	msmtprc		~/.msmtprc
+	chmod 600 ~/.msmtprc
+}
+have mutt && {
+	: link	muttrc		~/.muttrc
+	[[ -f ~/.muttrc ]] ||
+		echo 'source "~/lib/dotfiles/muttrc"' > ~/.muttrc
+}
+have screen &&
+	link	screenrc	~/.screenrc
+have tmux &&
+	link	tmux.conf	~/.tmux.conf
+have xrdb &&
+	link	Xresources	~/.Xresources
