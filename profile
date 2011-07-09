@@ -45,7 +45,7 @@ export NAME='Mantas Mikulėnas'
 export EMAIL='grawity@nullroute.eu.org'
 
 if [ ! -f ~/.mailrc ]; then
-	export NAILRC=~/lib/dotfiles/mailrc
+	export MAILRC=~/lib/dotfiles/mailrc
 fi
 
 umask 022
