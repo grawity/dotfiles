@@ -195,3 +195,7 @@ silent! autocmd BufNewFile,BufRead
 \ /etc/systemd/*,/lib/systemd/*
 \ set ft=dosini
 silent! autocmd BufNewFile,BufRead /tmp/bash-fc-* set ft=sh
+
+if hostname() == "rain"
+	set nofsync swapsync=
+endif
