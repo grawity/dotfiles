@@ -157,6 +157,7 @@ pager() { eval "${PAGER:-less}" '"$@"'; }
 count() { sort | uniq -c | sort -n -r | pager; }
 alias cur='cur '
 alias df='df -Th'
+alias dff='df -x tmpfs -x devtmpfs -x rootfs'
 alias egrep='grep -E'
 entity() { printf '&%s;' "$@" | w3m -dump -T text/html; }
 finge() { [[ $1 == r* ]] && set -- "${1:1}" "${@:2}"; finger "$@"; }
