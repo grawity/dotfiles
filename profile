@@ -68,7 +68,11 @@ fi
 if have klist && klist -5s && have pklist; then
 	case `pklist -P` in
 		*@CLUENET.ORG|*@NULLROUTE.EU.ORG)
-			(k5sshinit -h equal.cluenet.org 2>/dev/null &)
+			(
+			fpr="06:b7:29:1e:6b:ea:c3:04:c4:33:fc:48:e0:62:2f:ef"
+			ssh-add -l | grep -Fwqs "$fpr" ||
+			k5sshinit -h equal.cluenet.org &
+			)
 			inc
 			;;
 	esac
