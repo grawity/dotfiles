@@ -106,7 +106,7 @@ show_status() {
 update_title() {
 	local title="$USER@$HOSTNAME ${PWD/#$HOME/~}"
 	[[ $SSH_TTY && $DISPLAY ]] &&
-		title+=" (X11 on $DISPLAY)"
+		title+=" (X11)"
 	title "$title"
 }
 
