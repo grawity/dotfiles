@@ -1,15 +1,19 @@
-! Xterm
-
+!! Xterm
 XTerm*termName:		xterm-256color
 XTerm*metaSendsEscape:	true
 XTerm*allowTcapOps:	false
-
+! interface
 XTerm*vt100.faceName:	DejaVu Sans Mono
+#if defined CLNT_snow
+XTerm*vt100.faceSize:	9
+XTerm*vt100.geometry:	100x35
+#else
 XTerm*vt100.faceSize:	10
+#endif
+XTerm*toolBar:		false
+! colors
 XTerm*vt100.background:	black
 XTerm*vt100.foreground:	#d3d7cf
-XTerm*toolBar:		false
-
 XTerm*color0:	#000000
 XTerm*color1:	#cc0000
 XTerm*color2:	#4e9a06
