@@ -65,7 +65,7 @@ if [ -f ~/.profile-$HOSTNAME ]; then
 	. ~/.profile-$HOSTNAME
 fi
 
-if have klist && klist -5s && have pklist; then
+if [ -t 0 ] && have klist && klist -5s && have pklist; then
 	case `pklist -P` in
 		*@CLUENET.ORG|*@NULLROUTE.EU.ORG)
 			(
