@@ -10,6 +10,8 @@ export GPG_TTY=$(tty)
 export HOSTALIASES=~/.hosts
 export NCURSES_NO_UTF8_ACS=1
 
+[[ $LANG == *.utf8 ]] && LANG="${LANG%.utf8}.utf-8"
+
 [[ -d ~/.cache ]] && mkdir -pm 0700 ~/.cache
 
 ### Interactive-only options
