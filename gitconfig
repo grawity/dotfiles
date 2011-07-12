@@ -43,6 +43,10 @@
 	pushInsteadOf = git://gist.github.com/
 [url "ssh://"]
 	pushInsteadOf = git://
+[url "git://equal.cluenet.org/~grawity/pub/git/"]
+	insteadOf = nullroute:
+[url "ssh://equal.cluenet.org/~grawity/pub/git/"]
+	pushInsteadOf = nullroute:
 [tig]
 	show-date = relative
 	show-author = abbreviated
