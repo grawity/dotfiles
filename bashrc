@@ -316,6 +316,26 @@ rmtodo() {
 	[[ -s ~/todo ]] || rm ~/todo
 }
 
+cmpc() {
+	local host=$1 port= pass=
+	if [[ $host ]]; then
+		MPD_HOST=$host
+		pass=$(getnetrc -df '%p' "mpd@$host")
+	elif [[ -S ~/.cache/mpd/control ]]; then
+		host=~/.cache/mpd/control
+		if [[ -r ~/.config/mpd/password ]]; then
+			pass=$(< ~/.config/mpd/password)
+		fi
+	fi
+	if [[ $host && $pass ]]; then
+		export MPD_HOST=${pass}@${host}
+	elif [[ $host ]]; then
+		export MPD_HOST=${host}
+	else
+		unset MPD_HOST MPD_PORT
+	fi
+}
+
 cpans() {
 	PERL_MM_OPT= PERL_MB_OPT= cpanm --sudo "$@"
 }
