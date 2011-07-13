@@ -138,7 +138,7 @@ if [[ $havecolor ]]; then
 	#case $UNAME in
 	case $OSTYPE in
 		#Linux|CYGWIN_*)
-		linux-gnu|cygwin)
+		linux-gnu*|cygwin)
 			LSOPT="$LSOPT --color=auto"
 			eval $(dircolors ~/lib/dotfiles/dircolors)
 			;;
