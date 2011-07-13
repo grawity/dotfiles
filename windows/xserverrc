@@ -1,0 +1,2 @@
+#!/bin/bash
+exec XWin -multiwindow -clipboard -auth ~/.Xauthority
