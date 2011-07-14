@@ -225,6 +225,7 @@ if have systemctl; then
 	alias enable='systemctl enable'
 	alias disable='systemctl disable'
 	alias status='systemctl status'
+	alias loginctl='systemd-loginctl'
 fi
 
 alias lp='sudo netstat -lptu --numeric-hosts'
