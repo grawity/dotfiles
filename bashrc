@@ -77,12 +77,19 @@ esac
 if [[ $havecolor ]]; then
 	export -n PS1="\n"
 	if (( $UID == 0 )); then
-		PS1+="\[\e[;1;37;41m\]\h\[\e[m\]"
+		color='1;37;41'
+		item='\h'
+	elif [[ $USER == "grawity" && $SSH_TTY ]]; then
+		color='1;33'
+		item='\h'
 	elif [[ $USER == "grawity" ]]; then
-		PS1+="\[\e[;1;32m\]\h\[\e[m\]"
+		color='1;32'
+		item='\h'
 	else
-		PS1+="\[\e[;1;33m\]\u@\h\[\e[m\]"
+		color='1;33'
+		item='\u@\h'
 	fi
+	PS1+="\[\e[;${color}m\]${item}\[\e[m\]"
 	PS1+=" \[\e[36m\]\w\[\e[m\]"
 	PS1+="\n\[\e[1m\]\\\$\[\e[m\] "
 	export -n PS2="\[\e[;1;30m\]...\[\e[m\] "
