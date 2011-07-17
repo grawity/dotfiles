@@ -13,6 +13,15 @@ XTerm*vt100.geometry:	100x35
 XTerm*vt100.faceSize:	10
 #endif
 XTerm*toolBar:		false
+! Input translation
+XTerm*vt100*translations:	#override			\n\
+	Shift <Key> Delete:	insert-selection(SELECT)	\n\
+	Shift Ctrl <Key> C:	select-end(CLIPBOARD)		\n\
+	Shift Ctrl <Key> V:	insert-selection(CLIPBOARD)	\n\
+	Shift Ctrl <Key> N:	spawn-new-terminal()		\n\
+	!Ctrl <Btn1Down>:	ignore()			\n\
+	!Ctrl <Btn2Down>:	ignore()			\n\
+	!Ctrl <Btn3Down>:	ignore()			\n
 ! colors
 XTerm*vt100.background:	black
 XTerm*vt100.foreground:	#d3d7cf
