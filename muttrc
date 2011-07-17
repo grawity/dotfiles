@@ -167,7 +167,7 @@ macro index . "<imap-fetch-mail><refresh>"'
 
 ### encryption and signing (PGP)
 #set crypt_use_gpgme
-source "[ \"$GPG_AGENT_INFO\" ] && echo 'set crypt_use_gpgme'|"
+#source "[ \"$GPG_AGENT_INFO\" ] && echo 'set crypt_use_gpgme'|"
 set crypt_use_pka
 
 # commands taken from Arch /etc/Muttrc.gpg.dist
