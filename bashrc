@@ -325,8 +325,10 @@ rmtodo() {
 
 cmpc() {
 	local host=$1 port= pass=
-	if [[ $host ]]; then
-		MPD_HOST=$host
+	if [[ $host == ?*@?* ]]; then
+		pass=${host%@*}
+		host=${host##*@}
+	elif [[ $host ]]; then
 		pass=$(getnetrc -df '%p' "mpd@$host")
 	elif [[ -S ~/.cache/mpd/control ]]; then
 		host=~/.cache/mpd/control
