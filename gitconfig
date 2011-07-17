@@ -46,6 +46,7 @@
 [url "git://equal.cluenet.org/~grawity/pub/git/"]
 	insteadOf = nullroute:
 [url "ssh://equal.cluenet.org/~grawity/pub/git/"]
+	insteadOf = nullroute+ssh:
 	pushInsteadOf = nullroute:
 [tig]
 	show-date = relative
