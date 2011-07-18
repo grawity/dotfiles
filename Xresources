@@ -19,9 +19,9 @@ XTerm*vt100*translations:	#override			\n\
 	Shift Ctrl <Key> C:	select-end(CLIPBOARD)		\n\
 	Shift Ctrl <Key> V:	insert-selection(CLIPBOARD)	\n\
 	Shift Ctrl <Key> N:	spawn-new-terminal()		\n\
-	!Ctrl <Btn1Down>:	ignore()			\n\
-	!Ctrl <Btn2Down>:	ignore()			\n\
-	!Ctrl <Btn3Down>:	ignore()			\n
+	Ctrl <Btn1Down>:	ignore()			\n\
+	Ctrl <Btn2Down>:	ignore()			\n\
+	Ctrl <Btn3Down>:	ignore()			\n
 ! colors
 XTerm*vt100.background:	black
 XTerm*vt100.foreground:	#d3d7cf
