@@ -3,8 +3,9 @@ XTerm*termName:		xterm-256color
 XTerm*metaSendsEscape:	true
 XTerm*allowTcapOps:	false
 ! interface
-XTerm*vt100.utf8:	1
-XTerm*vt100.utf8Title:	true
+XTerm*utf8:		1
+XTerm*utf8Title:	true
+XTerm*italicULMode:	true
 XTerm*vt100.faceName:	DejaVu Sans Mono
 #if defined CLNT_snow
 XTerm*vt100.faceSize:	9
