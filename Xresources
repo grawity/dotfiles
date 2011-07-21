@@ -18,6 +18,7 @@ XTerm*vt100.faceSize:	10
 #endif
 XTerm*toolBar:		false
 ! Input translation
+XTerm*selectToClipboard:	true
 XTerm*vt100*translations:	#override			\n\
 	Shift <Key> Delete:	insert-selection(SELECT)	\n\
 	Shift Ctrl <Key> C:	select-end(CLIPBOARD)		\n\
