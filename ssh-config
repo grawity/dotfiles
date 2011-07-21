@@ -29,6 +29,12 @@ Host anubis
 	# also 22022
 	ForwardAgent yes
 
+Host delta
+	Hostname delta.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
 Host equal
 	Hostname equal.cluenet.org
 	GSSAPIAuthentication yes
@@ -50,6 +56,12 @@ Host imaginary
 Host negative
 	Hostname negative.mypopmadness.com
 	HostkeyAlias negative.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+Host null
+	Hostname null.cluenet.org
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
