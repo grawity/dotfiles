@@ -163,7 +163,7 @@ editor() { eval "${EDITOR:-vim}" '"$@"'; }
 browser() { eval "${BROWSER:-lynx}" '"$@"'; }
 pager() { eval "${PAGER:-less}" '"$@"'; }
 
-count() { sort | uniq -c | sort -n -r | pager; }
+count() { sort "$@" | uniq -c | sort -n -r | pager; }
 alias cur='cur '
 alias df='df -Th'
 alias dff='df -x tmpfs -x devtmpfs -x rootfs'
