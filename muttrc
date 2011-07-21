@@ -48,7 +48,7 @@ unset user_agent
 
 set alias_file="~/.muttaliases"
 source "silentcat ~/.muttaliases|"
-set query_command="~/bin/muttbook --query '%s'"
+set query_command="muttquery '%s'"
 
 ### sending
 set use_envelope_from # give -f $from to sendmail; useful for msmtp
