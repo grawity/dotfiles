@@ -16,6 +16,12 @@ XTerm*vt100.geometry:	100x35
 #else
 XTerm*vt100.faceSize:	10
 #endif
+XTerm*faceSize1:	7
+XTerm*faceSize2:	8
+XTerm*faceSize3:	9
+XTerm*faceSize4:	10
+XTerm*faceSize5:	12
+XTerm*faceSize6:	14
 XTerm*toolBar:		false
 ! Input translation
 XTerm*selectToClipboard:	true
