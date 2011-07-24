@@ -32,7 +32,10 @@ XTerm*vt100*translations:	#override			\n\
 	Shift Ctrl <Key> N:	spawn-new-terminal()		\n\
 	Ctrl <Btn1Down>:	ignore()			\n\
 	Ctrl <Btn2Down>:	ignore()			\n\
-	Ctrl <Btn3Down>:	ignore()			\n
+	Ctrl <Btn3Down>:	ignore()			\n\
+	Meta <Btn1Down>:	popup-menu(mainMenu)		\n\
+	Meta <Btn2Down>:	popup-menu(vtMenu)		\n\
+	Meta <Btn3Down>:	popup-menu(fontMenu)		\n
 ! colors
 XTerm*vt100.background:	black
 XTerm*vt100.foreground:	#d3d7cf
