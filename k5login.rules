@@ -1,6 +1,7 @@
 grawity@NULLROUTE.EU.ORG	*
 grawity/admin@NULLROUTE.EU.ORG	*
 grawity@CLUENET.ORG		*.cluenet.org
+grawity@NATHAN7.EU		*.nathan7.eu
 
 # hackish Kerberos propagation
 kprop/snowflake.nullroute.eu.org@NULLROUTE.EU.ORG	sine.cluenet.org
