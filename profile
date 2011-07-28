@@ -21,7 +21,7 @@ export GEM_HOME="$LOCAL/ruby"
 mkpath \
 	"$HOME/bin" \
 	"$LOCAL/bin" \
-	"$HOME/code/tools" \
+	"$HOME/code/bin" \
 	"$HOME/cluenet/bin" \
 	"$GEM_HOME/bin" \
 	"$PATH" \
