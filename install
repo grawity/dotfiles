@@ -15,7 +15,7 @@ link() {
 	sym -f "$target" "$link"
 }
 
-sym() { ~/code/sym.pl "$@"; }
+sym() { ~/code/bin/sym "$@"; }
 
 trash() {
 	local file
