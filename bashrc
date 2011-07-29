@@ -453,8 +453,8 @@ if [[ -f ~/.pythonrc ]]; then
 fi
 export SUDO_PROMPT=$(printf 'sudo: Password for %%u@\e[30;43m%%h\e[m: ')
 
-if [[ -f ~/lib/kc.bash ]]; then
-	. ~/lib/kc.bash
+if have pklist; then
+	. ~/code/kerberos/kc.bash
 fi
 
 todo
