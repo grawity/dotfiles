@@ -442,7 +442,7 @@ catlog() {
 
 ### Environment
 
-export ABSROOT=~/build
+export ABSROOT=~/pkg
 export ACK_PAGER=$PAGER
 export LESS="-eMqR -FX"
 export LESSHISTFILE=~/.cache/less.history
