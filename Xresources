@@ -10,11 +10,9 @@ XTerm*utf8:		1
 XTerm*utf8Title:	true
 XTerm*italicULMode:	true
 XTerm*vt100.faceName:	DejaVu Sans Mono
-#if defined CLNT_snow
 XTerm*vt100.faceSize:	9
+#if defined CLNT_snow
 XTerm*vt100.geometry:	100x35
-#else
-XTerm*vt100.faceSize:	10
 #endif
 XTerm*faceSize1:	7
 XTerm*faceSize2:	8
