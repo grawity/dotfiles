@@ -185,7 +185,7 @@ silent! autocmd BufNewFile,BufRead
 \ set ft=markdown
 silent! autocmd BufNewFile,BufRead
 \ authorized_keys,authorized_keys.*,known_hosts,id_*.pub
-\ set nowrap
+\ set wrap nolinebreak
 silent! autocmd BufNewFile,BufRead
 \ authorized_keys.*
 \ set ft=conf
