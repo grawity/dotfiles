@@ -6,6 +6,7 @@
 [alias]
 	a = add
 	ci = commit
+	cia = commit -a -m "Commit"
 	co = checkout
 	st = status
 	br = branch
