@@ -1,6 +1,10 @@
 ### generic
-set realname="Mantas Mikulėnas"
+set realname="Mantas M."
 set from="grawity@nullroute.eu.org"
+set reverse_name
+
+reply-hook ~l \
+	'set from="grawity@gmail.com"'
 
 unset beep
 set beep_new
@@ -45,6 +49,7 @@ folder-hook . 'unset spoolfile'
 ### composing
 unmy_hdr *
 unset user_agent
+set edit_headers
 
 set alias_file="~/.muttaliases"
 source "silentcat ~/.muttaliases|"
