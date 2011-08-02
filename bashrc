@@ -10,9 +10,12 @@ export GPG_TTY=$(tty)
 export HOSTALIASES=~/.hosts
 export NCURSES_NO_UTF8_ACS=1
 
-[[ $LANG == *.utf8 ]] && LANG="${LANG%.utf8}.utf-8"
+# required for some utils
+[[ $LANG == *.utf8 ]] &&
+	LANG="${LANG%.utf8}.utf-8"
 
-[[ -d ~/.cache ]] && mkdir -pm 0700 ~/.cache
+[[ -d ~/.cache ]] &&
+	mkdir -pm 0700 ~/.cache
 
 ### Interactive-only options
 
@@ -89,9 +92,9 @@ if [[ $havecolor ]]; then
 		color='1;33'
 		item='\u@\h'
 	fi
-	PS1+="\[\e[;${color}m\]${item}\[\e[m\]"
-	PS1+=" \[\e[36m\]\w\[\e[m\]"
-	PS1+="\n\[\e[1m\]\\\$\[\e[m\] "
+	PS1+="\[\e[;${color}m\]${item}\[\e[m\] "
+	PS1+="\[\e[36m\]\w\[\e[m\]\n"
+	PS1+="\[\e[1m\]\\\$\[\e[m\] "
 	export -n PS2="\[\e[;1;30m\]...\[\e[m\] "
 	export PS4=""
 	PS4+="+\e[34m\${BASH_SOURCE:-stdin}"
@@ -99,14 +102,14 @@ if [[ $havecolor ]]; then
 	PS4+=":\${FUNCNAME:+\e[33m\$FUNCNAME\e[m}"
 	PS4+=" "
 else
-	export -n PS1="\u@\h \w\n\$ "
-	export -n PS2="... "
+	export -n PS1='\u@\h \w\n\$ '
+	export -n PS2='... '
 	export PS4="+\${BASH_SOURCE:-stdin}:\$LINENO:\$FUNCNAME "
 fi
 
 title() { printf "$titlestring" "$*"; }
 
-wname() { printf '\ek%s\e\\' "$*"; }
+setwname() { printf '\ek%s\e\\' "$*"; }
 
 show_status() {
 	local status=$?
@@ -173,13 +176,11 @@ finge() { [[ $1 == r* ]] && set -- "${1:1}" "${@:2}"; finger "$@"; }
 g() { egrep -rn --color=always "$@" . | pager; }
 alias hex='xxd -p'
 alias hup='pkill -HUP -x'
-alias iprules='iptables -L --line-numbers -n'
 irc() { tmux attach -t irc || tmux new -s irc -n irssi "irssi $*"; }
 alias ll='ls -l'
 alias md='mkdir'
 alias p='pager'
 path() { echo "${PATH//:/$'\n'}"; }
-alias preg='grep -P'
 alias py='python'
 alias py2='python2'
 alias rd='rmdir'
@@ -192,28 +193,16 @@ up() { local p= i=${1:-1}; while (( i-- )); do p+=../; done; cd "$p$2" && pwd; }
 alias w='PROCPS_USERLEN=16 w -s -h'
 alias xx='chmod a+x'
 X() { ("$@" &> /dev/null &); }
-alias '~'='preg'
+alias '~'='grep -P'
 
 case $DESKTOP_SESSION in
 gnome)
-	alias logout='gnome-session-quit --logout --force --no-prompt'
+	alias logout='gnome-session-quit --logout --force --no-prompt &&
+		echo Logging out of GNOME...'
 	;;
 esac
 
 userports() { netstat -lte --numeric-host | sort -k 7; }
-
-alias sd='systemctl'
-alias tsd='tree /etc/systemd/system'
-cgls() { systemd-cgls "$@" | pager; }
-psls() {
-	if [[ $1 == "-a" ]]; then
-		cgls "/user/$USER"
-	elif [[ $1 ]]; then
-		cgls "/user/$1"
-	else
-		cgls "/user/$USER/${XDG_SESSION_ID:-$(</proc/self/sessionid)}"
-	fi
-}
 
 if have systemctl; then
 	start() { sudo systemctl start "$@"; systemctl status "$@"; }
@@ -225,7 +214,31 @@ if have systemctl; then
 	alias enable='systemctl enable'
 	alias disable='systemctl disable'
 	alias status='systemctl status'
+	alias sd='systemctl'
 	alias loginctl='systemd-loginctl'
+	alias tsd='tree /etc/systemd/system'
+	cgls() { systemd-cgls "$@" | pager; }
+	psls() {
+		if [[ $1 == "-a" ]]; then
+			cgls "/user/$USER"
+		elif [[ $1 ]]; then
+			cgls "/user/$1"
+		else
+			cgls "/user/$USER/${XDG_SESSION_ID:-$(</proc/self/sessionid)}"
+		fi
+	}
+elif have start && have stop; then
+	start() { sudo start "$@"; }
+	stop() { sudo stop "$@"; }
+	restart() { sudo restart "$@"; }
+elif have rc.d; then
+	start() { sudo rc.d start "$@"; }
+	stop() { sudo rc.d stop "$@"; }
+	restart() { sudo rc.d restart "$@"; }
+elif have invoke-rc.d; then
+	start() { for _s; do sudo invoke-rc.d "$_s" start; done; }
+	stop() { for _s; do sudo invoke-rc.d "$_s" stop; done; }
+	restart() { for _s; do sudo invoke-rc.d "$_s" restart; done; }
 fi
 
 alias lp='sudo netstat -lptu --numeric-hosts'
