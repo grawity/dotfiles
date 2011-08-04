@@ -2,7 +2,7 @@ set nocompatible
 
 "" Interface
 set title
-silent! let &titlestring="%t%( %m%) (".hostname()." ".expand("%:p:~:h").")"
+set titlestring=%t%(\ %m%)%(\ (%{hostname()}\ %{expand(\"%:~:.:h\")})%)%(\ %a%)
 set ruler
 set showmode showcmd
 silent! set mouse=a
