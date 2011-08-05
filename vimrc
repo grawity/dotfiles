@@ -2,7 +2,7 @@ set nocompatible
 
 "" Interface
 set title
-set titlestring=%t%(\ %m%)%(\ (%{hostname()}\ %{expand(\"%:~:h\")})%)%(\ %a%)
+set titlestring=%t%(\ %m%)%(\ (%{hostname()}\ %{expand(\"%:p:~:h\")})%)%(\ %a%)
 set ruler
 set showmode showcmd
 silent! set mouse=a
