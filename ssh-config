@@ -29,6 +29,12 @@ Host anubis
 	# also 22022
 	ForwardAgent yes
 
+Host cubed
+	Hostname cubed.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
 Host delta
 	Hostname delta.cluenet.org
 	GSSAPIAuthentication yes
