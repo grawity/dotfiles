@@ -34,6 +34,8 @@ XTerm*vt100*translations:	#override			\n\
 	Meta <Btn1Down>:	popup-menu(mainMenu)		\n\
 	Meta <Btn2Down>:	popup-menu(vtMenu)		\n\
 	Meta <Btn3Down>:	popup-menu(fontMenu)		\n
+XTerm.backarrowKeyIsErase:	true
+XTerm.ptyInitialErase:		true
 ! colors
 XTerm*vt100.background:	black
 XTerm*vt100.foreground:	#d3d7cf
