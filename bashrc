@@ -162,9 +162,9 @@ alias ls="$LSOPT"
 alias grep="$GREPOPT"
 unset LSOPT GREPOPT
 
-editor() { eval "${EDITOR:-vim}" '"$@"'; }
-browser() { eval "${BROWSER:-lynx}" '"$@"'; }
-pager() { eval "${PAGER:-less}" '"$@"'; }
+editor() { eval command "${EDITOR:-vim}" '"$@"'; }
+browser() { eval command "${BROWSER:-lynx}" '"$@"'; }
+pager() { eval command "${PAGER:-less}" '"$@"'; }
 
 count() { sort "$@" | uniq -c | sort -n -r | pager; }
 alias cur='cur '
