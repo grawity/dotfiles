@@ -53,19 +53,6 @@ Host gamma
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-Host imaginary
-	Hostname imaginary.cluenet.org
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
-Host negative
-	Hostname negative.mypopmadness.com
-	HostkeyAlias negative.cluenet.org
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
 Host null
 	Hostname null.cluenet.org
 	GSSAPIAuthentication yes
@@ -82,10 +69,6 @@ Host panther
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-Host panther/console
-	Hostname mercury.hexxeh.net
-	User panthernathan7do
-
 Host rain rain.local
 	Hostname rain.nullroute.eu.org
 	#GSSAPIAuthentication yes
@@ -99,13 +82,6 @@ Host sine
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-Host sleet
-	Hostname sleet.nullroute.eu.org
-	Port 27330
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
 Host snow snow.local
 	Hostname snow.nullroute.eu.org
 	#GSSAPIAuthentication yes
@@ -113,10 +89,11 @@ Host snow snow.local
 	ForwardAgent yes
 	ForwardX11 yes
 
-Host snowflake
-	Hostname snowflake.nullroute.eu.org
+Host velocity
+	Hostname velocity.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
-	ForwardX11 yes
 
 # *.cluenet.org
 
