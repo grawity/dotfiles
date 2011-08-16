@@ -33,8 +33,14 @@
 	ui = auto
 [color "diff"]
 	whitespace = red reverse
+[color "grep"]
+	filename = magenta
+	linenumber = green
 [diff]
 	renames = copies
+[grep]
+	lineNumber = true
+	extendedRegexp = true
 [advice]
 	statusHints = false
 [url "git@github.com:"]
