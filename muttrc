@@ -16,6 +16,7 @@ alternates "^grawity@anubis\.nickserver\.net$"
 subscribe "^flos-freeware@freelists\.org$"
 subscribe "^devl@freenetproject\.org$"
 subscribe "^systemd-devel@lists\.freedesktop\.org$"
+subscribe "^arch-(general|dev-public)@archlinux\.org$"
 
 lists ".*@freelists\.org$"
 lists ".*@lists\.freedesktop\.org$"
