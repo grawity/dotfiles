@@ -1,0 +1,11 @@
+[ui]
+username = Mantas Mikulėnas <$EMAIL>
+
+[extensions]
+color =
+pager =
+
+[web]
+cacerts = /etc/ssl/certs/ca-certificates.crt
+ipv6 = True
+
