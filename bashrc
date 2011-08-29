@@ -453,6 +453,26 @@ catlog() {
 	done
 }
 
+# compatibility with coreutils < 8.0
+have nproc || nproc() {
+	local exe=$(which nproc 2>/dev/null)
+	[[ $exe ]] && { $exe; return; }
+
+	[[ $OMP_NUM_THREADS ]] && {
+		echo $OMP_NUM_THREADS
+		return
+	}
+
+	# to do: determine process affinity if possible
+
+	case $UNAME in
+	Linux)
+		grep -cw '^processor' /proc/cpuinfo;;
+	*)
+		echo 'bash: nproc: unsupported OS' >&2; return 1;;
+	esac
+}
+
 ### Environment
 
 export ABSROOT=~/pkg
