@@ -491,4 +491,8 @@ if have pklist; then
 	. ~/code/kerberos/kc.bash
 fi
 
+if [[ -f ~/.bashrc-"$HOSTNAME" ]]; then
+	. ~/.bashrc-"$HOSTNAME"
+fi
+
 todo
