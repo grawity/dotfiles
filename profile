@@ -7,7 +7,7 @@ umask 022
 
 export LOCAL="$HOME/.local"
 
-export PYTHONPATH="$LOCAL/lib/python"
+#export PYTHONPATH="$LOCAL/lib/python"
 export PERL5LIB="$LOCAL/lib/perl5:$HOME/cluenet/perl5"
 export GEM_HOME="$LOCAL/ruby"
 
