@@ -1,31 +1,32 @@
-#set from="m@nullroute.eu.org"
+# $MAILRC (~/.mailrc): mail(1)
 
 # interface
-set quiet
-#set verbose
+
+set quiet # hide version message
 
 # reading
+
 retain From To Sender Date Subject X-Bogosity
 
 # listing
+
 set autothread
 
 # composing
+
 set ask
 unset askcc
 set editheaders
-set dot
+set dot # . as message terminator
 
 set indentprefix="> "
 set signature="~/.signature"
 
+set sendcharsets="utf-8"
+
 # mail storage
+
 set hold # don't move to mbox
 set keep # don't delete $MAIL
-
-set sendcharsets=utf-8
-
-set folder="mail/"
-set record="+sent"
 
 set NAIL_EXTRA_RC="~/lib/dotfiles/nailrc"

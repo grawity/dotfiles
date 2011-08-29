@@ -1,19 +1,18 @@
-set nocompatible
+" ~/.vimrc: Vim configuration
 
-"" Interface
-set title
-set titlestring=%t%(\ %m%)%(\ (%{hostname()}\ %{expand(\"%:p:~:h\")})%)%(\ %a%)
-set ruler
-set showmode showcmd
-silent! set mouse=a
-set wildmenu
-"set wildmode=list:longest
+set nocompatible
 
 """ Appearance
 
+set title titlestring=%t%(\ %m%)%(\ (%{hostname()}\ %{expand(\"%:p:~:h\")})%)%(\ %a%)
+
 set display+=lastline
+set ruler showmode showcmd
 set number
 silent! set numberwidth=1
+silent! set mouse=a
+set wildmenu
+"set wildmode=list:longest
 
 let g:zenburn_high_Contrast=1
 silent! color slate
@@ -40,11 +39,13 @@ if has("gui_running")
 	imap	<silent>	<S-Insert>	<Esc>"+pa
 	imap			<C-BS>		<C-W>
 endif
+
 if has("syntax")
 	syntax on
 endif
 
-if &term == "screen" " set screen windowtitle instead of hardstatus
+if &term == "screen"
+	" set screen windowtitle instead of hardstatus
 	set t_ts=k
 	set t_fs=\
 endif
@@ -62,7 +63,8 @@ set modeline
 
 "" Editing
 set tabstop=8 shiftwidth=8 smarttab
-set noautoindent smartindent
+set autoindent
+set smartindent
 set nocindent cinkeys=0{,0},0),:,!,o,O,e
 set formatoptions=tcrqn
 
@@ -71,7 +73,7 @@ set noshowmatch
 
 "set listchars=eol:¶,tab:›\ ,extends:»,precedes:«,trail:•
 " └─
-set listchars=eol:¶,tab:│┈,extends:»,precedes:«,trail:•
+silent! set listchars=eol:¶,tab:│┈,extends:»,precedes:«,trail:•
 
 "" Macros
 if &term != "builtin_gui"
@@ -79,8 +81,6 @@ if &term != "builtin_gui"
 	silent! source $MYVIMRC.input
 endif
 
-" CUA select all
-"nmap <C-a> ggVG
 " CUA cut/copy, non-CUA paste
 vmap <C-x> "pd
 nmap <C-x> "pdiw
@@ -155,17 +155,6 @@ if $TERM =~ "^xterm"
 	lmap <Esc>OS -
 endif
 
-"if $TERM =~ "^gnome"
-"	map <Esc>[1;5A <Esc>[1;2A
-"	map <Esc>[1;5B <Esc>[1;2B
-"	map <Esc>[1;5C <Esc>[1;2C
-"	map <Esc>[1;5D <Esc>[1;2D
-"	map! <Esc>[1;5A <Esc>[1;2A
-"	map! <Esc>[1;5B <Esc>[1;2B
-"	map! <Esc>[1;5C <Esc>[1;2C
-"	map! <Esc>[1;5D <Esc>[1;2D
-"endif
-
 "" Searching
 set incsearch nohlsearch
 set ignorecase smartcase
@@ -181,6 +170,7 @@ set linebreak
 " prevent auto-unindenting on pressing # (by smartindent)
 inoremap # X#
 
+"" Autocommands
 silent! autocmd BufNewFile,BufRead
 \ *.md
 \ set ft=markdown
@@ -197,7 +187,7 @@ silent! autocmd BufNewFile,BufRead */pam.d/* set ft=pamconf
 silent! autocmd BufNewFile,BufRead .muttaliases set ft=muttrc
 silent! autocmd BufNewFile,BufRead
 \ /etc/systemd/*,/lib/systemd/*
-\ set ft=dosini
+\ set ft=desktop
 silent! autocmd BufNewFile,BufRead /tmp/bash-fc-* set ft=sh
 
 if hostname() == "rain"

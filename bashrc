@@ -1,4 +1,5 @@
-#!bash
+# ~/.bashrc: bash(1)
+
 have() { command -v "$@" >& /dev/null; }
 
 [[ $UNAME ]]	|| UNAME=$(uname)

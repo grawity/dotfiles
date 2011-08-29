@@ -1,3 +1,5 @@
+# ~/.muttrc <via stub>: Mutt configuration
+
 ### generic
 set realname="Mantas M."
 set from="grawity@nullroute.eu.org"
@@ -57,7 +59,7 @@ source "silentcat ~/.muttaliases|"
 set query_command="muttquery '%s'"
 
 ### sending
-set use_envelope_from # give -f $from to sendmail; useful for msmtp
+set use_envelope_from # pass '-f $from' to sendmail; useful for msmtp
 
 #set hostname="nullroute.eu.org"
 #set use_8bitmime
@@ -93,7 +95,7 @@ color normal default default
 	# important notifications
 	color index brightred default	'~h "^X-Priority: [12]$"'
 	color index brightred default	'~h "^X-Facebook-Notify: login_notification;"'
-	# mentions and PMs
+	# social notifications, mentions and PMs/DMs
 	color index brightcyan default	'~f "^mention-.*@postmaster\.twitter\.com$"'
 	# "stuff happened" notifications; and mailing lists
 	color index cyan default	'~f "@postmaster\.twitter\.com$"'
@@ -140,6 +142,7 @@ bind pager <PageDown> half-down
 
 bind pager G bottom
 
+# Home/End
 bind index <Esc>[1~ first-entry
 bind index <Esc>[4~ last-entry
 bind pager <Esc>[1~ top
@@ -172,8 +175,8 @@ account-hook '^imaps?://' '\
 macro index . "<imap-fetch-mail><refresh>"'
 
 ### encryption and signing (PGP)
+# GPGME needs patch
 #set crypt_use_gpgme
-#source "[ \"$GPG_AGENT_INFO\" ] && echo 'set crypt_use_gpgme'|"
 set crypt_use_pka
 
 # commands taken from Arch /etc/Muttrc.gpg.dist

@@ -1,3 +1,5 @@
+# ~/.inputrc: readline(3), bash(1) - Readline library configuration
+
 set show-all-if-ambiguous on
 set blink-matching-parent on
 set visible-stats on
@@ -11,7 +13,7 @@ set revert-all-at-newline on
 # Insert/Delete
 "\e[2~": overwrite-mode
 "\e[3~": delete-char
-# Ctrl-arrows
+# Ctrl-arrows (Xterm)
 "\e[1;5D": backward-word
 "\e[1;5C": forward-word
 # Ctrl-arrows (PuTTY)

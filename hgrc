@@ -1,3 +1,5 @@
+# ~/.hgrc: hgrc(5) - Mercurial configuration
+
 [ui]
 username = Mantas Mikulėnas <$EMAIL>
 
@@ -8,4 +10,3 @@ pager =
 [web]
 cacerts = /etc/ssl/certs/ca-certificates.crt
 ipv6 = True
-

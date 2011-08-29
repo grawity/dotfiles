@@ -1,22 +1,25 @@
+# nailrc: mailx(1) - additional Heirloom-mailx specific options
+
 set bsdcompat
 
-# remote storage
+# remote
+
 set pop3-use-starttls
 set imap-use-starttls
 set smtp-use-starttls
+
 account nullroute {
 	set from="grawity@nullroute.eu.org"
 	set folder="imap://grawity@equal.cluenet.org"
+	set record="+sent"
 	set imap-auth="gssapi"
-#	set sendmail="/usr/bin/msmtp"
-#	set smtp="equal.cluenet.org:587"
-#	set smtp-auth="gssapi"
+	#set sendmail="/usr/bin/msmtp"
+	#set smtp="equal.cluenet.org:587"
+	#set smtp-auth="gssapi"
 }
 
-# local storage
-#set imap-cache="~/.cache/mailx"
-
 # security
+
 set nss-config-dir="sql:$HOME/.pki/nssdb"
 set ssl-ca-dir="~/.pki/ca"
 set smime-ca-dir="~/.pki/ca"

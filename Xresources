@@ -1,7 +1,12 @@
+! ~/.Xresources: X11 resources
+
+!! Xcursor
+
 Xcursor.theme:		Human
 !Xcursor.size:		16
 
 !! Xterm
+
 XTerm*termName:		xterm-256color
 XTerm*metaSendsEscape:	true
 XTerm*allowTcapOps:	false
@@ -56,6 +61,7 @@ XTerm*color13:		#ad7fa8
 XTerm*color14:		#34e2e2
 
 !! Rxvt
+
 Rxvt.font:		6x13
 Rxvt.scrollBar:		false
 Rxvt.scrollTtyKeypress:	true

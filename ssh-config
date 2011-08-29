@@ -1,4 +1,6 @@
+# ~/.ssh/config: ssh_config(5)
 # vim: ft=sshconfig
+
 ## Will be available on 5.7:
 #Host *.*
 #	Hostname %h

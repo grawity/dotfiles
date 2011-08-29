@@ -1,4 +1,5 @@
-#!/bin/bash
+# ~/.profile: bash(1)
+
 have() { command -v "$1" >/dev/null; }
 
 mkpath() { local IFS=":"; export PATH="$*"; }
