@@ -5,6 +5,9 @@ set blink-matching-parent on
 set visible-stats on
 set revert-all-at-newline on
 
+# Arrows
+"\e[A": history-search-backward
+"\e[B": history-search-forward
 # Home/End
 "\e[1~": beginning-of-line
 "\e[4~": end-of-line
