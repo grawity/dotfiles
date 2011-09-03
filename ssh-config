@@ -115,6 +115,9 @@ Host *.cluenet.org
 Host *.vistech.net
 	User grwty
 
+Host bazaar.launchpad.net
+	IdentityFile no
+
 # special hostnames
 
 Host _sshkeys
