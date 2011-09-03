@@ -46,18 +46,28 @@
 	extendedRegexp = true
 [advice]
 	statusHints = false
+[url "ssh://"]
+	pushInsteadOf = git://
+[url "git://github.com/"]
+	insteadOf = github:
 [url "git@github.com:"]
 	pushInsteadOf = git://github.com/
 	pushInsteadOf = https://github.com/
+	pushInsteadOf = github:
+[url "git://gist.github.com/"]
+	insteadOf = gist:
 [url "git@gist.github.com:"]
 	pushInsteadOf = git://gist.github.com/
-[url "ssh://"]
-	pushInsteadOf = git://
+	pushInsteadOf = gist:
 [url "git://equal.cluenet.org/~grawity/pub/git/"]
 	insteadOf = nullroute:
 [url "ssh://equal.cluenet.org/~grawity/pub/git/"]
 	insteadOf = nullroute+ssh:
 	pushInsteadOf = nullroute:
+[url "git://git.gnome.org/"]
+	insteadOf = gnome:
+[url "git://anongit.freedesktop.org/"]
+	insteadOf = freedesktop:
 [tig]
 	show-date = relative
 	show-author = abbreviated
