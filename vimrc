@@ -190,6 +190,10 @@ silent! autocmd BufNewFile,BufRead
 \ set ft=desktop
 silent! autocmd BufNewFile,BufRead /tmp/bash-fc-* set ft=sh
 
+func! JoinPara()
+	:g/^./ .,/^$/-1 join
+endfunc
+
 if hostname() == "rain"
 	set nofsync swapsync=
 endif
