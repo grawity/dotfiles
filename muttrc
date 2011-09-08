@@ -19,6 +19,8 @@ subscribe "^flos-freeware@freelists\.org$"
 subscribe "^devl@freenetproject\.org$"
 subscribe "^systemd-devel@lists\.freedesktop\.org$"
 subscribe "^arch-(general|dev-public)@archlinux\.org$"
+subscribe "^kerberos@mit\.edu$"
+subscribe "^cryptography@randombit\.net$"
 
 lists ".*@freelists\.org$"
 lists ".*@lists\.freedesktop\.org$"
@@ -130,7 +132,9 @@ color signature blue default
 color tilde blue default
 color search black brightyellow
 
-set index_format="%4C %Z %{%b %d} %-15.15F (%?l?%4l&%4c?) %s"
+# %?<char>?<if>&<else>?
+#set index_format="%4C %Z %{%b %d} %-15.15F (%?l?%4l&%4c?) %s"
+set index_format="%3C %Z %-18.18F %s %* | %{%b %d} "
 
 ### keybindings
 bind generic,pager <Backspace> exit
