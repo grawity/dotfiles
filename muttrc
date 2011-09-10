@@ -74,6 +74,8 @@ set auto_tag # auto-add tag prefix
 spam "^X-Bogosity: Spam,.* spamicity=([0-9.]+)" "bogus"
 set spam_separator=", "
 
+set status_format="─── Folder %f (%?M?%M/?%m messages%?n?, %n new?%?o?, %o old?%?d?, %d deleted?) %*─ %P ───"
+
 ### message view
 ignore *
 unignore From: Subject: To: Cc: Date: Reply-To:
@@ -81,60 +83,64 @@ unignore X-Bogosity:
 hdr_order Date From To Cc Subject
 
 unset digest_collapse
-set pager_index_lines=0
+unset collapse_unread
+folder-hook . 'push <collapse-all>'
+
+set pager_index_lines=6
 unset markers
 set smart_wrap
 set tilde
+
+set pager_format="─── Message %C of %m: \"%s\" %*── %P ───"
 
 alternative_order text/enriched text/plain text
 auto_view text/html
 auto_view application/zip
 
 ### generic appearance
-color normal default default
-### last rule overrides
-	color index white default	~A
+color normal white default
+# last rule overrides
+	uncolor index *
 	# important notifications
 	color index brightred default	'~h "^X-Priority: [12]$"'
 	color index brightred default	'~h "^X-Facebook-Notify: login_notification;"'
-	# social notifications, mentions and PMs/DMs
-	color index brightcyan default	'~f "^mention-.*@postmaster\.twitter\.com$"'
-	# "stuff happened" notifications; and mailing lists
-	color index cyan default	'~f "@postmaster\.twitter\.com$"'
-	color index cyan default	'~h "^From: Cron Daemon <root@.+>$"'
+	# mentions and PMs/DMs — equivalent to normal messages
+#	color index white default	'~f "^mention-.*@postmaster\.twitter\.com$"'
+	# unimportant social notifications
+#	color index cyan default	'~f "@postmaster\.twitter\.com$"'
+	#color index cyan default	'~h "^From: Cron Daemon <root@.+>$"'
 	#color index cyan default	'~h "^List-Unsubscribe:"'
 	# administrivia
-	color index blue default	'~h "^X-List-Administrivia: yes$"'
+#	color index blue default	'~h "^X-List-Administrivia: yes$"'
 	# spam
-	color index yellow default	'~h "^X-Bogosity: Spam,"'
-	# flagged
-	color index brightwhite	default		~F
-	# unseen
-	color index brightyellow default	~U
-	# deleted
-	color index brightblack default		~D
-	# tagged
-	color index white blue			~T
+#	color index yellow default	'~h "^X-Bogosity: Spam,"'
 
-color indicator black white
-color status cyan default
-color message yellow default
-color error brightwhite red
-color hdrdefault green default
-	color header brightgreen default	"^From:"
-	color header brightgreen default	"^Subject:"
-	color header brightblack default	"^X-Bogosity:"
-	color header yellow default		"^X-Bogosity: Unsure,"
-	color header brightyellow default	"^X-Bogosity: Spam,"
-color attachment yellow default
-color quoted cyan default
-color signature blue default
-color tilde blue default
-color search black brightyellow
+	color index brightwhite	default		~F	# flagged
+	color index brightyellow default	~U	# unseen
+	color index brightblack default		~D	# deleted
+	color index brightblue default		~T	# tagged
+
+color tree		brightred	default
+color indicator		default		blue
+color status		cyan		default
+color message		yellow		default
+color error		brightwhite	red
+
+color hdrdefault	green		default
+	color header	brightgreen	default	"^From:"
+	color header	brightgreen	default	"^Subject:"
+	color header	brightblack	default	"^X-Bogosity:"
+	color header	yellow		default	"^X-Bogosity: Unsure,"
+	color header	brightyellow	default	"^X-Bogosity: Spam,"
+color attachment	yellow		default
+color quoted		cyan		default
+color signature		blue		default
+color tilde		blue		default
+color search		black		brightyellow
 
 # %?<char>?<if>&<else>?
 #set index_format="%4C %Z %{%b %d} %-15.15F (%?l?%4l&%4c?) %s"
-set index_format="%3C %Z %-18.18F %s %* | %{%b %d} "
+set index_format="%3C %Z %-18.18F %s %* %?M? [%M] ?| %{%b %d} "
 
 ### keybindings
 bind generic,pager <Backspace> exit
