@@ -26,5 +26,5 @@ set revert-all-at-newline on
 "\e[5~": ""
 "\e[6~": menu-complete
 # Shift-Tab
-"\C-i": menu-complete
+#"\C-i": menu-complete
 "\e[Z": complete-hostname
