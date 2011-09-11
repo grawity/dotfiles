@@ -134,4 +134,4 @@ Host *
 	#VerifyHostKeyDNS yes
 	NoHostAuthenticationForLocalhost yes
 	HashKnownHosts no
-
+	ControlPath ~/.ssh/S.%L.%r@%h:%p
