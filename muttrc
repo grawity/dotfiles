@@ -60,6 +60,8 @@ set alias_file="~/.muttaliases"
 source "silentcat ~/.muttaliases|"
 set query_command="muttquery '%s'"
 
+set compose_format="——— Composing (%l in %a parts) %*——"
+
 ### sending
 set use_envelope_from # pass '-f $from' to sendmail; useful for msmtp
 
@@ -71,10 +73,13 @@ set use_envelope_from # pass '-f $from' to sendmail; useful for msmtp
 set sort=threads
 set auto_tag # auto-add tag prefix
 
+unset help
+set status_on_top
+
 spam "^X-Bogosity: Spam,.* spamicity=([0-9.]+)" "bogus"
 set spam_separator=", "
 
-set status_format="─── Folder %f (%?M?%M/?%m messages%?n?, %n new?%?o?, %o old?%?d?, %d deleted?) %*─ %P ───"
+set status_format="——— Folder %f (%?M?%M/?%m messages%?n?, %n new?%?o?, %o old?%?d?, %d deleted?) %*— %P ———"
 
 ### message view
 ignore *
@@ -91,7 +96,7 @@ unset markers
 set smart_wrap
 set tilde
 
-set pager_format="─── Message %C of %m: \"%s\" %*── %P ───"
+set pager_format="——— Message %C of %m: \"%s\" %*—— %P ———"
 
 alternative_order text/enriched text/plain text
 auto_view text/html
@@ -122,7 +127,7 @@ color normal white default
 
 color tree		brightred	default
 color indicator		default		blue
-color status		cyan		default
+color status		brightmagenta	default
 color message		yellow		default
 color error		brightwhite	red
 
