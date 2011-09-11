@@ -93,14 +93,14 @@ if [[ $havecolor ]]; then
 		color='1;33'
 		item='\u@\h'
 	fi
-	PS1+="\[\e[;${color}m\]${item}\[\e[m\] "
-	PS1+="\[\e[36m\]\w\[\e[m\]\n"
-	PS1+="\[\e[1m\]\\\$\[\e[m\] "
-	export -n PS2="\[\e[;1;30m\]...\[\e[m\] "
+	PS1+="\[\e[0;${color}m\]${item}\[\e[0m\] "
+	PS1+="\[\e[36m\]\w\[\e[0m\]\n"
+	PS1+="\[\e[1m\]\\\$\[\e[0m\] "
+	export -n PS2="\[\e[;1;30m\]...\[\e[0m\] "
 	export PS4=""
 	PS4+="+\e[34m\${BASH_SOURCE:-stdin}"
-	PS4+=":\e[1m\$LINENO\e[m"
-	PS4+=":\${FUNCNAME:+\e[33m\$FUNCNAME\e[m}"
+	PS4+=":\e[1m\$LINENO\e[0m"
+	PS4+=":\${FUNCNAME:+\e[33m\$FUNCNAME\e[0m}"
 	PS4+=" "
 else
 	export -n PS1='\u@\h \w\n\$ '
