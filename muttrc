@@ -155,6 +155,11 @@ bind generic,pager ,w what-key
 bind pager <PageUp> half-up
 bind pager <PageDown> half-down
 
+# Numpad + -
+bind index \\ collapse-thread
+#bind index <Esc>Ok collapse-thread
+bind index <Esc>Om collapse-all
+
 bind pager G bottom
 
 # Home/End
@@ -167,6 +172,8 @@ macro generic,index,pager <Esc>f "<enter-command>set from=grawity@"
 
 macro index,pager ,h "<copy-message>=spam/ham"
 macro index,pager ,s "<copy-message>=spam/spam"
+
+macro index,pager \cK "<tag-thread><save-message>=spam/ham-tk\n"
 
 folder-hook . '\
 bind index,pager d delete-message;\
