@@ -145,7 +145,7 @@ color search		black		brightyellow
 
 # %?<char>?<if>&<else>?
 #set index_format="%4C %Z %{%b %d} %-15.15F (%?l?%4l&%4c?) %s"
-set index_format="%3C %Z %-18.18F %s %* %?M? [%M] ?│ %{%b %d} "
+set index_format="%3C %Z %-18.18F %s %* %?M? ▶ %M ?│ %{%b %d} "
 
 ### keybindings
 bind generic,pager <Backspace> exit
