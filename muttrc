@@ -10,6 +10,9 @@ reply-hook ~l \
 
 unset beep
 set beep_new
+set menu_context=3
+set menu_scroll
+set xterm_set_titles
 
 alternates "^grawity@gmail\.com$"
 alternates "^grawity@(\w+\.)?cluenet\.org$"
@@ -37,6 +40,8 @@ unset confirmappend
 set confirmcreate
 set delete
 
+set rfc2047_parameters
+
 # Caching
 #set header_cache="~/.cache/mutt"
 #set message_cachedir="~/.cache/mutt"
@@ -48,6 +53,11 @@ set mail_check=10
 set timeout=20
 account-hook . 'unset tunnel imap_pass; set imap_user="grawity"'
 source "silentcat ~/.auth/muttrc|"
+
+set imap_headers="X-BOGOSITY"
+set imap_idle
+set imap_check_subscribed
+#unset imap_servernoise
 
 folder-hook . 'unset spoolfile'
 
