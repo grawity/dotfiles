@@ -12,7 +12,6 @@ unset beep
 set beep_new
 set menu_context=3
 set menu_scroll
-set xterm_set_titles
 
 alternates "^grawity@gmail\.com$"
 alternates "^grawity@(\w+\.)?cluenet\.org$"
@@ -225,3 +224,5 @@ set pgp_sign_command="gpg --no-verbose --batch --quiet --output - %?p?--passphra
 #set pgp_list_pubring_command="gpg --no-verbose --batch --quiet --with-colons --list-keys %r" 
 #set pgp_list_secring_command="gpg --no-verbose --batch --quiet --with-colons --list-secret-keys %r" 
 set pgp_good_sign="^\\[GNUPG:\\] GOODSIG"
+
+source "~/lib/dotfiles/muttrc.sh|"
