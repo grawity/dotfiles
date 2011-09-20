@@ -55,7 +55,7 @@ source "silentcat ~/.auth/muttrc|"
 
 set imap_headers="X-BOGOSITY"
 set imap_idle
-set imap_check_subscribed
+#set imap_check_subscribed
 #unset imap_servernoise
 
 folder-hook . 'unset spoolfile'
