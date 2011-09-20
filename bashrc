@@ -196,6 +196,7 @@ alias xx='chmod a+x'
 X() { ("$@" &> /dev/null &); }
 alias '~'='grep -P'
 
+alias logoff='logout'
 case $DESKTOP_SESSION in
 gnome)
 	alias logout='gnome-session-quit --logout --force --no-prompt &&
