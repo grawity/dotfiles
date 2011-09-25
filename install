@@ -27,47 +27,50 @@ trash() {
 	done
 }
 
-dir=~/lib/dotfiles
+dir=$(git rev-parse --show-toplevel)
 trash=~/trash
 all=false
 
-while getopts ad: OPT; do
+while getopts 'a' OPT; do
 	case $OPT in
-	a)	all=true;;
-	d)	dir=$OPTARG;;
+	'a')	all=true;;
+	'?')	echo "Usage: install [-a]"; exit 2;;
 	esac
 done
 
 mkdir -pm 0700 ~/.ssh
-link	bashrc		~/.bashrc
-link	gitconfig	~/.gitconfig
-link	gitignore	~/.gitignore
-link	inputrc		~/.inputrc
-link	profile		~/.profile
-link	ssh-config	~/.ssh/config
-link	vimrc		~/.vimrc
-link	vim/		~/.vim
+link bashrc	~/.bashrc
+link gitconfig	~/.gitconfig
+link gitignore	~/.gitignore
+link inputrc	~/.inputrc
+link profile	~/.profile
+link ssh-config	~/.ssh/config
+link vimrc	~/.vimrc
+link vim/	~/.vim
+
+have makepkg &&
+	link makepkg.conf	~/.makepkg.conf
 
 trash	~/.bash_{login,profile,logout}
 
 $all || exit 0
 
 have mail &&
-	: link	mailrc		~/.mailrc
-have makepkg &&
-	link	makepkg.conf	~/.makepkg.conf
+	: link mailrc		~/.mailrc
 have msmtp && {
-	link	msmtprc		~/.msmtprc
+	link msmtprc		~/.msmtprc
 	chmod 600 ~/.msmtprc
 }
 have mutt && {
-	: link	muttrc		~/.muttrc
+	: link muttrc		~/.muttrc
 	[[ -f ~/.muttrc ]] ||
 		echo 'source "~/lib/dotfiles/muttrc"' > ~/.muttrc
 }
 have screen &&
-	link	screenrc	~/.screenrc
+	link screenrc	~/.screenrc
 have tmux &&
-	link	tmux.conf	~/.tmux.conf
+	link tmux.conf	~/.tmux.conf
 have xrdb &&
-	link	Xresources	~/.Xresources
+	link Xresources	~/.Xresources
+
+exit 0
