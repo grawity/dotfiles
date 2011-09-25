@@ -6,6 +6,8 @@
 [user]
 	name = Mantas Mikulėnas
 	email = grawity@nullroute.eu.org
+[advice]
+	statusHints = false
 [alias]
 	a = add
 	ci = commit
@@ -45,11 +47,32 @@
 [grep]
 	lineNumber = true
 	extendedRegexp = true
-[advice]
-	statusHints = false
+[sendemail]
+	smtpserver = /usr/bin/msmtp
+
+# External programs
+
+[github]
+	user = !getnetrc -df %u api.github.com
+	token = !getnetrc -df %p api.github.com
+[gui]
+	encoding = utf-8
+	fontdiff = -family \"DejaVu Sans Mono\" -size 9 -weight normal -slant roman -underline 0 -overstrike 0
+[tig]
+	show-date = relative
+	show-author = abbreviated
+	author-width = 10
+	line-graphics = true
+	tab-size = 4
+[tig "color"]
+	cursor = black green
+	title-focus = white blue
+
+# URL replacements
+
 [url "ssh://"]
 	pushInsteadOf = git://
-[url "https://github.com/"]
+[url "git://github.com/"]
 	insteadOf = github:
 [url "git@github.com:"]
 	pushInsteadOf = git://github.com/
@@ -69,20 +92,3 @@
 	insteadOf = gnome:
 [url "git://anongit.freedesktop.org/"]
 	insteadOf = freedesktop:
-[tig]
-	show-date = relative
-	show-author = abbreviated
-	author-width = 10
-	line-graphics = true
-	tab-size = 4
-[tig "color"]
-	cursor = black green
-	title-focus = white blue
-[github]
-	user = grawity
-	token = !getnetrc -df %p api.github.com grawity
-[gui]
-	encoding = utf-8
-	fontdiff = -family \"DejaVu Sans Mono\" -size 9 -weight normal -slant roman -underline 0 -overstrike 0
-[sendemail]
-	smtpserver = /usr/bin/msmtp
