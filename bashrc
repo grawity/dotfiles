@@ -218,6 +218,7 @@ if have systemctl; then
 	alias status='systemctl status'
 	alias sd='systemctl'
 	alias loginctl='systemd-loginctl'
+	alias userctl='systemctl --user'
 	alias tsd='tree /etc/systemd/system'
 	cgls() { systemd-cgls "$@" | pager; }
 	psls() {
