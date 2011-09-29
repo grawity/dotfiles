@@ -181,14 +181,16 @@ silent! autocmd BufNewFile,BufRead
 \ authorized_keys.*
 \ set ft=conf
 silent! autocmd BufReadPost host-acls %!sexp-conv -w 0
-silent! autocmd BufNewFile,BufRead lib/hesiod/passwd set ft=passwd
-silent! autocmd BufNewFile,BufRead lib/hesiod/group set ft=group
-silent! autocmd BufNewFile,BufRead */pam.d/* set ft=pamconf
+silent! autocmd BufNewFile,BufRead
+\ */pam.d/*
+\ set ft=pamconf
 silent! autocmd BufNewFile,BufRead .muttaliases set ft=muttrc
 silent! autocmd BufNewFile,BufRead
-\ /etc/systemd/*,/lib/systemd/*
+\ /etc/systemd/*,/lib/systemd/*,~/.config/systemd/*
 \ set ft=desktop
-silent! autocmd BufNewFile,BufRead /tmp/bash-fc-* set ft=sh
+silent! autocmd BufNewFile,BufRead
+\ /tmp/bash-fc-*
+\ set ft=sh
 
 func! JoinPara()
 	:g/^./ .,/^$/-1 join
