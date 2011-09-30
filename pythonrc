@@ -1,0 +1,28 @@
+#!/usr/bin/env python
+import os
+import sys
+
+def _startup():
+	import readline
+	import rlcompleter
+	import atexit
+	
+	readline.parse_and_bind('tab: complete')
+	
+	historyFile = os.path.expanduser("~/.cache/python.history")
+	if os.path.exists(historyFile):
+		readline.read_history_file(historyFile)
+	atexit.register(lambda: readline.write_history_file(historyFile))
+	
+	
+	vtseq = lambda s: "\001\033%s\002" % s
+	ansi = lambda s: vtseq("[%sm" % s)
+
+	color = "35" if sys.version_info.major >= 3 else "34"
+
+	sys.ps1 = ansi("0;%s" % color) + "py%d.%d " % sys.version_info[0:2] + \
+		ansi("1") + ">>>" + ansi("0") + " "
+
+	sys.ps2 = ansi("0;1;30") + "..." + ansi("0") + " "
+
+_startup()

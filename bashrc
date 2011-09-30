@@ -484,6 +484,7 @@ export LESS="-eMqR -FX"
 export LESSHISTFILE=~/.cache/less.history
 export MAKEFLAGS="-j$((`nproc`+1))"
 export MYSQL_HISTFILE=~/.cache/mysql.history
+export PYTHONSTARTUP=~/lib/dotfiles/pythonrc
 if [[ -f ~/.pythonrc ]]; then
 	export PYTHONSTARTUP=~/.pythonrc
 	export PYTHONHISTFILE=~/.cache/python.history
