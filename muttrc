@@ -85,7 +85,10 @@ set auto_tag # auto-add tag prefix
 unset help
 set status_on_top
 
+#spam '~h "^X-Bogosity: Spam,"' "bogus"
+spam '^X-Bogosity: Spam,' "bogus"
 spam "^X-Bogosity: Spam,.* spamicity=([0-9.]+)" "bogus"
+spam "^X-Bogosity: Unsure,.* spamicity=([0-9.]+)" "unsure"
 set spam_separator=", "
 
 set status_format="——— Folder %f (%?M?%M/?%m messages%?n?, %n new?%?o?, %o old?%?d?, %d deleted?) %*— %P ———"
@@ -127,7 +130,7 @@ color normal white default
 	# administrivia
 #	color index blue default	'~h "^X-List-Administrivia: yes$"'
 	# spam
-#	color index yellow default	'~h "^X-Bogosity: Spam,"'
+	color index yellow default	'~h "^X-Bogosity: Spam,"'
 
 	color index brightwhite	default		~F	# flagged
 	color index brightyellow default	~U	# unseen
@@ -154,7 +157,7 @@ color search		black		brightyellow
 
 # %?<char>?<if>&<else>?
 #set index_format="%4C %Z %{%b %d} %-15.15F (%?l?%4l&%4c?) %s"
-set index_format="%3C %Z %-18.18F %s %* %?M? ▶ %M ?│ %{%b %d} "
+set index_format="%3C %Z %-18.18F│%s %* %?H?{%H} ?%?M? ▶%M ?│ %{%b %d} "
 
 ### keybindings
 bind generic,pager <Backspace> exit
@@ -215,7 +218,7 @@ set pgp_decode_command="gpg --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --
 set pgp_verify_command="gpg --status-fd=2 --no-verbose --quiet --batch --output - --verify %s %f"
 set pgp_decrypt_command="gpg --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
 set pgp_sign_command="gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --detach-sign --textmode %?a?-u %a? %f"
-#set pgp_clearsign_command="gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --textmode --clearsign %?a?-u %a? %f"
+set pgp_clearsign_command="gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --textmode --clearsign %?a?-u %a? %f"
 #set pgp_encrypt_only_command="pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f"
 #set pgp_encrypt_sign_command="pgpewrap gpg %?p?--passphrase-fd 0? --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f"
 #set pgp_import_command="gpg --no-verbose --import %f"
