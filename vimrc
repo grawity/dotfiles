@@ -186,7 +186,7 @@ silent! autocmd BufNewFile,BufRead
 \ set ft=pamconf
 silent! autocmd BufNewFile,BufRead .muttaliases set ft=muttrc
 silent! autocmd BufNewFile,BufRead
-\ /etc/systemd/*,/lib/systemd/*,~/.config/systemd/*
+\ /etc/systemd/*,/lib/systemd/*,~/.config/systemd/*,~/src/systemd-arch-units/*/*.*
 \ set ft=desktop
 silent! autocmd BufNewFile,BufRead
 \ /tmp/bash-fc-*
