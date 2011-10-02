@@ -175,6 +175,7 @@ alias egrep='grep -E'
 entity() { printf '&%s;' "$@" | w3m -dump -T text/html; }
 finge() { [[ $1 == r* ]] && set -- "${1:1}" "${@:2}"; finger "$@"; }
 g() { egrep -rn --color=always "$@" . | pager; }
+gpgsigs() { gpg --edit-key "$1" check quit; }
 alias hex='xxd -p'
 alias hup='pkill -HUP -x'
 irc() { tmux attach -t irc || tmux new -s irc -n irssi "irssi $*"; }
