@@ -331,9 +331,9 @@ wiki() {
 todo() {
 	if [[ $1 ]]; then
 		echo "($(date +"%b %d")) $*" >> ~/todo
-		nl ~/todo | tail -n 1
+		nl -ba ~/todo | tail -n 1
 	elif [[ -s ~/todo ]]; then
-		nl ~/todo
+		nl -ba ~/todo
 	fi
 }
 rmtodo() {
