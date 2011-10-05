@@ -18,7 +18,7 @@ def _startup():
 	vtseq = lambda s: "\001\033%s\002" % s
 	ansi = lambda s: vtseq("[%sm" % s)
 
-	color = "35" if sys.version_info.major >= 3 else "34"
+	color = "35" if sys.version_info[0] >= 3 else "34"
 
 	sys.ps1 = ansi("0;%s" % color) + "py%d.%d " % sys.version_info[0:2] + \
 		ansi("1") + ">>>" + ansi("0") + " "
