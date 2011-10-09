@@ -53,8 +53,8 @@
 # External programs
 
 [github]
-	user = !getnetrc -df %u api.github.com
-	token = !getnetrc -df %p api.github.com
+	user = grawity
+	token = !getnetrc -df %p api.github.com grawity
 [gui]
 	encoding = utf-8
 	fontdiff = -family \"DejaVu Sans Mono\" -size 9 -weight normal -slant roman -underline 0 -overstrike 0
