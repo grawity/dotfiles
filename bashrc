@@ -10,6 +10,7 @@ export UNAME SHELL USER
 export GPG_TTY=$(tty)
 export HOSTALIASES=~/.hosts
 export NCURSES_NO_UTF8_ACS=1
+export DISTCC_TCP_CORK=0
 
 # required for some utils
 [[ $LANG == *.utf8 ]] &&
