@@ -23,7 +23,7 @@ if has("gui")
 		let &guifont="Consolas:h9"
 	endif
 	set guioptions+=gm
-	set guioptions-=tT
+	set guioptions-=tTLR
 endif
 if has("gui_running")
 	silent! color desert
