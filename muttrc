@@ -67,6 +67,7 @@ set edit_headers
 
 set alias_file="~/.muttaliases"
 source "silentcat ~/.muttaliases|"
+set reverse_alias
 set query_command="muttquery '%s'"
 
 set compose_format="——— Composing (%l in %a parts) %*——"
