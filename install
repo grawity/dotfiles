@@ -55,6 +55,8 @@ trash	~/.bash_{login,profile,logout}
 
 $all || exit 0
 
+have irb &&
+	link irbrc	~/.irbrc
 have mail &&
 	: link mailrc		~/.mailrc
 have msmtp && {
