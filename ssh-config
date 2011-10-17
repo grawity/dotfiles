@@ -124,14 +124,6 @@ Host *.vistech.net
 Host bazaar.launchpad.net
 	IdentityFile no
 
-# special hostnames
-
-Host _sshkeys
-	Hostname equal.cluenet.org
-	IdentityFile ~/.ssh/id_sshupdate
-	PreferredAuthentications publickey
-	ClearAllForwardings yes
-
 # global options
 
 Host *
