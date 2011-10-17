@@ -75,4 +75,7 @@ have tmux &&
 have xrdb &&
 	link Xresources	~/.Xresources
 
+# todo: krb 1.10
+#link k5identity ~/.k5identity
+
 exit 0
