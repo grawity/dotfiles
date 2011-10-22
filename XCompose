@@ -1,0 +1,13 @@
+# see Compose(5)
+
+#include "/usr/share/X11/locale/en_US.UTF-8/Compose"
+include "%S/en_US.UTF-8/Compose"
+<Multi_key> <n> <o> <t> <e> : "♫"
+<Multi_key> <h> <e> <a> <r> <t> : "♥"
+<Multi_key> <i> <n> <f> : "∞"
+<Multi_key> <8> <8> : "∞"
+<Multi_key> <p> <i> : "π"
+<Multi_key> <=> <y> : "¥"
+<Multi_key> <l> <q> : "“"
+<Multi_key> <r> <q> : "”"
+<Multi_key> <l> <a> : "λ"

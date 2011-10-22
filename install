@@ -72,8 +72,10 @@ have screen &&
 	link screenrc	~/.screenrc
 have tmux &&
 	link tmux.conf	~/.tmux.conf
-have xrdb &&
+have xrdb && {
 	link Xresources	~/.Xresources
+	link XCompose	~/.XCompose
+}
 
 # todo: krb 1.10
 #link k5identity ~/.k5identity
