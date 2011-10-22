@@ -1,0 +1,6 @@
+%set username "grawity"
+%set hostname "nullroute.eu.org"
+%set realname "Mantas M."
+%set signature ".signature"
+
+%server "newszilla6.xs4all.nl" ".newsrc"
