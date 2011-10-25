@@ -95,6 +95,8 @@ if [[ $havecolor ]]; then
 		item='\u@\h'
 	fi
 	PS1+="\[\e[0;${color}m\]${item}\[\e[0m\] "
+	[[ $TAG ]] &&
+		PS1+="\[\e[0;34m\]${TAG}:\[\e[0m\]"
 	PS1+="\[\e[36m\]\w\[\e[0m\]\n"
 	PS1+="\[\e[1m\]\\\$\[\e[0m\] "
 	export -n PS2="\[\e[;1;30m\]...\[\e[0m\] "
