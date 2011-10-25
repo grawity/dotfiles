@@ -84,7 +84,7 @@ if [[ $havecolor ]]; then
 	if (( $UID == 0 )); then
 		color='1;37;41'
 		item='\h'
-	elif [[ $USER == "grawity" && $SSH_TTY ]]; then
+	elif [[ $USER == "grawity" && ( $SSH_TTY || $LOGIN ) ]]; then
 		color='1;33'
 		item='\h'
 	elif [[ $USER == "grawity" ]]; then
