@@ -32,6 +32,7 @@
 	export = !touch $(git rev-parse --git-dir)/git-daemon-export-ok
 	unexport = !rm -v $(git rev-parse --git-dir)/git-daemon-export-ok
 	new = !tig HEAD@{1}..
+	mrproper = !git reset --hard HEAD && git clean -fdx
 [color]
 	branch = auto
 	diff = auto
