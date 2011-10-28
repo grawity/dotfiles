@@ -202,7 +202,7 @@ alias '~'='grep -P'
 
 alias logoff='logout'
 case $DESKTOP_SESSION in
-gnome)
+gnome|ubuntu)
 	alias logout='gnome-session-quit --logout --force --no-prompt &&
 		echo Logging out of GNOME...'
 	;;
