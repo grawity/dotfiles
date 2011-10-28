@@ -75,6 +75,7 @@ have tmux &&
 have xrdb && {
 	link Xresources	~/.Xresources
 	link XCompose	~/.XCompose
+	link fonts.conf	~/.fonts.conf
 }
 
 # todo: krb 1.10
