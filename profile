@@ -1,13 +1,15 @@
 # ~/.profile: bash(1)
 
 have() { command -v "$1" >/dev/null; }
-
 mkpath() { local IFS=":"; export PATH="$*"; }
+
+# dash(1) does not set $HOSTNAME
+[ -z "$HOSTNAME" ] &&
+	export HOSTNAME=$(hostname)
 
 umask 022
 
 export LOCAL="$HOME/.local"
-
 #export PYTHONPATH="$LOCAL/lib/python"
 export PERL5LIB="$LOCAL/lib/perl5:$HOME/cluenet/perl5"
 export GEM_HOME="$LOCAL/ruby"
@@ -21,7 +23,7 @@ mkpath \
 	"$PATH"			\
 	"/usr/local/sbin" 	\
 	"/usr/sbin"		\
-	"/sbin"
+	"/sbin"			;
 
 export PAGER='less'
 export EDITOR='vim'
