@@ -129,7 +129,7 @@ Host bazaar.launchpad.net
 Host *
 	Protocol 2
 	ForwardX11Trusted yes
-	#VerifyHostKeyDNS yes
+	VerifyHostKeyDNS yes
 	NoHostAuthenticationForLocalhost yes
 	HashKnownHosts no
 	ControlPath ~/.ssh/S.%l.%r@%h:%p
