@@ -75,10 +75,12 @@
 	pushInsteadOf = git://
 [url "git://github.com/"]
 	insteadOf = github:
+	insteadOf = gh:
 [url "git@github.com:"]
 	pushInsteadOf = git://github.com/
 	pushInsteadOf = https://github.com/
 	pushInsteadOf = github:
+	pushInsteadOf = gh:
 [url "git://gist.github.com/"]
 	insteadOf = gist:
 [url "git@gist.github.com:"]
@@ -93,3 +95,6 @@
 	insteadOf = gnome:
 [url "git://anongit.freedesktop.org/"]
 	insteadOf = freedesktop:
+	insteadOf = fdo:
+[url "git://git.sv.gnu.org/"]
+	insteadOf = gnu:
