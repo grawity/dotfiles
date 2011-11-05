@@ -4,8 +4,8 @@ have() { command -v "$1" >/dev/null; }
 mkpath() { local IFS=":"; export PATH="$*"; }
 
 # dash(1) does not set $HOSTNAME
-[ -z "$HOSTNAME" ] &&
-	export HOSTNAME=$(hostname)
+[ "$UID" ]	|| export UID=$(id -u)
+[ "$HOSTNAME" ]	|| export HOSTNAME=$(hostname)
 
 umask 022
 
@@ -40,12 +40,13 @@ export TZ='Europe/Vilnius'
 export NAME='Mantas Mikulėnas'
 export EMAIL='grawity@nullroute.eu.org'
 
-[ -f ~/.mailrc ] ||
+if [ -f ~/.mailrc ]; then
 	export MAILRC=~/lib/dotfiles/mailrc
+fi
 
-[ "$BASH_VERSION" ] &&
-[ -f ~/.bashrc ] &&
+if [ "$BASH_VERSION" ] && [ -f ~/.bashrc ]; then
 	. ~/.bashrc
+fi
 
 if [ -t 0 ]; then
 	[ -f ~/.hushlogin ] &&
