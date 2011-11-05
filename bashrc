@@ -332,16 +332,24 @@ wiki() {
 }
 
 todo() {
+	if [[ -f ~/todo ]] && [[ ! -e ~/lib/todo ]]; then
+		mkdir -p ~/lib
+		mv ~/todo ~/lib/todo
+		ln -s 'lib/todo' ~/todo
+	fi
 	if [[ $1 ]]; then
-		echo "($(date +"%b %d")) $*" >> ~/todo
-		nl -ba ~/todo | tail -n 1
-	elif [[ -s ~/todo ]]; then
-		nl -ba ~/todo
+		mkdir -p ~/lib
+		echo "($(date +"%b %d")) $*" >> ~/lib/todo
+		nl -ba ~/lib/todo | tail -n 1
+	elif [[ -s ~/lib/todo ]]; then
+		nl -ba ~/lib/todo
 	fi
 }
+vitodo() {
+	editor ~/lib/todo
+}
 rmtodo() {
-	sed -i "${1:-\$}d" ~/todo
-	[[ -s ~/todo ]] || rm ~/todo
+	sed -i "${1:-\$}d" ~/lib/todo
 }
 
 cmpc() {
