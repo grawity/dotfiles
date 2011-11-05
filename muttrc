@@ -130,6 +130,8 @@ color normal white default
 #	color index cyan default	'~f "@postmaster\.twitter\.com$"'
 	#color index cyan default	'~h "^From: Cron Daemon <root@.+>$"'
 	#color index cyan default	'~h "^List-Unsubscribe:"'
+	color index cyan default	'~f "^lwn@lwn\.net$"'
+	color index cyan default	'~f "^letter@chan4chan\.com$"'
 	# administrivia
 #	color index blue default	'~h "^X-List-Administrivia: yes$"'
 	# spam
@@ -182,6 +184,8 @@ bind index <Esc>[1~ first-entry
 bind index <Esc>[4~ last-entry
 bind pager <Esc>[1~ top
 bind pager <Esc>[4~ bottom
+
+macro generic,index,pager a "<save-message>=archive/misc\n"
 
 macro generic,index,pager <Esc>f "<enter-command>set from=grawity@"
 
