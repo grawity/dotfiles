@@ -15,7 +15,7 @@ set menu_scroll
 
 alternates "@nullroute\.eu\.org$"
 alternates "@ntas\.in$"
-alternates "^grawity(\+.+)?@gmail\.com$"
+alternates "^grawity(\\+.+)?@gmail\.com$"
 alternates "^grawity@(\w+\.)?cluenet\.org$"
 alternates "^grawity@anubis\.nickserver\.net$"
 
