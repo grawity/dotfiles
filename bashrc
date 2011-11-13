@@ -477,7 +477,7 @@ catlog() {
 # compatibility with coreutils < 8.0
 have nproc || nproc() {
 	local exe=$(which nproc 2>/dev/null)
-	[[ $exe == /*]] && { $exe; return; }
+	[[ $exe == /* ]] && { $exe; return; }
 
 	[[ $OMP_NUM_THREADS ]] && {
 		echo $OMP_NUM_THREADS
