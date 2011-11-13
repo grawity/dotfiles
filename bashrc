@@ -14,7 +14,7 @@ export DISTCC_TCP_CORK=0
 
 # required for some utils
 [[ $LANG == *.utf8 ]] &&
-	LANG="${LANG%.utf8}.utf-8"
+	LANG="${LANG%.utf8}.UTF-8"
 
 [[ -d ~/.cache ]] &&
 	mkdir -pm 0700 ~/.cache

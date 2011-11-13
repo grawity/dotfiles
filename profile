@@ -34,7 +34,7 @@ have open-browser &&
 unset LC_ALL
 case $TERM in
 	vt*|ansi)	export LANG='en_US';;
-	*)		export LANG='en_US.utf-8';;
+	*)		export LANG='en_US.UTF-8';;
 esac
 export TZ='Europe/Vilnius'
 export NAME='Mantas Mikulėnas'
