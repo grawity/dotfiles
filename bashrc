@@ -490,7 +490,9 @@ have nproc || nproc() {
 	Linux)
 		grep -cw '^processor' /proc/cpuinfo;;
 	*)
-		echo 'bash: nproc: unsupported OS' >&2; return 1;;
+		echo 'bash: nproc: unsupported OS' >&2;
+		echo '1';
+		return 1;;
 	esac
 }
 
