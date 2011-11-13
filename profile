@@ -52,7 +52,7 @@ if [ -t 0 ]; then
 	[ -f ~/.hushlogin ] &&
 	[ -x ~/code/bin/motd ] &&
 		~/code/bin/motd -q
-	echo $(uptime)
+	echo `uptime`
 fi
 
 [ -f ~/.profile-$HOSTNAME ] &&
