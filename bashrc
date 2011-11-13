@@ -148,11 +148,11 @@ a() {
 LSOPT="ls -Fh"
 GREPOPT="grep"
 if [[ $havecolor ]]; then
-	GREPOPT="$GREPOPT --color=auto"
 	#case $UNAME in
 	case $OSTYPE in
 		#Linux|CYGWIN_*)
 		linux-gnu*|cygwin)
+			GREPOPT="$GREPOPT --color=auto"
 			LSOPT="$LSOPT --color=auto"
 			eval $(dircolors ~/lib/dotfiles/dircolors)
 			;;
