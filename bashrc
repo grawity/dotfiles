@@ -73,7 +73,7 @@ esac
 
 # terminal window title
 case $TERM in
-	[xkE]term*|rxvt*|cygwin|screen*)
+	[xkE]term*|rxvt*|cygwin|screen*|dtterm)
 		titlestring='\e]0;%s\007';;
 	#screen*)
 	#	titlestring='\ek%s\e\\';;
