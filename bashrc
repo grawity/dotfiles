@@ -196,10 +196,10 @@ alias tidiff='infocmp -Ld'
 tube() {
 	local title=$(youtube-dl -e "$1")
 	read -e -p 'Title: ' -i "$title" title
-	youtube-dl --console-title -o "${title//%/%%}.%(ext)s" "$@"
+	youtube-dl --console-title -c -o "${title//%/%%}.%(ext)s" "$@"
 }
-tubex() { youtube-dl --console-title -o "%(title)s.%(ext)s" "$@"; }
-tubes() { youtube-dl --console-title --title "$@"; }
+tubex() { youtube-dl --console-title -c -o "%(title)s.%(ext)s" "$@"; }
+tubes() { youtube-dl --console-title -c --title "$@"; }
 up() { local p= i=${1:-1}; while (( i-- )); do p+=../; done; cd "$p$2" && pwd; }
 alias w='PROCPS_USERLEN=16 w -s -h'
 alias xx='chmod a+x'
