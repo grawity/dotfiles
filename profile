@@ -23,7 +23,9 @@ mkpath \
 	"$PATH"			\
 	"/usr/local/sbin" 	\
 	"/usr/sbin"		\
-	"/sbin"			;
+	"/sbin"			\
+	"/opt/csw/bin"		\
+	;
 
 export PAGER='less'
 export EDITOR='vim'
