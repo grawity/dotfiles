@@ -172,9 +172,6 @@ inoremap # X#
 
 "" Autocommands
 silent! autocmd BufNewFile,BufRead
-\ *.md
-\ set ft=markdown
-silent! autocmd BufNewFile,BufRead
 \ authorized_keys,authorized_keys.*,known_hosts,id_*.pub
 \ set wrap nolinebreak
 silent! autocmd BufNewFile,BufRead
