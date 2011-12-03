@@ -1,8 +1,9 @@
 augroup filetypedetect
 	" XDG Desktop Entry
 	au BufNewFile,BufRead *.ontology setf desktop
+
 	" systemd
-	au BufNewFile,BufRead *.mount,*.service,*.target setf desktop
+	au BufNewFile,BufRead *.automount,*.mount,*.service,*.target setf desktop
 
 	" Markdown
 	au BufNewFile,BufRead *.md setf markdown
