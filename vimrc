@@ -35,8 +35,12 @@ if has("gui_running")
 	map	<silent>	<C-S>		:w<CR>
 	imap	<silent>	<C-S>		<Esc>:w<CR>
 	map	<silent>	<C-Q>		:q<CR>
-	map	<silent>	<S-Insert>	"+p
-	imap	<silent>	<S-Insert>	<Esc>"+pa
+	map	<silent>	<S-Insert>	"*p
+	imap	<silent>	<S-Insert>	<Esc>"*pa
+	map	<silent>	<C-S-C>		"+y
+	imap	<silent>	<C-S-C>		<Esc>"+yya
+	map	<silent>	<C-S-V>		"+p
+	imap	<silent>	<C-S-V>		<Esc>"+pa
 	imap			<C-BS>		<C-W>
 endif
 
