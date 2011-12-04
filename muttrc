@@ -34,7 +34,14 @@ set folder="imap://equal.cluenet.org/"
 set spoolfile="+INBOX"
 set postponed="+drafts"
 set record="+sent"
-mailboxes =INBOX =lists =lists/arch =lists/freenet =lists/systemd =spam
+mailboxes \
+	=INBOX \
+	=lists \
+	=lists/arch-dev \
+	=lists/arch-general \
+	=lists/freenet \
+	=lists/systemd \
+	=spam
 
 set mbox_type="maildir"
 unset confirmappend
