@@ -56,6 +56,9 @@ case $TERM in
 				gnome-terminal|konsole|xterm|yakuake)
 					COLORTERM=$comm
 					;;
+				kdeinit4:*konsole*)
+					COLORTERM=konsole
+					;;
 			esac
 			unset comm
 		fi
