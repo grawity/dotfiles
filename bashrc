@@ -208,12 +208,17 @@ alias w='PROCPS_USERLEN=16 w -s -h'
 alias xx='chmod a+x'
 X() { ("$@" &> /dev/null &); }
 alias '~'='grep -P'
+alias '~~'='grep -P -i'
 
 alias logoff='logout'
 case $DESKTOP_SESSION in
 gnome|ubuntu)
 	alias logout='gnome-session-quit --logout --force --no-prompt &&
 		echo Logging out of GNOME...'
+	;;
+kde-plasma)
+	alias logout='qdbus org.kde.ksmserver /KSMServer logout 0 -1 -1 &&
+		echo Logging out of KDE...'
 	;;
 esac
 
