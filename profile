@@ -1,3 +1,4 @@
+#!bash
 # ~/.profile: bash(1)
 
 have() { command -v "$1" >/dev/null; }
@@ -13,6 +14,11 @@ export LOCAL="$HOME/.local"
 export PYTHONPATH="$LOCAL/lib/python:$HOME/code/lib/python"
 export PERL5LIB="$LOCAL/lib/perl5:$HOME/cluenet/perl5"
 export GEM_HOME="$LOCAL/ruby"
+export TCLLIBPATH="$LOCAL/lib/tcl"
+
+#export PKG_CONFIG_PATH="$LOCAL/lib/pkgconfig:$LOCAL/share/pkgconfig"
+#export XDG_DATA_DIRS="$LOCAL/share:$XDG_DATA_DIRS"
+#export LD_RUN_PATH=
 
 mkpath \
 	"$HOME/bin"		\
