@@ -34,6 +34,8 @@ shopt -s histappend		# append to $HISTFILE on exit
 shopt -s histreedit		# allow re-editing failed history subst
 
 HISTFILE=~/.cache/bash.history
+HISTSIZE=2000
+HISTFILESIZE=2000
 HISTCONTROL=ignoreboth
 
 ### Command line completion
@@ -206,6 +208,7 @@ tubex() { youtube-dl --console-title -c -o "%(title)s.%(ext)s" "$@"; }
 tubes() { youtube-dl --console-title -c --title "$@"; }
 up() { local p= i=${1:-1}; while (( i-- )); do p+=../; done; cd "$p$2" && pwd; }
 alias w='PROCPS_USERLEN=16 w -s -h'
+wim() { editor "$(which "$1")"; }
 alias xx='chmod a+x'
 X() { ("$@" &> /dev/null &); }
 alias '~'='grep -P'
@@ -237,6 +240,7 @@ if have systemctl; then
 	alias status='systemctl status'
 	alias sd='systemctl'
 	alias loginctl='systemd-loginctl'
+	alias journalctl='systemd-journalctl'
 	alias userctl='systemctl --user'
 	alias tsd='tree /etc/systemd/system'
 	cgls() { systemd-cgls "$@" | pager; }
