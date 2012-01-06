@@ -5,8 +5,8 @@ set realname="Mantas M."
 set from="grawity@nullroute.eu.org"
 set reverse_name
 
-reply-hook ~l \
-	'set from="grawity@gmail.com"'
+#reply-hook ~l \
+#	'set from="grawity@gmail.com"'
 
 unset beep
 set beep_new
@@ -15,6 +15,7 @@ set menu_scroll
 
 alternates "@nullroute\.eu\.org$"
 alternates "@ntas\.in$"
+alternates "@kra\.ntas\.in$"
 alternates "^grawity(\\+.+)?@gmail\.com$"
 alternates "^grawity@(\w+\.)?cluenet\.org$"
 alternates "^grawity@anubis\.nickserver\.net$"
