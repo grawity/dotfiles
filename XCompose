@@ -1,13 +1,14 @@
 # ~/.XCompose - Compose(5) - Compose (Multi) key mappings for XIM input method
 # enabling compose key: <https://wiki.ubuntu.com/ComposeKey>
 include "%L"
-<Multi_key> <n> <o> <t> <e> : "♫"
-<Multi_key> <h> <e> <a> <r> <t> : "♥"
-<Multi_key> <i> <n> <f> : "∞"
-<Multi_key> <8> <8> : "∞"
-<Multi_key> <p> <i> : "π"
-<Multi_key> <equal> <y> : "¥"
-<Multi_key> <l> <q> : "“"
-<Multi_key> <r> <q> : "”"
-<Multi_key> <l> <a> : "λ"
-<Multi_key> <s> <n> <o> <w> <m> <a> <n> : "☃"
+<Multi_key> <8> <8>			: "∞" # infinity
+<Multi_key> <equal> <equal>		: "–" # ndash
+<Multi_key> <equal> <y>			: "¥" # yen
+<Multi_key> <h> <e> <a> <r> <t>		: "♥" # heart
+<Multi_key> <i> <n> <f>			: "∞" # infinity
+<Multi_key> <l> <a>			: "λ" # lambda
+<Multi_key> <l> <q>			: "“" # ldquo
+<Multi_key> <n> <o> <t> <e>		: "♫" # note
+<Multi_key> <p> <i>			: "π" # pi
+<Multi_key> <r> <q>			: "”" # rdquo
+<Multi_key> <s> <n> <o> <w> <m> <a> <n>	: "☃" # snowman
