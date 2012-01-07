@@ -4,9 +4,8 @@
 set realname="Mantas M."
 set from="grawity@nullroute.eu.org"
 set reverse_name
-
-#reply-hook ~l \
-#	'set from="grawity@gmail.com"'
+reply-hook ~l \
+	'set from="grawity@gmail.com"'
 
 unset beep
 set beep_new
