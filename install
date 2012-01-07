@@ -48,6 +48,9 @@ link ssh-config	~/.ssh/config
 link vimrc	~/.vimrc
 link vim/	~/.vim
 
+have gvim &&
+	link gvimrc	~/.gvimrc
+
 have makepkg &&
 	link makepkg.conf	~/.makepkg.conf
 
@@ -64,7 +67,7 @@ have msmtp && {
 	chmod 600 ~/.msmtprc
 }
 have mutt && {
-	: link muttrc		~/.muttrc
+	#link muttrc		~/.muttrc
 	[[ -f ~/.muttrc ]] ||
 		echo 'source "~/lib/dotfiles/muttrc"' > ~/.muttrc
 }
@@ -78,7 +81,6 @@ have xrdb && {
 	link fonts.conf	~/.fonts.conf
 }
 
-# todo: krb 1.10
-#link k5identity ~/.k5identity
+link k5identity	~/.k5identity
 
 exit 0
