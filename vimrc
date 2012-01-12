@@ -170,6 +170,9 @@ func! JoinPara()
 	:g/^./ .,/^$/-1 join
 endfunc
 
+" swap file location
+set dir=~/tmp//,/var/tmp//,/tmp//
+
 if hostname() == "rain"
 	set nofsync swapsync=
 endif
