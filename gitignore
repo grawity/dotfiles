@@ -4,3 +4,5 @@
 .*.swp
 Thumbs.db
 __pycache__
+core
+core.*.*
