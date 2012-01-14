@@ -1,0 +1,24 @@
+#!sh
+# GTK_RC_FILES
+# GTK2_RC_FILES
+
+: ${HOSTNAME:=$(hostname)}
+
+ulimit -c 65536
+
+#spawn notify_receive.pl 'udp!::!12599' 'libnotify'
+#spawn ~/code/mail/notify &
+spawn -l- acpieventd
+
+if [ "$HOSTNAME" = "rain" ]; then
+	spawn -Ll- mpd
+fi
+
+#spawn mpc-up
+#spawn scmpc
+#spawn synergyc snow.home
+#spawn mc-presence available
+
+if [ -f ~/.config/synclient.conf ]; then
+	xargs synclient < ~/.config/synclient.conf
+fi
