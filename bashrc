@@ -3,11 +3,11 @@
 
 have() { command -v "$@" >& /dev/null; }
 
-[[ $UNAME ]]	|| UNAME=$(uname)
+[[ $_UNAME ]]	|| _UNAME=$(uname)
 [[ $SHELL ]]	|| SHELL=$XTERM_SHELL
 [[ $USER ]]	|| USER=$LOGNAME
 [[ $USER ]]	|| USER=$(id -un)
-export UNAME SHELL USER
+export _UNAME SHELL USER
 export GPG_TTY=$(tty)
 export HOSTALIASES=~/.hosts
 export NCURSES_NO_UTF8_ACS=1
@@ -154,7 +154,7 @@ a() {
 LSOPT="ls -Fh"
 GREPOPT="grep"
 if [[ $havecolor ]]; then
-	#case $UNAME in
+	#case $_UNAME in
 	case $OSTYPE in
 		#Linux|CYGWIN_*)
 		linux-gnu*|cygwin)
@@ -499,7 +499,7 @@ have nproc || nproc() {
 
 	# to do: determine process affinity if possible
 
-	case $UNAME in
+	case $_UNAME in
 	Linux)
 		grep -cw '^processor' /proc/cpuinfo;;
 	*)
