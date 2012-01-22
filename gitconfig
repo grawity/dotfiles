@@ -47,7 +47,7 @@
 	filename = magenta
 	linenumber = green
 [credential]
-	helper = cache --socket ~/.auth/git-credential-cache.socket
+	helper = cache
 	helper = lib gnomekeyring
 	helper = netrc
 	helper = store --file ~/.auth/git-credential-store
