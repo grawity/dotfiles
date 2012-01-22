@@ -78,18 +78,12 @@ Host rain rain.local
 	ForwardAgent yes
 	ForwardX11 yes
 
-Host sine
-	Hostname sine.cluenet.org
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
 Host snow snow.local
-	Hostname snow.nullroute.eu.org
+	Hostname snow.home
+	#Hostname snow.nullroute.eu.org
 	#GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-	ForwardX11 yes
+	#GSSAPIDelegateCredentials yes
+	#ForwardAgent yes
 
 Host velocity
 	Hostname velocity.cluenet.org
