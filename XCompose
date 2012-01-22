@@ -12,3 +12,4 @@ include "%L"
 <Multi_key> <p> <i>			: "π" # pi
 <Multi_key> <r> <q>			: "”" # rdquo
 <Multi_key> <s> <n> <o> <w> <m> <a> <n>	: "☃" # snowman
+<Multi_key> <e> <n> <o> <t> <e>		: "♪" # note
