@@ -27,7 +27,7 @@ trash() {
 	done
 }
 
-dir=$(git rev-parse --show-toplevel)
+dir=$(dirname "$0")
 trash=~/trash
 all=false
 
