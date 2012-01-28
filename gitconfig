@@ -82,6 +82,23 @@
 
 [url "ssh://"]
 	pushInsteadOf = git://
+
+[url "git://equal.cluenet.org/~grawity/pub/git/"]
+	insteadOf = nullroute:
+[url "ssh://equal.cluenet.org/~grawity/pub/git/"]
+	insteadOf = nullroute+ssh:
+	pushInsteadOf = nullroute:
+
+[url "git://anongit.freedesktop.org/"]
+	insteadOf = freedesktop:
+	insteadOf = fdo:
+
+[url "git://gist.github.com/"]
+	insteadOf = gist:
+[url "git@gist.github.com:"]
+	pushInsteadOf = git://gist.github.com/
+	pushInsteadOf = gist:
+
 [url "git://github.com/"]
 	insteadOf = github:
 	insteadOf = gh:
@@ -90,20 +107,12 @@
 	pushInsteadOf = https://github.com/
 	pushInsteadOf = github:
 	pushInsteadOf = gh:
-[url "git://gist.github.com/"]
-	insteadOf = gist:
-[url "git@gist.github.com:"]
-	pushInsteadOf = git://gist.github.com/
-	pushInsteadOf = gist:
-[url "git://equal.cluenet.org/~grawity/pub/git/"]
-	insteadOf = nullroute:
-[url "ssh://equal.cluenet.org/~grawity/pub/git/"]
-	insteadOf = nullroute+ssh:
-	pushInsteadOf = nullroute:
+
 [url "git://git.gnome.org/"]
 	insteadOf = gnome:
-[url "git://anongit.freedesktop.org/"]
-	insteadOf = freedesktop:
-	insteadOf = fdo:
+
 [url "git://git.sv.gnu.org/"]
 	insteadOf = gnu:
+
+[url "git://anongit.kde.org/"]
+	insteadOf = kde:
