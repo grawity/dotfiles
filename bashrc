@@ -85,6 +85,18 @@ case $TERM in
 	#	titlestring='\ek%s\e\\';;
 esac
 
+_pwd_type() {
+	if (( UID == 0 )); then
+		echo "#"
+	elif git rev-parse --git-dir >&/dev/null; then
+		echo "±"
+	elif hg root >&/dev/null; then
+		echo "☿"
+	else
+		echo "○"
+	fi
+}
+
 if [[ $havecolor ]]; then
 	export -n PS1="\n"
 	if (( $UID == 0 )); then
@@ -104,7 +116,7 @@ if [[ $havecolor ]]; then
 	[[ $TAG ]] &&
 		PS1+="\[\e[0;34m\]${TAG}:\[\e[0m\]"
 	PS1+="\[\e[36m\]\w\[\e[0m\]\n"
-	PS1+="\[\e[1m\]\\\$\[\e[0m\] "
+	PS1+="\[\e[1m\]\$(_pwd_type)\[\e[0m\] "
 	export -n PS2="\[\e[;1;30m\]...\[\e[0m\] "
 	export PS4=""
 	PS4+="+\e[34m\${BASH_SOURCE:-stdin}"
