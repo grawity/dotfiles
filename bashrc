@@ -242,6 +242,7 @@ if have systemctl; then
 	alias loginctl='systemd-loginctl'
 	alias journalctl='systemd-journalctl'
 	alias userctl='systemctl --user'
+	alias lcstatus='loginctl session-status $XDG_SESSION_ID'
 	alias tsd='tree /etc/systemd/system'
 	cgls() { systemd-cgls "$@" | pager; }
 	psls() {
