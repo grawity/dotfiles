@@ -3,7 +3,7 @@ augroup filetypedetect
 	au BufNewFile,BufRead *.ontology setf desktop
 
 	" systemd
-	au BufNewFile,BufRead *.automount,*.mount,*.service,*.target setf desktop
+	au BufNewFile,BufRead *.automount,*.mount,*.service,*.socket,*.target setf desktop
 
 	" Markdown
 	au BufNewFile,BufRead *.md setf markdown
@@ -13,4 +13,7 @@ augroup filetypedetect
 
 	" PHP
 	au BufNewFile,BufRead *.phps setf php
+
+	" xinetd
+	au BufNewFile,BufRead *.xinetd setf xinetd
 augroup END
