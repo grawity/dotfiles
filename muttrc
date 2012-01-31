@@ -62,7 +62,7 @@ set timeout=20
 account-hook . 'unset tunnel imap_pass; set imap_user="grawity"'
 source "silentcat ~/.auth/muttrc|"
 
-set imap_headers="X-BOGOSITY"
+set imap_headers="X-BOGOSITY RECEIVED-SPF AUTHENTICATION-RESULTS"
 set imap_idle
 #set imap_check_subscribed
 #unset imap_servernoise
@@ -95,11 +95,15 @@ set auto_tag # auto-add tag prefix
 unset help
 set status_on_top
 
-#spam '~h "^X-Bogosity: Spam,"' "bogus"
-spam '^X-Bogosity: Spam,' "bogus"
 spam "^X-Bogosity: Spam,.* spamicity=([0-9.]+)" "bogus"
 spam "^X-Bogosity: Unsure,.* spamicity=([0-9.]+)" "unsure"
-set spam_separator=", "
+
+spam "^Received-SPF: (Fail|SoftFail) " "SPF-%1"
+spam "^Authentication-Results: .*; *spf=(fail|softfail)[^[:alpha:]]?" "SPF-%1"
+spam "^Authentication-Results: .*; *dkim=(fail)[^[:alpha:]]?" "DKIM-%1"
+
+#set spam_separator=", "
+unset spam_separator
 
 set status_format="——— Folder %f (%?M?%M/?%m messages%?n?, %n new?%?o?, %o old?%?d?, %d deleted?) %*— %P ———"
 
