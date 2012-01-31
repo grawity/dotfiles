@@ -100,7 +100,7 @@ spam "^X-Bogosity: Unsure,.* spamicity=([0-9.]+)" "unsure"
 
 spam "^Received-SPF: (Fail|SoftFail) " "SPF-%1"
 spam "^Authentication-Results: .*; *spf=(fail|softfail)[^[:alpha:]]?" "SPF-%1"
-spam "^Authentication-Results: .*; *dkim=(fail)[^[:alpha:]]?" "DKIM-%1"
+spam "^Authentication-Results: .*; *dkim=(fail|hardfail)[^[:alpha:]]?" "DKIM-%1"
 
 #set spam_separator=", "
 unset spam_separator
