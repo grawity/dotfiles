@@ -126,8 +126,9 @@ set tilde
 set pager_format="——— Message %C of %m: \"%s\" %*—— %P ———"
 
 alternative_order text/enriched text/plain text
-auto_view text/html
 auto_view application/zip
+auto_view text/html
+auto_view text/x-vcard
 
 ### generic appearance
 color normal white default
