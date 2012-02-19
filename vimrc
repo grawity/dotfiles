@@ -15,6 +15,8 @@ set wildmenu
 "set wildmode=list:longest
 
 let g:zenburn_high_Contrast=1
+"let g:zenburn_unified_CursorColumn=1
+"let g:zenburn_old_Visual=1
 silent! color slate
 
 if has("syntax")
