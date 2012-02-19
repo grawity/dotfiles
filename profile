@@ -12,7 +12,7 @@ umask 022
 
 export LOCAL="$HOME/.local"
 export PYTHONPATH="$LOCAL/lib/python:$HOME/code/lib/python"
-export PERL5LIB="$LOCAL/lib/perl5:$HOME/cluenet/lib/perl5"
+export PERL5LIB="$LOCAL/lib/perl5:$HOME/code/lib/perl5:$HOME/cluenet/lib/perl5"
 export GEM_HOME="$LOCAL/ruby"
 export TCLLIBPATH="$LOCAL/lib/tcl"
 
