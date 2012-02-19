@@ -129,3 +129,6 @@ Host *
 	ControlPath ~/.ssh/S.%l.%r@%h:%p
 
 	SendEnv LANG LC_* PULSE_SERVER TZ
+
+	ServerAliveInterval 600
+	#ServerAliveCountMax 3
