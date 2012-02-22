@@ -110,6 +110,13 @@ Host *.cluenet.org
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
+# *.nullroute.eu.org
+
+Host *.nullroute.eu.org *.home
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
 # other domains
 
 Host *.vistech.net
