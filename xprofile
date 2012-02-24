@@ -4,21 +4,23 @@
 
 : ${HOSTNAME:=$(hostname)}
 
-ulimit -c 65536
+ulimit -c 65536 # enable coredumps
 
-#spawn notify_receive.pl 'udp!::!12599' 'libnotify'
-#spawn ~/code/mail/notify &
 spawn -l- acpieventd
 
-if [ "$HOSTNAME" = "rain" ]; then
+if [ -e ~/.mpdconf ]; then
 	spawn -Ll- mpd
 fi
 
 #spawn mpc-up
 #spawn scmpc
-#spawn synergyc snow.home
 #spawn mc-presence available
 
 if [ -f ~/.config/synclient.conf ]; then
 	xargs synclient < ~/.config/synclient.conf
+fi
+
+# FIXME: Temporary workaround while GNOME's keyboard shit is shitty
+if [ "$DESKTOP_SESSION" = "gnome" ]; then
+	setxkbmap -layout us,lt -option grp:alt_shift_toggle,compose:caps
 fi
