@@ -13,7 +13,7 @@ umask 022
 export LOCAL="$HOME/.local"
 export PYTHONPATH="$LOCAL/lib/python:$HOME/code/lib/python"
 export PERL5LIB="$LOCAL/lib/perl5:$HOME/code/lib/perl5:$HOME/cluenet/lib/perl5"
-export GEM_HOME="$LOCAL/ruby"
+#export GEM_HOME="$LOCAL/ruby"
 export TCLLIBPATH="$LOCAL/lib/tcl"
 
 #export PKG_CONFIG_PATH="$LOCAL/lib/pkgconfig:$LOCAL/share/pkgconfig"
@@ -32,6 +32,9 @@ mkpath \
 	"/sbin"			\
 	"/opt/csw/bin"		\
 	;
+
+have ruby &&
+	export PATH="$PATH:$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
 
 export PAGER='less'
 export EDITOR='vim'
