@@ -41,7 +41,7 @@ mailboxes \
 	=lists/arch-general \
 	=lists/freenet \
 	=lists/systemd \
-	=spam
+	=Spam
 
 set mbox_type="maildir"
 unset confirmappend
@@ -202,10 +202,10 @@ macro generic,index,pager a "<save-message>=archive/misc\n"
 
 macro generic,index,pager <Esc>f "<enter-command>set from=grawity@"
 
-macro index,pager ,h "<copy-message>=spam/ham"
-macro index,pager ,s "<copy-message>=spam/spam"
+macro index,pager ,h "<copy-message>=Spam/ham"
+macro index,pager ,s "<copy-message>=Spam/spam"
 
-macro index,pager \cK "<tag-thread><save-message>=spam/ham-tk\n"
+macro index,pager \cK "<tag-thread><save-message>=Spam/ham-tk\n"
 
 folder-hook . '\
 bind index,pager d delete-message;\
@@ -213,9 +213,9 @@ bind index,pager D delete-message;\
 bind index,pager \cD delete-thread'
 
 folder-hook '^imap://(localhost|equal\.cluenet\.org)/' '\
-macro index,pager d "<save-message>=spam/ham\n";\
-macro index,pager D "<save-message>=spam/spam\n";\
-macro index,pager \cD "<tag-thread><untag-pattern>~D\n<save-message>=spam/ham\n"'
+macro index,pager d "<save-message>=Spam/ham\n";\
+macro index,pager D "<save-message>=Spam/spam\n";\
+macro index,pager \cD "<tag-thread><untag-pattern>~D\n<save-message>=Spam/ham\n"'
 
 folder-hook '/spam/' '\
 bind index,pager d delete-message;\
