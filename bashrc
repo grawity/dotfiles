@@ -213,6 +213,13 @@ alias xx='chmod a+x'
 X() { (setsid "$@" &> ~/.xsession-errors &); }
 alias '~'='grep -P'
 alias '~~'='grep -P -i'
+ldapsetconf() {
+	if [[ $1 ]]; then
+		export LDAPCONF="$1"
+	else
+		unset LDAPCONF
+	fi
+}
 
 alias logoff='logout'
 case $DESKTOP_SESSION in
@@ -502,7 +509,7 @@ have nproc || nproc() {
 
 	case $_UNAME in
 	Linux)
-		grep -cw '^processor' /proc/cpuinfo;;
+		getconf _NPROCESSORS_ONLN;;
 	*)
 		echo 'bash: nproc: unsupported OS' >&2;
 		echo '1';
