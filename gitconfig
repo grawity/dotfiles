@@ -74,6 +74,9 @@
 	author-width = 10
 	line-graphics = true
 	tab-size = 4
+[tig "bind"]
+	# noop on unrecognized escape sequences
+	main = ~ none
 [tig "color"]
 	cursor = black green
 	title-focus = white blue
@@ -97,6 +100,7 @@
 	insteadOf = gist:
 	insteadOf = https://gist.github.com/
 [url "git@gist.github.com:"]
+	insteadOf = gist+ssh:
 	pushInsteadOf = git://gist.github.com/
 	pushInsteadOf = gist:
 	pushInsteadOf = https://gist.github.com/
@@ -106,6 +110,8 @@
 	insteadOf = gh:
 	insteadOf = https://github.com/
 [url "git@github.com:"]
+	insteadOf = github+ssh:
+	insteadOf = gh+ssh:
 	pushInsteadOf = git://github.com/
 	pushInsteadOf = github:
 	pushInsteadOf = gh:
