@@ -4,15 +4,17 @@ set nocompatible
 
 """ Appearance
 
-set title titlestring=%t%(\ %m%)%(\ (%{hostname()}\ %{expand(\"%:p:~:h\")})%)%(\ %a%)
+" Window title
 
-set display+=lastline
-set ruler showmode showcmd
-set number
-silent! set numberwidth=1
-silent! set mouse=a
-set wildmenu
-"set wildmode=list:longest
+set title
+set titlestring=%t%(\ %m%)%(\ (%{hostname()}\ %{expand(\"%:p:~:h\")})%)%(\ %a%)
+
+if &term =~ "^screen"
+	" not present by default
+	set t_ts=]2; t_fs=
+endif
+
+" Color scheme
 
 let g:zenburn_high_Contrast=1
 let g:zenburn_old_Visual=1
@@ -22,17 +24,21 @@ if has("syntax")
 	syntax on
 endif
 
-if &term == "screen"
-	" set screen windowtitle instead of hardstatus
-	set t_ts=k
-	set t_fs=\
-endif
 if &term == "linux"
 	set bg=dark
 endif
+
 if &t_Co == 256
 	silent! color zenburn
 endif
+
+" Misc
+
+set ruler showmode showcmd display+=lastline
+silent! set number numberwidth=1
+silent! set mouse=a
+set wildmenu
+set wildmode=list:longest
 
 "" Loading files
 set encoding=utf-8 fileencodings=ucs-bom,utf-8,cp1257,latin1

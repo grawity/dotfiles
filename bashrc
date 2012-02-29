@@ -81,8 +81,6 @@ esac
 case $TERM in
 	[xkE]term*|rxvt*|cygwin|screen*|dtterm)
 		titlestring='\e]0;%s\007';;
-	#screen*)
-	#	titlestring='\ek%s\e\\';;
 esac
 
 if [[ $havecolor ]]; then
