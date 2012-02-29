@@ -83,26 +83,51 @@ case $TERM in
 		titlestring='\e]0;%s\007';;
 esac
 
+__ps1_pwd() {
+	local dir=${PWD/#$HOME/\~} pref= suff=
+	if [[ $dir == '~' ]]; then
+		pref='' suff=$dir
+	else
+		pref=${dir%/*}/ suff=${dir##*/}
+	fi
+	printf '%s\001\e[1m\002%s\001\e[0m\002' "$pref" "$suff"
+}
+
+__ps1_git() {
+	local g=$(have git && git rev-parse --git-dir 2>/dev/null)
+	if [[ $g ]]; then
+		local r=$(git symbolic-ref HEAD)
+		printf ':\001\e[1m\002%s' "${r#refs/heads/}"
+	fi
+}
+
 if [[ $havecolor ]]; then
 	export -n PS1="\n"
 	if (( $UID == 0 )); then
 		color='1;37;41'
 		item='\h'
-	elif [[ $USER == "grawity" && ( $SSH_TTY || $LOGIN || $REMOTEHOST ) ]]; then
-		color='1;33'
-		item='\h'
+		prompt='#'
 	elif [[ $USER == "grawity" ]]; then
-		color='1;32'
+		if [[ $SSH_TTY || $LOGIN || $REMOTEHOST ]]; then
+			color='1;33'
+		else
+			color='1;32'
+		fi
 		item='\h'
+		prompt='Ϟ'
 	else
 		color='1;33'
 		item='\u@\h'
+		prompt='$'
 	fi
 	PS1+="\[\e[0;${color}m\]${item}\[\e[0m\] "
 	[[ $TAG ]] &&
 		PS1+="\[\e[0;34m\]${TAG}:\[\e[0m\]"
-	PS1+="\[\e[36m\]\w\[\e[0m\]\n"
-	PS1+="\[\e[1m\]\\\$\[\e[0m\] "
+	#PS1+="\[\e[36m\]\w\[\e[0m\]"
+	PS1+="\[\e[36m\]\$(__ps1_pwd)\[\e[0m\]"
+	PS1+="\[\e[35m\]\$(__ps1_git)\[\e[0m\]"
+	PS1+="\n"
+	PS1+="\[\e[1m\]\${prompt}\[\e[0m\] "
 	export -n PS2="\[\e[;1;30m\]...\[\e[0m\] "
 	export PS4=""
 	PS4+="+\e[34m\${BASH_SOURCE:-stdin}"
