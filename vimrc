@@ -167,7 +167,8 @@ func! JoinPara()
 endfunc
 
 " swap file location
-set dir=~/tmp//,/var/tmp//,/tmp//
+set backupdir=~/.vim/backup//
+set directory=~/.vim/backup//,/var/tmp//,/tmp//
 
 if hostname() == "rain"
 	set nofsync swapsync=
