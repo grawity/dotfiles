@@ -105,8 +105,39 @@ elseif $TERM =~ "^xterm"
 	map <Esc>[D <S-Left>
 endif
 
-" disable application keypad mode
-set t_ks= t_ke=
+" Application keypad
+if $TERM =~ "^xterm"
+	map <Esc>Ol +
+	map <Esc>On .
+	map <Esc>Op 0
+	map <Esc>Oq 1
+	map <Esc>Or 2
+	map <Esc>Os 3
+	map <Esc>Ot 4
+	map <Esc>Ou 5
+	map <Esc>Ov 6
+	map <Esc>Ow 7
+	map <Esc>Ox 8
+	map <Esc>Oy 9
+	map <Esc>OQ /
+	map <Esc>OR *
+	map <Esc>OS -
+	lmap <Esc>Ol +
+	lmap <Esc>On .
+	lmap <Esc>Op 0
+	lmap <Esc>Oq 1
+	lmap <Esc>Or 2
+	lmap <Esc>Os 3
+	lmap <Esc>Ot 4
+	lmap <Esc>Ou 5
+	lmap <Esc>Ov 6
+	lmap <Esc>Ow 7
+	lmap <Esc>Ox 8
+	lmap <Esc>Oy 9
+	lmap <Esc>OQ /
+	lmap <Esc>OR *
+	lmap <Esc>OS -
+endif
 
 "" Searching
 set incsearch nohlsearch
