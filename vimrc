@@ -80,17 +80,8 @@ nmap ,e :e $MYVIMRC<CR>
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
 
-" Ctrl-(Left/Right)
-if $TERM =~ "^rxvt"
-	map <Esc>Oa <Esc>[1;2A
-	map <Esc>Ob <Esc>[1;2B
-	map <Esc>Oc <Esc>[1;2C
-	map <Esc>Od <Esc>[1;2D
-	map! <Esc>Oa <Esc>[1;2A
-	map! <Esc>Ob <Esc>[1;2B
-	map! <Esc>Oc <Esc>[1;2C
-	map! <Esc>Od <Esc>[1;2D
-elseif $TERM =~ "^xterm"
+if $TERM =~ "^xterm"
+	" Ctrl-(Left/Right)
 	map <Esc>OA <Esc>[1A
 	map <Esc>OB <Esc>[1B
 	map <Esc>OC <Esc>[1C
@@ -103,10 +94,8 @@ elseif $TERM =~ "^xterm"
 	" PuTTY madness
 	map <Esc>[C <S-Right>
 	map <Esc>[D <S-Left>
-endif
 
-" Application keypad
-if $TERM =~ "^xterm"
+	" Application keypad
 	map <Esc>Ol +
 	map <Esc>On .
 	map <Esc>Op 0
