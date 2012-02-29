@@ -62,7 +62,6 @@ silent! set listchars=eol:¶,tab:│┈,extends:»,precedes:«,trail:•
 "" Macros
 if &term != "builtin_gui"
 	set iminsert=1
-	silent! source $MYVIMRC.input
 endif
 
 " CUA cut/copy, non-CUA paste
