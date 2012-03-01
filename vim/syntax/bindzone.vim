@@ -29,15 +29,14 @@ syn match       zoneDirective   /^\$GENERATE\s/
 
 syn match       zoneUnknown     contained /\S\+/
 
-syn match       zoneTTL         contained /\<\d[0-9MmHhWwDd]*\>/  nextgroup=zoneClass,zoneRRType skipwhite
-syn keyword     zoneClass       contained IN CH CHAOS              nextgroup=zoneRRType,zoneTTL   skipwhite
-syn keyword     zoneRRType      contained A AAAA AFSDB CERT CNAME DNAME DNSKEY DS HINFO IPSECKEY KEY KEYDATA LOC MB MG MR MX MINFO NAPTR NS NSEC NSEC3 NSEC3PARAM PTR RP RRSIG SOA SPF SSHFP SRV TXT WKS nextgroup=zoneRData skipwhite
-
 syn match       zoneOwnerName   contained /^[^[:space:]!"#$%&'()*+,\/:;<=>?@[\]\^`{|}~]\+\(\s\|;\)\@=/ nextgroup=zoneTTL,zoneClass,zoneRRType skipwhite
 syn match       zoneOrigin      contained  /[^[:space:]!"#$%&'()*+,\/:;<=>?@[\]\^`{|}~]\+\(\s\|;\|$\)\@=/
 syn match       zoneDomain      contained  /[^[:space:]!"#$%&'()*+,\/:;<=>?@[\]\^`{|}~]\+\(\s\|;\|$\)\@=/
 
 syn match       zoneSpecial     contained /^[@*.]\s/
+syn match       zoneTTL         contained /\<\d[0-9MmHhWwDd]*\>/  nextgroup=zoneClass,zoneRRType skipwhite
+syn keyword     zoneClass       contained IN CH CHAOS              nextgroup=zoneRRType,zoneTTL   skipwhite
+syn keyword     zoneRRType      contained A AAAA AFSDB CERT CNAME DNAME DNSKEY DS HINFO IPSECKEY KEY KEYDATA LOC MB MG MR MX MINFO NAPTR NS NSEC NSEC3 NSEC3PARAM PTR RP RRSIG SOA SPF SSHFP SRV TXT WKS nextgroup=zoneRData skipwhite
 syn match       zoneRData       contained /[^;]*/ contains=zoneDomain,zoneIPAddr,zoneIP6Addr,zoneText,zoneNumber,zoneParen,zoneUnknown
 
 syn match       zoneIPAddr      contained /\<[0-9]\{1,3}\(\.[0-9]\{1,3}\)\{,3}\>/
