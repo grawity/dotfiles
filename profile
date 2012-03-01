@@ -33,9 +33,6 @@ mkpath \
 	"/opt/csw/bin"		\
 	;
 
-have ruby &&
-	export PATH="$PATH:$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
-
 export PAGER='less'
 export EDITOR='vim'
 unset VISUAL
