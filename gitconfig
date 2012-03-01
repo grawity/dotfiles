@@ -125,3 +125,5 @@
 
 [url "git://anongit.kde.org/"]
 	insteadOf = kde:
+[merge]
+	defaultToUpstream = true
