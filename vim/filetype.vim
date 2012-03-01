@@ -1,4 +1,6 @@
 augroup filetypedetect
+	au BufNewFile,BufRead accounts.db.txt setf accdb
+
 	" XDG Desktop Entry
 	au BufNewFile,BufRead *.ontology setf desktop
 
