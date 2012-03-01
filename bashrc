@@ -3,17 +3,15 @@
 
 have() { command -v "$@" >& /dev/null; }
 
-[[ $_UNAME ]]	|| _UNAME=$(uname)
 [[ $SHELL ]]	|| SHELL=$XTERM_SHELL
 [[ $USER ]]	|| USER=$LOGNAME
 [[ $USER ]]	|| USER=$(id -un)
-export _UNAME SHELL USER
+export SHELL USER
+
 export GPG_TTY=$(tty)
 export HOSTALIASES=~/.hosts
 export NCURSES_NO_UTF8_ACS=1
-export DISTCC_TCP_CORK=0
 
-# required for some utils
 [[ $LANG == *.utf8 ]] &&
 	LANG="${LANG%.utf8}.UTF-8"
 
@@ -43,8 +41,6 @@ HISTCONTROL=ignoreboth
 HOSTFILE=~/.hosts
 
 complete -A directory cd
-
-__expand_tilde_by_ref() { true; }
 
 ### Terminal
 
@@ -81,6 +77,8 @@ esac
 case $TERM in
 	[xkE]term*|rxvt*|cygwin|screen*|dtterm)
 		titlestring='\e]0;%s\007';;
+	*)
+		titlestring='';
 esac
 
 __ps1_pwd() {
@@ -102,7 +100,7 @@ __ps1_git() {
 }
 
 if [[ $havecolor ]]; then
-	export -n PS1="\n"
+	PS1="\n"
 	if (( $UID == 0 )); then
 		color='1;37;41'
 		item='\h'
@@ -114,7 +112,7 @@ if [[ $havecolor ]]; then
 			color='1;32'
 		fi
 		item='\h'
-		prompt='Ϟ'
+		prompt='$'
 	else
 		color='1;33'
 		item='\u@\h'
@@ -128,17 +126,15 @@ if [[ $havecolor ]]; then
 	PS1+="\[\e[35m\]\$(__ps1_git)\[\e[0m\]"
 	PS1+="\n"
 	PS1+="\[\e[1m\]\${prompt}\[\e[0m\] "
-	export -n PS2="\[\e[;1;30m\]...\[\e[0m\] "
-	export PS4=""
-	PS4+="+\e[34m\${BASH_SOURCE:-stdin}"
-	PS4+=":\e[1m\$LINENO\e[0m"
-	PS4+=":\${FUNCNAME:+\e[33m\$FUNCNAME\e[0m}"
-	PS4+=" "
+	PS2="\[\e[;1;30m\]...\[\e[0m\] "
+	PS4="+\e[34m\${BASH_SOURCE:--}:\e[1m\$LINENO\e[0m:\${FUNCNAME:+\e[33m\$FUNCNAME\e[0m} "
 else
-	export -n PS1='\u@\h \w\n\$ '
-	export -n PS2='... '
-	export PS4="+\${BASH_SOURCE:-stdin}:\$LINENO:\$FUNCNAME "
+	PS1='\u@\h \w\n\$ '
+	PS2='... '
+	PS4="+\${BASH_SOURCE:--}:\$LINENO:\$FUNCNAME "
 fi
+
+export -n PS1 PS2; export PS4
 
 title() { printf "$titlestring" "$*"; }
 
@@ -174,26 +170,17 @@ a() {
 	fi
 }
 
-LSOPT="ls -Fh"
-GREPOPT="grep"
+LS_OPTIONS="ls -Fh"
 if [[ $havecolor ]]; then
-	#case $_UNAME in
 	case $OSTYPE in
-		#Linux|CYGWIN_*)
-		linux-gnu*|cygwin)
-			GREPOPT="$GREPOPT --color=auto"
-			LSOPT="$LSOPT --color=auto"
+		linux-gnu|cygwin)
+			LS_OPTIONS="$LS_OPTIONS --color=auto"
 			eval $(dircolors ~/lib/dotfiles/dircolors)
-			;;
-		#FreeBSD)
-		freebsd*)
-			LSOPT="$LSOPT -G"
 			;;
 	esac
 fi
-alias ls="$LSOPT"
-alias grep="$GREPOPT"
-unset LSOPT GREPOPT
+alias ls="$LS_OPTIONS"
+unset LS_OPTIONS
 
 editor() { eval command "${EDITOR:-vim}" '"$@"'; }
 browser() { eval command "${BROWSER:-lynx}" '"$@"'; }
@@ -203,6 +190,7 @@ count() { sort "$@" | uniq -c | sort -n -r | pager; }
 alias cur='cur '
 alias df='df -Th'
 alias dff='df -x tmpfs -x devtmpfs -x rootfs'
+alias dnstracer='dnstracer -s .'
 alias egrep='grep -E'
 entity() { printf '&%s;' "$@" | w3m -dump -T text/html; }
 finge() { [[ $1 == r* ]] && set -- "${1:1}" "${@:2}"; finger "$@"; }
@@ -236,6 +224,7 @@ alias xx='chmod a+x'
 X() { (setsid "$@" &> ~/.xsession-errors &); }
 alias '~'='grep -P'
 alias '~~'='grep -P -i'
+
 ldapsetconf() {
 	if [[ $1 ]]; then
 		export LDAPCONF="$1"
@@ -255,8 +244,6 @@ kde-plasma)
 		echo Logging out of KDE...'
 	;;
 esac
-
-userports() { netstat -lte --numeric-host | sort -k 7; }
 
 if have systemctl; then
 	start() { sudo systemctl start "$@"; systemctl status "$@"; }
@@ -521,17 +508,15 @@ catlog() {
 # compatibility with coreutils < 8.0
 have nproc || nproc() {
 	local exe=$(which nproc 2>/dev/null)
-	[[ $exe == /* ]] && { $exe; return; }
 
-	[[ $OMP_NUM_THREADS ]] && {
-		echo $OMP_NUM_THREADS
-		return
-	}
+	[[ $exe == /* ]] &&
+		{ $exe; return; }
 
-	# to do: determine process affinity if possible
+	[[ $OMP_NUM_THREADS ]] &&
+		{ echo $OMP_NUM_THREADS; return; }
 
-	case $_UNAME in
-	Linux)
+	case $ostype in
+	linux-gnu)
 		getconf _NPROCESSORS_ONLN;;
 	*)
 		echo 'bash: nproc: unsupported OS' >&2;
@@ -542,18 +527,26 @@ have nproc || nproc() {
 
 ### Environment
 
-export ABSROOT=~/pkg
 export ACK_PAGER=$PAGER
-export LESS="-eMqR -FX -z-3"
-export LESSHISTFILE=~/.cache/less.history
-export MAKEFLAGS="-j$((`nproc`+1))"
+export GREP_OPTIONS='--color=auto'
 export MYSQL_HISTFILE=~/.cache/mysql.history
 export PYTHONSTARTUP=~/lib/dotfiles/pythonrc
-if [[ -f ~/.pythonrc ]]; then
-	export PYTHONSTARTUP=~/.pythonrc
-	export PYTHONHISTFILE=~/.cache/python.history
-fi
 export SUDO_PROMPT=$(printf 'sudo: Password for %%u@\e[30;43m%%h\e[m: ')
+
+export LESS="-eMqR -FX -z-3"
+export LESSHISTFILE=~/.cache/less.history
+
+unset ${!LESS_TERMCAP_*}
+export LESS_TERMCAP_mb=$'\e[1;31m'		# begin blinking
+export LESS_TERMCAP_md=$'\e[1;38;5;76m'		# begin bold
+export LESS_TERMCAP_me=$'\e[m'			# end mode
+export LESS_TERMCAP_so=$'\e[38;5;246m'		# begin standout - info box
+export LESS_TERMCAP_se=$'\e[m'			# end standout-mode
+export LESS_TERMCAP_us=$'\e[4;38;5;148m'	# begin underline
+export LESS_TERMCAP_ue=$'\e[m'			# end underline
+
+export ABSROOT=~/pkg
+export MAKEFLAGS="-j$((`nproc`+1))"
 
 if have pklist; then
 	. ~/code/kerberos/kc.bash
