@@ -88,44 +88,49 @@ __ps1_pwd() {
 	else
 		pref=${dir%/*}/ suff=${dir##*/}
 	fi
-	printf '%s\001\e[1m\002%s\001\e[0m\002' "$pref" "$suff"
+	printf '%s\001\e[%sm\002%s\001\e[0m\002' "$pref" "$color_cwd" "$suff"
 }
 
 __ps1_git() {
 	local g=$(have git && git rev-parse --git-dir 2>/dev/null)
 	if [[ $g ]]; then
 		local r=$(git symbolic-ref HEAD)
-		printf ':\001\e[1m\002%s' "${r#refs/heads/}"
+		printf '\001\e[%sm\002%s\001\e[m\002' "$color_vcs" "${r#refs/heads/}"
 	fi
 }
+
+#__is_remote() {
+#	[[ $SSH_TTY || $LOGIN || $REMOTEHOST ]]
+#}
 
 if [[ $havecolor ]]; then
 	PS1="\n"
 	if (( $UID == 0 )); then
-		color='1;37;41'
+		color_name='1;37;41'
 		item='\h'
 		prompt='#'
 	elif [[ $USER == "grawity" ]]; then
-		if [[ $SSH_TTY || $LOGIN || $REMOTEHOST ]]; then
-			color='1;33'
-		else
-			color='1;32'
-		fi
+		color_name='1;38;5;71'
 		item='\h'
 		prompt='$'
 	else
-		color='1;33'
+		color_name='1;33'
 		item='\u@\h'
 		prompt='$'
 	fi
-	PS1+="\[\e[0;${color}m\]${item}\[\e[0m\] "
+	color_pwd='38;5;144'
+	color_cwd='1'
+	color_vcs='38;5;167'
+	color_prompt=''
+
+	PS1+="\[\e[0;\${color_name}m\]${item}\[\e[0m\] "
 	[[ $TAG ]] &&
 		PS1+="\[\e[0;34m\]${TAG}:\[\e[0m\]"
 	#PS1+="\[\e[36m\]\w\[\e[0m\]"
-	PS1+="\[\e[36m\]\$(__ps1_pwd)\[\e[0m\]"
-	PS1+="\[\e[35m\]\$(__ps1_git)\[\e[0m\]"
-	PS1+="\n"
-	PS1+="\[\e[1m\]\${prompt}\[\e[0m\] "
+	PS1+="\[\e[\${color_pwd}m\]\$(__ps1_pwd)\[\e[0m\] "
+	PS1+="\[\e[\${color_vcs}m\]\$(__ps1_git)\[\e[0m\]\n"
+	PS1+="\[\e[\${color_prompt}m\]\${prompt}\[\e[0m\] "
+
 	PS2="\[\e[;1;30m\]...\[\e[0m\] "
 	PS4="+\e[34m\${BASH_SOURCE:--}:\e[1m\$LINENO\e[0m:\${FUNCNAME:+\e[33m\$FUNCNAME\e[0m} "
 else
