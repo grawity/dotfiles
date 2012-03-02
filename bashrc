@@ -92,10 +92,12 @@ __ps1_pwd() {
 }
 
 __ps1_git() {
-	local g=$(have git && git rev-parse --git-dir 2>/dev/null)
+	local g=$(have git && git rev-parse --git-dir 2>/dev/null) r=''
 	if [[ $g ]]; then
-		local r=$(git symbolic-ref HEAD)
-		printf '\001\e[%sm\002%s\001\e[m\002' "$color_vcs" "${r#refs/heads/}"
+		r=$(git symbolic-ref HEAD 2>/dev/null) ||
+		r=$(git rev-parse --short HEAD 2>/dev/null)
+		r=${r#refs/heads/}
+		printf '\001\e[%sm\002%s\001\e[m\002' "$color_vcs" "$r"
 	fi
 }
 
