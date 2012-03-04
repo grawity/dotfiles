@@ -24,11 +24,16 @@ if has("syntax")
 	syntax on
 endif
 
+if has("gui_running")
+	set guifont=DejaVu_Sans_Mono:h9:cBALTIC
+	set guioptions-=T
+endif
+
 if &term == "linux"
 	set bg=dark
 endif
 
-if &t_Co == 256
+if &t_Co == 256 || has("gui_running")
 	silent! color zenburn
 endif
 
@@ -166,8 +171,10 @@ func! JoinPara()
 endfunc
 
 " swap file location
-set backupdir=~/.vim/backup//
-set directory=~/.vim/backup//,/var/tmp//,/tmp//
+if has("unix")
+	set backupdir=~/.vim/backup//
+	set directory=~/.vim/backup//,/var/tmp//,/tmp//
+endif
 
 if hostname() == "rain"
 	set nofsync swapsync=
