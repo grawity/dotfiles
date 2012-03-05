@@ -457,6 +457,14 @@ x509fp() {
 		sed 's/^.*=//; y/ABCDEF/abcdef/'
 }
 
+escape_addr() {
+	if [[ $1 == *:* ]]; then
+		echo "[$1]"
+	else
+		echo "$1"
+	fi
+}
+
 sslcert() {
 	if have gnutls-cli; then
 		gnutls-cli "$1" -p "$2" --insecure --print-cert </dev/null | openssl x509
