@@ -555,12 +555,8 @@ export LESSHISTFILE=~/.cache/less.history
 
 unset ${!LESS_TERMCAP_*}
 export LESS_TERMCAP_mb=$'\e[1;31m'		# begin blinking
-export LESS_TERMCAP_md=$'\e[1;38;5;76m'		# begin bold
+export LESS_TERMCAP_md=$'\e[1;38;5;112m'	# begin bold
 export LESS_TERMCAP_me=$'\e[m'			# end mode
-export LESS_TERMCAP_so=$'\e[38;5;246m'		# begin standout - info box
-export LESS_TERMCAP_se=$'\e[m'			# end standout-mode
-export LESS_TERMCAP_us=$'\e[4;38;5;148m'	# begin underline
-export LESS_TERMCAP_ue=$'\e[m'			# end underline
 
 export ABSROOT=~/pkg
 export MAKEFLAGS="-j$((`nproc`+1))"
