@@ -101,9 +101,9 @@ __ps1_git() {
 	fi
 }
 
-#__is_remote() {
-#	[[ $SSH_TTY || $LOGIN || $REMOTEHOST ]]
-#}
+__is_remote() {
+	[[ $SSH_TTY || $LOGIN || $REMOTEHOST ]]
+}
 
 if [[ $havecolor ]]; then
 	PS1="\n"
@@ -124,6 +124,8 @@ if [[ $havecolor ]]; then
 	color_cwd='1'
 	color_vcs='38;5;167'
 	color_prompt=''
+
+	__is_remote && prompt='@'
 
 	PS1+="\[\e[0;\${color_name}m\]${item}\[\e[0m\] "
 	[[ $TAG ]] &&
