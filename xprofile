@@ -4,13 +4,13 @@
 
 : ${HOSTNAME:=$(hostname)}
 
-ulimit -c 65536 # enable coredumps
+ulimit -c 65536
 
-spawn -l- acpieventd
+#spawn -l- acpieventd
 
-if [ -e ~/.mpdconf ]; then
-	spawn -Ll- mpd
-fi
+#if [ -e ~/.mpdconf ]; then
+#	spawn -Ll- mpd
+#fi
 
 #spawn mpc-up
 #spawn scmpc
@@ -18,9 +18,4 @@ fi
 
 if [ -f ~/.config/synclient.conf ]; then
 	xargs synclient < ~/.config/synclient.conf
-fi
-
-# FIXME: Temporary workaround while GNOME's keyboard shit is shitty
-if [ "$DESKTOP_SESSION" = "gnome" ]; then
-	setxkbmap -layout us,lt -option grp:alt_shift_toggle,compose:caps
 fi
