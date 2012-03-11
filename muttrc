@@ -1,16 +1,11 @@
 # ~/.muttrc <via stub>: Mutt configuration
 
-### generic
+### User identity
+
 set realname="Mantas M."
 set from="grawity@nullroute.eu.org"
 set reverse_name
-reply-hook ~l \
-	'set from="grawity@gmail.com"'
-
-unset beep
-set beep_new
-set menu_context=3
-set menu_scroll
+reply-hook ~l 'set from="grawity@gmail.com"'
 
 alternates "@nullroute\.eu\.org$"
 alternates "@ntas\.in$"
@@ -18,6 +13,8 @@ alternates "@kra\.ntas\.in$"
 alternates "^grawity(\\+.+)?@gmail\.com$"
 alternates "^grawity@(\w+\.)?cluenet\.org$"
 alternates "^grawity@anubis\.nickserver\.net$"
+
+### Mailing lists
 
 subscribe "^flos-freeware@freelists\.org$"
 subscribe "^devl@freenetproject\.org$"
@@ -29,7 +26,8 @@ subscribe "^cryptography@randombit\.net$"
 lists ".*@freelists\.org$"
 lists ".*@lists\.freedesktop\.org$"
 
-### reading (mail storage)
+### Mail storage
+
 set folder="imap://equal.cluenet.org/"
 set spoolfile="+INBOX"
 set postponed="+Drafts"
@@ -51,10 +49,12 @@ set delete
 set rfc2047_parameters
 
 # Caching
+
 #set header_cache="~/.cache/mutt"
 #set message_cachedir="~/.cache/mutt"
 
 # Remote mail
+
 set imap_user="grawity"
 set connect_timeout=10
 set mail_check=10
@@ -62,7 +62,7 @@ set timeout=20
 account-hook . 'unset tunnel imap_pass; set imap_user="grawity"'
 source "silentcat ~/.auth/muttrc|"
 
-set imap_headers="X-BOGOSITY RECEIVED-SPF AUTHENTICATION-RESULTS"
+set imap_headers="X-BOGOSITY X-PRIORITY"
 set imap_idle
 #set imap_check_subscribed
 #unset imap_servernoise
@@ -98,10 +98,6 @@ set status_on_top
 spam "^X-Bogosity: Spam,.* spamicity=([0-9.]+)" "bogus"
 spam "^X-Bogosity: Unsure,.* spamicity=([0-9.]+)" "unsure"
 
-#spam "^Received-SPF: (Fail|SoftFail) " "SPF-%1"
-#spam "^Authentication-Results: .*; *spf=(fail|softfail)[^[:alpha:]]?" "SPF-%1"
-#spam "^Authentication-Results: .*; *dkim=(fail|hardfail)[^[:alpha:]]?" "DKIM-%1"
-
 #set spam_separator=", "
 unset spam_separator
 
@@ -131,24 +127,21 @@ auto_view text/html
 auto_view text/x-vcard
 
 ### generic appearance
+
+unset beep
+set beep_new
+set menu_context=3
+set menu_scroll
 color normal white default
 # last rule overrides
 	uncolor index *
 	# important notifications
 	color index brightred default	'~h "^X-Priority: [12]$"'
-	color index brightred default	'~h "^X-Facebook-Notify: login_notification;"'
+#	color index brightred default	'~h "^X-Facebook-Notify: login_notification;"'
 	# mentions and PMs/DMs — equivalent to normal messages
-#	color index white default	'~f "^mention-.*@postmaster\.twitter\.com$"'
 	# unimportant social notifications
-#	color index cyan default	'~f "@postmaster\.twitter\.com$"'
-	#color index cyan default	'~h "^From: Cron Daemon <root@.+>$"'
-	#color index cyan default	'~h "^List-Unsubscribe:"'
-	color index cyan default	'~f "^lwn@lwn\.net$"'
-	color index cyan default	'~f "^letter@chan4chan\.com$"'
-	# administrivia
-#	color index blue default	'~h "^X-List-Administrivia: yes$"'
 	# spam
-	color index yellow default	'~h "^X-Bogosity: Spam,"'
+#	color index yellow default	'~h "^X-Bogosity: Spam,"'
 
 	color index brightwhite	default		~F	# flagged
 	color index brightyellow default	~U	# unseen
@@ -198,7 +191,7 @@ bind index <Esc>[4~ last-entry
 bind pager <Esc>[1~ top
 bind pager <Esc>[4~ bottom
 
-macro generic,index,pager a "<save-message>=archive/misc\n"
+macro generic,index,pager a "<save-message>=Archive\n"
 
 macro generic,index,pager <Esc>f "<enter-command>set from=grawity@"
 
