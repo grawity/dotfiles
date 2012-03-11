@@ -14,54 +14,63 @@ if &term =~ "^screen"
 	set t_ts=]2; t_fs=
 endif
 
-" Color scheme
-
-let g:zenburn_high_Contrast=1
-let g:zenburn_old_Visual=1
-silent! color slate
+" Syntax highlighting
 
 if has("syntax")
 	syntax on
 endif
+
+" Color scheme
+
+let g:zenburn_high_Contrast=1
+let g:zenburn_old_Visual=1
+
+if &term == "linux"
+	set bg=dark
+endif
+
+silent! color slate
+
+if &t_Co == 256 || has("gui_running")
+	silent! color zenburn
+endif
+
+" UI elements
 
 if has("gui_running")
 	set guifont=DejaVu_Sans_Mono:h9:cBALTIC
 	set guioptions-=T
 endif
 
-if &term == "linux"
-	set bg=dark
-endif
-
-if &t_Co == 256 || has("gui_running")
-	silent! color zenburn
-endif
-
-" Misc
-
-set ruler showmode showcmd display+=lastline
-silent! set number numberwidth=1
+set ruler
+set showmode
+set showcmd
+set display+=lastline
+silent! set number
+silent! set numberwidth=1
 silent! set mouse=a
 set wildmenu
 set wildmode=list:longest
 
 "" Loading files
-set encoding=utf-8 fileencodings=ucs-bom,utf-8,cp1257,latin1
-set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp1257,latin1
 set modeline
 
 "" Editing
-set tabstop=8 shiftwidth=8 smarttab
+set tabstop=8
+set shiftwidth=8
+set smarttab
 set autoindent
 set smartindent
-set nocindent cinkeys=0{,0},0),:,!,o,O,e
+set nocindent
+set cinkeys=0{,0},0),:,!,o,O,e
 set formatoptions=tcrqn
 
 set noshowmatch
 "silent! let loaded_matchparen=1
 
 "set listchars=eol:¶,tab:›\ ,extends:»,precedes:«,trail:•
-" └─
 silent! set listchars=eol:¶,tab:│┈,extends:»,precedes:«,trail:•
 
 "" Macros
@@ -133,8 +142,10 @@ if $TERM =~ "^xterm"
 endif
 
 "" Searching
-set incsearch nohlsearch
-set ignorecase smartcase
+set incsearch
+set nohlsearch
+set ignorecase
+set smartcase
 
 "" Saving
 set nobackup
