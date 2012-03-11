@@ -57,6 +57,8 @@
 [grep]
 	lineNumber = true
 	extendedRegexp = true
+[merge]
+	defaultToUpstream = true
 [sendemail]
 	smtpserver = /usr/bin/msmtp
 
@@ -85,6 +87,10 @@
 
 [url "ssh://"]
 	pushInsteadOf = git://
+
+[url "ssh://equal.cluenet.org/srv/git/equal.cluenet.org/"]
+	# UGH.
+	pushInsteadOf = git://equal.cluenet.org/
 
 [url "git://equal.cluenet.org/~grawity/pub/git/"]
 	insteadOf = nullroute:
@@ -125,5 +131,3 @@
 
 [url "git://anongit.kde.org/"]
 	insteadOf = kde:
-[merge]
-	defaultToUpstream = true
