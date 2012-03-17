@@ -133,7 +133,10 @@ Host *
 	VerifyHostKeyDNS yes
 	NoHostAuthenticationForLocalhost yes
 	HashKnownHosts no
+
 	ControlPath ~/.ssh/S.%l.%r@%h:%p
+	ControlMaster auto
+	ControlPersist 10m
 
 	SendEnv LANG LC_* PULSE_SERVER TZ
 
