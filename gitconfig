@@ -59,6 +59,8 @@
 	extendedRegexp = true
 [merge]
 	defaultToUpstream = true
+[push]
+	default = upstream
 [sendemail]
 	smtpserver = /usr/bin/msmtp
 
