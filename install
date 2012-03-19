@@ -44,9 +44,14 @@ link gitconfig	~/.gitconfig
 link gitignore	~/.gitignore
 link inputrc	~/.inputrc
 link profile	~/.profile
-link ssh-config	~/.ssh/config
 link vimrc	~/.vimrc
 link vim/	~/.vim
+
+if [[ -e ~/.ssh/config-$HOSTNAME.gen ]]; then
+	./ssh-config.gen -f
+else
+	link ssh-config ~/.ssh/config
+fi
 
 have gvim &&
 	link gvimrc	~/.gvimrc

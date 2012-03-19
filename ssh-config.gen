@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+# Generator for ~/.ssh/config
+
+set -e
+
+PATH="$HOME/code/bih:$PATH"
+
+. libfilterfile.bash
+
+# match_eval helper functions
+
+Host() {
+	: ${FQDN:=$(fqdn)}
+	match_hostname "$1"
+}
+
+Version() {
+	local minversion=$1
+	local curversion=${SSHVERSION:=$(ssh -V |&
+				sed -rn 's/OpenSSH_([^ ]+)p.*/\1/p')}
+
+	while [[ $minversion && $curversion ]]; do
+		local minhead=${minversion%%.*}
+		local curhead=${curversion%%.*}
+		if (( minhead > curhead )); then
+			debug "compare $minhead > $curhead, too old"
+			return 1
+		elif (( minhead < curhead )); then
+			debug "compare $minhead < $curhead, too new"
+			return 0
+		else
+			debug "compare $minhead = $curhead"
+		fi
+		minversion=${minversion#*.}
+		curversion=${curversion#*.}
+	done
+}
+
+# generator
+
+generate() {
+	local file
+	for file; do
+		[[ -e $file ]] && cat "$file"
+	done \
+	| filter_file match_eval
+}
+
+overwrite=0
+
+files=( ~/lib/dotfiles/ssh-config
+	~/lib/dotfiles/ssh-config-"$HOSTNAME" )
+
+genconf="config-$HOSTNAME.gen"
+
+if [[ $1 == "-f" ]]; then
+	overwrite=1
+fi
+
+if (( overwrite )); then
+	if [[ ! -e ~/.ssh/config ]]; then
+		debug "config doesn't exist yet"
+		true
+	elif [[ ~/.ssh/config -ef ~/lib/dotfiles/ssh-config ]]; then
+		debug "symlinked config found"
+		rm -f ~/.ssh/config
+	elif [[ ~/.ssh/config -ef ~/.ssh/"$genconf" ]]; then
+		debug "generated config found"
+		true
+	else
+		die "Refusing to overwrite local ~/.ssh/config"
+	fi
+
+	generate "${files[@]}" > ~/.ssh/"$genconf"
+	ln -sf "$genconf" ~/.ssh/config
+else
+	generate "${files[@]}" > /dev/stdout
+fi
