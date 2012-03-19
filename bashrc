@@ -131,9 +131,9 @@ if [[ $havecolor ]]; then
 	[[ $TAG ]] &&
 		PS1+="\[\e[0;34m\]${TAG}:\[\e[0m\]"
 	#PS1+="\[\e[36m\]\w\[\e[0m\]"
-	PS1+="\[\e[\${color_pwd}m\]\$(__ps1_pwd)\[\e[0m\] "
-	PS1+="\[\e[\${color_vcs}m\]\$(__ps1_git)\[\e[0m\]\n"
-	PS1+="\[\e[\${color_prompt}m\]\${prompt}\[\e[0m\] "
+	PS1+="\[\e[0;\${color_pwd}m\]\$(__ps1_pwd)\[\e[0m\] "
+	PS1+="\[\e[0;\${color_vcs}m\]\$(__ps1_git)\[\e[0m\]\n"
+	PS1+="\[\e[0;\${color_prompt}m\]\${prompt}\[\e[0m\] "
 
 	PS2="\[\e[;1;30m\]...\[\e[0m\] "
 	PS4="+\e[34m\${BASH_SOURCE:--}:\e[1m\$LINENO\e[0m:\${FUNCNAME:+\e[33m\$FUNCNAME\e[0m} "
