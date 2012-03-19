@@ -136,7 +136,9 @@ Host *
 
 	ControlPath ~/.ssh/S.%l.%r@%h:%p
 	ControlMaster auto
+#if Version 5.6
 	ControlPersist 10m
+#endif
 
 	SendEnv LANG LC_* PULSE_SERVER TZ
 
