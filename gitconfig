@@ -61,7 +61,8 @@
 [merge]
 	defaultToUpstream = true
 [push]
-	default = upstream
+	#default = upstream
+	default = current
 [sendemail]
 	smtpserver = /usr/bin/msmtp
 
