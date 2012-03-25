@@ -385,7 +385,7 @@ todo() {
 	fi
 	if [[ $1 ]]; then
 		mkdir -p ~/lib
-		echo "($(date +"%b %d")) $*" >> ~/lib/todo
+		echo "$(date +"%b %d, %Y") – $*" >> ~/lib/todo
 		nl -ba ~/lib/todo | tail -n 1
 	elif [[ -s ~/lib/todo ]]; then
 		nl -ba ~/lib/todo
