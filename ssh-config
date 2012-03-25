@@ -125,6 +125,10 @@ Host *.vistech.net
 Host bazaar.launchpad.net
 	IdentityFile no
 
+Host am-naujas
+	User root
+	Hostname 176.31.238.190
+
 # global options
 
 Host *
