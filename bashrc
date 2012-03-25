@@ -68,6 +68,9 @@ case $TERM in
 	xterm-*)
 		havecolor=y
 		;;
+	'')
+		havecolor=n
+		;;
 	*)
 		havecolor=$(have tput && tput setaf)
 		;;
