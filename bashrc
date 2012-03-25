@@ -544,6 +544,8 @@ have nproc || nproc() {
 
 ### Environment
 
+export CVS_RSH=ssh
+
 export ACK_PAGER=$PAGER
 export GREP_OPTIONS='--color=auto'
 export MYSQL_HISTFILE=~/.cache/mysql.history
