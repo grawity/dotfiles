@@ -551,4 +551,6 @@ if [[ -f ~/.bashrc-"$HOSTNAME" ]]; then
 	. ~/.bashrc-"$HOSTNAME"
 fi
 
-todo
+if have todo && [[ -r ~/lib/todo ]]; then
+	todo
+fi
