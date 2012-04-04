@@ -378,27 +378,6 @@ wiki() {
 	browser "http://en.wikipedia.org/w/index.php?search=$(urlencode "$*")"
 }
 
-todo() {
-	if [[ -f ~/todo ]] && [[ ! -e ~/lib/todo ]]; then
-		mkdir -p ~/lib
-		mv ~/todo ~/lib/todo
-		ln -s 'lib/todo' ~/todo
-	fi
-	if [[ $1 ]]; then
-		mkdir -p ~/lib
-		echo "$(date +"%b %d, %Y") – $*" >> ~/lib/todo
-		nl -ba ~/lib/todo | tail -n 1
-	elif [[ -s ~/lib/todo ]]; then
-		nl -ba ~/lib/todo
-	fi
-}
-vitodo() {
-	editor ~/lib/todo
-}
-rmtodo() {
-	sed -i "${1:-\$}d" ~/lib/todo
-}
-
 cmpc() {
 	local host=$1 port= pass=
 	if [[ $host == ?*@?* ]]; then
