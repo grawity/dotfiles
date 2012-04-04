@@ -136,5 +136,8 @@
 [url "git://anongit.kde.org/"]
 	insteadOf = kde:
 
+[url "git://git.kernel.org/pub/scm/"]
+	insteadOf = kernel:
+
 [include]
 	path = .gitconfig-local
