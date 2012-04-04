@@ -8,9 +8,9 @@ ulimit -c 65536
 
 #spawn -l- acpieventd
 
-#if [ -e ~/.mpdconf ]; then
-#	spawn -Ll- mpd
-#fi
+if [ -e ~/.mpdconf ]; then
+	spawn -Ll- mpd
+fi
 
 #spawn mpc-up
 #spawn scmpc
