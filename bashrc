@@ -268,8 +268,6 @@ if have systemctl; then
 	alias disable='systemctl disable'
 	alias status='systemctl status'
 	alias sd='systemctl'
-	alias loginctl='systemd-loginctl'
-	alias journalctl='systemd-journalctl'
 	alias userctl='systemctl --user'
 	alias lcstatus='loginctl session-status $XDG_SESSION_ID'
 	alias tsd='tree /etc/systemd/system'
