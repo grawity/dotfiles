@@ -49,6 +49,12 @@ Host equal
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
+Host equal+http
+	Hostname equal.cluenet.org
+	GSSAPIAuthentication no
+	ForwardAgent yes
+	ProxyCommand corkscrew %h 80 %h %p
+
 Host gamma
 	Hostname gamma.cluenet.org
 	GSSAPIAuthentication yes
