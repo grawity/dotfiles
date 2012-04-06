@@ -1,8 +1,4 @@
 #!sh
-# GTK_RC_FILES
-# GTK2_RC_FILES
-
-: ${HOSTNAME:=$(hostname)}
 
 ulimit -c 65536
 
