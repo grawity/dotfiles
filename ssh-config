@@ -84,9 +84,10 @@ Host rain rain.local
 	ForwardAgent yes
 	ForwardX11 yes
 
-Host snow snow.local
-	Hostname snow.home
+Host snow snow.home snow.local
+	#Hostname snow.home
 	#Hostname snow.nullroute.eu.org
+	HostkeyAlias snow.nullroute.eu.org
 	#GSSAPIAuthentication yes
 	#GSSAPIDelegateCredentials yes
 	#ForwardAgent yes

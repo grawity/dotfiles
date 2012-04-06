@@ -13,5 +13,5 @@ fi
 #spawn mc-presence available
 
 if [ -f ~/.config/synclient.conf ]; then
-	xargs synclient < ~/.config/synclient.conf
+	synclient `< ~/.config/synclient.conf`
 fi
