@@ -1,70 +1,69 @@
-#!bash
-# ~/.profile: bash(1)
+#!/bin/sh
 
-have() { command -v "$1" >/dev/null; }
-mkpath() { local IFS=":"; export PATH="$*"; }
+mkpath() { local IFS=":" var=$1; shift; export "$var"="$*"; }
 
-# dash(1) does not set $HOSTNAME
 [ "$UID" ]	|| export UID=$(id -u)
 [ "$HOSTNAME" ]	|| export HOSTNAME=$(hostname)
 
 umask 022
 
-export LOCAL="$HOME/.local"
-export PYTHONPATH="$LOCAL/lib/python:$HOME/code/lib/python"
-export PERL5LIB="$LOCAL/lib/perl5:$HOME/code/lib/perl5:$HOME/cluenet/lib/perl5"
-#export GEM_HOME="$LOCAL/ruby"
-export TCLLIBPATH="$LOCAL/lib/tcl"
+# Locations
 
-#export PKG_CONFIG_PATH="$LOCAL/lib/pkgconfig:$LOCAL/share/pkgconfig"
-#export XDG_DATA_DIRS="$LOCAL/share:$XDG_DATA_DIRS"
-#export LD_RUN_PATH=
+LOCAL="$HOME/.local"
 
-mkpath \
+mkpath PATH \
 	"$HOME/bin"		\
-	"$LOCAL/bin"		\
 	"$HOME/code/bin"	\
-	"$HOME/cluenet/bin"	\
-	"$GEM_HOME/bin"		\
+	"$LOCAL/bin"		\
 	"$PATH"			\
 	"/usr/local/sbin" 	\
 	"/usr/sbin"		\
-	"/sbin"			\
-	"/opt/csw/bin"		\
-	;
+	"/sbin"			;
+mkpath PYTHONPATH \
+	"$LOCAL/lib/python"	\
+	"$HOME/code/lib/python"	;
+mkpath PERL5LIB \
+	"$LOCAL/lib/perl5"	\
+	"$HOME/code/lib/perl5"	;
+
+# Preferred programs
 
 export PAGER='less'
 export EDITOR='vim'
 unset VISUAL
-have open-browser &&
-	export BROWSER='open-browser'
+export BROWSER='web-browser'
 
-unset LC_ALL
-case $TERM in
-	vt*|ansi)	export LANG='en_US';;
-	*)		export LANG='en_US.UTF-8';;
-esac
+# Program defaults
+
 export TZ='Europe/Vilnius'
 export NAME='Mantas Mikulėnas'
 export EMAIL='grawity@nullroute.eu.org'
 
-if [ -f ~/.mailrc ]; then
-	export MAILRC=~/lib/dotfiles/mailrc
+case $TERM in
+	vt*|ansi)
+		export LANG='en_US';;
+	*)
+		export LANG='en_US.UTF-8';;
+esac
+
+unset LC_ALL
+
+# bashrc
+
+if [ "$BASH_VERSION" ]; then
+	[ -f ~/.bashrc ] && . ~/.bashrc
 fi
 
-if [ "$BASH_VERSION" ] && [ -f ~/.bashrc ]; then
-	. ~/.bashrc
-fi
+# System information
 
 if [ -t 0 ]; then
-	[ -f ~/.hushlogin ] &&
-	[ -x ~/code/bin/motd ] &&
-		~/code/bin/motd -q
+	[ -f ~/.hushlogin ] && have motd && motd -q
 	echo `uptime`
 fi
 
-[ -f ~/.profile-$HOSTNAME ] &&
-	. ~/.profile-$HOSTNAME
+# Local settings
+
+[ -f ~/.profile-$HOSTNAME ] && . ~/.profile-$HOSTNAME
 
 if [ "$LOCAL_PERL" = "n" ]; then
 	export PERL_CPANM_OPT='--sudo'
@@ -73,4 +72,4 @@ else
 	export PERL_MB_OPT="--install_base '$LOCAL'"
 fi
 
-true
+: "return a true value"

@@ -66,7 +66,7 @@ $all || exit 0
 have irb &&
 	link irbrc	~/.irbrc
 have mail &&
-	: link mailrc		~/.mailrc
+	link mailrc		~/.mailrc
 have msmtp && {
 	link msmtprc		~/.msmtprc
 	chmod 600 ~/.msmtprc
