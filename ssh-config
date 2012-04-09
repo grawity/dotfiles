@@ -151,7 +151,7 @@ Host *
 	ControlPersist 10m
 #endif
 
-	SendEnv LANG LC_* PULSE_SERVER TZ
+	SendEnv LANG PULSE_SERVER TZ
 
 	ServerAliveInterval 600
 	#ServerAliveCountMax 3
