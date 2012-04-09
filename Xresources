@@ -2,7 +2,7 @@
 
 !! Xcursor
 
-!Xcursor.theme:		Human
+Xcursor.theme:		Adwaita
 !Xcursor.size:		16
 
 !! Xterm
