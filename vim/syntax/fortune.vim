@@ -6,4 +6,4 @@ syn region	qdbSeparator	display oneline start=+^%+ end=+$+
 "syn region	qdbNick		display oneline start=+^<+ end=+>+
 
 hi def link qdbComment		Comment
-hi def link qdbSeparator	Title
+hi def link qdbSeparator	Label
