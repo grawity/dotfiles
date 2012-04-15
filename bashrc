@@ -32,8 +32,8 @@ shopt -s histappend		# append to $HISTFILE on exit
 shopt -s histreedit		# allow re-editing failed history subst
 
 HISTFILE=~/.cache/bash.history
-HISTSIZE=2000
-HISTFILESIZE=2000
+HISTSIZE=5000
+HISTFILESIZE=5000
 HISTCONTROL=ignoreboth
 
 ### Command line completion
