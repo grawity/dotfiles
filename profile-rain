@@ -20,13 +20,6 @@ export ACCDB="/run/media/$USER/grawpqi/private/accounts.db.txt"
 export CLUENET_DIR="$HOME/src/cluenet"
 export GNULIB_SRCDIR="$HOME/src/gnu/gnulib"
 
-# Library settings
-
-export GTK_IM_MODULE="xim"
-export QT_IM_MODULE="xim"
-
-# Etc.
-
 if [ -z "$KRB5CCNAME" ]; then
 	if [ "$XDG_RUNTIME_DIR" ] && [ -d "$XDG_RUNTIME_DIR" ]; then
 		mkdir -p "$XDG_RUNTIME_DIR/krb5cc"
@@ -38,20 +31,29 @@ if [ -z "$KRB5CCNAME" ]; then
 	fi
 fi
 
+# Library settings
+
+export GTK_IM_MODULE="xim"
+export QT_IM_MODULE="xim"
+
+# Etc.
+
 #export LD_PRELOAD='/usr/$LIB/libv4l/v4l1compat.so'
 #export WINEDLLOVERRIDES="winemenubuilder.exe=d"
+
+if [ ! -e "$XDG_RUNTIME_DIR/gvfs" ]; then
+	mountpoint -q "$XDG_RUNTIME_DIR/gvfs" &&
+	fusermount -u "$XDG_RUNTIME_DIR/gvfs"
+fi >/dev/null 2>&1
 
 if ! mountpoint -q ~/Private; then
 	if [ "$DISPLAY" ]; then
 		spawn ecryptfs-mount-x11
 	elif [ -t 1 ]; then
 		echo "Warning: ~/Private not mounted" >&2
-		ecryptfs-mount-private
 	fi
 fi
 
-if [ ! -e "$XDG_RUNTIME_DIR/gvfs" ] && mountpoint -q "$XDG_RUNTIME_DIR/gvfs"; then
-	fusermount -u "$XDG_RUNTIME_DIR/gvfs"
-fi >/dev/null 2>&1
+#spawn pkinit
 
-spawn pkinit
+acpi
