@@ -19,6 +19,9 @@ augroup filetypedetect
 	au BufNewFile,BufRead /usr/lib/systemd/user/*		setf desktop
 	au BufNewFile,BufRead ~/.config/systemd/user/*		setf desktop
 
+	" INI-style
+	au BufNewFile,BufRead *.url setf dosini
+
 	" Markdown
 	au BufNewFile,BufRead *.md setf markdown
 
@@ -27,6 +30,9 @@ augroup filetypedetect
 
 	" PHP
 	au BufNewFile,BufRead *.phps setf php
+
+	" Shell
+	au BufNewFile,BufRead /etc/rc.conf setf sh
 
 	" xinetd
 	au BufNewFile,BufRead *.xinetd setf xinetd
