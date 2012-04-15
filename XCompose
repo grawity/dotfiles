@@ -13,3 +13,5 @@ include "%L"
 <Multi_key> <r> <q>			: "”" # rdquo
 <Multi_key> <s> <n> <o> <w> <m> <a> <n>	: "☃" # snowman
 <Multi_key> <e> <n> <o> <t> <e>		: "♪" # note
+<Multi_key> <6> <6>			: "↑" # up arrow
+<Multi_key> <v> <v>			: "↓" # down arrow
