@@ -81,9 +81,9 @@ have screen &&
 have tmux &&
 	link tmux.conf	~/.tmux.conf
 have xrdb && {
-	link Xresources	~/.Xresources
-	link XCompose	~/.XCompose
-	link fonts.conf	~/.fonts.conf
+	link Xresources		~/.Xresources
+	link XCompose		~/.XCompose
+	link fonts.conf.xml	~/.fonts.conf
 }
 
 link k5identity	~/.k5identity
