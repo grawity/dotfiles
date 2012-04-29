@@ -33,7 +33,6 @@
 	local = log --oneline origin/master..HEAD
 	export = !touch $(git rev-parse --git-dir)/git-daemon-export-ok
 	unexport = !rm -v $(git rev-parse --git-dir)/git-daemon-export-ok
-	new = !tig HEAD@{1}..
 	mrproper = !git reset --hard HEAD && git clean -fdx
 	bra = branch -a -v
 	empty = !git init && git commit --allow-empty -m Initial
@@ -136,7 +135,7 @@
 [url "git://anongit.kde.org/"]
 	insteadOf = kde:
 
-[url "git://git.kernel.org/pub/scm/"]
+[url "git://git.kernel.org/pub/scm/linux/kernel/git/"]
 	insteadOf = kernel:
 
 [include]

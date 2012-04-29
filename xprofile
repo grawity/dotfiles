@@ -13,5 +13,7 @@ fi
 #spawn mc-presence available
 
 if [ -f ~/.config/synclient.conf ]; then
-	synclient `< ~/.config/synclient.conf`
+	synclient `grep -v "^#" ~/.config/synclient.conf`
 fi
+
+(cd ~/Dropbox/mq && spawn ./mq-udp-subscriber >/dev/null)

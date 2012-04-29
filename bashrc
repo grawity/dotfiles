@@ -207,6 +207,7 @@ alias egrep='grep -E'
 entity() { printf '&%s;' "$@" | w3m -dump -T text/html; }
 finge() { [[ $1 == r* ]] && set -- "${1:1}" "${@:2}"; finger "$@"; }
 g() { egrep -rn --color=always "$@" .; }
+alias facl='getfacl -pt'
 gpgsigs() { gpg --edit-key "$1" check quit; }
 alias hex='xxd -p'
 alias hup='pkill -HUP -x'
@@ -233,7 +234,7 @@ up() { local p= i=${1:-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
 alias w='PROCPS_USERLEN=16 w -s -h'
 wim() { editor "$(which "$1")"; }
 alias xx='chmod a+x'
-X() { (setsid "$@" &> ~/.xsession-errors &); }
+X() { (setsid "$@" &>> ~/.xsession-errors &); }
 alias '~'='grep -P'
 alias '~~'='grep -P -i'
 
@@ -308,7 +309,8 @@ lspkg() {
 	elif have pacman;	then pacman -Qql "$@"
 	elif have rpm;		then rpm -ql "$@"
 	elif have pkg_info;	then pkg_info -Lq "$@"
-	else echo "no package manager" >&2; return 1; fi
+	else echo "no package manager" >&2; return 1
+	fi | sort
 }
 
 lcpkg() {
