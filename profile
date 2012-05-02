@@ -1,6 +1,6 @@
 #!/bin/sh
 
-mkpath() { local IFS=":" var=$1; shift; export "$var"="$*"; }
+setpath() { local IFS=":" var="$1"; shift; export "$var=$*"; }
 
 [ "$UID" ]	|| export UID=$(id -u)
 [ "$HOSTNAME" ]	|| export HOSTNAME=$(hostname)
@@ -11,7 +11,7 @@ umask 022
 
 LOCAL="$HOME/.local"
 
-mkpath PATH \
+setpath PATH \
 	"$HOME/bin"		\
 	"$HOME/code/bin"	\
 	"$LOCAL/bin"		\
@@ -19,12 +19,18 @@ mkpath PATH \
 	"/usr/local/sbin" 	\
 	"/usr/sbin"		\
 	"/sbin"			;
-mkpath PYTHONPATH \
+
+setpath PYTHONPATH \
 	"$LOCAL/lib/python"	\
 	"$HOME/code/lib/python"	;
-mkpath PERL5LIB \
+
+setpath PERL5LIB \
 	"$LOCAL/lib/perl5"	\
 	"$HOME/code/lib/perl5"	;
+
+if [ ! -d ~/.cache ]; then
+	mkdir -p -m 0700 ~/.cache
+fi
 
 # Preferred programs
 
@@ -48,17 +54,17 @@ esac
 
 unset LC_ALL
 
+# System information
+
+if [ -t 0 ]; then
+	[ -f ~/.hushlogin ] && motd -q
+	echo `uptime`
+fi
+
 # bashrc
 
 if [ "$BASH_VERSION" ]; then
 	[ -f ~/.bashrc ] && . ~/.bashrc
-fi
-
-# System information
-
-if [ -t 0 ]; then
-	[ -f ~/.hushlogin ] && have motd && motd -q
-	echo `uptime`
 fi
 
 # Local settings
@@ -72,4 +78,4 @@ else
 	export PERL_MB_OPT="--install_base '$LOCAL'"
 fi
 
-: "return a true value"
+: # return a true value
