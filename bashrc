@@ -3,10 +3,7 @@
 
 have() { command -v "$@" >& /dev/null; }
 
-[[ $SHELL ]]	|| SHELL=$XTERM_SHELL
-[[ $USER ]]	|| USER=$LOGNAME
-[[ $USER ]]	|| USER=$(id -un)
-export SHELL USER
+[[ $USER ]] || export USER=${LOGNAME:-$(id -un)}
 
 export GPG_TTY=$(tty)
 export HOSTALIASES=~/.hosts
