@@ -13,10 +13,7 @@ export HOSTALIASES=~/.hosts
 export NCURSES_NO_UTF8_ACS=1
 
 [[ $LANG == *.utf8 ]] &&
-	LANG="${LANG%.utf8}.UTF-8"
-
-[[ -d ~/.cache ]] &&
-	mkdir -pm 0700 ~/.cache
+	LANG=${LANG/%'.utf8'/'.utf-8'}
 
 ### Interactive-only options
 
@@ -49,7 +46,7 @@ case $TERM in
 	xterm)
 		havecolor=y
 		if [[ -z $COLORTERM ]] && [[ -f /proc/$PPID/cmdline ]]; then
-			read -r -d '' comm < /proc/$PPID/cmdline
+			read -r -d '' comm </proc/$PPID/cmdline
 			comm=${comm##*/}
 			case $comm in
 				gnome-terminal|konsole|xterm|yakuake)
@@ -95,12 +92,23 @@ __ps1_pwd() {
 }
 
 __ps1_git() {
-	local g=$(have git && git rev-parse --git-dir 2>/dev/null) r=''
-	if [[ $g ]]; then
+	if have git; then
+		local r
 		r=$(git symbolic-ref HEAD 2>/dev/null) ||
 		r=$(git rev-parse --short HEAD 2>/dev/null)
 		r=${r#refs/heads/}
-		printf '\001\e[%sm\002%s\001\e[m\002' "$color_vcs" "$r"
+		if [[ $r ]]; then
+			printf '\001\e[%sm\002%s\001\e[m\002' "$color_vcs" "$r"
+		fi
+	fi
+}
+
+__ps1_git_new() {
+	local g=$(have git && git rev-parse --git-dir 2>/dev/null) r=
+	if [[ $g ]]; then
+		r=$(<"$g/HEAD")
+		r=${r#ref: }
+		r=${r#refs/heads/}
 	fi
 }
 
@@ -128,7 +136,7 @@ if [[ $havecolor ]]; then
 	color_vcs='38;5;167'
 	color_prompt=''
 
-	__is_remote && prompt='@'
+	__is_remote && prompt='^'
 
 	PS1+="\[\e[0;\${color_name}m\]${item}\[\e[0m\] "
 	[[ $TAG ]] &&
@@ -148,7 +156,7 @@ fi
 
 export -n PS1 PS2; export PS4
 
-title() { printf "$titlestring" "$*"; }
+settitle() { printf "$titlestring" "$*"; }
 
 setwname() { printf '\ek%s\e\\' "$*"; }
 
@@ -157,10 +165,12 @@ show_status() {
 	(( status )) && printf "\e[;33m%s\e[m\n" "(returned $status)"
 }
 update_title() {
-	local title="$USER@$HOSTNAME ${PWD/#$HOME/~}"
-	[[ $SSH_TTY && $DISPLAY ]] &&
-		title+=" (X11)"
-	title "$title"
+	if [[ ! $title ]]; then
+		local title="$USER@$HOSTNAME ${PWD/#$HOME/~}"
+		[[ $SSH_TTY && $DISPLAY ]] &&
+			title+=" (X11)"
+	fi
+	printf "$titlestring" "$title"
 }
 
 PROMPT_COMMAND="show_status; update_title"
@@ -176,7 +186,7 @@ a() {
 		alias | perl -ne "
 			if (@d = /^alias (.+?)='(.+)'\$/) {
 				\$d[1] =~ s/'\\\''/'/g;
-				\$d[1] =~ s/^(.*) $/'\$&'/;
+				\$d[1] =~ s/^(.*)\s$/'\$&'/;
 				printf qq(%-10s %s\n), @d;
 			}"
 	fi
