@@ -208,11 +208,11 @@ pager() { eval command "${PAGER:-less}" '"$@"'; }
 count() { sort "$@" | uniq -c | sort -n -r | pager; }
 alias cur='cur '
 alias df='df -Th'
-alias dff='df -x tmpfs -x devtmpfs -x rootfs'
+alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs'
 alias dnstracer='dnstracer -s .'
 alias egrep='grep -E'
-entity() { printf '&%s;' "$@" | w3m -dump -T text/html; }
-finge() { [[ $1 == r* ]] && set -- "${1:1}" "${@:2}"; finger "$@"; }
+entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
+finge() { finger "${1#r}" "${@:2}"; }
 g() { egrep -rn --color=always "$@" .; }
 alias facl='getfacl -pt'
 gpgsigs() { gpg --edit-key "$1" check quit; }
@@ -230,6 +230,7 @@ alias rot13='tr N-ZA-Mn-za-m A-Za-z'
 rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}"; echo; }
 alias sudo='sudo ' # for alias expansion in sudo args
 alias tidiff='infocmp -Ld'
+alias tracert='traceroute'
 tube() {
 	local title=$(youtube-dl -e "$1")
 	read -e -p 'Title: ' -i "$title" title
