@@ -95,9 +95,9 @@
 	# UGH.
 	pushInsteadOf = git://equal.cluenet.org/
 
-[url "git://equal.cluenet.org/~grawity/pub/git/"]
+[url "git://panther.nathan7.eu/~grawity/pub/git/"]
 	insteadOf = nullroute:
-[url "ssh://equal.cluenet.org/~grawity/pub/git/"]
+[url "ssh://panther.nathan7.eu/~grawity/pub/git/"]
 	insteadOf = nullroute+ssh:
 	pushInsteadOf = nullroute:
 
@@ -136,7 +136,7 @@
 	insteadOf = kde:
 
 [url "git://git.kernel.org/pub/scm/linux/kernel/git/"]
-	insteadOf = kernel:
+	insteadOf = linux:
 
 [include]
 	path = .gitconfig-local
