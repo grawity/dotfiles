@@ -16,4 +16,4 @@ if [ -f ~/.config/synclient.conf ]; then
 	synclient `grep -v "^#" ~/.config/synclient.conf`
 fi
 
-(cd ~/Dropbox/mq && spawn ./mq-udp-subscriber >/dev/null)
+#(cd ~/Dropbox/mq && spawn ./mq-udp-subscriber >/dev/null)
