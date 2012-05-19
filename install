@@ -6,7 +6,10 @@ have() { command -v "$@" >/dev/null; }
 link() {
 	local target="$dir/${1%/}" link=$2
 	if [ -e "$link" ]; then
-		if [ -h "$link" ]; then
+		if [ -k "$link" ]; then
+			echo "Ignoring sticky ${link/#$HOME/~}"
+			return true
+		elif [ -h "$link" ]; then
 			rm -f "$link"
 		else
 			trash "$link"
@@ -20,10 +23,18 @@ sym() { ~/code/bin/sym "$@"; }
 trash() {
 	local file
 	for file; do
-		[ -e "$file" ] || continue
-		[ -d "$trash" ] || mkdir -pm 0700 "$trash"
-		echo "Backing up ${file/#$HOME/~} to ${trash/#$HOME/~}"
-		mv "$file" "$trash"
+		if [ ! -e "$file" ]; then
+			continue
+		elif [ -k "$file" ]; then
+			echo "Ignoring sticky ${file/#$HOME/~}"
+			continue
+		else
+			if [ ! -d "$trash" ]; then
+				mkdir -pm 0700 "$trash"
+			fi
+			echo "Backing up ${file/#$HOME/~} to ${trash/#$HOME/~}"
+			mv "$file" "$trash"
+		fi
 	done
 }
 
