@@ -33,6 +33,9 @@ augroup filetypedetect
 
 	" Shell
 	au BufNewFile,BufRead /etc/rc.conf setf sh
+	
+	" tmux
+	au BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
 
 	" xinetd
 	au BufNewFile,BufRead *.xinetd setf xinetd
