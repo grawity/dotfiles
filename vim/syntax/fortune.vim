@@ -1,9 +1,13 @@
 setl noai nosi cms= fo-=c fo-=r
 
-syn region	qdbComment	display oneline start=+^#+ end=+$+
+syn region	qdbHeader	start=+\%^+ end=+^%$+ transparent
+syn region	qdbComment	display oneline start=+^#+ end=+$+ containedin=qdbHeader
 syn region	qdbSeparator	display oneline start=+^%+ end=+$+
 
-"syn region	qdbNick		display oneline start=+^<+ end=+>+
+syn match	qdbNick		/^<[ +%&@!~]\?[^ ]\+>/
+syn match	qdbNick		/^([ +%&@!~]\?[^ ]\+)/
+syn match	qdbNick		/^\[[ +%&@!~]\?[^ ]\+\]/
 
 hi def link qdbComment		Comment
 hi def link qdbSeparator	Label
+hi def link qdbNick		String
