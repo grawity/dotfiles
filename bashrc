@@ -516,6 +516,15 @@ catlog() {
 	done
 }
 
+man() {
+	if [[ $1 == *://* ]]; then
+		curl -Ls "$1" | command man /dev/stdin
+	else
+		command man "$@"
+	fi
+}
+
+
 # compatibility with coreutils < 8.0
 have nproc || nproc() {
 	local exe=$(which nproc 2>/dev/null)
