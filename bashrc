@@ -95,7 +95,7 @@ __ps1_git() {
 		r=$(git rev-parse --short HEAD 2>/dev/null)
 		r=${r#refs/heads/}
 		if [[ $r ]]; then
-			printf '\001\e[%sm\002%s\001\e[m\002' "$color_vcs" "$r"
+			printf '\001\e[m\e[%sm\002%s\001\e[m\002' "$color_vcs" "$r"
 		fi
 	fi
 }
@@ -135,16 +135,16 @@ if [[ $havecolor ]]; then
 
 	__is_remote && prompt='^'
 
-	PS1+="\[\e[0;\${color_name}m\]${item}\[\e[0m\] "
+	PS1+="\[\e[m\e[\${color_name}m\]${item}\[\e[m\] "
 	[[ $TAG ]] &&
-		PS1+="\[\e[0;34m\]${TAG}:\[\e[0m\]"
-	#PS1+="\[\e[36m\]\w\[\e[0m\]"
-	PS1+="\[\e[0;\${color_pwd}m\]\$(__ps1_pwd)\[\e[0m\] "
-	PS1+="\[\e[0;\${color_vcs}m\]\$(__ps1_git)\[\e[0m\]\n"
-	PS1+="\[\e[0;\${color_prompt}m\]\${prompt}\[\e[0m\] "
+		PS1+="\[\e[;34m\]${TAG}:\[\e[m\]"
+	#PS1+="\[\e[36m\]\w\[\e[m\]"
+	PS1+="\[\e[m\e[\${color_pwd}m\]\$(__ps1_pwd)\[\e[m\] "
+	PS1+="\[\e[m\e[\${color_vcs}m\]\$(__ps1_git)\[\e[m\]\n"
+	PS1+="\[\e[m\e[\${color_prompt}m\]\${prompt}\[\e[m\] "
 
-	PS2="\[\e[;1;30m\]...\[\e[0m\] "
-	PS4="+\e[34m\${BASH_SOURCE:--}:\e[1m\$LINENO\e[0m:\${FUNCNAME:+\e[33m\$FUNCNAME\e[0m} "
+	PS2="\[\e[;1;30m\]...\[\e[m\] "
+	PS4="+\e[34m\${BASH_SOURCE:--}:\e[1m\$LINENO\e[m:\${FUNCNAME:+\e[33m\$FUNCNAME\e[m} "
 else
 	PS1='\u@\h \w\n\$ '
 	PS2='... '
