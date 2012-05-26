@@ -1,6 +1,10 @@
 #!bash
 # ~/.bashrc: bash(1)
 
+if [[ ! $LOCAL ]]; then
+	. ~/.profile
+fi
+
 have() { command -v "$@" >& /dev/null; }
 
 [[ $USER ]] || export USER=${LOGNAME:-$(id -un)}
