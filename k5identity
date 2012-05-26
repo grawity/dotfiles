@@ -1,5 +1,5 @@
 # ~/.k5identity - k5identity(5) krb5-1.10
-grawity@CLUENET.ORG		realm=CLUENET.ORG service=ldap
+#grawity@CLUENET.ORG		realm=CLUENET.ORG service=ldap
 #grawity@NULLROUTE.EU.ORG	realm=CLUENET.ORG
 grawity@KRA.NTAS.IN		realm=KRA.NTAS.IN
 #grawity@NULLROUTE.EU.ORG	realm=NATHAN7.EU
