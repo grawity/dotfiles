@@ -120,15 +120,15 @@ __is_remote() {
 if [[ $havecolor ]]; then
 	PS1="\n"
 	if (( $UID == 0 )); then
-		color_name='1;37;41'
+		color_name='37;41'
 		item='\h'
 		prompt='#'
 	elif [[ $USER == "grawity" ]]; then
-		color_name='1;38;5;71'
+		color_name='38;5;71'
 		item='\h'
 		prompt='$'
 	else
-		color_name='1;33'
+		color_name='33'
 		item='\u@\h'
 		prompt='$'
 	fi
@@ -139,7 +139,7 @@ if [[ $havecolor ]]; then
 
 	__is_remote && prompt='^'
 
-	PS1+="\[\e[m\e[\${color_name}m\]${item}\[\e[m\] "
+	PS1+="\[\e[;1m\e[\${color_name}m\]${item}\[\e[m\] "
 	[[ $TAG ]] &&
 		PS1+="\[\e[;34m\]${TAG}:\[\e[m\]"
 	#PS1+="\[\e[36m\]\w\[\e[m\]"
