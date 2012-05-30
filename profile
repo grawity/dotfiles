@@ -69,7 +69,11 @@ fi
 
 # Local settings
 
-[ -f ~/.profile-$HOSTNAME ] && . ~/.profile-$HOSTNAME
+if [ -f ~/lib/dotfiles/profile-$HOSTNAME ]; then
+	. ~/lib/dotfiles/profile-$HOSTNAME
+elif [ -f ~/.profile-$HOSTNAME ]; then
+	. ~/.profile-$HOSTNAME
+fi
 
 if [ "$LOCAL_PERL" = "n" ]; then
 	export PERL_CPANM_OPT='--sudo'
