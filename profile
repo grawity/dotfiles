@@ -9,23 +9,23 @@ umask 022
 
 # Locations
 
-LOCAL="$HOME/.local"
+export PREFIX="$HOME/.local"
 
 setpath PATH \
 	"$HOME/bin"		\
 	"$HOME/code/bin"	\
-	"$LOCAL/bin"		\
+	"$PREFIX/bin"		\
 	"$PATH"			\
 	"/usr/local/sbin" 	\
 	"/usr/sbin"		\
 	"/sbin"			;
 
 setpath PYTHONPATH \
-	"$LOCAL/lib/python"	\
+	"$PREFIX/lib/python"	\
 	"$HOME/code/lib/python"	;
 
 setpath PERL5LIB \
-	"$LOCAL/lib/perl5"	\
+	"$PREFIX/lib/perl5"	\
 	"$HOME/code/lib/perl5"	;
 
 if [ ! -d ~/.cache ]; then
@@ -74,8 +74,8 @@ fi
 if [ "$LOCAL_PERL" = "n" ]; then
 	export PERL_CPANM_OPT='--sudo'
 else
-	export PERL_MM_OPT="INSTALL_BASE='$LOCAL'"
-	export PERL_MB_OPT="--install_base '$LOCAL'"
+	export PERL_MM_OPT="INSTALL_BASE='$PREFIX'"
+	export PERL_MB_OPT="--install_base '$PREFIX'"
 fi
 
 : # return a true value

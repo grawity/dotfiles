@@ -4,8 +4,10 @@
 
 export BROWSER="elinks"
 
-export PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
-export PATH="/usr/lib/ccache/bin:$PATH"
+setpath PATH \
+	"/usr/lib/ccache/bin"				\
+	"$(ruby -rubygems -e 'puts Gem.user_dir')/bin"	\
+	"$PATH"						;
 
 # Program defaults
 
