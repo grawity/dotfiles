@@ -1,7 +1,7 @@
 #!bash
 # ~/.bashrc: bash(1)
 
-if [[ ! $LOCAL ]]; then
+if [[ ! $PREFIX ]]; then
 	. ~/.profile
 fi
 
