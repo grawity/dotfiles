@@ -40,15 +40,6 @@ trash() {
 
 dir=$(dirname "$0")
 trash=~/trash
-all=false
-
-while getopts 'af' OPT; do
-	case $OPT in
-	'a')	all=true;;
-	'f')	all=true;;
-	'?')	echo "Usage: install [-a]"; exit 2;;
-	esac
-done
 
 mkdir -pm 0700 ~/.ssh
 
@@ -73,8 +64,6 @@ have makepkg &&
 	link makepkg.conf ~/.makepkg.conf
 
 trash	~/.bash_{login,profile,logout}
-
-$all || exit 0
 
 have irb &&
 	link irbrc ~/.irbrc
