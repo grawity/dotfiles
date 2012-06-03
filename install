@@ -79,8 +79,11 @@ $all || exit 0
 have irb &&
 	link irbrc ~/.irbrc
 
-have klist &&
-	link k5identity ~/.k5identity
+have klist && {
+	#link k5identity ~/.k5identity
+	[[ -L ~/.k5identity ]] &&
+		rm -f ~/.k5identity
+}
 
 have mail &&
 	link mailrc ~/.mailrc
