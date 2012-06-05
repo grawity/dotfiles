@@ -8,7 +8,7 @@ link() {
 	if [ -e "$link" ]; then
 		if [ -k "$link" ]; then
 			echo "Ignoring sticky ${link/#$HOME/~}"
-			return true
+			return
 		elif [ -h "$link" ]; then
 			rm -f "$link"
 		else
