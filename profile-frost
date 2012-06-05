@@ -1,0 +1,31 @@
+#!bash
+
+confirm() {
+	local msg=$1 ans=
+	if [ "$DISPLAY" ]; then
+		zenity --question \
+			--title "nullroute login" \
+			--text "$1"
+	else
+		read -ep $'\001\e[1;36m\002(?)\001\e[m\002'" $msg " \
+			-t 10 ans && [[ $ans == [Yy] ]]
+	fi
+}
+
+if ! klist -s; then
+	confirm "No Kerberos tickets found. Login anyway?" || exit
+fi
+
+if ! [ -d ~/rain ]; then
+	confirm "Home directory not mounted. Login anyway?" || exit
+fi
+
+export MPD_HOST=$(getnetrc -df '%p@%M' -s mpd rain.home)
+
+export PULSE_SERVER="{4938ebf81cca130470c1841700000323}unix:/home/grawity/.pulse/4938ebf81cca130470c1841700000323-runtime/native tcp:rain.home:4713 tcp6:rain.nullroute.eu.org:4713"
+
+if [ "$DISPLAY" ]; then
+	pax11publish -e
+fi
+
+export XDG_MUSIC_DIR="$HOME/Music"
