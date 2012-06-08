@@ -15,3 +15,4 @@ include "%L"
 <Multi_key> <e> <n> <o> <t> <e>		: "♪" # note
 <Multi_key> <6> <6>			: "↑" # up arrow
 <Multi_key> <v> <v>			: "↓" # down arrow
+<Multi_key> <z> <w>			: "​" # zero-width nbsp
