@@ -331,7 +331,7 @@ lcpkg() {
 }
 
 llpkg() {
-	lspkg "$@" | xargs -d '\n' ls -ld --color=always 2>/dev/null | pager
+	lspkg "$@" | xargs -d '\n' ls -ldh --color=always 2>/dev/null | pager
 }
 
 # list installed packages
