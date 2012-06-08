@@ -7,19 +7,19 @@ export BROWSER="elinks"
 setpath PATH \
 	"/usr/lib/ccache/bin"				\
 	"$(ruby -rubygems -e 'puts Gem.user_dir')/bin"	\
+	"$HOME/.cabal/bin"				\
 	"$PATH"						;
 
 # Program defaults
 
 export MAKEFLAGS="-j5"
-export NWCLIENT_DEFAULT_USER="$USER"
 
 export MPD_HOST="$(<~/.config/mpd/password)@$XDG_RUNTIME_DIR/mpd.control"
 
 # Locations
 
 export ACCDB="/run/media/$USER/grawpqi/private/accounts.db.txt"
-export CLUENET_DIR="$HOME/src/cluenet"
+
 export GNULIB_SRCDIR="$HOME/src/gnu/gnulib"
 
 if [ -z "$KRB5CCNAME" ]; then

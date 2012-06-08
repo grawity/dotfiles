@@ -1,17 +1,18 @@
 #!bash
 # ~/.bashrc: bash(1)
 
-if [[ ! $PREFIX ]]; then
-	. ~/.profile
-fi
+### Environment
+
+[[ $PREFIX ]] ||
+	. ~/lib/dotfiles/environment
 
 have() { command -v "$@" >& /dev/null; }
 
-[[ $USER ]] || export USER=${LOGNAME:-$(id -un)}
+[[ $USER ]] ||
+	export USER=${LOGNAME:-$(id -un)}
 
 export GPG_TTY=$(tty)
 export HOSTALIASES=~/.hosts
-export NCURSES_NO_UTF8_ACS=1
 
 [[ $LANG == *.utf8 ]] &&
 	LANG=${LANG/%'.utf8'/'.utf-8'}
@@ -558,12 +559,11 @@ export SUDO_PROMPT=$(printf 'sudo: Password for %%u@\e[30;43m%%h\e[m: ')
 export LESS="-eMqR -FX -z-3"
 export LESSHISTFILE=~/.cache/less.history
 
-unset ${!LESS_TERMCAP_*}
-export LESS_TERMCAP_mb=$'\e[1;31m'		# begin blinking
-export LESS_TERMCAP_md=$'\e[1;38;5;112m'	# begin bold
-export LESS_TERMCAP_me=$'\e[m'			# end mode
+#unset ${!LESS_TERMCAP_*}
+#export LESS_TERMCAP_mb=$'\e[1;31m'		# begin blinking
+#export LESS_TERMCAP_md=$'\e[1;38;5;112m'	# begin bold
+#export LESS_TERMCAP_me=$'\e[m'			# end mode
 
-export ABSROOT=~/pkg
 export MAKEFLAGS="-j$((`nproc`+1))"
 
 if have pklist; then
