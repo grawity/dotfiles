@@ -1,12 +1,12 @@
 #!bash
 # ~/.bashrc: bash(1)
 
+have() { command -v "$1" >&/dev/null; }
+
 ### Environment
 
 [[ $PREFIX ]] ||
-	. ~/lib/dotfiles/environment
-
-have() { command -v "$@" >& /dev/null; }
+	. ~/.profile
 
 [[ $USER ]] ||
 	export USER=${LOGNAME:-$(id -un)}
@@ -217,7 +217,6 @@ alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs'
 alias dnstracer='dnstracer -s .'
 alias egrep='grep -E'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
-finge() { finger "${1#r}" "${@:2}"; }
 g() { egrep -rn --color=always "$@" .; }
 alias facl='getfacl -pt'
 gpgsigs() { gpg --edit-key "$1" check quit; }
@@ -309,9 +308,10 @@ elif have invoke-rc.d; then
 	restart() { for _s; do sudo invoke-rc.d "$_s" restart; done; }
 fi
 
-if ! have enable && have update-rc.d; then
-	enable() { for _s; do sudo update-rc.d "$_s" enable; done; }
-	disable() { for _s; do sudo update-rc.d "$_s" disable; done; }
+if have update-rc.d; then
+	_enable() { for _s; do sudo update-rc.d "$_s" enable; done; }
+	_disable() { for _s; do sudo update-rc.d "$_s" disable; done; }
+	alias enable='_enable' disable='_disable'
 fi
 
 alias lp='sudo netstat -lptu --numeric-hosts'
@@ -555,19 +555,8 @@ have nproc || nproc() {
 
 export CVS_RSH=ssh
 
-export ACK_PAGER=$PAGER
 export GREP_OPTIONS='--color=auto'
-export MYSQL_HISTFILE=~/.cache/mysql.history
-export PYTHONSTARTUP=~/lib/dotfiles/pythonrc
 export SUDO_PROMPT=$(printf 'sudo: Password for %%u@\e[30;43m%%h\e[m: ')
-
-export LESS="-eMqR -FX -z-3"
-export LESSHISTFILE=~/.cache/less.history
-
-#unset ${!LESS_TERMCAP_*}
-#export LESS_TERMCAP_mb=$'\e[1;31m'		# begin blinking
-#export LESS_TERMCAP_md=$'\e[1;38;5;112m'	# begin bold
-#export LESS_TERMCAP_me=$'\e[m'			# end mode
 
 export MAKEFLAGS="-j$((`nproc`+1))"
 
@@ -579,6 +568,8 @@ if [[ -f ~/.bashrc-"$HOSTNAME" ]]; then
 	. ~/.bashrc-"$HOSTNAME"
 fi
 
-if have todo && [[ -r ~/lib/todo ]]; then
-	todo
+if [[ ! "$SUDO_USER" ]]; then
+	have todo && todo
 fi
+
+true

@@ -4,13 +4,13 @@
 [ "$UID" ]	|| export UID=$(id -u)
 [ "$HOSTNAME" ]	|| export HOSTNAME=$(hostname)
 
+. ~/lib/dotfiles/environ
+
 if [ ! -d ~/.cache ]; then
 	mkdir -p -m 0700 ~/.cache
 fi
 
-. ~/lib/dotfiles/environment
-
-if [ -t 0 ]; then
+if [ "$PS1" ]; then
 	[ -f ~/.hushlogin ] && motd -q
 	echo `uptime`
 fi

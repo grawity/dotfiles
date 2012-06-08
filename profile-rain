@@ -2,12 +2,8 @@
 
 # Preferred programs
 
-export BROWSER="elinks"
-
 setpath PATH \
-	"/usr/lib/ccache/bin"				\
 	"$(ruby -rubygems -e 'puts Gem.user_dir')/bin"	\
-	"$HOME/.cabal/bin"				\
 	"$PATH"						;
 
 # Program defaults
@@ -20,8 +16,6 @@ export MPD_HOST="$(<~/.config/mpd/password)@$XDG_RUNTIME_DIR/mpd.control"
 
 export ACCDB="/run/media/$USER/grawpqi/private/accounts.db.txt"
 
-export GNULIB_SRCDIR="$HOME/src/gnu/gnulib"
-
 if [ -z "$KRB5CCNAME" ]; then
 	if [ "$XDG_RUNTIME_DIR" ] && [ -d "$XDG_RUNTIME_DIR" ]; then
 		mkdir -p "$XDG_RUNTIME_DIR/krb5cc"
@@ -32,11 +26,6 @@ if [ -z "$KRB5CCNAME" ]; then
 		export KRB5CCNAME="DIR:/tmp/krb5cc_$UID.d"
 	fi
 fi
-
-# Library settings
-
-export GTK_IM_MODULE="xim"
-export QT_IM_MODULE="xim"
 
 # Etc.
 
