@@ -275,13 +275,9 @@ if have systemctl; then
 	start() { sudo systemctl start "$@"; systemctl status "$@"; }
 	stop() { sudo systemctl stop "$@"; systemctl status "$@"; }
 	restart() { sudo systemctl restart "$@"; systemctl status "$@"; }
-	#alias start='systemctl start'
-	#alias stop='systemctl stop'
-	#alias restart='systemctl restart'
-	alias enable='systemctl enable'
-	alias disable='systemctl disable'
+	alias enable='sudo systemctl enable'
+	alias disable='sudo systemctl disable'
 	alias status='systemctl status'
-	alias sd='systemctl'
 	alias userctl='systemctl --user'
 	alias lcstatus='loginctl session-status $XDG_SESSION_ID'
 	alias tsd='tree /etc/systemd/system'
@@ -299,6 +295,10 @@ elif have start && have stop; then
 	start() { sudo start "$@"; }
 	stop() { sudo stop "$@"; }
 	restart() { sudo restart "$@"; }
+elif have service; then
+	start() { for _s; do sudo service "$_s" start; done; }
+	stop() { for _s; do sudo service "$_s" stop; done; }
+	restart() { for _s; do sudo service "$_s" restart; done; }
 elif have rc.d; then
 	start() { sudo rc.d start "$@"; }
 	stop() { sudo rc.d stop "$@"; }
@@ -307,6 +307,11 @@ elif have invoke-rc.d; then
 	start() { for _s; do sudo invoke-rc.d "$_s" start; done; }
 	stop() { for _s; do sudo invoke-rc.d "$_s" stop; done; }
 	restart() { for _s; do sudo invoke-rc.d "$_s" restart; done; }
+fi
+
+if ! have enable && have update-rc.d; then
+	enable() { for _s; do sudo update-rc.d "$_s" enable; done; }
+	disable() { for _s; do sudo update-rc.d "$_s" disable; done; }
 fi
 
 alias lp='sudo netstat -lptu --numeric-hosts'
