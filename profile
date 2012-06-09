@@ -9,14 +9,17 @@
 
 . ~/lib/dotfiles/environ
 
-if [ ! -d ~/.cache ]; then
-	mkdir -p -m 0700 ~/.cache
-fi
+# Login programs
 
-if [ "$PS1" ]; then
+case $0 in -*)
+	if [ ! -d ~/.cache ]; then
+		mkdir -p -m 0700 ~/.cache
+	fi
+	
 	[ -f ~/.hushlogin ] && motd -q
 	echo `uptime`
-fi
+	;;
+esac
 
 if [ "$BASH_VERSION" ]; then
 	[ -f ~/.bashrc ] && . ~/.bashrc
@@ -24,13 +27,11 @@ fi
 
 # Local settings
 
-if [ -f ~/lib/dotfiles/profile-$HOSTNAME ]; then
-	. ~/lib/dotfiles/profile-$HOSTNAME
-elif [ -f ~/.profile-$HOSTNAME ]; then
+if [ -f ~/.profile-$HOSTNAME ]; then
 	. ~/.profile-$HOSTNAME
 fi
 
-if [ "$LOCAL_PERL" = "n" ]; then
+if [ "$LOCAL_PERL" = n ]; then
 	export PERL_CPANM_OPT='--sudo'
 else
 	export PERL_MM_OPT="INSTALL_BASE='$PREFIX'"

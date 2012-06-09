@@ -230,7 +230,7 @@ irc() { tmux attach -t irc || tmux new -s irc -n irssi "irssi $*"; }
 alias ll='ls -l'
 alias md='mkdir'
 alias p='pager'
-path() { echo "${PATH//:/$'\n'}"; }
+path() { if [[ $1 ]]; then which -a "$@"; else echo "${PATH//:/$'\n'}"; fi; }
 alias py='python'
 alias py2='python2'
 alias rd='rmdir'
@@ -534,35 +534,12 @@ man() {
 	fi
 }
 
-
-# compatibility with coreutils < 8.0
-have nproc || nproc() {
-	local exe=$(which nproc 2>/dev/null)
-
-	[[ $exe == /* ]] &&
-		{ $exe; return; }
-
-	[[ $OMP_NUM_THREADS ]] &&
-		{ echo $OMP_NUM_THREADS; return; }
-
-	case $ostype in
-	linux-gnu)
-		getconf _NPROCESSORS_ONLN;;
-	*)
-		echo 'bash: nproc: unsupported OS' >&2;
-		echo '1';
-		return 1;;
-	esac
-}
-
 ### Environment
 
 export CVS_RSH=ssh
 
 export GREP_OPTIONS='--color=auto'
 export SUDO_PROMPT=$(printf 'sudo: Password for %%u@\e[30;43m%%h\e[m: ')
-
-export MAKEFLAGS="-j$((`nproc`+1))"
 
 if have pklist; then
 	. ~/code/kerberos/kc.bash

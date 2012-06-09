@@ -10,9 +10,9 @@ umask 022
 export PREFIX="$HOME/.local"
 
 setpath PATH \
+	"$HOME/.rbenv/shims"	\
 	"$HOME/bin"		\
 	"$HOME/code/bin"	\
-	"$HOME/.rbenv/shims"	\
 	"$HOME/.rbenv/bin"	\
 	"$HOME/.cabal/bin"	\
 	"$PREFIX/bin"		\
@@ -58,12 +58,23 @@ export QT_IM_MODULE="xim"
 export ABSROOT="$HOME/pkg"
 export ACK_PAGER="$PAGER"
 export LESS="e M q R F X z -3"
-export LESSHISTFILE=~/.cache/less.history
+export LESSHISTFILE="$HOME/.cache/less.history"
+export MAKEFLAGS="-j$(($(nproc)+1))"
 export MYSQL_HISTFILE="$HOME/.cache/mysql.history"
 export PYTHONSTARTUP="$HOME/lib/dotfiles/pythonrc"
 
 # local
 
-if [ -e "$HOME/lib/dotfiles/environ-$HOSTNAME" ]; then
-	. "$HOME/lib/dotfiles/environ-$HOSTNAME"
+if [ -z "$XDG_SESSION_ID" ] && [ -e /proc/self/sessionid ]; then
+	read XDG_SESSION_ID < /proc/self/sessionid
+
+	if [ "$XDG_SESSION_ID" -lt 4294967295 ]; then
+		export XDG_SESSION_ID
+	else
+		unset XDG_SESSION_ID
+	fi
+fi
+
+if [ -e ~/.environ-$HOSTNAME ]; then
+	. ~/.environ-$HOSTNAME
 fi
