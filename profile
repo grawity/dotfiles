@@ -1,4 +1,7 @@
-#!/bin/sh
+#!bash
+[ "$DEBUG" ]	&& echo "++ profile [self=$0]"
+
+# Environment
 
 [ "$USER" ]	|| export USER=$(id -un)
 [ "$UID" ]	|| export UID=$(id -u)

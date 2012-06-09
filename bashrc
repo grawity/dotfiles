@@ -1,6 +1,8 @@
 #!bash
 # ~/.bashrc: bash(1)
 
+[[ $DEBUG ]] && echo "++ bashrc [self=$0 prefix=$PREFIX]"
+
 have() { command -v "$1" >&/dev/null; }
 
 ### Environment
@@ -20,6 +22,8 @@ export HOSTALIASES=~/.hosts
 ### Interactive-only options
 
 [[ $- = *i* ]] || return 0
+
+[[ $DEBUG ]] && echo ".. bashrc [interactive=$-]"
 
 shopt -os physical		# resolve symlinks on 'cd'
 shopt -s checkjobs 2> /dev/null	# print job status on exit
