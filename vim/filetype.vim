@@ -37,6 +37,9 @@ augroup filetypedetect
 	" tmux
 	au BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
 
+	" vim
+	au BufNewFile,BufRead .vimdir setf vim
+
 	" xinetd
 	au BufNewFile,BufRead *.xinetd setf xinetd
 	au BufNewFile,BufRead /etc/xinetd.d/* setf xinetd
