@@ -7,6 +7,8 @@ have() { command -v "$1" >&/dev/null; }
 
 ### Environment
 
+. ~/lib/dotfiles/environ
+
 [[ $PREFIX ]] ||
 	. ~/.profile
 
