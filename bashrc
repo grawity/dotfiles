@@ -253,6 +253,7 @@ alias hup='pkill -HUP -x'
 irc() { tmux attach -t irc || tmux new -s irc -n irssi "irssi $*"; }
 alias ll='ls -l'
 alias md='mkdir'
+alias nul='tr \\0 \\n'
 alias p='pager'
 path() { if [[ $1 ]]; then which -a "$@"; else echo "${PATH//:/$'\n'}"; fi; }
 alias py='python'
