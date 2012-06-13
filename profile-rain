@@ -4,6 +4,7 @@
 
 setpath PATH \
 	"$(ruby -rubygems -e 'puts Gem.user_dir')/bin"	\
+	"$HOME/lib/mosh/bin"				\
 	"$PATH"						;
 
 # Program defaults
