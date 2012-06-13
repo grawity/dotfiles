@@ -91,11 +91,30 @@ case $TERM in
 esac
 
 __ps1_pwd() {
-	local dir=${PWD/#$HOME/\~} pref= suff=
+	local dir=${PWD/#$HOME/\~} pref= suff= coll=0
+	local maxw=$(( COLUMNS - ${#HOSTNAME} - 4 ))
 	if [[ $dir == '~' ]]; then
 		pref='' suff=$dir
 	else
 		pref=${dir%/*}/ suff=${dir##*/}
+	fi
+	if [[ ${dir:0:2} == '~/' ]]; then
+		maxw=$(( maxw - 2 ))
+	fi
+	if (( ${#suff} > maxw )); then
+		pref=${pref##*/}
+		coll=1
+	else
+		while (( ${#pref} + ${#suff} > maxw )); do
+			pref=${pref#*/}
+			coll=1
+		done
+	fi
+	if (( coll )); then
+		pref='…/'$pref
+		if [[ ${dir:0:2} == '~/' ]]; then
+			pref='~/'$pref
+		fi
 	fi
 	printf '%s\001\e[%sm\002%s\001\e[0m\002' "$pref" "$color_cwd" "$suff"
 }
