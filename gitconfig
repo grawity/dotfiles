@@ -91,10 +91,6 @@
 [url "ssh://"]
 	pushInsteadOf = git://
 
-[url "ssh://equal.cluenet.org/srv/git/equal.cluenet.org/"]
-	# UGH.
-	pushInsteadOf = git://equal.cluenet.org/
-
 [url "git://panther.nathan7.eu/~grawity/pub/git/"]
 	insteadOf = nullroute:
 [url "ssh://panther.nathan7.eu/~grawity/pub/git/"]
