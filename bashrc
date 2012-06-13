@@ -194,9 +194,11 @@ show_status() {
 }
 update_title() {
 	if [[ ! $title ]]; then
-		local title="$USER@$HOSTNAME ${PWD/#$HOME/~}"
-		[[ $SSH_TTY && $DISPLAY ]] &&
-			title+=" (X11)"
+		local title=
+		[[ $USER != 'grawity' ]] && title+="$USER@"
+		title+="$HOSTNAME ${PWD/#$HOME/~}"
+		[[ $DISPLAY && ( $SSH_TTY || $DISPLAY != ':'* ) ]] &&
+			title+=" ($DISPLAY)"
 	fi
 	printf "$titlestring" "$title"
 }
