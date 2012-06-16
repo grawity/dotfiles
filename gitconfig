@@ -92,9 +92,10 @@
 	pushInsteadOf = git://
 
 [url "git://panther.nathan7.eu/~grawity/pub/git/"]
-	insteadOf = nullroute:
+	#insteadOf = nullroute:
 [url "ssh://panther.nathan7.eu/~grawity/pub/git/"]
 	insteadOf = nullroute+ssh:
+	insteadOf = nullroute:
 	pushInsteadOf = nullroute:
 
 [url "git://anongit.freedesktop.org/"]
