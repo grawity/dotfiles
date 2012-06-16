@@ -7,7 +7,9 @@ syn region	qdbSeparator	display oneline start=+^%+ end=+$+
 syn match	qdbNick		/^<[ +%&@!~]\?[^ ]\+>/
 syn match	qdbNick		/^([ +%&@!~]\?[^ ]\+)/
 syn match	qdbNick		/^\[[ +%&@!~]\?[^ ]\+\]/
+syn match	qdbAction	/^\s*\*.*/
 
 hi def link qdbComment		Comment
 hi def link qdbSeparator	Label
-hi def link qdbNick		String
+hi def link qdbNick		Statement
+hi def link qdbAction		Function
