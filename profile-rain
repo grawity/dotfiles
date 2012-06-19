@@ -18,7 +18,7 @@ export MPD_HOST="$(<~/.config/mpd/password)@$XDG_RUNTIME_DIR/mpd.control"
 export ACCDB="/run/media/$USER/grawpqi/private/accounts.db.txt"
 
 if [ -z "$KRB5CCNAME" ]; then
-	if [ "$XDG_RUNTIME_DIR" ] && [ -d "$XDG_RUNTIME_DIR" ]; then
+	if [ -d "$XDG_RUNTIME_DIR" ]; then
 		mkdir -p "$XDG_RUNTIME_DIR/krb5cc"
 		export KRB5CCNAME="DIR:$XDG_RUNTIME_DIR/krb5cc"
 	elif [ -O "/tmp/krb5cc_$UID.d" ] && [ -d "/tmp/krb5cc_$UID.d" ]; then
