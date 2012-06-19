@@ -243,7 +243,6 @@ alias cur='cur '
 alias df='df -Th'
 alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs'
 alias dnstracer='dnstracer -s .'
-alias egrep='grep -E'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
 g() { egrep -rn --color=always "$@" .; }
 alias facl='getfacl -pt'
@@ -253,11 +252,12 @@ alias hup='pkill -HUP -x'
 irc() { tmux attach -t irc || tmux new -s irc -n irssi "irssi $*"; }
 alias ll='ls -l'
 alias md='mkdir'
-alias nul='tr \\0 \\n'
+nul() { cat "$@" | tr '\0' '\n'; }
 alias p='pager'
 path() { if [[ $1 ]]; then which -a "$@"; else echo "${PATH//:/$'\n'}"; fi; }
 alias py='python'
 alias py2='python2'
+alias py3='python3'
 alias rd='rmdir'
 alias rot13='tr N-ZA-Mn-za-m A-Za-z'
 rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}"; echo; }
@@ -288,6 +288,7 @@ ldapsetconf() {
 }
 
 alias logoff='logout'
+
 case $DESKTOP_SESSION in
 gnome|ubuntu)
 	alias logout='gnome-session-quit --logout --force --no-prompt &&
@@ -300,8 +301,8 @@ kde-plasma)
 esac
 
 if have systemctl; then
-	start() { sudo systemctl start "$@"; systemctl status "$@"; }
-	stop() { sudo systemctl stop "$@"; systemctl status "$@"; }
+	start()   { sudo systemctl start "$@"; systemctl status "$@"; }
+	stop()    { sudo systemctl stop "$@"; systemctl status "$@"; }
 	restart() { sudo systemctl restart "$@"; systemctl status "$@"; }
 	alias enable='sudo systemctl enable'
 	alias disable='sudo systemctl disable'
@@ -320,27 +321,21 @@ if have systemctl; then
 		fi
 	}
 elif have start && have stop; then
-	start() { sudo start "$@"; }
-	stop() { sudo stop "$@"; }
+	start()   { sudo start "$@"; }
+	stop()    { sudo stop "$@"; }
 	restart() { sudo restart "$@"; }
 elif have service; then
-	start() { for _s; do sudo service "$_s" start; done; }
-	stop() { for _s; do sudo service "$_s" stop; done; }
+	start()   { for _s; do sudo service "$_s" start; done; }
+	stop()    { for _s; do sudo service "$_s" stop; done; }
 	restart() { for _s; do sudo service "$_s" restart; done; }
 elif have rc.d; then
-	start() { sudo rc.d start "$@"; }
-	stop() { sudo rc.d stop "$@"; }
+	start()   { sudo rc.d start "$@"; }
+	stop()    { sudo rc.d stop "$@"; }
 	restart() { sudo rc.d restart "$@"; }
 elif have invoke-rc.d; then
-	start() { for _s; do sudo invoke-rc.d "$_s" start; done; }
-	stop() { for _s; do sudo invoke-rc.d "$_s" stop; done; }
+	start()   { for _s; do sudo invoke-rc.d "$_s" start; done; }
+	stop()    { for _s; do sudo invoke-rc.d "$_s" stop; done; }
 	restart() { for _s; do sudo invoke-rc.d "$_s" restart; done; }
-fi
-
-if have update-rc.d; then
-	_enable() { for _s; do sudo update-rc.d "$_s" enable; done; }
-	_disable() { for _s; do sudo update-rc.d "$_s" disable; done; }
-	alias enable='_enable' disable='_disable'
 fi
 
 alias lp='sudo netstat -lptu --numeric-hosts'
