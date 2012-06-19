@@ -226,7 +226,7 @@ LS_OPTIONS="ls -Fh"
 if [[ $havecolor ]]; then
 	case $OSTYPE in
 		linux-gnu|cygwin)
-			LS_OPTIONS="$LS_OPTIONS --color=auto"
+			LS_OPTIONS="$LS_OPTIONS -v --color=auto"
 			eval $(dircolors ~/lib/dotfiles/dircolors)
 			;;
 	esac
