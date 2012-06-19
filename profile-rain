@@ -28,6 +28,20 @@ if [ -z "$KRB5CCNAME" ]; then
 	fi
 fi
 
+if [ -d "$XDG_RUNTIME_DIR" ]; then
+	if [ ! -e "$HOME/run" ]; then
+		ln -nsf "$XDG_RUNTIME_DIR" "$HOME/run"
+	fi
+	if [ -d "/run/media/$USER" ]; then
+		if [ ! -e "$XDG_RUNTIME_DIR/media" ]; then
+			ln -nsf "/run/media/$USER" "$XDG_RUNTIME_DIR/media"
+		fi
+		if [ ! -e "$HOME/media" ]; then
+			ln -nsf "/run/media/$USER" "$HOME/media"
+		fi
+	fi
+fi
+
 # Etc.
 
 #export LD_PRELOAD='/usr/$LIB/libv4l/v4l1compat.so'
