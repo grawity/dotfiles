@@ -18,8 +18,8 @@ Version() {
 	local minversion=$1
 	local curversion=${SSHVERSION:=$(ssh -V |&
 				sed -rn 's/OpenSSH_([^ ]+).*/\1/p')}
-	minversion=${minversion%p*}
-	curversion=${curversion%p*}
+	minversion=${minversion%p*}.
+	curversion=${curversion%p*}.
 	local loop=0
 
 	while [[ $minversion && $curversion ]]; do
@@ -34,8 +34,8 @@ Version() {
 		else
 			debug "compare $minhead = $curhead"
 		fi
-		minversion=${minversion#*.}
-		curversion=${curversion#*.}
+		minversion=${minversion#*.}.
+		curversion=${curversion#*.}.
 		(( ++loop > 10 )) && break
 	done
 }
