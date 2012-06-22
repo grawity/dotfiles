@@ -240,8 +240,6 @@ pager() { eval command "${PAGER:-less}" '"$@"'; }
 
 count() { sort "$@" | uniq -c | sort -n -r | pager; }
 alias cur='cur '
-alias df='df -Th'
-alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs'
 alias dnstracer='dnstracer -s .'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
 g() { egrep -rn --color=always "$@" .; }
@@ -278,6 +276,17 @@ alias xx='chmod a+x'
 X() { (setsid "$@" &>> ~/.xsession-errors &); }
 alias '~'='grep -P'
 alias '~~'='grep -P -i'
+alias takeown='sudo chown "${UID}:${GROUPS[0]}"'
+
+case $OSTYPE in
+	linux-gnu)
+		alias df='df -Th'
+		alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs'
+		;;
+	*)
+		alias df='df -h'
+		;;
+esac
 
 ldapsetconf() {
 	if [[ $1 ]]; then
