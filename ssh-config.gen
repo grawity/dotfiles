@@ -17,7 +17,10 @@ Host() {
 Version() {
 	local minversion=$1
 	local curversion=${SSHVERSION:=$(ssh -V |&
-				sed -rn 's/OpenSSH_([^ ]+)p?.*/\1/p')}
+				sed -rn 's/OpenSSH_([^ ]+).*/\1/p')}
+	minversion=${minversion%p*}
+	curversion=${curversion%p*}
+	local loop=0
 
 	while [[ $minversion && $curversion ]]; do
 		local minhead=${minversion%%.*}
@@ -33,6 +36,7 @@ Version() {
 		fi
 		minversion=${minversion#*.}
 		curversion=${curversion#*.}
+		(( ++loop > 10 )) && break
 	done
 }
 
