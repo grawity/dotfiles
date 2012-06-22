@@ -21,7 +21,8 @@ setpath PATH \
 	"$PATH"			\
 	"/usr/local/sbin" 	\
 	"/usr/sbin"		\
-	"/sbin"			;
+	"/sbin"			\
+	"$HOME/code/bin/fbin"	;
 
 setpath PYTHONPATH \
 	"$PREFIX/lib/python"	\
@@ -74,6 +75,12 @@ if [ -z "$XDG_SESSION_ID" ] && [ -e /proc/self/sessionid ]; then
 		unset XDG_SESSION_ID
 	fi
 fi
+
+case $HOSTNAME in
+'vm-bea5t')
+	export PKG_PATH="ftp://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/5.1/All"
+	;;
+esac
 
 if [ -e ~/.environ-$HOSTNAME ]; then
 	. ~/.environ-$HOSTNAME
