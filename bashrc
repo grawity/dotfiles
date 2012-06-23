@@ -270,7 +270,6 @@ tube() {
 tubex() { youtube-dl --console-title -c -o "%(title)s.%(ext)s" "$@"; }
 tubes() { youtube-dl --console-title -c --title "$@"; }
 up() { local p= i=${1:-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
-alias w='PROCPS_USERLEN=16 w -s -h'
 wim() { editor "$(which "$1")"; }
 alias xx='chmod a+x'
 X() { (setsid "$@" &>> ~/.xsession-errors &); }
@@ -282,6 +281,11 @@ case $OSTYPE in
 	linux-gnu)
 		alias df='df -Th'
 		alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs'
+		alias w='PROCPS_USERLEN=16 w -s -h'
+		;;
+	netbsd|freebsd*)
+		alias df='df -h'
+		alias w='w -h'
 		;;
 	*)
 		alias df='df -h'
