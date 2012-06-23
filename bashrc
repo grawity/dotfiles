@@ -307,6 +307,10 @@ kde-plasma)
 	alias logout='qdbus org.kde.ksmserver /KSMServer logout 0 -1 -1 &&
 		echo Logging out of KDE...'
 	;;
+openbox)
+	alias logout='openbox --exit &&
+		echo Logging out of Openbox...'
+	;;
 esac
 
 if have systemctl; then
