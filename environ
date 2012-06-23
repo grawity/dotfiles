@@ -78,7 +78,7 @@ fi
 
 case $HOSTNAME in
 'vm-bea5t')
-	export PKG_PATH="ftp://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/5.1/All"
+	export PKG_PATH="ftp://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/6.0/All"
 	;;
 esac
 
