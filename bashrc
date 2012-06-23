@@ -22,6 +22,9 @@ export HOSTALIASES=~/.hosts
 [[ $LANG == *.utf8 ]] &&
 	LANG=${LANG/%'.utf8'/'.utf-8'}
 
+[[ -z $DESKTOP_SESSION && $OS == "Windows_NT" ]] &&
+	export DESKTOP_SESSION=$OS
+
 ### Interactive-only options
 
 [[ $- = *i* ]] || return 0
@@ -222,18 +225,6 @@ a() {
 	fi
 }
 
-LS_OPTIONS="ls -Fh"
-if [[ $havecolor ]]; then
-	case $OSTYPE in
-		linux-gnu|cygwin)
-			LS_OPTIONS="$LS_OPTIONS -v --color=auto"
-			eval $(dircolors ~/lib/dotfiles/dircolors)
-			;;
-	esac
-fi
-alias ls="$LS_OPTIONS"
-unset LS_OPTIONS
-
 editor() { eval command "${EDITOR:-vim}" '"$@"'; }
 browser() { eval command "${BROWSER:-lynx}" '"$@"'; }
 pager() { eval command "${PAGER:-less}" '"$@"'; }
@@ -269,28 +260,43 @@ tube() {
 }
 tubex() { youtube-dl --console-title -c -o "%(title)s.%(ext)s" "$@"; }
 tubes() { youtube-dl --console-title -c --title "$@"; }
-up() { local p= i=${1:-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
+up() { local p= i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
 wim() { editor "$(which "$1")"; }
 alias xx='chmod a+x'
 X() { (setsid "$@" &>> ~/.xsession-errors &); }
-alias '~'='grep -P'
-alias '~~'='grep -P -i'
+alias '~'='egrep'
+alias '~~'='egrep -i'
 alias takeown='sudo chown "${UID}:${GROUPS[0]}"'
 
+LS_OPTIONS="-F -h"
+
 case $OSTYPE in
+	*)
+		alias df='df -h'
+		;;&
+	linux-gnu|cygwin)
+		if [[ $havecolor ]]; then
+			LS_OPTIONS="$LS_OPTIONS -v --color=auto"
+			eval $(dircolors ~/lib/dotfiles/dircolors)
+		fi
+		;;&
 	linux-gnu)
 		alias df='df -Th'
 		alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs'
 		alias w='PROCPS_USERLEN=16 w -s -h'
-		;;
-	netbsd|freebsd*)
+		;;&
+	cygwin)
+		alias df='df -Th'
+		alias ddf='df'
+		;;&
+	freebsd*|netbsd)
 		alias df='df -h'
 		alias w='w -h'
-		;;
-	*)
-		alias df='df -h'
-		;;
+		;;&
 esac
+
+alias ls="ls $LS_OPTIONS"
+unset LS_OPTIONS
 
 ldapsetconf() {
 	if [[ $1 ]]; then
@@ -314,6 +320,10 @@ kde-plasma)
 openbox)
 	alias logout='openbox --exit &&
 		echo Logging out of Openbox...'
+	;;
+Windows_NT)
+	alias logout='logoff.exe &&
+		echo Logging out of Windows...'
 	;;
 esac
 
@@ -385,6 +395,7 @@ lspkgs() {
 	if have dpkg;		then dpkg -l | awk '/^i/ {print $2}'
 	elif have pacman;	then pacman -Qq
 	elif have pkg_info;	then pkg_info
+	elif have apt-cyg;	then apt-cyg show
 	else echo "no package manager" >&2; return 1; fi
 }
 
@@ -404,6 +415,7 @@ owns() {
 	if have dpkg;		then dpkg -S "$file"
 	elif have pacman;	then pacman -Qo "$file"
 	elif have rpm;		then rpm -q --whatprovides "$file"
+	elif have apt-cyg;	then apt-cyg packageof "$file"
 	else echo "no package manager" >&2; return 1; fi
 }
 
