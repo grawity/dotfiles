@@ -38,7 +38,11 @@ endif
 " UI elements
 
 if has("gui_running")
-	set guifont=DejaVu\ Sans\ Mono:h9:cBALTIC
+	if has("gui_gtk")
+		set guifont=DejaVu\ Sans\ Mono\ 10
+	elseif has("gui_win32")
+		set guifont=DejaVu_Sans_Mono:h9
+	endif
 	set guioptions-=T
 endif
 
