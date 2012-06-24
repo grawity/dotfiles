@@ -22,6 +22,7 @@ setpath PATH \
 	"/usr/local/sbin" 	\
 	"/usr/sbin"		\
 	"/sbin"			\
+	"/opt/csw/bin"		\
 	"$HOME/code/bin/fbin"	;
 
 setpath PYTHONPATH \
