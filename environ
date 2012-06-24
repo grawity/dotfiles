@@ -62,14 +62,14 @@ export ABSROOT="$HOME/pkg"
 export ACK_PAGER="$PAGER"
 export LESS="e M q R F X z -3"
 export LESSHISTFILE="$HOME/.cache/less.history"
-export MAKEFLAGS="-j$(($(nproc)+1))"
+export MAKEFLAGS="-j$(nproc)"
 export MYSQL_HISTFILE="$HOME/.cache/mysql.history"
 export PYTHONSTARTUP="$HOME/lib/dotfiles/pythonrc"
 
 # local
 
 case $HOSTNAME in
-'vm-bea5t')
+vm-bea5t)
 	export PKG_PATH="ftp://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/6.0/All"
 	;;
 esac
