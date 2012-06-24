@@ -271,28 +271,22 @@ alias takeown='sudo chown "${UID}:${GROUPS[0]}"'
 LS_OPTIONS="-F -h"
 
 case $OSTYPE in
-	*)
-		alias df='df -h'
-		;;&
 	linux-gnu|cygwin)
 		if [[ $havecolor ]]; then
 			LS_OPTIONS="$LS_OPTIONS -v --color=auto"
 			eval $(dircolors ~/lib/dotfiles/dircolors)
 		fi
-		;;&
-	linux-gnu)
 		alias df='df -Th'
 		alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs'
 		alias w='PROCPS_USERLEN=16 w -s -h'
-		;;&
-	cygwin)
-		alias df='df -Th'
-		alias ddf='df'
-		;;&
+		;;
 	freebsd*|netbsd)
 		alias df='df -h'
 		alias w='w -h'
-		;;&
+		;;
+	*)
+		alias df='df -h'
+		;;
 esac
 
 alias ls="ls $LS_OPTIONS"
