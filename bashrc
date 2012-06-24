@@ -95,6 +95,7 @@ esac
 
 __ps1_pwd() {
 	local dir=${PWD/#$HOME/\~} pref= suff= coll=0
+	local COLUMNS=${COLUMNS:-$(tput cols)}
 	local maxw=$(( COLUMNS - ${#HOSTNAME} - 4 ))
 	if [[ $dir == '~' ]]; then
 		pref='' suff=$dir
