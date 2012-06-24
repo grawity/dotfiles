@@ -3,11 +3,19 @@
 
 setpath() { local IFS=: var=$1; shift; export "$var=$*"; }
 
+# basic environ
+
 umask 022
 
-# paths
+set -a
 
-export PREFIX="$HOME/.local"
+[ "$USER" ]     || USER=`id -un`
+[ "$UID" ]      || UID=`id -u`
+[ "$HOSTNAME" ] || HOSTNAME=`hostname`
+
+# paths/locations
+
+PREFIX="$HOME/.local"
 
 setpath PATH \
 	"$HOME/.rbenv/shims"		\
@@ -34,37 +42,37 @@ setpath PERL5LIB \
 	"$PREFIX/lib/perl5"		\
 	"$HOME/code/lib/perl5"		;
 
-export GNULIB_SRCDIR="$HOME/src/gnu/gnulib"
+GNULIB_SRCDIR="$HOME/src/gnu/gnulib"
 
 # identity
 
-export NAME='Mantas Mikulėnas'
-export EMAIL="grawity@nullroute.eu.org"
-export TZ="Europe/Vilnius"
+NAME='Mantas Mikulėnas'
+EMAIL="grawity@nullroute.eu.org"
+TZ="Europe/Vilnius"
 
 # preferred programs
 
-export PAGER="less"
-export EDITOR="vim"
+PAGER="less"
+EDITOR="vim"
 unset VISUAL
-export BROWSER="web-browser"
+BROWSER="web-browser"
 
 # libdefaults
 
-export GTK_IM_MODULE="xim"
-export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
-export NCURSES_NO_UTF8_ACS="1"
-export QT_IM_MODULE="xim"
+GTK_IM_MODULE="xim"
+_JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
+NCURSES_NO_UTF8_ACS="1"
+QT_IM_MODULE="xim"
 
 # appdefaults
 
-export ABSROOT="$HOME/pkg"
-export ACK_PAGER="$PAGER"
-export LESS="e M q R F X z -3"
-export LESSHISTFILE="$HOME/.cache/less.history"
-export MAKEFLAGS="-j$(nproc)"
-export MYSQL_HISTFILE="$HOME/.cache/mysql.history"
-export PYTHONSTARTUP="$HOME/lib/dotfiles/pythonrc"
+ABSROOT="$HOME/pkg"
+ACK_PAGER="$PAGER"
+LESS="e M q R F X z -3"
+LESSHISTFILE="$HOME/.cache/less.history"
+MAKEFLAGS="-j$(nproc)"
+MYSQL_HISTFILE="$HOME/.cache/mysql.history"
+PYTHONSTARTUP="$HOME/lib/dotfiles/pythonrc"
 
 # local
 
@@ -74,11 +82,15 @@ elif [ -e ~/.environ-$HOSTNAME ]; then
 	. ~/.environ-$HOSTNAME
 fi
 
-# Perl
+# appdefaults - local
 
 if [ "$LOCAL_PERL" = n ]; then
-	export PERL_CPANM_OPT="--sudo"
+	PERL_CPANM_OPT="--sudo"
 else
-	export PERL_MM_OPT="INSTALL_BASE='$PREFIX'"
-	export PERL_MB_OPT="--install_base '$PREFIX'"
+	PERL_MM_OPT="INSTALL_BASE='$PREFIX'"
+	PERL_MB_OPT="--install_base '$PREFIX'"
 fi
+
+# disable allexport
+
+set +a
