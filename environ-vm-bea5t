@@ -1,0 +1,2 @@
+#!bash
+export PKG_PATH="ftp://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/6.0/All"

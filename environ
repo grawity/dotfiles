@@ -68,13 +68,9 @@ export PYTHONSTARTUP="$HOME/lib/dotfiles/pythonrc"
 
 # local
 
-case $HOSTNAME in
-vm-bea5t)
-	export PKG_PATH="ftp://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/6.0/All"
-	;;
-esac
-
-if [ -e ~/.environ-$HOSTNAME ]; then
+if [ -e ~/lib/dotfiles/environ-$HOSTNAME ]; then
+	. ~/lib/dotfiles/environ-$HOSTNAME
+elif [ -e ~/.environ-$HOSTNAME ]; then
 	. ~/.environ-$HOSTNAME
 fi
 
