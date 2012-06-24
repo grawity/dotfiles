@@ -76,3 +76,12 @@ esac
 if [ -e ~/.environ-$HOSTNAME ]; then
 	. ~/.environ-$HOSTNAME
 fi
+
+# Perl
+
+if [ "$LOCAL_PERL" = n ]; then
+	export PERL_CPANM_OPT="--sudo"
+else
+	export PERL_MM_OPT="INSTALL_BASE='$PREFIX'"
+	export PERL_MB_OPT="--install_base '$PREFIX'"
+fi
