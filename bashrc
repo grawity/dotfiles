@@ -263,7 +263,7 @@ tubes() { youtube-dl --console-title -c --title "$@"; }
 up() { local p= i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
 wim() { editor "$(which "$1")"; }
 alias xx='chmod a+x'
-X() { (setsid "$@" &>> ~/.xsession-errors &); }
+X() { (spawn "$@" >> ~/.xsession-errors 2>&1 &); }
 alias '~'='egrep'
 alias '~~'='egrep -i'
 alias takeown='sudo chown "${UID}:${GROUPS[0]}"'
