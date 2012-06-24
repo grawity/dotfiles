@@ -194,7 +194,7 @@ if (( havecolor )); then
 	PS2="\[\e[;1;30m\]...\[\e[m\] "
 	PS4="+\e[34m\${BASH_SOURCE:--}:\e[1m\$LINENO\e[m:\${FUNCNAME:+\e[33m\$FUNCNAME\e[m} "
 else
-	PS1='\u@\h \w\n\$ '
+	PS1='\n\u@\h \w\n\$ '
 	PS2='... '
 	PS4="+\${BASH_SOURCE:--}:\$LINENO:\$FUNCNAME "
 fi
