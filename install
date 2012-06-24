@@ -51,6 +51,11 @@ link profile	~/.profile
 link vimrc	~/.vimrc
 link vim/	~/.vim
 
+trash ~/.cshrc
+trash ~/.login
+trash ~/.logout
+trash ~/.shrc
+
 if [[ -e ~/.ssh/config-$HOSTNAME.gen ]]; then
 	"$dir/ssh-config.gen" -f
 else
