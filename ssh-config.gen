@@ -16,7 +16,7 @@ Host() {
 
 Version() {
 	local minversion=$1
-	local curversion=${SSHVERSION:=$(ssh -V |&
+	local curversion=${SSHVERSION:=$(ssh -V 2>&1 |
 				sed -rn 's/OpenSSH_([^ ]+).*/\1/p')}
 	minversion=${minversion%p*}.
 	curversion=${curversion%p*}.
