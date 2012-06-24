@@ -56,7 +56,7 @@ complete -A directory cd
 # color capabilities
 case $TERM in
 	xterm)
-		havecolor=y
+		havecolor=8
 		if [[ -z $COLORTERM ]] && [[ -f /proc/$PPID/cmdline ]]; then
 			read -r -d '' comm </proc/$PPID/cmdline
 			comm=${comm##*/}
@@ -72,16 +72,17 @@ case $TERM in
 		fi
 		if [[ $COLORTERM ]]; then
 			TERM="$TERM-256color"
+			havecolor=256
 		fi
 		;;
-	xterm-*)
-		havecolor=y
+	vt100|vt220|vt320)
+		havecolor=8
 		;;
 	'')
-		havecolor=n
+		havecolor=0
 		;;
 	*)
-		havecolor=$(have tput && tput setaf)
+		havecolor=$(have tput && tput colors 2>/dev/null)
 		;;
 esac
 
@@ -148,14 +149,18 @@ __is_remote() {
 	[[ $SSH_TTY || $LOGIN || $REMOTEHOST ]]
 }
 
-if [[ $havecolor ]]; then
+if (( havecolor )); then
 	PS1="\n"
 	if (( $UID == 0 )); then
 		color_name='37;41'
 		item='\h'
 		prompt='#'
 	elif [[ $USER == "grawity" ]]; then
-		color_name='38;5;71'
+		if (( havecolor == 256 )); then
+			color_name='38;5;71'
+		else
+			color_name='32'
+		fi
 		item='\h'
 		prompt='$'
 	else
@@ -163,10 +168,18 @@ if [[ $havecolor ]]; then
 		item='\u@\h'
 		prompt='$'
 	fi
-	color_pwd='38;5;144'
-	color_cwd='1'
-	color_vcs='38;5;167'
-	color_prompt=''
+
+	if (( havecolor == 256 )); then
+		color_pwd='38;5;144'
+		color_cwd='1'
+		color_vcs='38;5;167'
+		color_prompt=''
+	else
+		color_pwd='33'
+		color_cwd='1'
+		color_vcs='1;31'
+		color_prompt=''
+	fi
 
 	__is_remote && prompt='^'
 
@@ -273,7 +286,7 @@ LS_OPTIONS="-F -h"
 
 case $OSTYPE in
 	linux-gnu|cygwin)
-		if [[ $havecolor ]]; then
+		if (( havecolor )); then
 			LS_OPTIONS="$LS_OPTIONS -v --color=auto"
 			eval $(dircolors ~/lib/dotfiles/dircolors)
 		fi
