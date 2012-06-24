@@ -10,28 +10,29 @@ umask 022
 export PREFIX="$HOME/.local"
 
 setpath PATH \
-	"$HOME/.rbenv/shims"	\
-	"$HOME/bin"		\
-	"$HOME/code/bin"	\
-	"$HOME/.rbenv/bin"	\
-	"$HOME/.cabal/bin"	\
-	"$PREFIX/bin"		\
-	"/usr/lib/ccache/bin"	\
-	"/usr/lib/ccache"	\
-	"$PATH"			\
-	"/usr/local/sbin" 	\
-	"/usr/sbin"		\
-	"/sbin"			\
-	"/opt/csw/bin"		\
-	"$HOME/code/bin/fbin"	;
+	"$HOME/.rbenv/shims"		\
+	"$HOME/bin"			\
+	"$HOME/code/obj/sys.$HOSTNAME"	\
+	"$HOME/code/bin"		\
+	"$HOME/.rbenv/bin"		\
+	"$HOME/.cabal/bin"		\
+	"$PREFIX/bin"			\
+	"/usr/lib/ccache/bin"		\
+	"/usr/lib/ccache"		\
+	"$PATH"				\
+	"/usr/local/sbin" 		\
+	"/usr/sbin"			\
+	"/sbin"				\
+	"/opt/csw/bin"			\
+	"$HOME/code/bin/fbin"		;
 
 setpath PYTHONPATH \
-	"$PREFIX/lib/python"	\
-	"$HOME/code/lib/python"	;
+	"$PREFIX/lib/python"		\
+	"$HOME/code/lib/python"		;
 
 setpath PERL5LIB \
-	"$PREFIX/lib/perl5"	\
-	"$HOME/code/lib/perl5"	;
+	"$PREFIX/lib/perl5"		\
+	"$HOME/code/lib/perl5"		;
 
 export GNULIB_SRCDIR="$HOME/src/gnu/gnulib"
 
