@@ -1,7 +1,11 @@
 #!bash
-[ "$DEBUG" ] && echo "++ profile [arg0=$0]"
+test "$DEBUG" && echo "++ profile [arg0=$0]"
+
+# environ
 
 . ~/lib/dotfiles/environ
+
+# login
 
 case $0 in -*)
 	test -d ~/.cache || mkdir -p -m 0700 ~/.cache
@@ -11,6 +15,8 @@ case $0 in -*)
 	echo `uptime`
 	;;
 esac
+
+# misc
 
 if [ "$BASH" ] && [ -r ~/.bashrc ]; then
 	. ~/.bashrc
