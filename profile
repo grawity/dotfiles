@@ -18,7 +18,7 @@ esac
 
 # misc
 
-if [ "$BASH" ] && [ -r ~/.bashrc ]; then
+if [ "$BASH" ] && [ -f ~/.bashrc ]; then
 	. ~/.bashrc
 fi
 

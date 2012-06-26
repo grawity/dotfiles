@@ -76,9 +76,9 @@ PYTHONSTARTUP="$HOME/lib/dotfiles/pythonrc"
 
 # local
 
-if [ -e ~/lib/dotfiles/environ-$HOSTNAME ]; then
+if [ -f ~/lib/dotfiles/environ-$HOSTNAME ]; then
 	. ~/lib/dotfiles/environ-$HOSTNAME
-elif [ -e ~/.environ-$HOSTNAME ]; then
+elif [ -f ~/.environ-$HOSTNAME ]; then
 	. ~/.environ-$HOSTNAME
 fi
 
