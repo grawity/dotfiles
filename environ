@@ -1,7 +1,9 @@
 #!bash
 [ "$DEBUG" ] && echo "++ environ"
 
-setpath() { local IFS=: var=$1; shift; export "$var=$*"; }
+joins() { var=$1; shift; eval "$var=\$*"; unset var; }
+
+setpath() { IFS=":" joins "$@"; }
 
 # basic environ
 
