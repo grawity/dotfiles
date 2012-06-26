@@ -20,7 +20,7 @@ PREFIX="$HOME/.local"
 setpath PATH \
 	"$HOME/.rbenv/shims"		\
 	"$HOME/bin"			\
-	"$HOME/code/obj/sys.$HOSTNAME"	\
+	"$HOME/code/obj/host.$HOSTNAME"	\
 	"$HOME/code/bin"		\
 	"$HOME/.rbenv/bin"		\
 	"$HOME/.cabal/bin"		\
@@ -52,10 +52,10 @@ TZ="Europe/Vilnius"
 
 # preferred programs
 
-PAGER="less"
+BROWSER="web-browser"
 EDITOR="vim"
 unset VISUAL
-BROWSER="web-browser"
+PAGER="less"
 
 # libdefaults
 

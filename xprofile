@@ -1,6 +1,8 @@
 #!sh
 
-ulimit -c 65536
+if [ -f ~/.Xkbmap ]; then
+	setxkbmap `cat ~/.Xkbmap`
+fi
 
 #spawn -l- acpieventd
 
