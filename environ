@@ -72,7 +72,7 @@ ABSROOT="$HOME/pkg"
 ACK_PAGER="$PAGER"
 LESS="e M q R F X z -3"
 LESSHISTFILE="$HOME/.cache/less.history"
-MAKEFLAGS="-j$(nproc)"
+MAKEFLAGS="-j $(nproc)"
 MYSQL_HISTFILE="$HOME/.cache/mysql.history"
 PYTHONSTARTUP="$HOME/lib/dotfiles/pythonrc"
 
