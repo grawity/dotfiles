@@ -251,6 +251,7 @@ g() { egrep -rn --color=always "$@" .; }
 alias facl='getfacl -pt'
 gpgsigs() { gpg --edit-key "$1" check quit; }
 alias hex='xxd -p'
+alias unhex='xxd -p -r'
 alias hup='pkill -HUP -x'
 irc() { tmux attach -t irc || tmux new -s irc -n irssi "irssi $*"; }
 alias ll='ls -l'
