@@ -7,6 +7,10 @@ PATH="$HOME/code/bih:$PATH"
 
 . libfilterfile.bash
 
+ssh_version() {
+	echo "${SSHPRODUCT:=$(ssh -V 2>&1)}"
+}
+
 # match_eval helper functions
 
 Host() {
@@ -14,10 +18,18 @@ Host() {
 	match_hostname "$1"
 }
 
+Product() {
+	ssh_version | grep -qs "^${1}_"
+}
+
+OpenSSH() {
+	Product OpenSSH
+}
+
 Version() {
 	local minversion=$1
-	local curversion=${SSHVERSION:=$(ssh -V 2>&1 |
-				sed -rn 's/OpenSSH_([^ ]+).*/\1/p')}
+	local curversion=${SSHVERSION:=$(ssh_version |
+				sed -rn 's/^\w+_([^ ]+),.*/\1/p')}
 	minversion=${minversion%p*}.
 	curversion=${curversion%p*}.
 	local loop=0

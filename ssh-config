@@ -141,17 +141,23 @@ Host am-naujas
 Host *
 	Protocol 2
 	ForwardX11Trusted yes
+#if OpenSSH
 	VerifyHostKeyDNS yes
+#endif
 	NoHostAuthenticationForLocalhost yes
 	HashKnownHosts no
 
+#if OpenSSH
 	ControlPath ~/.ssh/S.%l.%r@%h:%p
 	ControlMaster auto
-#if Version 5.6
+#endif
+#if OpenSSH && Version 5.6
 	ControlPersist 10m
 #endif
 
+#if OpenSSH
 	SendEnv LANG PULSE_SERVER TZ
+#endif
 
 	ServerAliveInterval 600
 	#ServerAliveCountMax 3
