@@ -87,12 +87,17 @@ case $TERM in
 esac
 
 # terminal window title
+
 case $TERM in
 	[xkE]term*|rxvt*|cygwin|screen*|dtterm)
-		titlestring='\e]0;%s\007';;
+		titlestring='\e]0;%s\a';;
 	*)
 		titlestring='';
 esac
+
+settitle() { printf "$titlestring" "$*"; }
+
+setwname() { printf '\ek%s\e\\' "$*"; }
 
 __ps1_pwd() {
 	local dir=${PWD/#$HOME/\~} pref= suff= coll=0
@@ -201,10 +206,6 @@ fi
 
 export -n PS1 PS2; export PS4
 
-settitle() { printf "$titlestring" "$*"; }
-
-setwname() { printf '\ek%s\e\\' "$*"; }
-
 show_status() {
 	local status=$?
 	(( status )) && printf "\e[;33m%s\e[m\n" "(returned $status)"
@@ -217,7 +218,7 @@ update_title() {
 		[[ $DISPLAY && ( $SSH_TTY || $DISPLAY != ':'* ) ]] &&
 			title+=" ($DISPLAY)"
 	fi
-	printf "$titlestring" "$title"
+	settitle "$title"
 }
 
 PROMPT_COMMAND="show_status; update_title"
