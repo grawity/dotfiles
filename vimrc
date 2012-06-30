@@ -216,3 +216,7 @@ func! JoinPara()
 	:g/^./ .,/^$/-1 join
 endfunc
 
+
+""" Plugins
+
+call pathogen#infect()
