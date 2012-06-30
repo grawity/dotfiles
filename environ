@@ -3,7 +3,7 @@
 
 joins() { var=$1; shift; eval "$var=\$*"; unset var; }
 
-setpath() { IFS=":" joins "$@"; }
+setpath() { xIFS=$IFS; IFS=":"; joins "$@"; IFS=$xIFS; unset xIFS; }
 
 # basic environ
 
