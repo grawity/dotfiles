@@ -132,9 +132,10 @@ Host *.vistech.net
 Host bazaar.launchpad.net
 	IdentityFile no
 
-Host am-naujas
-	User root
-	Hostname 176.31.238.190
+Host null-backup
+	Hostname null.cluenet.org
+	IdentityFile ~/.ssh/backup
+	IdentitiesOnly yes
 
 # global options
 
