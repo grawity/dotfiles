@@ -6,6 +6,15 @@ hardstatus off # do not send status messages to hardstatus
 hardstatus lastline # when not supported by terminal
 defhstatus "^%t (window ^%n)"
 
+# == xterm 256-color from <http://www.frexx.de/xterm-256-notes/>
+# terminfo and termcap for nice 256 color terminal
+# allow bold colors - necessary for some reason
+attrcolor b ".I" 
+# tell screen how to set colors. AB = background, AF=foreground 
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' 
+# erase background with current bg color 
+defbce "on" 
+
 #xterm understands both im/ic and doesn't have a status line.
 #Note: Do not specify im and ic in the real termcap/info file as
 #some programs (e.g. vi) will not work anymore.
