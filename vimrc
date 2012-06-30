@@ -197,6 +197,8 @@ func! JoinPara()
 	:g/^./ .,/^$/-1 join
 endfunc
 
+com! -complete=file -bang -nargs=? W :w<bang> <args>
+
 " swap file location
 if has("unix")
 	set backupdir=~/.vim/backup//
