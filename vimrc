@@ -73,6 +73,16 @@ set modeline
 set nobackup
 set autowrite
 
+if hostname() == "rain"
+	set nofsync swapsync=
+endif
+
+" Swap file location – use // to include full path in swapnames
+if has("unix")
+	set backupdir=~/.vim/backup//
+	set directory=~/.vim/backup//,/var/tmp//,/tmp//
+endif
+
 """ Text editing
 
 set tabstop=8
@@ -94,7 +104,9 @@ set nohlsearch
 set ignorecase
 set smartcase
 
-""" Keyboard
+""" Keyboard and custom commands
+
+com! -complete=file -bang -nargs=? W :w<bang> <args>
 
 if &term != "builtin_gui"
 	set iminsert=1
@@ -166,6 +178,13 @@ if $TERM =~ "^xterm"
 	lmap <Esc>OS -
 endif
 
+""" File-specific behavior
+
+silent! autocmd BufNewFile,BufRead
+\ COMMIT_EDITMSG
+\ setl nomodeline
+
+""" Still not sorted
 
 set backspace=indent,eol,start
 set hidden
@@ -197,14 +216,3 @@ func! JoinPara()
 	:g/^./ .,/^$/-1 join
 endfunc
 
-com! -complete=file -bang -nargs=? W :w<bang> <args>
-
-" swap file location
-if has("unix")
-	set backupdir=~/.vim/backup//
-	set directory=~/.vim/backup//,/var/tmp//,/tmp//
-endif
-
-if hostname() == "rain"
-	set nofsync swapsync=
-endif
