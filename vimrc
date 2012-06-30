@@ -59,12 +59,20 @@ silent! set mouse=a
 set wildmenu			" completion menu
 "set wildmode=list:longest
 
-"" Loading files
+"silent! set listchars=eol:¶,tab:›\ ,extends:»,precedes:«,trail:•
+silent! set listchars=eol:¶,tab:│┈,extends:»,precedes:«,trail:•
+
+""" File input/output
+
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp1257,latin1
 set modeline
 
-"" Editing
+set nobackup
+set autowrite
+
+""" Text editing
+
 set tabstop=8
 set shiftwidth=8
 set smarttab
@@ -77,10 +85,15 @@ set formatoptions=tcrqn
 set noshowmatch
 "silent! let loaded_matchparen=1
 
-"set listchars=eol:¶,tab:›\ ,extends:»,precedes:«,trail:•
-silent! set listchars=eol:¶,tab:│┈,extends:»,precedes:«,trail:•
+" Searching
 
-"" Macros
+set incsearch
+set nohlsearch
+set ignorecase
+set smartcase
+
+""" Keyboard
+
 if &term != "builtin_gui"
 	set iminsert=1
 endif
@@ -148,15 +161,6 @@ if $TERM =~ "^xterm"
 	lmap <Esc>OS -
 endif
 
-"" Searching
-set incsearch
-set nohlsearch
-set ignorecase
-set smartcase
-
-"" Saving
-set nobackup
-set autowrite
 
 set backspace=indent,eol,start
 set hidden
