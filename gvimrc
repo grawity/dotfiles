@@ -2,8 +2,10 @@
 
 if has("gui_gtk")
 	let &guifont="Monospace 9"
+"	set guifont=DejaVu\ Sans\ Mono\ 10
 elseif has("gui_win32")
 	let &guifont="Consolas:h9"
+"	set guifont=DejaVu_Sans_Mono:h9
 endif
 
 set guioptions+=agm		" autoselect, grey menuitems, menu
@@ -13,9 +15,6 @@ set guioptions-=L
 set guioptions-=R
 
 if has("gui_running")
-	silent! color desert
-	silent! color zenburn
-
 	map	<silent>	<C-Tab>		:tabnext<CR>
 	imap	<silent>	<C-Tab>		<Esc>:tabnext<CR>
 	map	<silent>	<C-S-Tab>	:tabprevious<CR>

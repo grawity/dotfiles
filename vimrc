@@ -22,6 +22,9 @@ endif
 
 " Color scheme
 
+"let g:lucius_style="light"
+let g:lucius_style="dark"
+"let g:molokai_original=1
 let g:zenburn_high_Contrast=1
 let g:zenburn_old_Visual=1
 
@@ -31,20 +34,16 @@ endif
 
 silent! color slate
 
-if &t_Co == 256 || has("gui_running")
+if has("gui_running")
+	silent! color desert
 	silent! color zenburn
+elseif &t_Co == 256
+	silent! color slate
+	silent! color zenburn
+	"silent! color lucius
 endif
 
 " UI elements
-
-if has("gui_running")
-	if has("gui_gtk")
-		set guifont=DejaVu\ Sans\ Mono\ 10
-	elseif has("gui_win32")
-		set guifont=DejaVu_Sans_Mono:h9
-	endif
-	set guioptions-=T
-endif
 
 set ruler
 set showmode
@@ -53,8 +52,12 @@ set display+=lastline
 silent! set number
 silent! set numberwidth=1
 silent! set mouse=a
-set wildmenu
-set wildmode=list:longest
+
+"au WinEnter * setl cursorline
+"au WinLeave * setl nocursorline
+
+set wildmenu			" completion menu
+"set wildmode=list:longest
 
 "" Loading files
 set encoding=utf-8
