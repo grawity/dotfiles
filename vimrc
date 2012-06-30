@@ -52,6 +52,8 @@ set display+=lastline
 silent! set number
 silent! set numberwidth=1
 silent! set mouse=a
+set laststatus=2		" display status
+set tabpagemax=20		" max tabs
 
 "au WinEnter * setl cursorline
 "au WinLeave * setl nocursorline
