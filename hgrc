@@ -5,8 +5,11 @@ username = Mantas Mikulėnas <$EMAIL>
 
 [extensions]
 color =
-pager =
+convert =
+hggit =
 hgk =
+pager =
+purge =
 
 [web]
 cacerts = /etc/ssl/certs/ca-certificates.crt
