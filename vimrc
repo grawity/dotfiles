@@ -64,11 +64,6 @@ set wildmenu			" completion menu
 "silent! set listchars=eol:¶,tab:›\ ,extends:»,precedes:«,trail:•
 silent! set listchars=eol:¶,tab:│┈,extends:»,precedes:«,trail:•
 
-" View persistence
-
-au BufWinLeave * mkview
-au VimEnter    * silent loadview
-
 """ File input/output
 
 set encoding=utf-8
