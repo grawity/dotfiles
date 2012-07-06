@@ -62,6 +62,11 @@ else
 	link ssh-config ~/.ssh/config
 fi
 
+have bzr && {
+	mkdir -p ~/.bazaar
+	link bazaar/bazaar.conf ~/.bazaar/bazaar.conf
+}
+
 have gvim &&
 	link gvimrc ~/.gvimrc
 
