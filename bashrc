@@ -284,6 +284,8 @@ alias '~'='egrep'
 alias '~~'='egrep -i'
 alias takeown='sudo chown "${UID}:${GROUPS[0]}"'
 
+alias hc='herbstclient'
+
 LS_OPTIONS="-F -h"
 
 case $OSTYPE in
@@ -345,6 +347,10 @@ if have systemctl; then
 	alias disable='sudo systemctl disable'
 	alias status='systemctl status'
 	alias userctl='systemctl --user'
+	alias u='systemctl --user'
+	alias ustart='u start'
+	alias ustop='u stop'
+	alias ustatus='u status'
 	alias lcstatus='loginctl session-status $XDG_SESSION_ID'
 	alias tsd='tree /etc/systemd/system'
 	cgls() { systemd-cgls "$@" | pager; }
