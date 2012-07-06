@@ -37,8 +37,12 @@ augroup filetypedetect
 	" tmux
 	au BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
 
+	" Vala <https://live.gnome.org/Vala/Vim>
+	au BufNewFile,BufRead *.vala,*.vapi setf vala
+
 	" vim
 	au BufNewFile,BufRead .vimdir setf vim
+	au BufNewFile,BufRead *.vala,*.vapi setl efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %
 
 	" xinetd
 	au BufNewFile,BufRead *.xinetd setf xinetd
