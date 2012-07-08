@@ -1,1 +1,0 @@
-download_script.php?src_id=18143: call delete('/home/grawity/.vim/autoload/tagbar.vim')|call delete('/home/grawity/.vim/doc/tagbar.txt')|call delete('/home/grawity/.vim/plugin/tagbar.vim')|call delete('/home/grawity/.vim/syntax/tagbar.vim')

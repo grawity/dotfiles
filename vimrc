@@ -112,7 +112,6 @@ if &term != "builtin_gui"
 	set iminsert=1
 endif
 
-nmap <F8> :TagbarToggle<CR>
 nmap <Leader>t :TagbarToggle<CR>
 
 " CUA cut/copy, non-CUA paste
