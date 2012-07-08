@@ -63,4 +63,18 @@
 		</edit>
 	</match>
 
+	<alias binding="same">
+		<family>MS Sans Serif</family>
+		<prefer>
+			<family>Tahoma</family>
+		</prefer>
+	</alias>
+
+	<alias binding="same">
+		<family>MS Shell Dlg</family>
+		<prefer>
+			<family>Tahoma</family>
+		</prefer>
+	</alias>
+
 </fontconfig>
