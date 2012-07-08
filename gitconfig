@@ -62,6 +62,10 @@
 [push]
 	#default = upstream
 	default = current
+[rebase]
+	autosquash = true
+[receive]
+	denyCurrentBranch = refuse
 [sendemail]
 	smtpserver = /usr/bin/msmtp
 
