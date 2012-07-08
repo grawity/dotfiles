@@ -10,6 +10,7 @@ Xcursor.theme:		Adwaita
 XTerm*termName:		xterm-256color
 XTerm*metaSendsEscape:	true
 XTerm*allowTcapOps:	false
+XTerm*bellIsUrgent:	true
 ! interface
 XTerm*utf8:		1
 XTerm*utf8Title:	true
