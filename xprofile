@@ -6,8 +6,10 @@ fi
 
 #spawn -l- acpieventd
 
-if [ -e ~/.mpdconf ]; then
-	spawn -Ll- mpd
+if [ "$DESKTOP_SESSION" != "systemd" ]; then
+	if [ -e ~/.mpdconf ]; then
+		spawn -Ll- mpd
+	fi
 fi
 
 #spawn mpc-up
