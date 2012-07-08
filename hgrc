@@ -1,7 +1,13 @@
 # ~/.hgrc: hgrc(5) - Mercurial configuration
 
+[alias]
+untrack = rm -Af
+
 [ui]
 username = Mantas Mikulėnas <$EMAIL>
+
+[diff]
+git = True
 
 [extensions]
 color =
@@ -14,6 +20,3 @@ purge =
 [web]
 cacerts = /etc/ssl/certs/ca-certificates.crt
 ipv6 = True
-
-[alias]
-untrack = rm -Af
