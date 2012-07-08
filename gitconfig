@@ -13,29 +13,30 @@
 	statusHints = false
 [alias]
 	a = add
+	amend = commit --amend
+	br = branch
+	#bra = branch -a -v
+	bra = branch-info
 	ci = commit
 	co = checkout
-	st = status
-	br = branch
-	staged = diff --cached
-	unstaged = diff
-	unstage = reset HEAD
+	di = diff
+	empty = !git init && git commit --allow-empty -m Initial
+	export = !touch $(git rev-parse --git-dir)/git-daemon-export-ok
 	lg = log --oneline --decorate
-	tg = log --oneline --decorate --graph
+	local = log --oneline origin/master..HEAD
 	ls = ls-files
+	mend = commit --amend --reuse-message HEAD
+	mrproper = !git reset --hard HEAD && git clean -fdx
+	remaster = rebase --autosquash -i @{upstream}
 	sg = diff --cached
+	st = status
+	staged = diff --cached
 	stat = diff --stat
 	statg = diff --cached --stat
-	amend = commit --amend
-	mend = commit --amend --reuse-message HEAD
+	tg = log --oneline --decorate --graph
+	tip = log -1 --decorate=short --abbrev-commit --date=relative
 	undo = reset --soft HEAD^
-	remaster = rebase --autosquash -i master
-	local = log --oneline origin/master..HEAD
-	export = !touch $(git rev-parse --git-dir)/git-daemon-export-ok
 	unexport = !rm -v $(git rev-parse --git-dir)/git-daemon-export-ok
-	mrproper = !git reset --hard HEAD && git clean -fdx
-	bra = branch -a -v
-	empty = !git init && git commit --allow-empty -m Initial
 [color]
 	branch = auto
 	diff = auto
