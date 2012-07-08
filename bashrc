@@ -130,7 +130,8 @@ __ps1_pwd() {
 }
 
 __ps1_git() {
-	if have git; then
+	local g
+	if g=$(have git && git rev-parse --git-dir 2>/dev/null); then
 		local r
 		r=$(git symbolic-ref HEAD 2>/dev/null) ||
 		r=$(git rev-parse --short HEAD 2>/dev/null)
