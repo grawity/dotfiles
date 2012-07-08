@@ -82,14 +82,15 @@
 	show-date = relative
 	show-author = abbreviated
 	author-width = 10
-	line-graphics = true
-	tab-size = 4
+	#line-graphics = true
+	commit-order = topo
+	split-view-height = 75%
 [tig "bind"]
 	# noop on unrecognized escape sequences
 	main = ~ none
 [tig "color"]
 	cursor = black green
-	title-focus = white blue
+	title-focus = black blue
 
 # URL replacements
 
