@@ -51,18 +51,20 @@ set showcmd
 set display+=lastline
 silent! set number
 silent! set numberwidth=1
+"silent! set relativenumber
 silent! set mouse=a
+set scrolloff=3			" scroll context lines
 set laststatus=2		" display status
 set tabpagemax=20		" max tabs
 
-"au WinEnter * setl cursorline
-"au WinLeave * setl nocursorline
+au WinEnter * setl cursorline
+au WinLeave * setl nocursorline
 
 set wildmenu			" completion menu
 "set wildmode=list:longest
 
 "silent! set listchars=eol:¶,tab:›\ ,extends:»,precedes:«,trail:•
-silent! set listchars=eol:¶,tab:│┈,extends:»,precedes:«,trail:•
+silent! set listchars=eol:¬,tab:│┈,extends:»,precedes:«,trail:•
 
 """ File input/output
 
@@ -80,6 +82,7 @@ endif
 " Swap file location – use // to include full path in swapnames
 if has("unix")
 	set backupdir=~/.vim/backup//
+	set undodir=~/.vim/tmp/undo//
 	set directory=~/.vim/backup//,/var/tmp//,/tmp//
 endif
 
@@ -93,9 +96,28 @@ set smartindent
 set nocindent
 set cinkeys=0{,0},0),:,!,o,O,e
 set formatoptions=tcrqn
+set gdefault
 
 set noshowmatch
 "silent! let loaded_matchparen=1
+
+nnoremap <Tab> %
+vnoremap <Tab> %
+nnoremap j gj
+nnoremap k gk
+inoremap <F1> <Esc>
+nnoremap <F1> <Esc>
+vnoremap <F1> <Esc>
+nnoremap ; :
+
+" strip trailing whitespace
+nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=""<CR>
+" sort CSS properties
+nnoremap <Leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
+" re-hardwrap text
+nnoremap <Leader>q gqip
+" reselect pasted text
+nnoremap <Leader>v V`]
 
 " Searching
 
@@ -219,3 +241,4 @@ endfunc
 """ Plugins
 
 call pathogen#infect()
+filetype plugin on
