@@ -211,6 +211,7 @@ show_status() {
 	local status=$?
 	(( status )) && printf "\e[;33m%s\e[m\n" "(returned $status)"
 }
+
 update_title() {
 	if [[ ! $title ]]; then
 		local title=
@@ -333,6 +334,10 @@ kde-plasma)
 openbox)
 	alias logout='openbox --exit &&
 		echo Logging out of Openbox...'
+	;;
+wmii)
+	alias logout='wmiir xwrite /ctl quit &&
+		echo Logging out of wmii...'
 	;;
 Windows_NT)
 	alias logout='logoff.exe &&
