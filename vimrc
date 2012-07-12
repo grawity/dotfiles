@@ -57,6 +57,7 @@ set scrolloff=3			" scroll context lines
 set laststatus=2		" display status
 set tabpagemax=20		" max tabs
 
+setl cursorline
 au WinEnter * setl cursorline
 au WinLeave * setl nocursorline
 
