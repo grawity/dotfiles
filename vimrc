@@ -234,6 +234,8 @@ silent! autocmd BufNewFile,BufRead
 \ /tmp/bash-fc-*
 \ set ft=sh
 
+au! BufNewFile */_posts/2*.html 0r %:h/_template.html
+
 func! JoinPara()
 	:g/^./ .,/^$/-1 join
 endfunc
