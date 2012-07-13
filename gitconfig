@@ -82,7 +82,8 @@
 	show-date = relative
 	show-author = abbreviated
 	author-width = 10
-	#line-graphics = true
+	show-rev-graph = true
+	line-graphics = true
 	commit-order = topo
 	split-view-height = 75%
 [tig "bind"]
