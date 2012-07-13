@@ -1,45 +1,62 @@
 ! ~/.Xresources: X11 resources
+! vim: fdm=marker:
 
-!! Xcursor
+!!! Xcursor {{{
 
 Xcursor.theme:		Adwaita
 !Xcursor.size:		16
 
-!! Xterm
+!!! }}}
+!!! Xterm {{{
 
-XTerm*termName:		xterm-256color
-XTerm*metaSendsEscape:	true
-XTerm*allowTcapOps:	false
-XTerm*bellIsUrgent:	true
-! interface
-XTerm*utf8:		1
-XTerm*utf8Title:	true
-XTerm*italicULMode:	true
+! behavior
+XTerm*termName:			xterm-256color
+XTerm*metaSendsEscape:		true
+XTerm*allowTcapOps:		false
+XTerm.backarrowKeyIsErase:	true
+XTerm.ptyInitialErase:		true
+XTerm*bellIsUrgent:		true
+XTerm*bellOnReset:		false
+
+! utf8 values:
+!   false (0) - can be enabled with escapes
+!   true (1) - can be disabled with escapes
+!   always (2) - escapes ignored
+!   default (3) - always if *locale set, false otherwise
+XTerm*utf8:			default
+XTerm*utf8Fonts:		always
+XTerm*utf8Title:		true
+! interpret VT100 graphics in utf8 mode?
+!XTerm*vt100Graphics:		false
+
+XTerm*selectToClipboard:	true
+XTerm*vt100*translations:	#override			\n\
+	Shift <Key> Delete:	insert-selection(SELECT)	\n\
+	Shift Ctrl <Key> C:	select-end(CLIPBOARD)		\n\
+	Shift Ctrl <Key> V:	insert-selection(CLIPBOARD)	\n\
+	Shift Ctrl <Key> N:	spawn-new-terminal()		\n
+
+! appearance
+XTerm*vt100.geometry:	100x35
 XTerm*vt100.faceName:	DejaVu Sans Mono
 XTerm*vt100.faceSize:	9
-XTerm*vt100.geometry:	100x35
 XTerm*faceSize1:	7
 XTerm*faceSize2:	8
 XTerm*faceSize3:	9
 XTerm*faceSize4:	10
 XTerm*faceSize5:	12
 XTerm*faceSize6:	14
+!XTerm*italicULMode:	true
+!XTerm*showBlinkAsBold:	true
+XTerm*cursorBlink:	true
+XTerm*cursorUnderLine:	true
 XTerm*toolBar:		false
-! Input translation
-XTerm*selectToClipboard:	true
-XTerm*vt100*translations:	#override			\n\
-	Shift <Key> Delete:	insert-selection(SELECT)	\n\
-	Shift Ctrl <Key> C:	select-end(CLIPBOARD)		\n\
-	Shift Ctrl <Key> V:	insert-selection(CLIPBOARD)	\n\
-	Shift Ctrl <Key> N:	spawn-new-terminal()		\n\
-	Ctrl <Btn1Down>:	ignore()			\n\
-	Ctrl <Btn2Down>:	ignore()			\n\
-	Ctrl <Btn3Down>:	ignore()			\n\
-	Meta <Btn1Down>:	popup-menu(mainMenu)		\n\
-	Meta <Btn2Down>:	popup-menu(vtMenu)		\n\
-	Meta <Btn3Down>:	popup-menu(fontMenu)		\n
-XTerm.backarrowKeyIsErase:	true
-XTerm.ptyInitialErase:		true
+!XTerm*scrollBar:	true
+!XTerm*rightScrollBar:	true
+XTerm*scrollKey:	true
+XTerm*showMissingGlyphs:true
+XTerm*showWrapMarks:	true
+
 ! colors
 XTerm*vt100.background:	black
 XTerm*vt100.foreground:	#d3d7cf
@@ -58,20 +75,27 @@ XTerm*color11:		#fce94f
 XTerm*color12:		#729fcf
 XTerm*color13:		#ad7fa8
 XTerm*color14:		#34e2e2
+XTerm*color15:		#eeeeec
+XTerm*boldColors:	true
+XTerm*boldMode:		true
 
-!! Rxvt
+!!! }}}
+!!! Rxvt {{{
 
-!Rxvt.font:		6x13
-!Rxvt.font:		-misc-fixed-medium-r-*-*-15-*-*-*-*-*-iso10646-*
-!Rxvt.font:		xft:Monospace:pixelsize=12
-
-Rxvt.font:		xft:DejaVu Sans Mono:size=10
-Rxvt.letterSpace:	-1
-
+! behavior
 Rxvt.scrollBar:		false
 Rxvt.scrollTtyKeypress:	true
 Rxvt.secondaryScroll:	false
 
+! appearance
+Rxvt.geometry:		100x35
+!Rxvt.font:		6x13
+!Rxvt.font:		-misc-fixed-medium-r-*-*-15-*-*-*-*-*-iso10646-*
+!Rxvt.font:		xft:Monospace:pixelsize=12
+Rxvt.font:		xft:DejaVu Sans Mono:size=10
+Rxvt.letterSpace:	-1
+
+! colors
 Rxvt.background:	black
 Rxvt.foreground:	#d3d7cf
 Rxvt.colorBD:		#eeeeec
@@ -92,12 +116,19 @@ Rxvt.color13:		#ad7fa8
 Rxvt.color14:		#34e2e2
 Rxvt.color15:		#eeeeec
 
-URxvt.perl-ext-common:	default,matcher
+! plugins
+Rxvt.perl-ext-common:	default,matcher
+Rxvt.matcher.button:	3
+Rxvt.tabbed.tabbar-fg:	2
+Rxvt.tabbed.tabbar-bg:	0
+Rxvt.tabbed.tab-fg:	0
+Rxvt.tabbed.tab-bg:	3
+Rxvt.urlLauncher:	xdg-open
 
-URxvt.urlLauncher:	xdg-open
-URxvt.matcher.button:	3
+!!! }}}
+!!! Mwm {{{
 
-URxvt.tabbed.tabbar-fg:	2
-URxvt.tabbed.tabbar-bg:	0
-URxvt.tabbed.tab-fg:	0
-URxvt.tabbed.tab-bg:	3
+!Mwm*useClientIcon: true
+!Mwm*useIconBox: true
+
+!!! }}}
