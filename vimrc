@@ -111,6 +111,8 @@ nnoremap <F1> <Esc>
 vnoremap <F1> <Esc>
 nnoremap ; :
 
+nnoremap <Leader>l :ls<CR>:b<Space>
+
 " strip trailing whitespace
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=""<CR>
 " sort CSS properties
@@ -225,8 +227,10 @@ silent! autocmd BufNewFile,BufRead
 silent! autocmd BufReadPost host-acls %!sexp-conv -w 0
 silent! autocmd BufNewFile,BufRead
 \ */pam.d/*
-\ set ft=pamconf
-silent! autocmd BufNewFile,BufRead .muttaliases set ft=muttrc
+\ setf pamconf
+silent! autocmd BufNewFile,BufRead
+\ .muttaliases
+\ setf muttrc
 silent! autocmd BufNewFile,BufRead
 \ /etc/systemd/*,/lib/systemd/*,~/.config/systemd/*,~/src/systemd-arch-units/*/*.*
 \ set ft=desktop

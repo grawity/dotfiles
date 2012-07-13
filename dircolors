@@ -132,8 +132,6 @@ EXEC 01;32
 
 # still image formats
 .anx 00;35
-.asf 00;35
-.avi 00;35
 .axv 00;35
 .bmp 00;35
 .cgm 00;35
@@ -166,6 +164,8 @@ EXEC 01;32
 .yuv 00;35
 
 # video formats
+.asf 01;35
+.avi 01;35
 .flv 01;35
 .m2v 01;35
 .m4v 01;35
