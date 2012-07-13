@@ -286,6 +286,14 @@ alias '~'='egrep'
 alias '~~'='egrep -i'
 alias takeown='sudo chown "${UID}:${GROUPS[0]}"'
 
+/() {
+	if git rev-parse --git-dir &>/dev/null; then
+		git grep -n -i "$@"
+	else
+		grep -r -n -i "$@"
+	fi
+}
+
 alias hc='herbstclient'
 
 LS_OPTIONS="-F -h"
@@ -369,6 +377,9 @@ if have systemctl; then
 			cgls "/user/$USER/${XDG_SESSION_ID:-$(</proc/self/sessionid)}"
 		fi
 	}
+	if have _systemctl; then
+		complete -F _systemctl enable disable status start stop restart
+	fi
 elif have start && have stop; then
 	start()   { sudo start "$@"; }
 	stop()    { sudo stop "$@"; }
