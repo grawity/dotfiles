@@ -83,7 +83,7 @@ endif
 " Swap file location – use // to include full path in swapnames
 if has("unix")
 	set backupdir=~/.vim/backup//
-	set undodir=~/.vim/tmp/undo//
+	silent! set undodir=~/.vim/tmp/undo//
 	set directory=~/.vim/backup//,/var/tmp//,/tmp//
 endif
 
