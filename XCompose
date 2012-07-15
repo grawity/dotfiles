@@ -17,3 +17,5 @@ include "%L"
 <Multi_key> <v> <v>			: "↓" # down arrow
 <Multi_key> <z> <w>			: "​" # zero-width nbsp
 <Multi_key> <p> <o>			: "¶" # pilcrow
+<Multi_key> <l> <r>			: "⇆" # lrarr
+<Multi_key> <r> <l>			: "⇄" # rlarr
