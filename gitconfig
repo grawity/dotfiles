@@ -37,6 +37,7 @@
 	tip = log -1 --decorate=short --abbrev-commit --date=relative
 	undo = reset --soft HEAD^
 	unexport = !rm -v $(git rev-parse --git-dir)/git-daemon-export-ok
+	pick = cherry-pick
 [color]
 	branch = auto
 	diff = auto
