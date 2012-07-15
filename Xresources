@@ -3,7 +3,7 @@
 
 !!! Xcursor {{{
 
-Xcursor.theme:		Adwaita
+!Xcursor.theme:		Adwaita
 !Xcursor.size:		16
 
 !!! }}}
@@ -55,7 +55,6 @@ XTerm*toolBar:		false
 !XTerm*rightScrollBar:	true
 XTerm*scrollKey:	true
 XTerm*showMissingGlyphs:true
-XTerm*showWrapMarks:	true
 
 ! colors
 XTerm*vt100.background:	black
@@ -92,7 +91,7 @@ Rxvt.geometry:		100x35
 !Rxvt.font:		6x13
 !Rxvt.font:		-misc-fixed-medium-r-*-*-15-*-*-*-*-*-iso10646-*
 !Rxvt.font:		xft:Monospace:pixelsize=12
-Rxvt.font:		xft:DejaVu Sans Mono:size=10
+Rxvt.font:		xft:DejaVu Sans Mono:size=9
 Rxvt.letterSpace:	-1
 
 ! colors
