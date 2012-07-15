@@ -56,7 +56,7 @@ XTerm*toolBar:		false
 XTerm*scrollKey:	true
 XTerm*showMissingGlyphs:true
 
-! colors
+! colors (gnome-terminal Tango scheme)
 XTerm*vt100.background:	black
 XTerm*vt100.foreground:	#d3d7cf
 XTerm*color0:		#000000
@@ -94,7 +94,7 @@ Rxvt.geometry:		100x35
 Rxvt.font:		xft:DejaVu Sans Mono:size=9
 Rxvt.letterSpace:	-1
 
-! colors
+! colors (gnome-terminal Tango scheme)
 Rxvt.background:	black
 Rxvt.foreground:	#d3d7cf
 Rxvt.colorBD:		#eeeeec
