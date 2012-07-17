@@ -1,6 +1,11 @@
 # ~/.XCompose - Compose(5) - Compose (Multi) key mappings for XIM input method
 # enabling compose key: <https://wiki.ubuntu.com/ComposeKey>
+
+# NOTE: custom definitions only work with 'xim'
+# see GTK_IM_MODULE and QT_IM_MODULE in my "environ" file
+
 include "%L"
+
 <Multi_key> <8> <8>			: "∞" # infinity
 <Multi_key> <equal> <equal>		: "–" # ndash
 <Multi_key> <equal> <y>			: "¥" # yen
