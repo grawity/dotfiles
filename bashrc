@@ -207,12 +207,24 @@ fi
 
 export -n PS1 PS2; export PS4
 
-show_status() {
+_precmd() {
+	local cmd=${BASH_COMMAND}
+	case ${cmd%% *} in
+		_*)	;;
+		sudo)	cmd=${BASH_COMMAND#sudo }
+			;&
+		*)	cmd=${cmd%% *}
+			setwname "<$cmd>"
+	esac
+	return 0
+}
+
+_show_status() {
 	local status=$?
 	(( status )) && printf "\e[;33m%s\e[m\n" "(returned $status)"
 }
 
-update_title() {
+_update_title() {
 	if [[ ! $title ]]; then
 		local title=
 		[[ $USER != 'grawity' ]] && title+="$USER@"
@@ -221,9 +233,17 @@ update_title() {
 			title+=" ($DISPLAY)"
 	fi
 	settitle "$title"
+	if [[ ! $wname ]]; then
+		local wname="${PWD/#$HOME/~}"
+		[[ $wname != '~' && $wname != '/' ]] &&
+			wname="${wname##*/}"
+		wname="{$wname}"
+	fi
+	setwname "$wname"
 }
 
-PROMPT_COMMAND="show_status; update_title"
+trap '_precmd' DEBUG
+PROMPT_COMMAND="_show_status; _update_title"
 PROMPT_DIRTRIM=5
 
 ### Aliases
