@@ -92,12 +92,19 @@ case $TERM in
 	[xkE]term*|rxvt*|cygwin|screen*|dtterm)
 		titlestring='\e]0;%s\a';;
 	*)
-		titlestring='';
+		titlestring='';;
 esac
 
-settitle() { printf "$titlestring" "$*"; }
+case $TERM in
+	screen*)
+		wnamestring='\ek%s\e\\';;
+	*)
+		wnamestring='';;
+esac
 
-setwname() { printf '\ek%s\e\\' "$*"; }
+settitle() { [[ $titlestring ]] && printf "$titlestring" "$*"; }
+
+setwname() { [[ $wnamestring ]] && printf "$wnamestring" "$*"; }
 
 __ps1_pwd() {
 	local dir=${PWD/#$HOME/\~} pref= suff= coll=0
