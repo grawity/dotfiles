@@ -332,8 +332,9 @@ LS_OPTIONS="-F -h"
 
 case $OSTYPE in
 	linux-gnu|cygwin)
+		LS_OPTIONS+=" --group-directories-first"
 		if (( havecolor )); then
-			LS_OPTIONS="$LS_OPTIONS -v --color=auto"
+			LS_OPTIONS+=" -v --color=auto"
 			eval $(dircolors ~/lib/dotfiles/dircolors)
 		fi
 		alias df='df -Th'
