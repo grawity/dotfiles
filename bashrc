@@ -283,9 +283,11 @@ gpgsigs() { gpg --edit-key "$1" check quit; }
 alias hex='xxd -p'
 alias unhex='xxd -p -r'
 alias hup='pkill -HUP -x'
+alias init='telinit'
 irc() { tmux attach -t irc || tmux new -s irc -n irssi "irssi $*"; }
 alias ll='ls -l'
 alias md='mkdir'
+alias nosr='pkgfile'
 nul() { cat "$@" | tr '\0' '\n'; }
 alias p='pager'
 path() { if [[ $1 ]]; then which -a "$@"; else echo "${PATH//:/$'\n'}"; fi; }
