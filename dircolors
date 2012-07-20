@@ -95,6 +95,8 @@ EXEC 01;32
 .py 00;32
 .sh 00;32
 .so 00;32
+.c 00;32
+.h 00;32
 
 # archives or compressed (bright red)
 .7z 01;31
