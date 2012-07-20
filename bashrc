@@ -319,6 +319,9 @@ alias takeown='sudo chown "${UID}:${GROUPS[0]}"'
 	if git rev-parse --git-dir &>/dev/null; then
 		git grep -n -i "$@"
 	else
+		if (( $# < 2 )); then
+			set -- "$@" .
+		fi
 		grep -r -n -i "$@"
 	fi
 }
