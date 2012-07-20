@@ -196,15 +196,15 @@ if (( havecolor )); then
 
 	__is_remote && prompt='^'
 
-	PS1+="\[\e[;1m\e[\${color_name}m\]${item}\[\e[m\] "
+	PS1+="\[\e[0;1m\e[\${color_name}m\]${item}\[\e[m\] "
 	[[ $TAG ]] &&
-		PS1+="\[\e[;34m\]${TAG}:\[\e[m\]"
+		PS1+="\[\e[0;34m\]${TAG}:\[\e[m\]"
 	#PS1+="\[\e[36m\]\w\[\e[m\]"
 	PS1+="\[\e[m\e[\${color_pwd}m\]\$(__ps1_pwd)\[\e[m\] "
 	PS1+="\[\e[m\e[\${color_vcs}m\]\$(__ps1_git)\[\e[m\]\n"
 	PS1+="\[\e[m\e[\${color_prompt}m\]\${prompt}\[\e[m\] "
 
-	PS2="\[\e[;1;30m\]...\[\e[m\] "
+	PS2="\[\e[0;1;30m\]...\[\e[m\] "
 	PS4="+\e[34m\${BASH_SOURCE:--}:\e[1m\$LINENO\e[m:\${FUNCNAME:+\e[33m\$FUNCNAME\e[m} "
 else
 	PS1='\n\u@\h \w\n\$ '
@@ -228,7 +228,7 @@ _precmd() {
 
 _show_status() {
 	local status=$?
-	(( status )) && printf "\e[;33m%s\e[m\n" "(returned $status)"
+	(( status )) && printf "\e[0;33m%s\e[m\n" "(returned $status)"
 }
 
 _update_title() {
