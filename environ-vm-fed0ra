@@ -1,0 +1,9 @@
+#!sh
+
+MPD_HOST=$(getnetrc -df '%p@%M' -s mpd rain.home)
+
+PULSE_SERVER="{067d8bfe341b445487660bf2c983c2ec}unix:/home/grawity/.pulse/067d8bfe341b445487660bf2c983c2ec-runtime/native tcp:rain.home:4713 tcp6:rain.nullroute.eu.org:4713"
+
+if [ "$DISPLAY" ]; then
+	pax11publish -e
+fi

@@ -1,4 +1,5 @@
-#!bash
+#!sh
+
 test "$DEBUG" && echo "++ profile [arg0=$0]"
 
 # environ
