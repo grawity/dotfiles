@@ -9,7 +9,9 @@ setpath() {
 	# sh does not allow unsetting IFS,
 	# and `foo=bar join` does not take effect
 	IFS=":"
+	set -a
 	joins "$@"
+	set +a
 	IFS=$xIFS
 	unset xIFS
 	set -a
