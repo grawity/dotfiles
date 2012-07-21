@@ -1,15 +1,28 @@
 # k5login.rules: rules for ~/.k5login generation by dist/update-k5login
 # vim: ft=conf
 
-grawity@CLUENET.ORG		*.cluenet.org
-				*.nathan7.eu
-				!radian.cluenet.org
-				!virgule.cluenet.org
-grawity/admin@CLUENET.ORG	*.cluenet.org
-grawity@NATHAN7.EU		*.cluenet.org
-				*.nathan7.eu
-				!radian.cluenet.org
-				!virgule.cluenet.org
-grawity@NULLROUTE.EU.ORG	*
-				!radian.cluenet.org
-				!virgule.cluenet.org
++cluenet
+	*.cluenet.org
++cluenet-admin
+	radian.cluenet.org
+	virgule.cluenet.org
++nullroute
+	*.nullroute.eu.org
+	*.home
++nathan7
+	*.nathan7.eu
+
+grawity@CLUENET.ORG
+	+cluenet !+cluenet-admin
+	+nathan7
+	+nullroute
+grawity/admin@CLUENET.ORG
+	+cluenet
+grawity@NATHAN7.EU
+	+cluenet !+cluenet-admin
+	+nathan7
+grawity@NULLROUTE.EU.ORG
+	*
+	!+cluenet-admin
+grawity/admin@NULLROUTE.EU.ORG
+	+nullroute
