@@ -109,7 +109,7 @@ setwname() { [[ $wnamestring ]] && printf "$wnamestring" "$*"; }
 __awesome_prompt() {
 	local maxwidth=${COLUMNS:-$(tput cols)}
 
-	# hostname
+	# hostname (already displayed by PS1) -- TODO: move here
 	# + 1 (space after hostname)
 	# + 2 ("…/")
 	# + 1 (trailing space to avoid hitting rmargin)
