@@ -90,5 +90,5 @@ if (( overwrite )); then
 	generate "${files[@]}" > ~/.ssh/"$genconf"
 	ln -sf "$genconf" ~/.ssh/config
 else
-	generate "${files[@]}" > /dev/stdout
+	generate "${files[@]}"
 fi
