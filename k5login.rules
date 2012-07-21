@@ -1,16 +1,11 @@
 # k5login.rules: rules for ~/.k5login generation by dist/update-k5login
 # vim: ft=conf
 
-#M@NTAS.IN			*.nullroute.eu.org *.home *.ntas.in
-#Mantas@NULLROUTE.EU.ORG		*
-#grawity/admin@NULLROUTE.EU.ORG	*
 grawity@CLUENET.ORG		*.cluenet.org
 				*.nathan7.eu
 				!radian.cluenet.org
 				!virgule.cluenet.org
 grawity/admin@CLUENET.ORG	*.cluenet.org
-#grawity@DVYJONES.COM		*.nullroute.eu.org *.home *.nathan7.eu
-#grawity@KRA.NTAS.IN		*.nullroute.eu.org *.home *.kra.ntas.in
 grawity@NATHAN7.EU		*.cluenet.org
 				*.nathan7.eu
 				!radian.cluenet.org
