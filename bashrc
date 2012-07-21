@@ -106,7 +106,7 @@ settitle() { [[ $titlestring ]] && printf "$titlestring" "$*"; }
 
 setwname() { [[ $wnamestring ]] && printf "$wnamestring" "$*"; }
 
-__ps1_pwd_git() {
+__awesome_prompt() {
 	local maxwidth=${COLUMNS:-$(tput cols)}
 
 	# hostname
@@ -159,7 +159,7 @@ __ps1_pwd_git() {
 		fi
 	fi
 
-	## Output to prompt
+	## Output
 
 	printf '\001\e[%sm\002%s' \
 		"$color_pwd" "$wdhead" \
@@ -210,7 +210,7 @@ if (( havecolor )); then
 	PS1+="\[\e[0;1m\e[\${color_name}m\]${item}\[\e[m\] "
 	[[ $TAG ]] &&
 		PS1+="\[\e[0;34m\]${TAG}:\[\e[m\]"
-	PS1+="\$(__ps1_pwd_git)\n"
+	PS1+="\$(__awesome_prompt)\n"
 	PS1+="\[\e[m\e[\${color_prompt}m\]\${prompt}\[\e[m\] "
 
 	PS2="\[\e[0;1;30m\]...\[\e[m\] "
