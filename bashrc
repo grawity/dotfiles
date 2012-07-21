@@ -106,56 +106,67 @@ settitle() { [[ $titlestring ]] && printf "$titlestring" "$*"; }
 
 setwname() { [[ $wnamestring ]] && printf "$wnamestring" "$*"; }
 
-__ps1_pwd() {
-	local dir=${PWD/#$HOME/\~} pref= suff= coll=0
-	local COLUMNS=${COLUMNS:-$(tput cols)}
-	local maxw=$(( COLUMNS - ${#HOSTNAME} - 4 ))
-	if [[ $dir == '~' ]]; then
-		pref='' suff=$dir
-	else
-		pref=${dir%/*}/ suff=${dir##*/}
+__ps1_pwd_git() {
+	local maxwidth=${COLUMNS:-$(tput cols)}
+
+	# hostname
+	# + 1 (space after hostname)
+	# + 2 ("…/")
+	# + 1 (trailing space to avoid hitting rmargin)
+	(( maxwidth -= ${#HOSTNAME} + 4 ))
+
+	## Right side: Git branch, etc
+
+	local br=
+
+	if have git && git rev-parse --git-dir &>/dev/null; then
+		br=$(git symbolic-ref HEAD 2>/dev/null) ||
+		br=$(git rev-parse --short HEAD 2>/dev/null)
+		br=${br#refs/heads/}
+		# branch
+		# + 1 (space before branch)
+		(( maxwidth -= ${#br} + 1 ))
 	fi
-	if [[ ${dir:0:2} == '~/' ]]; then
-		maxw=$(( maxw - 2 ))
-	fi
-	if (( ${#suff} > maxw )); then
-		pref=${pref##*/}
-		coll=1
+
+	## Center: working directory
+
+	local wd=${PWD/#$HOME/\~} wdhead= wdtail= collapsed=0
+
+	if [[ $wd == '~' ]]; then
+		wdhead='' wdtail=$wd
 	else
-		while (( ${#pref} + ${#suff} > maxw )); do
-			pref=${pref#*/}
-			coll=1
+		wdhead=${wd%/*}/ wdtail=${wd##*/}
+	fi
+
+	if [[ ${wd:0:2} == '~/' ]]; then
+		(( maxwidth -= 2 ))
+	fi
+
+	if (( ${#wdtail} > maxwidth )); then
+		wdhead=${wdhead##*/}
+		collapsed=1
+	else
+		while (( ${#wdhead} + ${#wdtail} > maxwidth )); do
+			wdhead=${wdhead#*/}
+			collapsed=1
 		done
 	fi
-	if (( coll )); then
-		pref='…/'$pref
-		if [[ ${dir:0:2} == '~/' ]]; then
-			pref='~/'$pref
+
+	if (( collapsed )); then
+		wdhead='…/'$wdhead
+		if [[ ${wd:0:2} == '~/' ]]; then
+			wdhead='~/'$wdhead
 		fi
 	fi
-	printf '%s\001\e[%sm\002%s\001\e[0m\002' "$pref" "$color_cwd" "$suff"
-}
 
-__ps1_git() {
-	local g
-	if g=$(have git && git rev-parse --git-dir 2>/dev/null); then
-		local r
-		r=$(git symbolic-ref HEAD 2>/dev/null) ||
-		r=$(git rev-parse --short HEAD 2>/dev/null)
-		r=${r#refs/heads/}
-		if [[ $r ]]; then
-			printf '\001\e[m\e[%sm\002%s\001\e[m\002' "$color_vcs" "$r"
-		fi
-	fi
-}
+	## Output to prompt
 
-__ps1_git_new() {
-	local g=$(have git && git rev-parse --git-dir 2>/dev/null) r=
-	if [[ $g ]]; then
-		r=$(<"$g/HEAD")
-		r=${r#ref: }
-		r=${r#refs/heads/}
-	fi
+	printf '\001\e[%sm\002%s' \
+		"$color_pwd" "$wdhead" \
+		"$color_cwd" "$wdtail" \
+		""           " "       \
+		"$color_vcs" "$br"     \
+		""                     ;
 }
 
 __is_remote() {
@@ -199,9 +210,7 @@ if (( havecolor )); then
 	PS1+="\[\e[0;1m\e[\${color_name}m\]${item}\[\e[m\] "
 	[[ $TAG ]] &&
 		PS1+="\[\e[0;34m\]${TAG}:\[\e[m\]"
-	#PS1+="\[\e[36m\]\w\[\e[m\]"
-	PS1+="\[\e[m\e[\${color_pwd}m\]\$(__ps1_pwd)\[\e[m\] "
-	PS1+="\[\e[m\e[\${color_vcs}m\]\$(__ps1_git)\[\e[m\]\n"
+	PS1+="\$(__ps1_pwd_git)\n"
 	PS1+="\[\e[m\e[\${color_prompt}m\]\${prompt}\[\e[m\] "
 
 	PS2="\[\e[0;1;30m\]...\[\e[m\] "
