@@ -372,28 +372,9 @@ ldapsetconf() {
 
 alias logoff='logout'
 
-case $DESKTOP_SESSION in
-gnome|ubuntu)
-	alias logout='gnome-session-quit --logout --force --no-prompt &&
-		echo Logging out of GNOME...'
-	;;
-kde-plasma)
-	alias logout='qdbus org.kde.ksmserver /KSMServer logout 0 -1 -1 &&
-		echo Logging out of KDE...'
-	;;
-openbox)
-	alias logout='openbox --exit &&
-		echo Logging out of Openbox...'
-	;;
-wmii)
-	alias logout='wmiir xwrite /ctl quit &&
-		echo Logging out of wmii...'
-	;;
-Windows_NT)
-	alias logout='logoff.exe &&
-		echo Logging out of Windows...'
-	;;
-esac
+if [[ $DESKTOP_SESSION ]]; then
+	alias logout='~/code/x11/logout'
+fi
 
 if have systemctl; then
 	start()   { sudo systemctl start "$@"; systemctl status "$@"; }
