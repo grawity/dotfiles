@@ -82,6 +82,7 @@ QT_IM_MODULE="xim"
 
 ABSROOT="$HOME/pkg"
 ACK_PAGER="$PAGER"
+GNUSTEP_USER_ROOT="$HOME/.config/GNUstep"
 LESS="e M q R F X z -3"
 LESSHISTFILE="$HOME/.cache/less.history"
 MAKEFLAGS="-j $(nproc)"
