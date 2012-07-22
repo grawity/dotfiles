@@ -289,12 +289,20 @@ entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
 g() { egrep -rn --color=always "$@" .; }
 alias facl='getfacl -pt'
 gpgsigs() { gpg --edit-key "$1" check quit; }
+alias hc='herbstclient'
 alias hex='xxd -p'
 alias unhex='xxd -p -r'
 alias hup='pkill -HUP -x'
 alias init='telinit'
 irc() { tmux attach -t irc || tmux new -s irc -n irssi "irssi $*"; }
 alias ll='ls -l'
+alias logoff='logout'
+if [[ $DESKTOP_SESSION ]]; then
+	alias logout='~/code/x11/logout'
+fi
+alias lp='sudo netstat -lptu --numeric-hosts'
+alias lpt='sudo netstat -lpt --numeric-hosts'
+alias lpu='sudo netstat -lpu --numeric-hosts'
 alias md='mkdir'
 alias nosr='pkgfile'
 nul() { cat "$@" | tr '\0' '\n'; }
@@ -307,22 +315,33 @@ alias rd='rmdir'
 alias rot13='tr N-ZA-Mn-za-m A-Za-z'
 rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}"; echo; }
 alias sudo='sudo ' # for alias expansion in sudo args
+alias takeown='sudo chown "${UID}:${GROUPS[0]}"'
 alias tidiff='infocmp -Ld'
 alias tracert='traceroute'
 tube() {
 	local title=$(youtube-dl -e "$1")
 	read -e -p 'Title: ' -i "$title" title
-	youtube-dl --console-title -c -o "${title//%/%%}.%(ext)s" "$@"
+	youtube-dl -o "${title//%/%%}.%(ext)s" "$@"
 }
-tubex() { youtube-dl --console-title -c -o "%(title)s.%(ext)s" "$@"; }
-tubes() { youtube-dl --console-title -c --title "$@"; }
+tubex() { youtube-dl -o "%(title)s.%(ext)s" "$@"; }
+tubes() { youtube-dl --title "$@"; }
 up() { local p= i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
 wim() { editor "$(which "$1")"; }
 alias xx='chmod a+x'
 X() { (spawn "$@" >> ~/.xsession-errors 2>&1 &); }
+youtube-dl() {
+	local args=()
+	args+=(command)
+	[[ $DESKTOP_SESSION == gnome* ]] &&
+	args+=(gnome-inhibit
+		-a "youtube-dl"
+		-f idle,suspend
+		-r "Downloading a YouTube video")
+	args+=(youtube-dl --console-title -c "$@")
+	"${args[@]}"
+}
 alias '~'='egrep'
 alias '~~'='egrep -i'
-alias takeown='sudo chown "${UID}:${GROUPS[0]}"'
 
 /() {
 	if git rev-parse --git-dir &>/dev/null; then
@@ -335,7 +354,6 @@ alias takeown='sudo chown "${UID}:${GROUPS[0]}"'
 	fi
 }
 
-alias hc='herbstclient'
 
 LS_OPTIONS="-F -h"
 
@@ -370,11 +388,6 @@ ldapsetconf() {
 	fi
 }
 
-alias logoff='logout'
-
-if [[ $DESKTOP_SESSION ]]; then
-	alias logout='~/code/x11/logout'
-fi
 
 if have systemctl; then
 	start()   { sudo systemctl start "$@"; systemctl status "$@"; }
@@ -420,10 +433,6 @@ elif have invoke-rc.d; then
 	stop()    { for _s; do sudo invoke-rc.d "$_s" stop; done; }
 	restart() { for _s; do sudo invoke-rc.d "$_s" restart; done; }
 fi
-
-alias lp='sudo netstat -lptu --numeric-hosts'
-alias lpt='sudo netstat -lpt --numeric-hosts'
-alias lpu='sudo netstat -lpu --numeric-hosts'
 
 # list package contents
 lspkg() {
