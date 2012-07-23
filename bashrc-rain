@@ -1,0 +1,68 @@
+#!/bin/bash
+
+[[ $- != *i* ]] && return
+
+HISTFILESIZE=10000
+
+irc() { ~/bin/irc "$@"; }
+
+pacman-clean() {
+	sudo pacman -Rnsc $(pacman -Qqdt)
+}
+
+ppid() {
+	local k v
+	while read -r k v; do
+		if [[ $k == 'PPid:' ]]; then
+			echo $v
+			return
+		fi
+	done < "/proc/$1/status"
+	false
+}
+
+alias RM='/bin/rm'
+
+rm() {
+	local opts=() arg path nuke=() trash=()
+	for arg; do
+		if [[ $arg == -* ]]; then
+			opts+=("$arg")
+		elif case $(realpath -s "$arg") in
+		# skip filesystems
+		~/Private/*)		false;;
+		~/fs/*)			false;;
+		# skip system stuff
+		~/lib/*)		false;;
+		~/pkg/*)		false;;
+		~/src/*)		false;;
+		~/tmp*)			false;;
+		# skip dotfiles and temp
+		#~/.*)			false;;
+		*.tmp)			false;;
+		.unison.*)		false;;
+		# include everything else in $HOME
+		~/*)			true;;
+		# exclude everything else elsewhere
+		*)			false;;
+		esac; then
+			trash+=("$arg")
+		else
+			nuke+=("$arg")
+		fi
+	done
+	if (( ${#trash[@]} )); then
+		trash "${opts[@]}" -- "${trash[@]}"
+	fi &&
+	if (( ${#nuke[@]} )); then
+		/bin/rm "${opts[@]}" -- "${nuke[@]}"
+	fi
+}
+
+alias rpw='rpw | tee /dev/stderr | tr -d \\\n | gclip'
+
+sm() { synclient -m 100; }
+
+. /usr/share/bash-completion/bash_completion
+
+have() { command -v "$@" &>/dev/null; }
