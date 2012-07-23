@@ -131,3 +131,16 @@ Rxvt.urlLauncher:	xdg-open
 !Mwm*useIconBox: true
 
 !!! }}}
+!!! Mosaic {{{
+
+Mosaic*homeDocument: http://nullroute.eu.org
+Mosaic*confirmExit: false
+Mosaic*historyFile: .mosaic/a.x-history
+Mosaic*defaultHotlistFile: .mosaic/a.hotlist-default
+Mosaic*personalAnnotationDirectory: .mosaic/a.personal-annotations
+Mosaic*defaultAuthorName: Mantas M.
+Mosaic*defaultAuthorEmail: grawity@gmail.com
+Mosaic*signature: Foo.
+!Mosaic*enableTables: true
+
+!!! }}}
