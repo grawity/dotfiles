@@ -326,6 +326,7 @@ tube() {
 tubex() { youtube-dl -o "%(title)s.%(ext)s" "$@"; }
 tubes() { youtube-dl --title "$@"; }
 up() { local p= i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
+alias watch='watch '
 wim() { editor "$(which "$1")"; }
 alias xx='chmod a+x'
 X() { (spawn "$@" >> ~/.xsession-errors 2>&1 &); }
@@ -335,7 +336,7 @@ youtube-dl() {
 	[[ $DESKTOP_SESSION == gnome* ]] &&
 	args+=(gnome-inhibit
 		-a "youtube-dl"
-		-f idle,suspend
+		-f "suspend"
 		-r "Downloading a YouTube video")
 	args+=(youtube-dl --console-title -c "$@")
 	"${args[@]}"
