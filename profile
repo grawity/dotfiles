@@ -23,7 +23,9 @@ if [ "$BASH" ] && [ -f ~/.bashrc ]; then
 	. ~/.bashrc
 fi
 
-if [ -f ~/.profile-$HOSTNAME ]; then
+if [ -f ~/lib/dotfiles/profile-$HOSTNAME ]; then
+	. ~/lib/dotfiles/profile-$HOSTNAME
+elif [ -f ~/.profile-$HOSTNAME ]; then
 	. ~/.profile-$HOSTNAME
 fi
 

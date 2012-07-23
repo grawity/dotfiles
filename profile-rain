@@ -1,33 +1,5 @@
 #!bash
 
-# Preferred programs
-
-setpath PATH \
-	"$(ruby -rubygems -e 'puts Gem.user_dir')/bin"	\
-	"$HOME/lib/mosh/bin"				\
-	"$PATH"						;
-
-# Program defaults
-
-export MAKEFLAGS="-j5"
-
-export MPD_HOST="$(<~/.config/mpd/password)@$XDG_RUNTIME_DIR/mpd.control"
-
-# Locations
-
-export ACCDB="/run/media/$USER/grawpqi/private/accounts.db.txt"
-
-if [ -z "$KRB5CCNAME" ]; then
-	if [ -d "$XDG_RUNTIME_DIR" ]; then
-		mkdir -p "$XDG_RUNTIME_DIR/krb5cc"
-		export KRB5CCNAME="DIR:$XDG_RUNTIME_DIR/krb5cc"
-	elif [ -O "/tmp/krb5cc_$UID.d" ] && [ -d "/tmp/krb5cc_$UID.d" ]; then
-		export KRB5CCNAME="DIR:/tmp/krb5cc_$UID.d"
-	elif mkdir -m 0700 "/tmp/krb5cc_$UID.d" 2>/dev/null; then
-		export KRB5CCNAME="DIR:/tmp/krb5cc_$UID.d"
-	fi
-fi
-
 if [ -d "$XDG_RUNTIME_DIR" ]; then
 	if [ ! -e "$HOME/run" ]; then
 		ln -nsf "$XDG_RUNTIME_DIR" "$HOME/run"
@@ -41,11 +13,6 @@ if [ -d "$XDG_RUNTIME_DIR" ]; then
 		fi
 	fi
 fi
-
-# Etc.
-
-#export LD_PRELOAD='/usr/$LIB/libv4l/v4l1compat.so'
-#export WINEDLLOVERRIDES="winemenubuilder.exe=d"
 
 if [ ! -e "$XDG_RUNTIME_DIR/gvfs" ]; then
 	mountpoint -q "$XDG_RUNTIME_DIR/gvfs" &&

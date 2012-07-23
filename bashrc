@@ -659,8 +659,10 @@ if have pklist; then
 	. ~/code/kerberos/kc.bash
 fi
 
-if [[ -f ~/.bashrc-"$HOSTNAME" ]]; then
-	. ~/.bashrc-"$HOSTNAME"
+if [[ -f ~/lib/dotfiles/bashrc-$HOSTNAME ]]; then
+	. ~/lib/dotfiles/bashrc-$HOSTNAME
+elif [[ -f ~/.bashrc-$HOSTNAME ]]; then
+	. ~/.bashrc-$HOSTNAME
 fi
 
 if [[ ! "$SUDO_USER" ]]; then

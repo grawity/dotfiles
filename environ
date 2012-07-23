@@ -4,17 +4,11 @@
 joins() { var=$1; shift; eval "$var=\$*"; unset var; }
 
 setpath() {
-	set +a
-	xIFS=$IFS
 	# sh does not allow unsetting IFS,
 	# and `foo=bar join` does not take effect
-	IFS=":"
-	set -a
+	set +a; xIFS=$IFS; IFS=":";    set -a
 	joins "$@"
-	set +a
-	IFS=$xIFS
-	unset xIFS
-	set -a
+	set +a; IFS=$xIFS; unset xIFS; set -a
 }
 
 # basic environ

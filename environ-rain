@@ -1,3 +1,25 @@
 #!bash
 
+# paths/locations
+
+setpath PATH \
+	"$(ruby -rubygems -e 'puts Gem.user_dir')/bin"	\
+	"$HOME/lib/mosh/bin"				\
+	"$PATH"						;
+
+# libdefaults
+
+if [ -z "$KRB5CCNAME" ] && [ -d "$XDG_RUNTIME_DIR" ]; then
+	mkdir -p -m 0700 "$XDG_RUNTIME_DIR/krb5cc" &&
+	KRB5CCNAME="DIR:$XDG_RUNTIME_DIR/krb5cc"
+fi
+
+#LD_PRELOAD='/usr/$LIB/libv4l/v4l1compat.so'
+#WINEDLLOVERRIDES="winemenubuilder.exe=d"
+
+# appdefaults
+
+ACCDB="/run/media/$USER/grawpqi/private/accounts.db.txt"
 BUP_DIR="$HOME/Backup/bup-repository"
+MAKEFLAGS="-j 5"
+MPD_HOST="$(<~/.config/mpd/password)@$XDG_RUNTIME_DIR/mpd.control"
