@@ -522,7 +522,7 @@ cmpc() {
 		pass=${host%@*}
 		host=${host##*@}
 	elif [[ $host ]]; then
-		pass=$(getnetrc -df '%p' "mpd@$host")
+		pass=$(getnetrc -dsf '%p' "mpd@$host")
 	elif [[ -S ~/.cache/mpd/control ]]; then
 		host=~/.cache/mpd/control
 		if [[ -r ~/.config/mpd/password ]]; then

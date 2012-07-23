@@ -1,3 +1,3 @@
 #!sh
 
-MPD_HOST=$(getnetrc -df '%p@%M' -s mpd rain.home)
+MPD_HOST=$(getnetrc -dsf '%p@%M' mpd@rain.nullroute.eu.org)
