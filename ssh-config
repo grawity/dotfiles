@@ -124,6 +124,12 @@ Host *.nullroute.eu.org *.home
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
+Host vm-sarge
+	Hostname localhost
+	Port 3001
+	ForwardAgent yes
+	ForwardX11 yes
+
 # other domains
 
 Host *.vistech.net
