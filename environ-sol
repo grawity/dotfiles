@@ -1,0 +1,3 @@
+#!sh
+
+MPD_HOST=$(getnetrc -df '%p@%M' -s mpd rain.home)
