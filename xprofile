@@ -1,5 +1,7 @@
 #!sh
 
+xhost +"SI:localuser:$USER"
+
 if [ -f ~/.Xkbmap ]; then
 	setxkbmap `cat ~/.Xkbmap`
 fi
