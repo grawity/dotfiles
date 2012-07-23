@@ -52,6 +52,9 @@ setpath PERL5LIB \
 
 GNULIB_SRCDIR="$HOME/src/gnu/gnulib"
 
+test "$XDG_CONFIG_HOME" ||
+XDG_CONFIG_HOME="$HOME/.config"
+
 # identity
 
 NAME='Mantas Mikulėnas'
@@ -76,12 +79,13 @@ QT_IM_MODULE="xim"
 
 ABSROOT="$HOME/pkg"
 ACK_PAGER="$PAGER"
-GNUSTEP_USER_ROOT="$HOME/.config/GNUstep"
+GNUSTEP_USER_ROOT="$XDG_CONFIG_HOME/GNUstep"
 LESS="e M q R F X z -3"
 LESSHISTFILE="$HOME/.cache/less.history"
 MAKEFLAGS="-j $(nproc)"
 MYSQL_HISTFILE="$HOME/.cache/mysql.history"
 PYTHONSTARTUP="$HOME/lib/dotfiles/pythonrc"
+OPERA_PERSONALDIR="$XDG_CONFIG_HOME/opera"
 
 # local
 
