@@ -90,6 +90,7 @@
 [tig "bind"]
 	# noop on unrecognized escape sequences
 	main = ~ none
+	main = 8 toggle-graphic
 [tig "color"]
 	cursor = black green
 	title-focus = black blue
