@@ -1,5 +1,7 @@
 " ~/.gvimrc - |gvimrc| - additional GVim configuration
 
+set columns=90 lines=40
+
 if has("gui_gtk")
 	let &guifont="Monospace 9"
 "	set guifont=DejaVu\ Sans\ Mono\ 10
@@ -8,7 +10,8 @@ elseif has("gui_win32")
 "	set guifont=DejaVu_Sans_Mono:h9
 endif
 
-set guioptions+=agm		" autoselect, grey menuitems, menu
+set guioptions+=ag		" autoselect, grey menuitems
+set guioptions-=m		" menu
 set guioptions-=t		" tearoff menus
 set guioptions-=T		" toolbar
 set guioptions-=L
