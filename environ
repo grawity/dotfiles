@@ -1,11 +1,12 @@
 #!bash
-[ "$DEBUG" ] && echo "++ environ"
+
+[ "$DEBUG" ] && echo "++ environ [self=$0]"
 
 joins() { var=$1; shift; eval "$var=\$*"; unset var; }
 
 setpath() {
-	# sh does not allow unsetting IFS,
-	# and `foo=bar join` does not take effect
+	# real sh does not allow unsetting IFS,
+	# and `foo=bar join` does not always work
 	set +a; xIFS=$IFS; IFS=":";    set -a
 	joins "$@"
 	set +a; IFS=$xIFS; unset xIFS; set -a
@@ -20,6 +21,12 @@ set -a
 [ "$USER" ]     || USER=`id -un`
 [ "$UID" ]      || UID=`id -u`
 [ "$HOSTNAME" ] || HOSTNAME=`hostname`
+
+# session info
+
+if [ -z "$DESKTOP_SESSION" ] && [ "$OS" = "Windows_NT" ]; then
+	DESKTOP_SESSION=$OS
+fi
 
 # paths/locations
 
@@ -52,11 +59,8 @@ setpath PERL5LIB \
 
 GNULIB_SRCDIR="$HOME/src/gnu/gnulib"
 
-test "$XDG_CACHE_HOME" ||
-XDG_CACHE_HOME="$HOME/.cache"
-
-test "$XDG_CONFIG_HOME" ||
-XDG_CONFIG_HOME="$HOME/.config"
+test "$XDG_CACHE_HOME"  || XDG_CACHE_HOME="$HOME/.cache"
+test "$XDG_CONFIG_HOME" || XDG_CONFIG_HOME="$HOME/.config"
 
 # identity
 
@@ -74,9 +78,15 @@ PAGER="less"
 # libdefaults
 
 GTK_IM_MODULE="xim"
+HOSTALIASES="$HOME/lib/dotfiles/hostaliases"
 _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
 NCURSES_NO_UTF8_ACS="1"
 QT_IM_MODULE="xim"
+
+case $LANG in *.utf8)
+	# make `tree` work correctly
+	LANG="${LANG%.utf8}.utf-8"
+esac
 
 # appdefaults
 

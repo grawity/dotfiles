@@ -1,24 +1,11 @@
-#!/bin/bash
+#!bash
 
 [[ $- != *i* ]] && return
 
 HISTFILESIZE=10000
 
-irc() { ~/bin/irc "$@"; }
-
 pacman-clean() {
 	sudo pacman -Rnsc $(pacman -Qqdt)
-}
-
-ppid() {
-	local k v
-	while read -r k v; do
-		if [[ $k == 'PPid:' ]]; then
-			echo $v
-			return
-		fi
-	done < "/proc/$1/status"
-	false
 }
 
 alias RM='/bin/rm'
@@ -59,7 +46,10 @@ rm() {
 	fi
 }
 
-alias rpw='rpw | tee /dev/stderr | tr -d \\\n | gclip'
+rpw() {
+	tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}" |
+	tee /dev/stderr | tr -d '\n' | gclip
+}
 
 sm() { synclient -m 100; }
 
