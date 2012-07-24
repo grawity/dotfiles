@@ -1,20 +1,27 @@
 #!/usr/bin/env bash
-set -e
 
-have() { command -v "$@" >/dev/null; }
+log() { if [ -t 0 ]; then echo "$*"; fi; }
+
+have() { command -v "$1" >/dev/null; }
 
 link() {
-	local target="$dir/${1%/}" link=$2
+	local target=$dir/${1%/} link=${2:-$HOME/.$1}
 	if [ -e "$link" ]; then
 		if [ -k "$link" ]; then
-			echo "Ignoring sticky ${link/#$HOME/~}"
+			log "Ignoring sticky ${link/#$HOME/~}"
 			return
 		elif [ -h "$link" ]; then
 			rm -f "$link"
 		else
 			trash "$link"
 		fi
+	else
+		local linkdir=${link%/*}
+		if [ ! -d "$linkdir" ]; then
+			mkdir -p "$linkdir"
+		fi
 	fi
+	#log "Linking ${link/#$HOME/~} to ${target/#$HOME/~}"
 	sym -f "$target" "$link"
 }
 
@@ -26,7 +33,7 @@ trash() {
 		if [ ! -e "$file" ]; then
 			continue
 		elif [ -k "$file" ]; then
-			echo "Ignoring sticky ${file/#$HOME/~}"
+			log "Ignoring sticky ${file/#$HOME/~}"
 			continue
 		else
 			if [ ! -d "$trash" ]; then
@@ -38,72 +45,62 @@ trash() {
 	done
 }
 
+set -e
+
 dir=$(dirname "$0")
-trash=~/trash
+trash=~/Trash
 
-mkdir -pm 0700 ~/.ssh
+cd "$dir"
 
-link bashrc	~/.bashrc
-link gitconfig	~/.gitconfig
-link gitignore	~/.gitignore
-link inputrc	~/.inputrc
-link profile	~/.profile
-link vimrc	~/.vimrc
-link vim/	~/.vim
+trash ~/.{login,logout}
+trash ~/.bash_{login,profile,logout}
+trash ~/.{sh,csh}rc
 
-trash ~/.cshrc
-trash ~/.login
-trash ~/.logout
-trash ~/.shrc
+link bashrc
+link inputrc
+link profile
 
-"$dir/ssh-config.gen" -f
+have bzr &&
+	link bazaar/bazaar.conf
 
-have bzr && {
-	mkdir -p ~/.bazaar
-	link bazaar/bazaar.conf ~/.bazaar/bazaar.conf
-}
-
-have gvim &&
-	link gvimrc ~/.gvimrc
-
-have makepkg &&
-	link makepkg.conf ~/.makepkg.conf
-
-trash	~/.bash_{login,profile,logout}
+link gitconfig
+link gitignore
 
 have irb &&
-	link irbrc ~/.irbrc
-
-have klist && {
-	#link k5identity ~/.k5identity
-	[[ -L ~/.k5identity ]] &&
-		rm -f ~/.k5identity
-}
+	link irbrc
 
 have mail &&
-	link mailrc ~/.mailrc
+	link mailrc
+
+have makepkg &&
+	link makepkg.conf
 
 have msmtp && {
-	link msmtprc ~/.msmtprc
-	chmod 600 ~/.msmtprc
+	link msmtprc
+	chmod 600 msmtprc
 }
 
-have mutt && {
-	#link muttrc ~/.muttrc
-	[[ ! -f ~/.muttrc ]] &&
-		echo 'source "~/lib/dotfiles/muttrc"' > ~/.muttrc
-}
+have mutt &&
+	link muttrc
 
 have screen &&
-	link screenrc ~/.screenrc
+	link screenrc
+
+have ssh &&
+	./ssh-config.gen
 
 have tmux &&
-	link tmux.conf ~/.tmux.conf
+	link tmux.conf
+
+link vimrc
+link vim
+have gvim &&
+	link gvimrc
 
 have xrdb && {
-	link Xresources		~/.Xresources
-	link XCompose		~/.XCompose
-	link fonts.conf.xml	~/.fonts.conf
+	link Xresources
+	link XCompose
+	link fonts.conf.xml ~/.fonts.conf
 }
 
 exit 0

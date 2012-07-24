@@ -3,7 +3,7 @@
 
 set -e
 
-PATH="$HOME/code/bih:$PATH"
+PATH="$HOME/code/bin:$PATH"
 
 . libfilterfile.bash
 
@@ -55,40 +55,37 @@ Version() {
 # generator
 
 generate() {
-	local file
-	for file; do
-		[[ -e $file ]] && cat "$file"
-	done \
-	| filter_file match_eval
+	cat "${input[@]}" 2>/dev/null | filter_file match_eval
 }
 
-overwrite=0
+input=( ~/lib/dotfiles/ssh-config
+	~/lib/dotfiles/ssh-config-$HOSTNAME )
 
-files=( ~/lib/dotfiles/ssh-config
-	~/lib/dotfiles/ssh-config-"$HOSTNAME" )
+output="config-$HOSTNAME"
 
-genconf="config-$HOSTNAME.gen"
-
-if [[ $1 == "-f" ]]; then
-	overwrite=1
-fi
-
-if (( overwrite )); then
-	if [[ ! -e ~/.ssh/config ]]; then
-		debug "config doesn't exist yet"
+if [[ $1 == "--test" ]]; then
+	generate
+else
+	if [[ ! -d ~/.ssh ]]; then
+		debug "ok, ~/.ssh doesn't exist yet"
+		mkdir -p -m 0700 ~/.ssh
+		true
+	elif [[ ! -e ~/.ssh/config ]]; then
+		debug "ok, config doesn't exist yet"
 		true
 	elif [[ ~/.ssh/config -ef ~/lib/dotfiles/ssh-config ]]; then
-		debug "symlinked config found"
+		debug "ok, symlinked config found"
 		rm -f ~/.ssh/config
-	elif [[ ~/.ssh/config -ef ~/.ssh/"$genconf" ]]; then
-		debug "generated config found"
+	elif [[ ~/.ssh/config -ef ~/.ssh/$output.gen ]]; then
+		debug "ok, old generated config found"
+		rm -f ~/.ssh/config ~/.ssh/$output.gen
+		true
+	elif [[ ~/.ssh/config -ef ~/.ssh/$output ]]; then
+		debug "ok, generated config found"
 		true
 	else
 		die "Refusing to overwrite local ~/.ssh/config"
 	fi
-
-	generate "${files[@]}" > ~/.ssh/"$genconf"
-	ln -sf "$genconf" ~/.ssh/config
-else
-	generate "${files[@]}"
+	generate > ~/.ssh/$output
+	ln -sf $output ~/.ssh/config
 fi
