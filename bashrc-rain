@@ -55,4 +55,16 @@ sm() { synclient -m 100; }
 
 . /usr/share/bash-completion/bash_completion
 
+_comp_lspkg() {
+	_arch_compgen "$(
+		if [[ $2 ]]; then
+			\pacman -Qq 2>/dev/null | grep "^$2"
+		else
+			\pacman -Qq 2>/dev/null
+		fi
+	)"
+}
+
+complete -F _comp_lspkg lspkg lcpkg
+
 have() { command -v "$@" &>/dev/null; }
