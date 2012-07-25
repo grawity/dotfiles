@@ -1,0 +1,3 @@
+" $USERPROFILE/_gvimrc
+
+source $USERPROFILE/Documents/GitHub/dotfiles/gvimrc

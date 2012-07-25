@@ -1,0 +1,7 @@
+" $USERPROFILE/_vimrc
+
+set runtimepath-=~/vimfiles
+set runtimepath-=~/vimfiles/after
+set runtimepath^=$USERPROFILE/Documents/GitHub/dotfiles/vim
+set runtimepath+=$USERPROFILE/Documents/GitHub/dotfiles/vim/after
+source $USERPROFILE/Documents/GitHub/dotfiles/vimrc

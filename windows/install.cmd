@@ -1,15 +1,16 @@
 @echo off & setlocal
 set srcdir=%~dp0\..
-
 pushd "%srcdir%"
 call git pull
 popd
 
-call :install gitconfig		"%USERPROFILE%\.gitconfig"
-call :install gitignore		"%USERPROFILE%\.gitignore"
-call :install windows\gtkrc-2.0	"%USERPROFILE%\.gtkrc-2.0"
-call :install vimrc		"%USERPROFILE%\.vimrc"
-call :install vim		"%USERPROFILE%\vimfiles"
+call :install windows\vimrc	"%USERPROFILE%\_vimrc"
+call :install windows\gvimrc	"%USERPROFILE%\_gvimrc"
+
+::call :install gitconfig		"%USERPROFILE%\.gitconfig"
+::call :install gitignore		"%USERPROFILE%\.gitignore"
+::call :install windows\gtkrc-2.0	"%USERPROFILE%\.gtkrc-2.0"
+
 goto :eof
 
 :install
