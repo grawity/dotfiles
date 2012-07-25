@@ -1,0 +1,14 @@
+# ~/.config/gtk-3.0/settings.ini
+# https://wiki.archlinux.org/index.php/GNOME_3#GTK3_theme_via_settings.ini
+# http://developer.gnome.org/gtk3/3.2/GtkSettings.html
+
+[Settings]
+gtk-theme-name = Adwaita
+#gtk-cursor-theme-name = Adwaita
+#gtk-application-prefer-dark-theme = true
+#gtk-menu-images = false
+#gtk-button-images = false
+#gtk-alternative-button-order = true
+#gtk-alternative-sort-arrows = true
+gtk-error-bell = false
+#gtk-visible-focus = GTK_POLICY_AUTOMATIC

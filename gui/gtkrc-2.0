@@ -1,0 +1,19 @@
+# ~/.gtkrc-2.0
+
+gtk-theme-name = "Clearlooks"
+#gtk-cursor-theme-name = Adwaita
+gtk-toolbar-style = GTK_TOOLBAR_BOTH_HORIZ
+#gtk-menu-images = 0
+#gtk-button-images = 0
+#gtk-alternative-button-order = 1
+#gtk-alternative-sort-arrows = 1
+gtk-error-bell = 0
+
+style "scrollbar-arrows" {
+	GtkScrollbar::has-backward-stepper = 0
+	GtkScrollbar::has-forward-stepper = 0
+	GtkScrollbar::has-secondary-backward-stepper = 0
+	GtkScrollbar::has-secondary-forward-stepper = 0
+}
+
+class "GtkScrollbar" style "scrollbar-arrows"
