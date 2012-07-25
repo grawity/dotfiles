@@ -1,5 +1,6 @@
 #!bash
 # bashrc -- shell prompt, window title, command exit status in prompt
+# (note: depends on $havecolor being set, see main bashrc)
 
 # This function automatically collapses long paths to fit on screen.
 # It is invoked from within $PS1 below.
