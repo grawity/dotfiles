@@ -6,9 +6,8 @@ popd
 
 call :install windows\vimrc	"%USERPROFILE%\_vimrc"
 call :install windows\gvimrc	"%USERPROFILE%\_gvimrc"
+call :install windows\gitconfig	"%USERPROFILE%\.gitconfig"
 
-::call :install gitconfig		"%USERPROFILE%\.gitconfig"
-::call :install gitignore		"%USERPROFILE%\.gitignore"
 ::call :install windows\gtkrc-2.0	"%USERPROFILE%\.gtkrc-2.0"
 
 goto :eof

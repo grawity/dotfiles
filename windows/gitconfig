@@ -1,0 +1,7 @@
+# $USERPROFILE/.gitconfig
+
+[core]
+	excludesfile = ~/Documents/GitHub/dotfiles/gitignore
+
+[include]
+	path = ~/Documents/GitHub/dotfiles/gitconfig
