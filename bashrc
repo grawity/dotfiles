@@ -8,6 +8,13 @@ have() { command -v "$1" >&/dev/null; }
 
 [[ $PREFIX ]] || . ~/lib/dotfiles/environ
 
+# this cannot be in environ.sh because gdm sources profile early;
+# Xsession and gnome-session override $LANG later
+case $LANG in *.utf8)
+	# make `tree` work correctly
+	export LANG="${LANG%.utf8}.utf-8"
+esac
+
 export GPG_TTY=$(tty)
 
 export SUDO_PROMPT=$(printf 'sudo: Password for %%u@\e[30;43m%%h\e[m: ')
