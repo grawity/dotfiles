@@ -66,6 +66,7 @@ tubes() { youtube-dl --title "$@"; }
 up() { local p= i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
 alias watch='watch '
 wim() { editor "$(which "$1")"; }
+alias xf='ps xf -O ppid'
 alias xx='chmod a+x'
 X() { (spawn "$@" >> ~/.xsession-errors 2>&1 &); }
 youtube-dl() {
