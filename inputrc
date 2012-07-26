@@ -1,8 +1,12 @@
 # ~/.inputrc: readline(3), bash(1) - Readline library configuration
 
+set bell-style none
+
+# Tab completion
 set show-all-if-ambiguous on
-set blink-matching-parent on
 set visible-stats on
+
+# Disallow modifying history
 set revert-all-at-newline on
 
 # Arrows
@@ -29,6 +33,7 @@ set revert-all-at-newline on
 #"\C-i": menu-complete
 "\e[Z": complete-hostname
 
+# Alt+numbers. Useless.
 "\e-": ""
 "\e0": ""
 "\e1": ""
