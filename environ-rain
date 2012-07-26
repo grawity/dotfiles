@@ -4,9 +4,10 @@
 
 setpath PATH \
 	"$(ruby -rubygems -e 'puts Gem.user_dir')/bin"	\
-	"$HOME/lib/git/bin"				\
-	"$HOME/lib/mosh/bin"				\
-	"$PATH"						;
+	"$HOME/lib/mutt/bin"	\
+	"$HOME/lib/git/bin"	\
+	"$HOME/lib/mosh/bin"	\
+	"$PATH"			;
 
 # libdefaults
 
