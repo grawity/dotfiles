@@ -2,6 +2,8 @@
 
 [ "$DEBUG" ] && echo "++ environ [self=$0]"
 
+have() { command -v "$1" >/dev/null 2>&1; }
+
 joins() { var=$1; shift; eval "$var=\$*"; unset var; }
 
 setpath() {
@@ -74,6 +76,7 @@ BROWSER="web-browser"
 EDITOR="vim"
 unset VISUAL
 PAGER="less"
+have w3m && PAGER="w3m"
 
 # libdefaults
 
