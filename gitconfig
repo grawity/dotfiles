@@ -51,6 +51,7 @@
 [credential]
 	helper = cache --socket $XDG_RUNTIME_DIR/git-credential-cache.socket
 	helper = lib gnomekeyring
+	helper = lib windows
 	helper = netrc
 	helper = store --file ~/.auth/git-credential-store
 	useHttpPath = false
