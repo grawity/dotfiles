@@ -1,7 +1,8 @@
 # $USERPROFILE/.gitconfig
-
-[core]
-	excludesfile = ~/Documents/GitHub/dotfiles/gitignore
+# vim: ft=gitconfig:
 
 [include]
 	path = ~/Documents/GitHub/dotfiles/gitconfig
+
+[core]
+	excludesfile = ~/Documents/GitHub/dotfiles/gitignore
