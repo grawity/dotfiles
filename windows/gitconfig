@@ -4,5 +4,8 @@
 [include]
 	path = ~/Documents/GitHub/dotfiles/gitconfig
 
+[alias]
+	credential-lib = !python ~/code/security/git-credential-lib
+
 [core]
 	excludesfile = ~/Documents/GitHub/dotfiles/gitignore
