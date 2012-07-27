@@ -64,8 +64,9 @@ have bzr &&
 	link bazaar/bazaar.conf
 
 link git ~/.config/git
-link gitconfig
-link gitignore
+
+[[ -z $(git config --get --global github.user) ]] &&
+	link gitconfig
 
 have irb &&
 	link irbrc
