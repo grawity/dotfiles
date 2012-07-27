@@ -41,6 +41,7 @@ fi
 alias lp='sudo netstat -lptu --numeric-hosts'
 alias lpt='sudo netstat -lpt --numeric-hosts'
 alias lpu='sudo netstat -lpu --numeric-hosts'
+alias lsd='ls -d .*'
 alias md='mkdir'
 alias nosr='pkgfile'
 nul() { cat "$@" | tr '\0' '\n'; }
