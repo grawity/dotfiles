@@ -151,4 +151,4 @@
 	insteadOf = linux:
 
 [include]
-	path = .gitconfig-local
+	path = ~/.gitconfig-local
