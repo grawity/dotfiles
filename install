@@ -63,6 +63,7 @@ link profile
 have bzr &&
 	link bazaar/bazaar.conf
 
+link git ~/.config/git
 link gitconfig
 link gitignore
 
