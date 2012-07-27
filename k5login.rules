@@ -13,7 +13,7 @@
 	*.nathan7.eu
 
 grawity@CLUENET.ORG
-	+cluenet !+cluenet-admin
+	+cluenet
 	+nathan7
 	+nullroute
 grawity/admin@CLUENET.ORG
@@ -22,7 +22,6 @@ grawity@NATHAN7.EU
 	+cluenet !+cluenet-admin
 	+nathan7
 grawity@NULLROUTE.EU.ORG
-	*
-	!+cluenet-admin
+	* !+cluenet-admin
 grawity/admin@NULLROUTE.EU.ORG
 	+nullroute
