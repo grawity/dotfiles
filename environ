@@ -18,11 +18,11 @@ setpath() {
 
 umask 022
 
-set -a
-
 [ "$USER" ]     || USER=`id -un`
 [ "$UID" ]      || UID=`id -u`
 [ "$HOSTNAME" ] || HOSTNAME=`hostname`
+
+set -a
 
 # session info
 
