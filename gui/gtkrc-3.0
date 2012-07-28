@@ -4,10 +4,11 @@
 
 [Settings]
 gtk-theme-name = Adwaita
-#gtk-cursor-theme-name = Adwaita
 #gtk-application-prefer-dark-theme = true
-#gtk-menu-images = false
-#gtk-button-images = false
+#gtk-cursor-theme-name = Adwaita
+gtk-toolbar-style = GTK_TOOLBAR_BOTH_HORIZ
+gtk-menu-images = false
+gtk-button-images = false
 #gtk-alternative-button-order = true
 #gtk-alternative-sort-arrows = true
 gtk-error-bell = false
