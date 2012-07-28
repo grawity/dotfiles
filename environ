@@ -92,13 +92,11 @@ QT_IM_MODULE="xim"
 ABSROOT="$HOME/pkg"
 ACK_PAGER="$PAGER"
 BZR_LOG="/dev/null"
-GNUSTEP_USER_ROOT="$XDG_CONFIG_HOME/GNUstep"
 LESS="e M q R F X z -3"
 LESSHISTFILE="$XDG_CACHE_HOME/less.history"
 MAKEFLAGS="-j $(nproc)"
 MYSQL_HISTFILE="$XDG_CACHE_HOME/mysql.history"
 PYTHONSTARTUP="$HOME/lib/dotfiles/pythonrc"
-OPERA_PERSONALDIR="$XDG_CONFIG_HOME/opera"
 
 # local
 

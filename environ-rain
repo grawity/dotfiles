@@ -19,9 +19,16 @@ fi
 #LD_PRELOAD='/usr/$LIB/libv4l/v4l1compat.so'
 #WINEDLLOVERRIDES="winemenubuilder.exe=d"
 
+# appconfig
+
+GNUSTEP_USER_ROOT="$XDG_CONFIG_HOME/GNUstep"
+ICEWM_PRIVCFG="$XDG_CONFIG_HOME/IceWM"
+OPERA_PERSONALDIR="$XDG_CONFIG_HOME/opera"
+WMII_CONFPATH="$XDG_CONFIG_HOME/wmii"
+
 # appdefaults
 
 ACCDB="/run/media/$USER/grawpqi/private/accounts.db.txt"
 BUP_DIR="$HOME/Backup/bup-repository"
 MAKEFLAGS="-j 5"
-MPD_HOST="$(<~/.config/mpd/password)@$XDG_RUNTIME_DIR/mpd.control"
+MPD_HOST="$(<"$XDG_CONFIG_HOME/mpd/password")@$XDG_RUNTIME_DIR/mpd.control"
