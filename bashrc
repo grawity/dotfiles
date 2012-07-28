@@ -48,6 +48,9 @@ complete -A directory cd
 ### Terminal capabilities
 
 case $TERM in
+	*-256color)
+		havecolor=256
+		;;
 	xterm)
 		havecolor=8
 		if [[ -z $COLORTERM ]] && [[ -f /proc/$PPID/cmdline ]]; then
