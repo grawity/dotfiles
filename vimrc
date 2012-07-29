@@ -22,9 +22,9 @@ endif
 
 " Color scheme
 
-"let g:lucius_style="light"
+"et g:lucius_style="light"
 let g:lucius_style="dark"
-"let g:molokai_original=1
+"et g:molokai_original=1
 let g:zenburn_high_Contrast=1
 let g:zenburn_old_Visual=1
 
@@ -32,15 +32,13 @@ if &term == "linux"
 	set bg=dark
 endif
 
-silent! color slate
-
 if has("gui_running")
+	" configured in gvimrc
+elseif &t_Co == 256
 	silent! color desert
 	silent! color zenburn
-elseif &t_Co == 256
+else
 	silent! color slate
-	silent! color zenburn
-	"silent! color lucius
 endif
 
 " UI elements
@@ -51,13 +49,12 @@ set showcmd
 set display+=lastline
 silent! set number
 silent! set numberwidth=1
-"silent! set relativenumber
 silent! set mouse=a
 set scrolloff=3			" scroll context lines
 set laststatus=2		" display status
 set tabpagemax=20		" max tabs
 
-if has("gui_running") || &t_Co > 16
+if &t_Co > 16
 	setl cursorline
 	au WinEnter * setl cursorline
 	au WinLeave * setl nocursorline
@@ -120,7 +117,7 @@ nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=""<CR>
 " sort CSS properties
 nnoremap <Leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 " re-hardwrap text
-nnoremap <Leader>q gqip
+nnoremap <Leader>q gq
 " reselect pasted text
 nnoremap <Leader>v V`]
 
