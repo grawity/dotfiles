@@ -77,7 +77,6 @@ BROWSER="web-browser"
 EDITOR="vim"
 unset VISUAL
 PAGER="less"
-have w3m && PAGER="w3m"
 
 # libdefaults
 
