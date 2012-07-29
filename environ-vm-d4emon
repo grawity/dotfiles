@@ -1,0 +1,9 @@
+#!bash
+
+# appconfig
+
+SM_SAVE_DIR="$XDG_CACHE_HOME/xsm"
+
+# appdefaults
+
+CLICOLOR="y"

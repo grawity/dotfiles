@@ -6,7 +6,9 @@ have() { command -v "$1" >/dev/null; }
 
 link() {
 	local target=$dir/${1%/} link=${2:-$HOME/.$1}
-	if [ -e "$link" ]; then
+	if [ ! -e "$target" ]; then
+		log "Ignoring missing ${target/#$HOME/~}"
+	elif [ -e "$link" ]; then
 		if [ -k "$link" ]; then
 			log "Ignoring sticky ${link/#$HOME/~}"
 			return
@@ -101,6 +103,7 @@ have gvim &&
 
 have xrdb && {
 	link Xresources
+	link Xdefaults-$HOSTNAME
 	link XCompose
 	link fonts.conf.xml ~/.fonts.conf
 }
