@@ -47,7 +47,7 @@ trash() {
 
 set -e
 
-dir=$(dirname "$0")
+dir=$(dirname "$(readlink -f "$0")")
 trash=~/Trash
 
 cd "$dir"
