@@ -57,9 +57,11 @@ set scrolloff=3			" scroll context lines
 set laststatus=2		" display status
 set tabpagemax=20		" max tabs
 
-setl cursorline
-au WinEnter * setl cursorline
-au WinLeave * setl nocursorline
+if has("gui_running") || &t_Co > 16
+	setl cursorline
+	au WinEnter * setl cursorline
+	au WinLeave * setl nocursorline
+endif
 
 set wildmenu			" completion menu
 "set wildmode=list:longest
