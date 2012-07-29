@@ -48,35 +48,12 @@ complete -A directory cd
 ### Terminal capabilities
 
 case $TERM in
-	xterm)
-		havecolor=8
-		if [[ -z $COLORTERM ]] && [[ -f /proc/$PPID/cmdline ]]; then
-			read -r -d '' comm </proc/$PPID/cmdline
-			comm=${comm##*/}
-			case $comm in
-				gnome-terminal|konsole|xterm|yakuake)
-					COLORTERM=$comm
-					;;
-				kdeinit4:*konsole*)
-					COLORTERM=konsole
-					;;
-			esac
-			unset comm
-		fi
-		if [[ $COLORTERM ]]; then
-			TERM="$TERM-256color"
-			havecolor=256
-		fi
-		;;
-	vt100|vt220|vt320)
-		havecolor=8
-		;;
-	'')
-		havecolor=0
-		;;
+	"")
+		havecolor=0;;
+	*-256color)
+		havecolor=256;;
 	*)
-		havecolor=$(have tput && tput colors 2>/dev/null)
-		;;
+		havecolor=8;;
 esac
 
 ### Prompt and window title
