@@ -2,11 +2,7 @@
 
 if [ -d "$XDG_RUNTIME_DIR" ]; then
 	if [ ! -e "$XDG_RUNTIME_DIR/media" ]; then
-		if [ -d "/run/media/$USER" ]; then
-			ln -nsf "/run/media/$USER" "$XDG_RUNTIME_DIR/media"
-		elif [ -d "/media" ]; then
-			ln -nsf "/media" "$XDG_RUNTIME_DIR/media"
-		fi
+		ln -nsf "/run/media/$USER" "$XDG_RUNTIME_DIR/media"
 	fi
 	if [ ! -e "$HOME/run" ]; then
 		ln -nsf "$XDG_RUNTIME_DIR" "$HOME/run"
