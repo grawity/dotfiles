@@ -5,10 +5,10 @@
 #	set smtp_url="smtp://grawity@equal.cluenet.org"
 #!
 
-#[[ -f ~/.msmtprc ]] &&
-#cat <<-'!'
-#	set sendmail="msmtp"
-#!
+[[ -f ~/.msmtprc ]] &&
+cat <<-'!'
+	set sendmail="msmtp"
+!
 
 [[ "$GPG_AGENT_INFO" ]] &&
 cat <<-'!'
