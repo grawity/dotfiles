@@ -22,11 +22,17 @@ augroup filetypedetect
 	" INI-style
 	au BufNewFile,BufRead *.url setf dosini
 
+	" /etc/group
+	au BufNewFile,BufRead /etc/vigr.* setf group
+
 	" Markdown
 	au BufNewFile,BufRead *.md setf markdown
 
 	" RDF Notation 3 <http://www.vim.org/scripts/script.php?script_id=944>
 	au BufNewFile,BufRead *.n3,*.trig,*.ttl,*.turtle setf n3
+
+	" /etc/passwd
+	au BufNewFile,BufRead /etc/vipw.* setf passwd
 
 	" PHP
 	au BufNewFile,BufRead *.phps setf php
