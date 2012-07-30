@@ -86,17 +86,17 @@ STICKY 37;44 # dir with the sticky bit set (+t) and not other-writable
 EXEC 01;32
 
 # possible scripts
-.bat 00;32
-.cmd 00;32
-.com 00;32
-.dll 00;32
-.exe 00;32
-.pl 00;32
-.py 00;32
-.sh 00;32
-.so 00;32
-.c 00;32
-.h 00;32
+#.bat 00;32
+#.cmd 00;32
+#.com 00;32
+#.dll 00;32
+#.exe 00;32
+#.pl 00;32
+#.py 00;32
+#.sh 00;32
+#.so 00;32
+#.c 00;32
+#.h 00;32
 
 # archives or compressed (bright red)
 .7z 01;31
