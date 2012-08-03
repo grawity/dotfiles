@@ -1,6 +1,6 @@
-#!sh
+#!bash
 
-test "$DEBUG" && echo "++ profile [arg0=$0]"
+[ "$DEBUG" ] && echo "++ profile [self=$0]"
 
 # environ
 
@@ -14,7 +14,6 @@ case $0 in -*)
 	test -f ~/.hushlogin && motd -q
 
 	echo `uptime`
-	;;
 esac
 
 # misc
@@ -22,6 +21,8 @@ esac
 if [ "$BASH" ] && [ -f ~/.bashrc ]; then
 	. ~/.bashrc
 fi
+
+# local
 
 if [ -f ~/lib/dotfiles/profile-$HOSTNAME ]; then
 	. ~/lib/dotfiles/profile-$HOSTNAME
