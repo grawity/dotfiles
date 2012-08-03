@@ -25,7 +25,7 @@ syn match adTagMarker		/+/		contained nextgroup=adTag
 
 syn match adName		/^=.*$/		contains=NONE
 
-syn match adComment		/^;.*$/		contains=NONE
+syn match adComment		/^\s*;.*$/		contains=NONE
 
 hi def link adName		Title
 hi def link adComment		Comment
