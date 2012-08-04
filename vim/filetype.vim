@@ -20,10 +20,11 @@ augroup filetypedetect
 	au BufNewFile,BufRead ~/.config/systemd/user/*		setf desktop
 
 	" INI-style
+	au BufNewFile,BufRead *.pkla,*.pkla~ setf dosini
 	au BufNewFile,BufRead *.url setf dosini
 
 	" /etc/group
-	au BufNewFile,BufRead /etc/vigr.* setf group
+	au BufNewFile,BufRead *.group,/etc/vigr.* setf group
 
 	" Markdown
 	au BufNewFile,BufRead *.md setf markdown
@@ -32,7 +33,7 @@ augroup filetypedetect
 	au BufNewFile,BufRead *.n3,*.trig,*.ttl,*.turtle setf n3
 
 	" /etc/passwd
-	au BufNewFile,BufRead /etc/vipw.* setf passwd
+	au BufNewFile,BufRead *.passwd,/etc/vipw.* setf passwd
 
 	" PHP
 	au BufNewFile,BufRead *.phps setf php
