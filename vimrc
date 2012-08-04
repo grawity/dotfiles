@@ -98,6 +98,9 @@ set cinkeys=0{,0},0),:,!,o,O,e
 set formatoptions=tcrqn
 set gdefault
 
+set comments-=:%
+set comments-=:XCOMM
+
 set noshowmatch
 "silent! let loaded_matchparen=1
 
@@ -116,8 +119,6 @@ nnoremap <Leader>l :ls<CR>:b<Space>
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=""<CR>
 " sort CSS properties
 nnoremap <Leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
-" re-hardwrap text
-nnoremap <Leader>q gq
 " reselect pasted text
 nnoremap <Leader>v V`]
 
