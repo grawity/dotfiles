@@ -8,7 +8,7 @@
 
 # login
 
-case $0 in -*)
+case $0:$TMUX in -*:)
 	test -d ~/.cache || mkdir -p -m 0700 ~/.cache
 	
 	test -f ~/.hushlogin && motd -q
