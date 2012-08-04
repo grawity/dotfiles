@@ -73,6 +73,7 @@ set fileencodings=ucs-bom,utf-8,cp1257,latin1
 set modeline
 
 set nobackup
+set backupcopy=yes " fixes issues with vipw
 set autowrite
 
 if hostname() == "rain"
