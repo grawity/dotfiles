@@ -3,7 +3,8 @@
 ### User identity
 
 set realname="Mantas M."
-set from="grawity@nullroute.eu.org"
+#set from="grawity@nullroute.eu.org"
+set from="grawity@gmail.com"
 set reverse_name
 reply-hook ~l 'set from="grawity@gmail.com"'
 
