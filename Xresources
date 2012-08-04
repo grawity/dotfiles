@@ -88,10 +88,11 @@ Rxvt.secondaryScroll:	false
 ! appearance
 Rxvt.geometry:		100x35
 !Rxvt.font:		6x13
-!Rxvt.font:		-misc-fixed-medium-r-*-*-15-*-*-*-*-*-iso10646-*
+Rxvt.font:		-*-fixed-medium-r-*-*-18-*-*-*-*-*-iso10646-*
+!Rxvt.font:		-*-fixed-medium-r-*-*-20-*-*-*-*-*-iso10646-*
 !Rxvt.font:		xft:Monospace:pixelsize=12
-Rxvt.font:		xft:DejaVu Sans Mono:size=9
-Rxvt.letterSpace:	-1
+!Rxvt.font:		xft:DejaVu Sans Mono:size=9
+!Rxvt.letterSpace:	-1
 
 ! colors (gnome-terminal Tango scheme)
 Rxvt.background:	black
