@@ -38,6 +38,7 @@
 	undo = reset --soft HEAD^
 	unexport = !rm -v $(git rev-parse --git-dir)/git-daemon-export-ok
 	pick = cherry-pick
+	fa = fetch --all
 [color]
 	branch = auto
 	diff = auto
