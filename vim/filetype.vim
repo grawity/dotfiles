@@ -38,11 +38,17 @@ augroup filetypedetect
 	" PHP
 	au BufNewFile,BufRead *.phps setf php
 
+	" Arch PKGBUILD
+	au BufNewFile,BufRead PKGBUILD* setf PKGBUILD
+
 	" Shell
 	au BufNewFile,BufRead /etc/rc.conf setf sh
 	
 	" tmux
 	au BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
+
+	" udev
+	au BufNewFile,BufRead /usr/lib/udev/rules.d/* setf udevrules
 
 	" Vala <https://live.gnome.org/Vala/Vim>
 	au BufNewFile,BufRead *.vala,*.vapi setf vala
