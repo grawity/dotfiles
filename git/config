@@ -39,6 +39,8 @@
 	unexport = !rm -v $(git rev-parse --git-dir)/git-daemon-export-ok
 	pick = cherry-pick
 	fa = fetch --all
+	repack-to-local = repack -da
+	repack-to-alternate = repack -dal
 [color]
 	branch = auto
 	diff = auto
