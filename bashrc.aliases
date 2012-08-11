@@ -25,10 +25,9 @@ count() { sort "$@" | uniq -c | sort -n -r | pager; }
 alias cur='cur '
 alias dnstracer='dnstracer -s .'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
-g() { egrep -rn --color=always "$@" .; }
+gg() { egrep -rn --color=always "$@" .; }
 alias facl='getfacl -pt'
 gpgsigs() { gpg --edit-key "$1" check quit; }
-alias hc='herbstclient'
 alias hex='xxd -p'
 alias unhex='xxd -p -r'
 alias hup='pkill -HUP -x'
@@ -45,8 +44,7 @@ alias lsd='ls -d .*'
 alias md='mkdir'
 alias nosr='pkgfile'
 nul() { cat "$@" | tr '\0' '\n'; }
-alias p='pager'
-path() { if [[ $1 ]]; then which -a "$@"; else echo "${PATH//:/$'\n'}"; fi; }
+path() { if (( $# )); then which -a "$@"; else echo "${PATH//:/$'\n'}"; fi; }
 alias py='python'
 alias py2='python2'
 alias py3='python3'
@@ -83,16 +81,6 @@ youtube-dl() {
 }
 alias '~'='egrep'
 alias '~~'='egrep -i'
-/() {
-	if git rev-parse --git-dir &>/dev/null; then
-		git grep -n -i "$@"
-	else
-		if (( $# < 2 )); then
-			set -- "$@" .
-		fi
-		grep -r -n -i "$@"
-	fi
-}
 
 alias sdate='date "+%Y-%m-%d %H:%M"'
 alias ldate='date "+%A, %B %-d, %Y %H:%M"'
@@ -142,7 +130,8 @@ unset LS_OPTIONS
 abs() {
 	local pkg=$1
 	if [[ $pkg != */* ]]; then
-		local repo=$(pacman -Si "$pkg" | sed -nr 's/^Repository *: *(.+)$/\1/p' | sed 1q)
+		local repo=$(pacman -Si "$pkg" \
+			| sed -rn '/^Repository *: *(.+)$/{s//\1/p;q}')
 		[[ $repo ]] || return 1
 		pkg="$repo/$pkg"
 	fi
@@ -151,21 +140,19 @@ abs() {
 }
 
 escape_addr() {
-	if [[ $1 == *:* ]]; then
-		echo "[$1]"
-	else
-		echo "$1"
-	fi
+	[[ $1 == *:* ]] &&
+		set -- "[$1]"
+	echo "$1"
 }
 
 catlog() {
 	local prefix=$1
-	printf '%s\n' "$prefix" "$prefix".* | sort -rn | while read -r file; do
-		if [[ $file == *.gz ]]; then
-			zcat "$file"
-		else
-			cat "$file"
-		fi
+	printf '%s\n' "$prefix" "$prefix".* \
+	| sort -rn | while read -r file; do
+		case $file in
+		*.gz)	zcat "$file";;
+		*)	cat "$file";;
+		esac
 	done
 }
 
@@ -175,7 +162,7 @@ cpans() {
 
 ldapsetconf() {
 	if [[ $1 ]]; then
-		export LDAPCONF="$1"
+		export LDAPCONF=$1
 	else
 		unset LDAPCONF
 	fi
@@ -333,37 +320,29 @@ if have systemctl; then
 	alias status='systemctl status'
 	alias userctl='systemctl --user'
 	alias u='systemctl --user'
-	alias ustart='u start'
-	alias ustop='u stop'
-	alias ustatus='u status'
 	alias lcstatus='loginctl session-status $XDG_SESSION_ID'
 	alias tsd='tree /etc/systemd/system'
 	cgls() { systemd-cgls "$@" | pager; }
-	psls() {
-		if [[ $1 == "-a" ]]; then
-			cgls "/user/$USER"
-		elif [[ $1 ]]; then
-			cgls "/user/$1"
-		else
-			cgls "/user/$USER/${XDG_SESSION_ID:-$(</proc/self/sessionid)}"
-		fi
-	}
 	if have _systemctl; then
 		complete -F _systemctl enable disable status start stop restart
 	fi
 elif have start && have stop; then
+	# Upstart
 	start()   { sudo start "$@"; }
 	stop()    { sudo stop "$@"; }
 	restart() { sudo restart "$@"; }
 elif have service; then
+	# Debian
 	start()   { for _s; do sudo service "$_s" start; done; }
 	stop()    { for _s; do sudo service "$_s" stop; done; }
 	restart() { for _s; do sudo service "$_s" restart; done; }
 elif have rc.d; then
+	# Arch
 	start()   { sudo rc.d start "$@"; }
 	stop()    { sudo rc.d stop "$@"; }
 	restart() { sudo rc.d restart "$@"; }
 elif have invoke-rc.d; then
+	# Debian
 	start()   { for _s; do sudo invoke-rc.d "$_s" start; done; }
 	stop()    { for _s; do sudo invoke-rc.d "$_s" stop; done; }
 	restart() { for _s; do sudo invoke-rc.d "$_s" restart; done; }

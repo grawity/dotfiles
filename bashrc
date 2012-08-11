@@ -39,10 +39,6 @@ HISTSIZE=5000
 HISTFILESIZE=5000
 HISTCONTROL=ignoreboth
 
-### Completion
-
-HOSTFILE=~/.hosts
-
 complete -A directory cd
 
 ### Terminal capabilities
@@ -96,7 +92,7 @@ fi
 
 ### Todo list
 
-if [[ ! "$SUDO_USER" ]]; then
+if [[ ! $SUDO_USER ]]; then
 	have todo && todo
 fi
 
