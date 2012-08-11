@@ -15,19 +15,22 @@
 	a = add
 	amend = commit --amend
 	br = branch
-	#bra = branch -a -v
 	bra = branch-info
 	ci = commit
 	co = checkout
 	di = diff
 	empty = !git init && git commit --allow-empty -m Initial
 	export = !touch $(git rev-parse --git-dir)/git-daemon-export-ok
+	fa = fetch --all
 	lg = log --oneline --decorate
 	local = log --oneline origin/master..HEAD
 	ls = ls-files
 	mend = commit --amend --reuse-message HEAD
 	mrproper = !git reset --hard HEAD && git clean -fdx
+	pick = cherry-pick
 	remaster = rebase --autosquash -i @{upstream}
+	repack-to-alternate = repack -dal
+	repack-to-local = repack -da
 	sg = diff --cached
 	st = status
 	staged = diff --cached
@@ -37,10 +40,6 @@
 	tip = log -1 --decorate=short --abbrev-commit --date=relative
 	undo = reset --soft HEAD^
 	unexport = !rm -v $(git rev-parse --git-dir)/git-daemon-export-ok
-	pick = cherry-pick
-	fa = fetch --all
-	repack-to-local = repack -da
-	repack-to-alternate = repack -dal
 [color]
 	branch = auto
 	diff = auto
@@ -130,14 +129,11 @@
 	pushInsteadOf = https://gist.github.com/
 
 [url "git://github.com/"]
-	insteadOf = github:
 	insteadOf = gh:
 	insteadOf = https://github.com/
 [url "git@github.com:"]
-	insteadOf = github+ssh:
 	insteadOf = gh+ssh:
 	pushInsteadOf = git://github.com/
-	pushInsteadOf = github:
 	pushInsteadOf = gh:
 	pushInsteadOf = https://github.com/
 
