@@ -70,7 +70,8 @@ _awesome_prompt() {
 
 	## Center: working directory
 
-	local wd=${PWD/#$HOME/\~} wdhead= wdtail= collapsed=0
+	local wd=${PWD/#$HOME/\~} wdhead= wdtail=
+	local -i collapsed=0
 
 	if [[ $wd == '~' ]]; then
 		wdhead='' wdtail=$wd
@@ -78,17 +79,22 @@ _awesome_prompt() {
 		wdhead=${wd%/*}/ wdtail=${wd##*/}
 	fi
 
-	if [[ ${wd:0:2} == '~/' ]]; then
-		(( maxwidth -= 2 ))
-	fi
+	# You are not expected to understand this.
 
 	if (( ${#wdtail} > maxwidth )); then
 		wdhead=${wdhead##*/}
 		collapsed=1
-	else
+	elif (( ${#wdhead} + ${#wdtail} > 2 + maxwidth )); then
+		if [[ ${wd:0:2} == '~/' ]]; then
+			(( maxwidth -= 2 ))
+		fi
 		while (( ${#wdhead} + ${#wdtail} > maxwidth )); do
+			if (( ! collapsed++ )); then
+				wdhead=${wdhead#/}
+			elif (( collapsed > 20 )); then
+				break
+			fi
 			wdhead=${wdhead#*/}
-			collapsed=1
 		done
 	fi
 
