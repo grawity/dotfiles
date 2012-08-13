@@ -26,6 +26,10 @@ augroup filetypedetect
 	" /etc/group
 	au BufNewFile,BufRead *.group,/etc/vigr.* setf group
 
+	" JavaScript
+	au BufNewFile,BufRead /etc/polkit-1/rules.d/* setf javascript
+	\ | setl ts=4 sw=4 et
+
 	" Markdown
 	au BufNewFile,BufRead *.md setf markdown
 
