@@ -2,10 +2,10 @@
 # vim: ft=gitconfig:
 
 [include]
-	path = ~/Documents/GitHub/dotfiles/git/config
+	path = ~/.dotfiles/git/config
 
 [alias]
 	credential-lib = !python ~/code/security/git-credential-lib
 
 [core]
-	excludesfile = ~/Documents/GitHub/dotfiles/git/ignore
+	excludesfile = ~/.dotfiles/git/ignore
