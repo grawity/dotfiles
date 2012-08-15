@@ -90,8 +90,10 @@ have mutt &&
 have screen &&
 	link screenrc
 
-have ssh &&
-	./ssh/generate
+have ssh && {
+	ssh/generate
+	link ssh/known_hosts
+}
 
 have tmux &&
 	link tmux.conf
