@@ -88,6 +88,7 @@ Host snow snow.home snow.local
 	#Hostname snow.home
 	#Hostname snow.nullroute.eu.org
 	HostkeyAlias snow.nullroute.eu.org
+	User Mantas
 	#GSSAPIAuthentication yes
 	#GSSAPIDelegateCredentials yes
 	#ForwardAgent yes
@@ -143,10 +144,9 @@ Host null-backup
 	IdentityFile ~/.ssh/backup
 	IdentitiesOnly yes
 
-Host panther-sctp6
-	HostName panther.nathan7.eu
-	ProxyCommand socat stdio sctp6:%h:%p
-	ControlPath none
+Host gabija/console
+	Hostname 199.231.209.10
+	User console-Q2dsLV
 
 # global options
 
