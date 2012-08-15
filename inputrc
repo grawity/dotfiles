@@ -5,9 +5,12 @@ set bell-style none
 # Tab completion
 set show-all-if-ambiguous on
 set visible-stats on
+set skip-completed-text on
 
 # Disallow modifying history
 set revert-all-at-newline on
+
+"\C-x\C-x": "suspend\n"
 
 # Arrows
 "\e[A": history-search-backward
