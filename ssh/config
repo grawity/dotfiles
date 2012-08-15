@@ -1,0 +1,173 @@
+# ~/.ssh/config: ssh_config(5)
+# vim: ft=sshconfig
+
+## Will be available on 5.7:
+#Host *.*
+#	Hostname %h
+#Host foo, bar
+#	Hostname %h.acme.org
+#Host *
+#	Hostname %h.example.com
+
+# host aliases
+
+Host abacus
+	Hostname abacus.cluenet.org
+	Port 222
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+Host abscissa
+	Hostname abscissa.cluenet.org
+	Port 22222
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+Host anubis
+	Hostname anubis.nickserver.net
+	Port 2084
+	# also 22022
+	ForwardAgent yes
+
+Host cubed
+	Hostname cubed.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+Host delta
+	Hostname delta.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+Host equal
+	Hostname equal.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+Host equal+http
+	Hostname equal.cluenet.org
+	GSSAPIAuthentication no
+	ForwardAgent yes
+	ProxyCommand corkscrew %h 80 %h %p
+
+Host gamma
+	Hostname gamma.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+Host null
+	Hostname null.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+Host moose
+	Hostname lotl.mine.nu
+	ForwardAgent yes
+
+Host panther
+	Hostname panther.nathan7.eu
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+Host rain rain.local
+	Hostname rain.nullroute.eu.org
+	#GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+	ForwardX11 yes
+
+Host snow snow.home snow.local
+	#Hostname snow.home
+	#Hostname snow.nullroute.eu.org
+	HostkeyAlias snow.nullroute.eu.org
+	User Mantas
+	#GSSAPIAuthentication yes
+	#GSSAPIDelegateCredentials yes
+	#ForwardAgent yes
+
+Host velocity
+	Hostname velocity.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+Host virgule
+	Hostname virgule.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+# *.cluenet.org
+
+Host abacus.cluenet.org
+	Port 222
+
+Host abscissa.cluenet.org
+	Port 22222
+
+Host *.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+# *.nullroute.eu.org
+
+Host *.nullroute.eu.org *.home
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+Host storm
+	Hostname storm.nullroute.eu.org
+
+Host storm/console
+	Hostname 199.231.209.10
+	User console-Q2dsLV
+
+Host vm-sarge
+	Hostname localhost
+	Port 3001
+	ForwardAgent yes
+	ForwardX11 yes
+
+# other domains
+
+Host *.vistech.net
+	User grwty
+
+Host bazaar.launchpad.net
+	IdentityFile no
+
+# global options
+
+Host *
+	Protocol 2
+	ForwardX11Trusted yes
+#if OpenSSH
+	VerifyHostKeyDNS yes
+#endif
+	NoHostAuthenticationForLocalhost yes
+	HashKnownHosts no
+
+#if OpenSSH
+	ControlPath ~/.ssh/S.%l.%r@%h:%p
+	ControlMaster auto
+#endif
+#if OpenSSH && Version 5.6
+	ControlPersist 10m
+#endif
+
+#if OpenSSH
+	SendEnv LANG PULSE_SERVER TZ
+#endif
+
+	ServerAliveInterval 600
+	#ServerAliveCountMax 3
