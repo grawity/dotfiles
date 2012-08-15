@@ -77,6 +77,10 @@ Host panther
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
+Host panther/console
+	Hostname 188.165.214.40
+	User console-tdnfoj
+
 Host rain rain.local
 	Hostname rain.nullroute.eu.org
 	#GSSAPIAuthentication yes
