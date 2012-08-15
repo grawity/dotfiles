@@ -59,6 +59,8 @@
 	useHttpPath = false
 [diff]
 	renames = copies
+[diff "ldif"]
+	xfuncname = "^(dn: .+)$"
 [grep]
 	lineNumber = true
 	extendedRegexp = true
