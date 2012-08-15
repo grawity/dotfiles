@@ -125,6 +125,13 @@ Host *.nullroute.eu.org *.home
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
+Host storm
+	Hostname storm.nullroute.eu.org
+
+Host storm/console
+	Hostname 199.231.209.10
+	User console-Q2dsLV
+
 Host vm-sarge
 	Hostname localhost
 	Port 3001
@@ -138,15 +145,6 @@ Host *.vistech.net
 
 Host bazaar.launchpad.net
 	IdentityFile no
-
-Host null-backup
-	Hostname null.cluenet.org
-	IdentityFile ~/.ssh/backup
-	IdentitiesOnly yes
-
-Host gabija/console
-	Hostname 199.231.209.10
-	User console-Q2dsLV
 
 # global options
 
