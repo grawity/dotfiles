@@ -20,6 +20,12 @@ cat <<-'!'
 	set xterm_set_titles
 !
 
+[[ -d ~/.cache/mutt ]] &&
+cat <<-'!'
+	set header_cache="~/.cache/mutt"
+	set message_cachedir="~/.cache/mutt"
+!
+
 [[ -f ~/.muttrc-"$HOSTNAME" ]] &&
 cat ~/.muttrc-"$HOSTNAME"
 
