@@ -6,7 +6,12 @@ if [ -f ~/.Xkbmap ]; then
 	setxkbmap `cat ~/.Xkbmap`
 fi
 
-#spawn -l- acpieventd
+if have keyctl; then
+	if [ "`keyctl rdescribe @s`" = "`keyctl rdescribe @us`" ]; then
+		keyctl new_session
+		keyctl link @u @s
+	fi
+fi
 
 if [ "$DESKTOP_SESSION" != "systemd" ]; then
 	if [ -e ~/.mpdconf ]; then
@@ -14,6 +19,7 @@ if [ "$DESKTOP_SESSION" != "systemd" ]; then
 	fi
 fi
 
+#spawn -l- acpieventd
 #spawn mpc-up
 #spawn scmpc
 #spawn mc-presence available
