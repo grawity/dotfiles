@@ -80,6 +80,8 @@ XTerm*boldMode:		true
 !!! }}}
 !!! Rxvt {{{
 
+URxvt.termName:		rxvt-unicode-256color
+
 ! behavior
 Rxvt.scrollBar:		false
 Rxvt.scrollTtyKeypress:	true
