@@ -11,38 +11,6 @@
 
 # host aliases
 
-Host abacus
-	Hostname abacus.cluenet.org
-	Port 222
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
-Host abscissa
-	Hostname abscissa.cluenet.org
-	Port 22222
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
-Host anubis
-	Hostname anubis.nickserver.net
-	Port 2084
-	# also 22022
-	ForwardAgent yes
-
-Host cubed
-	Hostname cubed.cluenet.org
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
-Host delta
-	Hostname delta.cluenet.org
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
 Host equal
 	Hostname equal.cluenet.org
 	GSSAPIAuthentication yes
@@ -54,18 +22,6 @@ Host equal+http
 	GSSAPIAuthentication no
 	ForwardAgent yes
 	ProxyCommand corkscrew %h 80 %h %p
-
-Host gamma
-	Hostname gamma.cluenet.org
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
-Host null
-	Hostname null.cluenet.org
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
 
 Host moose
 	Hostname lotl.mine.nu
@@ -97,12 +53,6 @@ Host snow snow.home snow.local
 	#GSSAPIDelegateCredentials yes
 	#ForwardAgent yes
 
-Host velocity
-	Hostname velocity.cluenet.org
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
 Host virgule
 	Hostname virgule.cluenet.org
 	GSSAPIAuthentication yes
@@ -110,12 +60,6 @@ Host virgule
 	ForwardAgent yes
 
 # *.cluenet.org
-
-Host abacus.cluenet.org
-	Port 222
-
-Host abscissa.cluenet.org
-	Port 22222
 
 Host *.cluenet.org
 	GSSAPIAuthentication yes
