@@ -75,18 +75,18 @@ have irb &&
 	link irbrc
 
 have mail &&
-	link mailrc
+	link mail/mailrc
 
 have makepkg &&
 	link makepkg.conf
 
 have msmtp && {
-	link msmtprc
-	chmod 600 msmtprc
+	link mail/msmtprc
+	chmod 600 mail/msmtprc
 }
 
 have mutt &&
-	link muttrc
+	link mail/muttrc
 
 have screen &&
 	link screenrc

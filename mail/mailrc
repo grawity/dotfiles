@@ -29,4 +29,4 @@ set sendcharsets="utf-8"
 set hold # don't move to mbox
 set keep # don't delete $MAIL
 
-set NAIL_EXTRA_RC="~/lib/dotfiles/nailrc"
+set NAIL_EXTRA_RC="~/lib/dotfiles/mail/nailrc"

@@ -244,4 +244,4 @@ set pgp_clearsign_command="gpg --no-verbose --batch --quiet --output - %?p?--pas
 #set pgp_list_secring_command="gpg --no-verbose --batch --quiet --with-colons --list-secret-keys %r" 
 set pgp_good_sign="^\\[GNUPG:\\] GOODSIG"
 
-source "~/lib/dotfiles/muttrc.sh|"
+source "~/lib/dotfiles/mail/muttrc.sh|"
