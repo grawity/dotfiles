@@ -59,11 +59,11 @@ setpath PERL5LIB \
 	"$PREFIX/lib/perl5"		\
 	"$HOME/code/lib/perl5"		;
 
-GNULIB_SRCDIR="$HOME/src/gnu/gnulib"
-
 test "$XDG_CACHE_HOME"  || XDG_CACHE_HOME="$HOME/.cache"
 test "$XDG_CONFIG_HOME" || XDG_CONFIG_HOME="$HOME/.config"
 test "$XDG_RUNTIME_DIR" || XDG_RUNTIME_DIR="$XDG_CACHE_HOME"
+
+GNULIB_SRCDIR="$HOME/src/gnu/gnulib"
 
 # identity
 
@@ -81,7 +81,6 @@ PAGER="less"
 # libdefaults
 
 GTK_IM_MODULE="xim"
-HOSTALIASES="$HOME/lib/dotfiles/hostaliases"
 _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
 NCURSES_NO_UTF8_ACS="1"
 QT_IM_MODULE="xim"

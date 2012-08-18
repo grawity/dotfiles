@@ -4,7 +4,6 @@
 
 setpath PATH \
 	"$(ruby -rubygems -e 'puts Gem.user_dir')/bin"	\
-	"$HOME/lib/mutt/bin"	\
 	"$HOME/lib/git/bin"	\
 	"$HOME/lib/mosh/bin"	\
 	"$PATH"			;
@@ -16,7 +15,6 @@ if [ -z "$KRB5CCNAME" ] && [ -d "$XDG_RUNTIME_DIR" ]; then
 	KRB5CCNAME="DIR:$XDG_RUNTIME_DIR/krb5cc"
 fi
 
-#LD_PRELOAD='/usr/$LIB/libv4l/v4l1compat.so'
 #WINEDLLOVERRIDES="winemenubuilder.exe=d"
 
 # appconfig
@@ -29,6 +27,5 @@ WMII_CONFPATH="$XDG_CONFIG_HOME/wmii"
 # appdefaults
 
 ACCDB="/run/media/$USER/grawpqi/private/accounts.db.txt"
-BUP_DIR="$HOME/Backup/bup-repository"
 MAKEFLAGS="-j 5"
 MPD_HOST="$(<"$XDG_CONFIG_HOME/mpd/password")@$XDG_RUNTIME_DIR/mpd.control"

@@ -1,5 +1,0 @@
-#!bash
-
-setpath PATH \
-	"$HOME/lib/mosh/bin"	\
-	"$PATH"			;
