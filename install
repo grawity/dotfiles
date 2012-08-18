@@ -8,6 +8,7 @@ link() {
 	local target=$dir/${1%/} link=${2:-$HOME/.$1}
 	if [ ! -e "$target" ]; then
 		log "Ignoring missing ${target/#$HOME/~}"
+		return
 	elif [ -e "$link" ]; then
 		if [ -k "$link" ]; then
 			log "Ignoring sticky ${link/#$HOME/~}"
@@ -23,7 +24,7 @@ link() {
 			mkdir -p "$linkdir"
 		fi
 	fi
-	#log "Linking ${link/#$HOME/~} to ${target/#$HOME/~}"
+	log "Linking ${link/#$HOME/~} to ${target/#$HOME/~}"
 	sym -f "$target" "$link"
 }
 
