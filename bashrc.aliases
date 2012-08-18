@@ -66,7 +66,7 @@ tubemusic() { youtube-dl --title --extract-audio --audio-format mp3 \
 	--keep-video "$@"; }
 up() { local p= i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
 alias watch='watch '
-wim() { editor "$(which "$1")"; }
+wim() { local w=$(which "$1"); [[ $w ]] && $EDITOR "$w"; }
 alias xf='ps xf -O ppid'
 alias xx='chmod a+x'
 X() { (spawn "$@" >> ~/.xsession-errors 2>&1 &); }
