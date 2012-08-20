@@ -11,6 +11,7 @@ include "%L"
 <Multi_key> <8> <8>			: "∞" # infinity
 <Multi_key> <i> <n> <f>			: "∞" # infinity
 <Multi_key> <equal> <equal>		: "–" # ndash
+<Multi_key> <ž> <ž>			: "–" # ndash
 <Multi_key> <equal> <y>			: "¥" # yen
 <Multi_key> <h> <e> <a> <r> <t>		: "♥" # heart
 <Multi_key> <l> <a>			: "λ" # lambda
