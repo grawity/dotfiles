@@ -219,25 +219,24 @@ set linebreak
 inoremap # X#
 
 "" Autocommands
+
+silent! au BufNewFile,BufRead /tmp/bash-fc-* setl ft=sh
+silent! au BufNewFile,BufRead /etc/motd setl et
+silent! au BufNewFile,BufRead */pam.d/* setf pamconf
+
 silent! autocmd BufNewFile,BufRead
 \ authorized_keys,authorized_keys.*,known_hosts,id_*.pub
-\ set wrap nolinebreak
+\ setl wrap nolinebreak
 silent! autocmd BufNewFile,BufRead
 \ authorized_keys.*
 \ set ft=conf
 silent! autocmd BufReadPost host-acls %!sexp-conv -w 0
 silent! autocmd BufNewFile,BufRead
-\ */pam.d/*
-\ setf pamconf
-silent! autocmd BufNewFile,BufRead
 \ .muttaliases
 \ setf muttrc
-silent! autocmd BufNewFile,BufRead
-\ /etc/systemd/*,/lib/systemd/*,~/.config/systemd/*,~/src/systemd-arch-units/*/*.*
-\ set ft=desktop
-silent! autocmd BufNewFile,BufRead
-\ /tmp/bash-fc-*
-\ set ft=sh
+"silent! autocmd BufNewFile,BufRead
+"\ /etc/systemd/*,/lib/systemd/*,~/.config/systemd/*,~/src/systemd-arch-units/*/*.*
+"\ set ft=desktop
 
 au! BufNewFile */_posts/2*.html 0r %:h/_template.html
 
