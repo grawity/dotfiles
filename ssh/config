@@ -88,6 +88,9 @@ Host vm-sarge
 
 # other domains
 
+Host *.nathan7.eu
+	ForwardAgent yes
+
 Host *.vistech.net
 	User grwty
 
