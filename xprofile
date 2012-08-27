@@ -1,10 +1,9 @@
 #!sh
 
 xhost +"SI:localuser:$USER"
+xhost +"NIS:unix.$UID@nullroute"
 
-if [ -f ~/.Xkbmap ]; then
-	setxkbmap `cat ~/.Xkbmap`
-fi
+# set up session keyring
 
 if have keyctl; then
 	if [ "`keyctl rdescribe @s`" = "`keyctl rdescribe @us`" ]; then
@@ -13,19 +12,10 @@ if have keyctl; then
 	fi
 fi
 
-if [ "$DESKTOP_SESSION" != "systemd" ]; then
-	if [ -e ~/.mpdconf ]; then
-		spawn -Ll- mpd
-	fi
-fi
-
-#spawn -l- acpieventd
-#spawn mpc-up
-#spawn scmpc
-#spawn mc-presence available
+# load X settings
 
 if [ -f ~/.config/synclient.conf ]; then
 	synclient `grep -v "^#" ~/.config/synclient.conf`
 fi
 
-#(cd ~/Dropbox/mq && spawn ./mq-udp-subscriber >/dev/null)
+# run startup programs
