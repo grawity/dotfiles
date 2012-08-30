@@ -16,18 +16,18 @@ case $0:$TMUX in -*:)
 	echo `uptime`
 esac
 
-# misc
-
-if [ "$BASH" ] && [ -f ~/.bashrc ]; then
-	. ~/.bashrc
-fi
-
 # local
 
 if [ -f ~/lib/dotfiles/profile-$HOSTNAME ]; then
 	. ~/lib/dotfiles/profile-$HOSTNAME
 elif [ -f ~/.profile-$HOSTNAME ]; then
 	. ~/.profile-$HOSTNAME
+fi
+
+# misc
+
+if [ "$BASH" ] && [ -f ~/.bashrc ]; then
+	. ~/.bashrc
 fi
 
 true
