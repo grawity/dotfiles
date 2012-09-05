@@ -108,7 +108,11 @@ have xrdb && {
 	link Xresources
 	link Xdefaults-$HOSTNAME
 	link XCompose
-	link gui/fonts.conf.xml ~/.fonts.conf
+}
+
+have fc-cache && {
+	link gui/fonts.conf.xml ~/.config/fontconfig/fonts.conf
+	#sym ~/.config/fontconfig/fonts.conf ~/.fonts.conf
 }
 
 exit 0
