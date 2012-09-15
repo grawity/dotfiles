@@ -13,10 +13,18 @@ account nullroute {
 	set folder="imap://grawity@equal.cluenet.org"
 	set record="+Sent"
 	set imap-auth="gssapi"
-	#set sendmail="/usr/bin/msmtp"
+	set sendmail="/usr/bin/msmtp"
 	#set smtp="equal.cluenet.org:587"
 	#set smtp-auth="gssapi"
 }
+
+account gmail {
+	set from="grawity@gmail.com"
+	set folder="imaps://grawity%40gmail.com@imap.gmail.com"
+	set smtp="smtps://smtp.gmail.com"
+}
+
+source ~/.auth/nailrc
 
 # security
 
