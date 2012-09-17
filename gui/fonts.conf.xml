@@ -101,18 +101,10 @@
 		</edit>
 	</match>
 
+	<!-- not really needed -->
 	<match target="font">
 		<test name="family">
-			<string>Nimbus Sans L</string>
-		</test>
-		<edit name="autohint" mode="assign">
-			<bool>true</bool>
-		</edit>
-	</match>
-
-	<match target="font">
-		<test name="family">
-			<string>Palemonas</string>
+			<string>Georgia</string>
 		</test>
 		<edit name="autohint" mode="assign">
 			<bool>true</bool>
@@ -122,6 +114,16 @@
 	<match target="font">
 		<test name="family">
 			<string>Segoe UI</string>
+		</test>
+		<edit name="autohint" mode="assign">
+			<bool>true</bool>
+		</edit>
+	</match>
+
+	<!-- not really needed -->
+	<match target="font">
+		<test name="family">
+			<string>Trebuchet MS</string>
 		</test>
 		<edit name="autohint" mode="assign">
 			<bool>true</bool>
