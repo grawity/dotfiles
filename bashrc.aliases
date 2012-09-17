@@ -25,8 +25,10 @@ count() { sort "$@" | uniq -c | sort -n -r | pager; }
 alias cur='cur '
 alias dnstracer='dnstracer -s .'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
-gg() { egrep -rn --color=always "$@" .; }
+gerp() { egrep -r -I -D skip --exclude-dir='.svn' --exclude-dir='.hg' \
+	-H -n --color=always "$@"; }
 alias facl='getfacl -pt'
+alias fdf='findmnt -o target,size,used,avail,use%,fstype'
 gpgsigs() { gpg --edit-key "$1" check quit; }
 alias hex='xxd -p'
 alias unhex='xxd -p -r'
