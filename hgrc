@@ -12,7 +12,7 @@ git = True
 [extensions]
 color =
 convert =
-hggit =
+#hggit =
 hgk =
 pager =
 purge =
