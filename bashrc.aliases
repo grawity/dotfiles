@@ -73,10 +73,27 @@ alias xf='ps xf -O ppid'
 alias xx='chmod a+x'
 X() { (spawn "$@" >> ~/.xsession-errors 2>&1 &); }
 youtube-dl() {
-	command \
-	gnome-inhibit -A --who "youtube-dl" --what "suspend" \
-		--why "Downloading a YouTube video" \
-	youtube-dl --console-title -c "$@"
+	local cmd=()
+	mountpoint -q /sys/fs/cgroup/systemd &&
+	cmd+=(
+		systemd-inhibit
+		--who "youtube-dl"
+		--what "sleep"
+		--why "Downloading a video"
+	)
+	cmd+=(
+		gnome-inhibit -A
+		--who "youtube-dl"
+		--what "suspend"
+		--why "Downloading a video"
+	)
+	cmd+=(
+		youtube-dl
+		--console-title
+		--continue
+		"$@"
+	)
+	"${cmd[@]}"
 }
 alias '~'='egrep'
 alias '~~'='egrep -i'
