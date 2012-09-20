@@ -34,11 +34,14 @@ fi
 
 PREFIX="$HOME/.local"
 
+GOPATH="$HOME/lib/go"
+
 setpath PATH \
 	"$HOME/.rbenv/shims"		\
 	"$HOME/bin"			\
 	"$HOME/code/obj/host.$HOSTNAME"	\
 	"$HOME/code/bin"		\
+	"$GOPATH/bin"			\
 	"$HOME/.rbenv/bin"		\
 	"$HOME/.cabal/bin"		\
 	"$PREFIX/bin"			\
