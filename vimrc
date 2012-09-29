@@ -122,6 +122,8 @@ nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=""<CR>
 nnoremap <Leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 " reselect pasted text
 nnoremap <Leader>v V`]
+" rewrap current paragraph
+nnoremap <Leader>w gq}
 
 " Searching
 
