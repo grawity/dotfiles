@@ -74,6 +74,8 @@ NAME='Mantas Mikulėnas'
 EMAIL="grawity@nullroute.eu.org"
 TZ="Europe/Vilnius"
 
+GALE_NAME="$NAME"
+
 # preferred programs
 
 BROWSER="web-browser"
