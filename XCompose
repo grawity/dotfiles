@@ -27,6 +27,8 @@ include "%L"
 <Multi_key> <3> <3>			: "№" # numero
 #<Multi_key> <n> <o>			: "№" # numero
 <Multi_key> <n> <o> <t> <e>		: "♫" # note
+<Multi_key> <v> <s>			: "š"
+<Multi_key> <v> <S>			: "Š"
 
 <Multi_key> <bracketleft> <apostrophe>	: "「"
 <Multi_key> <bracketright> <apostrophe>	: "」"
