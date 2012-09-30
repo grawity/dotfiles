@@ -58,10 +58,15 @@ alias sudo='sudo ' # for alias expansion in sudo args
 alias takeown='sudo chown "${UID}:${GROUPS[0]}"'
 alias tidiff='infocmp -Ld'
 alias tracert='traceroute'
+tubetitle() {
+	command youtube-dl -e "${1:?missing URL}" | sed "s/: / - /; y|/\":<>|-'-[]|"
+}
 tube() {
-	local title=$(youtube-dl -e "$1")
+	local url=${1:-"$(pclip)"}
+	local title=$(tubetitle "$url")
 	read -e -p 'Title: ' -i "$title" title
-	youtube-dl -o "${title//%/%%}.%(ext)s" "$@"
+	title=${title//'%'/'%%'}
+	youtube-dl -o "$title.%(ext)s" "$url"
 }
 tubex() { youtube-dl -o "%(title)s.%(ext)s" "$@"; }
 tubes() { youtube-dl --title "$@"; }
