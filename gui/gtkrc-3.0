@@ -4,8 +4,10 @@
 
 [Settings]
 gtk-theme-name = Adwaita
+gtk-font-name = Segoe UI 10
 #gtk-application-prefer-dark-theme = true
 #gtk-cursor-theme-name = Adwaita
+gtk-icon-theme-name = Adwaita
 gtk-toolbar-style = GTK_TOOLBAR_BOTH_HORIZ
 gtk-menu-images = false
 gtk-button-images = false
