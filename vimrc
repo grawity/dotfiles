@@ -66,6 +66,8 @@ set wildmenu			" completion menu
 "silent! set listchars=eol:¶,tab:›\ ,extends:»,precedes:«,trail:•
 silent! set listchars=eol:¬,tab:│┈,extends:»,precedes:«,trail:•
 
+set splitbelow
+
 """ File input/output
 
 set encoding=utf-8
