@@ -17,6 +17,8 @@
 	br = branch
 	bra = branch-info
 	ci = commit
+	cim = commit -m
+	ci-m = commit -m
 	co = checkout
 	di = diff
 	empty = !git init && git commit --allow-empty -m Initial
