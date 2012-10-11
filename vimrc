@@ -70,6 +70,10 @@ set splitbelow
 
 """ File input/output
 
+let g:netrw_http_cmd="curl -s"
+let g:netrw_http_xcmd="-o"
+let g:netrw_silent=1
+
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp1257,latin1
 set modeline
