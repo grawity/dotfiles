@@ -104,15 +104,17 @@ link vim
 have gvim &&
 	link gvimrc
 
-have xrdb && {
-	link Xresources
-	link Xdefaults-$HOSTNAME
-	link XCompose
-}
+test "$DISPLAY" && {
+	have xrdb && {
+		link Xresources
+		link Xdefaults-$HOSTNAME
+		link XCompose
+	}
 
-have fc-cache && {
-	link gui/fonts.conf.xml ~/.config/fontconfig/fonts.conf
-	#sym ~/.config/fontconfig/fonts.conf ~/.fonts.conf
+	have fc-cache && {
+		link gui/fonts.conf.xml ~/.config/fontconfig/fonts.conf
+		#sym ~/.config/fontconfig/fonts.conf ~/.fonts.conf
+	}
 }
 
 exit 0
