@@ -123,6 +123,7 @@ _awesome_prompt() {
 	fi
 
 	# You are not expected to understand this.
+	# After I woke up, I don't understand it anymore either.
 
 	if (( ${#wdtail} > maxwidth )); then
 		wdhead=${wdhead##*/}
