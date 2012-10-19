@@ -21,7 +21,7 @@ case $TERM in
 			havecolor=256
 		fi
 		;;
-	*-256color)
+	*-256color|xterm-termite)
 		havecolor=256;;
 	"")
 		havecolor=0;;
