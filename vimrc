@@ -7,6 +7,7 @@ set nocompatible
 " Window title
 
 set title
+set titlelen=0
 set titlestring=%t%(\ %m%)%(\ (%{hostname()}\ %{expand(\"%:p:~:h\")})%)%(\ %a%)
 
 if &term =~ "^screen"
@@ -48,7 +49,7 @@ set showmode
 set showcmd
 set display+=lastline
 silent! set number
-silent! set numberwidth=1
+silent! set numberwidth=4
 silent! set mouse=a
 set scrolloff=3			" scroll context lines
 set laststatus=2		" display status
