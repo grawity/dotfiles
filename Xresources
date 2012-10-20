@@ -1,12 +1,25 @@
 ! ~/.Xresources: X11 resources
 ! vim: fdm=marker:
 
+!!! Xft {{{
+
+!Xft.antialias:	1
+!Xft.dpi:	96
+!Xft.hinting:	1
+!Xft.hintstyle:	hintfull
+!Xft.autohint:	0
+!Xft.rgba:	rgb
+!Xft.lcdfilter:	lcddefault
+
+! }}}
+
 !!! Xcursor {{{
 
 !Xcursor.theme:		Adwaita
 !Xcursor.size:		16
 
 !!! }}}
+
 !!! Xterm {{{
 
 ! behavior
@@ -38,8 +51,8 @@ XTerm*vt100*translations:	#override			\n\
 
 ! appearance
 XTerm*vt100.geometry:	100x35
-XTerm*vt100.faceName:	DejaVu Sans Mono
-XTerm*vt100.faceSize:	9
+!XTerm*vt100.faceName:	DejaVu Sans Mono
+!XTerm*vt100.faceSize:	9
 XTerm*faceSize1:	7
 XTerm*faceSize2:	8
 XTerm*faceSize3:	9
@@ -78,6 +91,7 @@ XTerm*boldColors:	true
 XTerm*boldMode:		true
 
 !!! }}}
+
 !!! Rxvt {{{
 
 URxvt.termName:		rxvt-unicode-256color
@@ -127,12 +141,16 @@ Rxvt.tabbed.tab-bg:	3
 Rxvt.urlLauncher:	xdg-open
 
 !!! }}}
+
 !!! Mwm {{{
 
-!Mwm*useClientIcon: true
-!Mwm*useIconBox: true
+Mwm*configFile:			~/.config/mwmrc
+Mwm*useClientIcon:		true
+! explicit, pointer
+!Mwm*keyboardFocusPolicy:	pointer
 
 !!! }}}
+
 !!! Mosaic {{{
 
 Mosaic*homeDocument: http://nullroute.eu.org
