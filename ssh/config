@@ -13,15 +13,7 @@
 
 Host equal
 	Hostname equal.cluenet.org
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
-
-Host equal+http
-	Hostname equal.cluenet.org
-	GSSAPIAuthentication no
-	ForwardAgent yes
-	ProxyCommand corkscrew %h 80 %h %p
 
 Host moose
 	Hostname lotl.mine.nu
@@ -29,8 +21,6 @@ Host moose
 
 Host panther
 	Hostname panther.nathan7.eu
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host panther/console
@@ -39,8 +29,6 @@ Host panther/console
 
 Host rain rain.local
 	Hostname rain.nullroute.eu.org
-	#GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 	ForwardX11 yes
 
@@ -49,14 +37,10 @@ Host snow snow.home snow.local
 	#Hostname snow.nullroute.eu.org
 	HostkeyAlias snow.nullroute.eu.org
 	User Mantas
-	#GSSAPIAuthentication yes
-	#GSSAPIDelegateCredentials yes
 	#ForwardAgent yes
 
 Host virgule
 	Hostname virgule.cluenet.org
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 # *.cluenet.org
@@ -69,8 +53,6 @@ Host *.cluenet.org
 # *.nullroute.eu.org
 
 Host *.nullroute.eu.org *.home
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host storm
@@ -79,12 +61,6 @@ Host storm
 Host storm/console
 	Hostname 199.231.209.10
 	User console-Q2dsLV
-
-Host vm-sarge
-	Hostname localhost
-	Port 3001
-	ForwardAgent yes
-	ForwardX11 yes
 
 # other domains
 
