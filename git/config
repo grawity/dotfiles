@@ -116,10 +116,9 @@
 [url "ssh://"]
 	pushInsteadOf = git://
 
-[url "git://equal.cluenet.org/~grawity/pub/git/"]
+[url "git://git.nullroute.eu.org/"]
 	insteadOf = nullroute:
-	insteadOf = git://git.nullroute.eu.org/
-[url "ssh://equal.cluenet.org/~grawity/pub/git/"]
+[url "virgule:pub/git/"]
 	insteadOf = nullroute+ssh:
 	pushInsteadOf = nullroute:
 	pushInsteadOf = git://git.nullroute.eu.org/
