@@ -118,9 +118,11 @@
 
 [url "git://equal.cluenet.org/~grawity/pub/git/"]
 	insteadOf = nullroute:
+	insteadOf = git://git.nullroute.eu.org/
 [url "ssh://equal.cluenet.org/~grawity/pub/git/"]
 	insteadOf = nullroute+ssh:
 	pushInsteadOf = nullroute:
+	pushInsteadOf = git://git.nullroute.eu.org/
 
 [url "git://anongit.freedesktop.org/"]
 	insteadOf = freedesktop:
