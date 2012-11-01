@@ -27,6 +27,10 @@ Host panther/console
 	Hostname 188.165.214.40
 	User console-tdnfoj
 
+Host radian
+	Hostname radian.cluenet.org
+	ForwardAgent yes
+
 Host rain rain.local
 	Hostname rain.nullroute.eu.org
 	ForwardAgent yes
