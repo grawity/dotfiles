@@ -96,13 +96,17 @@
 	encoding = utf-8
 	fontdiff = -family \"DejaVu Sans Mono\" -size 9 -weight normal -slant roman -underline 0 -overstrike 0
 [tig]
+	#show-id = true
 	show-date = relative
-	show-author = abbreviated
+	#show-author = abbreviated
+	show-author = false
 	author-width = 10
 	show-rev-graph = true
 	line-graphics = true
 	commit-order = topo
 	split-view-height = 75%
+	#vertical-split = true
+	ignore-case = true
 [tig "bind"]
 	# noop on unrecognized escape sequences
 	main = ~ none
