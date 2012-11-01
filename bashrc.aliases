@@ -29,6 +29,7 @@ gerp() { egrep -r -I -D skip --exclude-dir='.git' --exclude-dir='.svn' \
 	--exclude-dir='.hg' \
 	-H -n --color=always "$@"; }
 alias facl='getfacl -pt'
+alias fattr='getfattr --absolute-names -dm-'
 alias fdf='findmnt -o target,size,use%,avail,fstype'
 gpgsigs() { gpg --edit-key "$1" check quit; }
 alias hex='xxd -p'
