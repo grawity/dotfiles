@@ -71,7 +71,7 @@ set splitbelow
 
 """ File input/output
 
-let g:netrw_http_cmd="curl -s"
+let g:netrw_http_cmd="curl -s -L"
 let g:netrw_http_xcmd="-o"
 let g:netrw_silent=1
 
