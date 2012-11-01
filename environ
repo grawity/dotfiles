@@ -86,7 +86,9 @@ PAGER="less"
 # libdefaults
 
 GTK_IM_MODULE="xim"
-_JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
+GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
+#_JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
+_JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=lcd"
 NCURSES_NO_UTF8_ACS="1"
 QT_IM_MODULE="xim"
 
