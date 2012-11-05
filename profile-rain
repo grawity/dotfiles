@@ -1,15 +1,8 @@
 #!bash
 
 if [ -d "$XDG_RUNTIME_DIR" ]; then
-	if [ ! -e "$XDG_RUNTIME_DIR/media" ]; then
-		ln -nsf "/run/media/$USER" "$XDG_RUNTIME_DIR/media"
-	fi
-	if [ ! -e "$HOME/run" ]; then
-		ln -nsf "$XDG_RUNTIME_DIR" "$HOME/run"
-	fi
-	if [ ! -e "$HOME/media" ]; then
-		ln -nsf "$XDG_RUNTIME_DIR/media" "$HOME/media"
-	fi
+	ln -nsf "/run/media/$USER" "$XDG_RUNTIME_DIR/media"
+	ln -nsf "$XDG_RUNTIME_DIR" "$HOME/.run"
 fi
 
 if [ ! -e "$XDG_RUNTIME_DIR/gvfs" ]; then
