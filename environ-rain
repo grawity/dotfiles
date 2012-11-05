@@ -4,9 +4,7 @@
 
 setpath PATH \
 	"$(ruby -rubygems -e 'puts Gem.user_dir')/bin"	\
-	"$HOME/lib/git/bin"	\
-	"$HOME/lib/mosh/bin"	\
-	"$PATH"			;
+	"$PATH"						;
 
 # libdefaults
 
@@ -30,6 +28,6 @@ SDL_AUDIODRIVER="pulse"
 
 # appdefaults
 
-ACCDB="/run/media/$USER/grawpqi/private/accounts.db.txt"
+ACCDB="/run/media/$USER/grawpqi/Private/accounts.db.txt"
 MAKEFLAGS="-j 5"
 MPD_HOST="$(<"$XDG_CONFIG_HOME/mpd/password")@$XDG_RUNTIME_DIR/mpd.control"

@@ -34,7 +34,7 @@ fi
 
 PREFIX="$HOME/.local"
 
-GOPATH="$HOME/lib/go"
+GOPATH="$PREFIX/go"
 
 setpath PATH \
 	"$HOME/.rbenv/shims"		\
@@ -51,7 +51,6 @@ setpath PATH \
 	"/usr/local/sbin" 		\
 	"/usr/sbin"			\
 	"/sbin"				\
-	"/opt/csw/bin"			\
 	"$HOME/code/bin/fbin"		;
 
 setpath PYTHONPATH \
