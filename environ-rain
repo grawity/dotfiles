@@ -13,6 +13,10 @@ if [ -z "$KRB5CCNAME" ] && [ -d "$XDG_RUNTIME_DIR" ]; then
 	KRB5CCNAME="DIR:$XDG_RUNTIME_DIR/krb5cc"
 fi
 
+LDAPCONF="$XDG_CONFIG_HOME/ldap.conf"
+
+SDL_AUDIODRIVER="pulse"
+
 #WINEDLLOVERRIDES="winemenubuilder.exe=d"
 
 # appconfig
@@ -20,11 +24,6 @@ fi
 CSEARCHINDEX="$XDG_CACHE_HOME/codesearch/csearchindex"
 OPERA_PERSONALDIR="$XDG_CONFIG_HOME/opera"
 WMII_CONFPATH="$XDG_CONFIG_HOME/wmii"
-
-LDAPTLS_CERT="$HOME/.pki/private/auth-grawity.pem"
-LDAPTLS_KEY="$LDAPTLS_CERT"
-
-SDL_AUDIODRIVER="pulse"
 
 # appdefaults
 
