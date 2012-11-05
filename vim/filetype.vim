@@ -22,6 +22,7 @@ augroup filetypedetect
 	" INI-style
 	au BufNewFile,BufRead *.pkla,*.pkla~ setf dosini
 	au BufNewFile,BufRead *.url setf dosini
+	au BufNewFile,BufRead /etc/dconf/db/* setf dosini
 
 	" /etc/group
 	au BufNewFile,BufRead *.group,/etc/vigr.* setf group
