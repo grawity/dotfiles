@@ -11,6 +11,10 @@
 
 # host aliases
 
+Host decay
+	Hostname decay.nullroute.eu.org
+	ForwardAgent yes
+
 Host equal
 	Hostname equal.cluenet.org
 	ForwardAgent yes
