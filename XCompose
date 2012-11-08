@@ -6,14 +6,31 @@
 
 include "%L"
 
+# letters
+
+<Multi_key> <W> <W>			: "Ƿ"	U017F # LATIN CAPITAL LETTER WYNN
+<Multi_key> <w> <w>			: "ƿ"	U01BF # LATIN LETTER WYNN
+<Multi_key> <G> <G>			: "Ȝ"	U021C # LATIN CAPITAL LETTER YOGH
+<Multi_key> <g> <g>			: "ȝ"	U021D # LATIN LETTER YOGH
+
+<Multi_key> <v> <S>			: "Š"
+<Multi_key> <v> <s>			: "š"
+
+# quotation marks
+
+<Multi_key> <bracketleft> <apostrophe>	: "「"
+<Multi_key> <bracketright> <apostrophe>	: "」"
+
+<Multi_key> <bracketleft> <quotedbl>	: "『"
+<Multi_key> <bracketright> <quotedbl>	: "』"
+
 # various glyphs
 
 <Multi_key> <8> <8>			: "∞" # infinity
-<Multi_key> <i> <n> <f>			: "∞" # infinity
 <Multi_key> <equal> <equal>		: "–" # ndash
 <Multi_key> <equal> <asciitilde>	: "≈" # almost equal
 <Multi_key> <asciitilde> <asciitilde>	: "≈"
-<Multi_key> <ž> <ž>			: "–" # ndash
+<Multi_key> <zcaron> <zcaron>		: "–" # ndash
 <Multi_key> <equal> <y>			: "¥" # yen
 <Multi_key> <h> <e> <a> <r> <t>		: "♥" # heart
 <Multi_key> <l> <a>			: "λ" # lambda
@@ -27,14 +44,6 @@ include "%L"
 <Multi_key> <3> <3>			: "№" # numero
 #<Multi_key> <n> <o>			: "№" # numero
 <Multi_key> <n> <o> <t> <e>		: "♫" # note
-<Multi_key> <v> <s>			: "š"
-<Multi_key> <v> <S>			: "Š"
-
-<Multi_key> <bracketleft> <apostrophe>	: "「"
-<Multi_key> <bracketright> <apostrophe>	: "」"
-
-<Multi_key> <bracketleft> <quotedbl>	: "『"
-<Multi_key> <bracketright> <quotedbl>	: "』"
 
 
 # arrows
