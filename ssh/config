@@ -75,7 +75,8 @@ Host *.vistech.net
 	User grwty
 
 Host bazaar.launchpad.net
-	IdentityFile no
+	IdentityFile ~/.ssh/id_global
+	IdentitiesOnly yes
 
 # global options
 
