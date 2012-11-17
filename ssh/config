@@ -15,6 +15,10 @@ Host decay
 	Hostname decay.nullroute.eu.org
 	ForwardAgent yes
 
+Host decay/console
+	Hostname mercury.hexxeh.net
+	User console-BniBxn
+
 Host equal
 	Hostname equal.cluenet.org
 	ForwardAgent yes
