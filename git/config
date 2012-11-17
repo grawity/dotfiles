@@ -10,6 +10,7 @@
 	name = Mantas Mikulėnas
 	email = grawity@gmail.com
 [advice]
+	pushNonFastForward = false
 	statusHints = false
 [alias]
 	a = add
