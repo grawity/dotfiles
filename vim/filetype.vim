@@ -67,4 +67,7 @@ augroup filetypedetect
 	" xinetd
 	au BufNewFile,BufRead *.xinetd setf xinetd
 	au BufNewFile,BufRead /etc/xinetd.d/* setf xinetd
+
+	" XML
+	au BufNewFile,BufRead *.doap setf xml
 augroup END
