@@ -1,4 +1,4 @@
-#!bash
+#!/usr/bin/env bash
 
 [ "$DEBUG" ] && echo "++ profile [self=$0]"
 

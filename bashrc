@@ -1,4 +1,4 @@
-#!bash
+#!/usr/bin/env bash
 
 [[ $DEBUG ]] && echo "++ bashrc [self=$0 prefix=$PREFIX]"
 
