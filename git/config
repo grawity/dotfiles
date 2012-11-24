@@ -114,7 +114,8 @@
 	main = 8 toggle-graphic
 [tig "color"]
 	cursor = black green
-	title-focus = black blue
+	title-focus = color231 blue
+	title-blur = color16 blue
 
 # URL replacements
 
