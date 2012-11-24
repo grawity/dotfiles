@@ -356,7 +356,8 @@ if have systemctl; then
 	alias lcstatus='loginctl session-status $XDG_SESSION_ID'
 	alias tsd='tree /etc/systemd/system'
 	cgls() { SYSTEMD_PAGER=cat systemd-cgls "$@"; }
-	psls() { cgls "/user/$USER/$*"; }
+	usls() { cgls "/user/$USER/$*"; }
+	psls() { cgls "/user/$USER/$XDG_SESSION_ID"; }
 	if have _systemctl; then
 		complete -F _systemctl enable disable status start stop restart
 	fi
