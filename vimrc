@@ -83,6 +83,8 @@ set nobackup
 set backupcopy=yes " fixes issues with vipw
 set autowrite
 
+set viminfo+=n~/.vim/viminfo
+
 if hostname() == "rain"
 	set nofsync swapsync=
 endif

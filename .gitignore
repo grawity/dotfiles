@@ -1,5 +1,6 @@
-vim/.netrwhist
-vim/backup/
-vim/spell/
-vim/spell/*.spl
-vim/view/
+/vim/.netrwhist
+/vim/backup/
+/vim/spell/
+/vim/spell/*.spl
+/vim/view/
+/vim/viminfo
