@@ -59,6 +59,7 @@ alias sudo='sudo ' # for alias expansion in sudo args
 alias takeown='sudo chown "${UID}:${GROUPS[0]}"'
 alias tidiff='infocmp -Ld'
 alias tracert='traceroute'
+alias treedu='tree --du -h'
 tubetitle() {
 	command youtube-dl -e "${1:?missing URL}" | sed "s/: / - /; y|/\":<>|-'-[]|"
 }
@@ -75,6 +76,7 @@ tubemusic() { youtube-dl --title --extract-audio --audio-format mp3 \
 	--keep-video "$@"; }
 up() { local p= i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
 alias watch='watch '
+vimpaste() { vim <(getpaste "$1"); }
 wim() { local w=$(which "$1"); [[ $w ]] && $EDITOR "$w"; }
 alias xf='ps xf -O ppid'
 alias xx='chmod a+x'
