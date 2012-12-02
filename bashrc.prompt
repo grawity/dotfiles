@@ -2,33 +2,6 @@
 # bashrc -- shell prompt, window title, command exit status in prompt
 # (note: depends on $havecolor being set, see main bashrc)
 
-# Determine terminal capabilities
-
-case $TERM in
-	xterm)
-		havecolor=8
-		if [[ -z $COLORTERM && -f /proc/$PPID/cmdline ]]; then
-			read -r -d "" comm < /proc/$PPID/cmdline
-			comm=${comm##*/}
-			case $comm in
-			gnome-terminal)
-				COLORTERM=$comm;;
-			esac
-			unset comm
-		fi
-		if [[ $COLORTERM ]]; then
-			TERM="$TERM-256color"
-			havecolor=256
-		fi
-		;;
-	*-256color|xterm-termite)
-		havecolor=256;;
-	"")
-		havecolor=0;;
-	*)
-		havecolor=8;;
-esac
-
 case $TERM in
 	[xkE]term*|rxvt*|cygwin|dtterm|termite)
 		titlestring='\e]0;%s\a';
