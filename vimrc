@@ -120,6 +120,7 @@ inoremap <F1> <Esc>
 nnoremap <F1> <Esc>
 vnoremap <F1> <Esc>
 nnoremap ; :
+nnoremap q :q
 
 nnoremap <Leader>l :ls<CR>:b<Space>
 
