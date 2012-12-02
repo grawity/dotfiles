@@ -79,7 +79,7 @@ fi
 
 ### Todo list
 
-if [[ ! $SUDO_USER ]]; then
+if [[ ! $SILENT && ! $SUDO_USER ]]; then
 	have todo && todo
 fi
 

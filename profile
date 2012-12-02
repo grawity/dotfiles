@@ -6,9 +6,9 @@
 
 . ~/lib/dotfiles/environ
 
-# login
+# login (only for -bash, not inside tmux, and not if $SILENT)
 
-case $0:$TMUX in -*:)
+case $0:$TMUX:$SILENT in -*::)
 	test -d ~/.cache || mkdir -p -m 0700 ~/.cache
 	
 	test -f ~/.hushlogin && motd -q
