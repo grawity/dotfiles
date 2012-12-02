@@ -23,21 +23,8 @@ export SUDO_PROMPT=$(printf 'sudo: Password for %%p@\e[30;43m%%h\e[m: ')
 # in my git-url-handler script
 case $TERM in
 	xterm)
-		havecolor=8
-		if [[ -z $COLORTERM && -f /proc/$PPID/cmdline ]]; then
-			read -r -d "" comm < /proc/$PPID/cmdline
-			comm=${comm##*/}
-			case $comm in
-			gnome-terminal)
-				COLORTERM=$comm;;
-			esac
-			unset comm
-		fi
-		if [[ $COLORTERM ]]; then
-			TERM="$TERM-256color"
-			havecolor=256
-		fi
-		;;
+		TERM='xterm-256color';
+		havecolor=256;;
 	*-256color|xterm-termite)
 		havecolor=256;;
 	"")
