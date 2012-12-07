@@ -1,8 +1,8 @@
-*.pyc
-*.pyo
+*.a
+*.o
+*.py[co]
+*.sw[nop]
 *~
-.*.swo
-.*.swp
 Thumbs.db
 __pycache__
 core
