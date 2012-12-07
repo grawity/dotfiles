@@ -10,162 +10,92 @@
 
 	<match target="font">
 		<!--
-		<edit name="antialias" mode="assign">
-			<bool>true</bool>
-		</edit>
-		<edit name="rgba" mode="assign">
-			<const>rgb</const>
-		</edit>
-		<edit name="hinting" mode="assign">
-			<bool>true</bool>
-		</edit>
-		<edit name="hintstyle" mode="assign">
-			<const>hintfull</const>
-		</edit>
-		<edit name="autohint" mode="assign">
-			<bool>false</bool>
-		</edit>
+		<edit mode="assign" name="antialias">	<bool>true</bool>			</edit>
+		<edit mode="assign" name="rgba">		<const>rgb</const>			</edit>
+		<edit mode="assign" name="hinting">		<bool>true</bool>			</edit>
+		<edit mode="assign" name="hintstyle">	<const>hintfull</const>		</edit>
+		<edit mode="assign" name="autohint">	<bool>false</bool>			</edit>
 		-->
-		<edit name="lcdfilter" mode="assign">
-			<const>lcddefault</const>
-		</edit>
+		<edit mode="assign" name="lcdfilter">	<const>lcddefault</const>	</edit>
 	</match>
 
 	<alias binding="same">
 		<family>MS Sans Serif</family>
-		<prefer>
-			<family>Tahoma</family>
-		</prefer>
+		<prefer> <family>Tahoma</family> </prefer>
 	</alias>
 
 	<alias binding="same">
 		<family>MS Shell Dlg</family>
-		<prefer>
-			<family>Tahoma</family>
-		</prefer>
+		<prefer> <family>Tahoma</family> </prefer>
 	</alias>
 
 	<!-- Enable autohinting for some fonts -->
 
 	<match target="font">
-		<test name="family">
-			<string>Calibri</string>
-		</test>
-		<edit name="autohint" mode="assign">
-			<bool>true</bool>
-		</edit>
+		<test name="family"> <string>Calibri</string> </test>
+		<edit mode="assign" name="autohint"> <bool>true</bool> </edit>
 	</match>
 
 	<match target="font">
-		<test name="family">
-			<string>Cambria</string>
-		</test>
-		<edit name="autohint" mode="assign">
-			<bool>true</bool>
-		</edit>
+		<test name="family"> <string>Cambria</string> </test>
+		<edit mode="assign" name="autohint"> <bool>true</bool> </edit>
 	</match>
 
 	<match target="font">
-		<test name="family">
-			<string>Candara</string>
-		</test>
-		<edit name="autohint" mode="assign">
-			<bool>true</bool>
-		</edit>
+		<test name="family"> <string>Candara</string> </test>
+		<edit mode="assign" name="autohint"> <bool>true</bool> </edit>
 	</match>
 
 	<match target="font">
-		<test name="family">
-			<string>Consolas</string>
-		</test>
-		<edit name="autohint" mode="assign">
-			<bool>true</bool>
-		</edit>
+		<test name="family"> <string>Consolas</string> </test>
+		<edit mode="assign" name="autohint"> <bool>true</bool> </edit>
 	</match>
 
 	<match target="font">
-		<test name="family">
-			<string>Constantia</string>
-		</test>
-		<edit name="autohint" mode="assign">
-			<bool>true</bool>
-		</edit>
+		<test name="family"> <string>Constantia</string> </test>
+		<edit mode="assign" name="autohint"> <bool>true</bool> </edit>
 	</match>
 
 	<match target="font">
-		<test name="family">
-			<string>Corbel</string>
-		</test>
-		<edit name="autohint" mode="assign">
-			<bool>true</bool>
-		</edit>
-	</match>
-
-	<!-- not really needed -->
-	<match target="font">
-		<test name="family">
-			<string>Georgia</string>
-		</test>
-		<edit name="autohint" mode="assign">
-			<bool>true</bool>
-		</edit>
+		<test name="family"> <string>Corbel</string> </test>
+		<edit mode="assign" name="autohint"> <bool>true</bool> </edit>
 	</match>
 
 	<match target="font">
-		<test name="family">
-			<string>Lucida Grande</string>
-		</test>
-		<edit name="autohint" mode="assign">
-			<bool>true</bool>
-		</edit>
+		<test name="family"> <string>Georgia</string> </test>
+		<edit mode="assign" name="autohint"> <bool>true</bool> </edit>
 	</match>
 
 	<match target="font">
-		<test name="family">
-			<string>Segoe UI</string>
-		</test>
-		<edit name="autohint" mode="assign">
-			<bool>true</bool>
-		</edit>
-	</match>
-
-	<!-- not really needed -->
-	<match target="font">
-		<test name="family">
-			<string>Trebuchet MS</string>
-		</test>
-		<edit name="autohint" mode="assign">
-			<bool>true</bool>
-		</edit>
+		<test name="family"> <string>Lucida Grande</string> </test>
+		<edit mode="assign" name="autohint"> <bool>true</bool> </edit>
 	</match>
 
 	<match target="font">
-		<test name="family">
-			<string>Verdana</string>
-		</test>
-		<edit name="autohint" mode="assign">
-			<bool>true</bool>
-		</edit>
+		<test name="family"> <string>Segoe UI</string> </test>
+		<edit mode="assign" name="autohint"> <bool>true</bool> </edit>
+	</match>
+
+	<match target="font">
+		<test name="family"> <string>Trebuchet MS</string> </test>
+		<edit mode="assign" name="autohint"> <bool>true</bool> </edit>
+	</match>
+
+	<match target="font">
+		<test name="family"> <string>Verdana</string> </test>
+		<edit mode="assign" name="autohint"> <bool>true</bool> </edit>
 	</match>
 
 	<!-- Disable ugly "embedded bitmaps" for Microsoft screen fonts -->
 
 	<match target="font">
-		<test name="family">
-			<string>Calibri</string>
-		</test>
-		<edit name="embeddedbitmap" mode="assign">
-			<bool>false</bool>
-		</edit>
+		<test name="family"> <string>Calibri</string> </test>
+		<edit mode="assign" name="embeddedbitmap"> <bool>false</bool> </edit>
 	</match>
 
 	<match target="font">
-		<test name="family">
-			<string>Cambria</string>
-		</test>
-		<edit name="embeddedbitmap" mode="assign">
-			<bool>false</bool>
-		</edit>
+		<test name="family"> <string>Cambria</string> </test>
+		<edit mode="assign" name="embeddedbitmap"> <bool>false</bool> </edit>
 	</match>
 
 </fontconfig>
