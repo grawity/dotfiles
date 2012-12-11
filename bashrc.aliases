@@ -22,6 +22,7 @@ pager() { eval command "${PAGER:-less}" '"$@"'; }
 
 # It's a mess but /at least/ it's alphasorted
 count() { sort "$@" | uniq -c | sort -n -r | pager; }
+alias csearch='csearch -n'
 alias cur='cur '
 alias dnstracer='dnstracer -s .'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
