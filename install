@@ -72,6 +72,10 @@ if [ -h ~/.gitconfig ] || ! git config --global github.user >/dev/null 2>&1; the
 	link git/config ~/.gitconfig
 fi
 
+if [ -h ~/.gitignore ]; then
+	link git/ignore ~/.gitignore
+fi
+
 have irb &&
 	link irbrc
 
