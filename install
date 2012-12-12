@@ -68,8 +68,9 @@ have bzr &&
 
 link git ~/.config/git
 
-[[ -z $(git config --get --global github.user) ]] &&
-	link gitconfig
+if [ -h ~/.gitconfig ] || ! git config --global github.user >/dev/null 2>&1; then
+	link git/config ~/.gitconfig
+fi
 
 have irb &&
 	link irbrc
@@ -106,15 +107,8 @@ have gvim &&
 	link gvimrc
 
 test "$DISPLAY" && {
-	have xrdb && {
-		link Xresources
-		link Xdefaults-$HOSTNAME
-		link XCompose
-	}
-
 	have fc-cache && {
 		link gui/fonts.conf.xml ~/.config/fontconfig/fonts.conf
-		#sym ~/.config/fontconfig/fonts.conf ~/.fonts.conf
 	}
 }
 
