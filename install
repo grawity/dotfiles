@@ -99,6 +99,7 @@ have ssh && {
 have tmux &&
 	link tmux.conf
 
+rm -f ~/.viminfo
 link vimrc
 link vim
 have gvim &&
