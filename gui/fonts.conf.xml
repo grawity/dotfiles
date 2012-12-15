@@ -93,11 +93,13 @@
 
 	<match target="font">
 		<test name="family"> <string>Calibri</string> </test>
-		<edit name="embeddedbitmap"> <bool>false</bool> </edit>
+		<!-- <edit name="embeddedbitmap"> <bool>false</bool> </edit> -->
 	</match>
 
 	<match target="font">
 		<test name="family"> <string>Cambria</string> </test>
+		<!-- <edit name="embeddedbitmap"> <bool>false</bool> </edit> -->
+	</match>
 
 	<match target="font">
 		<test name="family"> <string>Monaco</string> </test>
