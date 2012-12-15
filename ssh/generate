@@ -58,8 +58,8 @@ generate() {
 	cat "${input[@]}" 2>/dev/null | filter_file match_eval
 }
 
-input=( ~/lib/dotfiles/ssh-config
-	~/lib/dotfiles/ssh-config-$HOSTNAME )
+input=( ~/lib/dotfiles/ssh/config
+	~/lib/dotfiles/ssh/config-$HOSTNAME )
 
 output="config-$HOSTNAME"
 
