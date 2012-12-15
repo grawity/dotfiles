@@ -42,12 +42,12 @@ XTerm*utf8Title:		true
 ! interpret VT100 graphics in utf8 mode?
 !XTerm*vt100Graphics:		false
 
-XTerm*selectToClipboard:	true
 XTerm*vt100*translations:	#override			\n\
-	Shift <Key> Delete:	insert-selection(SELECT)	\n\
 	Shift Ctrl <Key> C:	select-end(CLIPBOARD)		\n\
 	Shift Ctrl <Key> V:	insert-selection(CLIPBOARD)	\n\
 	Shift Ctrl <Key> N:	spawn-new-terminal()		\n
+
+!	Shift <Key> Delete:	insert-selection(SELECT)	\n\
 
 ! appearance
 XTerm*vt100.geometry:	100x35
