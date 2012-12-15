@@ -103,6 +103,7 @@
 
 	<match target="font">
 		<test name="family"> <string>Monaco</string> </test>
+		<edit name="autohint"> <bool>true</bool> </edit>
 		<edit name="embeddedbitmap"> <bool>false</bool> </edit>
 	</match>
 
