@@ -183,6 +183,7 @@ EXEC 01;32
 .qt 01;35
 .vob 01;35
 .wmv 01;35
+.webm 01;35
 
 # audio formats
 .aac 00;36
