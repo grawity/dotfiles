@@ -88,7 +88,6 @@
 		<edit name="autohint"> <bool>true</bool> </edit>
 	</match>
 
-
 	<!-- Disable ugly "embedded bitmaps" for Microsoft screen fonts -->
 
 	<match target="font">
@@ -103,7 +102,8 @@
 
 	<match target="font">
 		<test name="family"> <string>Monaco</string> </test>
-		<edit name="autohint"> <bool>true</bool> </edit>
+		<!-- Webkit screws up when calculating display width of autohinted Monaco. -->
+		<!-- <edit name="autohint"> <bool>true</bool> </edit> -->
 		<edit name="embeddedbitmap"> <bool>false</bool> </edit>
 	</match>
 
