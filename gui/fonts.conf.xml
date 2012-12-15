@@ -98,6 +98,9 @@
 
 	<match target="font">
 		<test name="family"> <string>Cambria</string> </test>
+
+	<match target="font">
+		<test name="family"> <string>Monaco</string> </test>
 		<edit name="embeddedbitmap"> <bool>false</bool> </edit>
 	</match>
 
