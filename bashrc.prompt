@@ -78,7 +78,26 @@ _awesome_prompt() {
 		fi
 
 		br+=${re:+"|$re"}
+	fi
+	
+	if [[ ! $br && -f PKGBUILD ]]; then
+		local line= pkgver= pkgrel=
 
+		while read -r line; do
+			case $line in
+			pkgver=*|pkgrel=*)
+				declare "$line"
+			esac
+
+			if [[ $pkgver && $pkgrel ]]; then
+				break
+			fi
+		done < PKGBUILD
+
+		br="$pkgver-$pkgrel"
+	fi
+
+	if [[ $br ]]; then
 		# branch
 		# + 1 (space before branch)
 		(( maxwidth -= ${#br} + 1 ))
