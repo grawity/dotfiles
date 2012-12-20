@@ -46,7 +46,7 @@ augroup filetypedetect
 	au BufNewFile,BufRead *.phps setf php
 
 	" Arch PKGBUILD
-	au BufNewFile,BufRead PKGBUILD* setf PKGBUILD
+	au BufNewFile,BufRead PKGBUILD* setf sh
 
 	" Shell
 	au BufNewFile,BufRead /etc/rc.conf setf sh
