@@ -2,101 +2,101 @@
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <!--
   http://www.freedesktop.org/software/fontconfig/fontconfig-user.html
-  vim: ft=xml:ts=4:sw=4:noet
+  vim: ft=xml:ts=4:sw=4:et
 -->
 <fontconfig>
 
-	<!-- Global settings -->
+    <!-- Global settings -->
 
-	<match target="font">
-		<edit name="antialias">	<bool>true</bool>			</edit>
-		<edit name="rgba">		<const>rgb</const>			</edit>
-		<edit name="hinting">	<bool>true</bool>			</edit>
-		<edit name="hintstyle">	<const>hintfull</const>		</edit>
-		<edit name="autohint">	<bool>false</bool>			</edit>
-		<edit name="lcdfilter">	<const>lcddefault</const>	</edit>
-	</match>
+    <match target="font">
+        <edit name="antialias"> <bool>true</bool>           </edit>
+        <edit name="rgba">      <const>rgb</const>          </edit>
+        <edit name="hinting">   <bool>true</bool>           </edit>
+        <edit name="hintstyle"> <const>hintfull</const>     </edit>
+        <edit name="autohint">  <bool>false</bool>          </edit>
+        <edit name="lcdfilter"> <const>lcddefault</const>   </edit>
+    </match>
 
-	<!-- Font aliases -->
+    <!-- Font aliases -->
 
-	<alias binding="same">
-		<family>MS Sans Serif</family>
-		<prefer> <family>Tahoma</family> </prefer>
-	</alias>
+    <alias binding="same">
+        <family>MS Sans Serif</family>
+        <prefer> <family>Tahoma</family> </prefer>
+    </alias>
 
-	<alias binding="same">
-		<family>MS Shell Dlg</family>
-		<prefer> <family>Tahoma</family> </prefer>
-	</alias>
+    <alias binding="same">
+        <family>MS Shell Dlg</family>
+        <prefer> <family>Tahoma</family> </prefer>
+    </alias>
 
-	<!-- Fix hinting for Microsoft Vista fonts (fixes overly bold text)
-		 Not needed with 2.4.11 + subpixel hinting -->
+    <!-- Fix hinting for Microsoft Vista fonts (fixes overly bold text)
+         Not needed with 2.4.11 + subpixel hinting -->
 
-	<match target="font">
-		<test name="family"> <string>Calibri</string> </test>
-		<edit name="autohint"> <bool>true</bool> </edit>
-	</match>
+    <match target="font">
+        <test name="family"> <string>Calibri</string> </test>
+        <edit name="autohint"> <bool>true</bool> </edit>
+    </match>
 
-	<match target="font">
-		<test name="family"> <string>Cambria</string> </test>
-		<edit name="autohint"> <bool>true</bool> </edit>
-	</match>
+    <match target="font">
+        <test name="family"> <string>Cambria</string> </test>
+        <edit name="autohint"> <bool>true</bool> </edit>
+    </match>
 
-	<match target="font">
-		<test name="family"> <string>Candara</string> </test>
-		<edit name="autohint"> <bool>true</bool> </edit>
-	</match>
+    <match target="font">
+        <test name="family"> <string>Candara</string> </test>
+        <edit name="autohint"> <bool>true</bool> </edit>
+    </match>
 
-	<match target="font">
-		<test name="family"> <string>Consolas</string> </test>
-		<edit name="autohint"> <bool>true</bool> </edit>
-	</match>
+    <match target="font">
+        <test name="family"> <string>Consolas</string> </test>
+        <edit name="autohint"> <bool>true</bool> </edit>
+    </match>
 
-	<match target="font">
-		<test name="family"> <string>Constantia</string> </test>
-		<edit name="autohint"> <bool>true</bool> </edit>
-	</match>
+    <match target="font">
+        <test name="family"> <string>Constantia</string> </test>
+        <edit name="autohint"> <bool>true</bool> </edit>
+    </match>
 
-	<match target="font">
-		<test name="family"> <string>Corbel</string> </test>
-		<edit name="autohint"> <bool>true</bool> </edit>
-	</match>
+    <match target="font">
+        <test name="family"> <string>Corbel</string> </test>
+        <edit name="autohint"> <bool>true</bool> </edit>
+    </match>
 
-	<match target="font">
-		<!-- fixes 'M', '4' being too bold -->
-		<test name="family"> <string>Trebuchet MS</string> </test>
-		<edit name="hintstyle"> <const>hintnone</const> </edit>
-	</match>
+    <match target="font">
+        <!-- fixes 'M', '4' being too bold -->
+        <test name="family"> <string>Trebuchet MS</string> </test>
+        <edit name="hintstyle"> <const>hintnone</const> </edit>
+    </match>
 
-	<!-- Fix hinting for some other fonts -->
+    <!-- Fix hinting for some other fonts -->
 
-	<match target="font">
-		<test name="family"> <string>Lucida Grande</string> </test>
-		<edit name="autohint"> <bool>true</bool> </edit>
-	</match>
+    <match target="font">
+        <test name="family"> <string>Lucida Grande</string> </test>
+        <edit name="autohint"> <bool>true</bool> </edit>
+    </match>
 
-	<match target="font">
-		<test name="family"> <string>Segoe UI</string> </test>
-		<edit name="autohint"> <bool>true</bool> </edit>
-	</match>
+    <match target="font">
+        <test name="family"> <string>Segoe UI</string> </test>
+        <edit name="autohint"> <bool>true</bool> </edit>
+    </match>
 
-	<!-- Disable ugly "embedded bitmaps" for Microsoft screen fonts -->
+    <!-- Disable ugly "embedded bitmaps" for Microsoft screen fonts -->
 
-	<match target="font">
-		<test name="family"> <string>Calibri</string> </test>
-		<edit name="embeddedbitmap"> <bool>false</bool> </edit>
-	</match>
+    <match target="font">
+        <test name="family"> <string>Calibri</string> </test>
+        <edit name="embeddedbitmap"> <bool>false</bool> </edit>
+    </match>
 
-	<match target="font">
-		<test name="family"> <string>Cambria</string> </test>
-		<edit name="embeddedbitmap"> <bool>false</bool> </edit>
-	</match>
+    <match target="font">
+        <test name="family"> <string>Cambria</string> </test>
+        <edit name="embeddedbitmap"> <bool>false</bool> </edit>
+    </match>
 
-	<match target="font">
-		<test name="family"> <string>Monaco</string> </test>
-		<!-- Webkit screws up when calculating display width of autohinted Monaco. -->
-		<!-- <edit name="autohint"> <bool>true</bool> </edit> -->
-		<edit name="embeddedbitmap"> <bool>false</bool> </edit>
-	</match>
+    <match target="font">
+        <test name="family"> <string>Monaco</string> </test>
+        <!-- Webkit screws up when calculating display width of autohinted Monaco. -->
+        <!-- <edit name="autohint"> <bool>true</bool> </edit> -->
+        <edit name="embeddedbitmap"> <bool>false</bool> </edit>
+    </match>
 
 </fontconfig>
