@@ -9,13 +9,11 @@
 	<!-- Global settings -->
 
 	<match target="font">
-		<!--
 		<edit name="antialias">	<bool>true</bool>			</edit>
 		<edit name="rgba">		<const>rgb</const>			</edit>
 		<edit name="hinting">	<bool>true</bool>			</edit>
 		<edit name="hintstyle">	<const>hintfull</const>		</edit>
 		<edit name="autohint">	<bool>false</bool>			</edit>
-		-->
 		<edit name="lcdfilter">	<const>lcddefault</const>	</edit>
 	</match>
 
