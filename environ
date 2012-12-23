@@ -82,6 +82,13 @@ EDITOR="vim"
 unset VISUAL
 PAGER="less"
 
+# locale
+
+case $LANG in
+en_*)	;;
+*)	LANG="en_US.UTF-8";;
+esac
+
 # libdefaults
 
 GTK_IM_MODULE="xim"
