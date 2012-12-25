@@ -81,6 +81,7 @@ set modeline
 
 set nobackup
 set backupcopy=yes " fixes issues with vipw
+set autoread
 set autowrite
 
 set viminfo+=n~/.vim/viminfo
