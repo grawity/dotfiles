@@ -26,11 +26,12 @@
 	export = !touch $(git rev-parse --git-dir)/git-daemon-export-ok
 	fa = fetch --all
 	follow = log --oneline --follow --stat --summary --
+	in = log --decorate ..@{upstream}
 	lg = log --oneline --decorate
-	local = log --oneline @{upstream}..HEAD
 	ls = ls-files
 	mend = commit --amend --reuse-message HEAD
 	mrproper = !git reset --hard HEAD && git clean -fdx
+	out = log --decorate @{upstream}..
 	pick = cherry-pick
 	remaster = rebase --autosquash -i @{upstream}
 	repack-to-alternate = repack -dal
