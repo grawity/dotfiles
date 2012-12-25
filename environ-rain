@@ -13,8 +13,6 @@ if [ -z "$KRB5CCNAME" ] && [ -d "$XDG_RUNTIME_DIR" ]; then
 	KRB5CCNAME="DIR:$XDG_RUNTIME_DIR/krb5cc"
 fi
 
-LDAPCONF="$XDG_CONFIG_HOME/ldap.conf"
-
 SDL_AUDIODRIVER="pulse"
 
 #WINEDLLOVERRIDES="winemenubuilder.exe=d"
