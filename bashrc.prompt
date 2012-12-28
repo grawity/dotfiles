@@ -55,10 +55,10 @@ _awesome_prompt() {
 			br=$(<"$git/rebase-merge/head-name")
 			re='REBASE-m'
 		else
-			br=$(git symbolic-ref HEAD 2>/dev/null) ||
-			br=$(git describe --tags --exact-match HEAD 2>/dev/null) ||
-			br=$(git rev-parse --short HEAD 2>/dev/null) ||
-			br='unknown'
+			br=$(git symbolic-ref HEAD 2>/dev/null ||
+			     git describe --tags --exact-match HEAD 2>/dev/null ||
+			     git rev-parse --short HEAD 2>/dev/null ||
+			     echo 'unknown')
 
 			br=${br#refs/heads/}
 
