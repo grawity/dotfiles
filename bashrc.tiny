@@ -1,0 +1,9 @@
+#!bash
+
+if [[ ! $PREFIX ]]; then
+	. ~/lib/dotfiles/environ
+fi
+
+PS1='\[\e[0;32m\]\h\[\e[m\] \[\e[0;36m\]\w\[\e[m\] \$ '
+alias ls='ls -F -h --color=auto'
+alias ll='ls -l'
