@@ -34,6 +34,8 @@ include "%L"
 <Multi_key> <equal> <y>			: "¥" # yen
 <Multi_key> <h> <e> <a> <r> <t>		: "♥" # heart
 <Multi_key> <l> <a>			: "λ" # lambda
+<Multi_key> <D> <a>			: "Δ" # Delta
+<Multi_key> <d> <a>			: "δ" # delta
 <Multi_key> <l> <q>			: "“" # ldquo
 <Multi_key> <r> <q>			: "”" # rdquo
 <Multi_key> <p> <i>			: "π" # pi
