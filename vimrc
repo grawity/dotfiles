@@ -125,17 +125,6 @@ vnoremap <F1> <Esc>
 nnoremap ; :
 nnoremap q :q
 
-nnoremap <Leader>l :ls<CR>:b<Space>
-
-" strip trailing whitespace
-nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=""<CR>
-" sort CSS properties
-nnoremap <Leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
-" reselect pasted text
-nnoremap <Leader>v V`]
-" rewrap current paragraph
-nnoremap <Leader>w gq}
-
 " Searching
 
 set incsearch
@@ -151,7 +140,20 @@ if &term != "builtin_gui"
 	set iminsert=1
 endif
 
+" list buffers
+nnoremap <Leader>l :ls<CR>:b<Space>
+" rename word under cursor
+nnoremap <Leader>rw :s/\<<C-r><C-w>\>/
+" sort CSS properties
+nnoremap <Leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
+" display Tagbar
 nmap <Leader>t :TagbarToggle<CR>
+" reselect pasted text
+nnoremap <Leader>v V`]
+" rewrap current paragraph
+nnoremap <Leader>w gq}
+" strip trailing whitespace
+nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=""<CR>
 
 " CUA cut/copy, non-CUA paste
 vmap <C-x> "pd
