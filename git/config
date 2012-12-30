@@ -35,7 +35,7 @@
 	mrproper = !git reset --hard HEAD && git clean -fdx
 	out = log --oneline --decorate @{upstream}..
 	pick = cherry-pick
-	remaster = rebase --autosquash -i @{upstream}
+	remaster = rebase -i master
 	repack-to-alternate = repack -dal
 	repack-to-local = repack -da
 	sg = diff --cached
@@ -47,6 +47,8 @@
 	tip = log -1 --decorate=short --abbrev-commit --date=relative
 	undo = reset --soft HEAD^
 	unexport = !rm -v $(git rev-parse --git-dir)/git-daemon-export-ok
+	re = rebase
+	rec = rebase --continue
 [color]
 	branch = auto
 	diff = auto
