@@ -26,5 +26,5 @@ WMII_CONFPATH="$XDG_CONFIG_HOME/wmii"
 # appdefaults
 
 ACCDB="/run/media/$USER/grawpqi/Private/accounts.db.txt"
-MAKEFLAGS="-j 5"
+#MAKEFLAGS="-j 5"
 MPD_HOST="$(<"$XDG_CONFIG_HOME/mpd/password")@$XDG_RUNTIME_DIR/mpd.control"
