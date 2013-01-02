@@ -1,1 +1,2 @@
-*.ldif diff=ldif
+*.ldif		diff=ldif
+*.policy.in	diff=polkit

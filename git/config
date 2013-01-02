@@ -70,6 +70,8 @@
 	renames = copies
 [diff "ldif"]
 	xfuncname = "^(dn: .+)$"
+[diff "polkit"]
+	xfuncname = "(<action id=\\\".+\\\">)"
 [grep]
 	lineNumber = true
 	extendedRegexp = true
