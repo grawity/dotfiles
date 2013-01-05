@@ -204,18 +204,11 @@ syn region  shCommandSub   start="`" skip="\\\\\|\\." end="`"	contains=@shComman
 syn match   shEscape	contained	'\%(\\\\\)*\\.'
 
 " $() and $(()): {{{1
-" $(..) is not supported by sh (Bourne shell).  However, apparently
-" some systems (HP?) have as their /bin/sh a (link to) Korn shell
-" (ie. Posix compliant shell).  /bin/ksh should work for those
-" systems too, however, so the following syntax will flag $(..) as
-" an Error under /bin/sh.  By consensus of vimdev'ers!
+syn region shCommandSub matchgroup=shCmdSubRegion start="\$("  skip='\\\\\|\\.' end=")"  contains=@shCommandSubList
 if exists("b:is_kornshell") || exists("b:is_bash")
- syn region shCommandSub matchgroup=shCmdSubRegion start="\$("  skip='\\\\\|\\.' end=")"  contains=@shCommandSubList
  syn region shArithmetic matchgroup=shArithRegion  start="\$((" skip='\\\\\|\\.' end="))" contains=@shArithList
  syn region shArithmetic matchgroup=shArithRegion  start="\$\[" skip='\\\\\|\\.' end="\]" contains=@shArithList
  syn match  shSkipInitWS contained	"^\s\+"
-elseif !exists("g:sh_no_error")
- syn region shCommandSub matchgroup=Error start="\$(" end=")" contains=@shCommandSubList
 endif
 syn region shCmdParenRegion matchgroup=shCmdSubRegion start="(" skip='\\\\\|\\.' end=")"	contains=@shCommandSubList
 
