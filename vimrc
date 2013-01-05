@@ -221,7 +221,7 @@ endif
 """ File-specific behavior
 
 silent! autocmd BufNewFile,BufRead
-\ COMMIT_EDITMSG
+\ COMMIT_EDITMSG,git-rebase-todo
 \ setl nomodeline
 
 """ Still not sorted
