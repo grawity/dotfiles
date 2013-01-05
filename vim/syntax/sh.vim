@@ -104,8 +104,6 @@ syn cluster shDerefVarList	contains=shDerefOp,shDerefVarArray,shDerefOpError
 syn cluster shExprList	contains=@shCommandSubList,@shIfList,shCharClass,shCommandSub,shComment,shCtrlSeq,shDeref,shDerefSimple,shDoubleQuote,shExDoubleQuote,shExSingleQuote,shExpr,shExpr,shHereDoc,shNumber,shOperator,shRedir,shSingleQuote,shStatement
 syn cluster shFunctionList	contains=@shCommandSubList,shCommandSub,shComment,shExpr,shHereDoc,shRedir,shStatement,shOperator,shCtrlSeq
 syn cluster shIfList	contains=shConditional,shExpr,shFunctionKey,shFunctionOne,shFunctionTwo
-syn cluster shNestedSubList	contains=@shCommandSubList,shCommandSub
-
 
 " File Redirection Highlighted As Operators: {{{1
 "===========================================
@@ -145,7 +143,7 @@ syn region  shCommandSub   start="`" skip="\\\\\|\\." end="`"	contains=@shComman
 syn match   shEscape	contained	'\%(\\\\\)*\\.'
 
 " $() and $(()): {{{1
-syn region shCommandSub matchgroup=shCmdSubRegion start="\$("  skip='\\\\\|\\.' end=")"  contains=@shNestedSubList
+syn region shCommandSub matchgroup=shCmdSubRegion start="\$("  skip='\\\\\|\\.' end=")"  contains=@shFunctionList
 if exists("b:is_kornshell") || exists("b:is_bash")
  syn region shArithmetic matchgroup=shArithRegion  start="\$((" skip='\\\\\|\\.' end="))" contains=@shArithList
  syn region shArithmetic matchgroup=shArithRegion  start="(("   skip='\\\\\|\\.' end="))" contains=@shArithList
