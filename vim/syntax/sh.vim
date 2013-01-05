@@ -96,24 +96,18 @@ syn case match
 
 " Clusters: contains=@... clusters {{{1
 "==================================
-syn cluster shArithParenList	contains=shArithmetic,shDeref,shDerefSimple,shEscape,shNumber,shOperator,shPosnParm,shExSingleQuote,shExDoubleQuote,shRedir,shSingleQuote,shDoubleQuote,shStatement,shCtrlSeq,shSpecial,shParen
-syn cluster shArithList	contains=@shArithParenList,shParenError
-syn cluster shCaseList	contains=@shCommandSubList,shCommandSub,shComment,shExpr,shHereDoc,shRedir,shStatement,shCtrlSeq
-syn cluster shCommandSubList	contains=shArithmetic,shDeref,shDerefSimple,shEscape,shNumber,shOperator,shPosnParm,shExSingleQuote,shSingleQuote,shExDoubleQuote,shDoubleQuote,shStatement,shSubSh,shCtrlSeq,shSpecial,shCmdParenRegion
-syn cluster shCurlyList	contains=shNumber,shComma,shDeref,shDerefSimple,shDerefSpecial
+syn cluster shArithList	contains=shArithmetic,shDeref,shDerefSimple,shEscape,shNumber,shOperator,shPosnParm,shExSingleQuote,shExDoubleQuote,shRedir,shSingleQuote,shDoubleQuote,shStatement,shCtrlSeq,shSpecial,shParen,shParenError
+syn cluster shCommandSubList	contains=shArithmetic,shCommandSub,shDeref,shDerefSimple,shEscape,@shIfList,shNumber,shOperator,shPosnParm,shExSingleQuote,shSingleQuote,shExDoubleQuote,shDoubleQuote,shStatement,shSubSh,shCtrlSeq,shSpecial,shCmdParenRegion
 syn cluster shDblQuoteList	contains=shCommandSub,shDeref,shDerefSimple,shEscape,shPosnParm,shCtrlSeq,shSpecial
 syn cluster shDerefList	contains=shDeref,shDerefSimple,shDerefVar,shDerefSpecial,shDerefWordError,shDerefPPS
 syn cluster shDerefVarList	contains=shDerefOp,shDerefVarArray,shDerefOpError
-syn cluster shExprList1	contains=shCharClass,shNumber,shOperator,shExSingleQuote,shExDoubleQuote,shSingleQuote,shDoubleQuote,shExpr,shDeref,shDerefSimple,shCtrlSeq
 syn cluster shExprList2	contains=@shExprList1,@shCaseList,@shIfList
 syn cluster shFunctionList	contains=@shCommandSubList,shCommandSub,shComment,shExpr,shHereDoc,shRedir,shStatement,shOperator,shCtrlSeq
-syn cluster shHereBeginList	contains=@shCommandSubList
-syn cluster shHereList	contains=shBeginHere,shHerePayload
-syn cluster shHereListDQ	contains=shBeginHere,@shDblQuoteList,shHerePayload
-syn cluster shIfList	contains=@shLoopList,shFunctionKey,shFunctionOne,shFunctionTwo
-syn cluster shLoopList	contains=@shCaseList,shExpr,shConditional
-syn cluster shSubShList	contains=@shCommandSubList,shCommandSub,shComment,shExpr,shRedir,shStatement,shCtrlSeq,shOperator
-syn cluster shTestList	contains=shCharClass,shComment,shCommandSub,shDeref,shDerefSimple,shExDoubleQuote,shDoubleQuote,shExpr,shNumber,shOperator,shExSingleQuote,shSingleQuote,shCtrlSeq
+syn cluster shIfList	contains=shConditional,shExpr,shFunctionKey,shFunctionOne,shFunctionTwo
+
+" almost-orphaned
+syn cluster shCaseList	contains=@shCommandSubList,shCommandSub,shComment,shExpr,shHereDoc,shRedir,shStatement,shCtrlSeq
+syn cluster shExprList1	contains=shCharClass,shNumber,shOperator,shExSingleQuote,shExDoubleQuote,shSingleQuote,shDoubleQuote,shExpr,shDeref,shDerefSimple,shCtrlSeq
 
 " File Redirection Highlighted As Operators: {{{1
 "===========================================
