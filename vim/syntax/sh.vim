@@ -99,10 +99,9 @@ syn case match
 
 " Clusters: contains=@... clusters {{{1
 "==================================
-syn cluster shArithParenList	contains=shArithmetic,shCaseEsac,shDeref,shDerefSimple,shEscape,shNumber,shOperator,shPosnParm,shExSingleQuote,shExDoubleQuote,shRedir,shSingleQuote,shDoubleQuote,shStatement,shVariable,shAlias,shTest,shCtrlSeq,shSpecial,shParen
+syn cluster shArithParenList	contains=shArithmetic,shDeref,shDerefSimple,shEscape,shNumber,shOperator,shPosnParm,shExSingleQuote,shExDoubleQuote,shRedir,shSingleQuote,shDoubleQuote,shStatement,shVariable,shAlias,shTest,shCtrlSeq,shSpecial,shParen
 syn cluster shArithList	contains=@shArithParenList,shParenError
-syn cluster shCaseEsacList	contains=shCaseStart,shCase,shCaseBar,shCaseIn,shComment,shDeref,shDerefSimple,shCaseCommandSub,shCaseExSingleQuote,shCaseSingleQuote,shCaseDoubleQuote,shCtrlSeq,shStringSpecial,shCaseRange
-syn cluster shCaseList	contains=@shCommandSubList,shCaseEsac,shCommandSub,shComment,shExpr,shHereDoc,shRedir,shSetList,shStatement,shVariable,shCtrlSeq
+syn cluster shCaseList	contains=@shCommandSubList,shCommandSub,shComment,shExpr,shHereDoc,shRedir,shSetList,shStatement,shVariable,shCtrlSeq
 syn cluster shCommandSubList	contains=shArithmetic,shDeref,shDerefSimple,shEscape,shNumber,shOperator,shPosnParm,shExSingleQuote,shSingleQuote,shExDoubleQuote,shDoubleQuote,shStatement,shVariable,shSubSh,shAlias,shTest,shCtrlSeq,shSpecial,shCmdParenRegion
 syn cluster shCurlyList	contains=shNumber,shComma,shDeref,shDerefSimple,shDerefSpecial
 syn cluster shDblQuoteList	contains=shCommandSub,shDeref,shDerefSimple,shEscape,shPosnParm,shCtrlSeq,shSpecial
@@ -110,7 +109,7 @@ syn cluster shDerefList	contains=shDeref,shDerefSimple,shDerefVar,shDerefSpecial
 syn cluster shDerefVarList	contains=shDerefOp,shDerefVarArray,shDerefOpError
 syn cluster shExprList1	contains=shCharClass,shNumber,shOperator,shExSingleQuote,shExDoubleQuote,shSingleQuote,shDoubleQuote,shExpr,shDblBrace,shDeref,shDerefSimple,shCtrlSeq
 syn cluster shExprList2	contains=@shExprList1,@shCaseList,shTest
-syn cluster shFunctionList	contains=@shCommandSubList,shCaseEsac,shCommandSub,shComment,shExpr,shHereDoc,shRedir,shSetList,shStatement,shVariable,shOperator,shCtrlSeq
+syn cluster shFunctionList	contains=@shCommandSubList,shCommandSub,shComment,shExpr,shHereDoc,shRedir,shSetList,shStatement,shVariable,shOperator,shCtrlSeq
 if exists("b:is_kornshell") || exists("b:is_bash")
  syn cluster shFunctionList	add=shDblBrace,shDblParen
 endif
@@ -119,8 +118,8 @@ syn cluster shHereList	contains=shBeginHere,shHerePayload
 syn cluster shHereListDQ	contains=shBeginHere,@shDblQuoteList,shHerePayload
 syn cluster shIdList	contains=shCommandSub,shWrapLineOperator,shDeref,shDerefSimple,shRedir,shExSingleQuote,shExDoubleQuote,shSingleQuote,shDoubleQuote,shExpr,shCtrlSeq,shStringSpecial
 syn cluster shIfList	contains=@shLoopList,shDblBrace,shDblParen,shFunctionKey,shFunctionOne,shFunctionTwo
-syn cluster shLoopList	contains=@shCaseList,shExpr,shDblBrace,shConditional,shCaseEsac,shTest,shSet
-syn cluster shSubShList	contains=@shCommandSubList,shCaseEsac,shCommandSub,shComment,shExpr,shRedir,shSetList,shStatement,shVariable,shCtrlSeq,shOperator
+syn cluster shLoopList	contains=@shCaseList,shExpr,shDblBrace,shConditional,shTest,shSet
+syn cluster shSubShList	contains=@shCommandSubList,shCommandSub,shComment,shExpr,shRedir,shSetList,shStatement,shVariable,shCtrlSeq,shOperator
 syn cluster shTestList	contains=shCharClass,shComment,shCommandSub,shDeref,shDerefSimple,shExDoubleQuote,shDoubleQuote,shExpr,shNumber,shOperator,shExSingleQuote,shSingleQuote,shTest,shCtrlSeq
 " Alias: {{{1
 " =====
@@ -165,32 +164,11 @@ syn match   shCharClass	contained	"\[:\(backspace\|escape\|return\|xdigit\|alnum
 
 " Loops: do, if, while, until {{{1
 " ======
-if exists("b:is_kornshell") || exists("b:is_bash")
- syn region shCaseEsac matchgroup=shConditional start="\<select\s" matchgroup=shConditional end="\<in\>" end="\<do\>" contains=@shLoopList
-endif
 syn region shCurlyIn   contained	matchgroup=Delimiter start="{" end="}" contains=@shCurlyList
 syn match  shComma     contained	","
 
 " Case: case...esac {{{1
 " ====
-syn match   shCaseBar	contained skipwhite "\(^\|[^\\]\)\(\\\\\)*\zs|"		nextgroup=shCase,shCaseStart,shCaseBar,shComment,shCaseExSingleQuote,shCaseSingleQuote,shCaseDoubleQuote
-syn match   shCaseStart	contained skipwhite skipnl "("			nextgroup=shCase,shCaseBar
-if s:sh_fold_ifdofor
- syn region  shCase	fold contained skipwhite skipnl matchgroup=shSnglCase start="\%(\\.\|[^#$()'" \t]\)\{-}\zs)"  end=";;" end="esac"me=s-1 contains=@shCaseList nextgroup=shCaseStart,shCase,shComment
- syn region  shCaseEsac	fold matchgroup=shConditional start="\<case\>" end="\<esac\>"	contains=@shCaseEsacList
-else
- syn region  shCase	contained skipwhite skipnl matchgroup=shSnglCase start="\%(\\.\|[^#$()'" \t]\)\{-}\zs)"  end=";;" end="esac"me=s-1 contains=@shCaseList nextgroup=shCaseStart,shCase,shComment
- syn region  shCaseEsac	matchgroup=shConditional start="\<case\>" end="\<esac\>"	contains=@shCaseEsacList
-endif
-syn keyword shCaseIn	contained skipwhite skipnl in			nextgroup=shCase,shCaseStart,shCaseBar,shComment,shCaseExSingleQuote,shCaseSingleQuote,shCaseDoubleQuote
-if exists("b:is_bash")
- syn region  shCaseExSingleQuote	matchgroup=shQuote start=+\$'+ skip=+\\\\\|\\.+ end=+'+	contains=shStringSpecial,shSpecial	skipwhite skipnl nextgroup=shCaseBar	contained
-elseif !exists("g:sh_no_error")
- syn region  shCaseExSingleQuote	matchgroup=Error start=+\$'+ skip=+\\\\\|\\.+ end=+'+	contains=shStringSpecial	skipwhite skipnl nextgroup=shCaseBar	contained
-endif
-syn region  shCaseSingleQuote	matchgroup=shQuote start=+'+ end=+'+		contains=shStringSpecial		skipwhite skipnl nextgroup=shCaseBar	contained
-syn region  shCaseDoubleQuote	matchgroup=shQuote start=+"+ skip=+\\\\\|\\.+ end=+"+	contains=@shDblQuoteList,shStringSpecial	skipwhite skipnl nextgroup=shCaseBar	contained
-syn region  shCaseCommandSub	start=+`+ skip=+\\\\\|\\.+ end=+`+		contains=@shCommandSubList		skipwhite skipnl nextgroup=shCaseBar	contained
 if exists("b:is_bash")
  syn region  shCaseRange	matchgroup=Delimiter start=+\[+ skip=+\\\\+ end=+\]+	contained	contains=shCharClass
  syn match   shCharClass	'\[:\%(alnum\|alpha\|ascii\|blank\|cntrl\|digit\|graph\|lower\|print\|punct\|space\|upper\|word\|or\|xdigit\):\]'			contained
@@ -415,20 +393,12 @@ if !exists("sh_maxlines")
   let sh_maxlines = 2 * sh_minlines
 endif
 exec "syn sync minlines=" . sh_minlines . " maxlines=" . sh_maxlines
-syn sync match shCaseEsacSync	grouphere	shCaseEsac	"\<case\>"
-syn sync match shCaseEsacSync	groupthere	shCaseEsac	"\<esac\>"
 
 " Default Highlighting: {{{1
 " =====================
 hi def link shArithRegion	shShellVariables
 hi def link shBeginHere	shRedir
-hi def link shCaseBar	shConditional
-hi def link shCaseCommandSub	shCommandSub
-hi def link shCaseDoubleQuote	shDoubleQuote
-hi def link shCaseIn	shConditional
 hi def link shQuote	shOperator
-hi def link shCaseSingleQuote	shSingleQuote
-hi def link shCaseStart	shConditional
 hi def link shCmdSubRegion	shShellVariables
 hi def link shDerefOp	shOperator
 hi def link shDerefPOL	shDerefOp
