@@ -2,7 +2,8 @@
 
 [[ $- != *i* ]] && return
 
-HISTFILESIZE=10000
+HISTSIZE=20000
+HISTFILESIZE=20000
 
 pacman-clean() {
 	sudo pacman -Rnsc $(pacman -Qqdt)
