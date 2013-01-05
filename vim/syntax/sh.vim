@@ -102,8 +102,7 @@ syn case match
 syn cluster shArithParenList	contains=shArithmetic,shCaseEsac,shDeref,shDerefSimple,shEscape,shNumber,shOperator,shPosnParm,shExSingleQuote,shExDoubleQuote,shRedir,shSingleQuote,shDoubleQuote,shStatement,shVariable,shAlias,shTest,shCtrlSeq,shSpecial,shParen
 syn cluster shArithList	contains=@shArithParenList,shParenError
 syn cluster shCaseEsacList	contains=shCaseStart,shCase,shCaseBar,shCaseIn,shComment,shDeref,shDerefSimple,shCaseCommandSub,shCaseExSingleQuote,shCaseSingleQuote,shCaseDoubleQuote,shCtrlSeq,shStringSpecial,shCaseRange
-syn cluster shCaseList	contains=@shCommandSubList,shCaseEsac,shColon,shCommandSub,shComment,shExpr,shHereDoc,shRedir,shSetList,shSource,shStatement,shVariable,shCtrlSeq
-"syn cluster shColonList	contains=@shCaseList
+syn cluster shCaseList	contains=@shCommandSubList,shCaseEsac,shCommandSub,shComment,shExpr,shHereDoc,shRedir,shSetList,shStatement,shVariable,shCtrlSeq
 syn cluster shCommandSubList	contains=shArithmetic,shDeref,shDerefSimple,shEscape,shNumber,shOperator,shPosnParm,shExSingleQuote,shSingleQuote,shExDoubleQuote,shDoubleQuote,shStatement,shVariable,shSubSh,shAlias,shTest,shCtrlSeq,shSpecial,shCmdParenRegion
 syn cluster shCurlyList	contains=shNumber,shComma,shDeref,shDerefSimple,shDerefSpecial
 syn cluster shDblQuoteList	contains=shCommandSub,shDeref,shDerefSimple,shEscape,shPosnParm,shCtrlSeq,shSpecial
@@ -111,7 +110,7 @@ syn cluster shDerefList	contains=shDeref,shDerefSimple,shDerefVar,shDerefSpecial
 syn cluster shDerefVarList	contains=shDerefOp,shDerefVarArray,shDerefOpError
 syn cluster shExprList1	contains=shCharClass,shNumber,shOperator,shExSingleQuote,shExDoubleQuote,shSingleQuote,shDoubleQuote,shExpr,shDblBrace,shDeref,shDerefSimple,shCtrlSeq
 syn cluster shExprList2	contains=@shExprList1,@shCaseList,shTest
-syn cluster shFunctionList	contains=@shCommandSubList,shCaseEsac,shColon,shCommandSub,shComment,shExpr,shHereDoc,shRedir,shSetList,shSource,shStatement,shVariable,shOperator,shCtrlSeq
+syn cluster shFunctionList	contains=@shCommandSubList,shCaseEsac,shCommandSub,shComment,shExpr,shHereDoc,shRedir,shSetList,shStatement,shVariable,shOperator,shCtrlSeq
 if exists("b:is_kornshell") || exists("b:is_bash")
  syn cluster shFunctionList	add=shDblBrace,shDblParen
 endif
@@ -121,7 +120,7 @@ syn cluster shHereListDQ	contains=shBeginHere,@shDblQuoteList,shHerePayload
 syn cluster shIdList	contains=shCommandSub,shWrapLineOperator,shDeref,shDerefSimple,shRedir,shExSingleQuote,shExDoubleQuote,shSingleQuote,shDoubleQuote,shExpr,shCtrlSeq,shStringSpecial
 syn cluster shIfList	contains=@shLoopList,shDblBrace,shDblParen,shFunctionKey,shFunctionOne,shFunctionTwo
 syn cluster shLoopList	contains=@shCaseList,shExpr,shDblBrace,shConditional,shCaseEsac,shTest,shSet
-syn cluster shSubShList	contains=@shCommandSubList,shCaseEsac,shColon,shCommandSub,shComment,shExpr,shRedir,shSetList,shSource,shStatement,shVariable,shCtrlSeq,shOperator
+syn cluster shSubShList	contains=@shCommandSubList,shCaseEsac,shCommandSub,shComment,shExpr,shRedir,shSetList,shStatement,shVariable,shCtrlSeq,shOperator
 syn cluster shTestList	contains=shCharClass,shComment,shCommandSub,shDeref,shDerefSimple,shExDoubleQuote,shDoubleQuote,shExpr,shNumber,shOperator,shExSingleQuote,shSingleQuote,shTest,shCtrlSeq
 " Alias: {{{1
 " =====
@@ -219,12 +218,6 @@ elseif !exists("g:sh_no_error")
  syn region shCommandSub matchgroup=Error start="\$(" end=")" contains=@shCommandSubList
 endif
 syn region shCmdParenRegion matchgroup=shCmdSubRegion start="(" skip='\\\\\|\\.' end=")"	contains=@shCommandSubList
-
-syn match   shSource	"^\.\s"
-syn match   shSource	"\s\.\s"
-"syn region  shColon	start="^\s*:" end="$" end="\s#"me=e-2 contains=@shColonList
-"syn region  shColon	start="^\s*\zs:" end="$" end="\s#"me=e-2
-syn match   shColon	'^\s*\zs:'
 
 " String And Character Constants: {{{1
 "================================
@@ -444,7 +437,6 @@ hi def link shQuote	shOperator
 hi def link shCaseSingleQuote	shSingleQuote
 hi def link shCaseStart	shConditional
 hi def link shCmdSubRegion	shShellVariables
-hi def link shColon	shComment
 hi def link shDerefOp	shOperator
 hi def link shDerefPOL	shDerefOp
 hi def link shDerefPPS	shDerefOp
@@ -472,7 +464,6 @@ hi def link shRange	shOperator
 hi def link shRedir	shOperator
 hi def link shSetListDelim	shOperator
 hi def link shSingleQuote	shString
-hi def link shSource	shOperator
 hi def link shStringSpecial	shSpecial
 hi def link shSubShRegion	shOperator
 hi def link shVariable	shSetList
