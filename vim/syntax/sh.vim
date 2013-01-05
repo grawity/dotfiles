@@ -157,6 +157,7 @@ syn match   shEscape	contained	'\%(\\\\\)*\\.'
 syn region shCommandSub matchgroup=shCmdSubRegion start="\$("  skip='\\\\\|\\.' end=")"  contains=@shCommandSubList
 if exists("b:is_kornshell") || exists("b:is_bash")
  syn region shArithmetic matchgroup=shArithRegion  start="\$((" skip='\\\\\|\\.' end="))" contains=@shArithList
+ syn region shArithmetic matchgroup=shArithRegion  start="(("   skip='\\\\\|\\.' end="))" contains=@shArithList
  syn region shArithmetic matchgroup=shArithRegion  start="\$\[" skip='\\\\\|\\.' end="\]" contains=@shArithList
  syn match  shSkipInitWS contained	"^\s\+"
 endif
@@ -173,8 +174,8 @@ if exists("b:is_bash")
  syn region  shExSingleQuote	matchgroup=shQuote start=+\$'+ skip=+\\\\\|\\.+ end=+'+	contains=shStringSpecial,shSpecial
  syn region  shExDoubleQuote	matchgroup=shQuote start=+\$"+ skip=+\\\\\|\\.\|\\"+ end=+"+	contains=@shDblQuoteList,shStringSpecial,shSpecial
 elseif !exists("g:sh_no_error")
- syn region  shExSingleQuote	matchGroup=Error start=+\$'+ skip=+\\\\\|\\.+ end=+'+	contains=shStringSpecial
- syn region  shExDoubleQuote	matchGroup=Error start=+\$"+ skip=+\\\\\|\\.+ end=+"+	contains=shStringSpecial
+ syn region  shExSingleQuote	matchgroup=Error start=+\$'+ skip=+\\\\\|\\.+ end=+'+	contains=shStringSpecial
+ syn region  shExDoubleQuote	matchgroup=Error start=+\$"+ skip=+\\\\\|\\.+ end=+"+	contains=shStringSpecial
 endif
 syn region  shSingleQuote	matchgroup=shQuote start=+'+ end=+'+		contains=@Spell
 syn region  shDoubleQuote	matchgroup=shQuote start=+\%(\%(\\\\\)*\\\)\@<!"+ skip=+\\"+ end=+"+	contains=@shDblQuoteList,shStringSpecial,@Spell
@@ -316,9 +317,6 @@ if exists("b:is_bash")
  syn region shDerefPPSleft	contained	start='.'	skip=@\%(\\\\\)*\\/@ matchgroup=shDerefOp	end='/' end='\ze}' nextgroup=shDerefPPSright contains=@shCommandSubList
  syn region shDerefPPSright	contained	start='.'	skip=@\%(\\\\\)\+@		end='\ze}'	contains=@shCommandSubList
 endif
-
-" Arithmetic Parenthesized Expressions: {{{1
-syn region shParen matchgroup=shArithRegion start='[^$]\zs(\%(\ze[^(]\|$\)' end=')' contains=@shArithParenList
 
 " Synchronization: {{{1
 " ================
