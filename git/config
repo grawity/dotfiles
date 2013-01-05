@@ -68,6 +68,9 @@
 	useHttpPath = false
 [diff]
 	renames = copies
+[diff "gpg"]
+	textconv = gpg -v
+	xfuncname = "^((pub|uid) .*)"
 [diff "ldif"]
 	xfuncname = "^(dn: .+)$"
 [diff "polkit"]
