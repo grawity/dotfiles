@@ -1,13 +1,13 @@
 " Vim syntax file
-" Language:     BIND zone files (RFC1035)
+" Language:     BIND zone files (RFC 1035)
 " Maintainer:   Julian Mehnle <julian@mehnle.net>
 " URL:          http://www.mehnle.net/source/odds+ends/vim/syntax/
-" Last Change:  Thu 2006-04-20 12:30:45 UTC
+" Last Change:  Thu 2011-07-16 20:42:00 UTC
 " 
 " Based on an earlier version by Вячеслав Горбанев (Slava Gorbanev), with
 " heavy modifications.
 " 
-" $Id: bindzone.vim,v 1.2 2006/04/20 22:06:21 vimboss Exp $
+" $Id: bindzone.vim 12 2011-07-16 21:09:57Z julian $
 
 " For version 5.x: Clear all syntax items
 " For version 6.x: Quit when a syntax file was already loaded
@@ -34,8 +34,8 @@ syn match       zoneOrigin      contained  /[^[:space:]!"#$%&'()*+,\/:;<=>?@[\]\
 syn match       zoneDomain      contained  /[^[:space:]!"#$%&'()*+,\/:;<=>?@[\]\^`{|}~]\+\(\s\|;\|$\)\@=/
 
 syn match       zoneSpecial     contained /^[@*.]\s/
-syn match       zoneTTL         contained /\<\d[0-9MmHhWwDd]*\>/  nextgroup=zoneClass,zoneRRType skipwhite
-syn keyword     zoneClass       contained IN CH CHAOS              nextgroup=zoneRRType,zoneTTL   skipwhite
+syn match       zoneTTL         contained /\s\@<=\d[0-9WwDdHhMmSs]*\(\s\|$\)\@=/ nextgroup=zoneClass,zoneRRType skipwhite
+syn keyword     zoneClass       contained IN CH CHAOS HS nextgroup=zoneRRType,zoneTTL skipwhite
 syn keyword     zoneRRType      contained A AAAA AFSDB CERT CNAME DNAME DNSKEY DS HINFO IPSECKEY KEY KEYDATA LOC MB MG MR MX MINFO NAPTR NS NSEC NSEC3 NSEC3PARAM PTR RP RRSIG SOA SPF SSHFP SRV TLSA TXT WKS nextgroup=zoneRData skipwhite
 syn match       zoneRData       contained /[^;]*/ contains=zoneDomain,zoneIPAddr,zoneIP6Addr,zoneText,zoneNumber,zoneParen,zoneUnknown
 
