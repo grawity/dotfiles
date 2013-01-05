@@ -133,7 +133,7 @@ syn match   shPattern	"\<\S\+\())\)\@="	contained contains=shExSingleQuote,shSin
 " Subshells: {{{1
 " ==========
 syn region shExpr  transparent matchgroup=shExprRegion  start="{" end="}"		contains=@shExprList2 nextgroup=shMoreSpecial
-syn region shSubSh transparent matchgroup=shSubShRegion start="[^(]\zs(" end=")"	contains=@shSubShList nextgroup=shMoreSpecial
+syn region shSubSh transparent matchgroup=shExprRegion  start="\(^\|[^(]\)\zs(" end=")"	contains=@shExprList2 nextgroup=shMoreSpecial
 
 " Character Class In Range: {{{1
 " =========================
@@ -161,7 +161,6 @@ if exists("b:is_kornshell") || exists("b:is_bash")
  syn region shArithmetic matchgroup=shArithRegion  start="\$\[" skip='\\\\\|\\.' end="\]" contains=@shArithList
  syn match  shSkipInitWS contained	"^\s\+"
 endif
-syn region shCmdParenRegion matchgroup=shCmdSubRegion start="(" skip='\\\\\|\\.' end=")"	contains=@shCommandSubList
 
 " String And Character Constants: {{{1
 "================================
@@ -358,7 +357,6 @@ hi def link shRange	shOperator
 hi def link shRedir	shOperator
 hi def link shSingleQuote	shString
 hi def link shStringSpecial	shSpecial
-hi def link shSubShRegion	shOperator
 hi def link shWrapLineOperator	shOperator
 
 if exists("b:is_bash")
