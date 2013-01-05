@@ -97,17 +97,15 @@ syn case match
 " Clusters: contains=@... clusters {{{1
 "==================================
 syn cluster shArithList	contains=shArithmetic,shDeref,shDerefSimple,shEscape,shNumber,shOperator,shPosnParm,shExSingleQuote,shExDoubleQuote,shRedir,shSingleQuote,shDoubleQuote,shStatement,shCtrlSeq,shSpecial,shParen,shParenError
-syn cluster shCommandSubList	contains=shArithmetic,shCommandSub,shDeref,shDerefSimple,shEscape,@shIfList,shNumber,shOperator,shPosnParm,shExSingleQuote,shSingleQuote,shExDoubleQuote,shDoubleQuote,shStatement,shSubSh,shCtrlSeq,shSpecial,shCmdParenRegion
+syn cluster shCommandSubList	contains=shArithmetic,shDeref,shDerefSimple,shEscape,@shIfList,shNumber,shOperator,shPosnParm,shExSingleQuote,shSingleQuote,shExDoubleQuote,shDoubleQuote,shStatement,shSubSh,shCtrlSeq,shSpecial,shCmdParenRegion
 syn cluster shDblQuoteList	contains=shCommandSub,shDeref,shDerefSimple,shEscape,shPosnParm,shCtrlSeq,shSpecial
 syn cluster shDerefList	contains=shDeref,shDerefSimple,shDerefVar,shDerefSpecial,shDerefWordError,shDerefPPS
 syn cluster shDerefVarList	contains=shDerefOp,shDerefVarArray,shDerefOpError
-syn cluster shExprList2	contains=@shExprList1,@shCaseList,@shIfList
+syn cluster shExprList	contains=@shCommandSubList,@shIfList,shCharClass,shCommandSub,shComment,shCtrlSeq,shDeref,shDerefSimple,shDoubleQuote,shExDoubleQuote,shExSingleQuote,shExpr,shExpr,shHereDoc,shNumber,shOperator,shRedir,shSingleQuote,shStatement
 syn cluster shFunctionList	contains=@shCommandSubList,shCommandSub,shComment,shExpr,shHereDoc,shRedir,shStatement,shOperator,shCtrlSeq
 syn cluster shIfList	contains=shConditional,shExpr,shFunctionKey,shFunctionOne,shFunctionTwo
+syn cluster shNestedSubList	contains=@shCommandSubList,shCommandSub
 
-" almost-orphaned
-syn cluster shCaseList	contains=@shCommandSubList,shCommandSub,shComment,shExpr,shHereDoc,shRedir,shStatement,shCtrlSeq
-syn cluster shExprList1	contains=shCharClass,shNumber,shOperator,shExSingleQuote,shExDoubleQuote,shSingleQuote,shDoubleQuote,shExpr,shDeref,shDerefSimple,shCtrlSeq
 
 " File Redirection Highlighted As Operators: {{{1
 "===========================================
@@ -125,8 +123,8 @@ syn match   shPattern	"\<\S\+\())\)\@="	contained contains=shExSingleQuote,shSin
 
 " Subshells: {{{1
 " ==========
-syn region shExpr  transparent matchgroup=shExprRegion  start="{" end="}"		contains=@shExprList2 nextgroup=shMoreSpecial
-syn region shSubSh transparent matchgroup=shExprRegion  start="\(^\|[^(]\)\zs(" end=")"	contains=@shExprList2 nextgroup=shMoreSpecial
+syn region shExpr  transparent matchgroup=shExprRegion  start="{" end="}"		contains=@shExprList nextgroup=shMoreSpecial
+syn region shSubSh transparent matchgroup=shExprRegion  start="\(^\|[^(]\)\zs(" end=")"	contains=@shExprList nextgroup=shMoreSpecial
 
 " Character Class In Range: {{{1
 " =========================
@@ -147,7 +145,7 @@ syn region  shCommandSub   start="`" skip="\\\\\|\\." end="`"	contains=@shComman
 syn match   shEscape	contained	'\%(\\\\\)*\\.'
 
 " $() and $(()): {{{1
-syn region shCommandSub matchgroup=shCmdSubRegion start="\$("  skip='\\\\\|\\.' end=")"  contains=@shCommandSubList
+syn region shCommandSub matchgroup=shCmdSubRegion start="\$("  skip='\\\\\|\\.' end=")"  contains=@shNestedSubList
 if exists("b:is_kornshell") || exists("b:is_bash")
  syn region shArithmetic matchgroup=shArithRegion  start="\$((" skip='\\\\\|\\.' end="))" contains=@shArithList
  syn region shArithmetic matchgroup=shArithRegion  start="(("   skip='\\\\\|\\.' end="))" contains=@shArithList
