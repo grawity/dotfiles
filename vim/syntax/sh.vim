@@ -387,14 +387,11 @@ hi def link shDerefSpecial	shDeref
 hi def link shDerefString	shDoubleQuote
 hi def link shDerefVar	shDeref
 hi def link shDoubleQuote	shString
-hi def link shEmbeddedEcho	shString
 hi def link shEscape	shCommandSub
 hi def link shExDoubleQuote	shDoubleQuote
 hi def link shExSingleQuote	shSingleQuote
 hi def link shFunction	Function
 hi def link shHereDoc	shString
-hi def link shHerePayload	shHereDoc
-hi def link shLoop	shStatement
 hi def link shMoreSpecial	shSpecial
 hi def link shPattern	shString
 hi def link shParen	shArithmetic
@@ -419,7 +416,6 @@ if exists("b:is_kornshell")
 endif
 
 if !exists("g:sh_no_error")
- hi def link shCondError		Error
  hi def link shDerefError		Error
  hi def link shDerefOpError		Error
  hi def link shDerefWordError		Error
