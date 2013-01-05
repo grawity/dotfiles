@@ -118,10 +118,9 @@ syn match      shRedir	"\d<<-\="
 
 " Operators: {{{1
 " ==========
-syn match   shOperator	"<<\|>>"		contained
-syn match   shOperator	"[!&;|]"		contained
-syn match   shOperator	"\[[[^:]\|\]]"		contained
-syn match   shOperator	"!\=="		skipwhite nextgroup=shPattern
+syn match   shOperator	"[!&;|]"
+syn match   shOperator	"\[[[^:]\|\]]"
+syn match   shOperator	"[+!]\=="
 syn match   shPattern	"\<\S\+\())\)\@="	contained contains=shExSingleQuote,shSingleQuote,shExDoubleQuote,shDoubleQuote,shDeref
 
 " Subshells: {{{1
