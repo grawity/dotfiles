@@ -96,10 +96,10 @@ syn case match
 
 " Clusters: contains=@... clusters {{{1
 "==================================
-syn cluster shArithParenList	contains=shArithmetic,shDeref,shDerefSimple,shEscape,shNumber,shOperator,shPosnParm,shExSingleQuote,shExDoubleQuote,shRedir,shSingleQuote,shDoubleQuote,shStatement,shAlias,shCtrlSeq,shSpecial,shParen
+syn cluster shArithParenList	contains=shArithmetic,shDeref,shDerefSimple,shEscape,shNumber,shOperator,shPosnParm,shExSingleQuote,shExDoubleQuote,shRedir,shSingleQuote,shDoubleQuote,shStatement,shCtrlSeq,shSpecial,shParen
 syn cluster shArithList	contains=@shArithParenList,shParenError
 syn cluster shCaseList	contains=@shCommandSubList,shCommandSub,shComment,shExpr,shHereDoc,shRedir,shStatement,shCtrlSeq
-syn cluster shCommandSubList	contains=shArithmetic,shDeref,shDerefSimple,shEscape,shNumber,shOperator,shPosnParm,shExSingleQuote,shSingleQuote,shExDoubleQuote,shDoubleQuote,shStatement,shSubSh,shAlias,shCtrlSeq,shSpecial,shCmdParenRegion
+syn cluster shCommandSubList	contains=shArithmetic,shDeref,shDerefSimple,shEscape,shNumber,shOperator,shPosnParm,shExSingleQuote,shSingleQuote,shExDoubleQuote,shDoubleQuote,shStatement,shSubSh,shCtrlSeq,shSpecial,shCmdParenRegion
 syn cluster shCurlyList	contains=shNumber,shComma,shDeref,shDerefSimple,shDerefSpecial
 syn cluster shDblQuoteList	contains=shCommandSub,shDeref,shDerefSimple,shEscape,shPosnParm,shCtrlSeq,shSpecial
 syn cluster shDerefList	contains=shDeref,shDerefSimple,shDerefVar,shDerefSpecial,shDerefWordError,shDerefPPS
@@ -114,13 +114,6 @@ syn cluster shIfList	contains=@shLoopList,shFunctionKey,shFunctionOne,shFunction
 syn cluster shLoopList	contains=@shCaseList,shExpr,shConditional
 syn cluster shSubShList	contains=@shCommandSubList,shCommandSub,shComment,shExpr,shRedir,shStatement,shCtrlSeq,shOperator
 syn cluster shTestList	contains=shCharClass,shComment,shCommandSub,shDeref,shDerefSimple,shExDoubleQuote,shDoubleQuote,shExpr,shNumber,shOperator,shExSingleQuote,shSingleQuote,shCtrlSeq
-" Alias: {{{1
-" =====
-if exists("b:is_kornshell") || exists("b:is_bash")
- syn match shStatement "\<alias\>"
- syn region shAlias matchgroup=shStatement start="\<alias\>\s\+\(\h[-._[:alnum:]]\+\)\@="  skip="\\$" end="\>\|`"
- syn region shAlias matchgroup=shStatement start="\<alias\>\s\+\(\h[-._[:alnum:]]\+=\)\@=" skip="\\$" end="="
-endif
 
 " File Redirection Highlighted As Operators: {{{1
 "===========================================
@@ -402,7 +395,6 @@ hi def link shSpecial		Special
 hi def link shStatement		Statement
 hi def link shString		String
 hi def link shTodo		Todo
-hi def link shAlias		Identifier
 
 " Set Current Syntax: {{{1
 " ===================
