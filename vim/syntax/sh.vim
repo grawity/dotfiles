@@ -99,13 +99,9 @@ syn case match
 
 " Clusters: contains=@... clusters {{{1
 "==================================
-syn cluster shErrorList	contains=shDoError,shIfError,shInError,shCaseError,shEsacError,shCurlyError,shParenError,shTestError,shOK
-if exists("b:is_kornshell")
- syn cluster ErrorList add=shDTestError
-endif
 syn cluster shArithParenList	contains=shArithmetic,shCaseEsac,shDeref,shDerefSimple,shEscape,shNumber,shOperator,shPosnParm,shExSingleQuote,shExDoubleQuote,shRedir,shSingleQuote,shDoubleQuote,shStatement,shVariable,shAlias,shTest,shCtrlSeq,shSpecial,shParen
 syn cluster shArithList	contains=@shArithParenList,shParenError
-syn cluster shCaseEsacList	contains=shCaseStart,shCase,shCaseBar,shCaseIn,shComment,shDeref,shDerefSimple,shCaseCommandSub,shCaseExSingleQuote,shCaseSingleQuote,shCaseDoubleQuote,shCtrlSeq,@shErrorList,shStringSpecial,shCaseRange
+syn cluster shCaseEsacList	contains=shCaseStart,shCase,shCaseBar,shCaseIn,shComment,shDeref,shDerefSimple,shCaseCommandSub,shCaseExSingleQuote,shCaseSingleQuote,shCaseDoubleQuote,shCtrlSeq,shStringSpecial,shCaseRange
 syn cluster shCaseList	contains=@shCommandSubList,shCaseEsac,shColon,shCommandSub,shComment,shExpr,shHereDoc,shRedir,shSetList,shSource,shStatement,shVariable,shCtrlSeq
 "syn cluster shColonList	contains=@shCaseList
 syn cluster shCommandSubList	contains=shArithmetic,shDeref,shDerefSimple,shEscape,shNumber,shOperator,shPosnParm,shExSingleQuote,shSingleQuote,shExDoubleQuote,shDoubleQuote,shStatement,shVariable,shSubSh,shAlias,shTest,shCtrlSeq,shSpecial,shCmdParenRegion
@@ -124,7 +120,7 @@ syn cluster shHereList	contains=shBeginHere,shHerePayload
 syn cluster shHereListDQ	contains=shBeginHere,@shDblQuoteList,shHerePayload
 syn cluster shIdList	contains=shCommandSub,shWrapLineOperator,shDeref,shDerefSimple,shRedir,shExSingleQuote,shExDoubleQuote,shSingleQuote,shDoubleQuote,shExpr,shCtrlSeq,shStringSpecial
 syn cluster shIfList	contains=@shLoopList,shDblBrace,shDblParen,shFunctionKey,shFunctionOne,shFunctionTwo
-syn cluster shLoopList	contains=@shCaseList,shExpr,shDblBrace,shConditional,shCaseEsac,shTest,@shErrorList,shSet
+syn cluster shLoopList	contains=@shCaseList,shExpr,shDblBrace,shConditional,shCaseEsac,shTest,shSet
 syn cluster shSubShList	contains=@shCommandSubList,shCaseEsac,shColon,shCommandSub,shComment,shExpr,shRedir,shSetList,shSource,shStatement,shVariable,shCtrlSeq,shOperator
 syn cluster shTestList	contains=shCharClass,shComment,shCommandSub,shDeref,shDerefSimple,shExDoubleQuote,shDoubleQuote,shExpr,shNumber,shOperator,shExSingleQuote,shSingleQuote,shTest,shCtrlSeq
 " Alias: {{{1
@@ -133,23 +129,6 @@ if exists("b:is_kornshell") || exists("b:is_bash")
  syn match shStatement "\<alias\>"
  syn region shAlias matchgroup=shStatement start="\<alias\>\s\+\(\h[-._[:alnum:]]\+\)\@="  skip="\\$" end="\>\|`"
  syn region shAlias matchgroup=shStatement start="\<alias\>\s\+\(\h[-._[:alnum:]]\+=\)\@=" skip="\\$" end="="
-endif
-
-" Error Codes: {{{1
-" ============
-if !exists("g:sh_no_error")
- syn match   shDoError "\<done\>"
- syn match   shIfError "\<fi\>"
- syn match   shInError "\<in\>"
- syn match   shCaseError ";;"
- syn match   shEsacError "\<esac\>"
- syn match   shCurlyError "}"
- syn match   shParenError ")"
- syn match   shOK	'\.\(done\|fi\|in\|esac\)'
- if exists("b:is_kornshell")
-  syn match     shDTestError "]]"
- endif
- syn match     shTestError "]"
 endif
 
 " File Redirection Highlighted As Operators: {{{1
@@ -509,21 +488,10 @@ if exists("b:is_kornshell")
 endif
 
 if !exists("g:sh_no_error")
- hi def link shCaseError		Error
  hi def link shCondError		Error
- hi def link shCurlyError		Error
  hi def link shDerefError		Error
  hi def link shDerefOpError		Error
  hi def link shDerefWordError		Error
- hi def link shDoError		Error
- hi def link shEsacError		Error
- hi def link shIfError		Error
- hi def link shInError		Error
- hi def link shParenError		Error
- hi def link shTestError		Error
- if exists("b:is_kornshell")
-   hi def link shDTestError		Error
- endif
 endif
 
 hi def link shArithmetic		Special
