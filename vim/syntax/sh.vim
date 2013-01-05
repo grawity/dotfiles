@@ -147,11 +147,6 @@ syn region shSubSh transparent matchgroup=shSubShRegion start="[^(]\zs(" end=")"
 " =========================
 syn match   shCharClass	contained	"\[:\(backspace\|escape\|return\|xdigit\|alnum\|alpha\|blank\|cntrl\|digit\|graph\|lower\|print\|punct\|space\|upper\|tab\):\]"
 
-" Loops: do, if, while, until {{{1
-" ======
-syn region shCurlyIn   contained	matchgroup=Delimiter start="{" end="}" contains=@shCurlyList
-syn match  shComma     contained	","
-
 " Case: case...esac {{{1
 " ====
 if exists("b:is_bash")
