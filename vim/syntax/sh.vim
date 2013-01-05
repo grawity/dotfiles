@@ -226,10 +226,10 @@ endif
 " Functions: {{{1
 if s:sh_fold_functions
  syn region shFunctionOne fold	matchgroup=shFunction start="^\s*\h[^[:space:];]+*\s*()\_s*{"	end="}"	contains=@shFunctionList			skipwhite skipnl nextgroup=shFunctionStart,shQuickComment
- syn region shFunctionTwo fold	matchgroup=shFunction start="\h[^[:space:];]*\s*\%(()\)\=\_s*{"	end="}"	contains=shFunctionKey,@shFunctionList contained	skipwhite skipnl nextgroup=shFunctionStart,shQuickComment
+ syn region shFunctionTwo fold	matchgroup=shFunction start="\h[^[:space:];]*\s*\%(()\)\_s*{"	end="}"	contains=shFunctionKey,@shFunctionList contained	skipwhite skipnl nextgroup=shFunctionStart,shQuickComment
 else
  syn region shFunctionOne	matchgroup=shFunction start="^\s*\h[^[:space:];]*\s*()\_s*{"	end="}"	contains=@shFunctionList
- syn region shFunctionTwo	matchgroup=shFunction start="\h*[^[:space:];]\s*\%(()\)\=\_s*{"	end="}"	contains=shFunctionKey,@shFunctionList contained
+ syn region shFunctionTwo	matchgroup=shFunction start="\h*[^[:space:];]\s*\%(()\)\_s*{"	end="}"	contains=shFunctionKey,@shFunctionList contained
 endif
 
 " Parameter Dereferencing: {{{1
