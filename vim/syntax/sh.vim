@@ -8,11 +8,8 @@
 " For options and settings, please use:      :help ft-sh-syntax
 " This file includes many ideas from ?ric Brunet (eric.brunet@ens.fr)
 
-" For version 5.x: Clear all syntax items {{{1
-" For version 6.x: Quit when a syntax file was already loaded
-if version < 600
-  syntax clear
-elseif exists("b:current_syntax")
+" For version 6.x: Quit when a syntax file was already loaded {{{1
+if exists("b:current_syntax")
   finish
 endif
 
@@ -212,15 +209,7 @@ syn match	shQuickComment	contained	"#.*$"
 
 " Here Documents: {{{1
 " =========================================
-if version < 600
- syn region shHereDoc matchgroup=shRedir start="<<\s*\**END[a-zA-Z_0-9]*\**"  matchgroup=shRedir end="^END[a-zA-Z_0-9]*$" contains=@shDblQuoteList
- syn region shHereDoc matchgroup=shRedir start="<<-\s*\**END[a-zA-Z_0-9]*\**" matchgroup=shRedir end="^\s*END[a-zA-Z_0-9]*$" contains=@shDblQuoteList
- syn region shHereDoc matchgroup=shRedir start="<<\s*\**EOF\**"	matchgroup=shRedir	end="^EOF$"	contains=@shDblQuoteList
- syn region shHereDoc matchgroup=shRedir start="<<-\s*\**EOF\**" matchgroup=shRedir	end="^\s*EOF$"	contains=@shDblQuoteList
- syn region shHereDoc matchgroup=shRedir start="<<\s*\**\.\**"	matchgroup=shRedir	end="^\.$"	contains=@shDblQuoteList
- syn region shHereDoc matchgroup=shRedir start="<<-\s*\**\.\**"	matchgroup=shRedir	end="^\s*\.$"	contains=@shDblQuoteList
-
-elseif s:sh_fold_heredoc
+if s:sh_fold_heredoc
  syn region shHereDoc matchgroup=shRedir fold start="<<\s*\z([^ \t|]*\)"		matchgroup=shRedir end="^\z1\s*$"	contains=@shDblQuoteList
  syn region shHereDoc matchgroup=shRedir fold start="<<\s*\"\z([^ \t|]*\)\""		matchgroup=shRedir end="^\z1\s*$"
  syn region shHereDoc matchgroup=shRedir fold start="<<\s*'\z([^ \t|]*\)'"		matchgroup=shRedir end="^\z1\s*$"
