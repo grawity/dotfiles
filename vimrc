@@ -143,7 +143,7 @@ endif
 " list buffers
 nnoremap <Leader>l :ls<CR>:b<Space>
 " rename word under cursor
-nnoremap <Leader>rw :s/\<<C-r><C-w>\>/
+nnoremap <Leader>rw :%s/\<<C-r><C-w>\>/
 " sort CSS properties
 nnoremap <Leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 " display Tagbar
