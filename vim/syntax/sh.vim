@@ -99,28 +99,25 @@ syn case match
 
 " Clusters: contains=@... clusters {{{1
 "==================================
-syn cluster shArithParenList	contains=shArithmetic,shDeref,shDerefSimple,shEscape,shNumber,shOperator,shPosnParm,shExSingleQuote,shExDoubleQuote,shRedir,shSingleQuote,shDoubleQuote,shStatement,shVariable,shAlias,shTest,shCtrlSeq,shSpecial,shParen
+syn cluster shArithParenList	contains=shArithmetic,shDeref,shDerefSimple,shEscape,shNumber,shOperator,shPosnParm,shExSingleQuote,shExDoubleQuote,shRedir,shSingleQuote,shDoubleQuote,shStatement,shVariable,shAlias,shCtrlSeq,shSpecial,shParen
 syn cluster shArithList	contains=@shArithParenList,shParenError
 syn cluster shCaseList	contains=@shCommandSubList,shCommandSub,shComment,shExpr,shHereDoc,shRedir,shSetList,shStatement,shVariable,shCtrlSeq
-syn cluster shCommandSubList	contains=shArithmetic,shDeref,shDerefSimple,shEscape,shNumber,shOperator,shPosnParm,shExSingleQuote,shSingleQuote,shExDoubleQuote,shDoubleQuote,shStatement,shVariable,shSubSh,shAlias,shTest,shCtrlSeq,shSpecial,shCmdParenRegion
+syn cluster shCommandSubList	contains=shArithmetic,shDeref,shDerefSimple,shEscape,shNumber,shOperator,shPosnParm,shExSingleQuote,shSingleQuote,shExDoubleQuote,shDoubleQuote,shStatement,shVariable,shSubSh,shAlias,shCtrlSeq,shSpecial,shCmdParenRegion
 syn cluster shCurlyList	contains=shNumber,shComma,shDeref,shDerefSimple,shDerefSpecial
 syn cluster shDblQuoteList	contains=shCommandSub,shDeref,shDerefSimple,shEscape,shPosnParm,shCtrlSeq,shSpecial
 syn cluster shDerefList	contains=shDeref,shDerefSimple,shDerefVar,shDerefSpecial,shDerefWordError,shDerefPPS
 syn cluster shDerefVarList	contains=shDerefOp,shDerefVarArray,shDerefOpError
-syn cluster shExprList1	contains=shCharClass,shNumber,shOperator,shExSingleQuote,shExDoubleQuote,shSingleQuote,shDoubleQuote,shExpr,shDblBrace,shDeref,shDerefSimple,shCtrlSeq
-syn cluster shExprList2	contains=@shExprList1,@shCaseList,shTest
+syn cluster shExprList1	contains=shCharClass,shNumber,shOperator,shExSingleQuote,shExDoubleQuote,shSingleQuote,shDoubleQuote,shExpr,shDeref,shDerefSimple,shCtrlSeq
+syn cluster shExprList2	contains=@shExprList1,@shCaseList
 syn cluster shFunctionList	contains=@shCommandSubList,shCommandSub,shComment,shExpr,shHereDoc,shRedir,shSetList,shStatement,shVariable,shOperator,shCtrlSeq
-if exists("b:is_kornshell") || exists("b:is_bash")
- syn cluster shFunctionList	add=shDblBrace,shDblParen
-endif
 syn cluster shHereBeginList	contains=@shCommandSubList
 syn cluster shHereList	contains=shBeginHere,shHerePayload
 syn cluster shHereListDQ	contains=shBeginHere,@shDblQuoteList,shHerePayload
 syn cluster shIdList	contains=shCommandSub,shWrapLineOperator,shDeref,shDerefSimple,shRedir,shExSingleQuote,shExDoubleQuote,shSingleQuote,shDoubleQuote,shExpr,shCtrlSeq,shStringSpecial
-syn cluster shIfList	contains=@shLoopList,shDblBrace,shDblParen,shFunctionKey,shFunctionOne,shFunctionTwo
-syn cluster shLoopList	contains=@shCaseList,shExpr,shDblBrace,shConditional,shTest,shSet
+syn cluster shIfList	contains=@shLoopList,shFunctionKey,shFunctionOne,shFunctionTwo
+syn cluster shLoopList	contains=@shCaseList,shExpr,shConditional,shSet
 syn cluster shSubShList	contains=@shCommandSubList,shCommandSub,shComment,shExpr,shRedir,shSetList,shStatement,shVariable,shCtrlSeq,shOperator
-syn cluster shTestList	contains=shCharClass,shComment,shCommandSub,shDeref,shDerefSimple,shExDoubleQuote,shDoubleQuote,shExpr,shNumber,shOperator,shExSingleQuote,shSingleQuote,shTest,shCtrlSeq
+syn cluster shTestList	contains=shCharClass,shComment,shCommandSub,shDeref,shDerefSimple,shExDoubleQuote,shDoubleQuote,shExpr,shNumber,shOperator,shExSingleQuote,shSingleQuote,shCtrlSeq
 " Alias: {{{1
 " =====
 if exists("b:is_kornshell") || exists("b:is_bash")
@@ -148,15 +145,6 @@ syn match   shPattern	"\<\S\+\())\)\@="	contained contains=shExSingleQuote,shSin
 " ==========
 syn region shExpr  transparent matchgroup=shExprRegion  start="{" end="}"		contains=@shExprList2 nextgroup=shMoreSpecial
 syn region shSubSh transparent matchgroup=shSubShRegion start="[^(]\zs(" end=")"	contains=@shSubShList nextgroup=shMoreSpecial
-
-" Tests: {{{1
-"=======
-syn region shExpr	matchgroup=shRange start="\[" skip=+\\\\\|\\$\|\[+ end="\]" contains=@shTestList,shSpecial
-syn region shTest	transparent matchgroup=shStatement start="\<test\s" skip=+\\\\\|\\$+ matchgroup=NONE end="[;&|]"me=e-1 end="$" contains=@shExprList1
-if exists("b:is_kornshell") || exists("b:is_bash")
- syn region  shDblBrace matchgroup=Delimiter start="\[\[" skip=+\\\\\|\\$+ end="\]\]"	contains=@shTestList
- syn region  shDblParen matchgroup=Delimiter start="((" skip=+\\\\\|\\$+ end="))"	contains=@shTestList
-endif
 
 " Character Class In Range: {{{1
 " =========================
