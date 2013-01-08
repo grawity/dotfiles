@@ -25,7 +25,13 @@ count() { sort "$@" | uniq -c | sort -n -r | pager; }
 alias cindex='env TMPDIR=/var/tmp cindex'
 alias csearch='csearch -n'
 alias cur='cur '
-dist/head() { (cd ~/lib/dotfiles && git tip "$@"); }
+dist/head() {
+	echo -e "\e[1m== ~/code\e[m"
+	(cd ~/code && git tip)
+	echo
+	echo -e "\e[1m== ~/lib/dotfiles\e[m"
+	(cd ~/lib/dotfiles && git tip)
+}
 dist/pull() { ~/code/dist/pull "$@"; }
 alias dnstracer='dnstracer -s .'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }

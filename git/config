@@ -44,7 +44,7 @@
 	stat = diff --stat
 	statg = diff --cached --stat
 	tg = log --oneline --decorate --graph
-	tip = log -1 --decorate=short --abbrev-commit --date=relative
+	tip = !git --no-pager log -1 --decorate=short --abbrev-commit --date=relative
 	undo = reset --soft HEAD^
 	unexport = !rm -v $(git rev-parse --git-dir)/git-daemon-export-ok
 	re = rebase
