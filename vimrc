@@ -26,6 +26,7 @@ endif
 "et g:lucius_style="light"
 let g:lucius_style="dark"
 "et g:molokai_original=1
+let g:Powerline_symbols = 'fancy'
 let g:zenburn_high_Contrast=1
 let g:zenburn_old_Visual=1
 
