@@ -93,9 +93,6 @@ have msmtp && {
 have mutt &&
 	link mail/muttrc ~/.muttrc
 
-have screen &&
-	link screenrc
-
 have ssh && {
 	ssh/generate
 	link ssh/known_hosts
