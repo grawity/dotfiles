@@ -51,6 +51,10 @@ Host snow snow.home snow.local
 	User Mantas
 	#ForwardAgent yes
 
+Host tide
+	Hostname tide.nullroute.eu.org
+	ForwardAgent yes
+
 Host virgule
 	Hostname virgule.cluenet.org
 	ForwardAgent yes
