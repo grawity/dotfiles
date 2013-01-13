@@ -234,7 +234,7 @@ endif
 
 " Parameter Dereferencing: {{{1
 " ========================
-syn match  shDerefSimple	"\$\%(\k\+\|\d\)"
+syn match  shDerefSimple	"\$\%(\w\+\|\d\)"
 syn region shDeref	matchgroup=PreProc start="\${" end="}"	contains=@shDerefList,shDerefVarArray
 if !exists("g:sh_no_error")
  syn match  shDerefWordError	"[^}$[]"	contained
