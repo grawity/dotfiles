@@ -28,6 +28,7 @@ include "%L"
 
 <Multi_key> <8> <8>			: "∞" # infinity
 <Multi_key> <equal> <equal>		: "–" # ndash
+<Multi_key> <l> <d> <a>			: "—————" # 3x mdash
 <Multi_key> <equal> <asciitilde>	: "≈" # almost equal
 <Multi_key> <asciitilde> <asciitilde>	: "≈"
 <Multi_key> <zcaron> <zcaron>		: "–" # ndash
