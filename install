@@ -2,7 +2,7 @@
 
 log() { if [ -t 0 ]; then echo "$*"; fi; }
 
-have() { command -v "$1" >/dev/null; }
+have() { command -v "$1" >/dev/null 2>&1; }
 
 link() {
 	local target=$dir/${1%/} link=${2:-$HOME/.$1}
