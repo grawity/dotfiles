@@ -105,8 +105,14 @@ _awesome_prompt() {
 
 	## Center: working directory
 
-	local wd=${PWD/#$HOME/\~} wdhead= wdtail=
+	local wd= wdhead= wdtail=
 	local -i collapsed=0
+
+	if [[ $fullpwd == 'y' ]]; then
+		wd=$PWD
+	else
+		wd=${PWD/#$HOME/\~}
+	fi
 
 	if [[ $wd == '~' ]]; then
 		wdhead='' wdtail=$wd
