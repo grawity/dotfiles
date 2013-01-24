@@ -1,0 +1,12 @@
+#!bash
+
+PS1=${PS1/'\\h'/'[OFB]'}
+#color_name="38;5;112"
+#color_name=$'m\e[38;5;112'
+color_name="1"
+fullpwd=y
+color_pwd="38;5;112"
+color_cwd="22"
+#color_vcs="38;5;172"
+color_vcs="38;5;202"
+prompt='$'
