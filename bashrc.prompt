@@ -207,22 +207,6 @@ fi
 
 export -n PS1 PS2; export PS4
 
-# Update tmux window name before command
-
-_pre_update_title() {
-	local cmd=${BASH_COMMAND}
-	case ${cmd%% *} in
-		_*)	;;
-		sudo)	cmd=${BASH_COMMAND#sudo }
-			;&
-		*)	cmd=${cmd%% *}
-			setwname "<$cmd>"
-	esac
-	return 0
-}
-
-trap "_pre_update_title" DEBUG
-
 # Show status, update window title after command
 
 _show_status() {
