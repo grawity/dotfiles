@@ -77,7 +77,7 @@ _awesome_prompt() {
 			fi
 		fi
 
-		br+=${re:+"|$re"}
+		br=${br}${re:+"|$re"}
 	fi
 	
 	if [[ ! $br && -f PKGBUILD ]]; then
