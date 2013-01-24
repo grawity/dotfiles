@@ -217,12 +217,12 @@ _show_status() {
 
 _update_title() {
 	if [[ ! $title ]]; then
-		local title=
+		local title= t_user= t_display=
 		[[ $USER != 'grawity' ]] &&
-			title+="$USER@"
-		title+="$HOSTNAME ${PWD/#$HOME/~}"
+			t_user="$USER@"
 		[[ $DISPLAY && ( $SSH_TTY || $DISPLAY != ':'* ) ]] &&
-			title+=" ($DISPLAY)"
+			t_display=" ($DISPLAY)"
+		title="${t_user}${HOSTNAME} ${PWD/#$HOME/~}${t_display}"
 	fi
 	settitle "$title"
 	if [[ ! $wname ]]; then
