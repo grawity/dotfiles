@@ -5,6 +5,10 @@
 HISTSIZE=20000
 HISTFILESIZE=20000
 
+. /usr/share/bash-completion/bash_completion
+
+have() { command -v "$@" &>/dev/null; }
+
 pacman-clean() {
 	sudo pacman -Rnsc $(pacman -Qqdt)
 }
@@ -54,6 +58,26 @@ rpw() {
 
 sm() { synclient -m 100; }
 
-. /usr/share/bash-completion/bash_completion
-
-have() { command -v "$@" &>/dev/null; }
+youtube-dl() {
+	local cmd=()
+	mountpoint -q /sys/fs/cgroup/systemd &&
+	cmd+=(
+		systemd-inhibit
+		--who "youtube-dl"
+		--what "sleep"
+		--why "Downloading a video"
+	)
+	cmd+=(
+		gnome-inhibit -A
+		--who "youtube-dl"
+		--what "suspend"
+		--why "Downloading a video"
+	)
+	cmd+=(
+		youtube-dl
+		--console-title
+		--continue
+		"$@"
+	)
+	"${cmd[@]}"
+}
