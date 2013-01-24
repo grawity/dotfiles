@@ -248,6 +248,9 @@ _update_title() {
 		wname="{bash:$wname}"
 	fi
 	setwname "$wname"
+	if [[ $DISPLAY && $COLORTERM == gnome-terminal ]]; then
+		printf '\e]7;file://%s%s\a' "$HOSTNAME" "$(urlencode -r -p "$PWD")"
+	fi
 }
 
 PROMPT_COMMAND="_show_status; _update_title"
