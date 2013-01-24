@@ -121,12 +121,12 @@ fi
 
 ## OS-dependent aliases
 
-LS_OPTIONS="-F -h"
+lsopt="-F -h"
 case $OSTYPE in
 	linux-gnu|cygwin)
-		LS_OPTIONS+=" --group-directories-first"
+		lsopt="$lsopt --group-directories-first"
 		if (( havecolor )); then
-			LS_OPTIONS+=" -v --color=auto"
+			lsopt="$lsopt -v --color=auto"
 			eval $(dircolors ~/lib/dotfiles/dircolors)
 		fi
 		alias df='df -Th'
@@ -134,7 +134,7 @@ case $OSTYPE in
 		alias w='PROCPS_USERLEN=16 w -s -h'
 		;;
 	freebsd*)
-		LS_OPTIONS+=" -G"
+		lsopt+=" -G"
 		alias df='df -h'
 		alias w='w -h'
 		;;
@@ -146,8 +146,8 @@ case $OSTYPE in
 		alias df='df -h'
 		;;
 esac
-alias ls="ls $LS_OPTIONS"
-unset LS_OPTIONS
+alias ls="ls $lsopt"
+unset lsopt
 
 ## misc functions
 
