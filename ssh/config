@@ -90,6 +90,9 @@ Host bazaar.launchpad.net
 	IdentityFile ~/.ssh/id_global
 	IdentitiesOnly yes
 
+Host ofb.net
+	ForwardAgent yes
+
 # global options
 
 Host *
