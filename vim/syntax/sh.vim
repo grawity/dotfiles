@@ -69,26 +69,24 @@ if !exists("b:is_kornshell") && !exists("b:is_bash")
 endif
 
 " set up default g:sh_fold_enabled {{{1
-if !exists("g:sh_fold_enabled")
- let g:sh_fold_enabled= 0
-elseif g:sh_fold_enabled != 0 && !has("folding")
- let g:sh_fold_enabled= 0
- echomsg "Ignoring g:sh_fold_enabled=".g:sh_fold_enabled."; need to re-compile vim for +fold support"
+if !has("folding")
+ let g:sh_fold_functions=0
+ let g:sh_fold_heredoc=0
+else
+ if !exists("g:sh_fold_functions")
+  let g:sh_fold_functions=0
+ endif
+ if !exists("g_sh_fold_heredoc")
+  let g:sh_fold_heredoc=0
+ endif
 endif
-if !exists("s:sh_fold_functions")
- let s:sh_fold_functions= and(g:sh_fold_enabled,1)
-endif
-if !exists("s:sh_fold_heredoc")
- let s:sh_fold_heredoc  = and(g:sh_fold_enabled,2)
-endif
-if !exists("s:sh_fold_ifdofor")
- let s:sh_fold_ifdofor  = and(g:sh_fold_enabled,4)
-endif
-if g:sh_fold_enabled && &fdm == "manual"
- " Given that	the	user provided g:sh_fold_enabled
- " 	AND	g:sh_fold_enabled is manual (usual default)
- " 	implies	a desire for syntax-based folding
- setl fdm=syntax
+if g:sh_fold_functions || g:sh_fold_heredoc
+ if &fdm == "manual"
+  " Given that	the	user provided g:sh_fold_enabled
+  " 	AND	g:sh_fold_enabled is manual (usual default)
+  " 	implies	a desire for syntax-based folding
+  setl fdm=syntax
+ endif
 endif
 
 " sh syntax is case sensitive {{{1
@@ -185,7 +183,7 @@ syn match	shQuickComment	contained	"#.*$"
 
 " Here Documents: {{{1
 " =========================================
-if s:sh_fold_heredoc
+if g:sh_fold_heredoc
  syn region shHereDoc matchgroup=shRedir fold start="<<\s*\z([^ \t|]*\)"		matchgroup=shRedir end="^\z1\s*$"	contains=@shDblQuoteList
  syn region shHereDoc matchgroup=shRedir fold start="<<\s*\"\z([^ \t|]*\)\""		matchgroup=shRedir end="^\z1\s*$"
  syn region shHereDoc matchgroup=shRedir fold start="<<\s*'\z([^ \t|]*\)'"		matchgroup=shRedir end="^\z1\s*$"
@@ -224,7 +222,7 @@ if exists("b:is_bash") || (exists("b:is_kornshell") && !exists("g:is_posix"))
 endif
 
 " Functions: {{{1
-if s:sh_fold_functions
+if g:sh_fold_functions
  syn region shFunctionOne fold	matchgroup=shFunction start="^\s*\h[^[:space:];]+*\s*()\_s*{"	end="}"	contains=@shFunctionList			skipwhite skipnl nextgroup=shFunctionStart,shQuickComment
  syn region shFunctionTwo fold	matchgroup=shFunction start="\h[^[:space:];]*\s*\%(()\)\_s*{"	end="}"	contains=shFunctionKey,@shFunctionList contained	skipwhite skipnl nextgroup=shFunctionStart,shQuickComment
 else
