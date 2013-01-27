@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-[ "$DEBUG" ] && echo "++ profile [self=$0]"
-
 # environ
 
 . ~/lib/dotfiles/environ
