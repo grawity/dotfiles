@@ -75,6 +75,9 @@
 	xfuncname = "^(dn: .+)$"
 [diff "polkit"]
 	xfuncname = "(<action id=\\\".+\\\">)"
+[gc]
+	reflogExpire = 365 days
+	reflogExpireUnreachable = 365 days
 [grep]
 	lineNumber = true
 	extendedRegexp = true
