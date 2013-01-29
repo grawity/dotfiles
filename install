@@ -62,52 +62,31 @@ trash ~/.{sh,csh}rc
 link bashrc
 link inputrc
 link profile
-
-have bzr &&
-	link bazaar/bazaar.conf
-
 link git ~/.config/git
-
 if [ -h ~/.gitconfig ] || ! git config --global github.user >/dev/null 2>&1; then
 	link git/config ~/.gitconfig
 fi
-
 if [ -h ~/.gitignore ]; then
 	link git/ignore ~/.gitignore
 fi
-
-have irb &&
-	link irbrc
-
-have mail &&
-	link mail/mailrc ~/.mailrc
-
-have makepkg &&
-	link makepkg.conf
-
 have msmtp && {
 	link mail/msmtprc ~/.msmtprc
 	chmod 600 ~/.msmtprc
 }
-
-have mutt &&
-	link mail/muttrc ~/.muttrc
-
 have ssh && {
 	ssh/generate
 	link ssh/known_hosts
 }
-
 have tmux &&
 	link tmux.conf
 
 rm -f ~/.viminfo
 link vimrc
 link vim
-have gvim &&
-	link gvimrc
 
 test "$DISPLAY" && {
+	have gvim &&
+		link gvimrc
 	have fc-cache && {
 		link gui/fonts.conf.xml ~/.config/fontconfig/fonts.conf
 	}
