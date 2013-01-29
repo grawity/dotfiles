@@ -26,27 +26,22 @@ include "%L"
 
 # various glyphs
 
-<Multi_key> <8> <8>			: "∞" # infinity
-<Multi_key> <equal> <equal>		: "–" # ndash
+<Multi_key> <equal> <equal>		: "–" # ndash - - .
 <Multi_key> <l> <d> <a>			: "—————" # 3x mdash
 <Multi_key> <equal> <asciitilde>	: "≈" # almost equal
 <Multi_key> <asciitilde> <asciitilde>	: "≈"
-<Multi_key> <zcaron> <zcaron>		: "–" # ndash
-<Multi_key> <equal> <y>			: "¥" # yen
+<Multi_key> <zcaron> <zcaron>		: "–" # ndash - - .
 <Multi_key> <h> <e> <a> <r> <t>		: "♥" # heart
 <Multi_key> <l> <a>			: "λ" # lambda
 <Multi_key> <D> <a>			: "Δ" # Delta
 <Multi_key> <d> <a>			: "δ" # delta
-<Multi_key> <l> <q>			: "“" # ldquo
-<Multi_key> <r> <q>			: "”" # rdquo
+<Multi_key> <l> <q>			: "“" # ldquo < "
+<Multi_key> <r> <q>			: "”" # rdquo > "
 <Multi_key> <p> <i>			: "π" # pi
 <Multi_key> <s> <n> <o> <w> <m> <a> <n>	: "☃" # snowman
-<Multi_key> <e> <n> <o> <t> <e>		: "♪" # note
 <Multi_key> <z> <w>			: "​" # zero-width nbsp
-<Multi_key> <p> <o>			: "¶" # pilcrow
-<Multi_key> <3> <3>			: "№" # numero
-#<Multi_key> <n> <o>			: "№" # numero
-<Multi_key> <n> <o> <t> <e>		: "♫" # note
+#<Multi_key> <p> <o>			: "¶" # pilcrow P P
+#<Multi_key> <3> <3>			: "№" # numero N O
 
 
 # arrows
