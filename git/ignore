@@ -3,8 +3,9 @@
 *.py[co]
 *.sw[nop]
 *~
+.vimdir
 Thumbs.db
+\#*#
 __pycache__
 core
 core.*.*
-.vimdir
