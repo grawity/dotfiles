@@ -24,6 +24,9 @@ augroup filetypedetect
 	au BufNewFile,BufRead *.url setf dosini
 	au BufNewFile,BufRead /etc/dconf/db/* setf dosini
 
+	" Git
+	au BufNewFile,BufRead MERGE_MSG setf gitcommit
+
 	" /etc/group
 	au BufNewFile,BufRead *.group,/etc/vigr.* setf group
 
