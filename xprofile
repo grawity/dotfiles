@@ -6,8 +6,13 @@ xhost +"SI:localuser:$USER"
 
 if have keyctl; then
 	if [ "`keyctl rdescribe @s`" = "`keyctl rdescribe @us`" ]; then
+		keyctl show
+		echo "Creating new session keyring"
 		keyctl new_session
+		keyctl show
+		echo "Linking user keyring"
 		keyctl link @u @s
+		keyctl show
 	fi
 fi
 
