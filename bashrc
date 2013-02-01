@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-[[ $DEBUG ]] && echo "++ bashrc [self=$0 prefix=$PREFIX]"
-
 have() { command -v "$1" >&/dev/null; }
 
 ### Environment
