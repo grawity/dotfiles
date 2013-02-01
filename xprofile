@@ -1,7 +1,6 @@
 #!sh
 
 xhost +"SI:localuser:$USER"
-xhost +"NIS:unix.$UID@nullroute"
 
 # set up session keyring
 
@@ -13,7 +12,6 @@ if have keyctl; then
 fi
 
 # load SSH keys & other credentials
-# from stashed login password
 
 if have auca-seed; then
 	auca-seed
