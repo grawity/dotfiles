@@ -47,7 +47,7 @@ rm() {
 		trash "${opts[@]}" -- "${trash[@]}"
 	fi &&
 	if (( ${#nuke[@]} )); then
-		/bin/rm "${opts[@]}" -- "${nuke[@]}"
+		command rm "${opts[@]}" -- "${nuke[@]}"
 	fi
 }
 
