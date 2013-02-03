@@ -1,0 +1,4 @@
+# some bundles remain local-only
+/vim-eunuch
+/vim-powerline
+/vim-unimpaired
