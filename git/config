@@ -144,12 +144,9 @@
 	insteadOf = fdo:
 
 [url "git://gist.github.com/"]
-	insteadOf = gist:
 	insteadOf = https://gist.github.com/
 [url "git@gist.github.com:"]
-	insteadOf = gist+ssh:
 	pushInsteadOf = git://gist.github.com/
-	pushInsteadOf = gist:
 	pushInsteadOf = https://gist.github.com/
 
 [url "git://github.com/"]
@@ -165,9 +162,6 @@
 
 [url "git://git.sv.gnu.org/"]
 	insteadOf = gnu:
-
-[url "git://anongit.kde.org/"]
-	insteadOf = kde:
 
 [url "git://git.kernel.org/pub/scm/linux/kernel/git/"]
 	insteadOf = linux:
