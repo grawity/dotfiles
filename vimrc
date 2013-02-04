@@ -157,13 +157,13 @@ nnoremap <Leader>w gq}
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=""<CR>
 
 " CUA cut/copy, non-CUA paste
-vmap <C-x> "pd
-nmap <C-x> "pdiw
-vmap <C-c> "py
-nmap <C-c> "pyiw
-vmap <C-p> "pP
-nmap <C-p> "pp
-imap <C-p> <Esc>"ppa
+"vmap <C-x> "pd
+"nmap <C-x> "pdiw
+"vmap <C-c> "py
+"nmap <C-c> "pyiw
+"vmap <C-p> "pP
+nmap <C-p> "+gP
+imap <C-p> <Esc>"+gpa
 "
 nmap ,s :source $MYVIMRC<CR>
 nmap ,e :e $MYVIMRC<CR>
