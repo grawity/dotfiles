@@ -17,6 +17,8 @@ endif
 
 " Syntax highlighting
 
+let perl_no_extended_vars=1
+
 if has("syntax")
 	syntax on
 endif
