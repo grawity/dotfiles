@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+root=$(git rev-parse --show-toplevel)
+
+for dir; do
+	modpath=$(cd "$dir" && git rev-parse --show-toplevel)
+	origin=$(cd "$dir" && git config remote.origin.url)
+	relpath=${modpath#$root/}
+	echo "Adding $relpath ($origin)"
+	(cd "$root" && git submodule add "$origin" "$relpath")
+done
