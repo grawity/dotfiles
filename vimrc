@@ -150,7 +150,9 @@ nnoremap <Leader>rw :%s/\<<C-r><C-w>\>/
 " sort CSS properties
 nnoremap <Leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 " display Tagbar
-nmap <Leader>t :TagbarToggle<CR>
+nnoremap <Leader>t :TagbarToggle<CR>
+" display Command-T
+nnoremap <C-t> :CommandT<CR>
 " reselect pasted text
 nnoremap <Leader>v V`]
 " rewrap current paragraph
