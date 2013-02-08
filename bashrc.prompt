@@ -238,7 +238,7 @@ _update_title() {
 		wname="{bash:$wname}"
 	fi
 	setwname "$wname"
-	if [[ $DISPLAY && $COLORTERM == gnome-terminal ]]; then
+	if [[ $DISPLAY && $TERM:$COLORTERM == xterm*:gnome-terminal ]]; then
 		printf '\e]7;file://%s%s\a' "$HOSTNAME" "$(urlencode -r -p "$PWD")"
 	fi
 }
