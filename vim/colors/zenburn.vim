@@ -4,6 +4,8 @@
 " URL:          http://slinky.imukuppi.org/zenburnpage/
 " License:      GNU GPL <http://www.gnu.org/licenses/gpl.html>
 "
+" Modified By:  <grawity@gmail.com> (see git log)
+"
 " Nothing too fancy, just some alien fruit salad to keep you in the zone.
 " This syntax file was designed to be used with dark environments and
 " low light situations. Of course, if it works during a daybright office, go
@@ -220,7 +222,7 @@ hi MoreMsg         guifg=#ffffff gui=bold
 hi Number          guifg=#8cd0d3
 hi Operator        guifg=#f0efd0
 hi PreCondit       guifg=#dfaf8f gui=bold
-hi PreProc         guifg=#ffcfaf gui=bold
+hi PreProc         guifg=#ffcfaf
 hi Question        guifg=#ffffff gui=bold
 hi Repeat          guifg=#ffd7a7 gui=bold
 hi Search          guifg=#ffffe0 guibg=#284f28
@@ -281,7 +283,7 @@ if &t_Co > 255
     hi Number          ctermfg=116
     hi Operator        ctermfg=230
     hi PreCondit       ctermfg=180   cterm=bold
-    hi PreProc         ctermfg=223   cterm=bold
+    hi PreProc         ctermfg=223
     hi Question        ctermfg=15    cterm=bold
     hi Repeat          ctermfg=223   cterm=bold
     hi Search          ctermfg=230   ctermbg=236
