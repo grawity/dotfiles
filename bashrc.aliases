@@ -41,6 +41,7 @@ gerp() { egrep -r -I -D skip --exclude-dir='.git' --exclude-dir='.svn' \
 alias facl='getfacl -pt'
 alias fattr='getfattr --absolute-names -dm-'
 alias fdf='findmnt -o target,size,use%,avail,fstype'
+alias gpg-kill-agent='gpg-connect-agent killagent /bye'
 gpgsigs() { gpg --edit-key "$1" check quit; }
 alias hex='xxd -p'
 alias unhex='xxd -p -r'
@@ -82,6 +83,8 @@ vercmp() {
 	esac
 }
 vimpaste() { vim <(getpaste "$1"); }
+visexp() { (echo "; vim: ft=sexp"; echo "; file: $1"; sexp-conv < "$1") \
+	| vipe | sexp-conv -s canonical | sponge "$1"; }
 wim() { local w=$(which "$1"); [[ $w ]] && $EDITOR "$w"; }
 alias xf='ps xf -O ppid'
 alias xx='chmod a+x'
