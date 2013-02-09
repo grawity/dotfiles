@@ -67,21 +67,21 @@ if [[ $1 == "--test" ]]; then
 	generate
 else
 	if [[ ! -d ~/.ssh ]]; then
-		debug "ok, ~/.ssh doesn't exist yet"
+		debug "ok, ~/.ssh doesn't exist yet - creating"
 		mkdir -p -m 0700 ~/.ssh
 		true
 	elif [[ ! -e ~/.ssh/config ]]; then
-		debug "ok, config doesn't exist yet"
+		debug "ok, config doesn't exist yet - creating"
 		true
 	elif [[ ~/.ssh/config -ef ~/.ssh/$output.gen ]]; then
-		debug "ok, old generated config found"
+		debug "ok, old generated config found - removing"
 		rm -f ~/.ssh/config ~/.ssh/$output.gen
 		true
 	elif [[ ~/.ssh/config -ef ~/.ssh/$output ]]; then
-		debug "ok, generated config found"
+		debug "ok, generated config found - updating"
 		true
 	elif [[ -L ~/.ssh/config ]]; then
-		debug "ok, symlinked config found"
+		debug "ok, symlinked config found - overriding"
 		rm -f ~/.ssh/config
 	else
 		die "Refusing to overwrite local ~/.ssh/config"
