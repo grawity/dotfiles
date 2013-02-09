@@ -267,5 +267,9 @@ endfunc
 
 """ Plugins
 
+if &term !~ "^\(xterm\|builtin_gui\)\(-\|$\)"
+	let g:Powerline_loaded = 1
+endif
+
 call pathogen#infect()
 filetype plugin on
