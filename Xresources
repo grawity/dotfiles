@@ -1,5 +1,5 @@
 ! ~/.Xresources: X11 resources
-! vim: fdm=marker:
+! vim: fdm=marker
 
 !!! Xft {{{
 
@@ -15,8 +15,8 @@
 
 !!! Xcursor {{{
 
-!Xcursor.theme:		Adwaita
-!Xcursor.size:		16
+Xcursor.theme:		Adwaita
+Xcursor.size:		16
 
 !!! }}}
 
