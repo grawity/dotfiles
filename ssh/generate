@@ -61,7 +61,7 @@ generate() {
 input=( ~/lib/dotfiles/ssh/config
 	~/lib/dotfiles/ssh/config-$HOSTNAME )
 
-output="config-$HOSTNAME"
+output=".generated-config-$HOSTNAME"
 
 if [[ $1 == "--test" ]]; then
 	generate
@@ -74,8 +74,13 @@ else
 		debug "ok, config doesn't exist yet - creating"
 		true
 	elif [[ ~/.ssh/config -ef ~/.ssh/$output.gen ]]; then
-		debug "ok, old generated config found - removing"
+		debug "ok, very old generated config found - removing"
 		rm -f ~/.ssh/config ~/.ssh/$output.gen
+		true
+	elif [[ -L ~/.ssh/config-$HOSTNAME \
+			&& ~/.ssh/config -ef ~/.ssh/config-$HOSTNAME ]]; then
+		debug "ok, old generated config found - removing"
+		rm -f ~/.ssh/config ~/.ssh/config-$HOSTNAME
 		true
 	elif [[ ~/.ssh/config -ef ~/.ssh/$output ]]; then
 		debug "ok, generated config found - updating"
