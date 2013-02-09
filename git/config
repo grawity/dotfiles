@@ -152,7 +152,6 @@
 [url "git://github.com/"]
 	insteadOf = gh:
 [url "git@github.com:"]
-	insteadOf = gh+ssh:
 	pushInsteadOf = git://github.com/
 	pushInsteadOf = gh:
 	pushInsteadOf = https://github.com/
