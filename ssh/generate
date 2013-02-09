@@ -77,8 +77,7 @@ else
 		debug "ok, very old generated config found - removing"
 		rm -f ~/.ssh/config ~/.ssh/$output.gen
 		true
-	elif [[ -L ~/.ssh/config-$HOSTNAME \
-			&& ~/.ssh/config -ef ~/.ssh/config-$HOSTNAME ]]; then
+	elif [[ ~/.ssh/config -ef ~/.ssh/config-$HOSTNAME ]]; then
 		debug "ok, old generated config found - removing"
 		rm -f ~/.ssh/config ~/.ssh/config-$HOSTNAME
 		true
