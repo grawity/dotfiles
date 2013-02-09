@@ -267,7 +267,7 @@ endfunc
 
 """ Plugins
 
-if &term !~ "^\(xterm\|builtin_gui\)\(-\|$\)"
+if &term !~ "^\\(xterm\\|builtin_gui\\)\\(-\\|$\\)"
 	let g:Powerline_loaded = 1
 endif
 
