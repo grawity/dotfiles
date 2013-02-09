@@ -29,7 +29,7 @@ OpenSSH() {
 Version() {
 	local minversion=$1
 	local curversion=${SSHVERSION:=$(ssh_version |
-				sed -rn 's/^\w+_([^ ]+),.*/\1/p')}
+				sed -rn 's/^\w+_([^ ,]+),? .*/\1/p')}
 	minversion=${minversion%p*}.
 	curversion=${curversion%p*}.
 	local loop=0
