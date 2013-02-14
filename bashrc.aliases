@@ -113,6 +113,9 @@ fi
 ## OS-dependent aliases
 
 lsopt="-F -h"
+if (( UID == 0 )); then
+	lsopt="$lsopt -a"
+fi
 case $OSTYPE in
 	linux-gnu|cygwin)
 		lsopt="$lsopt --group-directories-first"
