@@ -4,6 +4,8 @@
 # NOTE: custom definitions only work with 'xim'
 # see GTK_IM_MODULE and QT_IM_MODULE in my "environ" file
 
+# defaults: /usr/share/X11/locale/en_US.UTF-8/Compose
+
 include "%L"
 
 # letters
@@ -39,9 +41,10 @@ include "%L"
 <Multi_key> <r> <q>			: "”" # rdquo > "
 <Multi_key> <p> <i>			: "π" # pi
 <Multi_key> <s> <n> <o> <w> <m> <a> <n>	: "☃" # snowman
-<Multi_key> <z> <w>			: "​" # zero-width nbsp
-#<Multi_key> <p> <o>			: "¶" # pilcrow P P
-#<Multi_key> <3> <3>			: "№" # numero N O
+<Multi_key> <z> <w> <j>			: "​" # zero-width joiner
+<Multi_key> <p> <p>			: "¶" # pilcrow P P
+<Multi_key> <n> <o>			: "№" # numero N O
+<Multi_key> <s> <h> <y>			: U00ad # 'hyphen' soft hyphen
 
 
 # arrows
