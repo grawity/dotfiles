@@ -11,6 +11,9 @@
 
 # host aliases
 
+Host aurimo-seedbox
+	Hostname 176.31.238.190
+
 Host decay
 	Hostname decay.nullroute.eu.org
 	ForwardAgent yes
