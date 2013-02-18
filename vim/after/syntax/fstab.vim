@@ -1,3 +1,5 @@
+syn keyword fsDeviceKeyword contained PARTLABEL nextgroup=fsDeviceLabel
+syn keyword fsDeviceKeyword contained PARTUUID nextgroup=fsDeviceUUID
 syn keyword fsOptionsGeneral nofail
 syn keyword fsOptionsKeywords multiuser
 syn match fsOptionsKeywords contained /\<sec=/ nextgroup=fsOptionsSecurity
