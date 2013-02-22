@@ -16,6 +16,8 @@ Host aurimo-seedbox
 
 Host decay
 	Hostname decay.nullroute.eu.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host decay/console
@@ -24,6 +26,8 @@ Host decay/console
 
 Host equal
 	Hostname equal.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host moose
