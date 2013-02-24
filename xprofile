@@ -2,17 +2,17 @@
 
 xhost +"SI:localuser:$USER" &
 
-# set up session keyring
+# set up session keyring (pam_keyinit does not work with GDM due to
+#   thread issues, fixed in Linux commit 3a50597de)
 
 if have keyctl; then
 	if [ "`keyctl rdescribe @s`" = "`keyctl rdescribe @us`" ]; then
-		keyctl show
+		keyctl show -x
 		echo "Creating new session keyring"
-		keyctl new_session
-		keyctl show
-		echo "Linking user keyring"
-		keyctl link @u @s
-		keyctl show
+		if keyctl new_session > /dev/null; then
+			keyctl link @u @s
+			keyctl show -x
+		fi
 	fi
 fi
 
