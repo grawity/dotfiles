@@ -1,6 +1,6 @@
 #!sh
 
-xhost +"SI:localuser:$USER"
+xhost +"SI:localuser:$USER" &
 
 # set up session keyring
 
@@ -18,16 +18,19 @@ fi
 
 # load SSH keys & other credentials
 
-if have auca-seed; then
-	auca-seed
-fi
+have auca-seed &&
+	auca-seed &
 
 # load X settings
 
-if [ -f ~/.config/synclient.conf ]; then
-	synclient `grep -v "^#" ~/.config/synclient.conf`
-fi
+[ -f ~/.config/synclient.conf ] &&
+	synclient `grep -v "^#" ~/.config/synclient.conf` &
 
 # run startup programs
 
-spawn -L -l mpdscribble &
+[ "$MPD_HOST" ] &&
+	have mpdscribble && spawn -L mpdscribble
+
+# end
+
+true
