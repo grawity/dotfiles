@@ -29,3 +29,5 @@ if [ -f ~/.config/synclient.conf ]; then
 fi
 
 # run startup programs
+
+spawn -L -l mpdscribble &
