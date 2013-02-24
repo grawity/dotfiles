@@ -57,6 +57,7 @@ alias lpt='sudo netstat -lpt --numeric-hosts'
 alias lpu='sudo netstat -lpu --numeric-hosts'
 alias lsd='ls -d .*'
 alias md='mkdir'
+mir() { wget -m -np --reject-regex='.*\?C=.;O=.$' "$@"; }
 alias nosr='pkgfile'
 nul() { cat "$@" | tr '\0' '\n'; }
 path() { if (( $# )); then which -a "$@"; else echo "${PATH//:/$'\n'}"; fi; }
