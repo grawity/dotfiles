@@ -59,6 +59,9 @@
 [color "grep"]
 	filename = magenta
 	linenumber = green
+[column]
+	tag = auto dense
+	ui = auto
 [credential]
 	helper = cache --socket $XDG_RUNTIME_DIR/git-credential-cache.socket
 	#helper = lib gnomekeyring
