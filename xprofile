@@ -28,9 +28,4 @@ have auca-seed &&
 
 # run startup programs
 
-[ "$MPD_HOST" ] &&
-	have mpdscribble && spawn -L mpdscribble
-
-# end
-
 true
