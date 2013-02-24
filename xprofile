@@ -2,10 +2,9 @@
 
 xhost +"SI:localuser:$USER" &
 
-# set up session keyring (pam_keyinit does not work with GDM due to
-#   thread issues, fixed in Linux commit 3a50597de)
-
 if have keyctl; then
+	# set up session keyring (pam_keyinit does not work with GDM due to
+	# thread issues, fixed in Linux commit 3a50597de)
 	if [ "`keyctl rdescribe @s`" = "`keyctl rdescribe @us`" ]; then
 		keyctl show -x
 		echo "Creating new session keyring"
@@ -16,16 +15,12 @@ if have keyctl; then
 	fi
 fi
 
-# load SSH keys & other credentials
-
-have auca-seed &&
+if have auca-seed; then
 	auca-seed &
+fi
 
-# load X settings
-
-[ -f ~/.config/synclient.conf ] &&
+if [ -f ~/.config/synclient.conf ]; then
 	synclient `grep -v "^#" ~/.config/synclient.conf` &
-
-# run startup programs
+fi
 
 true

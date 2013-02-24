@@ -1,12 +1,10 @@
-#!/usr/bin/env bash
-
-# environ
+#!sh
 
 . ~/lib/dotfiles/environ
 
-# login (only for -bash, not inside tmux, and not if $SILENT)
-
 case $0:$TMUX:$SILENT in -*::)
+	# only for -sh/-bash, not in tmux, and not if $SILENT
+
 	test -d ~/.cache || mkdir -p -m 0700 ~/.cache
 	
 	test -f ~/.hushlogin && motd -q
@@ -14,15 +12,11 @@ case $0:$TMUX:$SILENT in -*::)
 	echo `uptime`
 esac
 
-# local
-
 if [ -f ~/lib/dotfiles/profile-$HOSTNAME ]; then
 	. ~/lib/dotfiles/profile-$HOSTNAME
 elif [ -f ~/.profile-$HOSTNAME ]; then
 	. ~/.profile-$HOSTNAME
 fi
-
-# misc
 
 if [ "$BASH" ] && [ -f ~/.bashrc ]; then
 	. ~/.bashrc

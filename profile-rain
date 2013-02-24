@@ -1,4 +1,4 @@
-#!bash
+#!sh
 
 if [ -d "$XDG_RUNTIME_DIR" ]; then
 	ln -nsf "/run/media/$USER" "$XDG_RUNTIME_DIR/media"
