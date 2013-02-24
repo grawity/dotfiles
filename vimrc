@@ -72,6 +72,9 @@ silent! set listchars=eol:¬,tab:│┈,extends:»,precedes:«,trail:•
 
 set splitbelow
 
+" Turn off all bells
+set noerrorbells visualbell t_vb=
+
 """ File input/output
 
 let g:netrw_http_cmd="curl -s -L"
