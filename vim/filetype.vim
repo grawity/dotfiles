@@ -1,6 +1,9 @@
 augroup filetypedetect
 	au BufNewFile,BufRead accounts.db.txt setf accdb
 
+	" config
+	au BufNewFile,BufRead ~/.irssi/config setf c-conf
+
 	" XDG Desktop Entry
 	au BufNewFile,BufRead *.ontology setf desktop
 
