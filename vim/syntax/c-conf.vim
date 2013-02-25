@@ -9,3 +9,5 @@ syn region	confCComment	start=+\s//+ end=+$+
 hi def link	confCComment	Comment
 syn sync	ccomment	confCComment
 syn sync	minlines=100
+syn match	confSection	/[{}(),;=]/
+hi def link	confSection	Delimiter
