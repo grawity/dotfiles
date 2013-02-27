@@ -62,7 +62,7 @@ complete -A directory cd
 . ~/lib/dotfiles/bashrc.aliases
 
 if have pklist; then
-	. ~/code/kerberos/kc.bash
+	. ~/code/kerberos/kc.sh
 fi
 
 ### More environment
