@@ -24,11 +24,14 @@ setwname() { [[ $wnamestring ]] && printf "$wnamestring" "$*"; }
 _awesome_prompt() {
 	local maxwidth=${COLUMNS:-$(tput cols)}
 
-	# hostname (already displayed by PS1) -- TODO: move here
+	# hostname or system name
 	# + 1 (space after hostname)
 	# + 2 ("…/")
 	# + 1 (trailing space to avoid hitting rmargin)
-	(( maxwidth -= ${#HOSTNAME} + 4 ))
+
+	local prefix=$item_name
+
+	(( maxwidth -= ${#prefix} + 4 ))
 
 	## Right side: Git branch, etc
 
@@ -150,10 +153,12 @@ _awesome_prompt() {
 	## Output
 
 	printf '\001\e[%sm\002%s' \
-		"$color_pwd" "$wdhead" \
-		"$color_cwd" "$wdtail" \
-		""           " "       \
-		"$color_vcs" "$br"     \
+		"$color_name" "$prefix" \
+		""            " "       \
+		"$color_pwd"  "$wdhead" \
+		"$color_cwd"  "$wdtail" \
+		""            " "       \
+		"$color_vcs"  "$br"     \
 		""                     ;
 }
 
@@ -165,9 +170,12 @@ _is_remote() {
 
 if (( havecolor )); then
 	PS1="\n"
+
+	_hostname=${HOSTNAME%%.*}
+
 	if (( $UID == 0 )); then
 		color_name='37;41'
-		item='\h'
+		item_name="${_hostname}"
 		prompt='#'
 	elif [[ $USER == "grawity" ]]; then
 		if (( havecolor == 256 )); then
@@ -175,13 +183,15 @@ if (( havecolor )); then
 		else
 			color_name='32'
 		fi
-		item='\h'
+		item_name="${_hostname}"
 		prompt='$'
 	else
 		color_name='33'
-		item='\u@\h'
+		item_name="${USER}@${_hostname}"
 		prompt='$'
 	fi
+
+	unset _hostname
 
 	if (( havecolor == 256 )); then
 		color_pwd='38;5;144'
@@ -197,9 +207,6 @@ if (( havecolor )); then
 
 	_is_remote && prompt='^'
 
-	PS1="${PS1}\[\e[0;1m\e[\${color_name}m\]${item}\[\e[m\] "
-	[[ $TAG ]] &&
-		PS1="${PS1}\[\e[0;34m\]${TAG}:\[\e[m\]"
 	PS1="${PS1}\$(_awesome_prompt)\n"
 	PS1="${PS1}\[\e[m\e[\${color_prompt}m\]\${prompt}\[\e[m\] "
 
