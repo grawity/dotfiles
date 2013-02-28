@@ -11,6 +11,12 @@
 
 # host aliases
 
+Host abacus
+	Hostname abacus.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
 Host aurimo-seedbox
 	Hostname 176.31.238.190
 
@@ -26,6 +32,18 @@ Host decay/console
 
 Host equal
 	Hostname equal.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+Host eta
+	Hostname eta.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+Host hawking
+	Hostname hawking.cluenet.org
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
