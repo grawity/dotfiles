@@ -174,19 +174,19 @@ if (( havecolor )); then
 	_hostname=${HOSTNAME%%.*}
 
 	if (( $UID == 0 )); then
-		color_name='37;41'
+		color_name='1;37;41'
 		item_name="${_hostname}"
 		prompt='#'
 	elif [[ $USER == "grawity" ]]; then
 		if (( havecolor == 256 )); then
-			color_name='38;5;71'
+			color_name=$'1m\e[38;5;71'
 		else
-			color_name='32'
+			color_name='1;32'
 		fi
 		item_name="${_hostname}"
 		prompt='$'
 	else
-		color_name='33'
+		color_name='1;33'
 		item_name="${USER}@${_hostname}"
 		prompt='$'
 	fi
