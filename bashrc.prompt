@@ -29,9 +29,7 @@ _awesome_prompt() {
 	# + 2 ("…/")
 	# + 1 (trailing space to avoid hitting rmargin)
 
-	local prefix=$item_name
-
-	(( maxwidth -= ${#prefix} + 4 ))
+	(( maxwidth -= ${#item_pfx} + ${#item_name} + ${#item_sfx} + 4 ))
 
 	## Right side: Git branch, etc
 
@@ -82,7 +80,7 @@ _awesome_prompt() {
 
 		br=${br}${re:+"|$re"}
 	fi
-	
+
 	if [[ ! $br && -f PKGBUILD ]]; then
 		local line= pkgver= pkgrel=
 
@@ -155,14 +153,20 @@ _awesome_prompt() {
 	local csi=$'m\e[' # 256-color sequences must be sent as a separate CSI,
 	                  # so split the color settings into multiple CSIs
 
+	local color_pfx=${color_pfx-$color_prompt}
+
 	printf '\001\e[%sm\002%s' \
-		"${color_name//|/$csi}" "$prefix" \
-		""                      " "       \
-		"${color_pwd//|/$csi}"  "$wdhead" \
-		"${color_cwd//|/$csi}"  "$wdtail" \
-		""                      " "       \
-		"${color_vcs//|/$csi}"  "$br"     \
-		""                      ""        ;
+		"${color_pfx//|/$csi}"  "$item_pfx"  \
+		""                      ""           \
+		"${color_name//|/$csi}" "$item_name" \
+		""                      ""           \
+		"${color_pfx//|/$csi}"  "$item_sfx"  \
+		""                      " "          \
+		"${color_pwd//|/$csi}"  "$wdhead"    \
+		"${color_cwd//|/$csi}"  "$wdtail"    \
+		""                      " "          \
+		"${color_vcs//|/$csi}"  "$br"        \
+		""                      ""           ;
 }
 
 _is_remote() {
@@ -207,6 +211,10 @@ if (( havecolor )); then
 		color_vcs='1;31'
 		color_prompt=''
 	fi
+
+	color_pfx=''
+	item_pfx=''
+	item_sfx=''
 
 	_is_remote && prompt='^'
 
