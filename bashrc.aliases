@@ -67,6 +67,7 @@ alias py3='python3'
 alias rd='rmdir'
 alias rot13='tr N-ZA-Mn-za-m A-Za-z'
 rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}"; echo; }
+run() { spawn -c "$@"; }
 alias sudo='sudo ' # for alias expansion in sudo args
 alias takeown='sudo chown "${UID}:${GROUPS[0]}"'
 alias tidiff='infocmp -Ld'
@@ -89,7 +90,6 @@ visexp() { (echo "; vim: ft=sexp"; echo "; file: $1"; sexp-conv < "$1") \
 wim() { local w=$(which "$1"); [[ $w ]] && $EDITOR "$w"; }
 alias xf='ps xf -O ppid'
 alias xx='chmod a+x'
-X() { (spawn "$@" >> ~/.xsession-errors 2>&1 &); }
 alias '~'='egrep'
 alias '~~'='egrep -i'
 
