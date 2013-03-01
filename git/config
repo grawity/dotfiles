@@ -50,18 +50,20 @@
 	re = rebase
 	rec = rebase --continue
 [color]
+	ui = auto
 	branch = auto
 	diff = auto
 	status = auto
-	ui = auto
 [color "diff"]
 	whitespace = red reverse
 [color "grep"]
 	filename = magenta
 	linenumber = green
 [column]
-	tag = auto dense
+	# Apparently order matters.
 	ui = auto
+	branch = never
+	tag = auto dense
 [credential]
 	helper = cache --socket $XDG_RUNTIME_DIR/git-credential-cache.socket
 	#helper = lib gnomekeyring
