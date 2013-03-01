@@ -12,3 +12,5 @@ Shell stuff gets sourced in this order:
           * `bashrc-$HOSTNAME`
       * `profile-$HOSTNAME`
   * `xprofile` – X11 login script after `profile`
+
+The `environ` file is intended to be safe to source from anywhere, including .bashrc – that way it also applies to `ssh $host $command` (which only uses .bashrc and not .profile).
