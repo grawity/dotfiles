@@ -1,0 +1,9 @@
+#!bash
+
+item_name="┌ darnassus|hurd"
+prompt="└"
+
+color_name='38;5;31'
+color_prompt=$color_name
+color_pwd='38;5;76'
+color_vcs='38;5;198'
