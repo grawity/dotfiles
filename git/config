@@ -134,8 +134,8 @@
 
 # URL replacements
 
-[url "ssh://"]
-	pushInsteadOf = git://
+#[url "ssh://"]
+#	pushInsteadOf = git://
 
 [url "git://git.nullroute.eu.org/"]
 	insteadOf = nullroute:
