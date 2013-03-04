@@ -113,6 +113,8 @@ MAKEFLAGS="-j $(nproc)"
 
 # local
 
+FQDN=$(fqdn)
+
 if [ -f ~/lib/dotfiles/environ-$HOSTNAME ]; then
 	. ~/lib/dotfiles/environ-$HOSTNAME
 elif [ -f ~/.environ-$HOSTNAME ]; then

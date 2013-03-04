@@ -69,6 +69,19 @@ fi
 
 export GREP_OPTIONS='--color=auto'
 
+case ${FQDN:=$(fqdn)} in
+    *.nullroute.eu.org|*.cluenet.org|*.nathan7.eu)
+	;;
+    *)
+	item_name="┌ $FQDN"
+	prompt="└"
+	fullpwd=y
+	color_name='38;5;31'
+	color_prompt=$color_name
+	color_pwd='38;5;76'
+	color_vcs='38;5;198'
+esac
+
 if [[ -f ~/lib/dotfiles/bashrc-$HOSTNAME ]]; then
 	. ~/lib/dotfiles/bashrc-$HOSTNAME
 elif [[ -f ~/.bashrc-$HOSTNAME ]]; then
