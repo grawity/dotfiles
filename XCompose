@@ -35,6 +35,7 @@ include "%L"
 <Multi_key> <zcaron> <zcaron>		: "–" # ndash - - .
 <Multi_key> <h> <e> <a> <r> <t>		: "♥" # heart
 <Multi_key> <l> <a>			: "λ" # lambda
+<Multi_key> <D> <A>			: "Δ" # Delta
 <Multi_key> <D> <a>			: "Δ" # Delta
 <Multi_key> <d> <a>			: "δ" # delta
 <Multi_key> <l> <q>			: "“" # ldquo < "
