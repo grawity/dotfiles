@@ -187,6 +187,13 @@ ldapsetconf() {
 	fi
 }
 
+cat() {
+	if [[ $1 == *://* ]]; then
+		curl -Ls "$1"
+	else
+		command cat "$@"
+	fi
+}
 man() {
 	if [[ $1 == *://* ]]; then
 		curl -Ls "$1" | command man /dev/stdin
