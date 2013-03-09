@@ -72,6 +72,9 @@ export GREP_OPTIONS='--color=auto'
 case ${FQDN:=$(fqdn)} in
     *.nullroute.eu.org|*.cluenet.org|*.nathan7.eu)
 	;;
+    *.core|*.rune)
+	item_name="$FQDN"
+	;;
     *)
 	item_name="┌ $FQDN"
 	prompt="└"
