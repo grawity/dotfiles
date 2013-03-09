@@ -118,7 +118,7 @@ if (( UID == 0 )); then
 	lsopt="$lsopt -a"
 fi
 case $OSTYPE in
-	gnu|linux-gnu|cygwin)
+	linux-gnu|cygwin)
 		lsopt="$lsopt --group-directories-first"
 		if (( havecolor )); then
 			lsopt="$lsopt -v --color=auto"
@@ -131,6 +131,14 @@ case $OSTYPE in
 	freebsd*)
 		lsopt+=" -G"
 		alias df='df -h'
+		alias w='w -h'
+		;;
+	gnu)
+		lsopt="$lsopt --group-directories-first"
+		if (( havecolor )); then
+			lsopt="$lsopt -v --color=auto"
+			eval $(dircolors ~/lib/dotfiles/dircolors)
+		fi
 		alias w='w -h'
 		;;
 	netbsd)
