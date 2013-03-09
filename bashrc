@@ -76,10 +76,16 @@ case ${FQDN:=$(fqdn)} in
 	item_name="┌ $FQDN"
 	prompt="└"
 	fullpwd=y
-	color_name='38;5;31'
+	if (( havecolor == 256 )); then
+		color_name='38;5;31'
+		color_pwd='38;5;76'
+		color_vcs='38;5;198'
+	else
+		color_name='36'
+		color_pwd='32'
+		color_vcs='1;35'
+	fi
 	color_prompt=$color_name
-	color_pwd='38;5;76'
-	color_vcs='38;5;198'
 esac
 
 if [[ -f ~/lib/dotfiles/bashrc-$HOSTNAME ]]; then
