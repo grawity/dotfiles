@@ -29,6 +29,7 @@ endif
 let g:lucius_style="dark"
 "et g:molokai_original=1
 let g:Powerline_symbols="fancy"
+let g:solarized_contrast="high"
 let g:zenburn_high_Contrast=1
 let g:zenburn_old_Visual=1
 
@@ -44,6 +45,8 @@ elseif &t_Co == 256
 else
 	silent! color slate
 endif
+
+let solarized=0
 
 " UI elements
 
@@ -277,3 +280,9 @@ endif
 call pathogen#infect()
 
 filetype plugin on
+
+if solarized
+	set bg=dark
+	call togglebg#map("<F5>")
+	color solarized
+end
