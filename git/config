@@ -139,7 +139,7 @@
 
 [url "git://git.nullroute.eu.org/"]
 	insteadOf = nullroute:
-[url "virgule:pub/git/"]
+[url "grawity@virgule.cluenet.org:pub/git/"]
 	insteadOf = nullroute+ssh:
 	pushInsteadOf = nullroute:
 	pushInsteadOf = git://git.nullroute.eu.org/
