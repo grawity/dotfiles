@@ -1,0 +1,123 @@
+!=doskey/history
+#totalcmd="%ProgramFiles%\Total Commander\totalcmd.exe" $*
+,=dir $*
+...=set OLDCD=%CD%&cd /d ..\..\$*
+..=set OLDCD=%CD%&cd /d ..\$*
+.=set OLDCD=%CD%&cd /d $*
+.macros=doskey /macrofile="%UserProfile%\Application Data\doskey\cmd.exe.txt"
+/=dir $*
+/cl=cls
+/etc/hosts=%EDITOR% "%SystemRoot%\system32\drivers\etc\hosts"
+/etc/passwd=control userpasswords2
+/etc/services=%EDITOR% "%SystemRoot%\system32\drivers\etc\services"
+/join=plink equal.cluenet.org bin/ircjoin \"$1\" $2
+/q=exit
+?=dir /b /s | grep -i $*
+?macros=doskey /macros
+[..=pushd ..\$*
+[~~=pushd %HOME%\$*
+[~=pushd %UserProfile%\$*
+[=pushd $*
+[ca=pushd Q:\private\nullca && db\list
+[de=pushd H:\Desktop
+[dl=pushd H:\Downloads
+[n=pushd Q:\notes && dir
+[p=pushd d:\Mantas\Pictures\pr0n
+\=start "" $*
+]=popd $*
+~~=set OLDCD=%CD%&cd /d %HOME%\$*
+~=set OLDCD=%CD%&cd /d %UserProfile%\$*
+<=Programs
+=exit
+=exit
+'=notepad $*
+acc=%EDITOR% Q:\private\accounts.db.txt
+'ad=%EDITOR% "%USERPROFILE%\Projects\accdb\accdb.py"
+ad=python "%USERPROFILE%\Projects\accdb\accdb.py" $*
+addremove=control appwiz.cpl
+ap=atomicparsley $*
+api=atomicparsley $* -t
+bt/cont=bitsadmin /rawreturn /resume $*
+bt/finish=bitsadmin /rawreturn /complete $*
+bt/info=bitsadmin /rawreturn /nowrap /info $1 /verbose
+bt/jobs=bitsadmin /rawreturn /list
+bt/ls=bitsadmin /rawreturn /nowrap /listfiles $*
+bt/pause=bitsadmin /rawreturn /suspend $*
+bt/setbase=bitsadmin /rawreturn /replaceremoteprefix $*
+bta=bitsadmin /rawreturn /nowrap $*
+cd=set OLDCD=%CD%&cd /d $*
+clear=cls
+co=sc query snowflake-vm
+cocon/fltk=start "coLinux" "C:\Program Files\coLinux\colinux-console-fltk.exe"
+cocon/nt=start "coLinux" "C:\Program Files\coLinux\colinux-console-nt.exe"
+cocon=start "coLinux" "C:\Program Files\coLinux\colinux-console-nt.exe"
+cogo=go snowflake
+cohalt=sc stop snowflake-vm
+costart=sc start snowflake-vm
+costop=sc stop snowflake-vm
+dc=set OLDCD=%CD%&cd /d %OLDCD%
+ed=%EDITOR% $*
+-f=less +FG $*
+-F=tail -f $*
+gist="%USERPROFILE%\code\gist.pl" $*
+gpg?=gpg --list-keys $*
+halt=shutdown -s -t 0 $*
+history=doskey/history $*
+kdestroy/s=klist.sspi purge
+kill=taskkill /pid $*
+klist/s=klist $* MSLSA:
+klist/sspi=klist.sspi tickets
+lyrics=python "%USERPROFILE%\code\tools\id3-lyrics.py" $*
+ll=dir/-d $*
+logout/f=sc stop colinux & cd /d C:\ & sync -e q & logoff
+logout=logoff $*
+ls=ls -AGF --color=tty $*
+'macros=notepad "%UserProfile%\Application Data\doskey\cmd.exe.txt"
+mkfile=fsutil file createnew $*
+mpc="C:\Program Files\K-Lite Codec Pack\Media Player Classic\mpc-hc.exe" $*
+n/q=notepad /q $*
+n=notepad $*
+py=python $*
+-pydevel=set PYTHONDONTWRITEBYTECODE=&set PYTHONINSPECT=&set PYTHON
+pydevel=set PYTHONDONTWRITEBYTECODE=y&set PYTHONINSPECT=y&set PYTHON
+pkill=taskkill /im $*
+pornconv=d:\Mantas\Pictures\pr0n\conv.cmd $*
+poweroff=shutdown -s -t 0 $*
+'q=notepad /q $*
+'quotes=%EDITOR% Q:\notes\quotes\irc.txt
+rand=echo %RANDOM% %RANDOM% %RANDOM%
+'rc=notepad "%USERPROFILE%\Application Data\rc.cmd"
+rdt=php "%USERPROFILE%\code\net\rdt" $*
+re=perl H:\bin\prename.pl $*
+reboot=shutdown -r -t 0 $*
+res=net stop $1 && net start $1
+rot13=$* | tr "a-zA-Z" "n-za-mN-ZA-M"
+shark="C:\Program Files\Wireshark\wireshark.exe" $*
+ss/l=(netstat -anop tcp & netstat -anop tcpv6) | findstr /l /b /c:"  TCP" | find "LISTENING" $*
+ss=(netstat -anop tcp & netstat -anop tcpv6) | findstr /l /b /c:"  TCP" | find /v "LISTENING" $*
+ssl/vv=openssl s_client -showcerts -connect $*
+ssl=openssl s_client -connect $*
+sta=start "" $*
+su=runas /user:Administrator /savecred cmd
+sudo=runas /user:Administrator /savecred $*
+tag=python "%ProgramFiles%\Python\Scripts\mid3v2" $*
+telnet=putty -telnet $*
+testpw=plink -noagent -pw $2 $1 id
+timer=set start=%time%$T$*$Tset end=%time%$Techo %start% --^> %time%
+tube=youtube-dl -c --title $*
+vfd/close=vfd close $*
+vfd/new=vfd open /q /new /1.44 $*
+vfd/open=vfd open $*
+w=quser $*
+wcat=wget -qO - $*
+who=qwinsta $*
+XWin="C:\Cygwin\bin\XWin.exe" -dpi 96 -unixkill -nowinkill -xkblayout us,lt -xkboptions grp:alt_shift_toggle -wgl -auth ~/.Xauthority -noreset dpms -multiwindow
+XWin'="C:\Cygwin\bin\XWin.exe" -dpi 96 -unixkill -nowinkill -xkblayout us,lt -xkboptions grp:alt_shift_toggle -wgl -auth ~/.Xauthority -noreset dpms
+rp=route print $*
+ra=route add $*
+rd=route delete $*
+rc=route change $*
+pathed=%USERPROFILE%\code\win32\pathed.py $*
+procexp="C:\Program Files\Process Hacker 2\ProcessHacker.exe"
+jkinit="C:\Program Files\Java\jre6\bin\kinit.exe" $*
+jklist="C:\Program Files\Java\jre6\bin\klist.exe" $*
