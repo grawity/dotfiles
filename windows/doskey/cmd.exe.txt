@@ -4,7 +4,7 @@
 ...=set OLDCD=%CD%&cd /d ..\..\$*
 ..=set OLDCD=%CD%&cd /d ..\$*
 .=set OLDCD=%CD%&cd /d $*
-.macros=doskey /macrofile="%UserProfile%\Application Data\doskey\cmd.exe.txt"
+.macros=doskey /macrofile="%UserProfile%\.dotfiles\windows\doskey\cmd.exe.txt"
 /=dir $*
 /cl=cls
 /etc/hosts=%EDITOR% "%SystemRoot%\system32\drivers\etc\hosts"
@@ -63,10 +63,10 @@ klist/s=klist $* MSLSA:
 klist/sspi=klist.sspi tickets
 lyrics=python "%USERPROFILE%\code\tools\id3-lyrics.py" $*
 ll=dir/-d $*
-logout/f=sc stop colinux & cd /d C:\ & sync -e q & logoff
+logout/f=cd /d C:\ & sync -e q & logoff
 logout=logoff $*
 ls=ls -AGF --color=tty $*
-'macros=notepad "%UserProfile%\Application Data\doskey\cmd.exe.txt"
+'macros=notepad "%UserProfile%\.dotfiles\windows\doskey\cmd.exe.txt"
 mkfile=fsutil file createnew $*
 mpc="C:\Program Files\K-Lite Codec Pack\Media Player Classic\mpc-hc.exe" $*
 n/q=notepad /q $*
@@ -76,7 +76,6 @@ py=python $*
 -pydevel=set PYTHONDONTWRITEBYTECODE=&set PYTHONINSPECT=&set PYTHON
 pydevel=set PYTHONDONTWRITEBYTECODE=y&set PYTHONINSPECT=y&set PYTHON
 pkill=taskkill /im $*
-pornconv=d:\Mantas\Pictures\pr0n\conv.cmd $*
 poweroff=shutdown -s -t 0 $*
 procexp="C:\Program Files\Process Hacker 2\ProcessHacker.exe"
 'q=notepad /q $*
@@ -87,7 +86,6 @@ rand=echo %RANDOM% %RANDOM% %RANDOM%
 rc=route change $*
 rd=route delete $*
 rdt=php "%USERPROFILE%\code\net\rdt" $*
-re=perl H:\bin\prename.pl $*
 reboot=shutdown -r -t 0 $*
 res=net stop $1 && net start $1
 rot13=$* | tr "a-zA-Z" "n-za-mN-ZA-M"
