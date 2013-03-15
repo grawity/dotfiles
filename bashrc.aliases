@@ -223,7 +223,7 @@ ppid() {
 
 sshfp() {
 	local key=$(mktemp)
-	ssh-keyscan -t rsa,dsa "$@" >> "$key"
+	ssh-keyscan -t rsa,dsa,ecdsa "$@" > "$key"
 	ssh-keygen -lf "$key"
 	rm -f "$key"
 }
