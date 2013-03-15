@@ -47,14 +47,6 @@ bt/setbase=bitsadmin /rawreturn /replaceremoteprefix $*
 bta=bitsadmin /rawreturn /nowrap $*
 cd=set OLDCD=%CD%&cd /d $*
 clear=cls
-co=sc query snowflake-vm
-cocon/fltk=start "coLinux" "C:\Program Files\coLinux\colinux-console-fltk.exe"
-cocon/nt=start "coLinux" "C:\Program Files\coLinux\colinux-console-nt.exe"
-cocon=start "coLinux" "C:\Program Files\coLinux\colinux-console-nt.exe"
-cogo=go snowflake
-cohalt=sc stop snowflake-vm
-costart=sc start snowflake-vm
-costop=sc stop snowflake-vm
 dc=set OLDCD=%CD%&cd /d %OLDCD%
 ed=%EDITOR% $*
 -f=less +FG $*
