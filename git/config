@@ -117,6 +117,7 @@
 [tig]
 	show-date = relative
 	#show-author = abbreviated
+	show-filename = false
 	author-width = 12
 	show-rev-graph = true
 	line-graphics = true
