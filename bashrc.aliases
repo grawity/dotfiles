@@ -351,12 +351,12 @@ owns() {
 ## service management
 
 if have systemctl; then
-	start()   { sudo systemctl start "$@"; systemctl status "$@"; }
-	stop()    { sudo systemctl stop "$@"; systemctl status "$@"; }
-	restart() { sudo systemctl restart "$@"; systemctl status "$@"; }
+	start()   { sudo systemctl start "$@"; systemctl status -a "$@"; }
+	stop()    { sudo systemctl stop "$@"; systemctl status -a "$@"; }
+	restart() { sudo systemctl restart "$@"; systemctl status -a "$@"; }
 	alias enable='sudo systemctl enable'
 	alias disable='sudo systemctl disable'
-	alias status='systemctl status'
+	alias status='systemctl status -a'
 	alias userctl='systemctl --user'
 	alias u='systemctl --user'
 	alias lcstatus='loginctl session-status $XDG_SESSION_ID'
