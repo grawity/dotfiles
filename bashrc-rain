@@ -2,8 +2,8 @@
 
 [[ $- != *i* ]] && return
 
-HISTSIZE=20000
-HISTFILESIZE=20000
+HISTSIZE=50000
+HISTFILESIZE=$HISTSIZE
 
 . /usr/share/bash-completion/bash_completion
 
