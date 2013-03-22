@@ -17,4 +17,18 @@ style "scrollbar-arrows" {
 	GtkScrollbar::has-secondary-forward-stepper = 0
 }
 
+style "theme-notebook" {
+	engine "clearlooks" {
+		style = GLOSSY
+	}
+}
+
+style "theme-toolbar" {
+	engine "clearlooks" {
+		style = CLASSIC
+	}
+}
+
+class "GtkNotebook" style "theme-notebook"
 class "GtkScrollbar" style "scrollbar-arrows"
+class "GtkToolbar" style "theme-toolbar"
