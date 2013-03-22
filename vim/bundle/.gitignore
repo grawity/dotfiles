@@ -1,5 +1,6 @@
 # some bundles remain local-only
+/command-t
 /vim-eunuch
 /vim-powerline
-/vim-unimpaired
 /vim-solarized-powerline
+/vim-unimpaired
