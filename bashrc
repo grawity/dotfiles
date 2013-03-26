@@ -76,14 +76,16 @@ case ${FQDN:=$(fqdn)} in
 	item_name="$FQDN"
 	;;
     *)
-	item_name="┌ $FQDN"
+	item_pfx="┌ "
+	item_name="$FQDN"
 	prompt="└"
 	fullpwd=y
 	if (( havecolor == 256 )); then
 		if (( UID )); then
 			color_name='38;5;31'
 		else
-			color_name='38;5;196'
+			color_pfx='38;5;196'
+			color_name='48;5;196'
 		fi
 		color_pwd='38;5;76'
 		color_vcs='38;5;198'
@@ -96,7 +98,8 @@ case ${FQDN:=$(fqdn)} in
 		color_pwd='32'
 		color_vcs='1;35'
 	fi
-	color_prompt=$color_name
+	: ${color_pfx:=$color_name}
+	color_prompt=$color_pfx
 esac
 
 if [[ -f ~/lib/dotfiles/bashrc-$HOSTNAME ]]; then
