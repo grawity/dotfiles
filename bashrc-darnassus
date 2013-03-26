@@ -1,6 +1,7 @@
 #!bash
 
-item_name="┌ darnassus|hurd"
+item_pfx="┌ "
+item_name="$HOSTNAME:hurd"
 prompt="└"
 
 color_name='38;5;31'
