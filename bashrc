@@ -80,11 +80,19 @@ case ${FQDN:=$(fqdn)} in
 	prompt="└"
 	fullpwd=y
 	if (( havecolor == 256 )); then
-		color_name='38;5;31'
+		if (( UID )); then
+			color_name='38;5;31'
+		else
+			color_name='38;5;196'
+		fi
 		color_pwd='38;5;76'
 		color_vcs='38;5;198'
 	else
-		color_name='36'
+		if (( UID )); then
+			color_name='36'
+		else
+			color_name='1;31'
+		fi
 		color_pwd='32'
 		color_vcs='1;35'
 	fi
