@@ -32,7 +32,10 @@ dist/head() {
 	echo -e "\e[1m== ~/lib/dotfiles\e[m"
 	(cd ~/lib/dotfiles && git tip)
 }
-dist/pull() { ~/code/dist/pull "$@"; }
+dist/pull() {
+	~/code/dist/pull "$@"
+	. ~/.profile
+}
 alias dnstracer='dnstracer -s .'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
 gerp() { egrep -r -I -D skip --exclude-dir='.git' --exclude-dir='.svn' \
