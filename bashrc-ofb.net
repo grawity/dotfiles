@@ -6,7 +6,7 @@ fullpwd=y
 prompt='$'
 
 color_pfx=''
-color_name='1'		# bold (TODO: enforce white-on-black?)
+color_name='1;37;40'	# bold white on black
 color_pwd='38;5;112'	# green-ish?
 color_cwd='22'		# noop (TODO: fix requirement)
 color_vcs='38;5;202'	# orangeish
