@@ -34,7 +34,9 @@ dist/head() {
 }
 dist/pull() {
 	~/code/dist/pull "$@"
+	SILENT=y
 	. ~/.profile
+	unset SILENT
 }
 alias dnstracer='dnstracer -s .'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
