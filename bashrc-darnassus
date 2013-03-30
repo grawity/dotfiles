@@ -1,9 +1,9 @@
 #!bash
 
-item_pfx="┌ "
-item_name="$HOSTNAME"
-item_sfx=":hurd"
-prompt="└"
+item_pfx='┌ '
+item_name=$HOSTNAME
+item_sfx=':hurd'
+prompt='└'
 
 color_pfx='38;5;238'
 color_name='38;5;31'

@@ -73,12 +73,12 @@ case ${FQDN:=$(fqdn)} in
     *.nullroute.eu.org|*.cluenet.org|*.nathan7.eu)
 	;;
     *.core|*.rune)
-	item_name="$FQDN"
+	item_name=$FQDN
 	;;
     *)
-	item_pfx="┌ "
-	item_name="$FQDN"
-	prompt="└"
+	item_pfx='┌ '
+	item_name=$FQDN
+	prompt='└'
 	fullpwd=y
 	if (( havecolor == 256 )); then
 		if (( UID )); then
