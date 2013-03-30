@@ -231,6 +231,8 @@ else
 	PS4="+\${BASH_SOURCE:--}:\$LINENO:\$FUNCNAME "
 fi
 
+. ~/lib/dotfiles/bashrc.theme
+
 export -n PS1 PS2
 export PS4
 

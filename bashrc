@@ -57,8 +57,6 @@ complete -A directory cd
 
 . ~/lib/dotfiles/bashrc.prompt
 
-. ~/lib/dotfiles/bashrc.theme
-
 ### Aliases
 
 . ~/lib/dotfiles/bashrc.aliases
