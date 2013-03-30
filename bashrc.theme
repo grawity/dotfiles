@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+case ${FQDN:=$(fqdn)} in
+    *.nullroute.eu.org|*.cluenet.org|*.nathan7.eu)
+	;;
+    *.core|*.rune)
+	item_name="$FQDN"
+	;;
+    *)
+	item_pfx='┌ '
+	item_name=$FQDN
+	fullpwd=y
+	prompt='└'
+	if (( havecolor == 256 )); then
+		if (( UID )); then
+			color_name='38;5;31'
+		else
+			color_pfx='38;5;196'
+			color_name='48;5;196'
+		fi
+		color_pwd='38;5;76'
+		color_vcs='38;5;198'
+	else
+		if (( UID )); then
+			color_name='36'
+		else
+			color_name='1;31'
+		fi
+		color_pwd='32'
+		color_vcs='1;35'
+	fi
+	: ${color_pfx:=$color_name}
+	color_prompt=$color_pfx
+esac
+
+# Host themes overridden in bashrc-$HOSTNAME

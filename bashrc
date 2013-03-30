@@ -57,6 +57,8 @@ complete -A directory cd
 
 . ~/lib/dotfiles/bashrc.prompt
 
+. ~/lib/dotfiles/bashrc.theme
+
 ### Aliases
 
 . ~/lib/dotfiles/bashrc.aliases
@@ -68,39 +70,6 @@ fi
 ### More environment
 
 export GREP_OPTIONS='--color=auto'
-
-case ${FQDN:=$(fqdn)} in
-    *.nullroute.eu.org|*.cluenet.org|*.nathan7.eu)
-	;;
-    *.core|*.rune)
-	item_name=$FQDN
-	;;
-    *)
-	item_pfx='┌ '
-	item_name=$FQDN
-	prompt='└'
-	fullpwd=y
-	if (( havecolor == 256 )); then
-		if (( UID )); then
-			color_name='38;5;31'
-		else
-			color_pfx='38;5;196'
-			color_name='48;5;196'
-		fi
-		color_pwd='38;5;76'
-		color_vcs='38;5;198'
-	else
-		if (( UID )); then
-			color_name='36'
-		else
-			color_name='1;31'
-		fi
-		color_pwd='32'
-		color_vcs='1;35'
-	fi
-	: ${color_pfx:=$color_name}
-	color_prompt=$color_pfx
-esac
 
 if [[ -f ~/lib/dotfiles/bashrc-$HOSTNAME ]]; then
 	. ~/lib/dotfiles/bashrc-$HOSTNAME
