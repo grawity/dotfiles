@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Prompt layout as $itemvar[colorvar]
+#
+#   $pfx $name $sfx[pfx] $[pwd,cwd] $[vcs]
+#   $prompt
+
 if (( havecolor )); then
 	_hostname=${HOSTNAME%%.*}
 
