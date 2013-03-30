@@ -23,4 +23,9 @@ if [ -f ~/.config/synclient.conf ]; then
 	synclient `grep -v "^#" ~/.config/synclient.conf` &
 fi
 
+if [ $HOSTNAME = rain ]; then
+	gnome-mpris-inhibit mpd &
+	mpris mpd notify-idle &
+fi
+
 true
