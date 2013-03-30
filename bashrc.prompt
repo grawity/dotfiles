@@ -249,13 +249,6 @@ _update_title() {
 		title="${t_user}${HOSTNAME} ${PWD/#$HOME/~}${t_display}"
 	fi
 	settitle "$title"
-	if [[ ! $wname ]]; then
-		local wname="${PWD/#$HOME/~}"
-		[[ $wname != '~' && $wname != '/' ]] &&
-			wname="${wname##*/}"
-		wname="{bash:$wname}"
-	fi
-	setwname "$wname"
 	if [[ $DISPLAY && $TERM:$COLORTERM == xterm*:gnome-terminal ]]; then
 		printf '\e]7;file://%s%s\a' "$HOSTNAME" "$(urlencode -r -p "$PWD")"
 	fi
