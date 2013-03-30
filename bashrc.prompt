@@ -177,52 +177,8 @@ _is_remote() {
 
 if (( havecolor )); then
 	PS1="\n"
-
-	_hostname=${HOSTNAME%%.*}
-
-	if (( UID == 0 )); then
-		color_name='1;37;41'
-		item_name="$_hostname"
-		prompt='#'
-	elif [[ $USER == "grawity" ]]; then
-		if (( havecolor == 256 )); then
-			color_name='1|38;5;71'
-		else
-			color_name='1;32'
-		fi
-		item_name="$_hostname"
-		prompt='$'
-	else
-		color_name='1;33'
-		item_name="$USER@$_hostname"
-		prompt='$'
-	fi
-
-	unset _hostname
-
-	if _is_remote; then
-		prompt='^'
-	fi
-
-	if (( havecolor == 256 )); then
-		color_pwd='38;5;144'
-		color_cwd='1'
-		color_vcs='38;5;167'
-	else
-		color_pwd='33'
-		color_cwd='1'
-		color_vcs='1;31'
-	fi
-
-	color_pfx=''
-	color_prompt=''
-
-	item_pfx=''
-	item_sfx=''
-
 	PS1="${PS1}\$(_awesome_prompt)\n"
 	PS1="${PS1}\[\e[m\e[\${color_prompt//|/m\e[}m\]\${prompt}\[\e[m\] "
-
 	PS2="\[\e[0;1;30m\]...\[\e[m\] "
 	PS4="+\e[34m\${BASH_SOURCE:--}:\e[1m\$LINENO\e[m:\${FUNCNAME:+\e[33m\$FUNCNAME\e[m} "
 else
