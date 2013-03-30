@@ -51,6 +51,8 @@ fi
 
 # Some domain-based themes
 
+fullpwd=y
+
 case ${FQDN:=$(fqdn)} in
     *.nullroute.eu.org|*.cluenet.org|*.nathan7.eu)
 	;;
@@ -62,7 +64,6 @@ case ${FQDN:=$(fqdn)} in
     *)
 	item_pfx='┌ '
 	item_name=$FQDN
-	fullpwd=y
 	prompt='└'
 
 	if (( havecolor == 256 )); then
@@ -87,5 +88,15 @@ case ${FQDN:=$(fqdn)} in
 	: ${color_pfx:=$color_name}
 	color_prompt=$color_pfx
 esac
+
+if case $FQDN in
+	*.nullroute.eu.org)	true;;
+	equal.cluenet.org)	true;;
+	virgule.cluenet.org)	true;;
+	panther.nathan7.eu)	true;;
+	*)			false;;
+esac; then
+	unset fullpwd
+fi
 
 # Host themes overridden in bashrc-$HOSTNAME
