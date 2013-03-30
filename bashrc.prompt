@@ -180,9 +180,9 @@ if (( havecolor )); then
 
 	_hostname=${HOSTNAME%%.*}
 
-	if (( $UID == 0 )); then
+	if (( UID == 0 )); then
 		color_name='1;37;41'
-		item_name="${_hostname}"
+		item_name="$_hostname"
 		prompt='#'
 	elif [[ $USER == "grawity" ]]; then
 		if (( havecolor == 256 )); then
@@ -190,33 +190,35 @@ if (( havecolor )); then
 		else
 			color_name='1;32'
 		fi
-		item_name="${_hostname}"
+		item_name="$_hostname"
 		prompt='$'
 	else
 		color_name='1;33'
-		item_name="${USER}@${_hostname}"
+		item_name="$USER@$_hostname"
 		prompt='$'
 	fi
 
 	unset _hostname
 
+	if _is_remote; then
+		prompt='^'
+	fi
+
 	if (( havecolor == 256 )); then
 		color_pwd='38;5;144'
 		color_cwd='1'
 		color_vcs='38;5;167'
-		color_prompt=''
 	else
 		color_pwd='33'
 		color_cwd='1'
 		color_vcs='1;31'
-		color_prompt=''
 	fi
 
 	color_pfx=''
+	color_prompt=''
+
 	item_pfx=''
 	item_sfx=''
-
-	_is_remote && prompt='^'
 
 	PS1="${PS1}\$(_awesome_prompt)\n"
 	PS1="${PS1}\[\e[m\e[\${color_prompt//|/m\e[}m\]\${prompt}\[\e[m\] "
@@ -229,7 +231,8 @@ else
 	PS4="+\${BASH_SOURCE:--}:\$LINENO:\$FUNCNAME "
 fi
 
-export -n PS1 PS2; export PS4
+export -n PS1 PS2
+export PS4
 
 # Show status, update window title after command
 
