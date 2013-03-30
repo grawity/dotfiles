@@ -57,6 +57,7 @@ case ${FQDN:=$(fqdn)} in
 
     *.core|*.rune)
 	item_name=$FQDN
+	fullpwd=y
 	;;
 
     *)
