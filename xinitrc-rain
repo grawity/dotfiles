@@ -1,0 +1,60 @@
+#!/bin/sh
+
+cd ~
+
+# Ensure a ssh-agent
+
+if [ ! "$SSH_AUTH_SOCK" ]; then
+	exec ssh-agent ~/.xinitrc "$@" || exit
+fi
+
+# Set up some basic things
+
+if [ "$1" ]; then
+	xsetroot -solid '#333333'
+	#xsetroot -cursor_name ''
+fi
+
+# Load profiles and resources
+
+[ -f /etc/profile ]	&& . /etc/profile
+[ -f ~/.profile ]	&& . ~/.profile
+[ -f /etc/xprofile ]	&& . /etc/xprofile
+[ -f ~/.xprofile ]	&& . ~/.xprofile
+
+[ -f ~/.Xresources ]	&& xrdb -merge ~/.Xresources
+[ -f ~/.Xkbmap ]	&& setxkbmap `cat ~/.Xkbmap`
+[ -f ~/.Xmodmap ]	&& xmodmap ~/.Xmodmap
+
+# Set up a session
+
+set -a
+
+case $1 in
+	gnome)	set -- gnome-session;;
+	e)	set -- enlightenment_start;;
+	kde)	set -- startkde;;
+	xfce)	set -- startxfce4;;
+esac
+
+case $1 in
+	gnome-session)		DESKTOP_SESSION=gnome;;
+	enlightenment_start)	DESKTOP_SESSION=enlightenment17;;
+	startkde)		DESKTOP_SESSION=kde-plasma;;
+	xfce)			DESKTOP_SESSION=xfce;;
+	*)			unset DESKTOP_SESSION;;
+esac
+
+if [ "$1" ]; then
+	exec "$@"
+else
+	DESKTOP_SESSION=gnome
+	eval $(dbus-launch --sh-syntax --exit-with-session)
+	exec gnome-session
+
+	#DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/dbus/user_bus_socket"
+	#if [ "$GNOME_KEYRING_CONTROL" ]; then
+	#	eval $(gnome-keyring-daemon --start)
+	#fi
+	#exec systemd --user --unit=graphical.target
+fi
