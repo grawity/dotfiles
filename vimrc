@@ -179,9 +179,6 @@ imap <C-p> <Esc>"+gpa
 nmap ,s :source $MYVIMRC<CR>
 nmap ,e :e $MYVIMRC<CR>
 
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
-
 if $TERM =~ "^xterm"
 	" Ctrl-(Left/Right)
 	map <Esc>OA <Esc>[1A
