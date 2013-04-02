@@ -11,7 +11,8 @@ augroup filetypedetect
 	au BufNewFile,BufRead ~/.local/share/applications/*	setf desktop
 
 	" systemd
-	au BufNewFile,BufRead *.automount,*.mount,*.service,*.socket,*.target setf desktop
+	au BufNewFile,BufRead *.automount,*.mount,*.service,*.socket,*.target
+	\ setf desktop
 
 	au BufNewFile,BufRead /etc/systemd/system/*		setf desktop
 	au BufNewFile,BufRead /run/systemd/system/*		setf desktop
@@ -46,8 +47,14 @@ augroup filetypedetect
 	" Markdown
 	au BufNewFile,BufRead *.md setf markdown
 
+	" mutt
+	au BufNewFile,BufRead .muttaliases setf muttrc
+
 	" RDF Notation 3 <http://www.vim.org/scripts/script.php?script_id=944>
 	au BufNewFile,BufRead *.n3,*.trig,*.ttl,*.turtle setf n3
+
+	" PAM
+	au BufNewFile,BufRead */pam.d/* setf pamconf
 
 	" /etc/passwd
 	au BufNewFile,BufRead *.passwd,/etc/vipw.* setf passwd
@@ -60,6 +67,7 @@ augroup filetypedetect
 
 	" Shell
 	au BufNewFile,BufRead /etc/rc.conf setf sh
+	au BufNewFile,BufRead /tmp/bash-fc-* setl ft=sh
 	
 	" tmux
 	au BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
