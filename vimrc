@@ -7,11 +7,11 @@ set nocompatible
 " Window title
 
 set title
-set titlelen=0
+set titlelen=0			" do not left-truncate titles
 set titlestring=%t%(\ %m%)%(\ (%{hostname()}\ %{expand(\"%:p:~:h\")})%)%(\ %a%)
 
 if &term =~ "^screen"
-	" not present by default
+	" teach vim to set window title inside screen
 	set t_ts=]2; t_fs=
 endif
 
@@ -63,8 +63,8 @@ silent! set number
 silent! set numberwidth=4
 silent! set mouse=a
 set scrolloff=3			" scroll context lines
-set laststatus=2		" display status
-set tabpagemax=20		" max tabs
+set laststatus=2		" always display status line
+set tabpagemax=20		" increase max tab pages
 
 if &t_Co > 16
 	setl cursorline
@@ -72,7 +72,7 @@ if &t_Co > 16
 	au WinLeave * setl nocursorline
 endif
 
-set wildmenu			" completion menu
+set wildmenu
 "set wildmode=list:longest
 
 "silent! set listchars=eol:¶,tab:›\ ,extends:»,precedes:«,trail:•
@@ -93,22 +93,21 @@ set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp1257,latin1
 set modeline
 
-set nobackup
-set backupcopy=yes " fixes issues with vipw
+set backupcopy=yes		" fixes issues with vipw
 set autoread
 set autowrite
 
 set viminfo+=n~/.vim/viminfo
-
-if hostname() == "rain"
-	set nofsync swapsync=
-endif
+set hidden			" do not unload abandoned buffers
 
 " Swap file location – use // to include full path in swapnames
 if has("unix")
 	set backupdir=~/.vim/backup//
 	silent! set undodir=~/.vim/tmp/undo//
 	set directory=~/.vim/backup//,/var/tmp//,/tmp//
+endif
+if hostname() == "rain"
+	set nofsync swapsync=
 endif
 
 """ Text editing
@@ -243,7 +242,6 @@ silent! autocmd BufNewFile,BufRead
 """ Still not sorted
 
 set backspace=indent,eol,start
-set hidden
 set history=50
 set linebreak
 " prevent auto-unindenting on pressing # (by smartindent)
