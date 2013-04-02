@@ -59,11 +59,13 @@ set ruler
 set showmode
 set showcmd
 set display+=lastline
+set linebreak			" soft word-wrap
 silent! set number
 silent! set numberwidth=4
 silent! set mouse=a
 set scrolloff=3			" scroll context lines
 set laststatus=2		" always display status line
+set splitbelow
 set tabpagemax=20		" increase max tab pages
 
 if &t_Co > 16
@@ -75,13 +77,7 @@ endif
 set wildmenu
 "set wildmode=list:longest
 
-"silent! set listchars=eol:¶,tab:›\ ,extends:»,precedes:«,trail:•
-silent! set listchars=eol:¬,tab:│┈,extends:»,precedes:«,trail:•
-
-set splitbelow
-
-" Turn off all bells
-set noerrorbells visualbell t_vb=
+set noerrorbells visualbell t_vb=	" turn off all bells
 
 """ File input/output
 
@@ -127,16 +123,7 @@ set comments-=:XCOMM
 
 set noshowmatch
 "silent! let loaded_matchparen=1
-
-nnoremap <Tab> %
-vnoremap <Tab> %
-nnoremap j gj
-nnoremap k gk
-inoremap <F1> <Esc>
-nnoremap <F1> <Esc>
-vnoremap <F1> <Esc>
-nnoremap ; :
-nnoremap q :q
+silent! set listchars=eol:¬,tab:→.,extends:»,precedes:«,trail:•
 
 " Searching
 
@@ -170,6 +157,16 @@ nnoremap <Leader>w gq}
 " strip trailing whitespace
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=""<CR>
 
+nnoremap <Tab> %
+vnoremap <Tab> %
+nnoremap j gj
+nnoremap k gk
+inoremap <F1> <Esc>
+nnoremap <F1> <Esc>
+vnoremap <F1> <Esc>
+nnoremap ; :
+nnoremap q :q
+
 " CUA cut/copy, non-CUA paste
 "vmap <C-x> "pd
 "nmap <C-x> "pdiw
@@ -178,7 +175,7 @@ nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=""<CR>
 "vmap <C-p> "pP
 nmap <C-p> "+gP
 imap <C-p> <Esc>"+gpa
-"
+
 nmap ,s :source $MYVIMRC<CR>
 nmap ,e :e $MYVIMRC<CR>
 
@@ -243,7 +240,6 @@ silent! autocmd BufNewFile,BufRead
 
 set backspace=indent,eol,start
 set history=50
-set linebreak
 " prevent auto-unindenting on pressing # (by smartindent)
 inoremap # X#
 
@@ -272,7 +268,6 @@ au! BufNewFile */_posts/2*.html 0r %:h/_template.html
 func! JoinPara()
 	:g/^./ .,/^$/-1 join
 endfunc
-
 
 """ Plugins
 
