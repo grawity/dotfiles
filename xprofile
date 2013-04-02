@@ -13,6 +13,8 @@ if have keyctl; then
 			keyctl show -x
 		fi
 	fi
+	# set up some pointers to environment (for use by cron)
+	keyctl add user 'env:KRB5CCNAME' "$KRB5CCNAME" @u > /dev/null
 fi
 
 if have auca-seed; then
