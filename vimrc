@@ -229,9 +229,29 @@ endif
 
 """ File-specific behavior
 
-silent! autocmd BufNewFile,BufRead
+silent! au BufNewFile,BufRead
 \ COMMIT_EDITMSG,git-rebase-todo
 \ setl nomodeline
+
+silent! au BufNewFile,BufRead
+\ /etc/motd
+\ setl et
+
+silent! au BufNewFile,BufRead
+\ authorized_keys,authorized_keys.*,known_hosts,id_*.pub
+\ setl wrap nolinebreak
+
+silent! au BufNewFile,BufRead
+\ authorized_keys.*
+\ set ft=conf
+
+silent! au BufReadPost
+\ host-acls
+\ %!sexp-conv -w 0
+
+au! BufNewFile
+\ */_posts/2*.html
+\ 0r %:h/_template.html
 
 """ Still not sorted
 
@@ -239,20 +259,6 @@ set backspace=indent,eol,start
 set history=50
 " prevent auto-unindenting on pressing # (by smartindent)
 inoremap # X#
-
-"" Autocommands
-
-silent! autocmd BufNewFile,BufRead /etc/motd setl et
-
-silent! autocmd BufNewFile,BufRead
-\ authorized_keys,authorized_keys.*,known_hosts,id_*.pub
-\ setl wrap nolinebreak
-silent! autocmd BufNewFile,BufRead
-\ authorized_keys.*
-\ set ft=conf
-silent! autocmd BufReadPost host-acls %!sexp-conv -w 0
-
-au! BufNewFile */_posts/2*.html 0r %:h/_template.html
 
 func! JoinPara()
 	:g/^./ .,/^$/-1 join
