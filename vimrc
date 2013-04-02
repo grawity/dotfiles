@@ -151,7 +151,7 @@ nnoremap <Leader>t :TagbarToggle<CR>
 " display Command-T
 nnoremap <C-t> :CommandT<CR>
 " reselect pasted text
-nnoremap <Leader>v V`]
+nnoremap <Leader>v `[V`]
 " rewrap current paragraph
 nnoremap <Leader>w gq}
 " strip trailing whitespace
