@@ -173,7 +173,7 @@ nnoremap q :q
 "vmap <C-c> "py
 "nmap <C-c> "pyiw
 "vmap <C-p> "pP
-nmap <C-p> "+gP
+nmap <C-p> "+gp
 imap <C-p> <Esc>"+gpa
 
 nmap ,s :source $MYVIMRC<CR>
