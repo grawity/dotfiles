@@ -1,10 +1,6 @@
 augroup filetypedetect
 	au BufNewFile,BufRead accounts.db.txt setf accdb
 
-	" config
-	au BufNewFile,BufRead *.conf setf c-conf
-	au BufNewFile,BufRead ~/.irssi/config setf c-conf
-
 	" XDG Desktop Entry
 	au BufNewFile,BufRead *.ontology setf desktop
 
@@ -28,6 +24,10 @@ augroup filetypedetect
 	au BufNewFile,BufRead *.pkla,*.pkla~ setf dosini
 	au BufNewFile,BufRead *.url setf dosini
 	au BufNewFile,BufRead /etc/dconf/db/* setf dosini
+
+	" config – lower priority than {desktop, dosini} autocmds
+	au BufNewFile,BufRead *.conf setf c-conf
+	au BufNewFile,BufRead ~/.irssi/config setf c-conf
 
 	" Git
 	au BufNewFile,BufRead MERGE_MSG setf gitcommit
