@@ -60,12 +60,13 @@ set showmode
 set showcmd
 set display+=lastline
 set linebreak			" soft word-wrap
+set showbreak=»\ 		" prefix wrapped lines
 silent! set number
 silent! set numberwidth=4
 silent! set mouse=a
 set scrolloff=3			" scroll context lines
 set laststatus=2		" always display status line
-set splitbelow
+set splitbelow splitright
 set tabpagemax=20		" increase max tab pages
 
 if &t_Co > 16
@@ -78,6 +79,9 @@ set wildmenu
 "set wildmode=list:longest
 
 set noerrorbells visualbell t_vb=	" turn off all bells
+
+set shortmess+=I		" do not show :intro message
+"set shortmess+=A		" do not warn about existing swapfiles
 
 """ File input/output
 
@@ -166,6 +170,8 @@ nnoremap <F1> <Esc>
 vnoremap <F1> <Esc>
 nnoremap ; :
 nnoremap q :q
+nnoremap Q <nop>
+nnoremap K <nop>
 
 " CUA cut/copy, non-CUA paste
 "vmap <C-x> "pd
