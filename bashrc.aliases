@@ -40,6 +40,7 @@ dist/pull() {
 	unset SILENT
 }
 alias dnstracer='dnstracer -s .'
+alias ed='ed -p:'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
 gerp() { egrep -r -I -D skip --exclude-dir='.git' --exclude-dir='.svn' \
 	--exclude-dir='.hg' \
