@@ -13,10 +13,6 @@ case $LANG in *.utf8)
 	export LANG=${LANG/%.utf8/.UTF-8}
 esac
 
-export GPG_TTY=$(tty)
-
-export SUDO_PROMPT=$(printf 'sudo: Password for %%p@\e[30;43m%%h\e[m: ')
-
 # this is needed for non-interactive mode as well; for example,
 # in my git-url-handler script
 case $TERM in
@@ -30,6 +26,10 @@ case $TERM in
 	*)
 		havecolor=8;;
 esac
+
+export GPG_TTY=$(tty)
+
+export SUDO_PROMPT=$(printf 'sudo: Password for %%p@\e[30;43m%%h\e[m: ')
 
 ### Interactive options
 
