@@ -90,3 +90,6 @@ case ${FQDN:=$(fqdn)} in
 esac
 
 # Host themes overridden in bashrc-$HOSTNAME
+
+# Theme ideas: name='1;32' pwd='36' vcs='1;30'
+#              (vcs being a dark gray)
