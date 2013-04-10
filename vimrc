@@ -268,7 +268,7 @@ set history=50
 inoremap # X#
 
 func! JoinPara()
-	:g/^./ .,/^$/-1 join
+	:g/^\S/ .,/^$/-1 join
 endfunc
 
 """ Plugins
