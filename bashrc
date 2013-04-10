@@ -46,7 +46,7 @@ shopt -s cmdhist		# store multi-line commands as single history entry
 shopt -s histappend		# append to $HISTFILE on exit
 shopt -s histreedit		# allow re-editing failed history subst
 
-HISTFILE=~/.cache/bash.history
+HISTFILE="$XDG_CACHE_HOME/bash.history"
 HISTSIZE=5000
 HISTFILESIZE=5000
 HISTCONTROL=ignoreboth
