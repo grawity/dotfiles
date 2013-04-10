@@ -35,8 +35,6 @@ export SUDO_PROMPT=$(printf 'sudo: Password for %%p@\e[30;43m%%h\e[m: ')
 
 [[ $- != *i* ]] && return
 
-[[ $DEBUG ]] && echo ".. bashrc [interactive=$-]"
-
 shopt -os physical		# resolve symlinks when 'cd'ing
 shopt -s checkjobs 2> /dev/null	# print job status on exit
 shopt -s checkwinsize		# update $ROWS/$COLUMNS after command
