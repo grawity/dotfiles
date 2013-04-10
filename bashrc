@@ -53,19 +53,13 @@ HISTCONTROL=ignoreboth
 
 complete -A directory cd
 
-### Prompt and window title
-
 . ~/lib/dotfiles/bashrc.prompt
-
-### Aliases
 
 . ~/lib/dotfiles/bashrc.aliases
 
 if have pklist; then
 	. ~/code/kerberos/kc.sh
 fi
-
-### More environment
 
 export GREP_OPTIONS='--color=auto'
 
@@ -74,8 +68,6 @@ if [[ -f ~/lib/dotfiles/bashrc-$HOSTNAME ]]; then
 elif [[ -f ~/.bashrc-$HOSTNAME ]]; then
 	. ~/.bashrc-$HOSTNAME
 fi
-
-### Todo list
 
 if [[ ! $SILENT && ! $SUDO_USER ]]; then
 	have todo && todo
