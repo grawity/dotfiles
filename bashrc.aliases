@@ -53,7 +53,7 @@ gpgsigs() { gpg --edit-key "$1" check quit; }
 alias hex='xxd -p'
 alias unhex='xxd -p -r'
 alias hup='pkill -HUP -x'
-alias init='telinit'
+alias init='telinit' # for systemd
 alias ll='ls -l'
 alias logoff='logout'
 if [[ $DESKTOP_SESSION ]]; then
@@ -65,6 +65,7 @@ alias lpu='sudo netstat -lpu --numeric-hosts'
 alias lsd='ls -d .*'
 alias md='mkdir'
 mir() { wget -m -np --reject-regex='.*\?C=.;O=.$' "$@"; }
+alias nmap='nmap --reason'
 alias nosr='pkgfile'
 nul() { cat "$@" | tr '\0' '\n'; }
 path() { if (( $# )); then which -a "$@"; else echo "${PATH//:/$'\n'}"; fi; }
@@ -94,6 +95,7 @@ vercmp() {
 vimpaste() { vim <(getpaste "$1"); }
 visexp() { (echo "; vim: ft=sexp"; echo "; file: $1"; sexp-conv < "$1") \
 	| vipe | sexp-conv -s canonical | sponge "$1"; }
+alias weechat='weechat-curses' # sigh
 wim() { local w=$(which "$1"); [[ $w ]] && $EDITOR "$w"; }
 alias xf='ps xf -O ppid'
 alias xx='chmod a+x'
