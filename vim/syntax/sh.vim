@@ -151,7 +151,8 @@ endif
 
 " String And Character Constants: {{{1
 "================================
-syn match   shNumber	"-\=\<\d\+\>#\="
+" shNumber: do not match when preceded by a letter, e.g. "UTF-8"
+syn match   shNumber	"[[:alpha:]-]\@<!-\=\<\d\+\>#\="
 syn match   shCtrlSeq	"\\\d\d\d\|\\[abcfnrtv0]"		contained
 if exists("b:is_bash")
  syn match   shSpecial	"\\\o\o\o\|\\x\x\x\|\\c[^"]\|\\[abefnrtv]"	contained

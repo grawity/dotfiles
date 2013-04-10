@@ -10,7 +10,7 @@ have() { command -v "$1" >&/dev/null; }
 # Xsession and gnome-session override $LANG later
 case $LANG in *.utf8)
 	# make `tree` work correctly
-	export LANG="${LANG%.utf8}.utf-8"
+	export LANG=${LANG/%.utf8/.UTF-8}
 esac
 
 export GPG_TTY=$(tty)
