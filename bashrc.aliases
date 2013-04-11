@@ -95,6 +95,7 @@ vercmp() {
 vimpaste() { vim <(getpaste "$1"); }
 visexp() { (echo "; vim: ft=sexp"; echo "; file: $1"; sexp-conv < "$1") \
 	| vipe | sexp-conv -s canonical | sponge "$1"; }
+alias w3m='w3m -title'
 alias weechat='weechat-curses' # sigh
 wim() { local w=$(which "$1"); [[ $w ]] && $EDITOR "$w"; }
 alias xf='ps xf -O ppid'
