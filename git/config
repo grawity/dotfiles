@@ -13,7 +13,7 @@
 	pushNonFastForward = false
 	statusHints = false
 [alias]
-	a = add
+	a = add --all
 	amend = commit --amend
 	br = branch
 	bra = branch-info
