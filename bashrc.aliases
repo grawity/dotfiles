@@ -42,6 +42,7 @@ dist/pull() {
 alias dnstracer='dnstracer -s .'
 alias ed='ed -p:'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
+alias findexe='find -type f -executable'
 gerp() { egrep -r -I -D skip --exclude-dir='.git' --exclude-dir='.svn' \
 	--exclude-dir='.hg' \
 	-H -n --color=always "$@"; }
@@ -76,6 +77,7 @@ alias rd='rmdir'
 alias rot13='tr N-ZA-Mn-za-m A-Za-z'
 rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}"; echo; }
 run() { spawn -c "$@"; }
+alias srs='rsync -avHAX'
 alias sudo='sudo ' # for alias expansion in sudo args
 alias takeown='sudo chown "${UID}:${GROUPS[0]}"'
 alias tidiff='infocmp -Ld'
