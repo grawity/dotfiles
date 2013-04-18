@@ -77,7 +77,7 @@ endif
 
 set wildmenu
 "set wildmode=list:longest
-set wildignorecase
+silent! set wildignorecase
 
 set noerrorbells visualbell t_vb=	" turn off all bells
 
