@@ -19,10 +19,11 @@ def _startup():
 	ansi = lambda s: vtseq("[%sm" % s)
 
 	color = "35" if sys.version_info[0] >= 3 else "34"
+	verstr = "py%d.%d " % sys.version_info[0:2]
 
-	sys.ps1 = ansi("0;%s" % color) + "py%d.%d " % sys.version_info[0:2] + \
+	sys.ps1 = ansi("0;%s" % color) + verstr + \
 		ansi("1") + ">>>" + ansi("0") + " "
 
-	sys.ps2 = ansi("0;1;30") + "..." + ansi("0") + " "
+	sys.ps2 = " " * len(verstr) + ansi("0;1;30") + "..." + ansi("0") + " "
 
 _startup()
