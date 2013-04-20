@@ -1,6 +1,6 @@
 #!sh
 
-have() { command -v "$1" >/dev/null 2>&1; }
+have() { type "$1" > /dev/null 2>&1; }
 
 setpath() {
 	# real sh does not allow unsetting IFS,
