@@ -15,6 +15,14 @@ if [ ! "$DESKTOP_SESSION" ]; then
 	else
 		xsetroot -solid "$bgcolor"
 	fi
+
+	if have compton; then
+		compton &
+
+		if [ -x /usr/lib/notify-osd/notify-osd ]; then
+			/usr/lib/notify-osd/notify-osd &
+		fi
+	fi
 fi
 
 if have keyctl; then
