@@ -20,7 +20,7 @@ if [ ! "$DESKTOP_SESSION" ]; then
 		compton &
 
 		if [ -x /usr/lib/notify-osd/notify-osd ]; then
-			/usr/lib/notify-osd/notify-osd &
+			spawn -l /usr/lib/notify-osd/notify-osd
 		fi
 	fi
 fi
@@ -49,8 +49,8 @@ if [ -f ~/.config/synclient.conf ]; then
 fi
 
 if [ $HOSTNAME = rain ]; then
-	gnome-mpris-inhibit mpd --flags=suspend &
-	mpris mpd notify-idle &
+	spawn -lmpd-inhibit gnome-mpris-inhibit mpd --flags=suspend
+	spawn -lmpd-notify  mpris mpd notify-idle
 fi
 
 true
