@@ -2,6 +2,21 @@
 
 xhost +"SI:localuser:$USER" &
 
+if [ ! "$DESKTOP_SESSION" ]; then
+	bgcolor='#333333'
+	bgimage='/usr/share/gnome-shell/theme/noise-texture.png'
+
+	if have hsetroot; then
+		if [ -e "$bgimage" ]; then
+			hsetroot -solid "$bgcolor" -tile "$bgimage"
+		else
+			hsetroot -solid "$bgcolor"
+		fi
+	else
+		xsetroot -solid "$bgcolor"
+	fi
+fi
+
 if have keyctl; then
 	# set up session keyring (pam_keyinit does not work with GDM due to
 	# thread issues, fixed in Linux commit 3a50597de)

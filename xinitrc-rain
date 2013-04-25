@@ -12,14 +12,7 @@ fi
 
 # Set up some basic things
 
-if [ "$1" ]; then
-	if have hsetroot; then
-		hsetroot -solid '#333333'
-	else
-		xsetroot -solid '#333333'
-	fi
-	#xsetroot -cursor_name ''
-fi
+xsetroot -solid '#333333' -cursor_name 'left_ptr'
 
 # Load profiles and resources
 
