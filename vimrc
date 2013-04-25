@@ -164,11 +164,16 @@ nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=""<CR>
 
 nnoremap <Tab> %
 vnoremap <Tab> %
+
+nnoremap <Down> gj
+nnoremap <Up> gk
 nnoremap j gj
 nnoremap k gk
+
 inoremap <F1> <Esc>
 nnoremap <F1> <Esc>
 vnoremap <F1> <Esc>
+
 nnoremap ; :
 nnoremap q :q
 nnoremap Q <nop>
