@@ -18,6 +18,8 @@ include "%L"
 <Multi_key> <v> <S>			: "Š"
 <Multi_key> <v> <s>			: "š"
 
+<Multi_key> <n> <n>			: "𝒏"
+
 # quotation marks
 
 <Multi_key> <bracketleft> <apostrophe>	: "「"
