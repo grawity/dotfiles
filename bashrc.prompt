@@ -81,6 +81,29 @@ _awesome_prompt() {
 		br=${br}${re:+"|$re"}
 	fi
 
+	local dir=$PWD vcs=
+
+	while [[ $dir && ! $br ]]; do
+		if [[ -d $dir/.hg ]]; then
+			vcs='hg'
+			br=$(hg id -i -n -r tip 2>/dev/null)
+			br=${br##* }:${br%% *}
+		elif [[ -f $dir/.bzr/branch/last-revision ]]; then
+			vcs='bzr'
+			br=$(cat "$dir/.bzr/branch/last-revision")
+			br=${br%% *}
+		elif [[ -f $dir/.bzr ]]; then
+			vcs='bzr'
+			br=$(bzr revno 2>/dev/null)
+		else
+			dir=${dir%/*}
+		fi
+	done
+
+	if [[ $vcs ]]; then
+		br+=" ($vcs)"
+	fi
+
 	if [[ $br ]]; then
 		# branch
 		# + 1 (space before branch)
