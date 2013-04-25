@@ -19,6 +19,11 @@
 
     <!-- Font aliases -->
 
+    <alias>
+        <family>serif</family>
+        <prefer> <family>Times New Roman</family> </prefer>
+    </alias>
+
     <alias binding="same">
         <family>MS Sans Serif</family>
         <prefer> <family>Tahoma</family> </prefer>
