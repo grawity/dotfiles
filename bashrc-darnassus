@@ -3,7 +3,7 @@
 item_name_pfx='┌ '
 item_name=$HOSTNAME
 item_name_sfx=':hurd'
-prompt='└'
+item_prompt='└'
 
 color_name_pfx='38;5;238'	# gray
 color_name='38;5;31'		# blue

@@ -5,7 +5,7 @@
 #   $pfx $name $sfx[pfx] $[pwd,cwd] $[vcs]
 #   $prompt
 
-unset ${!color_*} ${!item_*} ${!reset_*} prompt fullpwd
+unset ${!color_*} ${!item_*} ${!reset_*} fullpwd
 
 reset_pwd=' '
 reset_vcs=' '
@@ -16,7 +16,7 @@ if (( havecolor )); then
 	if (( UID == 0 )); then
 		color_name='1;37;41'
 		item_name="$_hostname"
-		prompt='#'
+		item_prompt='#'
 	elif [[ $USER == "grawity" ]]; then
 		if (( havecolor == 256 )); then
 			color_name='1|38;5;71'
@@ -24,17 +24,17 @@ if (( havecolor )); then
 			color_name='1;32'
 		fi
 		item_name="$_hostname"
-		prompt='$'
+		item_prompt='$'
 	else
 		color_name='1;33'
 		item_name="$USER@$_hostname"
-		prompt='$'
+		item_prompt='$'
 	fi
 
 	unset _hostname
 
 	if _is_remote; then
-		prompt='^'
+		item_prompt='^'
 	fi
 
 	if (( havecolor == 256 )); then
@@ -63,7 +63,7 @@ case ${FQDN:=$(fqdn)} in
 	item_name_pfx='┌ '
 	item_name=$FQDN
 	fullpwd=y
-	prompt='└'
+	item_prompt='└'
 
 	if (( havecolor == 256 )); then
 		if (( UID )); then

@@ -3,7 +3,7 @@
 item_name_pfx=''
 item_name='[OFB]'
 fullpwd=y
-prompt='$'
+item_prompt='$'
 
 color_name_pfx=''
 color_name='1;37;40'	# bold white on black
