@@ -5,8 +5,8 @@ item_name=$HOSTNAME
 item_name_sfx=':hurd'
 item_prompt='└'
 
-color_name_pfx='38;5;238'	# gray
-color_name='38;5;31'		# blue
-color_pwd='38;5;76'		# green
-color_vcs='38;5;198'		# magenta
-color_prompt=$color_name_pfx
+fmt_name_pfx='38;5;238'	# gray
+fmt_name='38;5;31'		# blue
+fmt_pwd='38;5;76'		# green
+fmt_vcs='38;5;198'		# magenta
+fmt_prompt=$fmt_name_pfx

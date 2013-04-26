@@ -5,30 +5,30 @@
 #   $pfx $name $sfx[pfx] $[pwd,cwd] $[vcs]
 #   $prompt
 
-unset ${!color_*} ${!item_*} ${!reset_*} fullpwd
+unset ${!fmt_*} ${!item_*} ${!reset_*} fullpwd
 
 reset_pwd=' '
 reset_vcs=' '
 
-color_noop='28' # "Visible (not hidden)"
+fmt_noop='28' # "Visible (not hidden)"
 
 if (( havecolor )); then
 	_hostname=${HOSTNAME%%.*}
 
 	if (( UID == 0 )); then
-		color_name='1;37;41'
+		fmt_name='1;37;41'
 		item_name="$_hostname"
 		item_prompt='#'
 	elif [[ $USER == "grawity" ]]; then
 		if (( havecolor == 256 )); then
-			color_name='1|38;5;71'
+			fmt_name='1|38;5;71'
 		else
-			color_name='1;32'
+			fmt_name='1;32'
 		fi
 		item_name="$_hostname"
 		item_prompt='$'
 	else
-		color_name='1;33'
+		fmt_name='1;33'
 		item_name="$USER@$_hostname"
 		item_prompt='$'
 	fi
@@ -40,13 +40,13 @@ if (( havecolor )); then
 	fi
 
 	if (( havecolor == 256 )); then
-		color_pwd='38;5;144'
-		color_pwd_tail='1'
-		color_vcs='38;5;167'
+		fmt_pwd='38;5;144'
+		fmt_pwd_tail='1'
+		fmt_vcs='38;5;167'
 	else
-		color_pwd='33'
-		color_pwd_tail='1'
-		color_vcs='1;31'
+		fmt_pwd='33'
+		fmt_pwd_tail='1'
+		fmt_vcs='1;31'
 	fi
 fi
 
@@ -69,25 +69,25 @@ case ${FQDN:=$(fqdn)} in
 
 	if (( havecolor == 256 )); then
 		if (( UID )); then
-			color_name='38;5;31'
+			fmt_name='38;5;31'
 		else
-			color_name_pfx='38;5;196'
-			color_name='48;5;196'
+			fmt_name_pfx='38;5;196'
+			fmt_name='48;5;196'
 		fi
-		color_pwd='38;5;76'
-		color_vcs='38;5;198'
+		fmt_pwd='38;5;76'
+		fmt_vcs='38;5;198'
 	else
 		if (( UID )); then
-			color_name='36'
+			fmt_name='36'
 		else
-			color_name='1;31'
+			fmt_name='1;31'
 		fi
-		color_pwd='32'
-		color_vcs='1;35'
+		fmt_pwd='32'
+		fmt_vcs='1;35'
 	fi
 
-	: ${color_name_pfx:=$color_name}
-	color_prompt=$color_name_pfx
+	: ${fmt_name_pfx:=$fmt_name}
+	fmt_prompt=$fmt_name_pfx
 esac
 
 # Host themes overridden in bashrc-$HOSTNAME
