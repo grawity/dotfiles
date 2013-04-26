@@ -10,6 +10,8 @@ unset ${!color_*} ${!item_*} ${!reset_*} fullpwd
 reset_pwd=' '
 reset_vcs=' '
 
+color_noop='28' # "Visible (not hidden)"
+
 if (( havecolor )); then
 	_hostname=${HOSTNAME%%.*}
 
