@@ -1,10 +1,13 @@
 #!bash
 
+item_name_pfx=''
 item_name='[OFB]'
 fullpwd=y
 item_prompt='$'
 
+fmt_name_pfx=''
 fmt_name='1;37;40'	# bold white on black
 fmt_pwd='38;5;112'	# green-ish?
 fmt_pwd_tail=$fmt_noop
 fmt_vcs='38;5;202'	# orangeish
+fmt_prompt=''
