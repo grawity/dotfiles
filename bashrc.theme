@@ -5,6 +5,8 @@
 #   $pfx $name $sfx[pfx] $[pwd,cwd] $[vcs]
 #   $prompt
 
+unset ${!color_*} ${!item_*} prompt fullpwd
+
 if (( havecolor )); then
 	_hostname=${HOSTNAME%%.*}
 
@@ -41,12 +43,6 @@ if (( havecolor )); then
 		color_cwd='1'
 		color_vcs='1;31'
 	fi
-
-	color_pfx=''
-	color_prompt=''
-
-	item_pfx=''
-	item_sfx=''
 fi
 
 # Some domain-based themes
