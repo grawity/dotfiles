@@ -5,7 +5,10 @@
 #   $pfx $name $sfx[pfx] $[pwd,cwd] $[vcs]
 #   $prompt
 
-unset ${!color_*} ${!item_*} prompt fullpwd
+unset ${!color_*} ${!item_*} ${!reset_*} prompt fullpwd
+
+reset_pwd=' '
+reset_vcs=' '
 
 if (( havecolor )); then
 	_hostname=${HOSTNAME%%.*}
@@ -36,11 +39,11 @@ if (( havecolor )); then
 
 	if (( havecolor == 256 )); then
 		color_pwd='38;5;144'
-		color_cwd='1'
+		color_pwd_tail='1'
 		color_vcs='38;5;167'
 	else
 		color_pwd='33'
-		color_cwd='1'
+		color_pwd_tail='1'
 		color_vcs='1;31'
 	fi
 fi
@@ -57,7 +60,7 @@ case ${FQDN:=$(fqdn)} in
 	;;
 
     *)
-	item_pfx='┌ '
+	item_name_pfx='┌ '
 	item_name=$FQDN
 	fullpwd=y
 	prompt='└'
@@ -66,7 +69,7 @@ case ${FQDN:=$(fqdn)} in
 		if (( UID )); then
 			color_name='38;5;31'
 		else
-			color_pfx='38;5;196'
+			color_name_pfx='38;5;196'
 			color_name='48;5;196'
 		fi
 		color_pwd='38;5;76'
@@ -81,8 +84,8 @@ case ${FQDN:=$(fqdn)} in
 		color_vcs='1;35'
 	fi
 
-	: ${color_pfx:=$color_name}
-	color_prompt=$color_pfx
+	: ${color_name_pfx:=$color_name}
+	color_prompt=$color_name_pfx
 esac
 
 # Host themes overridden in bashrc-$HOSTNAME

@@ -1,12 +1,12 @@
 #!bash
 
-item_pfx='┌ '
+item_name_pfx='┌ '
 item_name=$HOSTNAME
-item_sfx=':hurd'
+item_name_sfx=':hurd'
 prompt='└'
 
-color_pfx='38;5;238'	# gray
-color_name='38;5;31'	# blue
-color_pwd='38;5;76'	# green
-color_vcs='38;5;198'	# magenta
-color_prompt=$color_pfx
+color_name_pfx='38;5;238'	# gray
+color_name='38;5;31'		# blue
+color_pwd='38;5;76'		# green
+color_vcs='38;5;198'		# magenta
+color_prompt=$color_name_pfx
