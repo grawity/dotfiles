@@ -140,20 +140,23 @@ _awesome_prompt() {
 	                  # so split the color settings into multiple CSIs
 
 	local fmt_name_pfx=${fmt_name_pfx-$fmt_prompt}
+	local fmt_name_sfx=${fmt_name_sfx-$fmt_name_pfx}
+	local fmt_pwd_sfx=${fmt_pwd_sfx-$fmt_pwd_pfx}
+	local fmt_vcs_sfx=${fmt_vcs_sfx-$fmt_vcs_pfx}
 
 	printf '\001\e[%sm\002%s' \
 		"${fmt_name_pfx//|/$csi}"		"$item_name_pfx"	\
 		"${fmt_name//|/$csi}"			"$item_name"		\
-		"${fmt_name_pfx//|/$csi}"		"$item_name_sfx"	\
+		"${fmt_name_sfx//|/$csi}"		"$item_name_sfx"	\
 		""					"$reset_pwd"		\
 		"${fmt_pwd_pfx//|/$csi}"		"$item_pwd_pfx"		\
 		"${fmt_pwd//|/$csi}"			"$item_pwd"		\
 		"${fmt_pwd_tail//|/$csi}"		"$item_pwd_tail"	\
-		"${fmt_pwd_pfx//|/$csi}"		"$item_pwd_sfx"		\
+		"${fmt_pwd_sfx//|/$csi}"		"$item_pwd_sfx"		\
 		""					"$reset_vcs"		\
 		"${fmt_vcs_pfx//|/$csi}"		"$item_vcs_pfx"		\
 		"${fmt_vcs//|/$csi}"			"$item_vcs"		\
-		"${fmt_vcs_pfx//|/$csi}"		"$item_vcs_sfx"		\
+		"${fmt_vcs_sfx//|/$csi}"		"$item_vcs_sfx"		\
 		""					""			;
 }
 
