@@ -22,19 +22,6 @@ fi
 # Basic desktop environment
 
 if [ ! "$DESKTOP_SESSION" ]; then
-	bgcolor='#333333'
-	bgimage=~/lib/dotfiles/gui/noise.png
-
-	if have hsetroot; then
-		if [ -e "$bgimage" ]; then
-			hsetroot -solid "$bgcolor" -tile "$bgimage"
-		else
-			hsetroot -solid "$bgcolor"
-		fi
-	else
-		xsetroot -solid "$bgcolor"
-	fi
-
 	if have compton; then
 		compton &
 
