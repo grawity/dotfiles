@@ -12,7 +12,14 @@ fi
 
 # Set up some basic things
 
-xsetroot -solid '#333333' -cursor_name 'left_ptr'
+bgcolor='#333333'
+bgimage=~/'lib/dotfiles/gui/noise.png'
+
+xsetroot -solid "$bgcolor" -cursor_name 'left_ptr'
+
+if have hsetroot; then
+	hsetroot -solid "$bgcolor" -tile "$bgimage"
+fi
 
 # Load profiles and resources
 

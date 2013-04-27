@@ -1,7 +1,5 @@
 #!sh
 
-# System environment
-
 xhost +"SI:localuser:$USER" &
 
 if have keyctl; then
@@ -19,31 +17,6 @@ if have keyctl; then
 	keyctl add user 'env:KRB5CCNAME' "$KRB5CCNAME" @u > /dev/null
 fi
 
-# Basic desktop environment
-
-if [ ! "$DESKTOP_SESSION" ]; then
-	bgcolor='#333333'
-	bgimage='/usr/share/gnome-shell/theme/noise-texture.png'
-
-	if have hsetroot; then
-		if [ -e "$bgimage" ]; then
-			hsetroot -solid "$bgcolor" -tile "$bgimage"
-		else
-			hsetroot -solid "$bgcolor"
-		fi
-	else
-		xsetroot -solid "$bgcolor"
-	fi
-
-	if have compton; then
-		compton &
-
-		if [ -x /usr/lib/notify-osd/notify-osd ]; then
-			/usr/lib/notify-osd/notify-osd &
-		fi
-	fi
-fi
-
 if have auca-seed; then
 	auca-seed &
 fi
@@ -53,6 +26,14 @@ if [ -f ~/.config/synclient.conf ]; then
 fi
 
 if [ ! "$DESKTOP_SESSION" ]; then
+	if have compton; then
+		compton &
+
+		if [ -x /usr/lib/notify-osd/notify-osd ]; then
+			/usr/lib/notify-osd/notify-osd &
+		fi
+	fi
+
 	gnome-screensaver &
 
 	xbindkeys -f ~/.config/xbindkeys/xbindkeysrc &
