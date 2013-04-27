@@ -23,7 +23,7 @@ fi
 
 if [ ! "$DESKTOP_SESSION" ]; then
 	bgcolor='#333333'
-	bgimage='/usr/share/gnome-shell/theme/noise-texture.png'
+	bgimage=~/lib/dotfiles/gui/noise.png
 
 	if have hsetroot; then
 		if [ -e "$bgimage" ]; then
