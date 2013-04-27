@@ -1,5 +1,7 @@
 #!sh
 
+# System environment
+
 xhost +"SI:localuser:$USER" &
 
 if have keyctl; then
@@ -16,6 +18,8 @@ if have keyctl; then
 	# set up some pointers to environment (for use by cron)
 	keyctl add user 'env:KRB5CCNAME' "$KRB5CCNAME" @u > /dev/null
 fi
+
+# Basic desktop environment
 
 if [ ! "$DESKTOP_SESSION" ]; then
 	bgcolor='#333333'
@@ -38,7 +42,6 @@ if [ ! "$DESKTOP_SESSION" ]; then
 			/usr/lib/notify-osd/notify-osd &
 		fi
 	fi
-
 fi
 
 if have auca-seed; then
@@ -49,8 +52,22 @@ if [ -f ~/.config/synclient.conf ]; then
 	synclient `grep -v "^#" ~/.config/synclient.conf` &
 fi
 
+if [ ! "$DESKTOP_SESSION" ]; then
+	gnome-screensaver &
+
+	xbindkeys -f ~/.config/xbindkeys/xbindkeysrc &
+
+	gnome-terminal &
+
+	{ inotifywait -r -m -q -e close_write ~/.themes/*/openbox-3/themerc \
+	  | while read event; do
+		openbox --reconfigure
+	  done; } &
+fi
+
 if [ $HOSTNAME = rain ]; then
 	gnome-mpris-inhibit mpd --flags=suspend &
+
 	mpris mpd notify-idle &
 fi
 
