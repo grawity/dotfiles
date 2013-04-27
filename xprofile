@@ -2,6 +2,21 @@
 
 xhost +"SI:localuser:$USER" &
 
+if have keyctl; then
+	# set up session keyring (pam_keyinit does not work with GDM due to
+	# thread issues, fixed in Linux commit 3a50597de)
+	if [ "`keyctl rdescribe @s`" = "`keyctl rdescribe @us`" ]; then
+		keyctl show -x
+		echo "Creating new session keyring"
+		if keyctl new_session > /dev/null; then
+			keyctl link @u @s
+			keyctl show -x
+		fi
+	fi
+	# set up some pointers to environment (for use by cron)
+	keyctl add user 'env:KRB5CCNAME' "$KRB5CCNAME" @u > /dev/null
+fi
+
 if [ ! "$DESKTOP_SESSION" ]; then
 	bgcolor='#333333'
 	bgimage='/usr/share/gnome-shell/theme/noise-texture.png'
@@ -23,21 +38,7 @@ if [ ! "$DESKTOP_SESSION" ]; then
 			/usr/lib/notify-osd/notify-osd &
 		fi
 	fi
-fi
 
-if have keyctl; then
-	# set up session keyring (pam_keyinit does not work with GDM due to
-	# thread issues, fixed in Linux commit 3a50597de)
-	if [ "`keyctl rdescribe @s`" = "`keyctl rdescribe @us`" ]; then
-		keyctl show -x
-		echo "Creating new session keyring"
-		if keyctl new_session > /dev/null; then
-			keyctl link @u @s
-			keyctl show -x
-		fi
-	fi
-	# set up some pointers to environment (for use by cron)
-	keyctl add user 'env:KRB5CCNAME' "$KRB5CCNAME" @u > /dev/null
 fi
 
 if have auca-seed; then
