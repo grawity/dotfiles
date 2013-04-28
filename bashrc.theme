@@ -52,7 +52,10 @@ fi
 
 # Some domain-based themes
 
-case ${FQDN:=$(fqdn)} in
+: ${FQDN:=$(fqdn)}
+: ${FQDN:=$HOSTNAME}
+
+case $FQDN in
     *.nullroute.eu.org|*.cluenet.org|*.nathan7.eu)
 	;;
 
