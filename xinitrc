@@ -34,6 +34,7 @@ case $1 in
 	gnome-session)		DESKTOP_SESSION=gnome;;
 	enlightenment_start)	DESKTOP_SESSION=enlightenment17;;
 	startkde)		DESKTOP_SESSION=kde-plasma;;
+	systemd)		DESKTOP_SESSION=systemd;;
 	xfce)			DESKTOP_SESSION=xfce;;
 	*)			unset DESKTOP_SESSION;;
 esac
@@ -53,7 +54,9 @@ esac
 
 set -a
 
-if [ "$1" ]; then
+if [ "$1" = "systemd" ]; then
+	exec /usr/lib/systemd/systemd --user --unit=x11.target
+elif [ "$1" ]; then
 	exec "$@"
 else
 	eval $(dbus-launch --sh-syntax --exit-with-session)
