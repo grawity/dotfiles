@@ -86,6 +86,8 @@
 [grep]
 	lineNumber = true
 	extendedRegexp = true
+[init]
+	templateDir = ~/.config/git/template
 [merge]
 	defaultToUpstream = true
 [push]
