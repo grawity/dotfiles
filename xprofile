@@ -36,6 +36,8 @@ if [ ! "$DESKTOP_SESSION" ]; then
 
 	gnome-screensaver &
 
+	systemd-lock-handler gnome-screensaver-command --lock &
+
 	xbindkeys -f ~/.config/xbindkeys/xbindkeysrc &
 
 	gnome-terminal &
