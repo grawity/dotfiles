@@ -20,6 +20,10 @@ if have keyctl; then
 	keyctl add user 'env:KRB5CCNAME' "$KRB5CCNAME" @u > /dev/null
 fi
 
+if [ "$XAUTHORITY" ] && [ "$XAUTHORITY" != ~/.Xauthority ]; then
+	cat ~/.Xauthority >> "$XAUTHORITY"
+fi
+
 if have auca-seed; then
 	auca-seed &
 fi
