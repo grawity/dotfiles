@@ -21,20 +21,7 @@ if have hsetroot; then
 	hsetroot -solid "$bgcolor" -tile "$bgimage"
 fi
 
-# Load profiles and resources
-
-[ -f /etc/profile ]	&& . /etc/profile
-[ -f ~/.profile ]	&& . ~/.profile
-[ -f /etc/xprofile ]	&& . /etc/xprofile
-[ -f ~/.xprofile ]	&& . ~/.xprofile
-
-[ -f ~/.Xresources ]	&& xrdb -merge ~/.Xresources
-[ -f ~/.Xkbmap ]	&& setxkbmap `cat ~/.Xkbmap`
-[ -f ~/.Xmodmap ]	&& xmodmap ~/.Xmodmap
-
-# Set up a session
-
-set -a
+# Set command-line, DESKTOP_SESSION for xprofile
 
 case $1 in
 	gnome)	set -- gnome-session;;
@@ -50,6 +37,21 @@ case $1 in
 	xfce)			DESKTOP_SESSION=xfce;;
 	*)			unset DESKTOP_SESSION;;
 esac
+
+# Load profiles and resources
+
+[ -f /etc/profile ]	&& . /etc/profile
+[ -f ~/.profile ]	&& . ~/.profile
+[ -f /etc/xprofile ]	&& . /etc/xprofile
+[ -f ~/.xprofile ]	&& . ~/.xprofile
+
+[ -f ~/.Xresources ]	&& xrdb -merge ~/.Xresources
+[ -f ~/.Xkbmap ]	&& setxkbmap `cat ~/.Xkbmap`
+[ -f ~/.Xmodmap ]	&& xmodmap ~/.Xmodmap
+
+# Set up a session
+
+set -a
 
 if [ "$1" ]; then
 	exec "$@"
