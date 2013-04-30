@@ -60,11 +60,6 @@ elif [ "$1" ]; then
 	exec "$@"
 else
 	eval $(dbus-launch --sh-syntax --exit-with-session)
-	exec openbox
-
-	#DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/dbus/user_bus_socket"
-	#if [ "$GNOME_KEYRING_CONTROL" ]; then
-	#	eval $(gnome-keyring-daemon --start)
-	#fi
-	#exec systemd --user --unit=graphical.target
+	exec openbox --startup ~/.config/openbox/autostart
+	#exec openbox-session
 fi

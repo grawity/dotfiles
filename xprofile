@@ -26,26 +26,17 @@ if [ -f ~/.config/synclient.conf ]; then
 fi
 
 if [ ! "$DESKTOP_SESSION" ]; then
-	if have compton; then
-		compton &
+	compton &
 
-		if [ -x /usr/lib/notify-osd/notify-osd ]; then
-			/usr/lib/notify-osd/notify-osd &
-		fi
-	fi
+	/usr/lib/notify-osd/notify-osd &
+
+	/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 	gnome-screensaver &
 
 	systemd-lock-handler gnome-screensaver-command --lock &
 
 	xbindkeys -f ~/.config/xbindkeys/xbindkeysrc &
-
-	gnome-terminal &
-
-	{ inotifywait -r -m -q -e close_write ~/.themes/*/openbox-3/themerc \
-	  | while read event; do
-		openbox --reconfigure
-	  done; } &
 fi
 
 if [ $HOSTNAME = rain ]; then

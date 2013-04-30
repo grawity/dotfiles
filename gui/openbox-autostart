@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-spawn -l /usr/lib/notify-osd/notify-osd
-
-spawn -l compton
+{ inotifywait -r -m -q -e close_write ~/.themes/*/openbox-3/themerc \
+  | while read event; do
+	openbox --reconfigure
+  done; } &
 
 gnome-terminal &
