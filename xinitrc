@@ -10,6 +10,10 @@ if [ ! "$SSH_AUTH_SOCK" ]; then
 	exec ssh-agent ~/.xinitrc "$@" || exit
 fi
 
+if [ ! "$DBUS_SESSION_BUS_ADDRESS" ]; then
+	exec dbus-launch --exit-with-session ~/.xinitrc "$@" || exit
+fi
+
 # Set up some basic things
 
 bgcolor='#333333'
