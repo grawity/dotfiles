@@ -97,9 +97,10 @@ link vim
 test "$DISPLAY" && {
 	have gvim &&
 		link gvimrc
-	have fc-cache && {
+	have fc-cache &&
 		link gui/fonts.conf.xml ~/.config/fontconfig/fonts.conf
-	}
+	have openbox &&
+		link gui/openbox-autostart ~/.config/openbox/autostart
 }
 
 exit 0

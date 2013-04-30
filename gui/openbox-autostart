@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+spawn -l /usr/lib/notify-osd/notify-osd
+
+spawn -l compton
+
+gnome-terminal &
