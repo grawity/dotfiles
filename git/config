@@ -152,27 +152,17 @@
 	insteadOf = freedesktop:
 	insteadOf = fdo:
 
-[url "git://gist.github.com/"]
-	insteadOf = https://gist.github.com/
 [url "git@gist.github.com:"]
 	pushInsteadOf = git://gist.github.com/
-	pushInsteadOf = https://gist.github.com/
 
 [url "git://github.com/"]
 	insteadOf = gh:
 [url "git@github.com:"]
 	pushInsteadOf = git://github.com/
 	pushInsteadOf = gh:
-	pushInsteadOf = https://github.com/
 
 [url "git://git.gnome.org/"]
 	insteadOf = gnome:
-
-[url "git://git.sv.gnu.org/"]
-	insteadOf = gnu:
-
-[url "git://git.kernel.org/pub/scm/linux/kernel/git/"]
-	insteadOf = linux:
 
 [include]
 	path = ~/.gitconfig-local
