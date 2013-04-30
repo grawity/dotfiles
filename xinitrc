@@ -59,7 +59,6 @@ if [ "$1" = "systemd" ]; then
 elif [ "$1" ]; then
 	exec "$@"
 else
-	eval $(dbus-launch --sh-syntax --exit-with-session)
 	exec openbox --startup ~/.config/openbox/autostart
 	#exec openbox-session
 fi
