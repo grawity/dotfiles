@@ -35,6 +35,9 @@ rm() {
 		.unison.*)		false;;
 		# include everything else in $HOME
 		~/*)			true;;
+		# include removable drives
+		/media/*)		true;;
+		/run/media/*)		true;;
 		# exclude everything else elsewhere
 		*)			false;;
 		esac; then
