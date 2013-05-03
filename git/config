@@ -164,5 +164,8 @@
 [url "git://git.gnome.org/"]
 	insteadOf = gnome:
 
+[url "https://kernel.googlesource.com/"]
+	insteadOf = kernel.org::
+
 [include]
 	path = ~/.gitconfig-local
