@@ -66,10 +66,10 @@
 	tag = auto dense
 [credential]
 	helper = cache --socket $XDG_RUNTIME_DIR/git-credential-cache.socket
-	#helper = lib gnomekeyring
+	helper = lib gnomekeyring
 	#helper = lib windows
 	#helper = netrc
-	#helper = readonly store --file ~/.auth/git-credential-store
+	helper = readonly store --file ~/.auth/git-credential-store
 	useHttpPath = false
 [diff]
 	renames = copies
