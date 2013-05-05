@@ -18,6 +18,7 @@ endif
 " Syntax highlighting
 
 let perl_no_extended_vars=1
+let python_no_builtin_highlight=1
 
 if has("syntax")
 	syntax on
