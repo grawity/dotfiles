@@ -43,11 +43,9 @@ XTerm*utf8Title:		true
 !XTerm*vt100Graphics:		false
 
 XTerm*vt100*translations:	#override			\n\
-	Shift Ctrl <Key> C:	select-end(CLIPBOARD)		\n\
-	Shift Ctrl <Key> V:	insert-selection(CLIPBOARD)	\n\
-	Shift Ctrl <Key> N:	spawn-new-terminal()		\n
-
-!	Shift <Key> Delete:	insert-selection(SELECT)	\n\
+	Shift Ctrl <KeyPress>C:	copy-selection(CLIPBOARD)	\n\
+	Shift Ctrl <KeyPress>V:	insert-selection(CLIPBOARD)	\n\
+	Shift Ctrl <Key>N:	spawn-new-terminal()		\n
 
 ! appearance
 XTerm*vt100.geometry:	100x35
