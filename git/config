@@ -49,6 +49,8 @@
 	unexport = !rm -v $(git rev-parse --git-dir)/git-daemon-export-ok
 	re = rebase
 	rec = rebase --continue
+	refs = for-each-ref
+	tags = for-each-ref --format=\"%(*objecttype)%09%(refname)\" \"refs/tags/*\"
 [color]
 	ui = auto
 	branch = auto
