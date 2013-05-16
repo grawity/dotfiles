@@ -91,10 +91,17 @@ esac
 # libdefaults
 
 GTK_IM_MODULE="xim"
+# (TODO: rename to gtkrc-2.0)
 GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
 NCURSES_NO_UTF8_ACS="1"
+# (TODO: is QT_IM_MODULE actually needed?)
 QT_IM_MODULE="xim"
+# (TODO: remove ~/.X[Cc]ompose if this works)
+XCOMPOSEFILE="$HOME/lib/dotfiles/XCompose"
+# (TODO: try out)
+#ICEAUTHORITY=
+#LDAPCONF=
 
 # appdefaults
 

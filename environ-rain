@@ -21,9 +21,16 @@ VDPAU_DRIVER="r600"
 # appconfig
 
 CSEARCHINDEX="$XDG_CACHE_HOME/codesearch/csearchindex"
+# (TODO: move to data home)
 GIMP2_DIRECTORY="$XDG_CONFIG_HOME/gimp"
+# (TODO: move to data home)
 OPERA_PERSONALDIR="$XDG_CONFIG_HOME/opera"
 WMII_CONFPATH="$XDG_CONFIG_HOME/wmii"
+# (TODO: try these via simukis)
+#CABAL_CONFIG="$XDG_CONFIG_HOME/cabal/config"
+#MAILCAP="$XDG_CONFIG_HOME/mailcap" # for elinks, w3m
+#MAILCAPS="$MAILCAP" # for mutt
+#WINEPREFIX=
 
 # appdefaults
 
