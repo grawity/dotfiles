@@ -6,6 +6,7 @@
 	# never use an askpass even if $SSH_ASKPASS is set
 	# (uses "password" entry even for usernames, confusing)
 	askpass = 
+	logAllRefUpdates = true
 [user]
 	name = Mantas Mikulėnas
 	email = grawity@gmail.com
