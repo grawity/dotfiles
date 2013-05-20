@@ -53,6 +53,8 @@
 	rec = rebase --continue
 	refs = for-each-ref
 	tags = for-each-ref --format=\"%(*objecttype)%09%(refname)\" \"refs/tags/*\"
+	wshow = show --word-diff
+	wdiff = diff --word-diff
 [color]
 	ui = auto
 	branch = auto
