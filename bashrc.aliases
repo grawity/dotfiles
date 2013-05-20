@@ -169,6 +169,10 @@ unset lsopt
 
 ## misc functions
 
+if have xdg-open; then
+	open() { run xdg-open "$@"; }
+fi
+
 abs() {
 	local pkg=$1
 	if [[ $pkg != */* ]]; then
