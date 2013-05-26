@@ -9,10 +9,6 @@ augroup filetypedetect
 
 	au BufNewFile,BufRead ~/.local/share/applications/*	setf desktop
 
-	" systemd
-	au BufNewFile,BufRead *.automount,*.mount,*.service,*.socket,*.target
-	\ setf desktop
-
 	au BufNewFile,BufRead /etc/systemd/system/*		setf desktop
 	au BufNewFile,BufRead /run/systemd/system/*		setf desktop
 	au BufNewFile,BufRead /lib/systemd/system/*		setf desktop
