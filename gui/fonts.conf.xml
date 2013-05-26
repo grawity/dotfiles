@@ -34,7 +34,44 @@
         <prefer> <family>Tahoma</family> </prefer>
     </alias>
 
-    <!-- For freetype without subpixel hinting, fix too bold MS Vista fonts -->
+    <!-- Fix hinting for Microsoft Vista fonts (fixes overly bold text)
+         Not needed with 2.4.11 + subpixel hinting -->
+
+    <match target="font">
+        <test name="family"> <string>Calibri</string> </test>
+        <edit name="autohint"> <bool>true</bool> </edit>
+    </match>
+
+    <match target="font">
+        <test name="family"> <string>Cambria</string> </test>
+        <edit name="autohint"> <bool>true</bool> </edit>
+    </match>
+
+    <match target="font">
+        <test name="family"> <string>Candara</string> </test>
+        <edit name="autohint"> <bool>true</bool> </edit>
+    </match>
+
+    <match target="font">
+        <test name="family"> <string>Consolas</string> </test>
+        <edit name="autohint"> <bool>true</bool> </edit>
+    </match>
+
+    <match target="font">
+        <test name="family"> <string>Constantia</string> </test>
+        <edit name="autohint"> <bool>true</bool> </edit>
+    </match>
+
+    <match target="font">
+        <test name="family"> <string>Corbel</string> </test>
+        <edit name="autohint"> <bool>true</bool> </edit>
+    </match>
+
+    <match target="font">
+        <!-- fixes 'M', '4' being too bold -->
+        <test name="family"> <string>Trebuchet MS</string> </test>
+        <edit name="hintstyle"> <const>hintnone</const> </edit>
+    </match>
 
     <!-- Fix hinting for some other fonts -->
 
