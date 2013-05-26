@@ -26,8 +26,8 @@ endif
 
 " Color scheme
 
-"et g:lucius_style="light"
-let g:lucius_style="dark"
+let g:lucius_style="light"
+"et g:lucius_style="dark"
 "et g:molokai_original=1
 let g:Powerline_symbols="fancy"
 let g:solarized_contrast="high"
