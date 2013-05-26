@@ -376,8 +376,13 @@ if have systemctl; then
 	alias enable='sudo systemctl enable'
 	alias disable='sudo systemctl disable'
 	alias status='systemctl status -a'
+	alias list='systemctl list-units -t path,service,socket --no-legend'
 	alias userctl='systemctl --user'
-	alias u='systemctl --user'
+	alias u='userctl'
+	ustart()   { userctl start "$@"; userctl status -a "$@"; }
+	ustop()    { userctl stop "$@"; userctl status -a "$@"; }
+	urestart() { userctl restart "$@"; userctl status -a "$@"; }
+	alias ulist='userctl list-units -t path,service,socket --no-legend'
 	alias lcstatus='loginctl session-status $XDG_SESSION_ID'
 	alias tsd='tree /etc/systemd/system'
 	cgls() { SYSTEMD_PAGER=cat systemd-cgls "$@"; }
