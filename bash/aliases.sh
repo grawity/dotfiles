@@ -1,4 +1,3 @@
-#!bash
 # bashrc -- aliases and functions
 
 unalias -a
@@ -91,10 +90,10 @@ tubemusic() { youtube-dl --title --extract-audio --audio-format mp3 \
 up() { local p= i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
 alias watch='watch '
 vercmp() {
-	case `command vercmp "$@"` in
+	case $(command vercmp "$@") in
 	-1)  echo "$2 is newer than $1";;
-	0)   echo "$1 and $2 are equal";;
-	1)   echo "$1 is newer than $2";;
+	 0)  echo "$1 and $2 are equal";;
+	 1)  echo "$1 is newer than $2";;
 	esac
 }
 vimpaste() { vim <(getpaste "$1"); }

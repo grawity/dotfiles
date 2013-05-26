@@ -1,9 +1,11 @@
-#!/usr/bin/env bash
+# bashrc -- prompt appearance (color variables)
 
-# Prompt layout as $itemvar[colorvar]
+# Prompt layout:
 #
-#   $pfx $name $sfx[pfx] $[pwd,cwd] $[vcs]
-#   $prompt
+#   {item_name}{reset_pwd}{item_pwd}{reset_vcs}{item_vcs}
+#   {item_prompt}
+#
+#   item_name, item_pwd, and item_vcs are surrounded by *_pfx and *_sfx
 
 unset ${!fmt_*} ${!item_*} ${!reset_*} fullpwd
 

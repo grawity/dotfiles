@@ -1,4 +1,3 @@
-#!bash
 # bashrc -- shell prompt, window title, command exit status in prompt
 # (note: depends on $havecolor being set, see main bashrc)
 
