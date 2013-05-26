@@ -14,9 +14,11 @@ color =
 convert =
 #hggit =
 hgk =
+#keyring =
 mq =
 pager =
 purge =
+rebase =
 
 [web]
 cacerts = /etc/ssl/certs/ca-certificates.crt
