@@ -51,9 +51,9 @@ HISTCONTROL=ignoreboth
 
 complete -A directory cd
 
-. ~/lib/dotfiles/bash/prompt
+. ~/lib/dotfiles/bash/prompt.sh
 
-. ~/lib/dotfiles/bash/aliases
+. ~/lib/dotfiles/bash/aliases.sh
 
 if have pklist; then
 	. ~/code/kerberos/kc.sh
