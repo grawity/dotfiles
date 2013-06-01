@@ -95,7 +95,7 @@ _awesome_prompt() {
 	if [[ $fullpwd == 'y' ]]; then
 		wd=$PWD
 	else
-		wd=${PWD/#$HOME/\~}
+		wd=${PWD/#${HOME%/}/\~}
 	fi
 
 	if [[ $wd == '~' ]]; then
