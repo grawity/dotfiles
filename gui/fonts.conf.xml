@@ -24,6 +24,12 @@
         <prefer> <family>Times New Roman</family> </prefer>
     </alias>
 
+    <alias>
+        <!-- fix Latin-only font issue in www.laukineszasys.lt -->
+        <family>Gentium Book Basic</family>
+        <prefer> <family>Times New Roman</family> </prefer>
+    </alias>
+
     <alias binding="same">
         <family>MS Sans Serif</family>
         <prefer> <family>Tahoma</family> </prefer>
