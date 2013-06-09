@@ -54,6 +54,8 @@ alias hex='xxd -p'
 alias unhex='xxd -p -r'
 alias hup='pkill -HUP -x'
 alias init='telinit' # for systemd
+_ixrun() { (echo "\$ $1"; eval "$1") |& ix; }
+alias ixrun='_ixrun "$(_thiscommand ixrun)" #'
 alias ll='ls -l'
 alias logoff='logout'
 if [[ $DESKTOP_SESSION ]]; then
@@ -85,7 +87,7 @@ alias sudo='sudo ' # for alias expansion in sudo args
 alias takeown='sudo chown "${UID}:${GROUPS[0]}"'
 _thiscommand() { history 1 | sed "s/^\s[0-9]\+\s\+$1\s\+//"; }
 alias tidiff='infocmp -Ld'
-alias 'todo:'='todo "$(_thiscommand todo:)"; #'
+alias 'todo:'='todo "$(_thiscommand todo:)" #'
 alias tracert='traceroute'
 alias treedu='tree --du -h'
 tubemusic() { youtube-dl --title --extract-audio --audio-format mp3 \
