@@ -65,6 +65,7 @@ alias lpu='sudo netstat -lpu --numeric-hosts'
 alias lsd='ls -d .*'
 alias md='mkdir'
 mir() { wget -m -np --reject-regex='.*\?C=.;O=.$' "$@"; }
+alias mutagen='mid3v2'
 alias nmap='nmap --reason'
 alias nosr='pkgfile'
 nul() { cat "$@" | tr '\0' '\n'; }
@@ -82,7 +83,9 @@ splitext() { split -dC "${2-32K}" "$1" \
 alias srs='rsync -avHAX'
 alias sudo='sudo ' # for alias expansion in sudo args
 alias takeown='sudo chown "${UID}:${GROUPS[0]}"'
+_thiscommand() { history 1 | sed "s/^\s[0-9]\+\s\+$1\s\+//"; }
 alias tidiff='infocmp -Ld'
+alias 'todo:'='todo "$(_thiscommand todo:)"; #'
 alias tracert='traceroute'
 alias treedu='tree --du -h'
 tubemusic() { youtube-dl --title --extract-audio --audio-format mp3 \
