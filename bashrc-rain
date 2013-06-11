@@ -55,8 +55,9 @@ rm() {
 }
 
 rpw() {
-	tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}" |
-	tee /dev/stderr | tr -d '\n' | gclip
+	local pw=$(tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}")
+	echo "$pw"
+	echo -n "$pw" | gclip
 }
 
 sm() { synclient -m 100; }
