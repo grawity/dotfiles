@@ -174,7 +174,7 @@ set index_format="%3C %Z %-18.18F│%s %* %?H?{%H} ?%?M? ▶%M ?│ %{%b %d} "
 ### keybindings
 bind generic,pager <Backspace> exit
 bind index <Backspace> quit
-bind pager <Delete> delete-message
+bind index,pager <Delete> delete-message
 bind generic,pager ,w what-key
 bind pager <PageUp> half-up
 bind pager <PageDown> half-down
