@@ -17,7 +17,16 @@ if have keyctl; then
 		keyctl show -x
 	fi
 	# set up some pointers to environment (for use by cron)
-	keyctl add user 'env:KRB5CCNAME' "$KRB5CCNAME" @u > /dev/null
+	if have globalenv; then
+		globalenv -s \
+			+DBUS_SESSION_BUS_ADDRESS	\
+			+DISPLAY			\
+			+KRB5CCNAME			\
+			+SSH_AUTH_SOCK			\
+			+XAUTHORITY			\
+			+XDG_RUNTIME_DIR		\
+			;
+	fi
 fi
 
 if have auca-seed; then
