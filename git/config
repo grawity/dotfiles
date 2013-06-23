@@ -34,6 +34,7 @@
 	lg = log --oneline --decorate
 	ls = ls-files
 	mend = commit --amend --reuse-message HEAD
+	mirror = clone --mirror
 	mrproper = !git reset --hard HEAD && git clean -fdx
 	out = log --oneline --decorate @{upstream}..
 	pick = cherry-pick
