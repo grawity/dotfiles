@@ -35,11 +35,12 @@ export SUDO_PROMPT=$(printf 'sudo: Password for %%p@\e[30;43m%%h\e[m: ')
 
 [[ $- != *i* ]] && return
 
-shopt -os physical		# resolve symlinks when 'cd'ing
+set -o physical			# resolve symlinks when 'cd'ing
 shopt -s checkjobs 2> /dev/null	# print job status on exit
 shopt -s checkwinsize		# update $ROWS/$COLUMNS after command
 shopt -s no_empty_cmd_completion
 
+set +o histexpand		# do not use !foo history expansions
 shopt -s cmdhist		# store multi-line commands as single history entry
 shopt -s histappend		# append to $HISTFILE on exit
 shopt -s histreedit		# allow re-editing failed history subst
