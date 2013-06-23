@@ -38,6 +38,9 @@
 	mrproper = !git reset --hard HEAD && git clean -fdx
 	out = log --oneline --decorate @{upstream}..
 	pick = cherry-pick
+	re = rebase
+	rec = rebase --continue
+	refs = for-each-ref
 	remaster = rebase -i master
 	repack-to-alternate = repack -dal
 	repack-to-local = repack -da
@@ -46,16 +49,13 @@
 	staged = diff --cached
 	stat = diff --stat
 	statg = diff --cached --stat
+	tags = for-each-ref --format=\"%(*objecttype)%09%(refname)\" \"refs/tags/*\"
 	tg = log --oneline --decorate --graph
 	tip = !git --no-pager log -1 --decorate --abbrev-commit --date=relative
 	undo = reset --soft HEAD^
 	unexport = !rm -v $(git rev-parse --git-dir)/git-daemon-export-ok
-	re = rebase
-	rec = rebase --continue
-	refs = for-each-ref
-	tags = for-each-ref --format=\"%(*objecttype)%09%(refname)\" \"refs/tags/*\"
-	wshow = show --word-diff
 	wdiff = diff --word-diff
+	wshow = show --word-diff
 [color]
 	ui = auto
 	branch = auto
