@@ -191,9 +191,10 @@ abs() {
 }
 
 escape_addr() {
-	[[ $1 == *:* ]] &&
-		set -- "[$1]"
-	echo "$1"
+	case $1 in
+	*:*) echo "[$1]";;
+	*)   echo "$1";;
+	esac
 }
 
 catlog() {
