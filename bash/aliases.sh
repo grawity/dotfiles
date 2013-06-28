@@ -149,7 +149,7 @@ case $OSTYPE in
 		alias w='PROCPS_USERLEN=16 w -u -s -h'
 		;;
 	freebsd*)
-		lsopt+=" -G"
+		lsopt="$lsopt -G"
 		alias df='df -h'
 		alias w='w -h'
 		;;
