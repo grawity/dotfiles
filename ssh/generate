@@ -55,6 +55,7 @@ Version() {
 # generator
 
 generate() {
+	echo "# GENERATED FILE, DO NOT BOTHER EDITING"
 	cat "${input[@]}" 2>/dev/null | filter_file match_eval
 }
 
