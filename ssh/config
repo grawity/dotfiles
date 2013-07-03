@@ -62,6 +62,8 @@ Host panther/console
 
 Host radian
 	Hostname radian.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host rain rain.local
@@ -78,10 +80,14 @@ Host snow snow.home snow.local
 
 Host tide
 	Hostname tide.nullroute.eu.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host virgule
 	Hostname virgule.cluenet.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 # *.cluenet.org
