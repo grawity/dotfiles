@@ -28,6 +28,10 @@ fi
 
 # paths/locations
 
+# initially $PREFIX was just for my personal use, but apparently it is used by
+# npm (which defaults to /usr) also other things that I forget; I think
+# Module::Build too
+
 PREFIX="$HOME/.local"
 
 GOPATH="$PREFIX/go"
