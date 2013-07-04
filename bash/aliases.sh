@@ -90,6 +90,7 @@ alias tidiff='infocmp -Ld'
 alias 'todo:'='todo "$(_thiscommand todo:)" #'
 alias tracert='traceroute'
 alias treedu='tree --du -h'
+trs() { printf '%s' "$@"; printf '\n'; }
 tubemusic() { youtube-dl --title --extract-audio --audio-format mp3 \
 	--keep-video "$@"; }
 up() { local p= i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
