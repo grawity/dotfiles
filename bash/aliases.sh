@@ -139,7 +139,7 @@ if (( UID == 0 )); then
 	lsopt="$lsopt -a"
 fi
 case $OSTYPE in
-	linux-gnu|cygwin)
+	linux-gnu*|cygwin)
 		lsopt="$lsopt --group-directories-first"
 		if (( havecolor )); then
 			lsopt="$lsopt -v --color=auto"
