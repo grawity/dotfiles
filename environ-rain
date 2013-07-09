@@ -27,7 +27,7 @@ WMII_CONFPATH="$XDG_CONFIG_HOME/wmii"
 # (TODO: try these via simukis)
 #CABAL_CONFIG="$XDG_CONFIG_HOME/cabal/config"
 #MAILCAP="$XDG_CONFIG_HOME/mailcap" # for elinks, w3m
-#MAILCAPS="$MAILCAP" # for mutt
+#MAILCAPS="$MAILCAP" # for mutt, alpine
 #WINEPREFIX=
 
 # appdefaults
