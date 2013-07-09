@@ -21,10 +21,8 @@ VDPAU_DRIVER="r600"
 # appconfig
 
 CSEARCHINDEX="$XDG_CACHE_HOME/codesearch/csearchindex"
-# (TODO: move to data home)
-GIMP2_DIRECTORY="$XDG_CONFIG_HOME/gimp"
-# (TODO: move to data home)
-OPERA_PERSONALDIR="$XDG_CONFIG_HOME/opera"
+GIMP2_DIRECTORY="$XDG_DATA_HOME/gimp"
+OPERA_PERSONALDIR="$XDG_DATA_HOME/opera"
 WMII_CONFPATH="$XDG_CONFIG_HOME/wmii"
 # (TODO: try these via simukis)
 #CABAL_CONFIG="$XDG_CONFIG_HOME/cabal/config"
