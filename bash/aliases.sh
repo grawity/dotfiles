@@ -54,7 +54,7 @@ alias hex='xxd -p'
 alias unhex='xxd -p -r'
 alias hup='pkill -HUP -x'
 alias init='telinit' # for systemd
-_ixrun() { (echo "\$ $1"; eval "$1") |& ix; }
+_ixrun() { (echo "\$ $1"; eval "$1") 2>&1 | ix; }
 alias ixrun='_ixrun "$(_thiscommand ixrun)" #'
 alias ll='ls -l'
 alias logoff='logout'
