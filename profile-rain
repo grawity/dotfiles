@@ -22,8 +22,8 @@ fi
   spawn -L mpdscribble
 } 2>/dev/null
 
-if [ "$(tty)" = "/dev/tty1" ]; then
-	exec sx
-fi
+#if [ "$(tty)" = "/dev/tty1" ]; then
+#	exec sx
+#fi
 
 acpi
