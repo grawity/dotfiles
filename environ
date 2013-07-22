@@ -100,7 +100,6 @@ _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
 NCURSES_NO_UTF8_ACS="1"
 # (TODO: is QT_IM_MODULE actually needed?)
 QT_IM_MODULE="xim"
-# (TODO: remove ~/.X[Cc]ompose if this works)
 XCOMPOSEFILE="$HOME/lib/dotfiles/XCompose"
 # (TODO: try out)
 #ICEAUTHORITY=
