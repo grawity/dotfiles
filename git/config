@@ -30,11 +30,14 @@
 	export = !touch $(git rev-parse --git-dir)/git-daemon-export-ok
 	fa = fetch --all
 	follow = log --oneline --follow --stat --summary --
+	# kept around for the lulz
+	fuckit = !git add -A && git commit -m "$(curl -s whatthecommit.com/index.txt)" && git push -f
 	in = log --oneline --decorate ..@{upstream}
 	lg = log --oneline --decorate
 	ls = ls-files
 	mend = commit --amend --reuse-message HEAD
 	mirror = clone --mirror
+	mkobject = hash-object --stdin -w
 	mrproper = !git reset --hard HEAD && git clean -fdx
 	out = log --oneline --decorate @{upstream}..
 	pick = cherry-pick
