@@ -1,0 +1,10 @@
+application/zip;	file-roller %s
+application/zip;	zipinfo -2 /dev/stdin; copiousoutput
+
+image/*;		eog %s
+
+text/html;		epiphany %s; nametemplate=%s.html
+text/html;		w3m -I %{charset} -T %t %s; nametemplate=%s.html; needsterminal
+text/html;		w3m -I %{charset} -T %t -dump %s; nametemplate=%s.html; copiousoutput
+
+text/x-vcard;		show-vcard; copiousoutput
