@@ -3,4 +3,4 @@
 /vim/spell/
 /vim/spell/*.spl
 /vim/view/
-/vim/viminfo
+/vim/viminfo*
