@@ -22,8 +22,14 @@ include "%L"
 
 # quotation marks
 
-<Multi_key> <bracketleft> <apostrophe>	: "「"
-<Multi_key> <bracketright> <apostrophe>	: "」"
+<Multi_key> <bracketleft> <less>	: "〈"	U3008 # LEFT ANGLE BRACKET
+<Multi_key> <bracketright> <greater>	: "〉"	U3009 # RIGHT ANGLE BRACKET
+
+<Multi_key> <bracketleft> <apostrophe>	: "「"	U300C # LEFT CORNER BRACKET
+<Multi_key> <bracketright> <apostrophe>	: "」"	U300D # RIGHT CORNER BRACKET
+
+<Multi_key> <bracketleft> <parenleft>	: "〔"	U3014 # LEFT TORTOISE SHELL BRACKET
+<Multi_key> <bracketright> <parenright>	: "〕"	U3015 # RIGHT TORTOISE SHELL BRACKET
 
 <Multi_key> <bracketleft> <quotedbl>	: "『"
 <Multi_key> <bracketright> <quotedbl>	: "』"
