@@ -121,6 +121,15 @@ GIT_MERGE_AUTOEDIT="no"
 LESS="e M q R F X z -3"
 MAKEFLAGS="-j $(nproc)"
 
+case $(uname)-$(uname -r) in
+NetBSD-6.*)
+	test "$PKG_PATH" || PKG_PATH="ftp://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/$(uname -m)/6.0/All"
+	;;
+OpenBSD-*)
+	test "$PKG_PATH" || PKG_PATH="http://ftp.OpenBSD.org/pub/OpenBSD/$(uname -r)/packages/$(uname -m)/"
+	;;
+esac
+
 # local
 
 FQDN=$(fqdn)
