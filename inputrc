@@ -51,3 +51,7 @@ set revert-all-at-newline on
 "\e7": ""
 "\e8": ""
 "\e9": ""
+
+# "Bracketed paste" markers
+"\e[200~": ""
+"\e[201~": ""
