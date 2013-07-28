@@ -1,0 +1,11 @@
+#!sh
+
+# These variables are not in environ because I don't use the programs,
+# so I'm recording them in a separate file.
+
+GNUSTEP_USER_ROOT="$XDG_CONFIG_HOME/GNUstep"
+ICEWM_PRIVCFG="$XDG_CONFIG_HOME/IceWM"
+
+# Not needed, XDG path is already the default
+
+#LFTP_HOME="$XDG_CONFIG_HOME/lftp"
