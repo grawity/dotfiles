@@ -58,9 +58,7 @@ esac
 
 set -a
 
-if [ "$1" = "systemd" ]; then
-	exec /usr/lib/systemd/systemd --user --unit=x11.target
-elif [ "$1" ]; then
+if [ "$1" ]; then
 	exec "$@"
 else
 	exec openbox --startup ~/.config/openbox/autostart
