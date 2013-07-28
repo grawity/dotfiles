@@ -351,8 +351,8 @@ lspkg() {
 	elif have dpkg;		then dpkg -L "$@"
 	elif have pacman;	then pacman -Qql "$@"
 	elif have rpm;		then rpm -ql "$@"
-	elif have pkg;		then pkg -l "$@"
 	elif have pkg_info;	then pkg_info -Lq "$@"
+	#elif have pkg;		then pkg -l "$@"
 	else echo "no package manager" >&2; return 1
 	fi | sort
 }
