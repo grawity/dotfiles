@@ -18,7 +18,7 @@
 	a = add --all
 	amend = commit --amend
 	br = branch
-	bra = branch-info
+	bra = branch -vv
 	ci = commit
 	ci-m = commit -m
 	cim = commit -m
