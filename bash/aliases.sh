@@ -173,6 +173,8 @@ esac
 alias ls="ls $lsopt"
 unset lsopt
 
+alias who='who -HT'
+
 ## misc functions
 
 if have xdg-open; then
