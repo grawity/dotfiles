@@ -147,7 +147,7 @@ case $OSTYPE in
 		fi
 		alias df='df -Th'
 		alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs'
-		alias w='PROCPS_USERLEN=16 w -u -s -h'
+		alias w='PROCPS_USERLEN=16 w -hsu'
 		;;
 	freebsd*)
 		lsopt="$lsopt -G"
@@ -160,7 +160,7 @@ case $OSTYPE in
 			lsopt="$lsopt -v --color=auto"
 			eval $(dircolors ~/lib/dotfiles/dircolors)
 		fi
-		alias w='w -h'
+		alias w='w -hU'
 		;;
 	netbsd|openbsd*)
 		alias df='df -h'
