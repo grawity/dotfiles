@@ -62,7 +62,11 @@ case $FQDN in
 	;;
 
     *.core|*.rune)
+	item_name_pfx="["
 	item_name=$FQDN
+	item_name_sfx="] $OSTYPE"
+	fmt_name_pfx='|38;5;242'
+	fmt_name='38;5;71'
 	fullpwd=y
 	;;
 
