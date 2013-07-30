@@ -2,7 +2,7 @@
 # enabling compose key: <https://wiki.ubuntu.com/ComposeKey>
 
 # NOTE: custom definitions only work with 'xim'
-# see GTK_IM_MODULE and QT_IM_MODULE in my "environ" file
+# see GTK_IM_MODULE in my "environ" file
 
 # defaults: /usr/share/X11/locale/en_US.UTF-8/Compose
 

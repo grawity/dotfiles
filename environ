@@ -98,8 +98,6 @@ GTK_IM_MODULE="xim"
 GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
 _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
 NCURSES_NO_UTF8_ACS="1"
-# (TODO: is QT_IM_MODULE actually needed?)
-QT_IM_MODULE="xim"
 XCOMPOSEFILE="$HOME/lib/dotfiles/XCompose"
 # (TODO: try out)
 #ICEAUTHORITY=

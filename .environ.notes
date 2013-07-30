@@ -7,5 +7,7 @@ GNUSTEP_USER_ROOT="$XDG_CONFIG_HOME/GNUstep"
 ICEWM_PRIVCFG="$XDG_CONFIG_HOME/IceWM"
 
 # Not needed, XDG path is already the default
-
 #LFTP_HOME="$XDG_CONFIG_HOME/lftp"
+
+# Not needed, 'xim' is already the default
+#QT_IM_MODULE
