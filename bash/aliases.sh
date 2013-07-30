@@ -162,7 +162,7 @@ case $OSTYPE in
 		fi
 		alias w='w -h'
 		;;
-	netbsd)
+	netbsd|openbsd*)
 		alias df='df -h'
 		alias w='w -h'
 		;;
