@@ -66,7 +66,11 @@ case $FQDN in
 	item_name=$FQDN
 	item_name_sfx="] $OSTYPE"
 	fmt_name_pfx='|38;5;242'
-	fmt_name='38;5;71'
+	if (( UID )); then
+		fmt_name='38;5;71'
+	else
+		fmt_name='38;5;231|41'
+	fi
 	fullpwd=y
 	;;
 
