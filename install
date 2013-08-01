@@ -60,7 +60,7 @@ trash() {
 
 set -e
 
-dir=$(dirname "$(readlink -f "$0")")
+dir=$(dirname "$(sym -r "$0")")
 trash=~/Trash
 
 cd "$dir"
