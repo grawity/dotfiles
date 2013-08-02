@@ -85,7 +85,7 @@ case $FQDN in
 			fmt_name='38;5;31'
 		else
 			fmt_name_pfx='38;5;196'
-			fmt_name='48;5;196'
+			fmt_name='|48;5;196'
 		fi
 		fmt_pwd='38;5;76'
 		fmt_vcs='38;5;198'
