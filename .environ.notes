@@ -11,3 +11,6 @@ ICEWM_PRIVCFG="$XDG_CONFIG_HOME/IceWM"
 
 # Not needed, 'xim' is already the default
 #QT_IM_MODULE
+
+# Driver is now autodetected correctly
+#VDPAU_DRIVER="r600"
