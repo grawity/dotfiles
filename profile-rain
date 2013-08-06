@@ -18,10 +18,6 @@ if ! mountpoint -q ~/Private; then
 	fi
 fi
 
-{ spawn -L mpd
-  spawn -L mpdscribble
-} 2>/dev/null
-
 #if [ "$(tty)" = "/dev/tty1" ]; then
 #	exec sx
 #fi
