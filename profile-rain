@@ -18,8 +18,4 @@ if ! mountpoint -q ~/Private; then
 	fi
 fi
 
-#if [ "$(tty)" = "/dev/tty1" ]; then
-#	exec sx
-#fi
-
 acpi
