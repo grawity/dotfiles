@@ -20,22 +20,6 @@ Host abacus
 Host aurimo-seedbox
 	Hostname 176.31.238.190
 
-Host decay
-	Hostname decay.nullroute.eu.org
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
-Host decay/console
-	Hostname mercury.hexxeh.net
-	User console-BniBxn
-
-Host equal
-	Hostname equal.cluenet.org
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
 Host eta
 	Hostname eta.cluenet.org
 	GSSAPIAuthentication yes
@@ -101,13 +85,6 @@ Host *.cluenet.org
 
 Host *.nullroute.eu.org *.home
 	ForwardAgent yes
-
-Host storm
-	Hostname storm.nullroute.eu.org
-
-Host storm/console
-	Hostname 199.231.209.10
-	User console-Q2dsLV
 
 # other domains
 
