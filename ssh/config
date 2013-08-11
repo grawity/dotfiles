@@ -1,13 +1,8 @@
 # ~/.ssh/config: ssh_config(5)
 # vim: ft=sshconfig
 
-## Will be available on 5.7:
-#Host *.*
-#	Hostname %h
-#Host foo, bar
-#	Hostname %h.acme.org
-#Host *
-#	Hostname %h.example.com
+# note that the '#if' directives are not supported by any SSH client directly;
+# instead, they are processed by the ssh/generate script.
 
 # host aliases
 
@@ -94,6 +89,13 @@ Host ofb.net
 	ForwardAgent yes
 
 # global options
+
+#if OpenSSH && Version 5.7 && Host *.cluenet.org
+Host *.*
+	Hostname %h
+Host *
+	Hostname %h.cluenet.org
+#endif
 
 Host *
 	Protocol 2
