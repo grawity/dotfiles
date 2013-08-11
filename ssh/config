@@ -32,10 +32,6 @@ Host hawking
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-Host moose
-	Hostname lotl.mine.nu
-	ForwardAgent yes
-
 Host panther
 	Hostname panther.nathan7.eu
 	ForwardAgent yes
