@@ -36,10 +36,6 @@ Host panther
 	Hostname panther.nathan7.eu
 	ForwardAgent yes
 
-Host panther/console
-	Hostname 188.165.214.40
-	User console-tdnfoj
-
 Host radian
 	Hostname radian.cluenet.org
 	GSSAPIAuthentication yes
