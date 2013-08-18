@@ -9,10 +9,6 @@ HISTFILESIZE=$HISTSIZE
 
 have() { command -v "$@" &>/dev/null; }
 
-pacman-clean() {
-	sudo pacman -Rnsc $(pacman -Qqdt)
-}
-
 alias RM='/bin/rm'
 
 rm() {
@@ -59,8 +55,6 @@ rpw() {
 	echo "$pw"
 	echo -n "$pw" | gclip
 }
-
-sm() { synclient -m 100; }
 
 youtube-dl() {
 	local cmd=()
