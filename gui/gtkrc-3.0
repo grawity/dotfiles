@@ -3,15 +3,7 @@
 # http://developer.gnome.org/gtk3/3.2/GtkSettings.html
 
 [Settings]
-#gtk-theme-name = Adwaita
-#gtk-font-name = Segoe UI 10
-#gtk-application-prefer-dark-theme = true
-#gtk-cursor-theme-name = Adwaita
-#gtk-icon-theme-name = Adwaita
-#gtk-alternative-button-order = true
-#gtk-alternative-sort-arrows = true
-gtk-error-bell = false
-#gtk-entry-select-on-focus = false
-
-# false by default as of 3.10
-gtk-enable-primary-paste = true
+#gtk-theme-name=Adwaita
+#gtk-font-name=Segoe UI 10
+#gtk-icon-theme-name=Adwaita
+gtk-error-bell=false
