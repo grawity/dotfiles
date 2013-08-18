@@ -149,12 +149,12 @@ _awesome_prompt() {
 		"${fmt_name_pfx//|/$csi}"		"$item_name_pfx"	\
 		"${fmt_name//|/$csi}"			"$item_name"		\
 		"${fmt_name_sfx//|/$csi}"		"$item_name_sfx"	\
-		""					"$reset_pwd"		\
+		"${fmt_reset_pwd//|/$csi}"		"$reset_pwd"		\
 		"${fmt_pwd_pfx//|/$csi}"		"$item_pwd_pfx"		\
 		"${fmt_pwd//|/$csi}"			"$item_pwd"		\
 		"${fmt_pwd_tail//|/$csi}"		"$item_pwd_tail"	\
 		"${fmt_pwd_sfx//|/$csi}"		"$item_pwd_sfx"		\
-		""					"$reset_vcs"		\
+		"${fmt_reset_vcs//|/$csi}"		"$reset_vcs"		\
 		"${fmt_vcs_pfx//|/$csi}"		"$item_vcs_pfx"		\
 		"${fmt_vcs//|/$csi}"			"$item_vcs"		\
 		"${fmt_vcs_sfx//|/$csi}"		"$item_vcs_sfx"		\
