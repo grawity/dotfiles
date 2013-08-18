@@ -1,5 +1,0 @@
-! vim: ft=xdefaults:
-
-XTerm*termName:		xterm
-
-Rxvt.letterSpace:	0
