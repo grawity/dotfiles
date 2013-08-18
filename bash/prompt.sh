@@ -197,12 +197,12 @@ _update_title() {
 		local title= t_user= t_display=
 		[[ $USER != 'grawity' ]] &&
 			t_user="$USER@"
-		[[ $DISPLAY && ( $SSH_TTY || $DISPLAY != ':'* ) ]] &&
+		[[ $DISPLAY && ( $DISPLAY != :* || $SSH_TTY ) ]] &&
 			t_display=" ($DISPLAY)"
 		title="${t_user}${HOSTNAME} ${PWD/#$HOME/~}${t_display}"
 	fi
 	settitle "$title"
-	if [[ $DISPLAY && $TERM:$COLORTERM == xterm*:gnome-terminal ]]; then
+	if [[ $DISPLAY && $VTE_VERSION ]]; then
 		printf '\e]7;file://%s%s\a' "$HOSTNAME" "$(urlencode -r -p "$PWD")"
 	fi
 }
