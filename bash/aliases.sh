@@ -46,7 +46,7 @@ gerp() { egrep -r -I -D skip --exclude-dir='.git' --exclude-dir='.svn' \
 	--exclude-dir='.hg' \
 	-H -n --color=always "$@"; }
 alias facl='getfacl -pt'
-alias fdf='findmnt -o target,size,use%,avail,fstype'
+alias fdf='findmnt -o target,size,used,avail,use%,fstype'
 alias gpg-kill-agent='gpg-connect-agent killagent /bye'
 gpgsigs() { gpg --edit-key "$1" check quit; }
 alias hex='xxd -p'
