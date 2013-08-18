@@ -85,6 +85,8 @@ _awesome_prompt() {
 	if [[ $item_vcs ]]; then
 		(( maxwidth -= ${#reset_vcs} + ${#item_vcs_pfx} \
 				+ ${#item_vcs} + ${#item_vcs_sfx} ))
+	else
+		local reset_vcs= item_vcs_pfx= item_vcs_sfx=
 	fi
 
 	## Center: working directory
