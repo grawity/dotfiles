@@ -75,8 +75,8 @@ unmy_hdr *
 unset user_agent
 set edit_headers
 
-set alias_file="~/.muttaliases"
-source "silentcat ~/.muttaliases|"
+set alias_file="~/lib/mutt-aliases"
+source "silentcat ~/lib/mutt-aliases|"
 set reverse_alias
 set query_command="muttquery '%s'"
 
