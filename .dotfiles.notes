@@ -29,7 +29,8 @@ Notes on moving various dotfiles
 ~/.offlineimaprc – command line only
   - the only method is `offlineimap -c <path>`
 
-~/.wgetrc – hardcoded
+~/.wgetrc – environment
+  - $WGETRC overrides the default rc
 
 ~/.Xkbmap – hardcoded
   - hardcoded in /etc/gdm/Xsession (although GNOME uses dconf)
