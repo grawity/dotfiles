@@ -36,6 +36,9 @@ SECONDLIFE_USER_DIR="$XDG_DATA_HOME/secondlife"
 WGETRC="$XDG_CONFIG_HOME/wgetrc"
 #WINEPREFIX=
 
+VIMINIT=":so ~/lib/dotfiles/vimrc"
+GVIMINIT=":so ~/lib/dotfiles/gvimrc"
+
 # appdefaults
 
 ACCDB="/run/media/$USER/grawpqi/Private/accounts.db.txt"

@@ -17,6 +17,9 @@ Notes on moving various dotfiles
 ~/.gtkrc-2.0 – environment
   - $GTK2_RC_FILES can have a list of rc's
 
+~/.gvimrc – environment
+  - $GVIMINIT can have an Ex command that ":source"s an additional rc
+
 ~/.hgrc – partial environment
   - $HGRCPATH can have a list of rc's or *.rc directories, which replaces the
     default search path (ignoring even the system-wide files)
@@ -32,6 +35,9 @@ Notes on moving various dotfiles
 
 ~/.offlineimaprc – command line only
   - the only method is `offlineimap -c <path>`
+
+~/.vimrc – environment
+  - $VIMINIT can have an Ex command that ":source"s an additional rc
 
 ~/.wgetrc – environment
   - $WGETRC overrides the default rc
