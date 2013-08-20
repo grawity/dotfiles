@@ -105,7 +105,7 @@ set hidden			" do not unload abandoned buffers
 " Swap file location – use // to include full path in swapnames
 if has("unix")
 	set backupdir=~/.vim/backup//
-	silent! set undodir=~/.vim/tmp/undo//
+	silent! set undodir=~/.vim/undo//
 	set directory=~/.vim/backup//,/var/tmp//,/tmp//
 endif
 if hostname() == "rain"
