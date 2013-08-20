@@ -96,12 +96,11 @@ esac
 
 GTK_IM_MODULE="xim"
 GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
+#ICEAUTHORITY="$XDG_RUNTIME_DIR/ICEauthority" # TODO
 _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
+LDAPRC="$XDG_CONFIG_HOME/ldaprc"
 NCURSES_NO_UTF8_ACS="1"
 XCOMPOSEFILE="$HOME/lib/dotfiles/XCompose"
-# (TODO: try out)
-#ICEAUTHORITY=
-#LDAPCONF=
 
 # appdefaults
 
