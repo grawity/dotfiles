@@ -106,7 +106,7 @@ set hidden			" do not unload abandoned buffers
 if has("unix")
 	set backupdir=~/.vim/backup//
 	silent! set undodir=~/.vim/undo//
-	set directory=~/.vim/backup//,/var/tmp//,/tmp//
+	set directory=~/.vim/backup//
 endif
 if hostname() == "rain"
 	set nofsync swapsync=
