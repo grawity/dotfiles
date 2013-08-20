@@ -1,0 +1,37 @@
+Notes on moving various dotfiles
+
+~/.esd_auth – pointless
+  - PulseAudio modules accept an auth-cookie= argument
+  - however, ESD itself hardcodes $HOME/.esd_auth
+
+~/.gdbinit – hardcoded
+
+~/.gemrc – environment
+  - hardcoded, but $GEMRC can have a list of /additional/ rc's
+
+~/.gstreamer-0.10/ – partial
+  - the registry can use $GST_REGISTRY (which has to be overridden to its
+    original value for 1.0 with $GST_REGISTRY_1_0)
+  - but presets are not possible to move, so I don't bother at all.
+
+~/.gtkrc-2.0 – environment
+  - $GTK2_RC_FILES can have a list of rc's
+
+~/.ICEauthority – environment
+  - ICEAUTHORITY="$XDG_RUNTIME_DIR/ICE-auhority"
+
+~/.mtoolsrc – environment
+  - $MTOOLSRC can point to an additional rc
+
+~/.netrc – fixed
+  - many apps expect it there
+
+~/.offlineimaprc – command line only
+  - the only method is `offlineimap -c <path>`
+
+~/.wgetrc – hardcoded
+
+~/.Xkbmap – hardcoded
+  - hardcoded in /etc/gdm/Xsession (although GNOME uses dconf)
+
+# vim: ts=4 sw=4 et tw=79
