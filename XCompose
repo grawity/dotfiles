@@ -34,6 +34,9 @@ include "%L"
 <Multi_key> <bracketleft> <quotedbl>	: "『"
 <Multi_key> <bracketright> <quotedbl>	: "』"
 
+<Multi_key> <Multi_key> <bracketleft> <apostrophe>	: "｢" UFF62 # HALF… LEFT C B
+<Multi_key> <Multi_key> <bracketright> <apostrophe>	: "｣" UFF63 # HALF… RIGHT C B
+
 # various glyphs
 
 <Multi_key> <equal> <equal>		: "–" # ndash - - .
