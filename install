@@ -91,7 +91,6 @@ have tmux &&
 	link tmux.conf
 
 rm -f ~/.viminfo
-link vimrc
 link vim
 
 test "$DISPLAY" && {
