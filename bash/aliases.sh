@@ -55,6 +55,10 @@ alias hup='pkill -HUP -x'
 alias init='telinit' # for systemd
 _ixrun() { (echo "\$ $1"; eval "$1") 2>&1 | ix; }
 alias ixrun='_ixrun "$(_thiscommand ixrun)" #'
+alias kssh='ssh \
+	-o PreferredAuthentications=gssapi-keyex,gssapi-with-mic \
+	-o GSSAPIAuthentication=yes \
+	-o GSSAPIDelegateCredentials=yes'
 alias ll='ls -l'
 alias logoff='logout'
 if [[ $DESKTOP_SESSION ]]; then
