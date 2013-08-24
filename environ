@@ -20,12 +20,6 @@ umask 022
 
 set -a
 
-# session info
-
-if [ -z "$DESKTOP_SESSION" ] && [ "$OS" = "Windows_NT" ]; then
-	DESKTOP_SESSION=$OS
-fi
-
 # paths/locations
 
 # initially $PREFIX was just for my personal use, but apparently it is used by
