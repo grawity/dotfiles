@@ -61,6 +61,12 @@ Host virgule
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
+Host wolke
+	Hostname wolke.nullroute.eu.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
 # *.cluenet.org
 
 Host *.cluenet.org
@@ -71,6 +77,8 @@ Host *.cluenet.org
 # *.nullroute.eu.org
 
 Host *.nullroute.eu.org *.home
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 # other domains
