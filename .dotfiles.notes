@@ -1,5 +1,8 @@
 Notes on moving various dotfiles
 
+~/.d-feet/ – XDG
+  - as of 0.1.15, d-feet uses $XDG_CONFIG_HOME/d-feet/
+
 ~/.esd_auth – pointless
   - PulseAudio modules accept an auth-cookie= argument
   - however, ESD itself hardcodes $HOME/.esd_auth
