@@ -51,7 +51,7 @@ setpath PATH \
 	"/usr/local/sbin" 		\
 	"/usr/sbin"			\
 	"/sbin"				\
-	"$HOME/code/bin/fbin"		;
+	"$HOME/code/bin/fallback"	;
 
 setpath PYTHONPATH \
 	"$PREFIX/lib/python"		\
