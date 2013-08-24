@@ -10,11 +10,11 @@ set smtp-use-starttls
 
 account nullroute {
 	set from="grawity@nullroute.eu.org"
-	set folder="imap://grawity@equal.cluenet.org"
+	set folder="imap://grawity@mail.nullroute.eu.org"
 	set record="+Sent"
 	set imap-auth="gssapi"
 	set sendmail="/usr/bin/msmtp"
-	#set smtp="equal.cluenet.org:587"
+	#set smtp="mail.nullroute.eu.org:587"
 	#set smtp-auth="gssapi"
 }
 

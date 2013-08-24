@@ -29,18 +29,11 @@ lists ".*@lists\.freedesktop\.org$"
 
 ### Mail storage
 
-set folder="imap://equal.cluenet.org/"
+set folder="imap://mail.nullroute.eu.org/"
 set spoolfile="+INBOX"
 set postponed="+Drafts"
 set record="+Sent"
-mailboxes \
-	=INBOX \
-	=lists \
-	=lists/arch-dev \
-	=lists/arch-general \
-	=lists/freenet \
-	=lists/systemd \
-	=Spam
+mailboxes =INBOX
 
 set mbox_type="maildir"
 unset confirmappend
