@@ -228,7 +228,7 @@ ldapsetconf() {
 
 cat() {
 	if [[ $1 == *://* ]]; then
-		curl -Ls "$1"
+		curl -LsfS "$1"
 	else
 		command cat "$@"
 	fi
