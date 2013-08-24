@@ -96,16 +96,13 @@ esac
 
 # libdefaults
 
+GTK_IM_MODULE="xim"
+GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
+ICEAUTHORITY="$XDG_RUNTIME_DIR/ICE-authority"
+_JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
 LDAPRC="$XDG_CONFIG_HOME/ldaprc"
 NCURSES_NO_UTF8_ACS="1"
-
-if [ "$DISPLAY" ]; then
-	GTK_IM_MODULE="xim"
-	GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
-	ICEAUTHORITY="$XDG_RUNTIME_DIR/ICE-authority"
-	_JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
-	XCOMPOSEFILE="$HOME/lib/dotfiles/XCompose"
-fi
+XCOMPOSEFILE="$HOME/lib/dotfiles/XCompose"
 
 # appdefaults
 
