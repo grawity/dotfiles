@@ -88,8 +88,10 @@ PAGER="less"
 # locale
 
 case $LANG in
-en_*)	;;
-*)	LANG="en_US.UTF-8";;
+    en_*)
+	;;
+    *)
+	LANG="en_US.UTF-8";;
 esac
 
 # libdefaults
@@ -119,11 +121,11 @@ LESS="e M q R F X z -3"
 MAKEFLAGS="-j $(nproc)"
 
 case $(uname)-$(uname -r) in
-NetBSD-6.*)
+    NetBSD-6.*)
 	LC_COLLATE="C" # http://mid.gmane.org/20110804105652.GA27213@mars.tony.develop-help.com
 	test "$PKG_PATH" || PKG_PATH="ftp://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/$(uname -m)/6.0/All"
 	;;
-OpenBSD-*)
+    OpenBSD-*)
 	test "$PKG_PATH" || PKG_PATH="http://ftp.OpenBSD.org/pub/OpenBSD/$(uname -r)/packages/$(uname -m)/"
 	;;
 esac
@@ -131,6 +133,11 @@ esac
 # local
 
 FQDN=$(fqdn)
+
+case $FQDN in
+    *.core|*.rune)
+	. ~/lib/dotfiles/environ-vm.rain;;
+esac
 
 if [ -f ~/lib/dotfiles/environ-$HOSTNAME ]; then
 	. ~/lib/dotfiles/environ-$HOSTNAME
