@@ -142,6 +142,7 @@
 	# noop on unrecognized escape sequences
 	main = ~ none
 	main = 4 toggle-graphic
+	main = G move-last-line
 [tig "color"]
 	cursor = black green
 	#title-focus = color16 color39
