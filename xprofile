@@ -6,8 +6,6 @@
 	&& xrdb -merge "$XDG_CONFIG_HOME/Xresources"
 [ -f "$XDG_CONFIG_HOME/Xkbmap" ] \
 	&& setxkbmap `cat "$XDG_CONFIG_HOME/Xkbmap"`
-[ -f "$XDG_CONFIG_HOME/Xmodmap" ] \
-	&& xmodmap "$XDG_CONFIG_HOME/Xmodmap"
 
 xhost +"SI:localuser:$USER" &
 

@@ -17,7 +17,7 @@ The `.environ` file is intended to be safe to source from anywhere, including .b
 
 ### .xinitrc
 
-Does the same as a display manager's Xsession script would do: sets `$DESKTOP_SESSION`; sources `.profile`, `.xprofile`; loads `.Xresources`, `.Xkbmap`, `.Xmodmap`. (Also sets a default background.)
+Does the same as a display manager's Xsession script would do: sets `$DESKTOP_SESSION`; sources `.profile`, `.xprofile`; loads `.Xresources` and `.Xkbmap`. (Also sets a default background.)
 
 ### .xprofile
 

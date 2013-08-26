@@ -52,7 +52,6 @@ esac
 
 [ -f ~/.Xresources ]	&& xrdb -merge ~/.Xresources
 [ -f ~/.Xkbmap ]	&& setxkbmap `cat ~/.Xkbmap`
-[ -f ~/.Xmodmap ]	&& xmodmap ~/.Xmodmap
 
 # Set up a session
 
