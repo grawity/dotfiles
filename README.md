@@ -21,6 +21,8 @@ Does the same as a display manager's Xsession script would do: sets `$DESKTOP_SE
 
 ### .xprofile
 
+Loads `.Xresources` and `.Xkbmap` from alternate paths.
+
 Sets up session environment – shared between all DMs and xinit. Currently – kernel keyring, synaptics.
 
 If `$DESKTOP_SESSION` is empty (a bare WM is being started), starts necessary daemons: compositor, notification daemon, polkit agent, screensaver, systemd-logind lock event handler, xbindkeys.

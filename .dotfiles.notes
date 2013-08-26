@@ -23,6 +23,7 @@ Notes on moving various dotfiles
 ~/.esd_auth – pointless
   - PulseAudio modules accept an auth-cookie= argument
   - however, ESD itself hardcodes $HOME/.esd_auth
+  - screw it, I just removed the relevant PA modules
 
 ~/.forward – fixed
 
