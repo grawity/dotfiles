@@ -49,6 +49,12 @@ Host snow snow.home snow.local
 	User Mantas
 	#ForwardAgent yes
 
+Host sky
+	Hostname sky.nullroute.eu.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
 Host tide
 	Hostname tide.nullroute.eu.org
 	GSSAPIAuthentication yes
