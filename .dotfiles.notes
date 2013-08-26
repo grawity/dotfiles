@@ -1,5 +1,12 @@
 Notes on moving various dotfiles
 
+~/.crawl/ – environment
+  - $CRAWL_DIR (must end with '/') overrides compile-time default
+
+~/.crawlrc – other locations, environment
+  - $CRAWL_DIR/init.txt is also used by default
+  - $CRAWL_RC overrides defaults
+
 ~/.d-feet/ – XDG
   - as of 0.1.15, d-feet uses $XDG_CONFIG_HOME/d-feet/
 
