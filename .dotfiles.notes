@@ -1,5 +1,9 @@
 Notes on moving various dotfiles
 
+~/.aMule/ – hardcoded
+
+~/.bitcoin/ – hardcoded
+
 ~/.crawl/ – environment
   - $CRAWL_DIR (must end with '/') overrides compile-time default
 
@@ -10,9 +14,14 @@ Notes on moving various dotfiles
 ~/.d-feet/ – XDG
   - as of 0.1.15, d-feet uses $XDG_CONFIG_HOME/d-feet/
 
+~/.dbus/ – fixed
+  - ~/.dbus/session-bus/$MACHINE_ID-$DISPLAY is part of the DBus spec
+
 ~/.esd_auth – pointless
   - PulseAudio modules accept an auth-cookie= argument
   - however, ESD itself hardcodes $HOME/.esd_auth
+
+~/.forward – fixed
 
 ~/.gdbinit – hardcoded
 
@@ -37,20 +46,42 @@ Notes on moving various dotfiles
 ~/.ICEauthority – environment
   - ICEAUTHORITY="$XDG_RUNTIME_DIR/ICE-auhority"
 
+~/.makepkg.conf – partial environment
+  - $MAKEPKG_CONF overrides *both* system and user configs
+
+~/.mpdconf – other locations, command line
+  - ~/.mpd/mpd.conf is an alternate path
+  - <path> accepted in command line
+
+~/.msmtprc – hardcoded
+
 ~/.mtoolsrc – environment
   - $MTOOLSRC can point to an additional rc
+
+~/.muttrc – other locations
+  - ~/.mutt/muttrc is an alternate path
+  - "-F <path>" option exists
 
 ~/.netrc – fixed
   - many apps expect it there
 
-~/.offlineimaprc – command line only
+~/.offlineimaprc – command line
   - the only method is `offlineimap -c <path>`
+
+~/.renpy/ – hardcoded
+
+~/.subversion/ – hardcoded
 
 ~/.VirtualBox/ – environment
   - $VBOX_USER_HOME overrides the default path
 
+~/.vidalia/ – command line
+  - "-datadir <path>" option is the only method
+
 ~/.vimrc – environment
   - $VIMINIT can have an Ex command that ":source"s an additional rc
+
+~/.w3m/ – hardcoded
 
 ~/.wgetrc – environment
   - $WGETRC overrides the default rc
@@ -62,3 +93,15 @@ Notes on moving various dotfiles
   - can be changed by `VBoxManage setproperty machinefolder <path>` or via GUI
 
 # vim: ts=4 sw=4 et tw=79
+
+"XDG" – newer versions already use XDG paths
+"configurable" – can change a config option somewhere
+"environment" – can set an environment variable
+"partial environment" – environment variable, but needs extra work
+"command line" – must use a command line option
+"partial" – cannot be moved completely
+"pointless" – won't work if moved
+"hardcoded" – source code uses a fixed path
+"fixed" – many programs and/or specs require the dotfile
+
+"other locations" – alternatives to direct dotfile exist
