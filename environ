@@ -106,6 +106,8 @@ ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
 LESSHISTFILE="$XDG_CACHE_HOME/less.history"
 MYSQL_HISTFILE="$XDG_CACHE_HOME/mysql.history"
 PERL_CPANM_HOME="$XDG_CACHE_HOME/cpanminus"
+
+IRBRC="$HOME/lib/dotfiles/irbrc"
 PYTHONSTARTUP="$HOME/lib/dotfiles/pythonrc"
 
 ACK_PAGER="$PAGER"

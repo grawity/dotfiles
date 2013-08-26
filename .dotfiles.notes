@@ -46,6 +46,9 @@ Notes on moving various dotfiles
 ~/.ICEauthority – environment
   - ICEAUTHORITY="$XDG_RUNTIME_DIR/ICE-auhority"
 
+~/.irbrc – environment
+  - $IRBRC is first in default search path
+
 ~/.makepkg.conf – partial environment
   - $MAKEPKG_CONF overrides *both* system and user configs
 
