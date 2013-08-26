@@ -49,6 +49,14 @@ Notes on moving various dotfiles
 ~/.irbrc – environment
   - $IRBRC is first in default search path
 
+~/.kde/ – environment
+  - $KDEHOME overrides the default
+  - optionally $KDEDIRS can point to additional read-only paths
+  - <http://techbase.kde.org/KDE_System_Administration/KDE_Filesystem_Hierarchy>
+  - <http://techbase.kde.org/KDE_System_Administration/Configuration_Files>
+
+~/.kde4/ – see ~/.kde/
+
 ~/.makepkg.conf – partial environment
   - $MAKEPKG_CONF overrides *both* system and user configs
 
@@ -89,8 +97,18 @@ Notes on moving various dotfiles
 ~/.wgetrc – environment
   - $WGETRC overrides the default rc
 
-~/.Xkbmap – hardcoded
+~/.Xkbmap – hardcoded, but
   - hardcoded in /etc/gdm/Xsession (although GNOME uses dconf)
+    as well as other Xsession scripts in other DMs
+  - however, ~/.xprofile and ~/.xinitrc can use a custom path
+  - also, most DEs have their own configurations for this
+
+~/.Xresources – hardcoded, but
+  - hardcoded in Xsession scripts of many DMs
+  - however, ~/.xprofile and ~/.xinitrc can use a custom path
+
+~/.xprofile – hardcoded
+  - hardcoded in Xsession scripts of many DMs
 
 ~/VirtualBox VMs/ – configurable
   - can be changed by `VBoxManage setproperty machinefolder <path>` or via GUI
