@@ -38,7 +38,6 @@ case $1 in
 	gnome-session)		DESKTOP_SESSION=gnome;;
 	enlightenment_start)	DESKTOP_SESSION=enlightenment17;;
 	startkde)		DESKTOP_SESSION=kde-plasma;;
-	systemd)		DESKTOP_SESSION=systemd;;
 	xfce)			DESKTOP_SESSION=xfce;;
 	*)			unset DESKTOP_SESSION;;
 esac
