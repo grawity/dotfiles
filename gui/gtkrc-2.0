@@ -29,4 +29,4 @@ style "theme-toolbar" {
 }
 
 class "GtkScrollbar" style "scrollbar-arrows"
-class "GtkToolbar" style "theme-toolbar"
+#class "GtkToolbar" style "theme-toolbar"
