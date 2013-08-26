@@ -1,7 +1,7 @@
 augroup filetypedetect
 	au BufNewFile,BufRead accounts.db.txt setf accdb
 
-	au BufNewFile,BufRead /etc/motd setl ts=4 sw=4 et
+	au BufNewFile,BufRead /etc/motd setf motd
 
 	" config
 	au BufNewFile,BufRead ~/.irssi/config setf c-conf
