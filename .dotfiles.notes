@@ -11,6 +11,9 @@ Notes on moving various dotfiles
   - $CRAWL_DIR/init.txt is also used by default
   - $CRAWL_RC overrides defaults
 
+~/.cvspass – environment
+  - $CVS_PASSFILE overrides
+
 ~/.d-feet/ – XDG
   - as of 0.1.15, d-feet uses $XDG_CONFIG_HOME/d-feet/
 
