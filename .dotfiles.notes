@@ -17,6 +17,8 @@ Notes on moving various dotfiles
 ~/.d-feet/ – XDG
   - as of 0.1.15, d-feet uses $XDG_CONFIG_HOME/d-feet/
 
+~/.dc++/ – hardcoded
+
 ~/.dbus/ – fixed
   - ~/.dbus/session-bus/$MACHINE_ID-$DISPLAY is part of the DBus spec
 
@@ -53,6 +55,8 @@ Notes on moving various dotfiles
 ~/.irbrc – environment
   - $IRBRC is first in default search path
 
+~/.irssi/ – hardcoded
+
 ~/.kde/ – environment
   - $KDEHOME overrides the default
   - optionally $KDEDIRS can point to additional read-only paths
@@ -85,6 +89,8 @@ Notes on moving various dotfiles
 
 ~/.renpy/ – hardcoded
 
+~/.ssh/ – hardcoded
+
 ~/.subversion/ – hardcoded
 
 ~/.VirtualBox/ – environment
@@ -98,8 +104,12 @@ Notes on moving various dotfiles
 
 ~/.w3m/ – hardcoded
 
+~/.weechat/ – hardcoded (compile-time)
+
 ~/.wgetrc – environment
   - $WGETRC overrides the default rc
+
+~/.wireshark/ – hardcoded
 
 ~/.Xkbmap – hardcoded, but
   - hardcoded in /etc/gdm/Xsession (although GNOME uses dconf)
