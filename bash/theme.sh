@@ -58,7 +58,19 @@ fi
 : ${FQDN:=$HOSTNAME}
 
 case $FQDN in
-    *.nullroute.eu.org|*.cluenet.org|*.nathan7.eu)
+    rain.nullroute.eu.org|*.cluenet.org|*.nathan7.eu)
+	;;
+
+    *.nullroute.eu.org)
+	item_name_pfx='┌ '
+	item_prompt='┘'
+	fmt_name_pfx='|38;5;236'
+	fmt_prompt=$fmt_name_pfx
+
+	fmt_name='38;5;82'
+	fmt_pwd='38;5;39'
+	fmt_pwd_tail='1|38;5;45'
+	fmt_vcs='38;5;202'
 	;;
 
     *.core|*.rune)
