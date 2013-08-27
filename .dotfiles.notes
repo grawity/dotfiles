@@ -87,6 +87,13 @@ Notes on moving various dotfiles
 ~/.offlineimaprc – command line
   - the only method is `offlineimap -c <path>`
 
+~/.pine-debug[0-9] – hardcoded
+  - I use a wrapper to remove them (and to pass -p for pinerc)
+
+~/.pinerc – command line
+  - apparently Windows gets $PINERC and $PINECONF, and Unix gets neither
+  - "-p <path>" option exists
+
 ~/.renpy/ – hardcoded
 
 ~/.ssh/ – hardcoded
