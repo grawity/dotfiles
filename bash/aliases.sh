@@ -123,7 +123,8 @@ alias xx='chmod a+x'
 alias '~'='egrep'
 alias '~~'='egrep -i'
 
-alias sdate='date "+%Y-%m-%d %H:%M"'
+alias sdate='date "+%Y-%m-%d"'
+alias sfdate='date "+%Y-%m-%d %H:%M"'
 alias ldate='date "+%A, %B %-d, %Y %H:%M"'
 alias mboxdate='date "+%a %b %_d %H:%M:%S %Y"'		# mbox
 alias mimedate='date "+%a, %d %b %Y %H:%M:%S %z"'	# RFC 2822
