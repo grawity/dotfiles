@@ -27,6 +27,13 @@ case $TERM in
 		havecolor=8;;
 esac
 
+if [[ $COLORTERM == xfce* ]]; then
+	# I guess I'm not supposed to run a terminal from another terminal,
+	# but either way, this fixes such cases like running xfce4-terminal
+	# from within gnome-terminal/termite.
+	unset VTE_VERSION
+fi
+
 export GPG_TTY=$(tty)
 
 export SUDO_PROMPT=$(printf 'sudo: Password for %%p@\e[30;43m%%h\e[m: ')
@@ -61,6 +68,7 @@ if have pklist; then
 	. ~/code/kerberos/kc.sh
 fi
 
+# TODO: this belongs to aliases.sh
 export GREP_OPTIONS='--color=auto'
 
 if [[ -f ~/lib/dotfiles/bashrc-$HOSTNAME ]]; then
