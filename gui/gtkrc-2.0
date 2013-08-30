@@ -1,8 +1,7 @@
 # ~/.gtkrc-2.0
 # [preferences]
 #gtk-font-name = "Segoe UI 10"
-#gtk-theme-name = "Clearlooks"
-#gtk-theme-name = "Adwaita"
+gtk-theme-name = "Clearlooks"
 #gtk-cursor-theme-name = Adwaita
 #gtk-toolbar-style = GTK_TOOLBAR_BOTH_HORIZ
 #gtk-menu-images = 0
