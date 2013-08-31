@@ -11,8 +11,6 @@ gtk-theme-name = "Clearlooks"
 #gtk-entry-select-on-focus = 0
 # [annoyances]
 gtk-error-bell = 0
-# [for consistency with GTK 3.10]
-gtk-entry-password-hint-timeout = 600
 
 style "scrollbar-arrows" {
 	GtkScrollbar::has-backward-stepper = 0
