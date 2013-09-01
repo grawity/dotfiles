@@ -79,3 +79,16 @@ youtube-dl() {
 	)
 	"${cmd[@]}"
 }
+
+_nolid_prompt() {
+	if [[ -e "$XDG_RUNTIME_DIR/nolid.hold" ]]; then
+		item_name_sfx=':[lid]'
+	elif [[ -e "$XDG_RUNTIME_DIR/nolid.lock" ]]; then
+		item_name_sfx=':lid'
+	else
+		item_name_sfx=''
+	fi
+	fmt_name_sfx='|38;5;238'
+}
+
+PROMPT_COMMAND+="; _nolid_prompt"
