@@ -42,7 +42,6 @@ GVIMINIT=":so ~/.vim/gvimrc"
 
 # appdefaults
 
-#ACCDB="/run/media/$USER/grawpqi/Private/accounts.db.txt"
-ACCDB="$HOME/Private/accounts.temp-master.txt"
+ACCDB="/run/media/$USER/grawpqi/Private/accounts.db.txt"
 MPD_HOST="$(<"$XDG_CONFIG_HOME/mpd/password")@$XDG_RUNTIME_DIR/mpd.control"
 PERL_CPANM_OPT="$PERL_CPANM_OPT --mirror http://ftp.litnet.lt/pub/CPAN/"
