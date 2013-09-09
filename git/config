@@ -34,6 +34,7 @@
 	fuckit = !git add -A && git commit -m "$(curl -s whatthecommit.com/index.txt)" && git push -f
 	in = log --oneline --decorate ..@{upstream}
 	lg = log --oneline --decorate
+	lgs = log --format=\"%C(yellow)%h%C(reset)%C(cyan)% GK%C(reset) %s\"
 	ls = ls-files
 	logs = log --show-signature
 	mend = commit --amend --reuse-message HEAD
