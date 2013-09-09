@@ -14,8 +14,8 @@ Notes on moving various dotfiles
 ~/.cvspass – environment
   - $CVS_PASSFILE overrides
 
-~/.d-feet/ – XDG
-  - as of 0.1.15, d-feet uses $XDG_CONFIG_HOME/d-feet/
+~/.d-feet/ – XDG as of 0.1.15
+  - $XDG_CONFIG_HOME/d-feet/ is used now
 
 ~/.dc++/ – hardcoded
 
@@ -68,7 +68,11 @@ Notes on moving various dotfiles
 ~/.makepkg.conf – partial environment
   - $MAKEPKG_CONF overrides *both* system and user configs
 
-~/.mpdconf – other locations, command line
+~/.mpd/ – XDG as of 0.18; command line
+  - $XDG_CONFIG_HOME/mpd/mpd.conf is used by default
+
+~/.mpdconf – XDG as of 0.18; other locations, command line
+  - $XDG_CONFIG_HOME/mpd/mpd.conf is used by default
   - ~/.mpd/mpd.conf is an alternate path
   - <path> accepted in command line
 
@@ -136,7 +140,7 @@ Notes on moving various dotfiles
 
 # vim: ts=4 sw=4 et tw=79
 
-"XDG" – newer versions already use XDG paths
+"XDG as of..." – newer versions already use XDG paths
 "configurable" – can change a config option somewhere
 "environment" – can set an environment variable
 "partial environment" – environment variable, but needs extra work
@@ -146,4 +150,4 @@ Notes on moving various dotfiles
 "hardcoded" – source code uses a fixed path
 "fixed" – many programs and/or specs require the dotfile
 
-"other locations" – alternatives to direct dotfile exist
+"other locations" – better alternatives to direct dotfile exist
