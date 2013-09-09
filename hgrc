@@ -1,6 +1,8 @@
 # ~/.hgrc: hgrc(5) - Mercurial configuration
 
 [alias]
+lg = log --template "{rev}:{node|short} {desc|firstline}\n"
+nudge = push --rev .
 untrack = rm -Af
 
 [ui]
