@@ -168,11 +168,8 @@
 [url "git@gist.github.com:"]
 	pushInsteadOf = git://gist.github.com/
 
-[url "git://github.com/"]
-	insteadOf = gh:
 [url "git@github.com:"]
 	pushInsteadOf = git://github.com/
-	pushInsteadOf = gh:
 
 [url "git://git.gnome.org/"]
 	insteadOf = gnome:
