@@ -64,6 +64,7 @@ alias logoff='logout'
 if [[ $DESKTOP_SESSION ]]; then
 	alias logout='~/code/x11/logout'
 fi
+look() { find -iname "*$1*" "${@:2}"; }
 alias lp='sudo netstat -lptu --numeric-hosts'
 alias lpt='sudo netstat -lpt --numeric-hosts'
 alias lpu='sudo netstat -lpu --numeric-hosts'
