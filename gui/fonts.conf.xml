@@ -15,6 +15,7 @@
         <edit name="hintstyle"> <const>hintfull</const>     </edit>
         <edit name="autohint">  <bool>false</bool>          </edit>
         <edit name="lcdfilter"> <const>lcddefault</const>   </edit>
+        <edit name="embeddedbitmap">    <bool>false</bool>  </edit>
     </match>
 
     <!-- Font aliases -->
@@ -57,23 +58,9 @@
         <edit name="autohint"> <bool>true</bool> </edit>
     </match>
 
-    <!-- Disable ugly "embedded bitmaps" for Microsoft screen fonts -->
-
     <match target="font">
-        <test name="family"> <string>Calibri</string> </test>
-        <edit name="embeddedbitmap"> <bool>false</bool> </edit>
-    </match>
-
-    <match target="font">
-        <test name="family"> <string>Cambria</string> </test>
-        <edit name="embeddedbitmap"> <bool>false</bool> </edit>
-    </match>
-
-    <match target="font">
-        <test name="family"> <string>Monaco</string> </test>
-        <!-- Webkit screws up when calculating display width of autohinted Monaco. -->
-        <!-- <edit name="autohint"> <bool>true</bool> </edit> -->
-        <edit name="embeddedbitmap"> <bool>false</bool> </edit>
+        <test name="family"> <string>Source Code Pro</string> </test>
+        <edit name="hintstyle"> <const>hintslight</const> </edit>
     </match>
 
 </fontconfig>
