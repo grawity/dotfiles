@@ -13,6 +13,7 @@ if [ -z "$KRB5CCNAME" ] && [ -d "$XDG_RUNTIME_DIR" ]; then
 	KRB5CCNAME="DIR:$XDG_RUNTIME_DIR/krb5cc"
 fi
 
+LIBVA_DRIVER_NAME="vdpau"
 SDL_AUDIODRIVER="pulse"
 
 # appconfig
