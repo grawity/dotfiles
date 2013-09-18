@@ -2,6 +2,7 @@
 
 [alias]
 lg = log --template "{rev}:{node|short} {desc|firstline}\n"
+mirror = clone --noupdate
 nudge = push --rev .
 untrack = rm -Af
 
