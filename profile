@@ -3,7 +3,7 @@
 . ~/lib/dotfiles/environ
 
 case $0:$TMUX:$SILENT in -*::)
-	# only for -sh/-bash, not in tmux, and not if $SILENT
+	# only in login shells, not in tmux, and not if $SILENT
 
 	test -d ~/.cache || mkdir -p -m 0700 ~/.cache
 	
