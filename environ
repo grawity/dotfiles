@@ -62,10 +62,6 @@ test "$XDG_CONFIG_HOME" || XDG_CONFIG_HOME="$HOME/.config"
 test "$XDG_DATA_HOME"   || XDG_DATA_HOME="$HOME/.local/share"
 test "$XDG_RUNTIME_DIR" || XDG_RUNTIME_DIR="$XDG_CACHE_HOME"
 
-test -d "$XDG_CACHE_HOME"  || mkdir -p -m 0700 "$XDG_CACHE_HOME"
-test -d "$XDG_CONFIG_HOME" || mkdir -p -m 0700 "$XDG_CONFIG_HOME"
-test -d "$XDG_DATA_HOME"   || mkdir -p -m 0700 "$XDG_DATA_HOME"
-
 GNULIB_SRCDIR="$HOME/src/gnu/gnulib"
 
 # identity
