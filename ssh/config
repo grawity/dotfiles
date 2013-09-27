@@ -27,6 +27,10 @@ Host hawking
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
+Host moose
+	Hostname moose.lairofthelords.com
+	ForwardAgent yes
+
 Host panther
 	Hostname panther.nathan7.eu
 	ForwardAgent yes
