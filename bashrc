@@ -68,9 +68,6 @@ if have pklist; then
 	. ~/code/kerberos/kc.sh
 fi
 
-# TODO: this belongs to aliases.sh
-export GREP_OPTIONS='--color=auto'
-
 if [[ -f ~/lib/dotfiles/bashrc-$HOSTNAME ]]; then
 	. ~/lib/dotfiles/bashrc-$HOSTNAME
 elif [[ -f ~/.bashrc-$HOSTNAME ]]; then

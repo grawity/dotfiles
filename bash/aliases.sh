@@ -145,6 +145,8 @@ fi
 
 ## OS-dependent aliases
 
+export GREP_OPTIONS='--color=auto'
+
 lsopt="-F -h"
 if (( UID == 0 )); then
 	lsopt="$lsopt -a"
