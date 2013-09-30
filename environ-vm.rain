@@ -1,11 +1,11 @@
 #!sh
 
-getsecret() { curl -s -f -S http://rain.core/.secrets/$1; }
+getsecret() { curl -s -f -S "http://rain.core/.secrets/$1"; }
 
-MPD_HOST=$(getsecret mpd@rain/vm)@rain.core
+MPD_HOST=$(getsecret /mpd@rain/vm)@rain.core
 
 if [ -d ~/.config/pulse ]; then
-	getsecret pulse@rain/grawity > ~/.config/pulse/cookie
+	getsecret /pulse@rain/grawity > ~/.config/pulse/cookie
 else
-	getsecret pulse@rain/grawity > ~/.pulse-cookie
+	getsecret /pulse@rain/grawity > ~/.pulse-cookie
 fi
