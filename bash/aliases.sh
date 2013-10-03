@@ -156,7 +156,7 @@ case $OSTYPE in
 		lsopt="$lsopt --group-directories-first"
 		if (( havecolor )); then
 			lsopt="$lsopt -v --color=auto"
-			eval $(dircolors ~/lib/dotfiles/dircolors)
+			eval $(dircolors ~/lib/dotfiles/dircolors 2>/dev/null)
 		fi
 		alias df='df -Th'
 		alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs'
@@ -171,7 +171,7 @@ case $OSTYPE in
 		lsopt="$lsopt --group-directories-first"
 		if (( havecolor )); then
 			lsopt="$lsopt -v --color=auto"
-			eval $(dircolors ~/lib/dotfiles/dircolors)
+			eval $(dircolors ~/lib/dotfiles/dircolors 2>/dev/null)
 		fi
 		alias w='w -hU'
 		;;
