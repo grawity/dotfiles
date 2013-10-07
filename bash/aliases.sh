@@ -262,7 +262,7 @@ ppid() {
 			echo $v
 			return
 		fi
-	done < "/proc/$1/status"
+	done < "/proc/${1-$$}/status"
 	false
 }
 
