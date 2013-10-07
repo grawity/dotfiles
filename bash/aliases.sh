@@ -43,8 +43,7 @@ alias ed='ed -p:'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
 alias findexe='find -type f -executable'
 gerp() { egrep -r -I -D skip --exclude-dir='.git' --exclude-dir='.svn' \
-	--exclude-dir='.hg' \
-	-H -n --color=always "$@"; }
+	--exclude-dir='.hg' -H -n --color=always "$@"; }
 alias facl='getfacl -pt'
 alias fdf='findmnt -o target,size,used,avail,use%,fstype'
 alias gpg-kill-agent='gpg-connect-agent killagent /bye'
@@ -59,6 +58,7 @@ alias kssh='ssh \
 	-o PreferredAuthentications=gssapi-keyex,gssapi-with-mic \
 	-o GSSAPIAuthentication=yes \
 	-o GSSAPIDelegateCredentials=yes'
+kzgrep() { zgrep "$@" /proc/config.gz; }
 alias ll='ls -l'
 alias logoff='logout'
 if [[ $DESKTOP_SESSION ]]; then
@@ -162,6 +162,7 @@ case $OSTYPE in
 		fi
 		alias df='df -Th'
 		alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs'
+		alias lsd='ls -a --ignore="[^.]*"'
 		alias w='PROCPS_USERLEN=16 w -hsu'
 		;;
 	freebsd*)
@@ -175,6 +176,7 @@ case $OSTYPE in
 			lsopt="$lsopt -v --color=auto"
 			eval $(dircolors ~/lib/dotfiles/dircolors 2>/dev/null)
 		fi
+		alias lsd='ls -a --ignore="[^.]*"'
 		alias w='w -hU'
 		;;
 	netbsd|openbsd*)
