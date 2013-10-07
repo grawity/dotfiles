@@ -423,11 +423,8 @@ if have systemctl; then
 	alias lcstatus='loginctl session-status $XDG_SESSION_ID'
 	alias tsd='tree /etc/systemd/system'
 	cgls() { SYSTEMD_PAGER=cat systemd-cgls "$@"; }
-	usls() { cgls "/user/$UID.user/$*"; }
-	psls() { cgls "/user/$UID.user/$XDG_SESSION_ID.session"; }
-	if have _systemctl; then
-		complete -F _systemctl enable disable status start stop restart
-	fi
+	usls() { cgls "/user.slice/user-$UID.slice/$*"; }
+	psls() { cgls "/user.slice/user-$UID.slice/session-$XDG_SESSION_ID.scope"; }
 elif have start && have stop; then
 	# Upstart
 	start()   { sudo start "$@"; }
