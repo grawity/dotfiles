@@ -342,7 +342,7 @@ getpkg() {
 		elif have pacman;	then sudo pacman -U "$@"
 		elif have rpm;		then sudo rpm -U "$@"
 		elif have pkg_add;	then sudo pkg_add "$@"
-		else echo "no package manager" >&2; return 1; fi
+		else echo "$FUNCNAME: no known package manager" >&2; return 1; fi
 	else
 		if have aptitude;	then sudo aptitude install "$@"
 		elif have apt-cyg;	then sudo apt-cyg install "$@"
@@ -352,7 +352,7 @@ getpkg() {
 		elif have yum;		then sudo yum install "$@"
 		elif have pkg_add;	then sudo pkg_add "$@"
 		elif have mingw-get;	then mingw-get install "$@"
-		else echo "no package manager" >&2; return 1; fi
+		else echo "$FUNCNAME: no known package manager" >&2; return 1; fi
 	fi
 }
 
@@ -361,7 +361,7 @@ lspkgs() {
 	elif have pacman;	then pacman -Qq
 	elif have pkg_info;	then pkg_info
 	elif have apt-cyg;	then apt-cyg show
-	else echo "no package manager" >&2; return 1; fi
+	else echo "$FUNCNAME: no known package manager" >&2; return 1; fi
 }
 
 lspkg() {
@@ -372,7 +372,7 @@ lspkg() {
 	elif have rpm;		then rpm -ql "$@"
 	elif have pkg_info;	then pkg_info -Lq "$@"
 	#elif have pkg;		then pkg -l "$@"
-	else echo "no package manager" >&2; return 1
+	else echo "$FUNCNAME: no known package manager" >&2; return 1
 	fi | sort
 }
 
@@ -387,7 +387,7 @@ llpkg() {
 lscruft() {
 	if have dpkg;		then dpkg -l | awk '/^r/ {print $2}'
 	elif have pacman;	then find /etc -name '*.pacsave'
-	else echo "no package manager or configs not tracked" >&2; return 1; fi
+	else echo "$FUNCNAME: no known package manager or configs not tracked" >&2; return 1; fi
 }
 
 owns() {
@@ -401,7 +401,7 @@ owns() {
 	elif have rpm;		then rpm -q --whatprovides "$file"
 	elif have pkg;		then pkg which "$file"
 	elif have apt-cyg;	then apt-cyg packageof "$file"
-	else echo "no package manager" >&2; return 1; fi
+	else echo "$FUNCNAME: no known package manager" >&2; return 1; fi
 }
 
 ## service management
