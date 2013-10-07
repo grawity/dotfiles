@@ -80,6 +80,8 @@ alias py='python'
 alias py2='python2'
 alias py3='python3'
 alias rd='rmdir'
+rdempty() { find "$@" -mindepth 1 -type d \
+	-exec rmdir --ignore-fail-on-non-empty {} +; }
 alias re='SILENT=1 . ~/.bashrc; echo reloaded .bashrc; :'
 alias rot13='tr N-ZA-Mn-za-m A-Za-z'
 rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}"; echo; }
