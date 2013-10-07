@@ -21,8 +21,8 @@ pager() { eval command "${PAGER:-less}" '"$@"'; }
 
 # It's a mess but /at least/ it's alphasorted
 alias bat='acpi -i'
-count() { sort "$@" | uniq -c | sort -n -r | pager; }
 alias cindex='env TMPDIR=/var/tmp cindex'
+count() { sort "$@" | uniq -c | sort -n -r | pager; }
 alias csearch='csearch -n'
 alias cur='cur '
 dist/head() {
@@ -41,11 +41,11 @@ dist/pull() {
 alias dnstracer='dnstracer -s .'
 alias ed='ed -p:'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
+alias facl='getfacl -pt'
+alias fdf='findmnt -o target,size,used,avail,use%,fstype'
 alias findexe='find -type f -executable'
 gerp() { egrep -r -I -D skip --exclude-dir='.git' --exclude-dir='.svn' \
 	--exclude-dir='.hg' -H -n --color=always "$@"; }
-alias facl='getfacl -pt'
-alias fdf='findmnt -o target,size,used,avail,use%,fstype'
 alias gpg-kill-agent='gpg-connect-agent killagent /bye'
 gpgsigs() { gpg --edit-key "$1" check quit; }
 alias hex='xxd -p'
