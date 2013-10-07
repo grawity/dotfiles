@@ -322,15 +322,15 @@ x509fp() {
 ## web sites
 
 google() {
-	browser "http://www.google.com/search?q=$(urlencode "$*")"
+	browser "https://www.google.com/search?q=$(urlencode "$*")"
 }
 
 rfc() {
-	browser "http://tools.ietf.org/html/rfc$1"
+	browser "https://tools.ietf.org/html/rfc$1"
 }
 
 wiki() {
-	browser "http://en.wikipedia.org/w/index.php?search=$(urlencode "$*")"
+	browser "https://en.wikipedia.org/w/index.php?search=$(urlencode "$*")"
 }
 
 ## package management
