@@ -13,8 +13,6 @@ set completion-query-items 500
 # Disallow modifying history
 set revert-all-at-newline on
 
-"\C-x\C-x": "suspend\n"
-
 # Arrows
 "\e[A": history-search-backward
 "\e[B": history-search-forward
@@ -39,7 +37,14 @@ set revert-all-at-newline on
 #"\C-i": menu-complete
 "\e[Z": complete-hostname
 
-# Alt+numbers. Useless.
+# "Bracketed paste" markers
+"\e[200~": ""
+"\e[201~": ""
+
+# convenience shortcut for working in nested shells
+"\C-x\C-x": "suspend\n"
+
+# unbind the useless default Alt+numbers
 "\e-": ""
 "\e0": ""
 "\e1": ""
@@ -51,12 +56,6 @@ set revert-all-at-newline on
 "\e7": ""
 "\e8": ""
 "\e9": ""
-
-# "Bracketed paste" markers
-"\e[200~": ""
-"\e[201~": ""
-
-
 
 # UTF-8 prefixes – insert Alt+characters literally instead of eating the first byte
 # two-byte prefixes
