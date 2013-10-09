@@ -15,6 +15,7 @@ git = True
 [extensions]
 color =
 convert =
+gpg =
 #hggit =
 hgk =
 #keyring =
