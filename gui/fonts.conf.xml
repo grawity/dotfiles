@@ -6,7 +6,7 @@
 -->
 <fontconfig>
 
-    <!-- Global settings -->
+    <!-- Standard settings, and disable embedded bitmaps -->
 
     <match target="font">
         <edit name="antialias"> <bool>true</bool>           </edit>
@@ -17,6 +17,8 @@
         <edit name="lcdfilter"> <const>lcddefault</const>   </edit>
         <edit name="embeddedbitmap">    <bool>false</bool>  </edit>
     </match>
+
+    <!-- Re-enable embedded bitmaps for CJK fonts -->
 
     <match target="font">
         <test name="lang" compare="contains"> <string>ja</string> </test>
@@ -33,30 +35,7 @@
         <edit name="embeddedbitmap"> <bool>true</bool> </edit>
     </match>
 
-    <!-- Font aliases -->
-
-    <alias>
-        <family>serif</family>
-        <prefer> <family>Times New Roman</family> </prefer>
-    </alias>
-
-    <alias>
-        <!-- fix Latin-only font issue in www.laukineszasys.lt -->
-        <family>Gentium Book Basic</family>
-        <prefer> <family>Times New Roman</family> </prefer>
-    </alias>
-
-    <alias binding="same">
-        <family>MS Sans Serif</family>
-        <prefer> <family>Tahoma</family> </prefer>
-    </alias>
-
-    <alias binding="same">
-        <family>MS Shell Dlg</family>
-        <prefer> <family>Tahoma</family> </prefer>
-    </alias>
-
-    <!-- Fix hinting for some other fonts -->
+    <!-- Enable autohinting for certain broken fonts -->
 
     <match target="font">
         <test name="family"> <string>Segoe UI</string> </test>
