@@ -63,9 +63,4 @@
         <edit name="autohint"> <bool>true</bool> </edit>
     </match>
 
-    <match target="font">
-        <test name="family"> <string>Source Code Pro</string> </test>
-        <edit name="hintstyle"> <const>hintslight</const> </edit>
-    </match>
-
 </fontconfig>
