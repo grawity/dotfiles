@@ -92,7 +92,7 @@ _awesome_prompt() {
 	## Center: working directory
 
 	local wdbase= wdhead= wdtail=
-	local -i collapsed=0
+	local -i collapsed=0 wdhome=0
 
 	if [[ $git == .git ]]; then
 		wdbase=$PWD
@@ -114,6 +114,9 @@ _awesome_prompt() {
 
 	if [[ $fullpwd != 'y' ]]; then
 		wdhead=${wdhead/#${HOME%/}\//\~/}
+		if [[ ${wdhead:0:2} == '~/' ]]; then
+			wdhome=1
+		fi
 	fi
 
 	# You are not expected to understand this.
@@ -133,7 +136,7 @@ _awesome_prompt() {
 			done
 		fi
 	elif (( ${#wdhead} + ${#wdtail} > 2 + maxwidth )); then
-		if [[ ${wd:0:2} == '~/' ]]; then
+		if (( wdhome )); then
 			(( maxwidth -= 2 ))
 		fi
 		while (( ${#wdhead} + ${#wdtail} > maxwidth )); do
@@ -148,7 +151,7 @@ _awesome_prompt() {
 
 	if (( collapsed )); then
 		wdhead='…/'$wdhead
-		if [[ ${wd:0:2} == '~/' ]]; then
+		if (( wdhome )); then
 			wdhead='~/'$wdhead
 		fi
 	fi
