@@ -24,11 +24,11 @@ _awesome_prompt() {
 	local maxwidth=${COLUMNS:-$(tput cols)}
 
 	# hostname or system name
-	# + 2 ("…/")
+	# + 1 ("…/")
 	# + 1 (trailing space to avoid hitting rmargin)
 
 	(( maxwidth -= ${#item_name_pfx} + ${#item_name} \
-			+ ${#item_name_sfx} + ${#reset_pwd} + 3 ))
+			+ ${#item_name_sfx} + ${#reset_pwd} + 2 ))
 
 	## Right side: Git branch, etc
 
@@ -119,37 +119,24 @@ _awesome_prompt() {
 		fi
 	fi
 
-	# You are not expected to understand this.
-	# After I woke up, I don't understand it anymore either.
+	# I honestly do not know why it's "maxwidth - tilde" in one place, but
+	# "maxwidth + tilde" in another.
 
-	if (( ${#wdtail} > maxwidth )); then
+	if (( ${#wdtail} > maxwidth - tilde )); then
 		wdhead=''
-		collapsed=1
 		if [[ $wdtail == */* ]]; then
 			(( maxwidth -= tilde ))
-			while (( ${#wdhead} + ${#wdtail} > maxwidth )); do
-				if (( ! collapsed++ )); then
-					wdhead=${wdhead#/}
-				elif (( collapsed > 20 )); then
-					break
-				fi
-				wdtail=${wdtail#*/}
-			done
+			wdtail=${wdtail:${#wdtail}-maxwidth}
 		fi
-	elif (( ${#wdhead} + ${#wdtail} > 2 + maxwidth )); then
+		collapsed=1
+	elif (( ${#wdhead} + ${#wdtail} > maxwidth + tilde )); then
 		(( maxwidth -= tilde ))
-		while (( ${#wdhead} + ${#wdtail} > maxwidth )); do
-			if (( ! collapsed++ )); then
-				wdhead=${wdhead#/}
-			elif (( collapsed > 20 )); then
-				break
-			fi
-			wdhead=${wdhead#*/}
-		done
+		wdhead=${wdhead:${#wdhead}-(maxwidth-${#wdtail})}
+		collapsed=1
 	fi
 
 	if (( collapsed )); then
-		wdhead='…/'$wdhead
+		wdhead='…'$wdhead
 		if (( tilde )); then
 			wdhead='~/'$wdhead
 		fi
