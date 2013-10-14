@@ -102,6 +102,8 @@ _awesome_prompt() {
 		wdbase=$(git rev-parse --show-toplevel)
 	fi
 
+	wdbase=${wdbase%/*}
+
 	if [[ $PWD == "$HOME" ]]; then
 		wdhead='' wdtail='~'
 	elif [[ $wdbase && $PWD != "$wdbase" ]]; then
