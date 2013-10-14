@@ -91,19 +91,27 @@ _awesome_prompt() {
 
 	## Center: working directory
 
-	local wd= wdhead= wdtail=
+	local wdbase= wdhead= wdtail=
 	local -i collapsed=0
 
-	if [[ $fullpwd == 'y' ]]; then
-		wd=$PWD
-	else
-		wd=${PWD/#${HOME%/}/\~}
+	if [[ $git == .git ]]; then
+		wdbase=$PWD
+	elif [[ $git == /*/.git ]]; then
+		wdbase=${git%/.git}
+	elif [[ $git ]]; then
+		wdbase=$(git rev-parse --show-toplevel)
 	fi
 
-	if [[ $wd == '~' ]]; then
-		wdhead='' wdtail=$wd
+	if [[ $PWD == "$HOME" ]]; then
+		wdhead='' wdtail='~'
+	elif [[ $wdbase && $PWD != "$wdbase" ]]; then
+		wdhead=$wdbase/ wdtail=${PWD#$wdbase/}
 	else
-		wdhead=${wd%/*}/ wdtail=${wd##*/}
+		wdhead=${PWD%/*}/ wdtail=${PWD##*/}
+	fi
+
+	if [[ $fullpwd != 'y' ]]; then
+		wdhead=${wdhead/#${HOME%/}\//\~/}
 	fi
 
 	# You are not expected to understand this.
