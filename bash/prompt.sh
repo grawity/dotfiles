@@ -115,7 +115,7 @@ _awesome_prompt() {
 	if [[ $fullpwd != 'y' ]]; then
 		wdhead=${wdhead/#${HOME%/}\//\~/}
 		if [[ ${wdhead:0:2} == '~/' ]]; then
-			wdhome=1
+			wdhome=2
 		fi
 	fi
 
@@ -126,9 +126,7 @@ _awesome_prompt() {
 		wdhead=''
 		collapsed=1
 		if [[ $wdtail == */* ]]; then
-			if (( wdhome )); then
-				(( maxwidth -= 2 ))
-			fi
+			(( maxwidth -= wdhome ))
 			while (( ${#wdhead} + ${#wdtail} > maxwidth )); do
 				if (( ! collapsed++ )); then
 					wdhead=${wdhead#/}
@@ -139,9 +137,7 @@ _awesome_prompt() {
 			done
 		fi
 	elif (( ${#wdhead} + ${#wdtail} > 2 + maxwidth )); then
-		if (( wdhome )); then
-			(( maxwidth -= 2 ))
-		fi
+		(( maxwidth -= wdhome ))
 		while (( ${#wdhead} + ${#wdtail} > maxwidth )); do
 			if (( ! collapsed++ )); then
 				wdhead=${wdhead#/}
