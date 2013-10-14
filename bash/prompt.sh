@@ -122,6 +122,16 @@ _awesome_prompt() {
 	if (( ${#wdtail} > maxwidth )); then
 		wdhead='/'
 		collapsed=1
+		if [[ $wdtail == */* ]]; then
+			while (( ${#wdhead} + ${#wdtail} > maxwidth )); do
+				if (( ! collapsed++ )); then
+					wdhead=${wdhead#/}
+				elif (( collapsed > 20 )); then
+					break
+				fi
+				wdtail=${wdtail#*/}
+			done
+		fi
 	elif (( ${#wdhead} + ${#wdtail} > 2 + maxwidth )); then
 		if [[ ${wd:0:2} == '~/' ]]; then
 			(( maxwidth -= 2 ))
