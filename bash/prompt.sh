@@ -120,7 +120,7 @@ _awesome_prompt() {
 	# After I woke up, I don't understand it anymore either.
 
 	if (( ${#wdtail} > maxwidth )); then
-		wdhead=${wdhead##*/}
+		wdhead='/'
 		collapsed=1
 	elif (( ${#wdhead} + ${#wdtail} > 2 + maxwidth )); then
 		if [[ ${wd:0:2} == '~/' ]]; then
