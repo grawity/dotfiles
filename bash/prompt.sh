@@ -120,7 +120,7 @@ _awesome_prompt() {
 	# After I woke up, I don't understand it anymore either.
 
 	if (( ${#wdtail} > maxwidth )); then
-		wdhead='/'
+		wdhead=''
 		collapsed=1
 		if [[ $wdtail == */* ]]; then
 			while (( ${#wdhead} + ${#wdtail} > maxwidth )); do
