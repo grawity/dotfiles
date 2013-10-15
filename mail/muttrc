@@ -125,23 +125,10 @@ unset beep
 set beep_new
 set menu_context=3
 set menu_scroll
-color normal white default
-# last rule overrides
-	uncolor index *
-	# important notifications
-	color index brightred default	'~h "^X-Priority: [12]$"'
-#	color index brightred default	'~h "^X-Facebook-Notify: login_notification;"'
-	# mentions and PMs/DMs — equivalent to normal messages
-	# unimportant social notifications
-	# spam
-#	color index yellow default	'~h "^X-Bogosity: Spam,"'
-
-	color index brightwhite	default		~F	# flagged
-	color index brightyellow default	~U	# unseen
-	color index brightblack default		~D	# deleted
-	color index brightblue default		~T	# tagged
 
 # ITEM			FOREGROUND	BACKGROUND
+color normal		white		default
+
 color tree		brightred	default
 color indicator		default		blue
 color status		brightmagenta	default
@@ -150,16 +137,26 @@ color error		brightwhite	red
 color progress		black		yellow
 
 color hdrdefault	green		default
-	color header	brightgreen	default	"^From:"
-	color header	brightgreen	default	"^Subject:"
-	color header	brightblack	default	"^X-Bogosity:"
-	color header	yellow		default	"^X-Bogosity: Unsure,"
-	color header	brightyellow	default	"^X-Bogosity: Spam,"
+color header		brightgreen	default	"^From:"
+color header		brightgreen	default	"^Subject:"
+color header		brightblack	default	"^X-Bogosity:"
+color header		yellow		default	"^X-Bogosity: Unsure,"
+color header		brightyellow	default	"^X-Bogosity: Spam,"
+
 color attachment	yellow		default
 color quoted		cyan		default
 color signature		blue		default
 color tilde		blue		default
 color search		black		brightyellow
+
+#color index	brightred	default	'~h "^X-Priority: [12]$"'
+#color index	brightred	default	'~h "^X-Facebook-Notify: login_notification;"'
+#color index	yellow		default	'~h "^X-Bogosity: Spam,"'
+color index	brightwhite	default	~F # flagged
+color index	brightyellow	default	~U # unseen
+color index	brightblack	default	~D # deleted
+color index 	brightblue	default	~T # tagged
+# last rule takes priority!
 
 # %?<char>?<if>&<else>?
 #set index_format="%4C %Z %{%b %d} %-15.15F (%?l?%4l&%4c?) %s"
