@@ -159,8 +159,10 @@ color search		black		brightyellow
 #color index	yellow		default	'~h "^X-Bogosity: Spam,"'
 color index	brightwhite	default	~F # flagged
 color index	color11		default	~U # unseen
+color index	brightcolor11	default	"~F ~U"
 color index	color240	default	~D # deleted
 color index 	color12		default	~T # tagged
+color index 	brightcolor12	default	"~T ~U"
 # last rule takes priority!
 
 # %?<char>?<if>&<else>?
