@@ -35,7 +35,6 @@ set postponed="+Drafts"
 set record="+Sent"
 mailboxes =INBOX
 
-set mbox_type="maildir"
 unset confirmappend
 set confirmcreate
 set delete
