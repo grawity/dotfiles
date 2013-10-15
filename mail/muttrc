@@ -1,4 +1,5 @@
 # ~/.muttrc <via stub>: Mutt configuration
+# vim: nowrap
 
 ### User identity
 
@@ -9,16 +10,12 @@ set reverse_name
 reply-hook ~l 'set from="grawity@gmail.com"'
 
 alternates "@nullroute\.eu\.org$"
-alternates "@ntas\.in$"
-alternates "@kra\.ntas\.in$"
 alternates "^grawity(\\+.+)?@gmail\.com$"
 alternates "^grawity@(\w+\.)?cluenet\.org$"
-alternates "^grawity@anubis\.nickserver\.net$"
 
 ### Mailing lists
 
 subscribe "^flos-freeware@freelists\.org$"
-subscribe "^devl@freenetproject\.org$"
 subscribe "^systemd-devel@lists\.freedesktop\.org$"
 subscribe "^arch-(general|dev-public)@archlinux\.org$"
 subscribe "^kerberos@mit\.edu$"
@@ -39,13 +36,6 @@ unset confirmappend
 set confirmcreate
 set delete
 
-set rfc2047_parameters
-
-# Caching
-
-#set header_cache="~/.cache/mutt"
-#set message_cachedir="~/.cache/mutt"
-
 # Remote mail
 
 set imap_user="grawity"
@@ -62,9 +52,8 @@ set imap_idle
 
 folder-hook . 'unset spoolfile'
 
-### composing
-unmy_hdr *
-unset user_agent
+### Composing
+
 set edit_headers
 
 set alias_file="~/lib/mutt-aliases"
@@ -74,14 +63,15 @@ set query_command="muttquery '%s'"
 
 set compose_format="——— Composing (%l in %a parts) %*——"
 
-### sending
+### Sending
+
 set use_envelope_from # pass '-f $from' to sendmail; useful for msmtp
 
 #set hostname="nullroute.eu.org"
 #set use_8bitmime
-#set smtp_url="smtp://grawity@mail.nullroute.eu.org"
 
-### list view
+### List view
+
 set sort=threads
 set auto_tag # auto-add tag prefix
 
@@ -91,12 +81,10 @@ set status_on_top
 spam "^X-Bogosity: Spam,.* spamicity=([0-9.]+)" "bogus"
 spam "^X-Bogosity: Unsure,.* spamicity=([0-9.]+)" "unsure"
 
-#set spam_separator=", "
-unset spam_separator
+set status_format="——— Folder %f (%?M?%M/?%m messages%?n?, %n new/unseen?%?o?, %o old/unread?%?d?, %d deleted?) %*— %P ———"
 
-set status_format="——— Folder %f (%?M?%M/?%m messages%?n?, %n new?%?o?, %o old?%?d?, %d deleted?) %*— %P ———"
+### Message view
 
-### message view
 ignore *
 unignore From: Subject: To: Cc: Date: Reply-To:
 unignore X-Bogosity:
@@ -114,12 +102,11 @@ set tilde
 
 set pager_format="——— Message %C of %m: \"%s\" %*—— %P ———"
 
-alternative_order text/enriched text/plain text
 auto_view application/zip
 auto_view text/html
 auto_view text/x-vcard
 
-### generic appearance
+### Generic appearance
 
 unset beep
 set beep_new
@@ -162,13 +149,14 @@ color index 	brightblue	default	~T # tagged
 #set index_format="%4C %Z %{%b %d} %-15.15F (%?l?%4l&%4c?) %s"
 set index_format="%3C %Z %-18.18F│%s %* %?H?{%H} ?%?M? ▶%M ?│ %{%b %d} "
 
-### keybindings
+### Keybindings
+
 bind generic,pager <Backspace> exit
 bind index <Backspace> quit
 bind index,pager <Delete> delete-message
 bind generic,pager ,w what-key
-bind pager <PageUp> half-up
-bind pager <PageDown> half-down
+#bind pager <PageUp> half-up
+#bind pager <PageDown> half-down
 
 # Numpad + -
 bind index \\ collapse-thread
@@ -213,7 +201,8 @@ bind index . buffy-list'
 account-hook '^imaps?://' '\
 macro index . "<imap-fetch-mail><refresh>"'
 
-### encryption and signing (PGP)
+### Crypto
+
 set crypt_use_gpgme
 set crypt_use_pka
 set pgp_auto_decode
