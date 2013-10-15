@@ -87,6 +87,7 @@ set status_format="─── Folder %f (%?M?%M/?%m messages%?n?, %n new/unseen?%
 
 ignore *
 unignore From: Subject: To: Cc: Date: Reply-To:
+unignore Newsgroups:
 unignore X-Bogosity:
 hdr_order Date From To Cc Subject
 
@@ -118,21 +119,26 @@ set menu_scroll
 color normal		white		default
 
 color tree		brightred	default
-color indicator		default		blue
+color indicator		default		color24
 color status		brightmagenta	default
 color message		yellow		default
 color error		brightwhite	red
-color progress		black		yellow
+color progress		default		color235
 
-color hdrdefault	green		default
-color header		brightgreen	default	"^From:"
-color header		brightgreen	default	"^Subject:"
-color header		brightblack	default	"^X-Bogosity:"
+color hdrdefault	color241	default
+color header		color2		default	"^Date:"
+color header		color10		default	"^From:"
+color header		brightcolor10	default	"^Subject:"
 color header		yellow		default	"^X-Bogosity: Unsure,"
 color header		brightyellow	default	"^X-Bogosity: Spam,"
 
 color attachment	yellow		default
-color quoted		magenta		default
+color quoted		color96		default
+color quoted1		color172	color233
+color quoted2		color70		color233
+color quoted3		color73		color232
+color quoted4		color148	color233
+color quoted5		color48		color234
 color signature		blue		default
 color tilde		blue		default
 color search		black		brightyellow
@@ -141,9 +147,9 @@ color search		black		brightyellow
 #color index	brightred	default	'~h "^X-Facebook-Notify: login_notification;"'
 #color index	yellow		default	'~h "^X-Bogosity: Spam,"'
 color index	brightwhite	default	~F # flagged
-color index	brightyellow	default	~U # unseen
-color index	brightblack	default	~D # deleted
-color index 	brightblue	default	~T # tagged
+color index	color11		default	~U # unseen
+color index	color240	default	~D # deleted
+color index 	color12		default	~T # tagged
 # last rule takes priority!
 
 # %?<char>?<if>&<else>?
