@@ -141,11 +141,13 @@ color normal white default
 	color index brightblack default		~D	# deleted
 	color index brightblue default		~T	# tagged
 
+# ITEM			FOREGROUND	BACKGROUND
 color tree		brightred	default
 color indicator		default		blue
 color status		brightmagenta	default
 color message		yellow		default
 color error		brightwhite	red
+color progress		black		yellow
 
 color hdrdefault	green		default
 	color header	brightgreen	default	"^From:"
