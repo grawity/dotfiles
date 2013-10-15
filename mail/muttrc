@@ -166,8 +166,8 @@ macro index * "<tag-pattern>.\n"
 bind index \\ collapse-thread
 bind index \c? quit			# Backspace
 
-bind pager k previous-line		# [mimic tig's defaults]
-bind pager j next-line			# [mimic tig's defaults]
+bind pager \' previous-line		# [symmetric with <Enter>]
+bind pager \\ previous-line		# [symmetric with <Enter>]
 bind pager G bottom
 bind pager \c? exit			# Backspace
 
