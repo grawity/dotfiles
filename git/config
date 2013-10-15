@@ -140,6 +140,7 @@
 	#vertical-split = true
 	ignore-case = true
 [tig "bind"]
+	generic = Backspace view-close
 	# noop on unrecognized escape sequences
 	main = ~ none
 	main = 4 toggle-graphic
