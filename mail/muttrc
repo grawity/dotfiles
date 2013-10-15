@@ -115,6 +115,17 @@ set beep_new
 set menu_context=3
 set menu_scroll
 
+set quote_regexp="^([ \t]*[|>:}#])+"	# default
+set quote_regexp="^[|>#]+|^ U>"
+#set quote_regexp="^[|>#](( [|>#])*|([|>#])*)"
+# I think the desired pattern is impossible to write in plain POSIX regexen.
+# Specifically it fails to match "> > >"-like quoting correctly. Either the
+# first two levels are joined (i.e. 0 0 1 2 instead of 0 1 2 3), or a horrible
+# mess results... That, and somehow /^ U>|^ >/ causes " U>" to be detected as
+# second level instead of first, even though it cannot POSSIBLY match the /^ >/
+# part. I even ran the algorithm as documented in a Python script and it
+# returned all the right levels. So...what the actual fuck?
+
 # ITEM			FOREGROUND	BACKGROUND
 color normal		white		default
 
