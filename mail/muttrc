@@ -152,61 +152,59 @@ set index_format="%3C %Z %-18.18F│%s %* %?H?{%H} ?%?M? ▶%M? %{%b %d} "
 
 ### Keybindings
 
-bind generic,pager <Backspace> exit
-bind index <Backspace> quit
-bind index,pager <Delete> delete-message
 bind generic,pager ,w what-key
-#bind pager <PageUp> half-up
-#bind pager <PageDown> half-down
 
-# Numpad + -
+bind index,pager <S-Up> previous-entry	# [<Up> is previous-undeleted]
+bind index,pager <S-Down> next-entry	# [<Down> is next-undeleted]
+bind index,pager <Delete> delete-message
+macro index,pager a "<save-message>=Archive\n"
+macro index,pager A "<copy-message>~/todo.mbox\n"
+macro index,pager <Esc>i "<enter-command>unset wait_key\n<pipe-message>gpg --import |& tig\n<enter-command>set wait_key\n"
+
+bind index G last-entry
+macro index * "<tag-pattern>.\n"
 bind index \\ collapse-thread
-#bind index <Esc>Ok collapse-thread
-bind index <Esc>Om collapse-all
+bind index \c? quit			# Backspace
 
+bind pager k previous-line		# [mimic tig's defaults]
+bind pager j next-line			# [mimic tig's defaults]
 bind pager G bottom
+bind pager \c? exit			# Backspace
 
-# Home/End
-bind index <Esc>[1~ first-entry
-bind index <Esc>[4~ last-entry
-bind pager <Esc>[1~ top
-bind pager <Esc>[4~ bottom
+bind pager <Esc>n noop
+bind pager <Esc>p check-traditional-pgp
 
-macro generic,index,pager a "<save-message>=Archive\n"
-
-macro generic,index,pager <Esc>f "<enter-command>set from=grawity@"
-
-macro index,pager ,h "<copy-message>=Spam/ham"
-macro index,pager ,s "<copy-message>=Spam/spam"
-
-macro index,pager \cK "<tag-thread><save-message>=Spam/ham-tk\n"
+# <Home> and <End> in some weird-ass terminals, perhaps.
+#bind index <Esc>[1~ first-entry
+#bind index <Esc>[4~ last-entry
+#bind pager <Esc>[1~ top
+#bind pager <Esc>[4~ bottom
+#macro generic,index,pager <Esc>f "<enter-command>set from=grawity@"
+#macro index,pager ,h "<copy-message>=Spam/ham"
+#macro index,pager ,s "<copy-message>=Spam/spam"
 
 folder-hook . '\
 bind index,pager d delete-message;\
 bind index,pager D delete-message;\
 bind index,pager \cD delete-thread'
 
-folder-hook '^imap://(localhost|equal\.cluenet\.org)/' '\
-macro index,pager d "<save-message>=Spam/ham\n";\
-macro index,pager D "<save-message>=Spam/spam\n";\
-macro index,pager \cD "<tag-thread><untag-pattern>~D\n<save-message>=Spam/ham\n"'
+#folder-hook '^imap://(localhost|equal\.cluenet\.org)/' '\
+#macro index,pager d "<save-message>=Spam/ham\n";\
+#macro index,pager D "<save-message>=Spam/spam\n";\
+#macro index,pager \cD "<tag-thread><untag-pattern>~D\n<save-message>=Spam/ham\n"'
 
-folder-hook '/spam/' '\
-bind index,pager d delete-message;\
-bind index,pager D delete-message;\
-bind index,pager \cD delete-thread'
+#folder-hook '/spam/' '\
+#bind index,pager d delete-message;\
+#bind index,pager D delete-message;\
+#bind index,pager \cD delete-thread'
 
-account-hook . '\
-bind index . buffy-list'
-
-account-hook '^imaps?://' '\
-macro index . "<imap-fetch-mail><refresh>"'
+account-hook '^imaps?://' 'macro index . "<imap-fetch-mail><refresh>"'
 
 ### Crypto
 
 set crypt_use_gpgme
 set crypt_use_pka
-set pgp_auto_decode
+unset pgp_auto_decode
 set pgp_use_gpg_agent
 
 source "~/lib/dotfiles/mail/muttrc.sh|"
