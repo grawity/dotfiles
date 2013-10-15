@@ -114,7 +114,7 @@ _awesome_prompt() {
 		wdhead=${PWD%/*}/ wdtail=${PWD##*/}
 	fi
 
-	if [[ $fullpwd != 'h' && $PWD == "$HOME" ]]; then
+	if [[ ! $fullpwd && $PWD == "$HOME" ]]; then
 		wdhead='~'
 	elif [[ $fullpwd != 'y' ]]; then
 		wdhead=${wdhead/#$HOME\//\~/}
