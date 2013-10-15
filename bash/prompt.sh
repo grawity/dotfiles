@@ -91,6 +91,8 @@ _awesome_prompt() {
 
 	## Center: working directory
 
+	local HOME=${HOME%/}
+
 	local wdbase= wdhead= wdtail=
 	local -i collapsed=0 tilde=0
 
@@ -112,10 +114,10 @@ _awesome_prompt() {
 		wdhead=${PWD%/*}/ wdtail=${PWD##*/}
 	fi
 
-	if [[ $fullpwd != 'h' && $wdhead == "$HOME" ]]; then
+	if [[ $fullpwd != 'h' && $PWD == "$HOME" ]]; then
 		wdhead='~'
 	elif [[ $fullpwd != 'y' ]]; then
-		wdhead=${wdhead/#${HOME%/}\//\~/}
+		wdhead=${wdhead/#$HOME\//\~/}
 		if [[ ${wdhead:0:2} == '~/' ]]; then
 			tilde=2
 		fi
