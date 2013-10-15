@@ -105,14 +105,16 @@ _awesome_prompt() {
 	wdbase=${wdbase%/*}
 
 	if [[ $PWD == "$HOME" ]]; then
-		wdhead='' wdtail='~'
+		wdhead=$PWD wdtail=''
 	elif [[ $wdbase && $PWD != "$wdbase" ]]; then
 		wdhead=$wdbase/ wdtail=${PWD#$wdbase/}
 	else
 		wdhead=${PWD%/*}/ wdtail=${PWD##*/}
 	fi
 
-	if [[ $fullpwd != 'y' ]]; then
+	if [[ $fullpwd != 'h' && $wdhead == "$HOME" ]]; then
+		wdhead='~'
+	elif [[ $fullpwd != 'y' ]]; then
 		wdhead=${wdhead/#${HOME%/}\//\~/}
 		if [[ ${wdhead:0:2} == '~/' ]]; then
 			tilde=2
