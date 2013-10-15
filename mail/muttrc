@@ -61,7 +61,7 @@ source "silentcat ~/lib/mutt-aliases|"
 set reverse_alias
 set query_command="muttquery '%s'"
 
-set compose_format="——— Composing (%l in %a parts) %*——"
+set compose_format="─── Composing (%l in %a parts) %*──"
 
 ### Sending
 
@@ -81,7 +81,7 @@ set status_on_top
 spam "^X-Bogosity: Spam,.* spamicity=([0-9.]+)" "bogus"
 spam "^X-Bogosity: Unsure,.* spamicity=([0-9.]+)" "unsure"
 
-set status_format="——— Folder %f (%?M?%M/?%m messages%?n?, %n new/unseen?%?o?, %o old/unread?%?d?, %d deleted?) %*— %P ———"
+set status_format="─── Folder %f (%?M?%M/?%m messages%?n?, %n new/unseen?%?o?, %o old/unread?%?d?, %d deleted?) %*─ %P ───"
 
 ### Message view
 
@@ -100,7 +100,7 @@ unset markers
 set smart_wrap
 set tilde
 
-set pager_format="——— Message %C of %m: \"%s\" %*—— %P ———"
+set pager_format="─── Message %C of %m: \"%s\" %*── %P ───"
 
 auto_view application/zip
 auto_view text/html
