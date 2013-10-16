@@ -34,6 +34,10 @@ Notes on moving various dotfiles
 ~/.gemrc – environment
   - hardcoded, but $GEMRC can have a list of /additional/ rc's
 
+~/.gnome-commander/ – hardcoded/command line?
+  - "--config-dir <dir>" option exists in source code, but doesn't work
+  - however, the program is unmaintained anyway, uses obsolete GnomeVFS
+
 ~/.gstreamer-0.10/ – partial
   - the registry can use $GST_REGISTRY (which has to be overridden to its
     original value for 1.0 with $GST_REGISTRY_1_0)
