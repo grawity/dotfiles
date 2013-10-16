@@ -2,8 +2,8 @@
 " Language:		shell (sh) Korn shell (ksh) bash (sh)
 " Maintainer:		Charles E. Campbell  <NdrOchipS@PcampbellAfamily.Mbiz>
 " Previous Maintainer:	Lennart Schultz <Lennart.Schultz@ecmwf.int>
-" Last Change:		Nov 14, 2012
-" Version:		128
+" Last Change:		Jul 02, 2013
+" Version:		131
 " URL:		http://mysite.verizon.net/astronaut/vim/index.html#vimlinks_syntax
 " For options and settings, please use:      :help ft-sh-syntax
 " This file includes many ideas from ?ric Brunet (eric.brunet@ens.fr)
@@ -27,19 +27,20 @@ endif
 " trying to answer the question: which shell is /bin/sh, really?
 " If the user has not specified any of g:is_kornshell, g:is_bash, g:is_posix, g:is_sh, then guess.
 if !exists("g:is_kornshell") && !exists("g:is_bash") && !exists("g:is_posix") && !exists("g:is_sh")
+ let s:shell = ""
  if executable("/bin/sh")
-  if     resolve("/bin/sh") =~ 'bash$'
-   let g:is_bash= 1
-  elseif resolve("/bin/sh") =~ 'ksh$'
-   let g:is_ksh = 1
-  endif
+  let s:shell = resolve("/bin/sh")
  elseif executable("/usr/bin/sh")
-  if     resolve("/usr/bin//sh") =~ 'bash$'
-   let g:is_bash= 1
-  elseif resolve("/usr/bin//sh") =~ 'ksh$'
-   let g:is_ksh = 1
-  endif
+  let s:shell = resolve("/usr/bin/sh")
  endif
+ if     s:shell =~ 'bash$'
+  let g:is_bash= 1
+ elseif s:shell =~ 'ksh$'
+  let g:is_kornshell = 1
+ elseif s:shell =~ 'dash$'
+  let g:is_posix = 1
+ endif
+ unlet s:shell
 endif
 
 " handling /bin/sh with is_kornshell/is_sh {{{1
@@ -69,24 +70,26 @@ if !exists("b:is_kornshell") && !exists("b:is_bash")
 endif
 
 " set up default g:sh_fold_enabled {{{1
-if !has("folding")
- let g:sh_fold_functions=0
- let g:sh_fold_heredoc=0
-else
- if !exists("g:sh_fold_functions")
-  let g:sh_fold_functions=0
- endif
- if !exists("g_sh_fold_heredoc")
-  let g:sh_fold_heredoc=0
- endif
+if !exists("g:sh_fold_enabled")
+ let g:sh_fold_enabled= 0
+elseif g:sh_fold_enabled != 0 && !has("folding")
+ let g:sh_fold_enabled= 0
+ echomsg "Ignoring g:sh_fold_enabled=".g:sh_fold_enabled."; need to re-compile vim for +fold support"
 endif
-if g:sh_fold_functions || g:sh_fold_heredoc
- if &fdm == "manual"
-  " Given that	the	user provided g:sh_fold_enabled
-  " 	AND	g:sh_fold_enabled is manual (usual default)
-  " 	implies	a desire for syntax-based folding
-  setl fdm=syntax
- endif
+if !exists("s:sh_fold_functions")
+ let s:sh_fold_functions= and(g:sh_fold_enabled,1)
+endif
+if !exists("s:sh_fold_heredoc")
+ let s:sh_fold_heredoc  = and(g:sh_fold_enabled,2)
+endif
+if !exists("s:sh_fold_ifdofor")
+ let s:sh_fold_ifdofor  = and(g:sh_fold_enabled,4)
+endif
+if g:sh_fold_enabled && &fdm == "manual"
+ " Given that	the	user provided g:sh_fold_enabled
+ " 	AND	g:sh_fold_enabled is manual (usual default)
+ " 	implies	a desire for syntax-based folding
+ setl fdm=syntax
 endif
 
 " sh syntax is case sensitive {{{1

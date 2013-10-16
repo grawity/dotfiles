@@ -29,20 +29,14 @@ syn match   pamconfNolog            '-'
 
 syn keyword pamconfType             account auth password session
                                     \ nextgroup=pamconfControl,
-                                    \ pamconfControlStack,
                                     \ pamconfTypeLineCont skipwhite
 
 syn match   pamconfTypeLineCont     contained '\\$'
                                     \ nextgroup=pamconfControl,
-                                    \ pamconfControlStack,
                                     \ pamconfTypeLineCont skipwhite skipnl
 
 syn keyword pamconfControl          contained requisite required sufficient
-                                    \ optional
-                                    \ nextgroup=pamconfMPath,
-                                    \ pamconfControlLineContH skipwhite
-
-syn keyword pamconfControlStack     contained include substack
+                                    \ optional include substack
                                     \ nextgroup=pamconfMPath,
                                     \ pamconfControlLineContH skipwhite
 
@@ -111,7 +105,6 @@ hi def link pamconfNolog            Operator
 hi def link pamconfType             Type
 hi def link pamconfTypeLineCont     pamconfServiceLineCont
 hi def link pamconfControl          Macro
-hi def link pamconfControlStack     Identifier
 hi def link pamconfControlBegin     Delimiter
 hi def link pamconfControlLineContH pamconfServiceLineCont
 hi def link pamconfControlLineCont  pamconfServiceLineCont
