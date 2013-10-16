@@ -41,10 +41,10 @@ Version() {
 			debug "compare $minhead > $curhead, too old"
 			return 1
 		elif (( minhead < curhead )); then
-			debug "compare $minhead < $curhead, too new"
+			debug "compare $minhead < $curhead, accepted"
 			return 0
 		else
-			debug "compare $minhead = $curhead"
+			debug "compare $minhead = $curhead, continuing"
 		fi
 		minversion=${minversion#*.}.
 		curversion=${curversion#*.}.
