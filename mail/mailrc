@@ -14,10 +14,10 @@ set autothread
 
 # composing
 
-set ask
+set ask # ask for message subject
 unset askcc
 set editheaders
-set dot # . as message terminator
+set dot # accept . as message terminator
 
 set indentprefix="> "
 set signature="~/.signature"
