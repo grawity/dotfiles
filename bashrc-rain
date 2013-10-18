@@ -2,9 +2,6 @@
 
 [[ $- != *i* ]] && return
 
-HISTSIZE=50000
-HISTFILESIZE=$HISTSIZE
-
 . /usr/share/bash-completion/bash_completion
 
 have() { command -v "$@" &>/dev/null; }

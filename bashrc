@@ -54,8 +54,8 @@ shopt -s histappend		# append to $HISTFILE on exit
 shopt -s histreedit		# allow re-editing failed history subst
 
 HISTFILE="$XDG_CACHE_HOME/bash.history"
-HISTSIZE=5000
-HISTFILESIZE=5000
+HISTSIZE=10000
+HISTFILESIZE=10000
 HISTCONTROL=ignoreboth
 
 complete -A directory cd
