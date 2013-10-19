@@ -177,7 +177,7 @@ bind index,pager <S-Up> previous-entry	# [<Up> is previous-undeleted]
 bind index,pager <S-Down> next-entry	# [<Down> is next-undeleted]
 bind index,pager <Delete> delete-message
 macro index,pager a "<save-message>=Archive\n"
-macro index,pager A "<copy-message>~/todo.mbox\n"
+macro index,pager A "<copy-message>~/mbox\n"
 macro index,pager <Esc>i "<enter-command>unset wait_key\n<pipe-message>gpg --import |& tig\n<enter-command>set wait_key\n"
 
 bind index G last-entry
