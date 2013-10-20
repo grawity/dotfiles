@@ -73,6 +73,16 @@ alias lsd='ls -d .*'
 alias md='mkdir'
 mir() { wget -m -np --reject-regex='.*\?C=.;O=.$' "$@"; }
 alias mutagen='mid3v2'
+mv() {
+	if [[ -t 0 && -t 1 && $# -eq 1 && -e $1 ]]; then
+		local old=$1 new=$1
+		read -p "rename to: " -e -i "$old" new
+		[[ "$old" != "$new" ]] &&
+		command mv -v "$old" "$new"
+	else
+		command mv "$@"
+	fi
+}
 alias nmap='nmap --reason'
 alias nosr='pkgfile'
 nul() { cat "$@" | tr '\0' '\n'; }
