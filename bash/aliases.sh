@@ -2,19 +2,6 @@
 
 unalias -a
 
-a() {
-	if [[ $1 ]]; then
-		alias "$@"
-	else
-		alias | perl -ne "
-			if (@d = /^alias (.+?)='(.+)'\$/) {
-				\$d[1] =~ s/'\\\''/'/g;
-				\$d[1] =~ s/^(.*)\s$/'\$&'/;
-				printf qq(%-10s %s\n), @d;
-			}"
-	fi
-}
-
 editor() { eval command "${EDITOR:-vim}" '"$@"'; }
 browser() { eval command "${BROWSER:-lynx}" '"$@"'; }
 pager() { eval command "${PAGER:-less}" '"$@"'; }
@@ -54,13 +41,11 @@ alias hex='xxd -p'
 alias unhex='xxd -p -r'
 alias hup='pkill -HUP -x'
 alias init='telinit' # for systemd
-_ixrun() { (echo "\$ $1"; eval "$1") 2>&1 | ix; }
-alias ixrun='_ixrun "$(_thiscommand ixrun)" #'
 alias kssh='ssh \
 	-o PreferredAuthentications=gssapi-keyex,gssapi-with-mic \
 	-o GSSAPIAuthentication=yes \
 	-o GSSAPIDelegateCredentials=yes'
-kzgrep() { zgrep "$@" /proc/config.gz; }
+kzgrep() { zgrep -i "$@" /proc/config.gz; }
 alias ll='ls -l'
 alias logoff='logout'
 if [[ $DESKTOP_SESSION ]]; then
@@ -115,8 +100,6 @@ alias 'todo:'='todo "$(_thiscommand todo:)" #'
 alias tracert='traceroute'
 alias treedu='tree --du -h'
 trs() { printf '%s' "$@"; printf '\n'; }
-tubemusic() { youtube-dl --title --extract-audio --audio-format mp3 \
-	--keep-video "$@"; }
 up() { local p= i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
 alias watch='watch '
 vercmp() {
@@ -131,7 +114,6 @@ virdf() { vim -c "setf n3" <(rapper -q -o turtle "$@"); }
 visexp() { (echo "; vim: ft=sexp"; echo "; file: $1"; sexp-conv < "$1") \
 	| vipe | sexp-conv -s canonical | sponge "$1"; }
 alias w3m='w3m -title'
-alias weechat='weechat-curses' # sigh
 wim() { local w=$(which "$1"); [[ $w ]] && $EDITOR "$w"; }
 alias xf='ps xf -O ppid'
 alias xx='chmod a+x'
@@ -141,9 +123,9 @@ alias '~~'='egrep -i'
 alias sdate='date "+%Y-%m-%d"'
 alias sfdate='date "+%Y-%m-%d %H:%M"'
 alias ldate='date "+%A, %B %-d, %Y %H:%M"'
-alias mboxdate='date "+%a %b %_d %H:%M:%S %Y"'		# mbox
-alias mimedate='date "+%a, %d %b %Y %H:%M:%S %z"'	# RFC 2822
-alias isodate='date "+%Y-%m-%dT%H:%M:%S%z"'		# ISO 8601
+alias mboxdate='date "+%a %b %_d %H:%M:%S %Y"'
+alias mimedate='date "+%a, %d %b %Y %H:%M:%S %z"' # RFC 2822
+alias isodate='date "+%Y-%m-%dT%H:%M:%S%z"' # ISO 8601
 
 if have xclip; then
 	alias psel='xclip -out -selection primary'
@@ -244,14 +226,6 @@ cpans() {
 	PERL_MM_OPT= PERL_MB_OPT= cpanm --sudo "$@"
 }
 
-ldapsetconf() {
-	if [[ $1 ]]; then
-		export LDAPCONF=$1
-	else
-		unset LDAPCONF
-	fi
-}
-
 cat() {
 	if [[ $1 == *://* ]]; then
 		curl -LsfS "$1"
@@ -259,6 +233,7 @@ cat() {
 		command cat "$@"
 	fi
 }
+
 man() {
 	if [[ $1 == *://* ]]; then
 		curl -Ls "$1" | command man /dev/stdin
@@ -308,12 +283,6 @@ sslcert() {
 pem2der() { openssl x509 -inform pem -outform der; }
 der2pem() { openssl x509 -inform der -outform pem; }
 
-tcp() {
-	local host=$1 port=$2
-	[[ $host = *:* ]] && host="[$host]"
-	socat stdio tcp:"$host":"$port"
-}
-
 x509() {
 	local file=${1:-/dev/stdin}
 	if have certtool; then
@@ -331,42 +300,7 @@ x509fp() {
 		sed 's/^.*=//; y/ABCDEF/abcdef/'
 }
 
-## web sites
-
-google() {
-	browser "https://www.google.com/search?q=$(urlencode "$*")"
-}
-
-rfc() {
-	browser "https://tools.ietf.org/html/rfc$1"
-}
-
-wiki() {
-	browser "https://en.wikipedia.org/w/index.php?search=$(urlencode "$*")"
-}
-
 ## package management
-
-# I don't actually use `getpkg`, it remains here as documentation.
-getpkg() {
-	if [[ -f $1 ]]; then
-		if have dpkg;		then sudo dpkg -i "$@"
-		elif have pacman;	then sudo pacman -U "$@"
-		elif have rpm;		then sudo rpm -U "$@"
-		elif have pkg_add;	then sudo pkg_add "$@"
-		else echo "$FUNCNAME: no known package manager" >&2; return 1; fi
-	else
-		if have aptitude;	then sudo aptitude install "$@"
-		elif have apt-cyg;	then sudo apt-cyg install "$@"
-		elif have apt-get;	then sudo apt-get install "$@" \
-			--no-install-recommends
-		elif have pacman;	then sudo pacman -S "$@"
-		elif have yum;		then sudo yum install "$@"
-		elif have pkg_add;	then sudo pkg_add "$@"
-		elif have mingw-get;	then mingw-get install "$@"
-		else echo "$FUNCNAME: no known package manager" >&2; return 1; fi
-	fi
-}
 
 lspkgs() {
 	if have dpkg;		then dpkg -l | awk '/^i/ {print $2}'
@@ -399,7 +333,7 @@ llpkg() {
 lscruft() {
 	if have dpkg;		then dpkg -l | awk '/^r/ {print $2}'
 	elif have pacman;	then find /etc -name '*.pacsave'
-	else echo "$FUNCNAME: no known package manager or configs not tracked" >&2; return 1; fi
+	else echo "$FUNCNAME: no known package manager" >&2; return 1; fi
 }
 
 owns() {
@@ -427,14 +361,14 @@ if have systemctl; then
 	alias status='systemctl status -a'
 	alias list='systemctl list-units -t path,service,socket --no-legend'
 	alias userctl='systemctl --user'
-	alias u='userctl'
+	alias u='systemctl --user'
 	ustart()   { userctl start "$@"; userctl status -a "$@"; }
 	ustop()    { userctl stop "$@"; userctl status -a "$@"; }
 	urestart() { userctl restart "$@"; userctl status -a "$@"; }
 	alias ulist='userctl list-units -t path,service,socket --no-legend'
 	alias lcstatus='loginctl session-status $XDG_SESSION_ID'
 	alias tsd='tree /etc/systemd/system'
-	cgls() { SYSTEMD_PAGER=cat systemd-cgls "$@"; }
+	cgls() { SYSTEMD_PAGER='cat' systemd-cgls "$@"; }
 	usls() { cgls "/user.slice/user-$UID.slice/$*"; }
 	psls() { cgls "/user.slice/user-$UID.slice/session-$XDG_SESSION_ID.scope"; }
 elif have start && have stop; then
@@ -443,7 +377,7 @@ elif have start && have stop; then
 	stop()    { sudo stop "$@"; }
 	restart() { sudo restart "$@"; }
 elif have service; then
-	# Debian
+	# Debian, other LSB
 	start()   { for _s; do sudo service "$_s" start; done; }
 	stop()    { for _s; do sudo service "$_s" stop; done; }
 	restart() { for _s; do sudo service "$_s" restart; done; }
