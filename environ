@@ -14,9 +14,9 @@ setpath() {
 
 umask 022
 
-[ "$USER" ]     || USER=`id -un`
-[ "$UID" ]      || UID=`id -u`
-[ "$HOSTNAME" ] || HOSTNAME=`hostname`
+[ "$USER" ]     || USER=$(id -un)
+[ "$UID" ]      || UID=$(id -u)
+[ "$HOSTNAME" ] || HOSTNAME=$(hostname)
 
 set -a
 
