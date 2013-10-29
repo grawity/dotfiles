@@ -40,6 +40,7 @@ dist/pull() {
 }
 alias dnstracer='dnstracer -s .'
 alias each='xargs -n 1'
+alias eachn="xargs -n 1 -d '\n'"
 alias ed='ed -p:'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
 alias facl='getfacl -pt'
