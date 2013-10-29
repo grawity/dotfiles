@@ -6,10 +6,10 @@ have() { command -v "$1" >&/dev/null; }
 
 # this cannot be in environ.sh because gdm sources profile early;
 # Xsession and gnome-session override $LANG later
-case $LANG in *.utf8)
+if [[ $LANG == *.utf8 ]]; then
 	# make `tree` work correctly
 	export LANG=${LANG/%.utf8/.UTF-8}
-esac
+fi
 
 # this is needed for non-interactive mode as well; for example,
 # in my git-url-handler script
