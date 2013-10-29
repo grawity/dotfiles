@@ -34,8 +34,6 @@ fi
 
 export GPG_TTY=$(tty)
 
-export SUDO_PROMPT=$(printf 'sudo: Password for %%p@\e[30;43m%%h\e[m: ')
-
 ### Interactive options
 
 [[ $- != *i* ]] && return

@@ -116,6 +116,7 @@ BZR_LOG="/dev/null"
 GIT_MERGE_AUTOEDIT="no"
 LESS="e M q R F X z -3"
 MAKEFLAGS="-j $(nproc)"
+SUDO_PROMPT="sudo: Password for %p@[30;43m%h[m: "
 
 case $(uname)-$(uname -r) in
     NetBSD-6.*)
