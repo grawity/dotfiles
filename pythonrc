@@ -2,10 +2,12 @@
 import os
 import sys
 
-def _startup():
+def _init_():
 	import readline
 	import rlcompleter
 	import atexit
+
+	# line editing
 	
 	readline.parse_and_bind('tab: complete')
 	
@@ -14,6 +16,7 @@ def _startup():
 		readline.read_history_file(historyFile)
 	atexit.register(lambda: readline.write_history_file(historyFile))
 	
+	# prompts
 	
 	vtseq = lambda s: "\001\033%s\002" % s
 	ansi = lambda s: vtseq("[%sm" % s)
@@ -26,4 +29,4 @@ def _startup():
 
 	sys.ps2 = " " * len(verstr) + ansi("0;1;30") + "..." + ansi("0") + " "
 
-_startup()
+_init_()
