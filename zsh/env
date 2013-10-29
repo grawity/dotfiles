@@ -1,5 +1,3 @@
 #!/usr/bin/env zsh
 
-echo "++ debug: ~/.zshenv (self=$0)"
-
 ZDOTDIR="$HOME/lib/dotfiles/zsh"

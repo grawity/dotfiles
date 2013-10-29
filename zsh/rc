@@ -1,7 +1,5 @@
 #!/usr/bin/env zsh
 
-echo "++ debug: ~/.zshrc (self=$0)"
-
 # terminal setup
 # https://github.com/vodik/dotfiles/blob/master/shell/zsh/bindkeys.zsh
 
