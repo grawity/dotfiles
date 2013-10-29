@@ -45,6 +45,8 @@ GVIMINIT=":so ~/.vim/gvimrc"
 
 # appdefaults
 
+CN_LDAP_SERVER="ldap://wolke.nullroute.eu.org";
+
 ACCDB="/run/media/$USER/grawpqi/Private/accounts.db.txt"
 MPD_HOST="$(<"$XDG_CONFIG_HOME/mpd/password")@$XDG_RUNTIME_DIR/mpd.control"
 PERL_CPANM_OPT="$PERL_CPANM_OPT --mirror http://ftp.litnet.lt/pub/CPAN/"
