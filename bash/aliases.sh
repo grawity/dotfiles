@@ -6,7 +6,6 @@ editor()  { command ${EDITOR:-vim}   "$@"; }
 browser() { command ${BROWSER:-lynx} "$@"; }
 pager()   { command ${PAGER:-less}   "$@"; }
 
-# It's a mess but /at least/ it's alphasorted
 alias bat='acpi -i'
 alias cindex='env TMPDIR=/var/tmp cindex'
 count() { sort "$@" | uniq -c | sort -n -r | pager; }
@@ -19,12 +18,7 @@ dist/head() {
 	echo -e "\e[1m== ~/lib/dotfiles\e[m"
 	(cd ~/lib/dotfiles && git tip)
 }
-dist/pull() {
-	~/code/dist/pull "$@"
-	SILENT=y
-	. ~/.profile
-	unset SILENT
-}
+dist/pull() { ~/code/dist/pull "$@" && SILENT=1 . ~/.profile; }
 alias dnstracer='dnstracer -s .'
 alias each='xargs -n 1'
 alias eachn="xargs -n 1 -d '\n'"
@@ -33,8 +27,7 @@ entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
 alias facl='getfacl -pt'
 alias fdf='findmnt -o target,size,used,avail,use%,fstype'
 alias findexe='find -type f -executable'
-gerp() { egrep -r -I -D skip --exclude-dir='.git' --exclude-dir='.svn' \
-	--exclude-dir='.hg' -H -n --color=always "$@"; }
+gerp() { egrep -r -I -D skip --exclude-dir={.bzr,.git,.hg,.svn} -H -n "$@"; }
 alias gpg-kill-agent='gpg-connect-agent killagent /bye'
 gpgsigs() { gpg --edit-key "$1" check quit; }
 alias hex='xxd -p'
@@ -77,36 +70,33 @@ alias py='python'
 alias py2='python2'
 alias py3='python3'
 alias rd='rmdir'
-rdempty() { find "$@" -depth -type d \
-	-exec rmdir --ignore-fail-on-non-empty {} +; }
-alias re='hash -r; SILENT=1 . ~/.bashrc; echo reloaded .bashrc; :'
+rdempty() { find "$@" -depth -type d -exec rmdir --ignore-fail-on-non-empty {} +; }
+alias re='hash -r && SILENT=1 . ~/.bashrc && echo reloaded .bashrc && :'
 alias rot13='tr N-ZA-Mn-za-m A-Za-z'
 rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}"; echo; }
-run() { spawn -c "$@"; }
+alias run='spawn -c'
 setdark() {
 	case $1 in
-		n|no|off) xprop -remove _GTK_THEME_VARIANT;;
-		*) xprop -f _GTK_THEME_VARIANT 8u -set _GTK_THEME_VARIANT dark;;
+	    n*|off) xprop -remove _GTK_THEME_VARIANT;;
+	    *)      xprop -f _GTK_THEME_VARIANT 8u -set _GTK_THEME_VARIANT dark;;
 	esac;
 }
-splitext() { split -dC "${2-32K}" "$1" \
-	"${1%.*}-" --additional-suffix=".${1##*.}"; }
+splitext() { split -dC "${2-32K}" "$1" "${1%.*}-" --additional-suffix=".${1##*.}"; }
 alias srs='rsync -vhzaHAX'
 alias sudo='sudo ' # for alias expansion in sudo args
 alias takeown='sudo chown "${UID}:${GROUPS[0]}"'
 _thiscommand() { history 1 | sed "s/^\s[0-9]\+\s\+$1\s\+//"; }
 alias tidiff='infocmp -Ld'
-alias 'todo:'='todo "$(_thiscommand todo:)" #'
+alias todo:='todo "$(_thiscommand todo:)" #'
 alias tracert='traceroute'
 alias treedu='tree --du -h'
 trs() { printf '%s' "$@"; printf '\n'; }
-up() { local p= i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
-alias watch='watch '
+up() { local p i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
 vercmp() {
 	case $(command vercmp "$@") in
-	-1)  echo "$2 is newer than $1";;
-	 0)  echo "$1 and $2 are equal";;
-	 1)  echo "$1 is newer than $2";;
+	-1) echo "$1 < $2";;
+	 0) echo "$1 = $2";;
+	 1) echo "$1 > $2";;
 	esac
 }
 vimpaste() { vim <(getpaste "$1"); }
@@ -204,20 +194,11 @@ abs() {
 	command abs "$pkg" && cd "$ABSROOT/$pkg"
 }
 
-escape_addr() {
-	case $1 in
-	*:*) echo "[$1]";;
-	*)   echo "$1";;
-	esac
-}
-
 catlog() {
-	local prefix=$1
-	printf '%s\n' "$prefix" "$prefix".* \
-	| sort -rn | while read -r file; do
+	printf '%s\n' "$1" "$1".* | sort -rn | while read -r file; do
 		case $file in
-		*.gz)	zcat "$file";;
-		*)	cat "$file";;
+		    *.gz) zcat "$file";;
+		    *)    cat "$file";;
 		esac
 	done
 }
@@ -236,7 +217,7 @@ cat() {
 
 man() {
 	if [[ $1 == *://* ]]; then
-		curl -Ls "$1" | command man /dev/stdin
+		curl -LsfS "$1" | command man /dev/stdin
 	else
 		command man "$@"
 	fi
@@ -254,7 +235,7 @@ ppid() {
 }
 
 putenv() {
-	local pid=$1 var= val= args=()
+	local pid=$1 var val args=()
 	for var in "${@:2}"; do
 		val=$(urlencode -x "${!var}")
 		var=$(urlencode -x "$var")
@@ -272,16 +253,18 @@ sshfp() {
 }
 
 sslcert() {
+	local host=$1 port=$2
+	case $host in
+	    *:*) local addr="[$host]";;
+	    *)   local addr="$host";;
+	esac
 	if have gnutls-cli; then
 		gnutls-cli "$1" -p "$2" --insecure --print-cert </dev/null | openssl x509
 	elif have openssl; then
-		openssl s_client -no_ign_eof -connect "$(escape_addr "$1"):$2" \
+		openssl s_client -no_ign_eof -connect "$addr:$port" \
 			</dev/null 2>/dev/null | openssl x509
 	fi
 }
-
-pem2der() { openssl x509 -inform pem -outform der; }
-der2pem() { openssl x509 -inform der -outform pem; }
 
 x509() {
 	local file=${1:-/dev/stdin}
