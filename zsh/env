@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+echo "++ debug: ~/.zshenv (self=$0)"
+
+[ "$PREFIX" ] || . ~/lib/dotfiles/environ

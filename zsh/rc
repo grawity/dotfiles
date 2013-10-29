@@ -1,0 +1,22 @@
+#!/usr/bin/env zsh
+
+echo "++ debug: ~/.zshrc (self=$0)"
+
+# terminal setup
+# https://github.com/vodik/dotfiles/blob/master/shell/zsh/bindkeys.zsh
+
+autoload zsh/terminfo
+
+# keybindings
+
+bindkey -e
+
+bindkey '\eOH' beginning-of-line	# home
+bindkey '\eOF' end-of-line		# end
+bindkey '\e[5~' beep			# page-up
+bindkey '\e[6~' beep			# page-down
+bindkey '\eOQ' describe-key-briefly	# F2
+
+# macros
+
+bindkey '\e:' execute-named-cmd
