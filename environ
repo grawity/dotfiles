@@ -96,7 +96,7 @@ ICEAUTHORITY="$XDG_RUNTIME_DIR/ICE-authority"
 _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
 LDAPRC="$XDG_CONFIG_HOME/ldaprc"
 NCURSES_NO_UTF8_ACS="1"
-XCOMPOSEFILE="$HOME/lib/dotfiles/XCompose"
+XCOMPOSEFILE="$HOME/lib/dotfiles/gui/XCompose"
 
 # appdefaults
 
