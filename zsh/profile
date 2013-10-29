@@ -2,4 +2,4 @@
 
 echo "++ debug: ~/.zprofile (self=$0)"
 
-[ "$PREFIX" ] || . ~/lib/dotfiles/environ
+. ~/lib/dotfiles/environ
