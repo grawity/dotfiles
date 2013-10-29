@@ -2,8 +2,6 @@
 
 have() { command -v "$1" >&/dev/null; }
 
-### Environment
-
 [[ $PREFIX ]] || . ~/lib/dotfiles/environ
 
 # this cannot be in environ.sh because gdm sources profile early;
@@ -16,8 +14,8 @@ esac
 # this is needed for non-interactive mode as well; for example,
 # in my git-url-handler script
 case $TERM in
-	xterm)
-		TERM='xterm-256color';
+	xterm|screen)
+		TERM="$TERM-256color";
 		havecolor=256;;
 	*-256color|xterm-termite)
 		havecolor=256;;
