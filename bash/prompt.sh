@@ -39,9 +39,9 @@ _awesome_prompt() {
 
 	if ! have git; then
 		git=
-	elif [[ -n $GIT_DIR && -d $GIT_DIR ]]; then
+	elif [[ $GIT_DIR && -d $GIT_DIR ]]; then
 		git=$GIT_DIR
-	elif [[ -z $GIT_DIR && -d .git ]]; then
+	elif [[ ! $GIT_DIR && -d .git ]]; then
 		git=.git
 	else
 		git=$(git rev-parse --git-dir 2>/dev/null)
