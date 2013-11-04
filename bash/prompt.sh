@@ -100,6 +100,10 @@ _awesome_prompt() {
 		wdbase=$PWD
 	elif [[ $git == /*/.git ]]; then
 		wdbase=${git%/.git}
+		if [[ $PWD != "$wdbase"/* ]]; then
+			#declare -p git PWD wdbase
+			wdbase=
+		fi
 	elif [[ $git ]]; then
 		wdbase=$(git rev-parse --show-toplevel)
 	fi
