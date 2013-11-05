@@ -10,18 +10,12 @@
 xhost +"SI:localuser:$USER" &
 
 if have keyctl; then
-	# set up session keyring (pam_keyinit does not work with GDM due to
-	# thread issues, fixed in Linux commit 3a50597de)
+	# set up session keyring
 	if [ "`keyctl rdescribe @s`" = "`keyctl rdescribe @us`" ]; then
-		keyctl show -x
 		echo "Creating new session keyring"
 		if keyctl new_session > /dev/null; then
 			keyctl link @u @s
-			keyctl show -x
 		fi
-	else
-		echo "Session keyring is already okay"
-		keyctl show -x
 	fi
 	# set up some pointers to environment (for use by cron)
 	if have globalenv; then
