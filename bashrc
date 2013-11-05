@@ -15,8 +15,12 @@ fi
 # in my git-url-handler script
 case $TERM in
 	xterm|screen)
-		TERM="$TERM-256color";
-		havecolor=256;;
+		if [[ $VTE_VERSION || $_have_256color ]]; then
+			TERM="$TERM-256color";
+			havecolor=256
+		else
+			havecolor=16
+		fi;;
 	*-256color|xterm-termite)
 		havecolor=256;;
 	""|dumb|9term)
