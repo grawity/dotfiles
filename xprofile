@@ -49,7 +49,11 @@ if [ ! "$DESKTOP_SESSION" ]; then
 
 	/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
-	gnome-screensaver &
+	if have cinnamon-screensaver; then
+		cinnamon-screensaver
+	elif have gnome-screensaver; then
+		gnome-screensaver
+	fi &
 
 	xbindkeys -f ~/.config/xbindkeys/xbindkeysrc &
 fi
