@@ -19,7 +19,7 @@ case $TERM in
 		havecolor=256;;
 	*-256color|xterm-termite)
 		havecolor=256;;
-	""|9term)
+	""|dumb|9term)
 		havecolor=0;;
 	*)
 		havecolor=8;;
