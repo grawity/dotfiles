@@ -91,6 +91,17 @@ Host *.nullroute.eu.org *.home
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
+# virtual machines on the laptop
+
+Host *.core
+	ForwardAgent yes
+#if Host rain
+	UserKnownHostsFile ~/.ssh/known_hosts.core
+#endif
+#if OpenSSH && Version 5.6
+	ControlPersist no
+#endif
+
 # other domains
 
 Host *.nathan7.eu
