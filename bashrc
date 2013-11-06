@@ -14,13 +14,12 @@ fi
 # this is needed for non-interactive mode as well; for example,
 # in my git-url-handler script
 case $TERM in
+	xterm-new)
+		#TERM="xterm";
+		havecolor=8;;
 	xterm|screen)
-		if [[ $VTE_VERSION || $_have_256color ]]; then
-			TERM="$TERM-256color";
-			havecolor=256
-		else
-			havecolor=16
-		fi;;
+		TERM="$TERM-256color";
+		havecolor=256;;
 	*-256color|xterm-termite)
 		havecolor=256;;
 	""|dumb|9term)
