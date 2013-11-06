@@ -28,13 +28,15 @@ fi
 # Set command-line, DESKTOP_SESSION for xprofile
 
 case $1 in
-	gnome)	set -- gnome-session;;
-	e)	set -- enlightenment_start;;
-	kde)	set -- startkde;;
-	xfce)	set -- startxfce4;;
+	cinnamon)	set -- cinnamon-session;;
+	gnome)		set -- gnome-session;;
+	e|e17)		set -- enlightenment_start;;
+	kde)		set -- startkde;;
+	xfce)		set -- startxfce4;;
 esac
 
 case $1 in
+	cinnamon-session)	DESKTOP_SESSION=cinnamon;;
 	gnome-session)		DESKTOP_SESSION=gnome;;
 	enlightenment_start)	DESKTOP_SESSION=enlightenment17;;
 	startkde)		DESKTOP_SESSION=kde-plasma;;
