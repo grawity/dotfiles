@@ -8,14 +8,13 @@ have() { command -v "$1" >&/dev/null; }
 # Xsession and gnome-session override $LANG later
 if [[ $LANG == *.utf8 ]]; then
 	# make `tree` work correctly
-	export LANG=${LANG/%.utf8/.UTF-8}
+	LANG=${LANG/%.utf8/.UTF-8}
 fi
 
 # this is needed for non-interactive mode as well; for example,
 # in my git-url-handler script
 case $TERM in
 	xterm-new)
-		#TERM="xterm";
 		havecolor=8;;
 	xterm|screen)
 		TERM="$TERM-256color";
