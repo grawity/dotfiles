@@ -7,7 +7,7 @@ have() { command -v "$1" >&/dev/null; }
 # this cannot be in environ.sh because gdm sources profile early;
 # Xsession and gnome-session override $LANG later
 if [[ $LANG == *.utf8 ]]; then
-	# make `tree` work correctly
+	# make `tree` work correctly *sigh* because it wants the dash.
 	LANG=${LANG/%.utf8/.UTF-8}
 fi
 
