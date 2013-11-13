@@ -8,8 +8,8 @@ Notes on moving various dotfiles
   - $CRAWL_DIR (must end with '/') overrides compile-time default
 
 ~/.crawlrc – other locations, environment
-  - $CRAWL_DIR/init.txt is also used by default
-  - $CRAWL_RC overrides defaults
+  - default path also has $CRAWL_DIR/init.txt
+  - $CRAWL_RC overrides
 
 ~/.cvspass – environment
   - $CVS_PASSFILE overrides
@@ -25,12 +25,13 @@ Notes on moving various dotfiles
 ~/.dvdcss/ – environment
   - $DVDCSS_CACHE overrides
 
-~/.esd_auth – pointless
-  - PulseAudio modules accept an auth-cookie= argument
-  - however, ESD itself hardcodes $HOME/.esd_auth
-  - screw it, I just removed the relevant PA modules
+~/.esd_auth – hardcoded
+  - ESD hardcodes the path; PulseAudio modules accept an auth-cookie= argument,
+    but it doesn't always work... (I just removed the relevant PA modules
+    entirely)
 
 ~/.forward – fixed
+  - most MTAs expect this, although some can be reconfigured
 
 ~/.gdbinit – hardcoded
 
@@ -46,8 +47,11 @@ Notes on moving various dotfiles
     original value for 1.0 with $GST_REGISTRY_1_0)
   - but presets are not possible to move, so I don't bother at all.
 
+~/.gtkrc – environment
+  - $GTK_RC_FILES overrides, can have a list of rc's
+
 ~/.gtkrc-2.0 – environment
-  - $GTK2_RC_FILES can have a list of rc's
+  - $GTK2_RC_FILES overrides, can have a list of rc's
 
 ~/.gvimrc – environment
   - $GVIMINIT can have an Ex command that ":source"s an additional rc
@@ -57,7 +61,7 @@ Notes on moving various dotfiles
     default search path (ignoring even the system-wide files)
 
 ~/.ICEauthority – environment
-  - ICEAUTHORITY="$XDG_RUNTIME_DIR/ICE-auhority"
+  - $ICEAUTHORITY overrides (e.g. ICEAUTHORITY="$XDG_RUNTIME_DIR/ICE-auhority")
 
 ~/.irbrc – environment
   - $IRBRC is first in default search path
