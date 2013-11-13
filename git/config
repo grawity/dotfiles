@@ -85,6 +85,7 @@
 	useHttpPath = false
 [diff]
 	renames = copies
+	submodule = log
 [diff "gpg"]
 	textconv = gpg -v
 	xfuncname = "^((pub|uid) .*)"
