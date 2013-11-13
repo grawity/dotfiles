@@ -21,6 +21,7 @@ hgk =
 #keyring =
 mq =
 pager =
+progress =
 purge =
 rebase =
 
