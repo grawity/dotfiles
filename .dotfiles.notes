@@ -22,6 +22,9 @@ Notes on moving various dotfiles
 ~/.dbus/ – fixed
   - ~/.dbus/session-bus/$MACHINE_ID-$DISPLAY is part of the DBus spec
 
+~/.dvdcss/ – environment
+  - $DVDCSS_CACHE overrides
+
 ~/.esd_auth – pointless
   - PulseAudio modules accept an auth-cookie= argument
   - however, ESD itself hardcodes $HOME/.esd_auth
@@ -79,6 +82,9 @@ Notes on moving various dotfiles
   - $XDG_CONFIG_HOME/mpd/mpd.conf is used by default
   - ~/.mpd/mpd.conf is an alternate path
   - <path> accepted in command line
+
+~/.mpv/ – environment
+  - $MPV_HOME overrides
 
 ~/.msmtprc – hardcoded
 
