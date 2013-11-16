@@ -75,6 +75,7 @@
 	# Apparently order matters.
 	ui = auto
 	branch = never
+	status = never
 	tag = auto dense
 [credential]
 	helper = cache --socket $XDG_RUNTIME_DIR/git-credential-cache.socket
