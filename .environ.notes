@@ -12,6 +12,9 @@ ICEWM_PRIVCFG="$XDG_CONFIG_HOME/IceWM"
 # Not needed, XDG path is already the default
 #LFTP_HOME="$XDG_CONFIG_HOME/lftp"
 
+# Does not work 100% (see notes)
+#OPERA_PERSONALDIR="$XDG_DATA_HOME/opera"
+
 # Not needed, 'xim' is already the default
 #QT_IM_MODULE
 

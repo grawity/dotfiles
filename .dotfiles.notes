@@ -105,6 +105,10 @@ Notes on moving various dotfiles
 ~/.offlineimaprc – command line
   - the only method is `offlineimap -c <path>`
 
+~/.opera/ – partial environment
+  - $OPERA_PERSONALDIR overrides
+  - however, 1 file remains (~/.opera/OperaAutoupdateChecker.sqlite)
+
 ~/.pine-debug[0-9] – hardcoded
   - I use a wrapper to remove them (and to pass -p for pinerc)
 
