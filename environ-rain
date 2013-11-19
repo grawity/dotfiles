@@ -42,9 +42,6 @@ WMII_CONFPATH="$XDG_CONFIG_HOME/wmii"
 #CABAL_CONFIG="$XDG_CONFIG_HOME/cabal/config"
 #WINEPREFIX=
 
-VIMINIT=":so ~/.vim/vimrc"
-GVIMINIT=":so ~/.vim/gvimrc"
-
 # appdefaults
 
 CN_LDAP_SERVER="ldap://wolke.nullroute.eu.org";

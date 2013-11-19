@@ -118,6 +118,9 @@ LESS="e M q R F X z -3"
 MAKEFLAGS="-j $(nproc)"
 SUDO_PROMPT="sudo: Password for %p@[30;43m%h[m: "
 
+VIMINIT=":so ~/.vim/vimrc"
+GVIMINIT=":so ~/.vim/gvimrc"
+
 case $(uname)-$(uname -r) in
     NetBSD-6.*)
 	LC_COLLATE="C" # http://mid.gmane.org/20110804105652.GA27213@mars.tony.develop-help.com
