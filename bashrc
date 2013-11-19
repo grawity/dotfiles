@@ -24,7 +24,7 @@ fi
 case $TERM in
 	xterm-new)
 		havecolor=8;;
-	xterm|screen)
+	xterm)
 		TERM="$TERM-256color";
 		havecolor=256;;
 	*-256color|xterm-termite)
