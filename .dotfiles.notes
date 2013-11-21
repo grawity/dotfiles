@@ -116,9 +116,19 @@ Notes on moving various dotfiles
   - apparently Windows gets $PINERC and $PINECONF, and Unix gets neither
   - "-p <path>" option exists
 
+~/.putty/ – environment
+  - $PUTTYDIR overrides
+  - subdirectories can be overriden separately:
+      - ./sessions: $PUTTYSESSIONS
+      - ./sshhostkeys: $PUTTYSSHHOSTKEYS
+      - ./randomseed: $PUTTYRANDOMSEED
+
 ~/.renpy/ – hardcoded
 
 ~/.ssh/ – hardcoded
+
+~/.Skype/ – command line
+  - "--dbpath=<path>" overrides the default path
 
 ~/.subversion/ – hardcoded
 
