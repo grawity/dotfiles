@@ -116,6 +116,7 @@ BZR_LOG="/dev/null"
 GIT_MERGE_AUTOEDIT="no"
 LESS="e M q R F X z -3"
 MAKEFLAGS="-j $(nproc)"
+MANLESS="]0;\$MAN_PN Manual page \$MAN_PN ?ltline %lt?L/%L.:byte %bB?s/%s..?e (END):?pB %pB\\%.. "
 SUDO_PROMPT="sudo: Password for %p@[30;43m%h[m: "
 
 VIMINIT=":so ~/.vim/vimrc"
