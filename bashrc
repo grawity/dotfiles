@@ -11,19 +11,9 @@ if [[ $LANG == *.utf8 ]]; then
 	LANG=${LANG/%.utf8/.UTF-8}
 fi
 
-# so I sometimes use these dotfiles on old Linux VMs – probably shouldn't do
-# that though (I already have a "tinyrc" branch after all) – and they have
-# gnome-terminal that lacks 256-color support, so I need to disable the (much
-# too convenient) auto-upgrade to xterm-256color
-if [[ $TERM == xterm && $_have_256color == n ]]; then
-	TERM="xterm-new"
-fi
-
 # this is needed for non-interactive mode as well; for example,
 # in my git-url-handler script
 case $TERM in
-	xterm-new)
-		havecolor=8;;
 	xterm)
 		TERM="$TERM-256color";
 		havecolor=256;;
