@@ -30,6 +30,12 @@ Notes on moving various dotfiles
     but it doesn't always work... (I just removed the relevant PA modules
     entirely)
 
+~/.exodusviewer/ – environment
+  - $EXODUSVIEWER_USER_DIR overrides, but see ~/.secondlife/
+
+~/.firestorm/ – environment
+  - $FIRESTORM_USER_DIR overrides, but see ~/.secondlife/
+
 ~/.forward – fixed
   - most MTAs expect this, although some can be reconfigured
 
@@ -125,6 +131,9 @@ Notes on moving various dotfiles
 
 ~/.renpy/ – hardcoded
 
+~/.secondlife/ – environment
+  - $SECONDLIFE_USER_DIR overrides, but need to manually set new chatlog path
+
 ~/.ssh/ – hardcoded
 
 ~/.Skype/ – command line
@@ -171,7 +180,7 @@ Notes on moving various dotfiles
 ~/VirtualBox VMs/ – configurable
   - can be changed by `VBoxManage setproperty machinefolder <path>` or via GUI
 
-# vim: ts=4 sw=4 et tw=79
+# vim: sts=4 sw=2 et tw=79
 
 "XDG as of..." – newer versions already use XDG paths
 "configurable" – can change a config option somewhere
