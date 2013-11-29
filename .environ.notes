@@ -3,24 +3,24 @@
 # These variables are not in environ because I don't use the programs,
 # so I'm recording them in a separate file just in case I need to remember them
 # sometime later.
-EXODUSVIEWER_USER_DIR="$XDG_DATA_HOME/exodusviewer"
+EXODUSVIEWER_USER_DIR="$XDG_DATA_HOME/ExodusViewer"
 GNUSTEP_USER_ROOT="$XDG_CONFIG_HOME/GNUstep"
 ICEWM_PRIVCFG="$XDG_CONFIG_HOME/IceWM"
 
 # Treated as "system" config, user-only options ignored; use LDAPRC
-#LDAPCONF="$XDG_CONFIG_HOME/ldap.conf"
+LDAPCONF="$XDG_CONFIG_HOME/ldap.conf"
 
 # Not needed, XDG path is already the default
-#LFTP_HOME="$XDG_CONFIG_HOME/lftp"
+LFTP_HOME="$XDG_CONFIG_HOME/lftp"
 
 # Does not work 100% (see notes)
-#OPERA_PERSONALDIR="$XDG_DATA_HOME/opera"
+OPERA_PERSONALDIR="$XDG_DATA_HOME/opera"
 
 # Not needed, 'xim' is already the default
-#QT_IM_MODULE
+QT_IM_MODULE="xim"
 
 # Easter egg
-#SVN_I_LOVE_PANGALACTIC_GARGLE_BLASTERS=1
+SVN_I_LOVE_PANGALACTIC_GARGLE_BLASTERS=1
 
 # Driver is now autodetected correctly
-#VDPAU_DRIVER="r600"
+VDPAU_DRIVER="r600"
