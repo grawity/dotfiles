@@ -102,7 +102,6 @@ XCOMPOSEFILE="$HOME/lib/dotfiles/gui/XCompose"
 
 ABSROOT="$HOME/pkg"
 CCACHE_DIR="$XDG_CACHE_HOME/ccache"
-CVS_PASSFILE="$HOME/.auth/cvspass"
 ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
 LESSHISTFILE="$XDG_CACHE_HOME/less.history"
 MYSQL_HISTFILE="$XDG_CACHE_HOME/mysql.history"
