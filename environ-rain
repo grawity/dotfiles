@@ -28,11 +28,9 @@ GIMP2_DIRECTORY="$XDG_DATA_HOME/gimp"
 GRAMPSHOME="$XDG_DATA_HOME/gramps"
 MAILCAP="$XDG_CONFIG_HOME/mailcap" # for elinks, w3m
 MAILCAPS="$MAILCAP" # for mutt, alpine
-MTOOLSRC="$XDG_CONFIG_HOME/mtoolsrc"
 QUODLIBET_USERDIR="$XDG_DATA_HOME/quodlibet"
 SECONDLIFE_USER_DIR="$XDG_DATA_HOME/secondlife"
 VBOX_USER_HOME="$XDG_CONFIG_HOME/VirtualBox"
-WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
 _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
 MANLESS="]0;\$MAN_PN Manual page \$MAN_PN ?ltline %lt?L/%L.:byte %bB?s/%s..?e (END):?pB %pB\\%.. "

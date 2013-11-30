@@ -19,14 +19,24 @@
 
 ## To relocate configuration:
 
+ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
 EXODUSVIEWER_USER_DIR="$XDG_DATA_HOME/ExodusViewer"
 FIRESTORM_USER_DIR="$XDG_DATA_HOME/Firestorm"
 GNUSTEP_USER_ROOT="$XDG_CONFIG_HOME/GNUstep"
+GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
 ICEWM_PRIVCFG="$XDG_CONFIG_HOME/IceWM"
+LDAPRC="$XDG_CONFIG_HOME/ldaprc"
+MTOOLSRC="$XDG_CONFIG_HOME/mtoolsrc"
+WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
 ## To relocate other files:
 
 CVS_PASSFILE="$XDG_DATA_HOME/cvspass"
+
+## To relocate cache/history:
+
+LESSHISTFILE="$XDG_CACHE_HOME/less.history"
+MYSQL_HISTFILE="$XDG_CACHE_HOME/mysql.history"
 
 ## Miscellaneous (incl. poorly-working relocation):
 

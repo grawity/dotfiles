@@ -25,6 +25,9 @@ Notes on moving various dotfiles
 ~/.dvdcss/ – environment
   - $DVDCSS_CACHE overrides
 
+~/.elinks/ – environment
+  - $ELINKS_CONFDIR overrides
+
 ~/.esd_auth – hardcoded
   - ESD hardcodes the path; PulseAudio modules accept an auth-cookie= argument,
     but it doesn't always work... (I just removed the relevant PA modules
@@ -82,6 +85,12 @@ Notes on moving various dotfiles
 
 ~/.kde4/ – see ~/.kde/
 
+~/.ldaprc – environment
+  - $LDAPRC overrides
+
+~/.lesshst – environment
+  - $LESSHISTFILE overrides
+
 ~/.makepkg.conf – partial environment
   - $MAKEPKG_CONF overrides *both* system and user configs
 
@@ -104,6 +113,9 @@ Notes on moving various dotfiles
 ~/.muttrc – other locations
   - ~/.mutt/muttrc is an alternate path
   - "-F <path>" option exists
+
+~/.mysql_history – environment
+  - $MYSQL_HISTFILE overrides
 
 ~/.netrc – fixed
   - many apps expect it there
@@ -160,7 +172,7 @@ Notes on moving various dotfiles
   - related: <https://savannah.nongnu.org/task/?10934>
 
 ~/.wgetrc – environment
-  - $WGETRC overrides the default rc
+  - $WGETRC overrides
 
 ~/.wireshark/ – hardcoded
 

@@ -91,9 +91,7 @@ esac
 # libdefaults
 
 GTK_IM_MODULE="xim"
-GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
 ICEAUTHORITY="$XDG_RUNTIME_DIR/ICE-authority"
-LDAPRC="$XDG_CONFIG_HOME/ldaprc"
 NCURSES_NO_UTF8_ACS="1"
 XCOMPOSEFILE="$HOME/lib/dotfiles/gui/XCompose"
 
@@ -101,9 +99,6 @@ XCOMPOSEFILE="$HOME/lib/dotfiles/gui/XCompose"
 
 ABSROOT="$HOME/pkg"
 CCACHE_DIR="$XDG_CACHE_HOME/ccache"
-ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
-LESSHISTFILE="$XDG_CACHE_HOME/less.history"
-MYSQL_HISTFILE="$XDG_CACHE_HOME/mysql.history"
 PERL_CPANM_HOME="$XDG_CACHE_HOME/cpanminus"
 
 IRBRC="$HOME/lib/dotfiles/irbrc"
