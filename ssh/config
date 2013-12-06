@@ -21,6 +21,13 @@ Host eta
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
+Host gamma gamma.cluenet.org
+	Hostname gamma.cluenet.org
+	Port 2223
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
 Host hawking
 	Hostname hawking.cluenet.org
 	GSSAPIAuthentication yes
