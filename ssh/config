@@ -105,9 +105,7 @@ Host *.core
 #if Host rain
 	UserKnownHostsFile ~/.ssh/known_hosts.core
 #endif
-#if OpenSSH && Version 5.6
-	ControlPersist no
-#endif
+	ControlMaster no
 
 # other domains
 
@@ -116,6 +114,7 @@ Host *.nathan7.eu
 
 Host *.vistech.net
 	User grwty
+	ControlMaster no
 
 Host bazaar.launchpad.net
 	IdentityFile ~/.ssh/id_global
