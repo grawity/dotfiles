@@ -63,7 +63,9 @@ Notes on moving various dotfiles
   - $GTK2_RC_FILES overrides, can have a list of rc's
 
 ~/.gvimrc – environment
-  - $GVIMINIT can have an Ex command that ":source"s an additional rc
+  - recent Vim versions look in ~/.vim/gvimrc by default
+  - $GVIMINIT can have an Ex command that sources an additional rc; e.g.
+    - GVIMINIT=":so ~/.vim/gvimrc"
 
 ~/.hgrc – partial environment
   - $HGRCPATH can have a list of rc's or *.rc directories, which replaces the
@@ -160,7 +162,9 @@ Notes on moving various dotfiles
   - "-datadir <path>" option is the only method
 
 ~/.vimrc – environment
-  - $VIMINIT can have an Ex command that ":source"s an additional rc
+  - recent Vim versions look in ~/.vim/vimrc by default
+  - $VIMINIT can have an Ex command that sources an additional rc:
+    - VIMINIT=":so ~/.vim/vimrc"
 
 ~/.w3m/ – hardcoded
 
