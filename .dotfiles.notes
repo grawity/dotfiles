@@ -25,6 +25,11 @@ Notes on moving various dotfiles
 ~/.dvdcss/ – environment
   - $DVDCSS_CACHE overrides
 
+~/.e16/ – environment, command line
+  - $ECONFDIR overrides default
+  - option "-P <dir>" or "--econfdir <dir>" overrides both
+  - docs: /usr/share/doc/e16/e16.html
+
 ~/.elinks/ – environment
   - $ELINKS_CONFDIR overrides
 
