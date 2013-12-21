@@ -40,9 +40,11 @@ case $1 in
 	gnome-session)		DESKTOP_SESSION=gnome;;
 	enlightenment_start)	DESKTOP_SESSION=enlightenment17;;
 	startkde)		DESKTOP_SESSION=kde-plasma;;
-	xfce)			DESKTOP_SESSION=xfce;;
+	startxfce4)		DESKTOP_SESSION=xfce;;
 	*)			unset DESKTOP_SESSION;;
 esac
+
+export DESKTOP_SESSION
 
 # Load profiles and resources
 
