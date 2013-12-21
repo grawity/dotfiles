@@ -58,7 +58,7 @@ if [ ! "$DESKTOP_SESSION" ]; then
 	xbindkeys -f ~/.config/xbindkeys/xbindkeysrc &
 fi
 
-if [ $HOSTNAME = rain ]; then
+if [ "$HOSTNAME" = rain ]; then
 	gnome-mpris-inhibit mpd --flags=suspend &
 
 	mpris mpd notify-idle &
