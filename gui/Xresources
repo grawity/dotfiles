@@ -68,7 +68,7 @@ XTerm*showMissingGlyphs:true
 
 ! colors (gnome-terminal Tango scheme)
 XTerm*vt100.background:	black
-XTerm*vt100.foreground:	#d3d7cf
+XTerm*vt100.foreground:	#ffffff
 XTerm*color0:		#000000
 XTerm*color1:		#cc0000
 XTerm*color2:		#4e9a06
