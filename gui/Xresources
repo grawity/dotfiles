@@ -49,14 +49,14 @@ XTerm*vt100*translations:	#override			\n\
 
 ! appearance
 XTerm*vt100.geometry:	100x35
-XTerm*vt100.faceName:	DejaVu Sans Mono
-XTerm*vt100.faceSize:	9
-XTerm*faceSize1:	7
-XTerm*faceSize2:	8
-XTerm*faceSize3:	9
-XTerm*faceSize4:	10
-XTerm*faceSize5:	12
-XTerm*faceSize6:	14
+!XTerm*vt100.faceName:	DejaVu Sans Mono
+!XTerm*vt100.faceSize:	9
+!XTerm*faceSize1:	7
+!XTerm*faceSize2:	8
+!XTerm*faceSize3:	9
+!XTerm*faceSize4:	10
+!XTerm*faceSize5:	12
+!XTerm*faceSize6:	14
 !XTerm*italicULMode:	true
 !XTerm*showBlinkAsBold:	true
 !XTerm*cursorBlink:	true
