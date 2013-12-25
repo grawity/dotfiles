@@ -15,6 +15,7 @@ fi
 # in my git-url-handler script
 case $TERM in
 	xterm)
+		OLDTERM="$TERM";
 		TERM="$TERM-256color";
 		havecolor=256;;
 	*-256color|xterm-termite)
