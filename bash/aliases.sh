@@ -140,7 +140,6 @@ if (( UID == 0 )); then
 fi
 case $OSTYPE in
 	linux-gnu*|cygwin)
-		lsopt="$lsopt --group-directories-first"
 		if (( havecolor )); then
 			lsopt="$lsopt -v --color=auto"
 			eval $(dircolors ~/lib/dotfiles/dircolors 2>/dev/null)
@@ -156,7 +155,6 @@ case $OSTYPE in
 		alias w='w -h'
 		;;
 	gnu)
-		lsopt="$lsopt --group-directories-first"
 		if (( havecolor )); then
 			lsopt="$lsopt -v --color=auto"
 			eval $(dircolors ~/lib/dotfiles/dircolors 2>/dev/null)
