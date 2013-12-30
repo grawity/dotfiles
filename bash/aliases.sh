@@ -39,6 +39,7 @@ alias kssh='ssh \
 	-o GSSAPIAuthentication=yes \
 	-o GSSAPIDelegateCredentials=yes'
 kzgrep() { zgrep -i "$@" /proc/config.gz; }
+alias l='ls -log'
 alias ll='ls -l'
 alias logoff='logout'
 if [[ $DESKTOP_SESSION ]]; then
