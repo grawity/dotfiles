@@ -106,6 +106,7 @@ _awesome_prompt() {
 		fi
 	elif [[ $git ]]; then
 		wdbase=$(git rev-parse --show-toplevel)
+		wdbase=${wdbase:-$git}
 	fi
 
 	wdbase=${wdbase%/*}
