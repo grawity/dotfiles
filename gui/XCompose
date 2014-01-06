@@ -53,6 +53,7 @@ include "%L"
 <Multi_key> <r> <q>			: "”" # rdquo > "
 <Multi_key> <p> <i>			: "π" # pi
 <Multi_key> <s> <n> <o> <w> <m> <a> <n>	: "☃" # snowman
+<Multi_key> <l> <o> <o> <k>		: "ಠ_ಠ" # look of disapproval
 <Multi_key> <z> <w> <j>			: "​" # zero-width joiner
 <Multi_key> <p> <p>			: "¶" # pilcrow P P
 <Multi_key> <n> <o>			: "№" # numero N O
