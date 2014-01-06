@@ -11,6 +11,7 @@ alias cindex='env TMPDIR=/var/tmp cindex'
 count() { sort "$@" | uniq -c | sort -n -r | pager; }
 alias csearch='csearch -n'
 alias cur='cur '
+cvsfa() { find -name '*,v' | cvs-fast-export "$@"; }
 dist/head() {
 	echo -e "\e[1m== ~/code\e[m"
 	(cd ~/code && git tip)
