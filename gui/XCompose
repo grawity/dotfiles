@@ -45,6 +45,8 @@ include "%L"
 <Multi_key> <asciitilde> <asciitilde>	: "≈"
 <Multi_key> <zcaron> <zcaron>		: "–" # ndash - - .
 <Multi_key> <h> <e> <a> <r> <t>		: "♥" # heart
+<Multi_key> <less> <3>			: "❤"
+<Multi_key> <3> <greater>		: "❥"
 <Multi_key> <l> <a>			: "λ" # lambda
 <Multi_key> <D> <A>			: "Δ" # Delta
 <Multi_key> <D> <a>			: "Δ" # Delta
