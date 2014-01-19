@@ -340,6 +340,7 @@ if have systemctl; then
 	start()   { sudo systemctl start "$@"; systemctl status -a "$@"; }
 	stop()    { sudo systemctl stop "$@"; systemctl status -a "$@"; }
 	restart() { sudo systemctl restart "$@"; systemctl status -a "$@"; }
+	reload()  { sudo systemctl reload "$@"; systemctl status -a "$@"; }
 	alias enable='sudo systemctl enable'
 	alias disable='sudo systemctl disable'
 	alias status='systemctl status -a'
@@ -349,6 +350,7 @@ if have systemctl; then
 	ustart()   { userctl start "$@"; userctl status -a "$@"; }
 	ustop()    { userctl stop "$@"; userctl status -a "$@"; }
 	urestart() { userctl restart "$@"; userctl status -a "$@"; }
+	ureload()  { userctl reload "$@"; userctl status -a "$@"; }
 	alias ulist='userctl list-units -t path,service,socket --no-legend'
 	alias lcstatus='loginctl session-status $XDG_SESSION_ID'
 	alias tsd='tree /etc/systemd/system'
