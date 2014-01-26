@@ -24,6 +24,7 @@ rm() {
 		~/tmp*)			false;;
 		# skip dotfiles and temp
 		#~/.*)			false;;
+		~/.local/share/Trash/*)	false;;
 		*.tmp)			false;;
 		.unison.*)		false;;
 		# include everything else in $HOME
