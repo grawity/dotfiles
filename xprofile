@@ -25,9 +25,12 @@ if have keyctl; then
 			+KRB5CCNAME			\
 			+SSH_AUTH_SOCK			\
 			+XAUTHORITY			\
-			+XDG_RUNTIME_DIR		\
-			;
+			+XDG_RUNTIME_DIR		;
 	fi
+fi
+
+if [ "$GDMSESSION" ]; then
+	systemctl --user import-environment DISPLAY PATH XAUTHORITY
 fi
 
 if have auca-seed; then
