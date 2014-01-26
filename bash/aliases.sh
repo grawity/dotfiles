@@ -106,6 +106,8 @@ vimpaste() { vim <(getpaste "$1"); }
 virdf() { vim -c "setf n3" <(rapper -q -o turtle "$@"); }
 visexp() { (echo "; vim: ft=sexp"; echo "; file: $1"; sexp-conv < "$1") \
 	| vipe | sexp-conv -s canonical | sponge "$1"; }
+vitables() { sudo iptables-save | vipe | sudo iptables-restore; }
+vi6tables() { sudo ip6tables-save | vipe | sudo ip6tables-restore; }
 alias w3m='w3m -title'
 wim() { local w=$(which "$1"); [[ $w ]] && editor "$w"; }
 alias xf='ps xf -O ppid'
