@@ -14,7 +14,7 @@ Notes on moving various dotfiles
 ~/.cvspass – environment
   - $CVS_PASSFILE overrides
 
-~/.d-feet/ – XDG as of 0.1.15
+~/.d-feet/ – XDG as of 0.1.15; hardcoded
   - $XDG_CONFIG_HOME/d-feet/ is used now
 
 ~/.dc++/ – hardcoded
@@ -51,6 +51,9 @@ Notes on moving various dotfiles
 
 ~/.gemrc – environment
   - hardcoded, but $GEMRC can have a list of /additional/ rc's
+
+~/.gitk – XDG as of 8f86339858c1325645f8eaf6950dfd9d74cc9897; hardcoded
+  - $XDG_CONFIG_HOME/git/gitk is used now
 
 ~/.gnome-commander/ – hardcoded/command line?
   - "--config-dir <dir>" option exists in source code, but doesn't work
