@@ -31,6 +31,7 @@ case $1 in
 	cinnamon)	set -- cinnamon-session;;
 	gnome)		set -- gnome-session;;
 	e|e17)		set -- enlightenment_start;;
+	mate)		set -- mate-session;;
 	kde)		set -- startkde;;
 	xfce)		set -- startxfce4;;
 esac
@@ -39,6 +40,7 @@ case $1 in
 	cinnamon-session)	DESKTOP_SESSION=cinnamon;;
 	gnome-session)		DESKTOP_SESSION=gnome;;
 	enlightenment_start)	DESKTOP_SESSION=enlightenment17;;
+	mate-session)		DESKTOP_SESSION=mate;;
 	startkde)		DESKTOP_SESSION=kde-plasma;;
 	startxfce4)		DESKTOP_SESSION=xfce;;
 	*)			unset DESKTOP_SESSION;;
