@@ -52,7 +52,13 @@ Notes on moving various dotfiles
 ~/.gemrc – environment
   - hardcoded, but $GEMRC can have a list of /additional/ rc's
 
-~/.gitk – XDG as of 8f86339858c1325645f8eaf6950dfd9d74cc9897; hardcoded
+~/.gitconfig – XDG as of 1.7.12; hardcoded
+  - $XDG_CONFIG_HOME/git/config is used now
+
+~/.gitignore – XDG as of 1.7.12; config option (no default)
+  - $XDG_CONFIG_HOME/git/ignore added as default
+
+~/.gitk – XDG as of 1.9-rc1; hardcoded
   - $XDG_CONFIG_HOME/git/gitk is used now
 
 ~/.gnome-commander/ – hardcoded/command line?
