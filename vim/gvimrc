@@ -6,7 +6,8 @@ silent! color desert
 silent! color zenburn
 
 if has("gui_gtk")
-	let &guifont="Monospace 9"
+	"let &guifont="Monospace 9"
+	let &guifont="Monaco 9"
 	"set guifont=DejaVu\ Sans\ Mono\ 10
 elseif has("gui_win32")
 	let &guifont="Consolas:h9"
