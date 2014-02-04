@@ -31,12 +31,10 @@ PREFIX="$HOME/.local"
 GOPATH="$PREFIX/go"
 
 setpath PATH \
-	"$HOME/.rbenv/shims"		\
 	"$HOME/bin"			\
 	"$HOME/code/obj/host.$HOSTNAME"	\
 	"$HOME/code/bin"		\
 	"$GOPATH/bin"			\
-	"$HOME/.rbenv/bin"		\
 	"$HOME/.cabal/bin"		\
 	"$PREFIX/bin"			\
 	"/usr/lib/ccache/bin"		\
