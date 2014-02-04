@@ -17,6 +17,11 @@
 # In case you find the "relocation" variables useful, please also read my notes
 # about various programs in ".dotfiles.notes" in the same repository.
 
+## Personal information:
+
+# No longer needed as 1.1happy now reads the config as UTF-8
+GALE_NAME="$NAME"
+
 ## To relocate configuration:
 
 ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
