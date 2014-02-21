@@ -27,7 +27,6 @@ QUODLIBET_USERDIR="$XDG_DATA_HOME/quodlibet"
 SECONDLIFE_USER_DIR="$XDG_DATA_HOME/secondlife"
 VBOX_USER_HOME="$XDG_CONFIG_HOME/VirtualBox"
 
-_JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
 MANLESS="]0;\$MAN_PN Manual page \$MAN_PN ?ltline %lt?L/%L.:byte %bB?s/%s..?e (END):?pB %pB\\%.. "
 NMAP_PRIVILEGED="1"
 

@@ -45,6 +45,9 @@ MYSQL_HISTFILE="$XDG_CACHE_HOME/mysql.history"
 
 ## Miscellaneous (incl. poorly-working relocation):
 
+# Seems to be the default now, at least with Sun JRE
+_JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
+
 # Treated as "system" config, user-only options ignored; use LDAPRC
 LDAPCONF="$XDG_CONFIG_HOME/ldap.conf"
 
