@@ -79,12 +79,6 @@ alias ere='set -a && . ~/.profile && set +a'
 alias rot13='tr N-ZA-Mn-za-m A-Za-z'
 rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}"; echo; }
 alias run='spawn -c'
-setdark() {
-	case $1 in
-	    n*|off) xprop -remove _GTK_THEME_VARIANT;;
-	    *)      xprop -f _GTK_THEME_VARIANT 8u -set _GTK_THEME_VARIANT dark;;
-	esac;
-}
 splitext() { split -dC "${2-32K}" "$1" "${1%.*}-" --additional-suffix=".${1##*.}"; }
 alias srs='rsync -vhzaHAX'
 alias sudo='sudo ' # for alias expansion in sudo args
