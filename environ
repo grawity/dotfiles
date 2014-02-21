@@ -5,8 +5,24 @@ have() { type "$1" > /dev/null 2>&1; }
 setpath() {
 	# real sh does not allow unsetting IFS,
 	# and `foo=bar join` does not always work
-	set +a; xIFS=$IFS; IFS=":";    set -a
+	set +a; xIFS=$IFS; IFS=":"; set -a
 	var=$1; shift; eval "$var=\$*"; unset var
+	set +a; IFS=$xIFS; unset xIFS; set -a
+}
+
+addpath() {
+	set +a; xIFS=$IFS; IFS=":"; set -a
+	var=$1; shift; for arg; do
+		case $arg in
+		    *!) arg=${arg%!} ;;
+		    *)  test -d "$arg" || continue ;;
+		esac
+		eval "case :\$$var: in
+			  *:\$arg:*) ;;
+			  ::) $var=\$arg ;;
+			  *)  $var=\$$var:\$arg ;;
+		      esac"
+	done; unset var arg
 	set +a; IFS=$xIFS; unset xIFS; set -a
 }
 
