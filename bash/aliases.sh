@@ -140,7 +140,7 @@ fi
 case $OSTYPE in
 	linux-gnu*|cygwin)
 		if (( havecolor )); then
-			lsopt="$lsopt -v --color=auto"
+			lsopt="$lsopt --color=auto"
 			eval $(dircolors ~/lib/dotfiles/dircolors 2>/dev/null)
 		fi
 		alias df='df -Th'
@@ -155,7 +155,7 @@ case $OSTYPE in
 		;;
 	gnu)
 		if (( havecolor )); then
-			lsopt="$lsopt -v --color=auto"
+			lsopt="$lsopt --color=auto"
 			eval $(dircolors ~/lib/dotfiles/dircolors 2>/dev/null)
 		fi
 		alias lsd='ls -a --ignore="[^.]*"'
