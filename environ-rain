@@ -24,7 +24,6 @@ GRAMPSHOME="$XDG_DATA_HOME/gramps"
 MAILCAP="$XDG_CONFIG_HOME/mailcap" # for elinks, w3m
 MAILCAPS="$MAILCAP" # for mutt, alpine
 QUODLIBET_USERDIR="$XDG_DATA_HOME/quodlibet"
-SECONDLIFE_USER_DIR="$XDG_DATA_HOME/secondlife"
 TAR_OPTIONS="--xattrs"
 VBOX_USER_HOME="$XDG_CONFIG_HOME/VirtualBox"
 
