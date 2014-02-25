@@ -217,7 +217,7 @@ _update_title() {
 			t_user="$USER@"
 		[[ $DISPLAY && ( $DISPLAY != :* || $SSH_TTY ) ]] &&
 			t_display=" ($DISPLAY)"
-		title="${t_user}${HOSTNAME} ${PWD/#$HOME/~}${t_display}"
+		title="${t_user}${HOSTNAME} ${PWD/#$HOME\//~/}${t_display}"
 	fi
 	settitle "$title"
 	if [[ $DISPLAY && $VTE_VERSION ]]; then
