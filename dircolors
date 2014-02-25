@@ -11,7 +11,7 @@ RESET		0
 DIR		01;34
 LINK		01;36
 #LINK		target		# broken
-#MULTIHARDLINK 00
+#MULTIHARDLINK	00
 FIFO		40;33
 SOCK		01;35
 DOOR		01;35
@@ -24,7 +24,6 @@ CAPABILITY	30;41
 STICKY_OTHER_WRITABLE	30;44	# o+wt
 OTHER_WRITABLE	32;40		# o+w
 STICKY		37;44		# o+t
-#EXEC		01;32
 EXEC		38;5;118
 
 # archives or compressed
@@ -32,21 +31,16 @@ EXEC		38;5;118
 .Z	38;5;9
 .ace	38;5;9
 .arj	38;5;9
-.bz	38;5;9
 .bz2	38;5;9
 .cpio	38;5;9
 .deb	38;5;9
-.dz	38;5;9
 .ear	38;5;9
 .gz	38;5;9
 .jar	38;5;9
-.lz	38;5;9
 .lzh	38;5;9
 .lzma	38;5;9
 .rar	38;5;9
 .rpm	38;5;9
-.rz	38;5;9
-.sar	38;5;9
 .tar	38;5;9
 .taz	38;5;9
 .tbz	38;5;9
@@ -54,35 +48,20 @@ EXEC		38;5;118
 .tgz	38;5;9
 .tlz	38;5;9
 .txz	38;5;9
-.tz	38;5;9
-.war	38;5;9
 .xz	38;5;9
-.z	38;5;9
 .zip	38;5;9
-.zoo	38;5;9
 
 # still image formats
-.anx	00;35
-.axv	00;35
 .bmp	00;35
-.cgm	00;35
-.dl	00;35
 .emf	00;35
-.flc	00;35
-.fli	00;35
 .gif	00;35
-.gl	00;35
 .jpeg	00;35
 .jpg	00;35
-.nuv	00;35
-.ogx	00;35
 .pbm	00;35
 .pcx	00;35
 .pgm	00;35
 .png	00;35
 .ppm	00;35
-.rm	00;35
-.rmvb	00;35
 .svg	00;35
 .svgz	00;35
 .tga	00;35
@@ -93,7 +72,6 @@ EXEC		38;5;118
 .xcf	00;35
 .xpm	00;35
 .xwd	00;35
-.yuv	00;35
 
 # video formats
 .avi	38;5;13
@@ -118,16 +96,13 @@ EXEC		38;5;118
 # audio formats
 .aac	00;36
 .au	00;36
-.axa	00;36
 .flac	00;36
 .m4a	00;36
 .mid	00;36
 .midi	00;36
 .mka	00;36
 .mp3	00;36
-.mpc	00;36
 .oga	00;36
 .ogg	00;36
 .ra	00;36
-.spx	00;36
 .wav	00;36
