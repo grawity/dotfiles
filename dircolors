@@ -9,8 +9,8 @@ TERM xterm-256color
 #FILE			0
 RESET			0
 DIR			1;34
-#LINK			1;36
-LINK			target
+LINK			1;36
+#LINK			target	# not supported by bash 4.3 colored-stats
 #MULTIHARDLINK		0
 FIFO			33;40
 SOCK			1;35
