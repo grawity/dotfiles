@@ -40,6 +40,8 @@ Host moose
 
 Host panther
 	Hostname panther.nathan7.eu
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host radian
