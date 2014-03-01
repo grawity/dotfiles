@@ -45,10 +45,15 @@ shopt -s checkjobs 2> /dev/null	# print job status on exit
 shopt -s checkwinsize		# update $ROWS/$COLUMNS after command
 shopt -s no_empty_cmd_completion
 
-set +o histexpand		# do not use !foo history expansions
 shopt -s cmdhist		# store multi-line commands as single history entry
 shopt -s histappend		# append to $HISTFILE on exit
 shopt -s histreedit		# allow re-editing failed history subst
+
+if (( ${BASH_VERSINFO[0]} < 4 || ${BASH_VERSINFO[1]} < 3 )); then
+	set +o histexpand	# do not use !foo history expansions on bash older
+				# than v4.3, because expansion inside double quotes
+				# is quite annoying
+fi
 
 HISTFILE="$XDG_CACHE_HOME/bash.history"
 HISTSIZE=10000
