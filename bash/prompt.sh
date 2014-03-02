@@ -212,12 +212,13 @@ _show_status() {
 
 _update_title() {
 	if [[ ! $title ]]; then
-		local title= t_user= t_display=
+		local title= t_user= t_display= t_path=
 		[[ $USER != 'grawity' ]] &&
 			t_user="$USER@"
 		[[ $DISPLAY && ( $DISPLAY != :* || $SSH_TTY ) ]] &&
 			t_display=" ($DISPLAY)"
-		title="${t_user}${HOSTNAME} ${PWD/#$HOME\//\~/}${t_display}"
+		t_path=${PWD/#$HOME\//'~'/}
+		title="${t_user}${HOSTNAME} ${t_path}${t_display}"
 	fi
 	settitle "$title"
 	if [[ $DISPLAY && $VTE_VERSION ]]; then
