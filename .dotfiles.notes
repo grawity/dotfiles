@@ -91,7 +91,8 @@ Notes on moving various dotfiles
 ~/.irbrc – environment
   - $IRBRC is first in default search path
 
-~/.irssi/ – hardcoded
+~/.irssi/ – command line
+  - "--home=<dir>" option exists
 
 ~/.kde/ – environment
   - $KDEHOME overrides the default
