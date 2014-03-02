@@ -76,7 +76,7 @@ Notes on moving various dotfiles
 ~/.gtkrc-2.0 – environment
   - $GTK2_RC_FILES overrides, can have a list of rc's
 
-~/.gvimrc – environment
+~/.gvimrc – other locations, environment
   - recent Vim versions look in ~/.vim/gvimrc by default
   - $GVIMINIT can have an Ex command that sources an additional rc; e.g.
     - GVIMINIT=":so ~/.vim/gvimrc"
@@ -175,7 +175,7 @@ Notes on moving various dotfiles
 ~/.vidalia/ – command line
   - "-datadir <path>" option is the only method
 
-~/.vimrc – environment
+~/.vimrc – other locations, environment
   - recent Vim versions look in ~/.vim/vimrc by default
   - $VIMINIT can have an Ex command that sources an additional rc:
     - VIMINIT=":so ~/.vim/vimrc"
