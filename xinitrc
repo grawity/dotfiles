@@ -56,7 +56,7 @@ export DESKTOP_SESSION
 [ -f ~/.xprofile ]	&& . ~/.xprofile
 
 [ -f ~/.Xresources ]	&& xrdb -merge ~/.Xresources
-[ -f ~/.Xkbmap ]	&& setxkbmap `cat ~/.Xkbmap`
+[ -f ~/.Xkbmap ]	&& setxkbmap $(cat ~/.Xkbmap)
 
 # Set up a session
 
