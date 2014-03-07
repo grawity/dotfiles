@@ -140,7 +140,7 @@ esac
 FQDN=$(fqdn)
 
 case $FQDN in
-    *.core|*.rune)
+    *.core)
 	. ~/lib/dotfiles/environ-vm.rain;;
 esac
 
