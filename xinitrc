@@ -54,7 +54,6 @@ export DESKTOP_SESSION
 [ -f ~/.profile ]	&& . ~/.profile
 [ -f /etc/xprofile ]	&& . /etc/xprofile
 [ -f ~/.xprofile ]	&& . ~/.xprofile
-
 [ -f ~/.Xresources ]	&& xrdb -merge ~/.Xresources
 [ -f ~/.Xkbmap ]	&& setxkbmap $(cat ~/.Xkbmap)
 

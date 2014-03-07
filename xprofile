@@ -1,16 +1,6 @@
 # ~/.xprofile - X11-specific login script (after ~/.profile)
 # vim: ft=sh
 
-# Note: This partially duplicates ~/.xinitrc, although with different paths.
-# I've decided that ~/.xinitrc should closely follow the behavior of display
-# managers (which includes loading ~/.Xresources), and my own "extensions"
-# should go here.
-
-[ -f "$XDG_CONFIG_HOME/Xresources" ] \
-	&& xrdb -merge "$XDG_CONFIG_HOME/Xresources"
-[ -f "$XDG_CONFIG_HOME/Xkbmap" ] \
-	&& setxkbmap $(cat "$XDG_CONFIG_HOME/Xkbmap")
-
 xhost +"SI:localuser:$USER" &
 
 if have keyctl; then
