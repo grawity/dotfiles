@@ -1,4 +1,5 @@
 # ~/.profile - sh/bash login script
+# vim: ft=sh
 
 . ~/lib/dotfiles/environ
 
