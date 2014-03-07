@@ -44,6 +44,10 @@ CVS_PASSFILE="$XDG_DATA_HOME/cvspass"
 LESSHISTFILE="$XDG_CACHE_HOME/less.history"
 MYSQL_HISTFILE="$XDG_CACHE_HOME/mysql.history"
 
+## To relocate runtime data:
+
+ICEAUTHORITY="$XDG_RUNTIME_DIR/ICE-authority"
+
 ## Miscellaneous (incl. poorly-working relocation):
 
 # Seems to be the default now, at least with Sun JRE

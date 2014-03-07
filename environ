@@ -104,7 +104,6 @@ esac
 # libdefaults
 
 GTK_IM_MODULE="xim"
-ICEAUTHORITY="$XDG_RUNTIME_DIR/ICE-authority"
 NCURSES_NO_UTF8_ACS="1"
 XCOMPOSEFILE="$HOME/lib/dotfiles/gui/XCompose"
 
