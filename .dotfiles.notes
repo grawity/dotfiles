@@ -52,6 +52,9 @@ Notes on moving various dotfiles
 ~/.gemrc – environment
   - hardcoded, but $GEMRC can have a list of /additional/ rc's
 
+~/.gimp-2.0/ – environment
+  - $GIMP2_DIRECTORY overrides
+
 ~/.gitconfig – XDG as of 1.7.12; hardcoded
   - $XDG_CONFIG_HOME/git/config is used now
 
