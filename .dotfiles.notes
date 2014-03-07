@@ -177,6 +177,7 @@ Notes on moving various dotfiles
 
 ~/.VirtualBox/ – environment
   - $VBOX_USER_HOME overrides the default path
+  - see also ~/VirtualBox VMs/
 
 ~/.vidalia/ – command line
   - "-datadir <path>" option is the only method
@@ -215,6 +216,7 @@ Notes on moving various dotfiles
 
 ~/VirtualBox VMs/ – configurable
   - can be changed by `VBoxManage setproperty machinefolder <path>` or via GUI
+  - see also ~/.VirtualBox/
 
 -------------------------------------------------------------------------------
 
