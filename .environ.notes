@@ -50,6 +50,9 @@ ICEAUTHORITY="$XDG_RUNTIME_DIR/ICE-authority"
 
 ## Miscellaneous (incl. poorly-working relocation):
 
+# I don't use this.
+ACK_PAGER="$PAGER"
+
 # Seems to be the default now, at least with Sun JRE
 _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
 
