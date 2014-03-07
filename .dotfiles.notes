@@ -1,5 +1,7 @@
 Notes on moving various dotfiles
 
+-------------------------------------------------------------------------------
+
 ~/.aMule/ – hardcoded
 
 ~/.bitcoin/ – hardcoded
@@ -214,7 +216,7 @@ Notes on moving various dotfiles
 ~/VirtualBox VMs/ – configurable
   - can be changed by `VBoxManage setproperty machinefolder <path>` or via GUI
 
-# vim: sts=4 sw=2 et tw=79
+-------------------------------------------------------------------------------
 
 "XDG as of..." – newer versions already use XDG paths
 "configurable" – can change a config option somewhere
@@ -227,3 +229,7 @@ Notes on moving various dotfiles
 "fixed" – many programs and/or specs require the dotfile
 
 "other locations" – better alternatives to direct dotfile exist
+
+-------------------------------------------------------------------------------
+
+# vim: sts=4 sw=2 et tw=79
