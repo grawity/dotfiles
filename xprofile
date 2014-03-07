@@ -5,13 +5,13 @@
 [ -f "$XDG_CONFIG_HOME/Xresources" ] \
 	&& xrdb -merge "$XDG_CONFIG_HOME/Xresources"
 [ -f "$XDG_CONFIG_HOME/Xkbmap" ] \
-	&& setxkbmap `cat "$XDG_CONFIG_HOME/Xkbmap"`
+	&& setxkbmap $(cat "$XDG_CONFIG_HOME/Xkbmap")
 
 xhost +"SI:localuser:$USER" &
 
 if have keyctl; then
 	# set up session keyring
-	if [ "`keyctl rdescribe @s`" = "`keyctl rdescribe @us`" ]; then
+	if [ "$(keyctl rdescribe @s)" = "$(keyctl rdescribe @us)" ]; then
 		echo "Creating new session keyring"
 		if keyctl new_session > /dev/null; then
 			keyctl link @u @s
@@ -38,7 +38,7 @@ if have auca-seed; then
 fi
 
 if [ -f ~/.config/synclient.conf ]; then
-	synclient `grep -v "^#" ~/.config/synclient.conf` &
+	synclient $(grep -v "^#" ~/.config/synclient.conf) &
 fi
 
 if [ ! "$DESKTOP_SESSION" ]; then
