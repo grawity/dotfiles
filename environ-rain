@@ -2,9 +2,9 @@
 
 # paths/locations
 
-setpath PATH \
-	"$(ruby -rubygems -e 'puts Gem.user_dir')/bin"	\
-	"$PATH"						;
+if have ruby; then
+	PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
+fi
 
 # libdefaults
 
