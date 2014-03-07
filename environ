@@ -127,11 +127,14 @@ GVIMINIT=":so ~/.vim/gvimrc"
 
 case $(uname)-$(uname -r) in
     NetBSD-6.*)
-	LC_COLLATE="C" # http://mid.gmane.org/20110804105652.GA27213@mars.tony.develop-help.com
-	test "$PKG_PATH" || PKG_PATH="ftp://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/$(uname -m)/6.0/All"
+	test "$PKG_PATH" ||
+	    PKG_PATH="ftp://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/$(uname -m)/6.0/All"
+	# http://mid.gmane.org/20110804105652.GA27213@mars.tony.develop-help.com
+	LC_COLLATE="C"
 	;;
     OpenBSD-*)
-	test "$PKG_PATH" || PKG_PATH="http://ftp.OpenBSD.org/pub/OpenBSD/$(uname -r)/packages/$(uname -m)/"
+	test "$PKG_PATH" ||
+	    PKG_PATH="http://ftp.OpenBSD.org/pub/OpenBSD/$(uname -r)/packages/$(uname -m)/"
 	;;
 esac
 
