@@ -1,4 +1,5 @@
 #!/bin/sh
+# ~/.xinitrc - `xinit`/`startx` startup script
 
 have() { type "$1" > /dev/null 2>&1; }
 

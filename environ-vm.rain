@@ -1,4 +1,4 @@
-#!sh
+# vim: ft=sh
 
 getsecret() { curl -s -f -S "http://rain.core/.secrets/$1"; }
 

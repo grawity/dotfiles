@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+# ~/.bashrc - bash interactive startup file
+# vim: ft=sh
 
 have() { command -v "$1" >&/dev/null; }
 

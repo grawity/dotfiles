@@ -1,4 +1,4 @@
-# ~/.inputrc: readline(3), bash(1) - Readline library configuration
+# ~/.inputrc - readline(3), bash(1) - Readline library configuration
 
 set bell-style none
 

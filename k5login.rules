@@ -1,4 +1,4 @@
-# k5login.rules: rules for ~/.k5login generation by dist/update-k5login
+# k5login.rules - rules for ~/.k5login generation by dist/update-k5login
 # vim: ft=conf
 
 +cluenet

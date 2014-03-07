@@ -1,4 +1,4 @@
-#!bash
+# vim: ft=sh
 
 [[ $- != *i* ]] && return
 

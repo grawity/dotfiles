@@ -1,4 +1,4 @@
-# ~/.hgrc: hgrc(5) - Mercurial configuration
+# ~/.hgrc - hgrc(5) - Mercurial configuration
 
 [alias]
 lg = log --template "{rev}:{node|short} {desc|firstline}\n"

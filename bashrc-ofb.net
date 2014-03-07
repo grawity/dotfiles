@@ -1,4 +1,4 @@
-#!bash
+# vim: ft=sh
 
 item_name_pfx=''
 item_name='[OFB]'

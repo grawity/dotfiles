@@ -1,4 +1,6 @@
-#!ruby
+# $IRBRC - irb startup script
+# vim: ft=ruby
+
 require 'irb/completion'
 require 'pp'
 

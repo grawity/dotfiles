@@ -1,4 +1,5 @@
-#!sh
+# host-specific additions to ~/.environ
+# vim: ft=sh
 
 # paths/locations
 

@@ -1,4 +1,6 @@
-#!/usr/bin/env python
+# $PYTHONSTARTUP - Python interactive startup script
+# vim: ft=python
+
 import os
 import sys
 

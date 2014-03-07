@@ -1,4 +1,5 @@
-#!sh
+# host-specific additions to ~/.profile
+# vim: ft=sh
 
 if [ -d "$XDG_RUNTIME_DIR" ]; then
 	if [ "$XDG_RUNTIME_DIR" != "$XDG_CACHE_HOME" ]; then
