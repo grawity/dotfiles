@@ -1,8 +1,6 @@
 # ~/.xprofile - X11-specific login script (after ~/.profile)
 # vim: ft=sh
 
-: ${XDG_CONFIG_HOME:=~/.config}
-
 [ -f "$XDG_CONFIG_HOME/Xresources" ] \
 	&& xrdb -merge "$XDG_CONFIG_HOME/Xresources"
 [ -f "$XDG_CONFIG_HOME/Xkbmap" ] \
