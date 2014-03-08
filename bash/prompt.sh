@@ -206,17 +206,20 @@ export PS4
 
 _show_status() {
 	local status=$?
-	(( status > 0 )) &&
+	if (( status > 0 )); then
 		printf "\e[0;33m%s\e[m\n" "(returned $status)"
+	fi
 }
 
 _update_title() {
 	if [[ ! $title ]]; then
 		local title= t_user= t_display= t_path=
-		[[ $USER != 'grawity' ]] &&
+		if [[ $USER != 'grawity' ]]; then
 			t_user="$USER@"
-		[[ $DISPLAY && ( $DISPLAY != :* || $SSH_TTY ) ]] &&
+		fi
+		if [[ $DISPLAY && ( $DISPLAY != :* || $SSH_TTY ) ]]; then
 			t_display=" ($DISPLAY)"
+		fi
 		t_path=${PWD/#$HOME\//'~'/}
 		title="${t_user}${HOSTNAME} ${t_path}${t_display}"
 	fi
