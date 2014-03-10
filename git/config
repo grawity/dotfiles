@@ -16,6 +16,7 @@
 	statusHints = false
 [alias]
 	a = add --all
+	a-p = add --all --patch
 	amend = commit --amend
 	br = branch
 	bra = branch -vv
@@ -30,8 +31,6 @@
 	export = !touch $(git rev-parse --git-dir)/git-daemon-export-ok
 	fa = fetch --all
 	follow = log --oneline --follow --stat --summary --
-	# kept around for the lulz
-	fuckit = !git add -A && git commit -m "$(curl -s whatthecommit.com/index.txt)" && git push -f
 	in = log --oneline --decorate ..@{upstream}
 	lg = log --oneline --decorate
 	lgs = log --format=\"%C(yellow)%h%C(reset)%C(cyan)% GK%C(reset) %s\"
@@ -42,11 +41,11 @@
 	mkobject = hash-object --stdin -w
 	mrproper = !git reset --hard HEAD && git clean -fdx
 	out = log --oneline --decorate @{upstream}..
-	pick = cherry-pick
+	rbc = rebase --continue
+	rbs = rebase -i
 	re = rebase
 	rec = rebase --continue
 	refs = for-each-ref
-	remaster = rebase -i master
 	repack-to-alternate = repack -dal
 	repack-to-local = repack -da
 	sg = diff --cached
