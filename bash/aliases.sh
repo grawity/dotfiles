@@ -76,6 +76,11 @@ alias rd='rmdir'
 rdempty() { find "$@" -depth -type d -exec rmdir --ignore-fail-on-non-empty {} +; }
 alias re='hash -r && SILENT=1 . ~/.bashrc && echo reloaded .bashrc && :'
 alias ere='set -a && . ~/.profile && set +a'
+ressh() { ssh -v \
+	-o ControlPersist=no \
+	-o ControlMaster=no \
+	-o ControlPath=none \
+	"$@" ":"; }
 alias rot13='tr N-ZA-Mn-za-m A-Za-z'
 rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}"; echo; }
 alias run='spawn -c'
