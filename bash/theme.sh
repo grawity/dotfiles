@@ -43,12 +43,10 @@ if (( havecolor )); then
 
 	if (( havecolor == 256 )); then
 		fmt_pwd='38;5;144'
-		fmt_pwd_body='4'
 		fmt_pwd_tail='1'
 		fmt_vcs='38;5;167'
 	else
 		fmt_pwd='33'
-		fmt_pwd_body=$fmt_pwd
 		fmt_pwd_tail='1'
 		fmt_vcs='1;31'
 	fi

@@ -171,6 +171,12 @@ _awesome_prompt() {
 	local csi=$'m\e[' # 256-color sequences must be sent as a separate CSI,
 	                  # so split the color settings into multiple CSIs
 
+	if [[ $git ]]; then
+		local fmt_pwd_body=${fmt_pwd_body-'4'}
+	else
+		local fmt_pwd_body=${fmt_pwd_body-$fmt_noop}
+	fi
+
 	local fmt_name_pfx=${fmt_name_pfx-$fmt_prompt}
 	local fmt_name_sfx=${fmt_name_sfx-$fmt_name_pfx}
 	local fmt_pwd_sfx=${fmt_pwd_sfx-$fmt_pwd_pfx}
