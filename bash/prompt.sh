@@ -96,6 +96,8 @@ _awesome_prompt() {
 	local wdbase= wdhead= wdtail=
 	local -i collapsed=0 tilde=0
 
+	# find the working directory's root
+
 	if [[ $git == .git ]]; then
 		wdbase=$PWD
 	elif [[ $git == /*/.git ]]; then
@@ -109,14 +111,21 @@ _awesome_prompt() {
 		wdbase=${wdbase:-$(readlink -f "$git")}
 	fi
 
+	# find the 'base' – the parent of the working directory
+
 	wdbase=${wdbase%/*}
+
+	# split into 'head' (normal text) and 'tail' (highlighted text)
+	# Now, if only I remembered why this logic is so complex...
 
 	if [[ $PWD == "$HOME" ]]; then
 		wdhead=$PWD wdtail=''
 	elif [[ $wdbase && $PWD != "$wdbase" ]]; then
 		wdhead=$wdbase/ wdtail=${PWD#$wdbase/}
-	else
+	elif [[ $wdbase ]]; then
 		wdhead=${PWD%/*}/ wdtail=${PWD##*/}
+	else
+		wdhead=/ wdtail=${PWD#/}
 	fi
 
 	if [[ ! $fullpwd && $PWD == "$HOME" ]]; then
