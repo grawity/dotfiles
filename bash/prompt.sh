@@ -118,7 +118,7 @@ _awesome_prompt() {
 	# split into 'head' (normal text) and 'tail' (highlighted text)
 	# Now, if only I remembered why this logic is so complex...
 
-	if [[ $PWD == "$HOME" ]]; then
+	if [[ $fullpwd != 'y' && $PWD == "$HOME" ]]; then
 		wdhead=$PWD wdtail=''
 	elif [[ $wdbase && $PWD != "$wdbase" ]]; then
 		wdhead=$wdbase/ wdtail=${PWD#$wdbase/}
