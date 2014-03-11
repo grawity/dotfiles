@@ -93,7 +93,7 @@ _awesome_prompt() {
 
 	local HOME=${HOME%/}
 
-	local wdbase= wdhead= wdtail=
+	local wdbase= wdhead= wdbody= wdtail=
 	local -i collapsed=0 tilde=0
 
 	# find the working directory's root
@@ -153,6 +153,10 @@ _awesome_prompt() {
 		collapsed=1
 	fi
 
+	if [[ $wdtail == */* ]]; then
+		wdbody=${wdtail%/*}'/' wdtail=${wdtail##*/}
+	fi
+
 	if (( collapsed )); then
 		wdhead='…'$wdhead
 		if (( tilde )); then
@@ -160,7 +164,7 @@ _awesome_prompt() {
 		fi
 	fi
 
-	local item_pwd=$wdhead item_pwd_tail=$wdtail
+	local item_pwd=$wdhead item_pwd_body=$wdbody item_pwd_tail=$wdtail
 
 	## Output
 
@@ -179,6 +183,7 @@ _awesome_prompt() {
 		"${fmt_reset_pwd//|/$csi}"		"$reset_pwd"		\
 		"${fmt_pwd_pfx//|/$csi}"		"$item_pwd_pfx"		\
 		"${fmt_pwd//|/$csi}"			"$item_pwd"		\
+		"${fmt_pwd_body//|/$csi}"		"$item_pwd_body"	\
 		"${fmt_pwd_tail//|/$csi}"		"$item_pwd_tail"	\
 		"${fmt_pwd_sfx//|/$csi}"		"$item_pwd_sfx"		\
 		"${fmt_reset_vcs//|/$csi}"		"$reset_vcs"		\
