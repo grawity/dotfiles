@@ -122,10 +122,10 @@ _awesome_prompt() {
 		wdhead=$PWD wdtail=''
 	elif [[ $wdbase && $PWD != "$wdbase" ]]; then
 		wdhead=$wdbase/ wdtail=${PWD#$wdbase/}
-	elif [[ $wdbase ]]; then
-		wdhead=${PWD%/*}/ wdtail=${PWD##*/}
-	else
+	elif [[ $git && ! $wdbase ]]; then
 		wdhead=/ wdtail=${PWD#/}
+	else
+		wdhead=${PWD%/*}/ wdtail=${PWD##*/}
 	fi
 
 	if [[ ! $fullpwd && $PWD == "$HOME" ]]; then
