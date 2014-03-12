@@ -56,7 +56,6 @@ if (( ${BASH_VERSINFO[0]} < 4 || ${BASH_VERSINFO[1]} < 3 )); then
 				# is quite annoying
 fi
 
-HISTFILE="$XDG_CACHE_HOME/bash.history"
 HISTSIZE=10000
 HISTFILESIZE=10000
 HISTCONTROL=ignoreboth
