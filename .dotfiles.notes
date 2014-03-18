@@ -60,7 +60,7 @@ Notes on moving various dotfiles
 ~/.gitconfig – XDG as of 1.7.12; hardcoded
   - $XDG_CONFIG_HOME/git/config is used now
 
-~/.gitignore – XDG as of 1.7.12; config option (no default)
+~/.gitignore – XDG as of 1.7.12; config option (no default earlier)
   - $XDG_CONFIG_HOME/git/ignore added as default
 
 ~/.gitk – XDG as of 1.9-rc1; hardcoded
