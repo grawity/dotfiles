@@ -25,15 +25,11 @@ GALE_NAME="$NAME"
 ## To relocate configuration:
 
 ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
-EXODUSVIEWER_USER_DIR="$XDG_DATA_HOME/ExodusViewer"
-FIRESTORM_USER_DIR="$XDG_DATA_HOME/Firestorm"
-GIMP2_DIRECTORY="$XDG_DATA_HOME/Gimp"
 GNUSTEP_USER_ROOT="$XDG_CONFIG_HOME/GNUstep"
 GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
 ICEWM_PRIVCFG="$XDG_CONFIG_HOME/IceWM"
 LDAPRC="$XDG_CONFIG_HOME/ldaprc"
 MTOOLSRC="$XDG_CONFIG_HOME/mtoolsrc"
-SECONDLIFE_USER_DIR="$XDG_DATA_HOME/SecondLife"
 TKABBER_HOME="$XDG_CONFIG_HOME/Tkabber"
 WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
@@ -49,6 +45,14 @@ MYSQL_HISTFILE="$XDG_CACHE_HOME/mysql.history"
 ## To relocate runtime data:
 
 ICEAUTHORITY="$XDG_RUNTIME_DIR/ICE-authority"
+
+## To relocate a mix of config and cache and shit:
+# (when said mix is of significant size, not just a file or two)
+
+EXODUSVIEWER_USER_DIR="$XDG_DATA_HOME/ExodusViewer"
+FIRESTORM_USER_DIR="$XDG_DATA_HOME/Firestorm"
+GIMP2_DIRECTORY="$XDG_DATA_HOME/Gimp"
+SECONDLIFE_USER_DIR="$XDG_DATA_HOME/SecondLife"
 
 ## Miscellaneous (incl. poorly-working relocation):
 
