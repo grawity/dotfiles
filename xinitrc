@@ -59,8 +59,6 @@ export DESKTOP_SESSION
 
 # Set up a session
 
-set -a
-
 if [ "$1" ]; then
 	exec "$@"
 else
