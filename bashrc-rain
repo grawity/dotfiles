@@ -8,7 +8,7 @@ if [[ -e /usr/share/bash-completion/bash_completion ]]; then
 	have() { command -v "$@" &>/dev/null; }
 fi
 
-alias RM='/bin/rm'
+alias RM='/bin/rm -I'
 
 rm() {
 	local opts=() arg path nuke=() trash=()
@@ -46,7 +46,7 @@ rm() {
 		trash "${opts[@]}" -- "${trash[@]}"
 	fi &&
 	if (( ${#nuke[@]} )); then
-		command rm "${opts[@]}" -- "${nuke[@]}"
+		command rm -I "${opts[@]}" -- "${nuke[@]}"
 	fi
 }
 
