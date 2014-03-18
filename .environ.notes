@@ -1,4 +1,4 @@
-#!sh
+# vim: ft=sh
 
 # Some variables here aren't in environ because I don't use the programs, so I'm
 # recording them in a separate file just in case I need to remember them

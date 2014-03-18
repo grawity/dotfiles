@@ -1,5 +1,7 @@
 Notes on moving various dotfiles
 
+Please also read <.environ.notes> if you find this file useful.
+
 -------------------------------------------------------------------------------
 
 ~/.aMule/ – hardcoded
@@ -237,4 +239,4 @@ Notes on moving various dotfiles
 
 -------------------------------------------------------------------------------
 
-# vim: sts=4 sw=2 et tw=79
+# vim: ft= sts=4 sw=2 et tw=79
