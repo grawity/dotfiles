@@ -175,6 +175,9 @@ Notes on moving various dotfiles
 
 ~/.subversion/ – hardcoded
 
+~/.tkabber/ – environment
+  - $TKABBER_HOME overrides
+
 ~/.VirtualBox/ – environment
   - $VBOX_USER_HOME overrides the default path
   - see also ~/VirtualBox VMs/
