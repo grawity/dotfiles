@@ -48,6 +48,7 @@ if [[ $DESKTOP_SESSION ]]; then
 fi
 look() { find . -iname "*$1*" "${@:2}"; }
 f() { find "$PWD" -iname "*$1*" "${@:2}" | treeify "$PWD"; }
+alias lchown='chown -h'
 alias lp='sudo netstat -lptu --numeric-hosts'
 alias lpt='sudo netstat -lpt --numeric-hosts'
 alias lpu='sudo netstat -lpu --numeric-hosts'
