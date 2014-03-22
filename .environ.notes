@@ -74,6 +74,9 @@ OPERA_PERSONALDIR="$XDG_DATA_HOME/opera"
 # Not needed, 'xim' is already the default
 QT_IM_MODULE="xim"
 
+# Not needed, SDL already guesses correctly
+SDL_AUDIODRIVER="pulse"
+
 # Easter egg
 SVN_I_LOVE_PANGALACTIC_GARGLE_BLASTERS=1
 

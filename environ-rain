@@ -10,7 +10,6 @@ fi
 # libdefaults
 
 LIBVA_DRIVER_NAME="vdpau"
-SDL_AUDIODRIVER="pulse"
 
 # Force `gem install nokogiri` to use system libxml2
 NOKOGIRI_USE_SYSTEM_LIBRARIES="1"
