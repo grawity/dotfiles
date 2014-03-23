@@ -165,6 +165,9 @@ Please also read <.environ.notes> if you find this file useful.
       - ./sshhostkeys: $PUTTYSSHHOSTKEYS
       - ./randomseed: $PUTTYRANDOMSEED
 
+~/.quodlibet/ – environment
+  - $QUODLIBET_USERDIR overrides
+
 ~/.renpy/ – hardcoded
 
 ~/.secondlife/ – environment
