@@ -37,6 +37,7 @@ WGETRC="$XDG_CONFIG_HOME/wgetrc"
 ## To relocate other files:
 
 CVS_PASSFILE="$XDG_DATA_HOME/cvspass"
+GRAMPSHOME="$XDG_DATA_HOME/Gramps"
 
 ## To relocate cache/history:
 

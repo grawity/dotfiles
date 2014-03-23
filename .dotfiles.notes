@@ -72,6 +72,9 @@ Please also read <.environ.notes> if you find this file useful.
   - "--config-dir <dir>" option exists in source code, but doesn't work
   - however, the program is unmaintained anyway, uses obsolete GnomeVFS
 
+~/.gramps/ – environment
+  - $GRAMPSHOME overrides
+
 ~/.gstreamer-0.10/ – partial
   - the registry can use $GST_REGISTRY (which has to be overridden to its
     original value for 1.0 with $GST_REGISTRY_1_0)

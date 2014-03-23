@@ -19,7 +19,6 @@ NOKOGIRI_USE_SYSTEM_LIBRARIES="1"
 CRAWL_DIR="$XDG_DATA_HOME/crawl/"
 CSEARCHINDEX="$XDG_CACHE_HOME/codesearch/csearchindex"
 GEMRC="$XDG_CONFIG_HOME/gemrc"
-GRAMPSHOME="$XDG_DATA_HOME/gramps"
 MAILCAP="$XDG_CONFIG_HOME/mailcap" # for elinks, w3m
 MAILCAPS="$MAILCAP" # for mutt, alpine
 TAR_OPTIONS="--xattrs"
