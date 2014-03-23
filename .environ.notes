@@ -55,7 +55,24 @@ FIRESTORM_USER_DIR="$XDG_DATA_HOME/Firestorm"
 GIMP2_DIRECTORY="$XDG_DATA_HOME/Gimp"
 SECONDLIFE_USER_DIR="$XDG_DATA_HOME/SecondLife"
 
-## Miscellaneous (incl. poorly-working relocation):
+## Poorly working relocation attempts:
+
+# Treated as "system" config (user-only options ignored); use LDAPRC
+LDAPCONF="$XDG_CONFIG_HOME/ldap.conf"
+
+# Not needed anymore (already the default)
+LFTP_HOME="$XDG_CONFIG_HOME/lftp"
+
+# Does not work 100% (see notes)
+OPERA_PERSONALDIR="$XDG_DATA_HOME/opera"
+
+## Library parameters:
+
+QT_IM_MODULE="xim"		# already the default
+SDL_AUDIODRIVER="pulse"		# autodetects correctly
+VDPAU_DRIVER="r600"		# autodetects correctly
+
+## Miscellaneous:
 
 # I don't use this.
 ACK_PAGER="$PAGER"
@@ -63,23 +80,5 @@ ACK_PAGER="$PAGER"
 # Seems to be the default now, at least with Sun JRE
 _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
 
-# Treated as "system" config, user-only options ignored; use LDAPRC
-LDAPCONF="$XDG_CONFIG_HOME/ldap.conf"
-
-# Not needed, XDG path is already the default
-LFTP_HOME="$XDG_CONFIG_HOME/lftp"
-
-# Does not work 100% (see notes)
-OPERA_PERSONALDIR="$XDG_DATA_HOME/opera"
-
-# Not needed, 'xim' is already the default
-QT_IM_MODULE="xim"
-
-# Not needed, SDL already guesses correctly
-SDL_AUDIODRIVER="pulse"
-
 # Easter egg
 SVN_I_LOVE_PANGALACTIC_GARGLE_BLASTERS=1
-
-# Driver is now autodetected correctly
-VDPAU_DRIVER="r600"
