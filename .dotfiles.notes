@@ -6,7 +6,12 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.aMule/ – hardcoded
 
+~/.balsa/ – hardcoded
+
 ~/.bitcoin/ – hardcoded
+
+~/.claws-mail/ – command line
+  - "--alternate-config-dir <dir>" overrides
 
 ~/.crawl/ – environment
   - $CRAWL_DIR (must end with '/') overrides compile-time default
@@ -146,6 +151,15 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.netrc – fixed
   - many apps expect it there
+
+~/.npm/ – configurable
+  - "cache = <dir>" in ~/.npmrc or $PREFIX/etc/npmrc overrides
+  - doc: npm-config(7), npm-cache(1)
+
+~/.npmrc – configurable
+  - "userconfig = <path>" in $PREFIX/etc/npmrc overrides
+  - doc: npm-config(7)
+  - see also `npm config get globalconfig` & `npm config get userconfig`
 
 ~/.offlineimaprc – command line
   - the only method is `offlineimap -c <path>`
