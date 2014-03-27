@@ -60,6 +60,7 @@ include "%L"
 <Multi_key> <p> <p>			: "¶" # pilcrow P P
 <Multi_key> <n> <o>			: "№" # numero N O
 <Multi_key> <s> <h> <y>			: U00ad # 'hyphen' soft hyphen
+<Multi_key> <v> <slash>			: "✔" # check
 
 <Multi_key> <exclam> <2>		: "‼"
 <Multi_key> <2> <exclam>		: "‼"
