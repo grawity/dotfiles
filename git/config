@@ -31,6 +31,7 @@
 	export = !touch $(git rev-parse --git-dir)/git-daemon-export-ok
 	fa = fetch --all
 	follow = log --oneline --follow --stat --summary --
+	fun = "!git fsck | awk '/dangling commit/ {print $3 \"^!\"}' | xargs git log"
 	in = log --oneline --decorate ..@{upstream}
 	lg = log --oneline --decorate
 	lgs = log --format=\"%C(yellow)%h%C(reset)%C(cyan)% GK%C(reset) %s\"
