@@ -65,7 +65,7 @@ include "%L"
 <Multi_key> <exclam> <2>		: "‼"
 <Multi_key> <2> <exclam>		: "‼"
 
-<Multi_key> <slash> <slash>		: "⫽"
+<Multi_key> <slash> <slash>		: "⁄"
 
 # arrows
 
