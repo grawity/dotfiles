@@ -36,6 +36,7 @@
 	lg = log --oneline --decorate
 	lgs = log --format=\"%C(yellow)%h%C(reset)%C(cyan)% GK%C(reset) %s\"
 	ls = ls-files
+	lsr = "!_() { [ \"$1\" ] || set -- HEAD; git ls-tree -r \"$@\"; }; _"
 	logs = log --show-signature
 	mend = commit --amend --reuse-message HEAD
 	mirror = clone --mirror
