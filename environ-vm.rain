@@ -1,0 +1,5 @@
+# vim: ft=sh
+
+# override FreeBSD's /etc/termcap which sets AB and AF that break htop
+# (bold + black fg + black bg becomes invisible with 256 color sequences)
+TERMCAP="xterm-256color:tc=xterm:"
