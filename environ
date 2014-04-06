@@ -126,6 +126,9 @@ VIMINIT=":so ~/.vim/vimrc"
 GVIMINIT=":so ~/.vim/gvimrc"
 
 case $(uname)-$(uname -r) in
+    FreeBSD-10.*)
+        CC="clang"
+	;;
     NetBSD-6.*)
 	test "$PKG_PATH" ||
 	    PKG_PATH="ftp://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/$(uname -m)/6.0/All"
