@@ -72,6 +72,8 @@ OPERA_PERSONALDIR="$XDG_DATA_HOME/opera"
 QT_IM_MODULE="xim"		# already the default
 SDL_AUDIODRIVER="pulse"		# autodetects correctly
 VDPAU_DRIVER="r600"		# autodetects correctly
+XCURSOR_THEME="adwaita"		# already set in Xresources and XSETTINGS
+XCURSOR_SIZE="16"		# already set in Xresources and XSETTINGS
 
 ## Miscellaneous:
 
