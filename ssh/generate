@@ -7,6 +7,8 @@ PATH="$HOME/code/bin:$PATH"
 
 . libfilterfile.bash
 
+progname='ssh/generate'
+
 ssh_version() {
 	echo "${SSHPRODUCT:=$(ssh -V 2>&1)}"
 }
