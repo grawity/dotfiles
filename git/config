@@ -55,7 +55,7 @@
 	staged = diff --cached
 	stat = diff --stat
 	statg = diff --cached --stat
-	tags = for-each-ref --format=\"%(*objecttype)%09%(refname)\" \"refs/tags/*\"
+	tagv = !git tag -v $(git describe --abbrev=0)
 	tg = log --oneline --decorate --graph
 	tip = !git --no-pager log -1 --decorate --abbrev-commit --date=relative --show-signature
 	undo = reset --soft HEAD^
