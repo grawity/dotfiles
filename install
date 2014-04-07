@@ -2,7 +2,7 @@
 
 PATH=$HOME/code/bin:$PATH
 
-log() { if [ -t 0 ]; then echo "$*"; fi; }
+say() { if [ -t 0 ]; then echo "$*"; fi; }
 
 err() { echo "$*" >&2; }
 
@@ -14,7 +14,7 @@ trash() {
 		if [ ! -e "$file" ]; then
 			continue
 		elif [ -k "$file" ]; then
-			log "ignoring sticky $file"
+			say "ignoring sticky $file"
 			continue
 		else
 			local hash=$(sha1sum "$file" | awk '{print $1}')
@@ -46,7 +46,7 @@ link() {
 		return
 	elif [ -e "$link" ]; then
 		if [ -k "$link" ]; then
-			log "ignoring sticky $link"
+			say "ignoring sticky $link"
 			return
 		elif [ -h "$link" ]; then
 			rm -f "$link"
@@ -59,7 +59,7 @@ link() {
 			mkdir -p "$linkdir"
 		fi
 	fi
-	log "linking $link -> $target"
+	say "linking $link -> $target"
 	sym -f "$target" "$link"
 }
 
