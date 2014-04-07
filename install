@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
+PATH=$HOME/code/bin:$PATH
+
 log() { if [ -t 0 ]; then echo "$*"; fi; }
 
 have() { command -v "$1" >/dev/null 2>&1; }
-
-sym() { ~/code/bin/sym "$@"; }
 
 trash() {
 	local file
