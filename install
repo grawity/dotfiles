@@ -73,22 +73,28 @@ link bashrc
 link inputrc
 link profile
 link git ~/.config/git
+
 if [ -h ~/.gitconfig ] || ! git config --global github.user >/dev/null 2>&1; then
 	link git/config ~/.gitconfig
 fi
+
 if [ -h ~/.gitignore ]; then
 	link git/ignore ~/.gitignore
 fi
-have msmtp && {
+
+if have msmtp; then
 	link mail/msmtprc ~/.msmtprc
 	chmod 600 ~/.msmtprc
-}
-have ssh && {
+fi
+
+if have ssh; then
 	ssh/generate
 	link ssh/known_hosts
-}
-have tmux &&
+fi
+
+if have tmux; then
 	link tmux.conf
+fi
 
 rm -f ~/.viminfo
 link vim
