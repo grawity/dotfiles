@@ -2,11 +2,9 @@
 
 PATH=$HOME/code/bin:$PATH
 
-say() { if [[ $DEBUG || -t 0 ]]; then echo "$*"; fi; }
+. lib.bash || exit
 
-err() { echo "$*" >&2; }
-
-have() { command -v "$1" >/dev/null 2>&1; }
+progname='dotfiles/install'
 
 trash() {
 	local file
@@ -62,6 +60,10 @@ link() {
 	say "linking $link -> $target"
 	sym -f "$target" "$link"
 }
+
+if [[ -t 0 ]]; then
+	VERBOSE=1
+fi
 
 dir=$(dirname "$(sym -r "$0")")
 trash=~/tmp
