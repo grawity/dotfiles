@@ -2,7 +2,7 @@
 
 PATH=$HOME/code/bin:$PATH
 
-say() { if [ -t 0 ]; then echo "$*"; fi; }
+say() { if [[ $DEBUG || -t 0 ]]; then echo "$*"; fi; }
 
 err() { echo "$*" >&2; }
 
