@@ -1,7 +1,5 @@
 adm	grawity/admin@NULLROUTE.EU.ORG
 cn	grawity@CLUENET.ORG
 cna	grawity/admin@CLUENET.ORG
-d	grawity@DVYJONES.COM
 n	grawity@NULLROUTE.EU.ORG
 na	grawity@NATHAN7.EU
-xs	grawity@TERAGRID.ORG -kt ~/Private/keys/login/krb-${PRINCIPAL}.keytab
