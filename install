@@ -68,11 +68,13 @@ cd "$dir"
 trash ~/.{login,logout}
 trash ~/.bash_{login,profile,logout}
 trash ~/.{sh,csh}rc
+rm -f ~/.viminfo
 
 link bashrc
 link inputrc
 link profile
 link git ~/.config/git
+link vim
 
 if [ -h ~/.gitconfig ] || ! git config --global github.user >/dev/null 2>&1; then
 	link git/config ~/.gitconfig
@@ -96,14 +98,14 @@ if have tmux; then
 	link tmux.conf
 fi
 
-link vim
-rm -f ~/.viminfo
-
-test "$DISPLAY" && {
-	have fc-cache &&
+if [ "$DISPLAY" ]; then
+	if have fc-cache; then
 		link gui/fonts.conf.xml ~/.config/fontconfig/fonts.conf
-	have openbox &&
+	fi
+
+	if have openbox; then
 		link gui/openbox-autostart ~/.config/openbox/autostart
-}
+	fi
+fi
 
 exit 0
