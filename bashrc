@@ -14,16 +14,18 @@ fi
 
 # this is needed for non-interactive mode as well; for example,
 # in my git-url-handler script
-case $TERM in
-	xterm)
+case $TERM,$OSTYPE in
+	xterm,freebsd*)
+		havecolor=8;;
+	xterm,*)
 		OLDTERM="$TERM";
 		TERM="$TERM-256color";
 		havecolor=256;;
-	*-256color|xterm-termite)
+	*-256color,*|xterm-termite,*)
 		havecolor=256;;
-	""|dumb|9term)
+	"",*|dumb,*|9term,*)
 		havecolor=0;;
-	*)
+	*,*)
 		havecolor=8;;
 esac
 
