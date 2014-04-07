@@ -95,6 +95,7 @@ if have msmtp; then
 fi
 
 if have ssh; then
+	say "updating $HOME/.ssh/config"
 	ssh/generate
 	link ssh/known_hosts
 fi
