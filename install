@@ -14,7 +14,7 @@ trash() {
 		if [ ! -e "$file" ]; then
 			continue
 		elif [ -k "$file" ]; then
-			log "Ignoring sticky ${file/#$HOME/~}"
+			log "ignoring sticky $file"
 			continue
 		else
 			local hash=$(sha1sum "$file" | awk '{print $1}')
@@ -33,7 +33,7 @@ trash() {
 			if [ ! -d "$trash" ]; then
 				mkdir -pm 0700 "$trash"
 			fi
-			echo "Backing up ${file/#$HOME/~} to ${trash/#$HOME/~}"
+			echo "backing up $file -> $trash"
 			mv "$file" "$trash/old_${file##*/}"
 		fi
 	done
@@ -42,11 +42,11 @@ trash() {
 link() {
 	local target=$dir/${1%/} link=${2:-$HOME/.$1}
 	if [ ! -e "$target" ]; then
-		err "Link target is missing: $link -> $target"
+		err "link target is missing: $link -> $target"
 		return
 	elif [ -e "$link" ]; then
 		if [ -k "$link" ]; then
-			log "Ignoring sticky ${link/#$HOME/~}"
+			log "ignoring sticky $link"
 			return
 		elif [ -h "$link" ]; then
 			rm -f "$link"
@@ -59,7 +59,7 @@ link() {
 			mkdir -p "$linkdir"
 		fi
 	fi
-	log "Linking ${link/#$HOME/~} to ${target/#$HOME/~}"
+	log "linking $link -> $target"
 	sym -f "$target" "$link"
 }
 
