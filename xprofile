@@ -9,17 +9,16 @@ if have keyctl; then
 			keyctl link @u @s
 		fi
 	fi
-fi
-
-if have globalenv; then
 	# set up some pointers to environment (for use by cron)
-	globalenv -s \
-		+DBUS_SESSION_BUS_ADDRESS	\
-		+DISPLAY			\
-		+KRB5CCNAME			\
-		+SSH_AUTH_SOCK			\
-		+XAUTHORITY			\
-		+XDG_RUNTIME_DIR		;
+	if have globalenv; then
+		globalenv -s \
+			+DBUS_SESSION_BUS_ADDRESS	\
+			+DISPLAY			\
+			+KRB5CCNAME			\
+			+SSH_AUTH_SOCK			\
+			+XAUTHORITY			\
+			+XDG_RUNTIME_DIR		;
+	fi
 fi
 
 if have auca-seed; then
