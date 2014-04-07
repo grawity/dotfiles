@@ -52,8 +52,6 @@ if [ ! "$DESKTOP_SESSION" ]; then
 fi
 
 if [ "$HOSTNAME" = rain ]; then
-	gnome-mpris-inhibit mpd --flags=suspend &
-
 	if [ "$DESKTOP_SESSION" != gnome ]; then
 		mpris mpd notify-idle &
 	fi
