@@ -21,10 +21,6 @@ if have keyctl; then
 	fi
 fi
 
-if [ "$GDMSESSION" ]; then
-	systemctl --user import-environment DISPLAY PATH XAUTHORITY
-fi
-
 if have auca-seed; then
 	auca-seed &
 fi
