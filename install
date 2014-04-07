@@ -63,8 +63,6 @@ link() {
 	sym -f "$target" "$link"
 }
 
-set -e
-
 dir=$(dirname "$(sym -r "$0")")
 trash=~/tmp
 
