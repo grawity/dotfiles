@@ -3,12 +3,13 @@
 
 if have keyctl; then
 	# set up session keyring
-	if [ "$(keyctl rdescribe @s)" = "$(keyctl rdescribe @us)" ]; then
-		echo "Creating new session keyring"
-		if keyctl new_session > /dev/null; then
-			keyctl link @u @s
-		fi
-	fi
+	keyctl show
+	#if [ "$(keyctl rdescribe @s)" = "$(keyctl rdescribe @us)" ]; then
+	#	echo "Creating new session keyring"
+	#	if keyctl new_session > /dev/null; then
+	#		keyctl link @u @s
+	#	fi
+	#fi
 fi
 
 if have auca-seed; then
