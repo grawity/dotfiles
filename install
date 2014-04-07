@@ -4,6 +4,8 @@ PATH=$HOME/code/bin:$PATH
 
 log() { if [ -t 0 ]; then echo "$*"; fi; }
 
+err() { echo "$*" >&2; }
+
 have() { command -v "$1" >/dev/null 2>&1; }
 
 trash() {
@@ -40,7 +42,7 @@ trash() {
 link() {
 	local target=$dir/${1%/} link=${2:-$HOME/.$1}
 	if [ ! -e "$target" ]; then
-		log "Ignoring missing ${target/#$HOME/~}"
+		err "Link target is missing: $link -> $target"
 		return
 	elif [ -e "$link" ]; then
 		if [ -k "$link" ]; then
