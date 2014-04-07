@@ -1,8 +1,6 @@
 # ~/.xprofile - X11-specific login script (after ~/.profile)
 # vim: ft=sh
 
-xhost +"SI:localuser:$USER" &
-
 if have keyctl; then
 	# set up session keyring
 	if [ "$(keyctl rdescribe @s)" = "$(keyctl rdescribe @us)" ]; then
