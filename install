@@ -96,12 +96,10 @@ if have tmux; then
 	link tmux.conf
 fi
 
-rm -f ~/.viminfo
 link vim
+rm -f ~/.viminfo
 
 test "$DISPLAY" && {
-	have gvim &&
-		link gvimrc
 	have fc-cache &&
 		link gui/fonts.conf.xml ~/.config/fontconfig/fonts.conf
 	have openbox &&
