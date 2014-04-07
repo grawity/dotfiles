@@ -26,7 +26,7 @@ if have auca-seed; then
 fi
 
 if [ -f ~/.config/synclient.conf ]; then
-	synclient $(grep -v "^#" ~/.config/synclient.conf) > /dev/null &
+	synclient $(grep "^[^#]" ~/.config/synclient.conf) > /dev/null &
 fi
 
 if [ ! "$DESKTOP_SESSION" ]; then
