@@ -66,7 +66,6 @@ case $FQDN in
 	item_prompt='┘'
 	fmt_name_pfx='|38;5;236'
 	fmt_prompt=$fmt_name_pfx
-
 	if (( UID )); then
 		fmt_name='38;5;82'
 	else
@@ -78,10 +77,15 @@ case $FQDN in
 	;;
 
     *.core|*.rune)
-	item_name_pfx="["
-	item_name=$FQDN
-	item_name_sfx="] $OSTYPE"
-	fmt_name_pfx='|38;5;242'
+	if (( havecolor == 256 )); then
+		item_name_pfx="["
+		item_name=$FQDN
+		item_name_sfx="] $OSTYPE"
+		fmt_name_pfx='|38;5;242'
+	else
+		item_name=$FQDN
+		item_name_sfx=" $OSTYPE"
+	fi
 	if (( UID )); then
 		fmt_name='38;5;71'
 	else
