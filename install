@@ -61,7 +61,7 @@ trash() {
 set -e
 
 dir=$(dirname "$(sym -r "$0")")
-trash=~/Trash
+trash=~/tmp
 
 cd "$dir"
 
