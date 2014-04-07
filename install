@@ -53,7 +53,7 @@ trash() {
 				mkdir -pm 0700 "$trash"
 			fi
 			echo "Backing up ${file/#$HOME/~} to ${trash/#$HOME/~}"
-			mv "$file" "$trash"
+			mv "$file" "$trash/old_${file##*/}"
 		fi
 	done
 }
