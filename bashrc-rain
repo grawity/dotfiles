@@ -19,6 +19,7 @@ rm() {
 		# skip filesystems
 		~/Private/*)		false;;
 		~/fs/*)			false;;
+		~/@*)			false;;
 		# skip system stuff
 		~/lib/*)		false;;
 		~/pkg/*)		false;;
