@@ -23,7 +23,6 @@ rm() {
 		~/lib/*)		false;;
 		~/pkg/*)		false;;
 		~/src/*)		false;;
-		~/tmp*)			false;;
 		# skip dotfiles and temp
 		#~/.*)			false;;
 		~/.local/share/Trash/*)	false;;
