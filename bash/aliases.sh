@@ -39,7 +39,6 @@ alias kssh='ssh \
 	-o PreferredAuthentications=gssapi-keyex,gssapi-with-mic \
 	-o GSSAPIAuthentication=yes \
 	-o GSSAPIDelegateCredentials=yes'
-kzgrep() { zgrep -i "$@" /proc/config.gz; }
 alias l='ls -log'
 alias ll='ls -l'
 alias logoff='logout'
