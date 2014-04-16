@@ -63,7 +63,6 @@ rpw() {
 
 youtube-dl() {
 	local cmd=()
-	mountpoint -q /sys/fs/cgroup/systemd &&
 	cmd+=(
 		systemd-inhibit
 		--who "youtube-dl"
