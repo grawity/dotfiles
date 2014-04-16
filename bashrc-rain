@@ -12,6 +12,7 @@ fi
 
 ## Aliases
 
+alias clock='tty-clock -c'
 alias RM='/bin/rm -I'
 
 rm() {
