@@ -7,7 +7,7 @@ nudge = push --rev .
 untrack = rm -Af
 
 [ui]
-username = Mantas Mikulėnas <$EMAIL>
+username = $NAME <$EMAIL>
 
 [diff]
 git = True
