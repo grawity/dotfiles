@@ -2,11 +2,15 @@
 
 [[ $- != *i* ]] && return
 
+## Completion
+
 if [[ -e /usr/share/bash-completion/bash_completion ]]; then
 	. /usr/share/bash-completion/bash_completion
 	# redeclare after bash-completion nukes it
 	have() { command -v "$@" &>/dev/null; }
 fi
+
+## Aliases
 
 alias RM='/bin/rm -I'
 
@@ -79,6 +83,8 @@ youtube-dl() {
 	)
 	"${cmd[@]}"
 }
+
+## Prompt
 
 _nolid_prompt() {
 	if [[ -e "$XDG_RUNTIME_DIR/nolid.hold" ]]; then
