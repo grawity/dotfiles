@@ -3,7 +3,10 @@
 
 have() { command -v "$1" >&/dev/null; }
 
-[[ $PREFIX ]] || . ~/lib/dotfiles/environ
+if [[ ! $PREFIX ]]; then
+	. ~/lib/dotfiles/environ
+	(. lib.bash && warn "had to load .environ from .bashrc")
+fi
 
 # this cannot be in environ.sh because gdm sources profile early;
 # Xsession and gnome-session override $LANG later
