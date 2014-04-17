@@ -369,9 +369,4 @@ elif have service; then
 	start()   { for _s; do sudo service "$_s" start; done; }
 	stop()    { for _s; do sudo service "$_s" stop; done; }
 	restart() { for _s; do sudo service "$_s" restart; done; }
-elif have invoke-rc.d; then
-	# Debian
-	start()   { for _s; do sudo invoke-rc.d "$_s" start; done; }
-	stop()    { for _s; do sudo invoke-rc.d "$_s" stop; done; }
-	restart() { for _s; do sudo invoke-rc.d "$_s" restart; done; }
 fi
