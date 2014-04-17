@@ -75,7 +75,7 @@ alias py3='python3'
 alias rd='rmdir'
 rdempty() { find "$@" -depth -type d -exec rmdir --ignore-fail-on-non-empty {} +; }
 alias re='hash -r && SILENT=1 . ~/.bashrc && echo reloaded .bashrc && :'
-alias ere='set -a && . ~/.profile && set +a'
+alias ere='set -a && . ~/.profile && set +a && echo reloaded .profile && :'
 ressh() { ssh -v \
 	-o ControlPersist=no \
 	-o ControlMaster=no \
