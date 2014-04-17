@@ -19,6 +19,20 @@
 
 ## Personal information:
 
+# Used by:
+# - ??? dpkg-buildpackage (unless overridden by $DEBFULLNAME)
+# - git (unless overridden by 'user.name')
+# - hg (via ~/.hgrc 'ui.username')
+# - makepkg (via ~/.makepkg.conf $PACKAGER)
+NAME="Mantas Mikulėnas"
+
+# Used by:
+# - ??? dpkg-buildpackage (unless overridden by $DEBEMAIL)
+# - git (unless overridden by 'user.email')
+# - hg (via ~/.hgrc 'ui.username')
+# - makepkg (via ~/.makepkg.conf $PACKAGER)
+EMAIL="grawity@gmail.com"
+
 # No longer needed as 1.1happy now reads the config as UTF-8
 GALE_NAME="$NAME"
 
