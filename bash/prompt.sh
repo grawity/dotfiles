@@ -1,5 +1,51 @@
 # bashrc -- shell prompt, window title, command exit status in prompt
 # (note: depends on $havecolor being set, see main bashrc)
+#
+# Features:
+#
+#   - Git branch and basic status (merge, rebase, etc.)
+#   - Highlight current directory's basename
+#   - Highlight toplevel directory of a Git repo
+#   - Collapse long paths to fit in one line
+#     ("~/one/two/three" to "~/…o/three")
+#
+# Formatting:
+#
+#   <name>:
+#     item_name_pfx: prefix
+#     item_name: area for the hostname (FQDN shown by default)
+#     item_name_sfx: suffix
+#   reset_pwd: space between <name> and <pwd>
+#   <pwd>:
+#     item_pwd_pfx: prefix
+#     _item_pwd: current working directory minus body+tail
+#     _item_pwd_body: "body" (Git toplevel, etc) of cwd
+#     _item_pwd_tail: basename (last element) of cwd
+#     item_pwd_sfx: suffix
+#   reset_vcs: space between <pwd> and <vcs>
+#   <vcs>:
+#     item_vcs_pfx: prefix
+#     _item_vcs: Git repository status
+#     item_cvs_sfx: suffix
+#   <second line>:
+#     item_prompt: the prompt character
+#
+#   - all ${_item_*} are recalculated every time and cannot be overridden
+#   - prefix/suffix are empty by default
+#   - each ${item_*} or ${_item_*} has a corresponding ${fmt_*} with ANSI fmt
+#   - each ${reset_*} also has a corresponding ${fmt_reset_*}
+#   - formats use '|' to emit separate CSI sequences (e.g. 256-color ones)
+#   - for example, fmt_name='1|38;5;71'
+#   - ${fmt_*_sfx} inherits from ${fmt_*_pfx}
+#   - ${fmt_name_pfx} inherits from ${fmt_prompt}
+#   - to suppress inheritance, set value to ${fmt_noop}
+#
+# Configuration:
+#
+#   fullpwd = "y" | "h" | unset
+#     "y" = full path of working directory is always shown
+#     "h" = full unhighlighted path is shown if ~ is cwd
+#     unset = cwd is collapsed ("/home/grawity/foo" → "~/foo")
 
 case $TERM in
 	[xkE]term*|rxvt*|cygwin|dtterm|termite)
