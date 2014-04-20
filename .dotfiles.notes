@@ -187,6 +187,9 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.renpy/ – hardcoded
 
+~/.screenrc – environment
+  - $SCREENRC overrides
+
 ~/.secondlife/ – environment
   - $SECONDLIFE_USER_DIR overrides, but need to manually set new chatlog path
 
