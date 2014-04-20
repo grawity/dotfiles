@@ -61,9 +61,11 @@ MYSQL_HISTFILE="$XDG_CACHE_HOME/mysql.history"
 
 ## To relocate runtime data & IPC sockets:
 
-ICEAUTHORITY="$XDG_RUNTIME_DIR/ICE-authority"
+ICEAUTHORITY="$XDG_RUNTIME_DIR/ICEauthority"
+XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 
 SCREENDIR="$XDG_RUNTIME_DIR/screen"
+TMUX_TMPDIR="$XDG_RUNTIME_DIR/tmux"
 
 ## To relocate a mix of config and cache and shit:
 # (when said mix is of significant size, not just a file or two)
@@ -77,10 +79,8 @@ SECONDLIFE_USER_DIR="$XDG_DATA_HOME/SecondLife"
 
 # Treated as "system" config (user-only options ignored); use LDAPRC
 LDAPCONF="$XDG_CONFIG_HOME/ldap.conf"
-
 # Not needed anymore (already the default)
 LFTP_HOME="$XDG_CONFIG_HOME/lftp"
-
 # Does not work 100% (see notes)
 OPERA_PERSONALDIR="$XDG_DATA_HOME/opera"
 
