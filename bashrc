@@ -5,6 +5,8 @@ have() { command -v "$1" >&/dev/null; }
 
 if [[ ! $PREFIX ]]; then
 	. ~/lib/dotfiles/environ
+	# this currently happens when:
+	# - `sudo -s` preserves $HOME but cleans other envvars
 	(. lib.bash && warn "had to load .environ from .bashrc")
 fi
 
