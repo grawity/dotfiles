@@ -31,7 +31,8 @@ fi
 case $1 in
 	cinnamon)	set -- cinnamon-session;;
 	gnome)		set -- gnome-session;;
-	e|e17)		set -- enlightenment_start;;
+	e|e17)		set -- enlightenment_start \
+		-i-really-know-what-i-am-doing-and-accept-full-responsibility-for-it;;
 	mate)		set -- mate-session;;
 	kde)		set -- startkde;;
 	xfce)		set -- startxfce4;;
