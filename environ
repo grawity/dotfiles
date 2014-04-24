@@ -117,6 +117,7 @@ IRBRC="$HOME/lib/dotfiles/irbrc"
 PYTHONSTARTUP="$HOME/lib/dotfiles/pythonrc"
 
 BZR_LOG="/dev/null"
+GCC_COLORS="1"
 GIT_MERGE_AUTOEDIT="no"
 LESS="e M q R F X z -3"
 MAKEFLAGS="-j $(nproc)"
