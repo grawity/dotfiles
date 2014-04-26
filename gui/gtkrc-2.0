@@ -2,6 +2,7 @@
 # [preferences]
 #gtk-font-name = "Segoe UI 10"
 gtk-theme-name = "Clearlooks"
+gtk-icon-theme-name = "Adwaita"
 #gtk-cursor-theme-name = Adwaita
 #gtk-toolbar-style = GTK_TOOLBAR_BOTH_HORIZ
 #gtk-menu-images = 0
