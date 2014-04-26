@@ -34,13 +34,6 @@ case $TERM,$OSTYPE in
 		havecolor=8;;
 esac
 
-if [[ $COLORTERM == xfce* ]]; then
-	# I guess I'm not supposed to run a terminal from another terminal,
-	# but either way, this fixes such cases like running xfce4-terminal
-	# from within gnome-terminal/termite.
-	unset VTE_VERSION
-fi
-
 export GPG_TTY=$(tty)
 
 ### Interactive options
