@@ -33,7 +33,6 @@ case $1 in
 	gnome)		set -- gnome-session;;
 	e|e17)		set -- enlightenment_start \
 		-i-really-know-what-i-am-doing-and-accept-full-responsibility-for-it;;
-	e16)		set -- starte16;;
 	mate)		set -- mate-session;;
 	kde)		set -- startkde;;
 	xfce)		set -- startxfce4;;
@@ -41,10 +40,9 @@ esac
 
 case $1 in
 	cinnamon-session)	DESKTOP_SESSION=cinnamon;;
-	enlightenment_start)	DESKTOP_SESSION=enlightenment;;
 	gnome-session)		DESKTOP_SESSION=gnome;;
+	enlightenment_start)	DESKTOP_SESSION=enlightenment;;
 	mate-session)		DESKTOP_SESSION=mate;;
-	starte16)		DESKTOP_SESSION=enlightenment16;;
 	startkde)		DESKTOP_SESSION=kde-plasma;;
 	startxfce4)		DESKTOP_SESSION=xfce;;
 esac
