@@ -41,7 +41,7 @@ esac
 case $1 in
 	cinnamon-session)	DESKTOP_SESSION=cinnamon;;
 	gnome-session)		DESKTOP_SESSION=gnome;;
-	enlightenment_start)	DESKTOP_SESSION=enlightenment17;;
+	enlightenment_start)	DESKTOP_SESSION=enlightenment;;
 	mate-session)		DESKTOP_SESSION=mate;;
 	startkde)		DESKTOP_SESSION=kde-plasma;;
 	startxfce4)		DESKTOP_SESSION=xfce;;
