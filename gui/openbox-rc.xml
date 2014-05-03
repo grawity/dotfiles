@@ -40,7 +40,7 @@
                   'Active' - where the active window is -->
   </placement>
   <theme>
-    <name>Workhorse</name>
+    <name>wh-mod</name>
     <titleLayout>LC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.

@@ -1,0 +1,128 @@
+! vim: ft=xdefaults
+! wh-mod -- based on the "Workhorse" theme
+
+*.font:                          shadow=n
+window.active.label.text.font:   shadow=y:shadowtint=30:shadowoffset=1
+window.inactive.label.text.font: shadow=y:shadowtint=00:shadowoffset=0
+menu.items.font:                 shadow=y:shadowtint=0:shadowoffset=1
+
+!# general stuff
+
+padding.width: 3
+padding.height: 3
+window.handle.width: 0
+menu.overlap: 2
+*.justify: left
+
+!# lets set our damn shadows here, eh?
+
+#*.bg.highlight: 50
+#*.bg.shadow:    05
+
+!# set handles here and only the once?
+
+window.*.handle.bg: raised solid
+window.*.handle.bg.color: #eaebec
+
+window.*.grip.bg: raised solid
+window.*.grip.bg.color: #eaebec
+
+border.width: 1
+window.client.padding.width: 1
+
+! original: #2a2a2a, gnome: #393f3f, gnome border: #24282a
+
+window.*.title.bg:		flat 
+window.*.title.bg.color:	#393f3f
+window.*.title.separator.color:	#393f3f
+window.*.border.color:		#393f3f
+window.*.client.color:		#393f3f
+
+!window.active.title.bg.color:		#292f2f
+window.inactive.title.bg.color:		#303436
+
+window.active.border.color:		#595f5f
+window.inactive.border.color:		#494f4f
+
+!window.*.title.separator.color:	#393f3f
+!window.active.title.separator.color:	#393f3f
+!window.inactive.title.separator.color:	#393f3f
+
+window.active.label.bg: parentrelative
+!window.active.label.text.color: #ffffff
+window.active.label.text.color: #94d01c
+
+window.active.button.*.bg: parentrelative
+!window.active.button.*.bg.color: #393f3f
+!window.active.button.*.bg.border.color: #1d1e1b
+window.active.button.*.image.color: #d0d0d0
+
+window.active.button.hover.bg.color: #2a2a2a
+window.active.button.hover.bg.border.color: #1d1e1b
+window.active.button.hover.image.color: #ffffff
+
+window.active.button.pressed.bg: flat solid
+window.active.button.pressed.bg.color: #2a2a2a
+
+window.inactive.label.bg: parentrelative
+window.inactive.label.text.color: #74746e
+
+window.inactive.button.*.bg: parentrelative
+!window.inactive.button.*.bg.color: #393f3f
+!window.inactive.button.*.bg.border.color: #1d1e1b
+window.inactive.button.*.image.color: #74746e
+
+!# Menu settings
+
+menu.border.width:		1
+menu.border.color:		#595f5f
+!menu.border.color:		#9cd629
+
+menu.separator.color:		#929292
+menu.separator.width:		1
+menu.separator.padding.width:	3
+menu.separator.padding.height:	3
+
+menu.title.bg:			flat
+menu.title.bg.color:		#9cd629
+menu.title.text.color:		#303436
+menu.title.text.justify:	center
+
+menu.items.bg:			flat
+menu.items.bg.color:		#303436
+menu.items.text.color:		#b2b9b9
+menu.items.disabled.text.color:	#4e4e4e
+
+menu.items.active.bg:		flat
+menu.items.active.bg.color:	#393f3f
+menu.items.active.text.color:	#a5e12d
+menu.items.active.disabled.text.color: #656565
+
+!# osd (pop ups and what not, dock?)
+
+osd.border.width: 1
+osd.border.color: #595f5f
+
+osd.bg: flat 
+osd.bg.color: #303436
+osd.bg.color.splitto: #f5f5f4
+osd.bg.colorTo: #eaebec
+osd.bg.colorTo.splitto: #e7e5e4
+
+osd.bg.border.color: #ffffff
+
+osd.active.label.bg:       parentrelative
+osd.active.label.bg.color: #393f3f
+osd.active.label.bg.border.color: #9c9e9c
+osd.active.label.text.color: #a5e12d
+
+osd.inactive.label.bg: parentrelative
+osd.inactive.label.text.color: #70747d
+
+osd.hilight.bg: flat  
+osd.hilight.bg.color: #a5e12d
+!osd.hilight.bg.colorTo: #749dcf
+
+osd.unhilight.bg: flat 
+osd.unhilight.bg.color: #393f3f
+!osd.unhilight.bg.colorTo: #efefef
