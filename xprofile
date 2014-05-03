@@ -33,7 +33,7 @@ if [ ! "$DESKTOP_SESSION" ]; then
 		gnome-screensaver
 	fi &
 
-	xbindkeys -f ~/.config/xbindkeys/xbindkeysrc &
+	xbindkeys &
 fi
 
 if [ "$HOSTNAME" = rain ]; then
