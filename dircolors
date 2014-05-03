@@ -8,8 +8,10 @@ TERM xterm-256color
 #NORMAL			0
 #FILE			0
 RESET			0
-DIR			1;34
-LINK			1;36
+#DIR			1;34
+DIR			38;5;12
+#LINK			1;36
+LINK			38;5;14
 #LINK			target	# not supported by bash 4.3 colored-stats
 #MULTIHARDLINK		0
 FIFO			33;40
