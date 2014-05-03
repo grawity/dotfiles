@@ -115,6 +115,9 @@ alias xx='chmod a+x'
 alias '~'='egrep'
 alias '~~'='egrep -i'
 
+alias good='git bisect good'
+alias bad='git bisect bad'
+
 alias sdate='date "+%Y-%m-%d"'
 alias sfdate='date "+%Y-%m-%d %H:%M"'
 alias ldate='date "+%A, %B %-d, %Y %H:%M"'
