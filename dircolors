@@ -1,8 +1,5 @@
-TERM rxvt-unicode
 TERM rxvt-unicode-256color
-TERM screen
 TERM screen-256color
-TERM xterm
 TERM xterm-256color
 
 #NORMAL			0
