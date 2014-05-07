@@ -84,6 +84,10 @@ LFTP_HOME="$XDG_CONFIG_HOME/lftp"
 # Does not work 100% (see notes)
 OPERA_PERSONALDIR="$XDG_DATA_HOME/opera"
 
+## Other kinds of paths (e.g. local library paths):
+
+PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig"
+
 ## Library parameters:
 
 QT_IM_MODULE="xim"		# already the default
