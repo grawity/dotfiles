@@ -31,13 +31,6 @@ XTerm.backarrowKeyIsErase:	true
 XTerm.ptyInitialErase:		true
 XTerm*bellIsUrgent:		true
 XTerm*bellOnReset:		false
-
-! utf8 values:
-!   false (0) - can be enabled with escapes
-!   true (1) - can be disabled with escapes
-!   always (2) - escapes ignored
-!   default (3) - always if *locale set, false otherwise
-XTerm*utf8:			default
 XTerm*utf8Fonts:		always
 XTerm*utf8Title:		true
 ! interpret VT100 graphics in utf8 mode?
