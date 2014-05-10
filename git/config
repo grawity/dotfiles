@@ -129,7 +129,7 @@
 	user = grawity
 	password = !getnetrc -df %p github.com grawity
 [gui]
-	#encoding = utf-8
+	encoding = utf-8
 	fontdiff = -family \"DejaVu Sans Mono\" -size 9 -weight normal -slant roman -underline 0 -overstrike 0
 [tig]
 	show-date = relative
