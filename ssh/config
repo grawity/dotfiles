@@ -15,6 +15,12 @@ Host abacus
 Host aurimo-seedbox
 	Hostname 176.31.238.190
 
+Host decay
+	Hostname decay.nullroute.eu.org
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
 Host eta
 	Hostname eta.cluenet.org
 	GSSAPIAuthentication yes
