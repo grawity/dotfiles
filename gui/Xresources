@@ -22,48 +22,40 @@ Xcursor.size:		16
 
 !!! Xterm {{{
 
+XTerm.termName:			xterm-256color
+
 ! behavior
 
-XTerm*termName:			xterm-256color
-XTerm*metaSendsEscape:		true
-XTerm*allowTcapOps:		false
 XTerm.backarrowKeyIsErase:	true
 XTerm.ptyInitialErase:		true
-XTerm*bellIsUrgent:		true
-XTerm*bellOnReset:		false
-XTerm*utf8Fonts:		always
-XTerm*utf8Title:		true
-! interpret VT100 graphics in utf8 mode?
-!XTerm*vt100Graphics:		false
+XTerm*vt100.allowTcapOps:	false
+XTerm*vt100.bellIsUrgent:	true
+XTerm*vt100.bellOnReset:	false
+XTerm*vt100.metaSendsEscape:	true
+XTerm*vt100.scrollKey:		true
 
 ! keyboard
 
-XTerm*vt100*translations:	#override			\n\
+XTerm*vt100.translations:	#override			\n\
 	Shift Ctrl <KeyPress>C:	copy-selection(CLIPBOARD)	\n\
 	Shift Ctrl <KeyPress>V:	insert-selection(CLIPBOARD)	\n\
 	Shift Ctrl <Key>N:	spawn-new-terminal()		\n
 
 ! appearance
 
-XTerm*vt100.geometry:	100x35
-!XTerm*vt100.faceName:	DejaVu Sans Mono
-!XTerm*vt100.faceSize:	9
-!XTerm*faceSize1:	7
-!XTerm*faceSize2:	8
-!XTerm*faceSize3:	9
-!XTerm*faceSize4:	10
-!XTerm*faceSize5:	12
-!XTerm*faceSize6:	14
-!XTerm*italicULMode:	true
-!XTerm*showBlinkAsBold:	true
-!XTerm*cursorBlink:	true
-XTerm*toolBar:		false
-!XTerm*scrollBar:	true
-!XTerm*rightScrollBar:	true
-XTerm*scrollKey:	true
-XTerm*showMissingGlyphs:true
+XTerm.toolBar:			false
+XTerm*vt100.cursorBlink:	true
+!XTerm*vt100.faceName:		DejaVu Sans Mono
+!XTerm*vt100.faceSize:		9
+XTerm*vt100.geometry:		100x35
+!XTerm*vt100.showBlinkAsBold:	true
+XTerm*vt100.showMissingGlyphs:	true
+XTerm*vt100.utf8Fonts:		always
+XTerm*vt100.utf8Title:		true
+XTerm*vt100.vt100Graphics:	false
 
 ! colors (gnome-terminal Tango scheme)
+
 XTerm*vt100.background:	black
 XTerm*vt100.foreground:	#ffffff
 XTerm*color0:		#000000
