@@ -93,12 +93,12 @@ URxvt.termName:		rxvt-unicode-256color
 
 ! behavior
 
-Rxvt.scrollBar:		false
 Rxvt.scrollTtyKeypress:	true
 Rxvt.secondaryScroll:	false
 
 ! appearance
 
+Rxvt.scrollBar:		false
 Rxvt.geometry:		100x35
 !Rxvt.font:		6x13
 Rxvt.font:		-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
@@ -132,13 +132,13 @@ Rxvt.color15:		#eeeeec
 
 ! plugins
 
-Rxvt.perl-ext-common:	default,matcher
-Rxvt.matcher.button:	3
-Rxvt.tabbed.tabbar-fg:	2
-Rxvt.tabbed.tabbar-bg:	0
-Rxvt.tabbed.tab-fg:	0
-Rxvt.tabbed.tab-bg:	3
-Rxvt.urlLauncher:	xdg-open
+!Rxvt.perl-ext-common:	default,matcher
+!Rxvt.matcher.button:	3
+!Rxvt.tabbed.tabbar-fg:	2
+!Rxvt.tabbed.tabbar-bg:	0
+!Rxvt.tabbed.tab-fg:	0
+!Rxvt.tabbed.tab-bg:	3
+!Rxvt.urlLauncher:	xdg-open
 
 !!! }}}
 
