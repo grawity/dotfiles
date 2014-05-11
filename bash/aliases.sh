@@ -52,6 +52,7 @@ alias lp='sudo netstat -lptu --numeric-hosts'
 alias lpt='sudo netstat -lpt --numeric-hosts'
 alias lpu='sudo netstat -lpu --numeric-hosts'
 alias lsd='ls -d .*'
+alias lspart='lsblk -o name,partlabel,fstype,label,mountpoint'
 alias md='mkdir'
 mir() { wget -m -np --reject-regex='.*\?C=.;O=.$' "$@"; }
 alias mutagen='mid3v2'
