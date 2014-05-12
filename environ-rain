@@ -7,6 +7,14 @@ if have ruby; then
 	PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
 
+if [ ! "$SSH_AUTH_SOCK" ]; then
+	SSH_AUTH_SOCK="$XDG_CONFIG_HOME/ssh-agent.socket"
+fi
+
+if [ ! "$GPG_AGENT_INFO" ]; then
+	GPG_AGENT_INFO="$HOME/.gnupg/S.gpg-agent:0:1"
+fi
+
 # libdefaults
 
 LIBVA_DRIVER_NAME="vdpau"
