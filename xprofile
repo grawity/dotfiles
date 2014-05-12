@@ -38,6 +38,7 @@ fi
 
 if [ "$HOSTNAME" = rain ]; then
 	if [ "$DESKTOP_SESSION" != gnome ]; then
+		mpDris2 &
 		mpris mpd notify-idle &
 	fi
 fi
