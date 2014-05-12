@@ -15,12 +15,4 @@ style "scrollbar-arrows" {
 	GtkScrollbar::has-secondary-backward-stepper = 0
 	GtkScrollbar::has-secondary-forward-stepper = 0
 }
-
-style "theme-toolbar" {
-	engine "clearlooks" {
-		style = CLASSIC
-	}
-}
-
 class "GtkScrollbar" style "scrollbar-arrows"
-#class "GtkToolbar" style "theme-toolbar"
