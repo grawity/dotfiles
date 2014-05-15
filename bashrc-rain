@@ -84,6 +84,10 @@ youtube-dl() {
 	"${cmd[@]}"
 }
 
+vnet() {
+	(PS4='+ '; set -x; systemctl "${1:-status}" vm-network.target)
+}
+
 ## Prompt
 
 _nolid_prompt() {
