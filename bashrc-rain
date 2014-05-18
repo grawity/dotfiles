@@ -85,7 +85,7 @@ youtube-dl() {
 }
 
 vnet() {
-	(PS4='+ '; set -x; systemctl "${1:-status}" vm-network.target)
+	(PS4='+ '; set -x; sudo systemctl "${1:-status}" vm-network.target)
 }
 
 ## Prompt
