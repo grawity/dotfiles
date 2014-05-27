@@ -352,6 +352,7 @@ if have systemctl; then
 	alias status='systemctl status -a'
 	alias list='systemctl list-units -t path,service,socket --no-legend'
 	alias userctl='systemctl --user'
+	alias sd='systemctl'
 	alias u='systemctl --user'
 	ustart()   { userctl start "$@"; userctl status -a "$@"; }
 	ustop()    { userctl stop "$@"; userctl status -a "$@"; }
