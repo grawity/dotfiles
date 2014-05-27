@@ -131,9 +131,12 @@ Host bazaar.launchpad.net
 Host ofb.net
 	ForwardAgent yes
 
-Host ukradius
-	Hostname radius.utenos-kolegija.lt
-	#Hostname 193.219.181.253
+Host uk-untangle
+	Hostname 193.219.181.200
+Host uk-maironio7 maironio7
+	Hostname 193.219.181.217
+Host uk-radius ukradius
+	Hostname 193.219.181.253
 
 # global options
 
