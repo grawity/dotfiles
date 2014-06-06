@@ -1,2 +1,17 @@
 "Cluenet.pem" and "nullroute.pem" are mirrored ⇆ nullroute/files/x509-ca (along
 with their detached signatures). Don't forget to update both copies.
+
+--- Certificates ---
+
+Cluenet.pem	Cluenet <cluenet.org>
+	- Cluenet servers, users' client certs
+
+nullroute.pem	Nullroute <nullroute.eu.org>
+	- grawity's personal servers, client certs, etc.
+
+sks-keyservers.netCA.pem	SKS Keyserver Pool <sks-keyservers.net>
+	- server (HKPS) certs for the "SKS" OpenPGP keyserver pool
+	- managed by SKS pool administrators
+
+ukolegija.pem	Utenos kolegija <utenos-kolegija.lt>
+	- EAP-PEAP/EAP-TTLS certificate (RADIUS/eduroam)
