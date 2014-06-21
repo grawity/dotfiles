@@ -39,6 +39,14 @@ Please also read <.environ.notes> if you find this file useful.
   - option "-P <dir>" or "--econfdir <dir>" overrides both
   - docs: /usr/share/doc/e16/e16.html
 
+~/.eclipse/ – give up
+  - option "-Dosgi.configuration.area=@user.home/.config/etc/etc" overrides,
+    but must be added to "$ECLIPSE_HOME/eclipse.ini" rather than command line
+  - which means you must have write access to $ECLIPSE_HOME, that is, carry
+    your own copy of Eclipse, and I couldn't really get it to work anyway
+  - (Arch's /usr/bin/eclipse has a hardcoded $ECLIPSE_HOME)
+  - docs: <http://wiki.eclipse.org/Eclipse.ini>
+
 ~/.elinks/ – environment
   - $ELINKS_CONFDIR overrides
 
@@ -177,7 +185,7 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.putty/ – environment
   - $PUTTYDIR overrides
-  - subdirectories can be overriden separately:
+  - subdirectories can be overridden separately:
       - ./sessions: $PUTTYSESSIONS
       - ./sshhostkeys: $PUTTYSSHHOSTKEYS
       - ./randomseed: $PUTTYRANDOMSEED
@@ -199,6 +207,12 @@ Please also read <.environ.notes> if you find this file useful.
   - "--dbpath=<path>" overrides the default path
 
 ~/.subversion/ – hardcoded
+
+~/.terminfo/ (ncurses) – environment
+  - $TERMINFO_DIRS overrides (colon-separated list):
+    - TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
+  - $TERMINFO overrides (system path not searched)
+  - docs: terminfo(5)
 
 ~/.tkabber/ – environment
   - $TKABBER_HOME overrides
@@ -238,6 +252,10 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.Xresources – hardcoded, but
   - hardcoded in Xsession scripts of many DMs
   - however, ~/.xprofile and ~/.xinitrc can use a custom path
+
+~/.xchat2/ – command-line
+  - "-d <path>" or "--cfgdir=<path>" overrides
+  - recommended to migrate to Hexchat instead
 
 ~/.xprofile – hardcoded
   - hardcoded in Xsession scripts of many DMs
