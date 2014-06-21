@@ -105,6 +105,7 @@
 	templateDir = ~/.config/git/template
 [merge]
 	defaultToUpstream = true
+	conflictStyle = diff3
 [push]
 	#default = upstream
 	default = current
