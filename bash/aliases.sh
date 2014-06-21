@@ -119,6 +119,7 @@ alias '~~'='egrep -i'
 alias good='git bisect good'
 alias bad='git bisect bad'
 
+alias ssdate='date "+%Y%m%d"'
 alias sdate='date "+%Y-%m-%d"'
 alias sfdate='date "+%Y-%m-%d %H:%M"'
 alias ldate='date "+%A, %B %-d, %Y %H:%M"'
