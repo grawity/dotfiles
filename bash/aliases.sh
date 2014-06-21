@@ -139,6 +139,10 @@ elif have xsel; then
 	alias gclip='xsel -i -b'
 fi
 
+if have mpv; then
+	alias mplayer='mpv'
+fi
+
 ## OS-dependent aliases
 
 export GREP_OPTIONS='--color=auto'
