@@ -35,6 +35,8 @@ VBOX_USER_HOME="$XDG_CONFIG_HOME/VirtualBox"
 MANLESS="]0;\$MAN_PN Manual page \$MAN_PN ?ltline %lt?L/%L.:byte %bB?s/%s..?e (END):?pB %pB\\%.. "
 NMAP_PRIVILEGED="1"
 
+PIDGIN_DEBUG_COLORED="1"
+
 # (TODO)
 #CABAL_CONFIG="$XDG_CONFIG_HOME/cabal/config"
 #WINEPREFIX=
