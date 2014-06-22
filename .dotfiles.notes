@@ -159,6 +159,8 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.netrc – fixed
   - many apps expect it there
+  (`ftp` from GNU inetutils)
+    - $NETRC overrides as of 1.9.3 (commit 38246ac903db)
 
 ~/.npm/ – configurable
   - "cache = <dir>" in ~/.npmrc or $PREFIX/etc/npmrc overrides
