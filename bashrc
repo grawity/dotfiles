@@ -7,8 +7,8 @@ if [[ ! $PREFIX ]]; then
 	. ~/lib/dotfiles/environ
 	# this currently happens when:
 	# - `sudo -s` preserves $HOME but cleans other envvars
-	# - bash is built with #define SSH_SOURCE_BASHRC
-	(. lib.bash && warn "had to load .environ from .bashrc")
+	# - bash is built with #define SSH_SOURCE_BASHRC (e.g. Debian)
+	#(. lib.bash && warn "had to load .environ from .bashrc")
 fi
 
 # this cannot be in environ.sh because gdm sources profile early;
