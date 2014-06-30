@@ -48,6 +48,7 @@ fi
 look() { find . -iname "*$1*" "${@:2}"; }
 f() { find "$PWD" -iname "*$1*" "${@:2}" | treeify "$PWD"; }
 alias lchown='chown -h'
+ldapstat() { ldapsearch -b "" -s base -x -LLL "$@" \* +; }
 alias lp='sudo netstat -lptu --numeric-hosts'
 alias lpt='sudo netstat -lpt --numeric-hosts'
 alias lpu='sudo netstat -lpu --numeric-hosts'

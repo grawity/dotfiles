@@ -62,6 +62,7 @@
 	unexport = !rm -v $(git rev-parse --git-dir)/git-daemon-export-ok
 	wdiff = diff --word-diff
 	wshow = show --word-diff
+	fpush = push --force-with-lease
 [color]
 	ui = auto
 	branch = auto
@@ -145,6 +146,7 @@
 	ignore-case = true
 [tig "bind"]
 	generic = Backspace view-close
+	generic = E !git format-patch -1 %(commit)
 	# noop on unrecognized escape sequences
 	main = ~ none
 	main = 4 toggle-graphic
