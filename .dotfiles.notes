@@ -108,6 +108,9 @@ Please also read <.environ.notes> if you find this file useful.
   - $HGRCPATH can have a list of rc's or *.rc directories, which replaces the
     default search path (ignoring even the system-wide files)
 
+~/.httpie/ – environment
+  - $HTTPIE_CONFIG_DIR overrides
+
 ~/.ICEauthority – environment
   - $ICEAUTHORITY overrides (e.g. ICEAUTHORITY="$XDG_RUNTIME_DIR/ICE-auhority")
 
