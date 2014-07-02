@@ -14,7 +14,7 @@ Please also read <.environ.notes> if you find this file useful.
   - "--alternate-config-dir <dir>" overrides
 
 ~/.crawl/ – environment
-  - $CRAWL_DIR (must end with '/') overrides compile-time default
+  - $CRAWL_DIR (must end with '/') overrides
 
 ~/.crawlrc – other locations, environment
   - default path also has $CRAWL_DIR/init.txt
