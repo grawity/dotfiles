@@ -63,6 +63,12 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.forward – fixed
   - most MTAs expect this, although some can be reconfigured
+  (Exim4 – configurable)
+    - "file = $home/<path>" overrides (Exim uses a generic 'redirect' router)
+  (Postfix – configurable)
+    - "forward_path = $home/<path>" overrides
+  (Procmail – kiiinda configurable)
+    - hardcoded, but can easily use a custom redirect rule instead
 
 ~/.gdbinit – hardcoded
 
