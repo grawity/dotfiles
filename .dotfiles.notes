@@ -163,8 +163,18 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.netrc – fixed
   - many apps expect it there
-  (`ftp` from GNU inetutils)
+  (curl – environment)
+    - $CURLOPT_NETRC_FILE overrides
+      - should work with libcurl programs too; not tested
+    - "--netrc-file <path>" overrides
+  (GNU inetutils `ftp` – environment)
     - $NETRC overrides as of 1.9.3 (commit 38246ac903db)
+  (lftp – hardcoded)
+  (Perl 'CPAN::FTP::netrc' – hardcoded)
+  (Perl 'Net::Netrc' – hardcoded)
+  (w3m – hardcoded)
+  (wget – hardcoded)
+    - can use .wgetrc instead
 
 ~/.npm/ – configurable
   - "cache = <dir>" in ~/.npmrc or $PREFIX/etc/npmrc overrides
