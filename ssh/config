@@ -137,6 +137,8 @@ Host uk-maironio7 maironio7
 	Hostname 193.219.181.217
 Host uk-radius ukradius
 	Hostname 193.219.181.253
+Host uk-*
+	User root
 
 # global options
 
