@@ -17,7 +17,7 @@ fi
 
 # Set up some basic things
 
-bgcolor='#333333'
+bgcolor='#222222'
 bgimage=~/lib/dotfiles/gui/noise.png
 
 xsetroot -solid "$bgcolor" -cursor_name 'left_ptr'
