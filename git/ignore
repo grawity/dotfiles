@@ -10,3 +10,6 @@ __pycache__
 core
 !core/
 core.*.*
+
+# OpenOffice lock files
+.~lock.*#
