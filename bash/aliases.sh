@@ -90,6 +90,7 @@ splitext() { split -dC "${2-32K}" "$1" "${1%.*}-" --additional-suffix=".${1##*.}
 alias srs='rsync -vhzaHAX'
 alias sudo='sudo ' # for alias expansion in sudo args
 alias takeown='sudo chown "${UID}:${GROUPS[0]}"'
+alias telnets='telnet-ssl -z ssl'
 _thiscommand() { history 1 | sed "s/^\s*[0-9]\+\s\+$1\s\+//"; }
 alias tidiff='infocmp -Ld'
 alias todo:='todo "$(_thiscommand todo:)" #'
@@ -97,6 +98,8 @@ alias tracert='traceroute'
 alias treedu='tree --du -h'
 trs() { printf '%s' "$@"; printf '\n'; }
 up() { local p i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
+use-dhcp() { sudo dhcpcd --ipv4only --noarp --nobackground "${1:-eth0}" "${@:2}"; }
+use-autoip() { sudo avahi-autoipd --force-bind "${1:-eth0}" "${@:2}"; }
 vercmp() {
 	case $(command vercmp "$@") in
 	-1) echo "$1 < $2";;
