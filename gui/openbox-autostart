@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-{ inotifywait -r -m -q -e close_write ~/.themes/*/openbox-3/themerc \
+{ inotifywait -r -m -q -e close_write ~/.themes/wh-mod/openbox-3/themerc \
   | while read event; do
 	openbox --reconfigure
   done; } &
