@@ -15,7 +15,7 @@ reset_vcs=' '
 fmt_noop='28' # "Visible (not hidden)"
 
 if (( havecolor )); then
-	_hostname=${HOSTNAME%%.*}
+	_hostname='$host'
 
 	if (( UID == 0 )); then
 		fmt_name='1;37;41'
