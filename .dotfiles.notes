@@ -140,6 +140,10 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.lesshst – environment
   - $LESSHISTFILE overrides
 
+~/.mailrc – environment
+  (Mail, nail, heirloom-mailx, s-nail – environment)
+    - $MAILRC || $NAILRC overrides
+
 ~/.makepkg.conf – partial environment
   - $MAKEPKG_CONF overrides *both* system and user configs
 
@@ -178,6 +182,8 @@ Please also read <.environ.notes> if you find this file useful.
   (lftp – hardcoded)
   (Perl 'CPAN::FTP::netrc' – hardcoded)
   (Perl 'Net::Netrc' – hardcoded)
+  (s-nail – environment)
+    - $NETRC overrides
   (w3m – hardcoded)
   (wget – hardcoded)
     - can use .wgetrc instead
@@ -281,6 +287,14 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.xprofile – hardcoded
   - hardcoded in Xsession scripts of many DMs
+
+~/dead.letter
+  (mail, Mail, etc. – environment)
+    - $DEAD overrides
+
+~/mbox
+  (mail, Mail, etc. – environment)
+    - $MBOX overrides
 
 ~/VirtualBox VMs/ – configurable
   - can be changed by `VBoxManage setproperty machinefolder <path>` or via GUI
