@@ -56,6 +56,13 @@ account gmail {
 	#set smtp-auth="plain"
 }
 
+account ukolegija {
+	set from="mantas@utenos-kolegija.lt"
+	set folder="imaps://mantas@mail.utenos-kolegija.lt"
+	#set smtp="mail.utenos-kolegija.lt:587"
+	#set smtp-auth="plain"
+}
+
 # security
 
 set nss-config-dir="sql:$HOME/.pki/nssdb"
