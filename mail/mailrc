@@ -33,6 +33,9 @@ set keep # don't delete $MAIL
 
 # remote
 
+set sendmail="/usr/bin/msmtp"
+set sendmail-arguments="--read-envelope-from"
+
 set pop3-use-starttls
 set imap-use-starttls
 set smtp-use-starttls
@@ -42,7 +45,6 @@ account nullroute {
 	set folder="imap://grawity@mail.nullroute.eu.org"
 	set record="+Sent"
 	set imap-auth="gssapi"
-	set sendmail="/usr/bin/msmtp"
 	#set smtp="mail.nullroute.eu.org:587"
 	#set smtp-auth="gssapi"
 }
