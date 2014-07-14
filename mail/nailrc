@@ -24,8 +24,6 @@ account gmail {
 	set smtp="smtps://smtp.gmail.com"
 }
 
-source ~/.auth/nailrc
-
 # security
 
 set nss-config-dir="sql:$HOME/.pki/nssdb"
