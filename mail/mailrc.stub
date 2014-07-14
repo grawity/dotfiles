@@ -1,0 +1,5 @@
+# vim: ft=conf
+
+source ~/lib/dotfiles/mail/mailrc
+
+set imap-cache="${XDG_CACHE_HOME:-~/.cache}/mailx"
