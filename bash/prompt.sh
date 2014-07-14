@@ -113,7 +113,7 @@ _awesome_prompt() {
 			re='REBASE-m'
 		else
 			br=$(git symbolic-ref HEAD 2>/dev/null ||
-			     git describe --tags --exact-match HEAD 2>/dev/null ||
+			     #git describe --tags --exact-match HEAD 2>/dev/null ||
 			     git rev-parse --short HEAD 2>/dev/null ||
 			     echo 'unknown')
 
