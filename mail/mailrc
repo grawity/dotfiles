@@ -52,7 +52,8 @@ account nullroute {
 account gmail {
 	set from="grawity@gmail.com"
 	set folder="imaps://grawity%40gmail.com@imap.gmail.com"
-	set smtp="smtps://smtp.gmail.com"
+	#set smtp="grawity%40gmail.com@smtp.gmail.com:587"
+	#set smtp-auth="plain"
 }
 
 # security
