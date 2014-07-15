@@ -144,6 +144,8 @@
 	split-view-height = 75%
 	#vertical-split = true
 	ignore-case = true
+	#diff-options = --patience
+	#main-view = date:relative author:full,width=12 commit-title:graph=yes,refs=yes
 [tig "bind"]
 	generic = Backspace view-close
 	generic = E !git format-patch -1 %(commit)
