@@ -284,6 +284,9 @@ export PS4
 _show_status() {
 	local status=$?
 	if (( status > 0 )); then
+		if (( status > 128 )); then
+			status+="/SIG$(kill -l $status)"
+		fi
 		printf "\e[0;33m%s\e[m\n" "(returned $status)"
 	fi
 }
