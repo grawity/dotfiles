@@ -1,9 +1,10 @@
 # $MAILRC (~/.mailrc): mail(1)
 
+set v15-compat
+
 # interface
 
 set quiet # hide version message
-
 set bsdcompat
 
 # reading
@@ -35,6 +36,7 @@ set keep # don't delete $MAIL
 
 set sendmail="/usr/bin/msmtp"
 set sendmail-arguments="--read-envelope-from"
+set sendwait
 
 set pop3-use-starttls
 set imap-use-starttls
@@ -62,6 +64,8 @@ account ukolegija {
 	#set smtp="mail.utenos-kolegija.lt:587"
 	#set smtp-auth="plain"
 }
+
+source ~/.auth/nailrc
 
 # security
 
