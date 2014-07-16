@@ -131,14 +131,26 @@ Host bazaar.launchpad.net
 Host ofb.net
 	ForwardAgent yes
 
+# work
+
 Host uk-untangle
 	Hostname 193.219.181.200
+	User root
+	IdentityFile ~/.ssh/id_ukolegija
+
 Host uk-maironio7 maironio7
 	Hostname 193.219.181.217
+	User root
+	IdentityFile ~/.ssh/id_ukolegija
+
 Host uk-radius ukradius
 	Hostname 193.219.181.253
-Host uk-*
 	User root
+	IdentityFile ~/.ssh/id_ukolegija
+
+Host uk-* 193.219.181.192/26
+	User root
+	IdentityFile ~/.ssh/id_ukolegija
 
 # global options
 
