@@ -11,13 +11,6 @@ if [[ ! $PREFIX ]]; then
 	#(. lib.bash && warn "had to load .environ from .bashrc")
 fi
 
-# this cannot be in environ.sh because gdm sources profile early;
-# Xsession and gnome-session override $LANG later
-if [[ $LANG == *.utf8 ]]; then
-	# make `tree` work correctly *sigh* because it wants the dash.
-	LANG=${LANG/%.utf8/.UTF-8}
-fi
-
 # this is needed for non-interactive mode as well; for example,
 # in my git-url-handler script
 case $TERM,$OSTYPE in
