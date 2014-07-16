@@ -6,6 +6,29 @@
 
 # host aliases
 
+# work
+
+Host uk-untangle
+	Hostname 193.219.181.200
+	User root
+	IdentityFile ~/.ssh/id_ukolegija
+
+Host uk-maironio7 maironio7
+	Hostname 193.219.181.217
+	User root
+	IdentityFile ~/.ssh/id_ukolegija
+
+Host uk-radius ukradius
+	Hostname 193.219.181.253
+	User root
+	IdentityFile ~/.ssh/id_ukolegija
+
+Host uk-* 193.219.181.192/26
+	User root
+	IdentityFile ~/.ssh/id_ukolegija
+
+# Cluenet and stuff
+
 Host abacus
 	Hostname abacus.cluenet.org
 	GSSAPIAuthentication yes
@@ -92,19 +115,33 @@ Host wolke
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-# *.cluenet.org
+# other hosts
+
+Host bazaar.launchpad.net
+	IdentityFile ~/.ssh/id_global
+	IdentitiesOnly yes
+
+Host ofb.net
+	ForwardAgent yes
+
+# domain-wide settings
 
 Host *.cluenet.org
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-# *.nullroute.eu.org
-
 Host *.nullroute.eu.org *.home
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
+
+Host *.nathan7.eu
+	ForwardAgent yes
+
+Host *.vistech.net
+	User grwty
+	ControlMaster no
 
 # virtual machines on the laptop
 
@@ -114,43 +151,6 @@ Host *.core
 	UserKnownHostsFile ~/.ssh/known_hosts.core
 #endif
 	ControlMaster no
-
-# other domains
-
-Host *.nathan7.eu
-	ForwardAgent yes
-
-Host *.vistech.net
-	User grwty
-	ControlMaster no
-
-Host bazaar.launchpad.net
-	IdentityFile ~/.ssh/id_global
-	IdentitiesOnly yes
-
-Host ofb.net
-	ForwardAgent yes
-
-# work
-
-Host uk-untangle
-	Hostname 193.219.181.200
-	User root
-	IdentityFile ~/.ssh/id_ukolegija
-
-Host uk-maironio7 maironio7
-	Hostname 193.219.181.217
-	User root
-	IdentityFile ~/.ssh/id_ukolegija
-
-Host uk-radius ukradius
-	Hostname 193.219.181.253
-	User root
-	IdentityFile ~/.ssh/id_ukolegija
-
-Host uk-* 193.219.181.192/26
-	User root
-	IdentityFile ~/.ssh/id_ukolegija
 
 # global options
 
