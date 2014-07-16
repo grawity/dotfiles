@@ -63,6 +63,7 @@
 	wdiff = diff --word-diff
 	wshow = show --word-diff
 	fpush = push --force-with-lease
+	uncommit = reset HEAD^
 [color]
 	ui = auto
 	branch = auto
