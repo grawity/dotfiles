@@ -61,9 +61,7 @@ complete -A directory cd
 
 . ~/lib/dotfiles/bash/aliases.sh
 
-if have pklist; then
-	. ~/code/kerberos/kc.sh
-fi
+. ~/code/kerberos/kc.sh
 
 if [[ -f ~/lib/dotfiles/bashrc-$HOSTNAME ]]; then
 	. ~/lib/dotfiles/bashrc-$HOSTNAME
