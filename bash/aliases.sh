@@ -98,7 +98,9 @@ alias tracert='traceroute'
 alias treedu='tree --du -h'
 trs() { printf '%s' "$@"; printf '\n'; }
 up() { local p i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
-use-dhcp() { sudo dhcpcd --ipv4only --noarp --nobackground "${1:-eth0}" "${@:2}"; }
+use-dhcp() { sudo dhcpcd --ipv4only --noarp --reboot 0 --timeout 0 \
+		--nobackground --debug "${1:-eth0}" "${@:2}"; }
+use-dhclient() { sudo dhclient -4 -d -v "${1:-eth0}" "${@:2}"; }
 use-autoip() { sudo avahi-autoipd --force-bind "${1:-eth0}" "${@:2}"; }
 vercmp() {
 	case $(command vercmp "$@") in
