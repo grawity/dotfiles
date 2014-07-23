@@ -65,7 +65,7 @@ if [[ -t 0 ]]; then
 	VERBOSE=1
 fi
 
-dir=$(dirname "$(sym -r "$0")")
+dir=$(dirname "$(sym -R "$0")")
 trash=~/tmp
 
 cd "$dir"
