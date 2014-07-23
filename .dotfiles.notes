@@ -197,8 +197,9 @@ Please also read <.environ.notes> if you find this file useful.
   - doc: npm-config(7)
   - see also `npm config get globalconfig` & `npm config get userconfig`
 
-~/.offlineimaprc – command line
-  - the only method is `offlineimap -c <path>`
+~/.offlineimaprc – XDG as of 5150de5514d1; command line
+  - $XDG_CONFIG_HOME/offlineimap/config is the new default
+  - for older versions, "-c <path>" option exists
 
 ~/.opera/ – partial environment
   - $OPERA_PERSONALDIR overrides
