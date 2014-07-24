@@ -68,7 +68,7 @@ mv() {
 	fi
 }
 alias nmap='nmap --reason'
-alias nosr='pkgfile'
+alias nosr='pkgfile -v'
 nul() { cat "$@" | tr '\0' '\n'; }
 path() { if (( $# )); then which -a "$@"; else echo "${PATH//:/$'\n'}"; fi; }
 alias py='python'
@@ -94,6 +94,7 @@ alias telnets='telnet-ssl -z ssl'
 _thiscommand() { history 1 | sed "s/^\s*[0-9]\+\s\+$1\s\+//"; }
 alias tidiff='infocmp -Ld'
 alias todo:='todo "$(_thiscommand todo:)" #'
+alias traceroute='traceroute -e'
 alias tracert='traceroute'
 alias treedu='tree --du -h'
 trs() { printf '%s' "$@"; printf '\n'; }
