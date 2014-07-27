@@ -75,6 +75,11 @@ trash ~/.bash_{login,profile,logout}
 trash ~/.{sh,csh}rc
 rm -f ~/.viminfo
 
+# temporary (2014-07-27)
+if [ -d vim/undo ]; then
+	rm -rf vim/{backup,undo,viminfo,viminfo.tmp}
+fi
+
 link bashrc
 link inputrc
 link profile
