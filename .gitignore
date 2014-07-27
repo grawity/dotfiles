@@ -1,8 +1,5 @@
 /git/gitk
 /vim/.netrwhist
-/vim/backup/
+/vim/_*
 /vim/spell/
 /vim/spell/*.spl
-/vim/view/
-/vim/viminfo*
-/vim/undo/

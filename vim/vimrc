@@ -99,15 +99,15 @@ set backupcopy=yes		" fixes issues with vipw
 set autoread
 set autowrite
 
-set viminfo+=n~/.vim/viminfo
+set viminfo+=n~/.vim/_viminfo
 set hidden			" do not unload abandoned buffers
 
 " Swap file location – use // to include full path in swapnames
 if has("unix")
-	set directory=~/.vim/backup//
-	set backupdir=~/.vim/backup//
+	set directory=~/.vim/_backup//
+	set backupdir=~/.vim/_backup//
 	silent! set undofile	" persistent undo
-	silent! set undodir=~/.vim/undo//
+	silent! set undodir=~/.vim/_undo//
 endif
 if hostname() == "rain"
 	set nofsync swapsync=
