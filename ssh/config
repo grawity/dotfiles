@@ -83,7 +83,7 @@ Host radian
 	ForwardAgent yes
 
 Host rain rain.local
-	Hostname rain.nullroute.eu.org
+	#Hostname rain.nullroute.eu.org
 	ForwardAgent yes
 	ForwardX11 yes
 
@@ -154,6 +154,10 @@ Host *.core
 	UserKnownHostsFile ~/.ssh/known_hosts.core
 #endif
 	ControlMaster no
+
+Host *.home *.local 192.168.*
+	ForwardAgent yes
+	UserKnownHostsFile ~/.ssh/known_hosts.local
 
 # global options
 
