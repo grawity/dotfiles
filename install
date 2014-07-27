@@ -118,6 +118,10 @@ if [ "$DISPLAY" ]; then
 		link gui/openbox-rc.xml ~/.config/openbox/rc.xml
 		link gui/openbox-autostart ~/.config/openbox/autostart
 	fi
+
+	if [ ! -f "$XDG_CONFIG_HOME/user-dirs.dirs" ]; then
+		cp gui/user-dirs.dirs "$XDG_CONFIG_HOME/user-dirs.dirs"
+	fi
 fi
 
 exit 0
