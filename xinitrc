@@ -7,11 +7,11 @@ cd ~
 
 # Ensure a ssh-agent
 
-if [ ! "$SSH_AUTH_SOCK" ]; then
+if [ ! "$SSH_AUTH_SOCK" ] && have ssh-agent; then
 	exec ssh-agent ~/.xinitrc "$@" || exit
 fi
 
-if [ ! "$DBUS_SESSION_BUS_ADDRESS" ]; then
+if [ ! "$DBUS_SESSION_BUS_ADDRESS" ] && have dbus-launch; then
 	exec dbus-launch --exit-with-session ~/.xinitrc "$@" || exit
 fi
 
