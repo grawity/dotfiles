@@ -32,7 +32,7 @@ export GPG_TTY=$(tty)
 
 ### Interactive options
 
-[[ $- != *i* ]] && return
+[[ $- == *i* ]] || return 0
 
 set -o noclobber		# do not overwrite files when redirecting
 set -o physical			# resolve symlinks when 'cd'ing
