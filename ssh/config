@@ -134,6 +134,11 @@ Host *.cluenet.org
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
+Host *.kyriasis.com
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
 Host *.nullroute.eu.org *.home
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
