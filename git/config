@@ -108,6 +108,8 @@
 [merge]
 	defaultToUpstream = true
 	conflictStyle = diff3
+[pack]
+	writebitmaps = true
 [push]
 	#default = upstream
 	default = current
