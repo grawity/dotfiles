@@ -70,6 +70,12 @@ Please also read <.environ.notes> if you find this file useful.
   (Procmail – kiiinda configurable)
     - hardcoded, but can easily use a custom redirect rule instead
 
+~/.gconf/ – XDG as of 3.2.6; hardcoded
+  - $XDG_CONFIG_HOME/gconf/ is used now
+
+~/.gconf.path – see ~/.gconf/
+  - $XDG_CONFIG_HOME/gconf.path is used now
+
 ~/.gdbinit – hardcoded
 
 ~/.gemrc – environment
