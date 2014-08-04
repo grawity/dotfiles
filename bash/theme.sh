@@ -43,13 +43,14 @@ fi
 : ${FQDN:=$HOSTNAME}
 
 case $FQDN in
-    rain.nullroute.eu.org|*.cluenet.org|*.nathan7.eu)
+    rain.nullroute.eu.org)
 	if [[ $USER == grawity ]]; then
-		fmt_name='1|38;5;71'
+		fmt_name='38;5;82'
 	fi
 	if (( havecolor == 256 )); then
-		fmt_pwd='38;5;144'
-		fmt_vcs='38;5;167'
+		fmt_pwd='38;5;39'
+		fmt_pwd_tail='38;5;45'
+		fmt_vcs='38;5;202'
 	else
 		fmt_pwd='33'
 		fmt_vcs='1;31'
@@ -71,6 +72,14 @@ case $FQDN in
 	fmt_vcs='38;5;202'
 	;;
 
+    *.cluenet.org|*.nathan7.eu)
+	if [[ $USER == grawity ]]; then
+		fmt_name='1|38;5;71'
+	fi
+	fmt_pwd='38;5;144'
+	fmt_vcs='38;5;167'
+	;;
+
     *.core|*.rune)
 	if (( havecolor == 256 )); then
 		item_name_pfx="["
@@ -86,6 +95,8 @@ case $FQDN in
 	else
 		fmt_name='38;5;231|41'
 	fi
+	fmt_pwd='38;5;144'
+	fmt_vcs='38;5;167'
 	fullpwd=y
 	;;
 
