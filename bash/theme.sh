@@ -13,6 +13,7 @@ reset_pwd=' '
 reset_vcs=' '
 
 fmt_noop='28' # "Visible (not hidden)"
+fmt_pwd_tail='1'
 
 if (( havecolor )); then
 	_hostname='$host'
@@ -43,11 +44,9 @@ if (( havecolor )); then
 
 	if (( havecolor == 256 )); then
 		fmt_pwd='38;5;144'
-		fmt_pwd_tail='1'
 		fmt_vcs='38;5;167'
 	else
 		fmt_pwd='33'
-		fmt_pwd_tail='1'
 		fmt_vcs='1;31'
 	fi
 fi
@@ -126,4 +125,4 @@ esac
 # Host themes overridden in bashrc-$HOSTNAME
 
 # Theme ideas: name='1;32' pwd='36' vcs='1;30'
-#              (vcs being a dark gray)
+#	       (vcs being a dark gray)
