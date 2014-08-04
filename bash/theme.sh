@@ -28,7 +28,7 @@ if (( havecolor )); then
 		item_prompt='$'
 	else
 		fmt_name='1;33'
-		item_name="$USER@$_hostname"
+		item_name="$USER@$HOSTNAME"
 		item_prompt='$'
 	fi
 	unset _hostname
