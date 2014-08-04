@@ -23,11 +23,7 @@ if (( havecolor )); then
 		item_name="$_hostname"
 		item_prompt='#'
 	elif [[ $USER == "grawity" ]]; then
-		if (( havecolor == 256 )); then
-			fmt_name='1|38;5;71'
-		else
-			fmt_name='1;32'
-		fi
+		fmt_name='1;32'
 		item_name="$_hostname"
 		item_prompt='$'
 	else
@@ -36,17 +32,8 @@ if (( havecolor )); then
 		item_prompt='$'
 	fi
 	unset _hostname
-
 	if _is_remote; then
 		item_prompt='^'
-	fi
-
-	if (( havecolor == 256 )); then
-		fmt_pwd='38;5;144'
-		fmt_vcs='38;5;167'
-	else
-		fmt_pwd='33'
-		fmt_vcs='1;31'
 	fi
 fi
 
@@ -57,6 +44,16 @@ fi
 
 case $FQDN in
     rain.nullroute.eu.org|*.cluenet.org|*.nathan7.eu)
+	if [[ $USER == grawity ]]; then
+		fmt_name='1|38;5;71'
+	fi
+	if (( havecolor == 256 )); then
+		fmt_pwd='38;5;144'
+		fmt_vcs='38;5;167'
+	else
+		fmt_pwd='33'
+		fmt_vcs='1;31'
+	fi
 	;;
 
     *.nullroute.eu.org)
