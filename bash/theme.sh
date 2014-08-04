@@ -13,13 +13,13 @@ reset_pwd=' '
 reset_vcs=' '
 
 fmt_noop='28' # "Visible (not hidden)"
+fmt_name_root='1;37;41'
 fmt_pwd_tail='1'
 
 if (( havecolor )); then
 	_hostname='$host'
-
 	if (( UID == 0 )); then
-		fmt_name='1;37;41'
+		fmt_name=$fmt_name_root
 		item_name="$_hostname"
 		item_prompt='#'
 	elif [[ $USER == "grawity" ]]; then
@@ -35,7 +35,6 @@ if (( havecolor )); then
 		item_name="$USER@$_hostname"
 		item_prompt='$'
 	fi
-
 	unset _hostname
 
 	if _is_remote; then
