@@ -14,20 +14,19 @@ reset_vcs=' '
 
 fmt_noop='28' # "Visible (not hidden)"
 fmt_name_root='1;37;41'
+fmt_name_self='1;32'
+fmt_name_other='1;33'
 fmt_pwd_tail='1'
 
 if (( havecolor )); then
 	_hostname='$host'
 	if (( UID == 0 )); then
-		fmt_name=$fmt_name_root
 		item_name="$_hostname"
 		item_prompt='#'
 	elif [[ $USER == "grawity" ]]; then
-		fmt_name='1;32'
 		item_name="$_hostname"
 		item_prompt='$'
 	else
-		fmt_name='1;33'
 		item_name="$USER@$HOSTNAME"
 		item_prompt='$'
 	fi
@@ -44,9 +43,7 @@ fi
 
 case $FQDN in
     rain.nullroute.eu.org)
-	if [[ $USER == grawity ]]; then
-		fmt_name='38;5;82'
-	fi
+	fmt_name_self='38;5;82'
 	if (( havecolor == 256 )); then
 		fmt_pwd='38;5;39'
 		fmt_pwd_tail='38;5;45'
@@ -62,20 +59,15 @@ case $FQDN in
 	item_prompt='┘'
 	fmt_name_pfx='|38;5;236'
 	fmt_prompt=$fmt_name_pfx
-	if (( UID )); then
-		fmt_name='38;5;82'
-	else
-		fmt_name='38;5;231|41'
-	fi
+	fmt_name_root='38;5;82'
+	fmt_name_self='38;5;231|41'
 	fmt_pwd='38;5;39'
 	fmt_pwd_tail='1|38;5;45'
 	fmt_vcs='38;5;202'
 	;;
 
     *.cluenet.org|*.nathan7.eu)
-	if [[ $USER == grawity ]]; then
-		fmt_name='1|38;5;71'
-	fi
+	fmt_name_self='1|38;5;71'
 	fmt_pwd='38;5;144'
 	fmt_vcs='38;5;167'
 	;;

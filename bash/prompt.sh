@@ -228,6 +228,14 @@ _awesome_prompt() {
 	local csi=$'m\e[' # 256-color sequences must be sent as a separate CSI,
 	                  # so split the color settings into multiple CSIs
 
+	if (( UID == 0 )); then
+		local fmt_name=${fmt_name-$fmt_name_root}
+	elif [[ $USER == 'grawity' ]]; then
+		local fmt_name=${fmt_name-$fmt_name_self}
+	else
+		local fmt_name=${fmt_name-$fmt_name_other}
+	fi
+
 	if [[ $git ]]; then
 		local fmt_pwd_body=${fmt_pwd_body-'4'}
 	else
