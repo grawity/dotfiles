@@ -84,9 +84,18 @@ youtube-dl() {
 	"${cmd[@]}"
 }
 
-vnet() {
-	(PS4='+ '; set -x; sudo systemctl "${1:-status}" vm-network.target)
-}
+ukip() {(
+	PS4='+ '; set -x
+	ip link set eth0 up
+	ip addr add 10.128.0.42/16  dev eth0
+	ip addr add 192.168.0.42/16 dev eth0
+	ip addr add 192.168.1.42/16 dev eth0
+)}
+
+vnet() {(
+	PS4='+ '; set -x
+	sudo systemctl "${1:-status}" vm-network.target
+)}
 
 ## Prompt
 
