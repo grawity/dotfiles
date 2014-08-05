@@ -17,7 +17,7 @@ Please also read <.environ.notes> if you find this file useful.
   - $CRAWL_DIR (must end with '/') overrides
 
 ~/.crawlrc – other locations, environment
-  - default path also has $CRAWL_DIR/init.txt
+  - default path also has ${CRAWL_DIR-~/.crawl}/init.txt
   - $CRAWL_RC overrides
 
 ~/.cvspass – environment

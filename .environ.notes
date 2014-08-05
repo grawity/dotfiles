@@ -70,6 +70,7 @@ TMUX_TMPDIR="$XDG_RUNTIME_DIR/tmux"
 ## To relocate a mix of config and cache and shit:
 # (when said mix is of significant size, not just a file or two)
 
+CRAWL_DIR="$XDG_DATA_HOME/crawl/" # trailing slash required
 EXODUSVIEWER_USER_DIR="$XDG_DATA_HOME/ExodusViewer"
 FIRESTORM_USER_DIR="$XDG_DATA_HOME/Firestorm"
 GIMP2_DIRECTORY="$XDG_DATA_HOME/Gimp"
