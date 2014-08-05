@@ -36,10 +36,6 @@ NMAP_PRIVILEGED="1"
 
 PIDGIN_DEBUG_COLORED="1"
 
-# (TODO)
-#CABAL_CONFIG="$XDG_CONFIG_HOME/cabal/config"
-#WINEPREFIX=
-
 # appdefaults
 
 CN_LDAP_SERVER="ldap://wolke.nullroute.eu.org";

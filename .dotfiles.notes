@@ -10,6 +10,10 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.bitcoin/ – hardcoded
 
+~/.cabal/ – environment ++ configurable
+  - $CABAL_CONFIG overrides path to ~/.cabal/config
+  - various settings in $CABAL_CONFIG override other ~/.cabal/* paths
+
 ~/.claws-mail/ – command line
   - "--alternate-config-dir <dir>" overrides
 
