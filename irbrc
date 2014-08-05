@@ -1,12 +1,9 @@
 # $IRBRC - irb startup script
 # vim: ft=ruby
-
 require 'irb/completion'
+require 'irb/ext/save-history'
 require 'pp'
 
-IRB.conf[:AUTO_INDENT] = true
-
-require 'irb/ext/save-history'
 IRB.conf[:SAVE_HISTORY] = 100
 IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.cache/irb.history"
 
@@ -18,3 +15,4 @@ IRB.conf[:PROMPT][:my] = {
 	RETURN: "\e[32m" + "=>" + "\e[m" + " %s\n",
 }
 IRB.conf[:PROMPT_MODE] = :my
+IRB.conf[:AUTO_INDENT] = true

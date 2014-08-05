@@ -1,34 +1,35 @@
 # $PYTHONSTARTUP - Python interactive startup script
 # vim: ft=python
-
 import os
 import sys
 
 def _init_():
+	import atexit
 	import readline
 	import rlcompleter
-	import atexit
 
 	# line editing
-	
-	readline.parse_and_bind('tab: complete')
-	
-	historyFile = os.path.expanduser("~/.cache/python.history")
-	if os.path.exists(historyFile):
-		readline.read_history_file(historyFile)
-	atexit.register(lambda: readline.write_history_file(historyFile))
-	
+
+	readline.parse_and_bind("tab: complete")
+
+        # history
+
+	hist_file = os.path.expanduser("~/.cache/python.history")
+
+	if os.path.exists(hist_file):
+		readline.read_history_file(hist_file)
+
+	atexit.register(lambda: readline.write_history_file(hist_file))
+
 	# prompts
-	
+
 	vtseq = lambda s: "\001\033%s\002" % s
-	ansi = lambda s: vtseq("[%sm" % s)
+	fmt = lambda s: vtseq("[%sm" % s)
 
 	color = "35" if sys.version_info[0] >= 3 else "34"
-	verstr = "py%d.%d " % sys.version_info[0:2]
+	name = "py%d.%d " % sys.version_info[0:2]
 
-	sys.ps1 = ansi("0;%s" % color) + verstr + \
-		ansi("1") + ">>>" + ansi("0") + " "
-
-	sys.ps2 = " " * len(verstr) + ansi("0;1;30") + "..." + ansi("0") + " "
+	sys.ps1 = fmt("0;%s" % color) + name + fmt("1") + ">>>" + fmt("0") + " "
+	sys.ps2 = " " * len(name) + fmt("0;1;30") + "..." + fmt("0") + " "
 
 _init_()
