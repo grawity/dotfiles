@@ -6,9 +6,6 @@ mirror = clone --noupdate
 nudge = push --rev .
 untrack = rm -Af
 
-[ui]
-username = $NAME <$EMAIL>
-
 [diff]
 git = True
 
@@ -16,14 +13,15 @@ git = True
 color =
 convert =
 gpg =
-#hggit =
 hgk =
-#keyring =
 mq =
 pager =
 progress =
 purge =
 rebase =
+
+[ui]
+username = $NAME <$EMAIL>
 
 [web]
 cacerts = /etc/ssl/certs/ca-certificates.crt
