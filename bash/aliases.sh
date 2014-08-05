@@ -145,6 +145,16 @@ elif have xsel; then
 	alias gclip='xsel -i -b'
 fi
 
+clip() {
+	if (( $# )); then
+		echo -n "$*" | gclip
+	elif [[ ! -t 0 ]]; then
+		gclip
+	else
+		pclip
+	fi
+}
+
 if have mpv; then
 	alias mplayer='mpv'
 fi
