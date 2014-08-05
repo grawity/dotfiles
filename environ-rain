@@ -25,8 +25,6 @@ NOKOGIRI_USE_SYSTEM_LIBRARIES="1"
 
 CSEARCHINDEX="$XDG_CACHE_HOME/codesearch/csearchindex"
 GEMRC="$XDG_CONFIG_HOME/gemrc"
-MAILCAP="$XDG_CONFIG_HOME/mailcap" # for elinks, w3m
-MAILCAPS="$MAILCAP" # for mutt, alpine
 MANLESS="]0;\$MAN_PN Manual page \$MAN_PN ?ltline %lt?L/%L.:byte %bB?s/%s..?e (END):?pB %pB\\%.. "
 NMAP_PRIVILEGED="1"
 PIDGIN_DEBUG_COLORED="1"

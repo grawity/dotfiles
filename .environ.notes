@@ -55,6 +55,9 @@ WGETRC="$XDG_CONFIG_HOME/wgetrc"
 CVS_PASSFILE="$XDG_DATA_HOME/cvspass"
 GRAMPSHOME="$XDG_DATA_HOME/Gramps"
 
+MAILCAP="$XDG_CONFIG_HOME/mailcap"	# elinks, w3m
+MAILCAPS="$MAILCAP"			# Mutt, pine
+
 ## To relocate cache/history:
 
 LESSHISTFILE="$XDG_CACHE_HOME/less.history"
