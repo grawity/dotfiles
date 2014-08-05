@@ -354,7 +354,7 @@ owns() {
 
 ## service management
 
-if have systemctl && [ -d /run/systemd/system ]; then
+if have systemctl && [[ -d /run/systemd/system ]]; then
 	start()   { sudo systemctl start "$@"; systemctl status -a "$@"; }
 	stop()    { sudo systemctl stop "$@"; systemctl status -a "$@"; }
 	restart() { sudo systemctl restart "$@"; systemctl status -a "$@"; }
