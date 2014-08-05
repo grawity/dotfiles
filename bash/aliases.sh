@@ -107,11 +107,12 @@ virdf() { vim -c "setf n3" <(rapper -q -o turtle "$@"); }
 visexp() { (echo "; vim: ft=sexp"; echo "; file: $1"; sexp-conv < "$1") \
 	| vipe | sexp-conv -s canonical | sponge "$1"; }
 alias w3m='w3m -title'
-wim() { local w=$(which "$1"); [[ $w ]] && editor "$w"; }
+wim() { local w=$(which "$1") && [[ $w ]] && editor "$w"; }
 alias xf='ps xf -O ppid'
 alias xx='chmod a+x'
 alias '~'='egrep'
 alias '~~'='egrep -i'
+-() { cd -; }
 [() {
 	if [[ "${@:$#}" == "]" ]]; then
 		test "${@:1:$#-1}"
@@ -331,21 +332,21 @@ owns() {
 ## service management
 
 if have systemctl && [[ -d /run/systemd/system ]]; then
-	start()   { sudo systemctl start "$@"; systemctl status -a "$@"; }
-	stop()    { sudo systemctl stop "$@"; systemctl status -a "$@"; }
+	start()   { sudo systemctl start "$@";   systemctl status -a "$@"; }
+	stop()    { sudo systemctl stop "$@";    systemctl status -a "$@"; }
 	restart() { sudo systemctl restart "$@"; systemctl status -a "$@"; }
-	reload()  { sudo systemctl reload "$@"; systemctl status -a "$@"; }
+	reload()  { sudo systemctl reload "$@";  systemctl status -a "$@"; }
+	status()  { systemctl status -a "$@"; }
 	alias enable='sudo systemctl enable'
 	alias disable='sudo systemctl disable'
-	alias status='systemctl status -a'
 	alias list='systemctl list-units -t path,service,socket --no-legend'
 	alias userctl='systemctl --user'
 	alias sd='systemctl'
 	alias u='systemctl --user'
-	ustart()   { userctl start "$@"; userctl status -a "$@"; }
-	ustop()    { userctl stop "$@"; userctl status -a "$@"; }
+	ustart()   { userctl start "$@";   userctl status -a "$@"; }
+	ustop()    { userctl stop "$@";    userctl status -a "$@"; }
 	urestart() { userctl restart "$@"; userctl status -a "$@"; }
-	ureload()  { userctl reload "$@"; userctl status -a "$@"; }
+	ureload()  { userctl reload "$@";  userctl status -a "$@"; }
 	alias ulist='userctl list-units -t path,service,socket --no-legend'
 	alias lcstatus='loginctl session-status $XDG_SESSION_ID'
 	alias tsd='tree /etc/systemd/system'
