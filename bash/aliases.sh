@@ -122,6 +122,10 @@ alias xf='ps xf -O ppid'
 alias xx='chmod a+x'
 alias '~'='egrep'
 alias '~~'='egrep -i'
+[()   { pushd "$*"; }
+[~()  { pushd "$HOME/$*"; }
+[..() { pushd "../$*"; }
+]()   { popd; }
 
 alias good='git bisect good'
 alias bad='git bisect bad'
