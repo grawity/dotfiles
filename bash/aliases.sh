@@ -11,7 +11,6 @@ alias cindex='env TMPDIR=/var/tmp cindex'
 count() { sort "$@" | uniq -c | sort -n -r | pager; }
 alias csearch='csearch -n'
 alias cur='cur '
-cvsfa() { find -name '*,v' | cvs-fast-export "$@"; }
 dist/head() {
 	echo -e "\e[1m== ~/code\e[m"
 	(cd ~/code && git tip)
@@ -21,16 +20,11 @@ dist/head() {
 }
 dist/pull() { ~/code/dist/pull "$@" && SILENT=1 . ~/.profile; }
 alias dnstracer='dnstracer -s .'
-alias each='xargs -n 1'
-alias eachn="xargs -n 1 -d '\n'"
 alias ed='ed -p:'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
 alias facl='getfacl -pt'
 alias fdf='findmnt -o target,size,used,avail,use%,fstype'
-alias findexe='find -type f -executable'
 gerp() { egrep -r -I -D skip --exclude-dir={.bzr,.git,.hg,.svn} -H -n "$@"; }
-alias gpg-kill-agent='gpg-connect-agent killagent /bye'
-gpgsigs() { gpg --edit-key "$1" check quit; }
 alias hex='xxd -p'
 alias unhex='xxd -p -r'
 alias hup='pkill -HUP -x'
@@ -69,7 +63,6 @@ mv() {
 }
 alias nmap='nmap --reason'
 alias nosr='pkgfile -v'
-nul() { cat "$@" | tr '\0' '\n'; }
 path() { if (( $# )); then which -a "$@"; else echo "${PATH//:/$'\n'}"; fi; }
 alias py='python'
 alias py2='python2'
@@ -86,10 +79,10 @@ ressh() { ssh -v \
 alias rot13='tr N-ZA-Mn-za-m A-Za-z'
 rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}"; echo; }
 alias run='spawn -c'
+sp() { printf '%s' "$@"; printf '\n'; }
 splitext() { split -dC "${2-32K}" "$1" "${1%.*}-" --additional-suffix=".${1##*.}"; }
 alias srs='rsync -vhzaHAX'
 alias sudo='sudo ' # for alias expansion in sudo args
-alias takeown='sudo chown "${UID}:${GROUPS[0]}"'
 alias telnets='telnet-ssl -z ssl'
 _thiscommand() { history 1 | sed "s/^\s*[0-9]\+\s\+$1\s\+//"; }
 alias tidiff='infocmp -Ld'
@@ -97,7 +90,6 @@ alias todo:='todo "$(_thiscommand todo:)" #'
 alias traceroute='traceroute -e'
 alias tracert='traceroute'
 alias treedu='tree --du -h'
-trs() { printf '%s' "$@"; printf '\n'; }
 up() { local p i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
 use-dhcp() { sudo dhcpcd --ipv4only --noarp --reboot 0 --timeout 0 \
 		--nobackground --debug "${1:-eth0}" "${@:2}"; }
@@ -114,8 +106,6 @@ vimpaste() { vim <(getpaste "$1"); }
 virdf() { vim -c "setf n3" <(rapper -q -o turtle "$@"); }
 visexp() { (echo "; vim: ft=sexp"; echo "; file: $1"; sexp-conv < "$1") \
 	| vipe | sexp-conv -s canonical | sponge "$1"; }
-#vitables() { sudo iptables-save | vipe | sudo iptables-restore; }
-#vi6tables() { sudo ip6tables-save | vipe | sudo ip6tables-restore; }
 alias w3m='w3m -title'
 wim() { local w=$(which "$1"); [[ $w ]] && editor "$w"; }
 alias xf='ps xf -O ppid'
@@ -129,9 +119,7 @@ alias '~~'='egrep -i'
 		pushd "$*"
 	fi
 }
-[~()  { pushd "$HOME/$*"; }
-[..() { pushd "../$*"; }
-]()   { popd; }
+]() { popd; }
 
 alias good='git bisect good'
 alias bad='git bisect bad'
@@ -207,10 +195,6 @@ alias who='who -HT'
 
 ## misc functions
 
-if have xdg-open; then
-	open() { run xdg-open "$@"; }
-fi
-
 abs() {
 	local pkg=$1
 	if [[ $pkg != */* ]]; then
@@ -252,17 +236,6 @@ man() {
 	fi
 }
 
-ppid() {
-	local k v
-	while read -r k v; do
-		if [[ $k == 'PPid:' ]]; then
-			echo $v
-			return
-		fi
-	done < "/proc/${1-$$}/status"
-	false
-}
-
 putenv() {
 	local pid=$1 var val args=()
 	for var in "${@:2}"; do
@@ -272,13 +245,6 @@ putenv() {
 	done
 	args gdb --batch "${args[@]}" -ex detach -p "$pid"
 	gdb --batch "${args[@]}" -ex detach -p "$pid"
-}
-
-sshfp() {
-	local key=$(mktemp)
-	ssh-keyscan -t rsa,dsa,ecdsa "$@" > "$key"
-	ssh-keygen -lf "$key"
-	rm -f "$key"
 }
 
 sslcert() {
