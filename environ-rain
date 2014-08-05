@@ -18,8 +18,7 @@ fi
 # libdefaults
 
 LIBVA_DRIVER_NAME="vdpau"
-
-# Force `gem install nokogiri` to use system libxml2
+# force `gem install nokogiri` to use system libxml2
 NOKOGIRI_USE_SYSTEM_LIBRARIES="1"
 
 # appconfig
@@ -28,18 +27,15 @@ CSEARCHINDEX="$XDG_CACHE_HOME/codesearch/csearchindex"
 GEMRC="$XDG_CONFIG_HOME/gemrc"
 MAILCAP="$XDG_CONFIG_HOME/mailcap" # for elinks, w3m
 MAILCAPS="$MAILCAP" # for mutt, alpine
+MANLESS="]0;\$MAN_PN Manual page \$MAN_PN ?ltline %lt?L/%L.:byte %bB?s/%s..?e (END):?pB %pB\\%.. "
+NMAP_PRIVILEGED="1"
+PIDGIN_DEBUG_COLORED="1"
 TAR_OPTIONS="--xattrs"
 VBOX_USER_HOME="$XDG_CONFIG_HOME/VirtualBox"
 
-MANLESS="]0;\$MAN_PN Manual page \$MAN_PN ?ltline %lt?L/%L.:byte %bB?s/%s..?e (END):?pB %pB\\%.. "
-NMAP_PRIVILEGED="1"
-
-PIDGIN_DEBUG_COLORED="1"
-
 # appdefaults
 
-CN_LDAP_SERVER="ldap://wolke.nullroute.eu.org";
-
 ACCDB="/run/media/$USER/grawpqi/Private/accounts.db.txt"
+CN_LDAP_SERVER="ldap://wolke.nullroute.eu.org"
 MPD_HOST="$(cat "$XDG_CONFIG_HOME/mpd/password")@$XDG_RUNTIME_DIR/mpd.control"
 PERL_CPANM_OPT="$PERL_CPANM_OPT --mirror http://ftp.litnet.lt/pub/CPAN/"

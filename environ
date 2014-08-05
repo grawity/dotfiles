@@ -117,15 +117,15 @@ PERL_CPANM_HOME="$XDG_CACHE_HOME/cpanminus"
 IRBRC="$HOME/lib/dotfiles/irbrc"
 PYTHONSTARTUP="$HOME/lib/dotfiles/pythonrc"
 
+VIMINIT=":so ~/.vim/vimrc"
+GVIMINIT=":so ~/.vim/gvimrc"
+
 BZR_LOG="/dev/null"
 GCC_COLORS="1"
 GIT_MERGE_AUTOEDIT="no"
 LESS="e M q R F X z -3"
 MAKEFLAGS="-j $(nproc)"
 SUDO_PROMPT="sudo password for %p@[30;43m%h[m: "
-
-VIMINIT=":so ~/.vim/vimrc"
-GVIMINIT=":so ~/.vim/gvimrc"
 
 case $(uname)-$(uname -r) in
     FreeBSD-10.*)
