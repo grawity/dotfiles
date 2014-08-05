@@ -83,7 +83,7 @@ GNULIB_SRCDIR="$HOME/src/gnu/gnulib"
 # identity
 
 NAME='Mantas Mikulėnas'
-EMAIL="grawity@nullroute.eu.org"
+EMAIL="grawity@gmail.com"
 TZ="Europe/Vilnius"
 
 # preferred programs
