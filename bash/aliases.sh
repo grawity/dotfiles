@@ -122,7 +122,13 @@ alias xf='ps xf -O ppid'
 alias xx='chmod a+x'
 alias '~'='egrep'
 alias '~~'='egrep -i'
-[()   { pushd "$*"; }
+[() {
+	if [[ "${@:$#}" == "]" ]]; then
+		test "${@:1:$#-1}"
+	else
+		pushd "$*"
+	fi
+}
 [~()  { pushd "$HOME/$*"; }
 [..() { pushd "../$*"; }
 ]()   { popd; }
