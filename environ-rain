@@ -33,7 +33,7 @@ VBOX_USER_HOME="$XDG_CONFIG_HOME/VirtualBox"
 
 # appdefaults
 
-ACCDB="/run/media/$USER/grawpqi/Private/accounts.db.txt"
+ACCDB="$HOME/Private/accdb/accounts.txt"
 CN_LDAP_SERVER="ldap://wolke.nullroute.eu.org"
 MPD_HOST="$(cat "$XDG_CONFIG_HOME/mpd/password")@$XDG_RUNTIME_DIR/mpd.control"
 PERL_CPANM_OPT="$PERL_CPANM_OPT --mirror http://ftp.litnet.lt/pub/CPAN/"
