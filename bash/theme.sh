@@ -51,7 +51,7 @@ case $FQDN in
 	fmt_name_self='38;5;82'
 	fmt_pwd='38;5;39'
 	fmt_pwd_tail='1|38;5;45'
-	fmt_vcs='38;5;202'
+	fmt_vcs='38;5;198'
 	;;
 
     *.cluenet.org|*.nathan7.eu)
