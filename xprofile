@@ -1,17 +1,6 @@
 # ~/.xprofile - X11-specific login script (after ~/.profile)
 # vim: ft=sh
 
-if have keyctl; then
-	# set up session keyring
-	keyctl show
-	#if [ "$(keyctl rdescribe @s)" = "$(keyctl rdescribe @us)" ]; then
-	#	echo "Creating new session keyring"
-	#	if keyctl new_session > /dev/null; then
-	#		keyctl link @u @s
-	#	fi
-	#fi
-fi
-
 if have auca-seed; then
 	auca-seed &
 fi
