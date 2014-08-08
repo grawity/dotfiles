@@ -54,8 +54,8 @@ case $FQDN in
 	item_prompt='┘'
 	fmt_name_pfx='|38;5;236'
 	fmt_prompt=$fmt_name_pfx
-	fmt_name_root='38;5;82'
-	fmt_name_self='38;5;231|41'
+	fmt_name_root='38;5;231|41'
+	fmt_name_self='38;5;82'
 	fmt_pwd='38;5;39'
 	fmt_pwd_tail='1|38;5;45'
 	fmt_vcs='38;5;202'
