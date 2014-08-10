@@ -74,6 +74,8 @@ Please also read <.environ.notes> if you find this file useful.
   (Procmail – kiiinda configurable)
     - hardcoded, but can easily use a custom redirect rule instead
 
+~/.fossil - hardcoded
+
 ~/.gconf/ – XDG as of 3.2.6; hardcoded
   - $XDG_CONFIG_HOME/gconf/ is used now
 
@@ -85,7 +87,7 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.gemrc – environment
   - hardcoded, but $GEMRC can have a list of /additional/ rc's
 
-~/.gimp-2.0/ – environment
+~/.gimp-2.8/ – environment
   - $GIMP2_DIRECTORY overrides
 
 ~/.gitconfig – XDG as of 1.7.12; hardcoded
@@ -207,7 +209,7 @@ Please also read <.environ.notes> if you find this file useful.
   - doc: npm-config(7)
   - see also `npm config get globalconfig` & `npm config get userconfig`
 
-~/.offlineimaprc – XDG as of 5150de5514d1; command line
+~/.offlineimaprc – XDG as of ??? (5150de5514d1); command line
   - $XDG_CONFIG_HOME/offlineimap/config is the new default
   - for older versions, "-c <path>" option exists
 
@@ -282,13 +284,13 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.wireshark/ – hardcoded
 
-~/.Xkbmap – hardcoded, but
+~/.Xkbmap – hardcoded/configurable
   - hardcoded in /etc/gdm/Xsession (although GNOME uses dconf)
     as well as other Xsession scripts in other DMs
   - however, ~/.xprofile and ~/.xinitrc can use a custom path
   - also, most DEs have their own configurations for this
 
-~/.Xresources – hardcoded, but
+~/.Xresources – hardcoded/configurable
   - hardcoded in Xsession scripts of many DMs
   - however, ~/.xprofile and ~/.xinitrc can use a custom path
 
@@ -300,11 +302,11 @@ Please also read <.environ.notes> if you find this file useful.
   - hardcoded in Xsession scripts of many DMs
 
 ~/dead.letter
-  (mail, Mail, etc. – environment)
+  (s-nail – environment)
     - $DEAD overrides
 
 ~/mbox
-  (mail, Mail, etc. – environment)
+  (s-nail – environment)
     - $MBOX overrides
 
 ~/VirtualBox VMs/ – configurable
