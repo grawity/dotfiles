@@ -74,7 +74,10 @@ Please also read <.environ.notes> if you find this file useful.
   (Procmail – kiiinda configurable)
     - hardcoded, but can easily use a custom redirect rule instead
 
-~/.fossil - hardcoded
+~/.fossil – hardcoded
+
+~/.freerdp/ – XDG as of 1.1.0 (edf6e7258d0e); hardcoded
+  - $XDG_CONFIG_HOME/freerdp/ is used now
 
 ~/.gconf/ – XDG as of 3.2.6; hardcoded
   - $XDG_CONFIG_HOME/gconf/ is used now
