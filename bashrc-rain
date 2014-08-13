@@ -98,10 +98,10 @@ ecap() {(
 
 ukip() {(
 	PS4='+ '; set -x
-	ip link set eth0 up
-	ip addr add 10.128.0.42/16  dev eth0
-	ip addr add 192.168.0.42/24 dev eth0
-	ip addr add 192.168.1.42/24 dev eth0
+	sudo ip link set eth0 up
+	sudo ip addr add 10.128.0.42/16  dev eth0
+	sudo ip addr add 192.168.0.42/24 dev eth0
+	sudo ip addr add 192.168.1.42/24 dev eth0
 )}
 
 vnet() {(
