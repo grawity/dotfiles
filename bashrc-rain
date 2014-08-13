@@ -84,43 +84,52 @@ youtube-dl() {
 	"${cmd[@]}"
 }
 
-add-vlan() {(
-	PS4='+ '
-	(set -x
-	sudo ip link add link "${1%.*}" name "$1" type vlan id "${1##*.}")
+do:() { (PS4='+ '; set -x; "$@") }
+
+sudo:() {
+	if (( UID ))
+		then do: sudo "$@"
+		else do: "$@"
+	fi
+}
+
+add-vlan() {
+	sudo: ip link add link "${1%.*}" name "$1" type vlan id "${1##*.}"
 	if [[ $2 == dhcp ]]; then
 		use-dhclient "$1"
 	elif [[ $2 ]]; then
-		(set -x
-		sudo ip link set "$1" up
-		sudo ip addr add "$2" dev "$1")
+		sudo: ip link set "$1" up
+		sudo: ip addr add "$2" dev "$1"
 	fi
-)}
+}
 
-use-dhcp() { sudo dhcpcd --ipv4only --noarp --reboot 0 --timeout 0 --nobackground \
-		--nohook resolv.conf --debug "${1:-eth0}" "${@:2}"; }
+use-dhcp() {
+	sudo: dhcpcd --ipv4only --noarp --reboot 0 --timeout 0 --nobackground \
+		--nohook resolv.conf --debug "${1:-eth0}" "${@:2}"
+}
 
-use-dhclient() { sudo dhclient -4 -d -v "${1:-eth0}" "${@:2}"; }
+use-dhclient() {
+	sudo: dhclient -4 -d -v "${1:-eth0}" "${@:2}"
+}
 
-use-autoip() { sudo avahi-autoipd --force-bind "${1:-eth0}" "${@:2}"; }
+use-autoip() {
+	sudo: avahi-autoipd --force-bind "${1:-eth0}" "${@:2}"
+}
 
-ecap() {(
-	PS4='+ '; set -x
-	sudo tcpdump -n -i "${dev:-eth0}" "$@"
-)}
+ecap() {
+	sudo: tcpdump -n -i "${dev:-eth0}" "$@"
+}
 
-ukip() {(
-	PS4='+ '; set -x
-	sudo ip link set eth0 up
-	sudo ip addr add 10.128.0.42/16  dev eth0
-	sudo ip addr add 192.168.0.42/24 dev eth0
-	sudo ip addr add 192.168.1.42/24 dev eth0
-)}
+ukip() {
+	sudo: ip link set eth0 up
+	sudo: ip addr add 10.128.0.42/16  dev eth0
+	sudo: ip addr add 192.168.0.42/24 dev eth0
+	sudo: ip addr add 192.168.1.42/24 dev eth0
+}
 
-vnet() {(
-	PS4='+ '; set -x
-	sudo systemctl "${1:-status}" vm-network.target
-)}
+vnet() {
+	sudo: systemctl "${1:-status}" vm-network.target
+}
 
 ## Prompt
 
