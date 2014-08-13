@@ -88,7 +88,9 @@ add-vlan() {(
 	PS4='+ '
 	(set -x
 	sudo ip link add link "${1%.*}" name "$1" type vlan id "${1##*.}")
-	if [[ $2 ]]; then
+	if [[ $2 == dhcp ]]; then
+		use-dhclient "$1"
+	elif [[ $2 ]]; then
 		(set -x
 		sudo ip link set "$1" up
 		sudo ip addr add "$2" dev "$1")
