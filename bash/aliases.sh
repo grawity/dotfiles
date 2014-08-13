@@ -91,10 +91,6 @@ alias traceroute='traceroute -e'
 alias tracert='traceroute'
 alias treedu='tree --du -h'
 up() { local p i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
-use-dhcp() { sudo dhcpcd --ipv4only --noarp --reboot 0 --timeout 0 --nobackground \
-		--nohook resolv.conf --debug "${1:-eth0}" "${@:2}"; }
-use-dhclient() { sudo dhclient -4 -d -v "${1:-eth0}" "${@:2}"; }
-use-autoip() { sudo avahi-autoipd --force-bind "${1:-eth0}" "${@:2}"; }
 vercmp() {
 	case $(command vercmp "$@") in
 	-1) echo "$1 < $2";;

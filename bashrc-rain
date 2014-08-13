@@ -84,6 +84,13 @@ youtube-dl() {
 	"${cmd[@]}"
 }
 
+use-dhcp() { sudo dhcpcd --ipv4only --noarp --reboot 0 --timeout 0 --nobackground \
+		--nohook resolv.conf --debug "${1:-eth0}" "${@:2}"; }
+
+use-dhclient() { sudo dhclient -4 -d -v "${1:-eth0}" "${@:2}"; }
+
+use-autoip() { sudo avahi-autoipd --force-bind "${1:-eth0}" "${@:2}"; }
+
 ecap() {(
 	PS4='+ '; set -x
 	sudo tcpdump -n -i "${dev:-eth0}" "$@"
