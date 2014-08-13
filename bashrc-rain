@@ -84,6 +84,11 @@ youtube-dl() {
 	"${cmd[@]}"
 }
 
+add-vlan() {(
+	PS4='+ '; set -x
+	sudo ip link add link "${1%.*}" name "$1" type vlan id "${1##*.}"
+)}
+
 use-dhcp() { sudo dhcpcd --ipv4only --noarp --reboot 0 --timeout 0 --nobackground \
 		--nohook resolv.conf --debug "${1:-eth0}" "${@:2}"; }
 
