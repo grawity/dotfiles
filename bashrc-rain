@@ -120,6 +120,17 @@ ecap() {
 	sudo: tcpdump -n -i "${dev:-eth0}" "$@"
 }
 
+ecn() {
+	case $1 in
+	    1|y*|on)
+		sudo: sysctl -q net.ipv4.tcp_ecn=1;;
+	    0|n*|off)
+		sudo: sysctl -q net.ipv4.tcp_ecn=0;;
+	    *)
+		sysctl net.ipv4.tcp_ecn;;
+	esac
+}
+
 ukip() {
 	sudo: ip link set eth0 up
 	sudo: ip addr add 10.128.0.42/16  dev eth0

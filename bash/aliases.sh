@@ -106,6 +106,7 @@ alias w3m='w3m -title'
 wim() { local w=$(which "$1") && [[ $w ]] && editor "$w"; }
 alias xf='ps xf -O ppid'
 alias xx='chmod a+x'
+alias zt1='zerotier-cli'
 alias '~'='egrep'
 alias '~~'='egrep -i'
 -() { cd -; }
