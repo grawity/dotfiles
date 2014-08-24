@@ -42,6 +42,9 @@ augroup filetypedetect
 	au BufNewFile,BufRead /etc/cjdroute.conf setf javascript
 	\ | setl ts=4 sw=4 et
 
+	" Lua
+	au BufNewFile,BufRead *.nse setf lua
+
 	" Mail
 	au BufNewFile,BufRead *.msg setf mail
 
