@@ -25,6 +25,7 @@ entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
 alias facl='getfacl -pt'
 alias fdf='findmnt -o target,size,used,avail,use%,fstype'
 gerp() { egrep -r -I -D skip --exclude-dir={.bzr,.git,.hg,.svn} -H -n "$@"; }
+gpgfp() { gpg --with-colons --fingerprint "$1" | awk -F: '/^fpr:/ {print $10}'; }
 alias hex='xxd -p'
 alias unhex='xxd -p -r'
 alias hup='pkill -HUP -x'
