@@ -9,17 +9,17 @@
 # work
 
 Host uk-untangle
-	Hostname 193.219.181.200
+	HostName 193.219.181.200
 
 Host uk-pf-maironio7
-	Hostname 193.219.181.217
+	HostName 193.219.181.217
 
 Host uk-radius ukradius
-	Hostname 193.219.181.253
+	HostName 193.219.181.253
 	User grawity
 
 Host uk-sw-litnet
-	Hostname 193.219.181.238
+	HostName 193.219.181.238
 	User admin
 
 Host 193.219.181.238
@@ -33,87 +33,87 @@ Host uk-* 193.219.181.192/26
 # Cluenet and stuff
 
 Host abacus
-	Hostname abacus.cluenet.org
+	HostName abacus.cluenet.org
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host aurimo-seedbox
-	Hostname 176.31.238.190
+	HostName 176.31.238.190
 
 Host decay
-	Hostname decay.nullroute.eu.org
+	HostName decay.nullroute.eu.org
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host eta
-	Hostname eta.cluenet.org
+	HostName eta.cluenet.org
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host gamma gamma.cluenet.org
-	Hostname gamma.cluenet.org
+	HostName gamma.cluenet.org
 	Port 2223
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host hawking
-	Hostname hawking.cluenet.org
+	HostName hawking.cluenet.org
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host moose
-	Hostname moose.lairofthelords.com
+	HostName moose.lairofthelords.com
 	ForwardAgent yes
 
 Host panther
-	Hostname panther.nathan7.eu
+	HostName panther.nathan7.eu
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host radian
-	Hostname radian.cluenet.org
+	HostName radian.cluenet.org
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host rain rain.local
-	#Hostname rain.nullroute.eu.org
+	#HostName rain.nullroute.eu.org
 	ForwardAgent yes
 	ForwardX11 yes
 
 Host snow snow.home snow.local
-	#Hostname snow.home
-	#Hostname snow.nullroute.eu.org
+	#HostName snow.home
+	#HostName snow.nullroute.eu.org
 	HostkeyAlias snow.nullroute.eu.org
 	User Mantas
 	#ForwardAgent yes
 
 Host sky
-	Hostname sky.nullroute.eu.org
+	HostName sky.nullroute.eu.org
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host tide
-	Hostname tide.nullroute.eu.org
+	HostName tide.nullroute.eu.org
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host virgule
-	Hostname virgule.cluenet.org
+	HostName virgule.cluenet.org
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host wolke
-	Hostname wolke.nullroute.eu.org
+	HostName wolke.nullroute.eu.org
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
