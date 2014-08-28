@@ -10,20 +10,20 @@
 
 Host uk-untangle
 	Hostname 193.219.181.200
-	User root
-	IdentityFile ~/.ssh/id_ukolegija
-	ForwardAgent yes
 
-Host uk-maironio7 maironio7
+Host uk-pf-maironio7
 	Hostname 193.219.181.217
-	User root
-	IdentityFile ~/.ssh/id_ukolegija
-	ForwardAgent yes
 
 Host uk-radius ukradius
 	Hostname 193.219.181.253
-	#IdentityFile ~/.ssh/id_ukolegija
-	ForwardAgent yes
+	User grawity
+
+Host uk-sw-litnet
+	Hostname 193.219.181.238
+	User admin
+
+Host 193.219.181.238
+	User admin
 
 Host uk-* 193.219.181.192/26
 	User root
