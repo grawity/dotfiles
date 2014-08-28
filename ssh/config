@@ -127,6 +127,13 @@ Host bazaar.launchpad.net
 Host ofb.net
 	ForwardAgent yes
 
+Host ubnt
+	HostName 192.168.1.20
+	UserKnownHostsFile /dev/null
+	GlobalKnownHostsFile /dev/null
+	StrictHostKeyChecking no
+	ControlPersist no
+
 # domain-wide settings
 
 Host *.cluenet.org
