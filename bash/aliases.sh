@@ -153,6 +153,10 @@ clip() {
 	fi
 }
 
+if have xdg-open; then
+	alias open='run xdg-open'
+fi
+
 if have mpv; then
 	alias mplayer='mpv'
 fi
