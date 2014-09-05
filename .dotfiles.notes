@@ -27,7 +27,7 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.cvspass – environment
   - $CVS_PASSFILE overrides
 
-~/.d-feet/ – XDG as of 0.1.15; hardcoded
+~/.d-feet/ – XDG as of 0.1.15 (7f6104bbc5ab); hardcoded
   - $XDG_CONFIG_HOME/d-feet/ is used now
 
 ~/.dc++/ – hardcoded
@@ -79,7 +79,7 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.freerdp/ – XDG as of 1.1.0 (edf6e7258d0e); hardcoded
   - $XDG_CONFIG_HOME/freerdp/ is used now
 
-~/.gconf/ – XDG as of 3.2.6; hardcoded
+~/.gconf/ – XDG as of 3.2.6 (fc28caa7be86); hardcoded
   - $XDG_CONFIG_HOME/gconf/ is used now
 
 ~/.gconf.path – see ~/.gconf/
@@ -93,13 +93,13 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.gimp-2.8/ – environment
   - $GIMP2_DIRECTORY overrides
 
-~/.gitconfig – XDG as of 1.7.12; hardcoded
+~/.gitconfig – XDG as of 1.7.12 (0d94427ef844); hardcoded
   - $XDG_CONFIG_HOME/git/config is used now
 
-~/.gitignore – XDG as of 1.7.12; config option (no default earlier)
+~/.gitignore – XDG as of 1.7.12 (0d94427ef844); config option (no default)
   - $XDG_CONFIG_HOME/git/ignore added as default
 
-~/.gitk – XDG as of 1.9-rc1; hardcoded
+~/.gitk – XDG as of 1.9-rc1 (8f86339858c1); hardcoded
   - $XDG_CONFIG_HOME/git/gitk is used now
 
 ~/.gnome-commander/ – hardcoded/command line?
