@@ -111,7 +111,6 @@ XCOMPOSEFILE="$HOME/lib/dotfiles/gui/XCompose"
 # appdefaults
 
 ABSROOT="$HOME/pkg"
-CCACHE_DIR="$XDG_CACHE_HOME/ccache"
 PERL_CPANM_HOME="$XDG_CACHE_HOME/cpanminus"
 
 IRBRC="$HOME/lib/dotfiles/irbrc"

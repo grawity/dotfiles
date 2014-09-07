@@ -59,6 +59,7 @@ MAILCAPS="$MAILCAP"			# Mutt, pine
 
 ## To relocate cache/history:
 
+CCACHE_DIR="$XDG_CACHE_HOME/ccache"
 LESSHISTFILE="$XDG_CACHE_HOME/less.history"
 MYSQL_HISTFILE="$XDG_CACHE_HOME/mysql.history"
 
