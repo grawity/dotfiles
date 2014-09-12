@@ -43,6 +43,10 @@ fi
 look() { find . -iname "*$1*" "${@:2}"; }
 f() { find "$PWD" -iname "*$1*" "${@:2}" | treeify "$PWD"; }
 alias lchown='chown -h'
+ldapls() {
+	ldapsearch -LLL "$@" 1.1 | ldifunwrap | grep ^dn: \
+	| perl -MMIME::Base64 -pe 's/^(.+?):: (.+)$/"$1: ".decode_base64($2)/e'
+}
 ldapstat() { ldapsearch -b "" -s base -x -LLL "$@" \* +; }
 alias lp='sudo netstat -lptu --numeric-hosts'
 alias lpt='sudo netstat -lpt --numeric-hosts'
@@ -279,9 +283,22 @@ x509() {
 	if have certtool; then
 		certtool -i <"$file" |
 		sed -r '/^-----BEGIN/,/^-----END/d;
-			/^\t*([0-9a-f][0-9a-f]:)+[0-9a-f][0-9a-f]$/d'
+			/^\t*([0-9a-f][0-9a-f]:)+[0-9a-f][0-9a-f]$/d;
+			/^\t.*random art:$/,/^\t\t\+-+\+$/d'
 	else
 		openssl x509 -noout -text -certopt no_pubkey,no_sigdump <"$file"
+	fi
+}
+
+x509der() {
+	local file=${1:-/dev/stdin}
+	if have certtool; then
+		certtool --inder -i <"$file" |
+		sed -r '/^-----BEGIN/,/^-----END/d;
+			/^\t*([0-9a-f][0-9a-f]:)+[0-9a-f][0-9a-f]$/d;
+			/^\t.*random art:$/,/^\t\t\+-+\+$/d'
+	else
+		openssl x509 -inform der -noout -text -certopt no_pubkey,no_sigdump <"$file"
 	fi
 }
 

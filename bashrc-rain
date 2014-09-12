@@ -55,6 +55,10 @@ rm() {
 	fi
 }
 
+unrm() {
+	trash --restore "$@"
+}
+
 rpw() {
 	local pw=$(tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}")
 	echo "$pw"
@@ -131,6 +135,11 @@ ecn() {
 	esac
 }
 
+utelnet() {
+	# connect to RedBoot on Ubiquiti PicoStations
+	do: telnet 192.168.1.20 9000
+}
+
 ukip() {
 	sudo: ip link set eth0 up
 	sudo: ip addr add 169.254.0.1/16  dev eth0 scope link
@@ -142,6 +151,23 @@ ukip() {
 vnet() {
 	sudo: systemctl "${1:-status}" vm-network.target
 }
+
+c2p() for _f; do
+	openssl x509 -in "$_f" -inform DER -out "${_f%.*}.pem" -outform PEM
+done
+
+p2c() for _f; do
+	openssl x509 -in "$_f" -inform PEM -out "${_f%.*}.crt" -outform DER
+done
+
+nssdb="sql:$HOME/.pki/nssdb"
+
+cu() { do: certutil -d "$nssdb" "$@"; }
+pu() { do: pk12util -d "$nssdb" "$@"; }
+mu() { do: modutil  -d "$nssdb" "$@"; }
+pe() { do: pesign   -n "$nssdb" "$@"; }
+st() { do: signtool -d "$nssdb" "$@"; }
+nss-import-key() { pu -i "$@"; }
 
 ## Prompt
 
