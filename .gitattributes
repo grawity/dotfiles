@@ -1,2 +1,1 @@
-# I'm not sure this makes things more readable, or less.
-#ssh/known_hosts filter=merge-known-hosts
+ssh/known_hosts filter=merge-known-hosts
