@@ -167,7 +167,7 @@ Host *.core
 #endif
 	ControlMaster no
 
-Host *.home *.local 192.168.*
+Host *.home *.local 10.* 192.168.*
 	ForwardAgent yes
 	UserKnownHostsFile ~/.ssh/known_hosts.local
 
