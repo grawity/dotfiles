@@ -305,6 +305,9 @@ Please also read <.environ.notes> if you find this file useful.
   - "-d <path>" or "--cfgdir=<path>" overrides
   - recommended to migrate to Hexchat instead
 
+~/.xinitrc – command-line
+  - "startx <path>" overrides
+
 ~/.xprofile – hardcoded
   - hardcoded in Xsession scripts of many DMs
 
