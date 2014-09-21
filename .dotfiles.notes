@@ -150,7 +150,9 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.kde4/ – see ~/.kde/
 
 ~/.keybase/ – XDG as of 0.6.0 (commit 99531f058b3b57); command line
-  - $XDG_CONFIG_HOME/keybase/ is used now
+  - $XDG_CONFIG_HOME/keybase/ is used for configuration
+  - $XDG_CACHE_HOME/keybase/ is used for session data
+  - $XDG_DATA_HOME/keybase/ is used for signature cache
   - "--homedir <dir>" option exists
 
 ~/.ldaprc – environment
