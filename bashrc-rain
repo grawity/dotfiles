@@ -124,6 +124,10 @@ ecap() {
 	sudo: tcpdump -n -i "${dev:-eth0}" "$@"
 }
 
+earp() {
+	ecap -e "arp or (udp port 67 or 68)"
+}
+
 ecn() {
 	case $1 in
 	    1|y*|on)
@@ -164,10 +168,12 @@ nssdb="sql:$HOME/.pki/nssdb"
 
 cu() { do: certutil -d "$nssdb" "$@"; }
 pu() { do: pk12util -d "$nssdb" "$@"; }
-mu() { do: modutil  -d "$nssdb" "$@"; }
+mu() { do: modutil  -dbdir "$nssdb" "$@"; }
 pe() { do: pesign   -n "$nssdb" "$@"; }
 st() { do: signtool -d "$nssdb" "$@"; }
 nss-import-key() { pu -i "$@"; }
+
+b64() { printf "%s" "$*" | base64 | tr -dc "A-Za-z0-9+/="; }
 
 ## Prompt
 

@@ -67,6 +67,9 @@ include "%L"
 
 <Multi_key> <slash> <slash>		: "⁄"
 
+<Multi_key> <Multi_key> <y> <1>		: "( •_•)>⌐■-■"
+<Multi_key> <Multi_key> <y> <2>		: "(⌐■_■)"
+
 # arrows
 
 <Multi_key> <6> <6>			: "↑" # up arrow
