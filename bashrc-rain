@@ -156,6 +156,15 @@ vnet() {
 	sudo: systemctl "${1:-status}" vm-network.target
 }
 
+scrape-reddit() {
+	local u=${1:-"$(pclip)"}
+	if [[ $u == *[./]reddit.com/r/* ]]; then
+		~/code/net/scrape-reddit-comment "$u" | tee -a ~/new-reddit | sed /^$/q
+	else
+		echo "ಠ_ಠ"
+	fi
+}
+
 c2p() for _f; do
 	openssl x509 -in "$_f" -inform DER -out "${_f%.*}.pem" -outform PEM
 done
@@ -172,6 +181,7 @@ mu() { do: modutil  -dbdir "$nssdb" "$@"; }
 pe() { do: pesign   -n "$nssdb" "$@"; }
 st() { do: signtool -d "$nssdb" "$@"; }
 nss-import-key() { pu -i "$@"; }
+java-import-key() { keytool -importkeystore -srcstoretype PKCS12 -srckeystore "$@"; }
 
 b64() { printf "%s" "$*" | base64 | tr -dc "A-Za-z0-9+/="; }
 
