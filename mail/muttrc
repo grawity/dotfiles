@@ -183,8 +183,10 @@ macro index,pager \cA "<save-message>~/mbox\n"
 macro index,pager A "<copy-message>~/mbox\n"
 macro index,pager <Esc>i "<enter-command>unset wait_key\n<pipe-message>gpg --import |& tig\n<enter-command>set wait_key\n"
 
+bind index ! flag-message
 bind index G last-entry
 macro index * "<tag-pattern>.\n"
+macro index ^ "<tag-entry><previous-entry><previous-entry>"
 bind index \\ collapse-thread
 bind index \c? quit			# Backspace
 
