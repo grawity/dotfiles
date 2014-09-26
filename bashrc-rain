@@ -159,7 +159,10 @@ vnet() {
 scrape-reddit() {
 	local u=${1:-"$(pclip)"}
 	if [[ $u == *[./]reddit.com/r/* ]]; then
-		~/code/net/scrape-reddit-comment "$u" | tee -a ~/new-reddit | sed /^$/q
+		local f=$(date +%s.%N)
+		~/code/net/scrape-reddit-comment "$u" \
+		| tee ~/new-reddit/tmp/$f \
+		&& mv ~/new-reddit/{tmp,new}/$f
 	else
 		echo "ಠ_ಠ"
 	fi
