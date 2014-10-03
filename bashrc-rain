@@ -4,11 +4,11 @@
 
 ## Completion
 
-if [[ -e /usr/share/bash-completion/bash_completion ]]; then
-	. /usr/share/bash-completion/bash_completion
-	# redeclare after bash-completion nukes it
-	have() { command -v "$@" &>/dev/null; }
-fi
+#if [[ -e /usr/share/bash-completion/bash_completion ]]; then
+#	. /usr/share/bash-completion/bash_completion
+#	# redeclare after bash-completion nukes it
+#	have() { command -v "$@" &>/dev/null; }
+#fi
 
 ## Aliases
 
