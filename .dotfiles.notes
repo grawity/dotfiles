@@ -6,6 +6,21 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.aMule/ – hardcoded
 
+~/.aspell.conf – environment
+  - the 'per-conf' statement in /etc/aspell.conf or $ASPELL_CONF overrides
+    ('per-conf-path' as well, except `aspell config` doesn't output that one)
+  - contents of $ASPELL_CONF are parsed before all configuration files
+    (semicolon-separated)
+  - example (no inner quoting needed):
+    ASPELL_CONF="per-conf $XDG_CONFIG_HOME/aspell.conf"
+  - documentation: `info aspell customizing`
+
+~/.aspell.<lang>.{per,prepl,pws,repl} – configurable
+  - *.pws: the 'personal' statement in ~/.aspell.conf overrides
+  - *.prepl: the 'repl' statement overrides
+  - no environment variables or ~ though; use $ASPELL_CONF for that
+  - in theory, literal "<lang>" should do the right substitution, but doesn't
+
 ~/.balsa/ – hardcoded
 
 ~/.bitcoin/ – hardcoded
