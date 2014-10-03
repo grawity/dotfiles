@@ -106,6 +106,7 @@ set pager_format="─── Message %C of %m: \"%s\" %*── %P ───"
 auto_view application/zip
 auto_view text/html
 auto_view text/x-vcard
+auto_view message/disposition-notification
 
 ### Generic appearance
 
