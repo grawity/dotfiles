@@ -157,15 +157,17 @@ vnet() {
 }
 
 scrape-reddit() {
-	local u=${1:-"$(pclip)"}
-	if [[ $u == *[./]reddit.com/r/* ]]; then
-		local f=$(date +%s.%N)
-		~/code/net/scrape-reddit-comment "$u" \
-		| tee ~/new-reddit/tmp/$f \
-		&& mv ~/new-reddit/{tmp,new}/$f
-	else
-		echo "ಠ_ಠ"
-	fi
+	(( $# )) || set -- $(pclip)
+	local u; for u; do
+		if [[ $u == *[./]reddit.com/r/* ]]; then
+			local f=$(date +%s.%N)
+			~/code/net/scrape-reddit-comment "$u" \
+			| tee ~/new-reddit/tmp/$f \
+			&& mv ~/new-reddit/{tmp,new}/$f
+		else
+			echo "ಠ_ಠ"
+		fi
+	done
 }
 
 c2p() for _f; do
