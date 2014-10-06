@@ -59,9 +59,12 @@ include "%L"
 <Multi_key> <z> <w> <s>			: U200b # zero-width space
 <Multi_key> <z> <w> <n> <j>		: U200c # zero-width non-joiner
 <Multi_key> <z> <w> <j>			: U200d # zero-width joiner
+<Multi_key> <Multi_key> <l> <r>		: U200e # left-to-right mark
+<Multi_key> <Multi_key> <r> <l>		: U200f # right-to-left mark
 <Multi_key> <p> <p>			: "¶" # pilcrow P P
 <Multi_key> <n> <o>			: "№" # numero N O
 <Multi_key> <s> <h> <y>			: U00ad # 'hyphen' soft hyphen
+<Multi_key> <n> <h> <y>			: U2011 # non-breaking hyphen
 <Multi_key> <v> <slash>			: "✔" # check
 
 <Multi_key> <exclam> <2>		: "‼"
