@@ -56,7 +56,9 @@ include "%L"
 <Multi_key> <p> <i>			: "π" # pi
 <Multi_key> <s> <n> <o> <w> <m> <a> <n>	: "☃" # snowman
 <Multi_key> <l> <o> <o> <k>		: "ಠ_ಠ" # look of disapproval
-<Multi_key> <z> <w> <j>			: "​" # zero-width joiner
+<Multi_key> <z> <w> <s>			: U200b # zero-width space
+<Multi_key> <z> <w> <n> <j>		: U200c # zero-width non-joiner
+<Multi_key> <z> <w> <j>			: U200d # zero-width joiner
 <Multi_key> <p> <p>			: "¶" # pilcrow P P
 <Multi_key> <n> <o>			: "№" # numero N O
 <Multi_key> <s> <h> <y>			: U00ad # 'hyphen' soft hyphen
