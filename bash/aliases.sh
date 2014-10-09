@@ -92,7 +92,7 @@ alias telnets='telnet-ssl -z ssl'
 _thiscommand() { history 1 | sed "s/^\s*[0-9]\+\s\+$1\s\+//"; }
 alias tidiff='infocmp -Ld'
 alias todo:='todo "$(_thiscommand todo:)" #'
-alias traceroute='traceroute -e'
+alias traceroute='traceroute -e -A'
 alias tracert='traceroute'
 alias treedu='tree --du -h'
 up() { local p i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
