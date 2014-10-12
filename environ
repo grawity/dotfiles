@@ -31,8 +31,9 @@ addpath() {
 
 umask 022
 
-[ "$USER" ]     || USER=$(id -un)
 [ "$UID" ]      || UID=$(id -u)
+[ "$USER" ]     || USER=$(id -un)
+[ "$HOME" ]     || HOME=$(getent passwd "$USER" | cut -d: -f6)
 [ "$HOSTNAME" ] || HOSTNAME=$(hostname)
 
 set -a
