@@ -20,6 +20,7 @@
 
     <!-- Re-enable embedded bitmaps for CJK fonts -->
 
+    <!--
     <match target="font">
         <test name="lang" compare="contains"> <string>ja</string> </test>
         <edit name="embeddedbitmap"> <bool>true</bool> </edit>
@@ -34,6 +35,7 @@
         <test name="lang" compare="contains"> <string>zh</string> </test>
         <edit name="embeddedbitmap"> <bool>true</bool> </edit>
     </match>
+    -->
 
     <!-- Enable autohinting for certain broken fonts -->
 
