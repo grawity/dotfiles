@@ -62,7 +62,9 @@ unrm() {
 rpw() {
 	local pw=$(tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}")
 	echo "$pw"
-	echo -n "$pw" | gclip
+	if [[ -t 1 ]]; then
+		echo -n "$pw" | gclip
+	fi
 }
 
 youtube-dl() {

@@ -2,9 +2,9 @@
 
 unalias -a
 
-editor()  { command ${EDITOR:-vi}    "$@"; }
+editor() { command ${EDITOR:-vi} "$@"; }
 browser() { command ${BROWSER:-lynx} "$@"; }
-pager()   { command ${PAGER:-more}   "$@"; }
+pager() { command ${PAGER:-more} "$@"; }
 
 alias bat='acpi -i'
 alias cindex='env TMPDIR=/var/tmp cindex'
