@@ -15,15 +15,16 @@ Please also read <.environ.notes> if you find this file useful.
     ASPELL_CONF="per-conf $XDG_CONFIG_HOME/aspell.conf; personal ...; repl ..."
   - documentation: `info aspell customizing`
 
-~/.aspell.<lang>.{per,prepl,pws,repl} – configurable
+~/.aspell.<lang>.{per,prepl,pws,repl} – partially configurable
   - *.pws: the 'personal' statement in ~/.aspell.conf (or $ASPELL_CONF &c.) overrides
   - *.prepl: the 'repl' statement overrides
   - no environment variables or ~ though; use $ASPELL_CONF for that
   - in theory, literal "<lang>" should do the right substitution, but doesn't
+    (which means you're limited to one language if you choose to override!)
 
 ~/.balsa/ – hardcoded
 
-~/.bitcoin/ – hardcoded
+~/.bitcoin/ – hardcoded (TODO: check again)
 
 ~/.cabal/ – environment ++ configurable
   - $CABAL_CONFIG overrides path to ~/.cabal/config
@@ -49,6 +50,8 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.dbus/ – fixed
   - ~/.dbus/session-bus/$MACHINE_ID-$DISPLAY is part of the DBus spec
+  - although technically it doesn't have to exist in the first place
+    (autolaunch is unneeded as long as $DBUS_SESSION_BUS_SOCKET is set)
 
 ~/.dvdcss/ – environment
   - $DVDCSS_CACHE overrides
@@ -80,14 +83,17 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.firestorm/ – environment
   - $FIRESTORM_USER_DIR overrides, but see ~/.secondlife/
 
-~/.forward – fixed
-  - most MTAs expect this, although some can be reconfigured
+~/.forward – varies
+  - most MTAs expect this path, and it's not like they can read .profile
+  - some can be reconfigured system-wide (if you have root access)
   (Exim4 – configurable)
     - "file = $home/<path>" overrides (Exim uses a generic 'redirect' router)
   (Postfix – configurable)
     - "forward_path = $home/<path>" overrides
-  (Procmail – kiiinda configurable)
-    - hardcoded, but can easily use a custom redirect rule instead
+  (Procmail – other options)
+    - can use a custom redirect rule instead
+  (general – other options)
+    - most MTAs have a system-wide 'aliases' file that works the same way
 
 ~/.fossil – hardcoded
 
@@ -103,7 +109,7 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.gdbinit – hardcoded
 
 ~/.gemrc – environment
-  - $GEMRC also used (colon-separated list)
+  - $GEMRC is additionally used (colon-separated list)
     (search path: all of /etc/gemrc, ~/.gemrc, $GEMRC)
 
 ~/.gimp-2.8/ – environment
@@ -112,8 +118,10 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.gitconfig – XDG as of 1.7.12 (0d94427ef844); hardcoded
   - $XDG_CONFIG_HOME/git/config is used now
 
-~/.gitignore – XDG as of 1.7.12 (0d94427ef844); config option (no default)
-  - $XDG_CONFIG_HOME/git/ignore is the new default
+~/.gitignore – XDG as of 1.7.12 (0d94427ef844); configurable
+  - $XDG_CONFIG_HOME/git/ignore is used now
+  - (note that there was no default previously; ~/.gitignore was merely the
+    most commonly used place, due to proximity to ~/.gitconfig)
 
 ~/.gitk – XDG as of 1.9-rc1 (8f86339858c1); hardcoded
   - $XDG_CONFIG_HOME/git/gitk is used now
@@ -143,8 +151,8 @@ Please also read <.environ.notes> if you find this file useful.
     - GVIMINIT=":so ~/.vim/gvimrc"
 
 ~/.hgrc – partial environment
-  - $HGRCPATH can have a list of rc's or *.rc directories, which replaces the
-    default search path (ignoring even the system-wide files)
+  - $HGRCPATH overrides both system and user configs
+    (colon-separated list, may point to files or dirs containing *.rc files)
 
 ~/.httpie/ – environment
   - $HTTPIE_CONFIG_DIR overrides
@@ -171,17 +179,24 @@ Please also read <.environ.notes> if you find this file useful.
   - $XDG_CONFIG_HOME/keybase/ is used for configuration
   - $XDG_CACHE_HOME/keybase/ is used for session data
   - $XDG_DATA_HOME/keybase/ is used for signature cache
+    (not cache as it includes local signatures that are not replicated to the site)
   - "--homedir <dir>" option exists
 
 ~/.ldaprc – environment
-  - $LDAPRC overrides
+  - $LDAPCONF is additionally used
+    (the full search path is large and weird, see docs)
+  - $LDAP<opt> can directly override individual settings
+  - docs: ldap.conf(5)
 
 ~/.lesshst – environment
   - $LESSHISTFILE overrides
 
-~/.mailrc – environment
-  (Mail, nail, heirloom-mailx, s-nail – environment)
-    - $MAILRC || $NAILRC overrides
+~/.mailrc – environment [varies]
+  (Mail – environment)
+    - $MAILRC overrides
+  (nail, heirloom-mailx, s-nail – environment)
+    - $MAILRC overrides default
+    - $NAILRC overrides both
 
 ~/.makepkg.conf – partial environment
   - $MAKEPKG_CONF overrides *both* system and user configs
@@ -201,7 +216,7 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.msmtprc – hardcoded
 
 ~/.mtoolsrc – environment
-  - $MTOOLSRC can point to an additional rc
+  - $MTOOLSRC is additionally used
 
 ~/.muttrc – other locations
   - ~/.mutt/muttrc is an alternate path
@@ -210,7 +225,7 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.mysql_history – environment
   - $MYSQL_HISTFILE overrides
 
-~/.netrc – fixed
+~/.netrc – fixed [varies]
   - many apps expect it there
   (curl – environment)
     - $CURLOPT_NETRC_FILE overrides
@@ -233,6 +248,7 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.npmrc – configurable
   - "userconfig = <path>" in $PREFIX/etc/npmrc overrides
+    (or, of course, you could use $PREFIX/etc/npmrc directly)
   - doc: npm-config(7)
   - see also `npm config get globalconfig` & `npm config get userconfig`
 
@@ -245,7 +261,6 @@ Please also read <.environ.notes> if you find this file useful.
   - however, 1 file remains (~/.opera/OperaAutoupdateChecker.sqlite)
 
 ~/.pine-debug[0-9] – hardcoded
-  - I use a wrapper to remove them (and to pass -p for pinerc)
 
 ~/.pinerc – command line
   - apparently Windows gets $PINERC and $PINECONF, and Unix gets neither
@@ -286,7 +301,7 @@ Please also read <.environ.notes> if you find this file useful.
   - $TKABBER_HOME overrides
 
 ~/.VirtualBox/ – environment
-  - $VBOX_USER_HOME overrides the default path
+  - $VBOX_USER_HOME overrides
   - see also ~/VirtualBox VMs/
 
 ~/.vidalia/ – command line
@@ -346,16 +361,17 @@ Please also read <.environ.notes> if you find this file useful.
 -------------------------------------------------------------------------------
 
 "XDG as of..." – newer versions already use XDG paths
-"configurable" – can change a config option somewhere
+"configurable" – can change a config option somewhere (usually another dotfile)
 "environment" – can set an environment variable
 "partial environment" – environment variable, but needs extra work
+"other locations" – non-XDG but still has better options than ~/.dotfile
+  (e.g. single ~/.dotdir instead of multiple ~/.dotfiles)
 "command line" – must use a command line option
 "partial" – cannot be moved completely
-"pointless" – won't work if moved
+  (e.g. some paths honor environment, others are hardcoded)
 "hardcoded" – source code uses a fixed path
 "fixed" – many programs and/or specs require the dotfile
-
-"other locations" – better alternatives to direct dotfile exist
+  (
 
 -------------------------------------------------------------------------------
 
