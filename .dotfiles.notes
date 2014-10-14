@@ -12,11 +12,11 @@ Please also read <.environ.notes> if you find this file useful.
   - contents of $ASPELL_CONF are parsed before all configuration files
     (semicolon-separated)
   - example (no inner quoting needed):
-    ASPELL_CONF="per-conf $XDG_CONFIG_HOME/aspell.conf"
+    ASPELL_CONF="per-conf $XDG_CONFIG_HOME/aspell.conf; personal ...; repl ..."
   - documentation: `info aspell customizing`
 
 ~/.aspell.<lang>.{per,prepl,pws,repl} – configurable
-  - *.pws: the 'personal' statement in ~/.aspell.conf overrides
+  - *.pws: the 'personal' statement in ~/.aspell.conf (or $ASPELL_CONF &c.) overrides
   - *.prepl: the 'repl' statement overrides
   - no environment variables or ~ though; use $ASPELL_CONF for that
   - in theory, literal "<lang>" should do the right substitution, but doesn't
