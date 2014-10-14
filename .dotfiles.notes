@@ -191,6 +191,10 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.lesshst – environment
   - $LESSHISTFILE overrides
 
+~/.local (Python user_base) – configurable/environment
+  - $PYTHONUSERBASE overrides
+  - note that user_base is independent of XDG ~/.local/share
+
 ~/.mailrc – environment [varies]
   (Mail – environment)
     - $MAILRC overrides
@@ -266,6 +270,15 @@ Please also read <.environ.notes> if you find this file useful.
   - apparently Windows gets $PINERC and $PINECONF, and Unix gets neither
   - "-p <path>" option exists
 
+~/.pip/pip.conf – environment
+  - $PIP_CONFIG_FILE overrides
+  - $PIP_<opt> can override individual settings
+
+~/.pip/pip.log – configurable/environment
+  - $PIP_LOG_FILE overrides
+  - [global] "log_file = <path>" in ~/.pip/pip.conf overrides (no expansion)
+  - docs: http://pip.readthedocs.org/en/latest/user_guide.html#environment-variables
+
 ~/.putty/ – environment
   - $PUTTYDIR overrides
   - subdirectories can be overridden separately:
@@ -287,7 +300,12 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.ssh/ – hardcoded
 
 ~/.Skype/ – command line
-  - "--dbpath=<path>" overrides the default path
+  - "--dbpath=<path>" overrides
+
+~/.sqlite_history – hardcoded
+
+~/.stalonetrayrc – command line
+  - "-c/--config <path>" overrides
 
 ~/.subversion/ – hardcoded
 
