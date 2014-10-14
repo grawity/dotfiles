@@ -279,6 +279,14 @@ Please also read <.environ.notes> if you find this file useful.
   - [global] "log_file = <path>" in ~/.pip/pip.conf overrides (no expansion)
   - docs: http://pip.readthedocs.org/en/latest/user_guide.html#environment-variables
 
+~/.pulse/ – XDG as of 3.0 (9ab510a69216), environment
+  - ~/.config/pulse/ is the new location
+  - $PULSE_CONFIG_PATH overrides
+
+~/.pulse-cookie – XDG as of 3.0 (87ae83070579, also v5.0-135-g59a8618dcd91)
+  - v3.0 hardcoded to ~/.config/pulse/cookie
+  - v6.0 started using $XDG_CONFIG_HOME properly
+
 ~/.putty/ – environment
   - $PUTTYDIR overrides
   - subdirectories can be overridden separately:
