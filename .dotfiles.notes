@@ -103,7 +103,8 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.gdbinit – hardcoded
 
 ~/.gemrc – environment
-  - hardcoded, but $GEMRC can have a list of /additional/ rc's
+  - $GEMRC also used (colon-separated list)
+    (search path: all of /etc/gemrc, ~/.gemrc, $GEMRC)
 
 ~/.gimp-2.8/ – environment
   - $GIMP2_DIRECTORY overrides
@@ -112,28 +113,29 @@ Please also read <.environ.notes> if you find this file useful.
   - $XDG_CONFIG_HOME/git/config is used now
 
 ~/.gitignore – XDG as of 1.7.12 (0d94427ef844); config option (no default)
-  - $XDG_CONFIG_HOME/git/ignore added as default
+  - $XDG_CONFIG_HOME/git/ignore is the new default
 
 ~/.gitk – XDG as of 1.9-rc1 (8f86339858c1); hardcoded
   - $XDG_CONFIG_HOME/git/gitk is used now
 
 ~/.gnome-commander/ – hardcoded/command line?
   - "--config-dir <dir>" option exists in source code, but doesn't work
-  - however, the program is unmaintained anyway, uses obsolete GnomeVFS
+  - the program is unmaintained anyway, uses obsolete GnomeVFS
 
 ~/.gramps/ – environment
   - $GRAMPSHOME overrides
 
-~/.gstreamer-0.10/ – partial
+~/.gstreamer-0.10/ – partial (0.10), XDG (1.0)
   - the registry can use $GST_REGISTRY (which has to be overridden to its
-    original value for 1.0 with $GST_REGISTRY_1_0)
-  - but presets are not possible to move, so I don't bother at all.
+    original value for 1.0 with $GST_REGISTRY_1_0), but presets are not
+    possible to move, so don't bother at all
+  - $XDG_CACHE_HOME/gstreamer-1.0/ is the new location, anyway
 
 ~/.gtkrc – environment
-  - $GTK_RC_FILES overrides, can have a list of rc's
+  - $GTK_RC_FILES overrides (colon-separated list of rc's)
 
 ~/.gtkrc-2.0 – environment
-  - $GTK2_RC_FILES overrides, can have a list of rc's
+  - $GTK2_RC_FILES overrides (colon-separated list of rc's)
 
 ~/.gvimrc – other locations, environment
   - recent Vim versions look in ~/.vim/gvimrc by default
@@ -148,10 +150,11 @@ Please also read <.environ.notes> if you find this file useful.
   - $HTTPIE_CONFIG_DIR overrides
 
 ~/.ICEauthority – environment
-  - $ICEAUTHORITY overrides (e.g. ICEAUTHORITY="$XDG_RUNTIME_DIR/ICE-auhority")
+  - $ICEAUTHORITY overrides
+    (e.g. ICEAUTHORITY="$XDG_RUNTIME_DIR/ICE-authority")
 
 ~/.irbrc – environment
-  - $IRBRC is first in default search path
+  - $IRBRC overrides
 
 ~/.irssi/ – command line
   - "--home=<dir>" option exists
