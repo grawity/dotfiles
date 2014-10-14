@@ -13,6 +13,7 @@
 ## Aliases
 
 alias clock='tty-clock -c'
+alias gmm='run google-musicmanager'
 alias RM='/bin/rm -I'
 
 rm() {

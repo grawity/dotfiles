@@ -83,6 +83,7 @@ ressh() { ssh -v \
 	-o ControlMaster=no \
 	-o ControlPath=none \
 	"$@" ":"; }
+alias riswhois='do: whois -h riswhois.ripe.net'
 alias rot13='tr N-ZA-Mn-za-m A-Za-z'
 rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}"; echo; }
 alias run='spawn -c'
