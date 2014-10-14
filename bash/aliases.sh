@@ -2,6 +2,8 @@
 
 unalias -a
 
+do:() { (PS4='+ '; set -x; "$@") }
+
 editor() { command ${EDITOR:-vi} "$@"; }
 browser() { command ${BROWSER:-lynx} "$@"; }
 pager() { command ${PAGER:-more} "$@"; }

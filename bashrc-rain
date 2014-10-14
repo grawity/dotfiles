@@ -90,8 +90,6 @@ youtube-dl() {
 	"${cmd[@]}"
 }
 
-do:() { (PS4='+ '; set -x; "$@") }
-
 sudo:() {
 	if (( UID ))
 		then do: sudo "$@"
