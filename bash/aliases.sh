@@ -26,6 +26,7 @@ alias ed='ed -p:'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
 alias facl='getfacl -pt'
 alias fdf='findmnt -o target,size,used,avail,use%,fstype'
+alias fc-fontformat='fc-list -f "%10{fontformat}: %{family}\n"'
 gerp() { egrep -r -I -D skip --exclude-dir={.bzr,.git,.hg,.svn} -H -n "$@"; }
 gpgfp() { gpg --with-colons --fingerprint "$1" | awk -F: '/^fpr:/ {print $10}'; }
 alias hex='xxd -p'
@@ -57,6 +58,7 @@ alias lsd='ls -d .*'
 alias lspart='lsblk -o name,partlabel,fstype,label,mountpoint'
 alias md='mkdir'
 mir() { wget -m -np --reject-regex='.*\?C=.;O=.$' "$@"; }
+mkmaildir() { local d; for d; do mkdir -p "$d"/{cur,new,tmp}; done; }
 alias mutagen='mid3v2'
 mv() {
 	if [[ -t 0 && -t 1 && $# -eq 1 && -e $1 ]]; then
