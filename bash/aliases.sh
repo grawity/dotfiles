@@ -58,7 +58,7 @@ alias lsd='ls -d .*'
 alias lspart='lsblk -o name,partlabel,fstype,label,mountpoint'
 alias md='mkdir'
 mir() { wget -m -np --reject-regex='.*\?C=.;O=.$' "$@"; }
-mkmaildir() { local d; for d; do mkdir -p "$d"/{cur,new,tmp}; done; }
+mkmaildir() { mkdir -p "${@/%//cur}" "${@/%//new}" "${@/%//tmp}"; }
 alias mutagen='mid3v2'
 mv() {
 	if [[ -t 0 && -t 1 && $# -eq 1 && -e $1 ]]; then
