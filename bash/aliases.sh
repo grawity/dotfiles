@@ -163,7 +163,15 @@ clip() {
 }
 
 if have xdg-open; then
-	alias open='run xdg-open'
+	open() {
+		local u=$1
+		local t=$(uri "$u")
+		if [[ "$t" != "$u" ]]; then
+			echo $t
+			u=$t
+		fi
+		run xdg-open $u
+	}
 fi
 
 if have mpv; then
