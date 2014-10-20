@@ -34,7 +34,6 @@ export GPG_TTY=$(tty)
 
 [[ $- == *i* ]] || return 0
 
-set -o noclobber		# do not overwrite files when redirecting
 set -o physical			# resolve symlinks when 'cd'ing
 shopt -s autocd 2>/dev/null	# assume 'cd' when trying to exec a directory
 shopt -s checkjobs 2> /dev/null	# print job status on exit
