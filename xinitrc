@@ -5,6 +5,11 @@ have() { type "$1" > /dev/null 2>&1; }
 
 cd ~
 
+# Load basic profile
+
+[ -f /etc/profile ]	&& . /etc/profile
+[ -f ~/.profile ]	&& . ~/.profile
+
 # Ensure a ssh-agent
 
 if [ ! "$SSH_AUTH_SOCK" ] && have ssh-agent; then
@@ -50,10 +55,8 @@ esac
 
 export DESKTOP_SESSION
 
-# Load profiles and resources
+# Load X11-specific profile
 
-[ -f /etc/profile ]	&& . /etc/profile
-[ -f ~/.profile ]	&& . ~/.profile
 [ -f /etc/xprofile ]	&& . /etc/xprofile
 [ -f ~/.xprofile ]	&& . ~/.xprofile
 [ -f ~/.Xresources ]	&& xrdb -merge ~/.Xresources
