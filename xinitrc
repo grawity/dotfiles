@@ -45,6 +45,7 @@ case $1 in
 	mate-session)		DESKTOP_SESSION=mate;;
 	startkde)		DESKTOP_SESSION=kde-plasma;;
 	startxfce4)		DESKTOP_SESSION=xfce;;
+	xterm)			DESKTOP_SESSION=xterm;;
 esac
 
 export DESKTOP_SESSION
