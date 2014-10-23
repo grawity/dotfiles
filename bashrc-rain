@@ -163,8 +163,8 @@ scrape-reddit() {
 		if [[ $u == *[./]reddit.com/r/* ]]; then
 			local f=$(date +%s.%N)
 			~/code/net/scrape-reddit-comment "$u" \
-			| tee ~/new-reddit/tmp/$f \
-			&& mv ~/new-reddit/{tmp,new}/$f
+			| tee ~/tmp/Reddit/tmp/$f \
+			&& mv ~/tmp/Reddit/{tmp,new}/$f
 		else
 			echo "ಠ_ಠ"
 		fi
