@@ -384,6 +384,9 @@ Please also read <.environ.notes> if you find this file useful.
   - can be changed by `VBoxManage setproperty machinefolder <path>` or via GUI
   - see also ~/.VirtualBox/
 
+~/wuala/ – configurable
+  - edit ~/.config/Wuala.cfg
+
 -------------------------------------------------------------------------------
 
 "XDG as of..." – newer versions already use XDG paths
