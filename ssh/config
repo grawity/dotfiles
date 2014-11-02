@@ -190,7 +190,7 @@ Host *
 	HashKnownHosts no
 
 #if OpenSSH
-	ControlPath ~/.ssh/S.%l.%r@%h:%p
+	ControlPath ~/.ssh/S.%r@%h:%p
 	ControlMaster auto
 #endif
 #if OpenSSH && Version 5.6
