@@ -11,6 +11,7 @@
 [user]
 	name = Mantas Mikulėnas
 	email = grawity@gmail.com
+	signingKey = "D24F6CB2C1B52632"
 [advice]
 	pushNonFastForward = false
 	statusHints = false
@@ -152,6 +153,7 @@
 	#main-view = date:relative author:full,width=12 commit-title:graph=yes,refs=yes
 [tig "bind"]
 	generic = Backspace view-close
+	generic = \\ scroll-line-up
 	generic = E !git format-patch -1 %(commit)
 	# noop on unrecognized escape sequences
 	main = ~ none
