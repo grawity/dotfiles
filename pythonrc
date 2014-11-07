@@ -29,7 +29,7 @@ def _init_():
 	color = "35" if sys.version_info[0] >= 3 else "34"
 	name = "py%d.%d " % sys.version_info[0:2]
 
-	sys.ps1 = fmt("0;%s" % color) + name + fmt("1") + ">>>" + fmt("0") + " "
-	sys.ps2 = " " * len(name) + fmt("0;1;30") + "..." + fmt("0") + " "
+	sys.ps1 = fmt(";%s" % color) + name + fmt("1") + ">>>" + fmt("") + " "
+	sys.ps2 = " " * len(name) + fmt(";1;30") + "..." + fmt("") + " "
 
 _init_()
