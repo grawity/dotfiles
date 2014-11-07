@@ -3,6 +3,8 @@ augroup filetypedetect
 
 	au BufNewFile,BufRead /etc/motd setf motd
 
+	au BufNewFile,BufRead *.axfr setf bindzone
+
 	" config
 	au BufNewFile,BufRead ~/.irssi/config setf c-conf
 

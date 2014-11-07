@@ -1,3 +1,5 @@
 syn keyword lftpSettings	contained
-				\ use-ip-tos
+				\ check-hostname
 				\ ssl-protect-fxp
+				\ use-ip-tos
+				\ use-sni
