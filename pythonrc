@@ -12,7 +12,7 @@ def _init_():
 
 	readline.parse_and_bind("tab: complete")
 
-        # history
+	# history
 
 	hist_file = os.path.expanduser("~/.cache/python.history")
 
