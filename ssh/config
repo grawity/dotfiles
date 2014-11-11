@@ -10,13 +10,18 @@
 
 Host uk-untangle
 	HostName 193.219.181.200
+	User root
+	ForwardAgent yes
 
 Host uk-pf-maironio7
 	HostName 193.219.181.217
+	User root
+	ForwardAgent yes
 
 Host uk-radius ukradius
 	HostName 193.219.181.253
 	User grawity
+	ForwardAgent yes
 
 Host uk-sw-litnet
 	HostName 193.219.181.238
