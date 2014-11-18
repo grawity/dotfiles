@@ -12,7 +12,6 @@ alias bat='acpi -i'
 alias cindex='env TMPDIR=/var/tmp cindex'
 count() { sort "$@" | uniq -c | sort -n -r | pager; }
 alias csearch='csearch -n'
-alias cur='cur '
 dist/head() {
 	echo -e "\e[1m== ~/code\e[m"
 	(cd ~/code && git tip)
@@ -122,7 +121,7 @@ alias '~~'='egrep -i'
 -() { cd -; }
 [() {
 	if [[ "${@:$#}" == "]" ]]; then
-		test "${@:1:$#-1}"
+		builtin [ "$@"
 	else
 		pushd "$*"
 	fi
@@ -134,11 +133,19 @@ alias bad='git bisect bad'
 
 alias ssdate='date "+%Y%m%d"'
 alias sdate='date "+%Y-%m-%d"'
-alias sfdate='date "+%Y-%m-%d %H:%M"'
+alias mdate='date "+%Y-%m-%d %H:%M"'
 alias ldate='date "+%A, %B %-d, %Y %H:%M"'
 alias mboxdate='date "+%a %b %_d %H:%M:%S %Y"'
 alias mimedate='date "+%a, %d %b %Y %H:%M:%S %z"' # RFC 2822
 alias isodate='date "+%Y-%m-%dT%H:%M:%S%z"' # ISO 8601
+
+if have xdg-open; then
+	alias open='run xdg-open'
+fi
+
+if have mpv; then
+	alias mplayer='mpv'
+fi
 
 if have xclip; then
 	alias psel='xclip -out -selection primary'
@@ -162,13 +169,15 @@ clip() {
 	fi
 }
 
-if have xdg-open; then
-	alias open='run xdg-open'
-fi
-
-if have mpv; then
-	alias mplayer='mpv'
-fi
+sel() {
+	if (( $@ )); then
+		echo -n "$*" | gsel
+	elif [[ ! -t 0 ]]; then
+		gsel
+	else
+		psel
+	fi
+}
 
 ## OS-dependent aliases
 
@@ -375,7 +384,6 @@ if have systemctl && [[ -d /run/systemd/system ]]; then
 	alias disable='sudo systemctl disable'
 	alias list='systemctl list-units -t path,service,socket --no-legend'
 	alias userctl='systemctl --user'
-	alias sd='systemctl'
 	alias u='systemctl --user'
 	ustart()   { userctl start "$@";   userctl status -a "$@"; }
 	ustop()    { userctl stop "$@";    userctl status -a "$@"; }
