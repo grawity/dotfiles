@@ -27,6 +27,7 @@ ACCDB="$HOME/Private/accdb/accounts.txt"
 CSEARCHINDEX="$XDG_CACHE_HOME/codesearch/csearchindex"
 GEMRC="$XDG_CONFIG_HOME/gemrc"
 VBOX_USER_HOME="$XDG_CONFIG_HOME/VirtualBox"
+WWW_HOME="http://nullroute.eu.org/"
 
 CN_LDAP_SERVER="ldap://wolke.nullroute.eu.org"
 MANLESS="]0;\$MAN_PN Manual page \$MAN_PN ?ltline %lt?L/%L.:byte %bB?s/%s..?e (END):?pB %pB\\%.. "
