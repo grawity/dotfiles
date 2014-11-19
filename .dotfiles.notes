@@ -195,6 +195,14 @@ Please also read <.environ.notes> if you find this file useful.
   - $PYTHONUSERBASE overrides
   - note that user_base is independent of XDG ~/.local/share
 
+~/.lynx_cookies – configurable
+  - 'cookie_file' in ~/.lynxrc
+
+~/.lynxrc – hardcoded
+  - userdefs.h:/FNAME_LYNXRC/
+  - src/LYrcFile.c:/(read|save)_rc/
+  - possibly, lynx.cfg ($LYNX_CFG) could be used instead?
+
 ~/.mailrc – environment [varies]
   (Mail – environment)
     - $MAILRC overrides
