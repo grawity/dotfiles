@@ -30,6 +30,10 @@ Host uk-sw-litnet
 Host 193.219.181.238
 	User admin
 
+Host 193.219.181.240
+	User admin
+	Port 42
+
 Host uk-* 193.219.181.192/26
 	User root
 	IdentityFile ~/.ssh/id_ukolegija
