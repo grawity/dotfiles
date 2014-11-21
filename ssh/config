@@ -13,7 +13,7 @@ Host 193.219.181.200 uk-untangle
 	User root
 	ForwardAgent yes
 
-Host 193.219.181.217 uk-pf-maironio7
+Host 193.219.181.217 uk-pf-Maironio7
 	HostName 193.219.181.217
 	User root
 	ForwardAgent yes
@@ -30,7 +30,7 @@ Host 193.219.181.238 uk-sw-b56-litnet
 	IdentityFile ~/.ssh/id_ukolegija
 	ControlMaster no
 
-Host 193.219.181.240 uk-sw-b56
+Host 193.219.181.240 uk-sw-Aukstaiciu9
 	HostName 193.219.181.240
 	Port 42
 	User admin
