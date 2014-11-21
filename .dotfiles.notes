@@ -182,6 +182,10 @@ Please also read <.environ.notes> if you find this file useful.
     (not cache as it includes local signatures that are not replicated to the site)
   - "--homedir <dir>" option exists
 
+~/.kvirc4.rc – hardcoded, build-time?
+  - when built with KDE support, uses native KDE location (probably somewhere
+    deep inside ~/.kde4)
+
 ~/.ldaprc – environment
   - $LDAPCONF is additionally used
     (the full search path is large and weird, see docs)
