@@ -25,16 +25,19 @@ Host uk-radius ukradius
 
 Host uk-sw-litnet
 	HostName 193.219.181.238
-	User admin
 	Port 42
+	User admin
+	IdentityFile ~/.ssh/id_ukolegija
 
 Host 193.219.181.238
-	User admin
 	Port 42
+	User admin
+	IdentityFile ~/.ssh/id_ukolegija
 
 Host 193.219.181.240
-	User admin
 	Port 42
+	User admin
+	IdentityFile ~/.ssh/id_ukolegija
 
 Host uk-* 193.219.181.192/26
 	User root
