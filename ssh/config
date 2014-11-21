@@ -8,41 +8,36 @@
 
 # work
 
-Host uk-untangle
+Host 193.219.181.200 uk-untangle
 	HostName 193.219.181.200
 	User root
 	ForwardAgent yes
 
-Host uk-pf-maironio7
+Host 193.219.181.217 uk-pf-maironio7
 	HostName 193.219.181.217
 	User root
 	ForwardAgent yes
 
-Host uk-radius ukradius
+Host 193.219.181.253 uk-radius ukradius
 	HostName 193.219.181.253
 	User grawity
 	ForwardAgent yes
 
-Host uk-sw-litnet
+Host 193.219.181.238 uk-sw-b56-litnet
 	HostName 193.219.181.238
 	Port 42
 	User admin
 	IdentityFile ~/.ssh/id_ukolegija
 	ControlMaster no
 
-Host 193.219.181.238
+Host 193.219.181.240 uk-sw-b56
+	HostName 193.219.181.240
 	Port 42
 	User admin
 	IdentityFile ~/.ssh/id_ukolegija
 	ControlMaster no
 
-Host 193.219.181.240
-	Port 42
-	User admin
-	IdentityFile ~/.ssh/id_ukolegija
-	ControlMaster no
-
-Host uk-* 193.219.181.192/26
+Host 193.219.181.192/26 uk-*
 	User root
 	IdentityFile ~/.ssh/id_ukolegija
 	ForwardAgent yes
