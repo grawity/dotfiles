@@ -150,12 +150,14 @@ _awesome_prompt() {
 
 	local HOME=${HOME%/}
 
-	local wdbase= wdhead= wdbody= wdtail=
+	local wdrepo= wdbase= wdhead= wdbody= wdtail=
 	local -i collapsed=0 tilde=0
 
 	# find the working directory's root
 
-	if [[ $git == .git ]]; then
+	if [[ $GIT_WORK_TREE ]]; then
+		wdbase=$(readlink -f "$GIT_WORK_TREE")
+	elif [[ $git == .git ]]; then
 		wdbase=$PWD
 	elif [[ $git == /*/.git ]]; then
 		wdbase=${git%/.git}
@@ -164,8 +166,8 @@ _awesome_prompt() {
 			wdbase=
 		fi
 	elif [[ $git ]]; then
-		wdbase=$(git rev-parse --show-toplevel)
-		wdbase=${wdbase:-$(readlink -f "$git")}
+		wdrepo=$(git rev-parse --show-toplevel)
+		wdbase=${wdrepo:-$(readlink -f "$git")}
 	fi
 
 	# find the 'base' – the parent of the working directory
@@ -175,13 +177,26 @@ _awesome_prompt() {
 	# split into 'head' (normal text) and 'tail' (highlighted text)
 	# Now, if only I remembered why this logic is so complex...
 
+	_dbg() { if [[ $DEBUG ]]; then echo "[$*]"; fi; }
+	_dbg "fullpwd='$fullpwd'"
+	_dbg "wdrepo='$wdrepo'"
+	_dbg "wdbase='$wdbase'"
+
 	if [[ $fullpwd != 'y' && $PWD == "$HOME" ]]; then
+		# special case with fullpwd=n:
+		# show full home directory with no highlight
+		_dbg "case 1"
 		wdhead=$PWD wdtail=''
-	elif [[ $wdbase && $PWD != "$wdbase" ]]; then
+	elif [[ $wdrepo && $wdbase && $PWD != "$wdbase" ]]; then
+		# inside a subdirectory of working tree
+		_dbg "case 2"
 		wdhead=$wdbase/ wdtail=${PWD#$wdbase/}
 	elif [[ $git && ! $wdbase ]]; then
+		# inside a bare Git repo
+		_dbg "case 3"
 		wdhead=/ wdtail=${PWD#/}
 	else
+		_dbg "case default"
 		wdhead=${PWD%/*}/ wdtail=${PWD##*/}
 	fi
 
