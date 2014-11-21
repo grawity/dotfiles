@@ -26,9 +26,11 @@ Host uk-radius ukradius
 Host uk-sw-litnet
 	HostName 193.219.181.238
 	User admin
+	Port 42
 
 Host 193.219.181.238
 	User admin
+	Port 42
 
 Host 193.219.181.240
 	User admin
