@@ -96,11 +96,10 @@ PAGER="less"
 # locale
 
 case $LANG in
-    en_*)
-	;;
-    *)
-	LANG="en_US.UTF-8";;
+    en_*) ;;
+    *) LANG="en_US.UTF-8";;
 esac
+LINGUAS="en lt"
 
 # libdefaults
 
