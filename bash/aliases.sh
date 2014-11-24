@@ -181,7 +181,11 @@ sel() {
 
 ## OS-dependent aliases
 
-export GREP_OPTIONS='--color=auto'
+grepopt="--color=auto"
+alias grep="grep $grepopt"
+alias egrep="egrep $grepopt"
+alias fgrep="fgrep $grepopt"
+unset grepopt
 
 lsopt="-F -h"
 if (( UID == 0 )); then
