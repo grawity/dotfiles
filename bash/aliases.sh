@@ -9,6 +9,7 @@ browser() { command ${BROWSER:-lynx} "$@"; }
 pager() { command ${PAGER:-more} "$@"; }
 
 alias bat='acpi -i'
+catsexp() { cat "$@" | sexp-conv -w $COLUMNS; }
 alias cindex='env TMPDIR=/var/tmp cindex'
 count() { sort "$@" | uniq -c | sort -n -r | pager; }
 alias csearch='csearch -n'
