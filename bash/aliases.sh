@@ -27,7 +27,7 @@ entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
 alias facl='getfacl -pt'
 alias fdf='findmnt -o target,size,used,avail,use%,fstype'
 alias fc-fontformat='fc-list -f "%10{fontformat}: %{family}\n"'
-gerp() { egrep -r -I -D skip --exclude-dir={.bzr,.git,.hg,.svn} -H -n "$@"; }
+gerp() { egrep $grepopt -r -I -D skip --exclude-dir={.bzr,.git,.hg,.svn} -H -n "$@"; }
 gpgfp() { gpg --with-colons --fingerprint "$1" | awk -F: '/^fpr:/ {print $10}'; }
 alias hex='xxd -p'
 alias unhex='xxd -p -r'
@@ -183,10 +183,9 @@ sel() {
 ## OS-dependent aliases
 
 grepopt="--color=auto"
-alias grep="grep $grepopt"
-alias egrep="egrep $grepopt"
-alias fgrep="fgrep $grepopt"
-unset grepopt
+alias grep='grep $grepopt'
+alias egrep='egrep $grepopt'
+alias fgrep='fgrep $grepopt'
 
 lsopt="-F -h"
 if (( UID == 0 )); then
