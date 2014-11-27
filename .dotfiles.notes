@@ -401,6 +401,15 @@ Please also read <.environ.notes> if you find this file useful.
 
 -------------------------------------------------------------------------------
 
+For various Java programs that litter the home directory, the answer is "change
+the home directory". I have a wrapper script that basically runs:
+
+    java -Duser.home="$XDG_DATA_HOME/Java"
+
+Don't forget to symlink ~/.java into the redirect directory.
+
+-------------------------------------------------------------------------------
+
 "XDG as of..." – newer versions already use XDG paths
 "configurable" – can change a config option somewhere (usually another dotfile)
 "environment" – can set an environment variable
