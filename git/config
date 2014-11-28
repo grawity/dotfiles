@@ -64,6 +64,9 @@
 	pushNonFastForward = false
 	statusHints = false
 
+[am]
+	messageid = true
+
 [color]
 	ui = auto
 	branch = auto
