@@ -1,20 +1,11 @@
 # ~/.gitconfig: git-config(1) - Git configuration
-# vim: ft=gitconfig
+# vim: ft=gitconfig:nowrap
 
-[core]
-	excludesfile = ~/.config/git/ignore
-	# never use an askpass even if $SSH_ASKPASS is set
-	# (uses "password" entry even for usernames, confusing)
-	askpass = 
-	autocrlf = false
-	logAllRefUpdates = true
 [user]
 	name = Mantas Mikulėnas
 	email = grawity@gmail.com
 	signingKey = "D24F6CB2C1B52632"
-[advice]
-	pushNonFastForward = false
-	statusHints = false
+
 [alias]
 	a = add --all
 	a-p = add --all --patch
@@ -66,22 +57,41 @@
 	wshow = show --word-diff
 	fpush = push --force-with-lease
 	uncommit = reset HEAD^
+
+# Everything else
+
+[advice]
+	pushNonFastForward = false
+	statusHints = false
+
 [color]
 	ui = auto
 	branch = auto
 	diff = auto
 	status = auto
+
 [color "diff"]
 	whitespace = red reverse
+
 [color "grep"]
 	filename = magenta
 	linenumber = green
+
 [column]
-	# Apparently order matters.
+	# option order matters, apparently?
 	ui = auto
 	branch = never
 	status = never
 	tag = auto dense
+
+[core]
+	excludesfile = ~/.config/git/ignore
+	# never use an askpass even if $SSH_ASKPASS is set
+	# (uses "password" entry even for usernames, confusing)
+	askpass = 
+	autocrlf = false
+	logAllRefUpdates = true
+
 [credential]
 	helper = cache --socket $XDG_RUNTIME_DIR/git-credential-cache.socket
 	helper = lib gnomekeyring
@@ -89,36 +99,61 @@
 	#helper = netrc
 	helper = store --file ~/.auth/git-credential-store
 	useHttpPath = false
+
 [diff]
 	renames = copies
 	submodule = log
+
 [diff "gpg"]
 	textconv = gpg -v
 	xfuncname = "^((pub|uid) .*)"
+
 [diff "ldif"]
 	xfuncname = "^(dn: .+)$"
+
 [diff "polkit"]
 	xfuncname = "(<action id=\\\".+\\\">)"
+
+[filter "merge-known-hosts"]
+	clean = ssh-duphosts -m -
+	smudge = cat
+
 [gc]
 	reflogExpire = 365 days
 	reflogExpireUnreachable = 365 days
+
+[github]
+	user = grawity
+	password = !getnetrc -df %p github.com grawity
+
 [grep]
 	lineNumber = true
 	extendedRegexp = true
+
+[gui]
+	encoding = utf-8
+	fontdiff = -family \"DejaVu Sans Mono\" -size 9 -weight normal -slant roman -underline 0 -overstrike 0
+
 [init]
 	templateDir = ~/.config/git/template
+
 [merge]
 	defaultToUpstream = true
 	conflictStyle = diff3
+
 [pack]
 	writebitmaps = true
+
 [push]
 	#default = upstream
 	default = current
+
 [rebase]
 	autosquash = true
+
 [receive]
 	denyCurrentBranch = refuse
+
 [sendemail]
 	from = Mantas Mikulėnas <grawity@gmail.com>
 	confirm = auto
@@ -127,17 +162,6 @@
 	#smtpServerOption = --debug
 	smtpServerOption = --read-envelope-from
 
-# External programs
-
-[filter "merge-known-hosts"]
-	clean = ssh-duphosts -m -
-	smudge = cat
-[github]
-	user = grawity
-	password = !getnetrc -df %p github.com grawity
-[gui]
-	encoding = utf-8
-	fontdiff = -family \"DejaVu Sans Mono\" -size 9 -weight normal -slant roman -underline 0 -overstrike 0
 [tig]
 	show-date = relative
 	#show-author = abbreviated
@@ -151,6 +175,7 @@
 	ignore-case = true
 	#diff-options = --patience
 	#main-view = date:relative author:full,width=12 commit-title:graph=yes,refs=yes
+
 [tig "bind"]
 	generic = Backspace view-close
 	generic = \\ scroll-line-up
@@ -159,18 +184,18 @@
 	main = ~ none
 	main = 4 toggle-graphic
 	main = G move-last-line
+
 [tig "color"]
 	cursor = black green
 	#title-focus = color16 color39
 	#title-blur = color16 color25
-
-# URL replacements
 
 #[url "ssh://"]
 #	pushInsteadOf = git://
 
 [url "git://git.nullroute.eu.org/"]
 	insteadOf = nullroute:
+
 [url "grawity@virgule.cluenet.org:pub/git/"]
 	insteadOf = nullroute+ssh:
 	pushInsteadOf = nullroute:
@@ -194,5 +219,9 @@
 [url "https://kernel.googlesource.com/"]
 	insteadOf = kernel.org::
 
+# Local settings
+
 [include]
 	path = ~/.gitconfig-local
+
+# EOF
