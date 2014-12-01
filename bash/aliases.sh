@@ -54,10 +54,13 @@ ldapstat() { ldapsearch -b "" -s base -x -LLL "$@" \* +; }
 alias lp='sudo netstat -lptu --numeric-hosts'
 alias lpt='sudo netstat -lpt --numeric-hosts'
 alias lpu='sudo netstat -lpu --numeric-hosts'
+lscsr() { openssl req -in "${1:-/dev/stdin}" -noout -text; }
 alias lsd='ls -d .*'
 alias lspart='lsblk -o name,partlabel,fstype,label,mountpoint'
 alias md='mkdir'
 mir() { wget -m -np --reject-regex='.*\?C=.;O=.$' "$@"; }
+alias mkcert='mkcsr -x509 -days 3650'
+alias mkcsr='openssl req -new -sha256'
 mkmaildir() { mkdir -p "${@/%//cur}" "${@/%//new}" "${@/%//tmp}"; }
 alias mutagen='mid3v2'
 mv() {
