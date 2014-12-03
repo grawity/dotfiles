@@ -299,30 +299,6 @@ sslcert() {
 	fi
 }
 
-x509() {
-	local file=${1:-/dev/stdin}
-	if have certtool; then
-		certtool -i <"$file" |
-		sed -r '/^-----BEGIN/,/^-----END/d;
-			/^\t*([0-9a-f][0-9a-f]:)+[0-9a-f][0-9a-f]$/d;
-			/^\t.*random art:$/,/^\t\t\+-+\+$/d'
-	else
-		openssl x509 -noout -text -certopt no_pubkey,no_sigdump <"$file"
-	fi
-}
-
-x509der() {
-	local file=${1:-/dev/stdin}
-	if have certtool; then
-		certtool --inder -i <"$file" |
-		sed -r '/^-----BEGIN/,/^-----END/d;
-			/^\t*([0-9a-f][0-9a-f]:)+[0-9a-f][0-9a-f]$/d;
-			/^\t.*random art:$/,/^\t\t\+-+\+$/d'
-	else
-		openssl x509 -inform der -noout -text -certopt no_pubkey,no_sigdump <"$file"
-	fi
-}
-
 x509fp() {
 	local file=${1:-/dev/stdin}
 	openssl x509 -noout -fingerprint -sha1 -in "$file" |
