@@ -95,16 +95,13 @@ Host radian
 	ForwardAgent yes
 
 Host rain rain.local
-	#HostName rain.nullroute.eu.org
+	HostkeyAlias rain.nullroute.eu.org
 	ForwardAgent yes
 	ForwardX11 yes
 
 Host snow snow.home snow.local
-	#HostName snow.home
-	#HostName snow.nullroute.eu.org
 	HostkeyAlias snow.nullroute.eu.org
 	User Mantas
-	#ForwardAgent yes
 
 Host sky
 	HostName sky.nullroute.eu.org
@@ -193,16 +190,16 @@ Host *.home *.local 10.* 192.168.*
 
 Host *
 	Protocol 2
+	SendEnv LANG PULSE_SERVER TZ
 	ForwardX11Trusted yes
-	VerifyHostKeyDNS yes
-	NoHostAuthenticationForLocalhost yes
+
 	HashKnownHosts no
+	NoHostAuthenticationForLocalhost yes
+	VerifyHostKeyDNS yes
+
+	ServerAliveInterval 600
+	#ServerAliveCountMax 3
 
 	ControlPath ~/.ssh/S.%r@%h:%p
 	ControlMaster auto
 	ControlPersist 5m
-
-	SendEnv LANG PULSE_SERVER TZ
-
-	ServerAliveInterval 600
-	#ServerAliveCountMax 3
