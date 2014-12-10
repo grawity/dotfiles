@@ -92,6 +92,8 @@ _awesome_prompt() {
 	# Parts borrowed from git/contrib/completion/git-prompt.sh,
 	# trimmed down to not cause any noticeable slowdown.
 
+	_dbg() { if [[ $DEBUG ]]; then echo "[$*]"; fi; }
+
 	local git= br= re=
 
 	if ! have git; then
@@ -155,6 +157,8 @@ _awesome_prompt() {
 
 	# find the working directory's root
 
+	_dbg "* git='$git'"
+
 	if [[ $GIT_WORK_TREE ]]; then
 		wdbase=$(readlink -f "$GIT_WORK_TREE")
 	elif [[ $git == .git ]]; then
@@ -177,17 +181,21 @@ _awesome_prompt() {
 	# split into 'head' (normal text) and 'tail' (highlighted text)
 	# Now, if only I remembered why this logic is so complex...
 
-	_dbg() { if [[ $DEBUG ]]; then echo "[$*]"; fi; }
-	_dbg "fullpwd='$fullpwd'"
-	_dbg "wdrepo='$wdrepo'"
-	_dbg "wdbase='$wdbase'"
+	# TODO: clearly handle the following
+	#   $PWD = $HOME
+	#   inside working tree
+	#   inside bare repository
+
+	_dbg "* fullpwd='$fullpwd'"
+	_dbg "  wdrepo='$wdrepo'"
+	_dbg "  wdbase='$wdbase'"
 
 	if [[ $fullpwd != 'y' && $PWD == "$HOME" ]]; then
 		# special case with fullpwd=n:
 		# show full home directory with no highlight
 		_dbg "case 1"
 		wdhead=$PWD wdtail=''
-	elif [[ $wdrepo && $wdbase && $PWD != "$wdbase" ]]; then
+	elif [[ $wdbase && $PWD != "$wdbase" ]]; then
 		# inside a subdirectory of working tree
 		_dbg "case 2"
 		wdhead=$wdbase/ wdtail=${PWD#$wdbase/}
@@ -208,6 +216,9 @@ _awesome_prompt() {
 			tilde=2
 		fi
 	fi
+
+	_dbg "* wdhead='$wdhead'"
+	_dbg "  wdtail='$wdtail'"
 
 	# I honestly do not know why it's "maxwidth - tilde" in one place, but
 	# "maxwidth + tilde" in another.
