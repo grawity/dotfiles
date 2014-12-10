@@ -112,6 +112,12 @@ Host sky
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
+Host theos
+	HostName theos.kyriasis.com
+	GSSAPIAuthentication yes
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
 Host tide
 	HostName tide.nullroute.eu.org
 	GSSAPIAuthentication yes
