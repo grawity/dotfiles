@@ -57,6 +57,7 @@
 	wshow = show --word-diff
 	fpush = push --force-with-lease
 	uncommit = reset HEAD^
+	emerge = merge --edit --no-ff
 
 # Everything else
 
