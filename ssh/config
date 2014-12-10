@@ -207,9 +207,7 @@ Host *
 
 	ControlPath ~/.ssh/S.%r@%h:%p
 	ControlMaster auto
-#if OpenSSH && Version 5.6
 	ControlPersist 5m
-#endif
 
 	SendEnv LANG PULSE_SERVER TZ
 
