@@ -74,8 +74,16 @@
 	diff = auto
 	status = auto
 
+[color "decorate"]
+	remoteBranch = 202
+
 [color "diff"]
 	whitespace = red reverse
+	commit = 214
+	frag = 38
+	func = 87
+	new = 76
+	old = 196
 
 [color "grep"]
 	filename = magenta
