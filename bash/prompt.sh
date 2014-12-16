@@ -321,10 +321,10 @@ _show_status() {
 		if (( status > 128 && status <= 192 )); then
 			local sig=$(kill -l $status 2>/dev/null)
 			if [[ $sig ]]; then
-				status+="/SIG$sig"
+				status+=" or SIG$sig"
 			fi
 		fi
-		printf "\e[0;33m%s\e[m\n" "(returned $status)"
+		printf "\e[m\e[38;5;166m%s\e[m\n" "(returned $status)"
 	fi
 }
 
