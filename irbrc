@@ -6,7 +6,7 @@ require 'pp'
 
 Proc.new{
 	def _fmt(fmt, text)
-		"\001#{fmt}\002#{text}\001\e[m\002"
+		"\001" + fmt + "\002" + text + "\001\e[m\002"
 	end
 
 	def _prompt(prefmt, charfmt, char)
@@ -15,7 +15,9 @@ Proc.new{
 
 	IRB.conf[:SAVE_HISTORY] = 100
 
-	IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.cache/irb.history"
+	dir = ENV["XDG_CACHE_HOME"] || ENV["HOME"] + "/.cache"
+
+	IRB.conf[:HISTORY_FILE] = dir + "/irb.history"
 
 	IRB.conf[:PROMPT][:my] = {
 		PROMPT_I: _prompt("\e[m\e[38;5;2m", "\e[;1m\e[38;5;10m", ">"),
