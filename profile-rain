@@ -27,6 +27,8 @@ if [ -t 1 ] && [ ! "$DISPLAY" ] && [ ! "$TMUX" ]; then
 	(cd "Dropbox/Code recycle bin/mq" && ./mq-wallnotify 2>/dev/null &)
 fi
 
-have acpi && acpi
+if [ -t 1 ] && [ ! "$SILENT" ]; then
+	have acpi && acpi
+fi
 
 true
