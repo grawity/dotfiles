@@ -214,7 +214,8 @@ Please also read <.environ.notes> if you find this file useful.
     - $MAILRC overrides default
     - $NAILRC overrides both
 
-~/.makepkg.conf – partial environment
+~/.makepkg.conf – XDG as of 4.2.0; partial environment
+  - $XDG_CONFIG_HOME/pacman/makepkg.conf is the new default
   - $MAKEPKG_CONF overrides *both* system and user configs
 
 ~/.mpd/ – XDG as of 0.18; command line
