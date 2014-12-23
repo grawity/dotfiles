@@ -80,7 +80,6 @@ alias py='python'
 alias py2='python2'
 alias py3='python3'
 alias rd='rmdir'
-rdempty() { find "$@" -depth -type d -exec rmdir --ignore-fail-on-non-empty {} +; }
 alias re='hash -r && SILENT=1 . ~/.bashrc && echo reloaded .bashrc && :'
 alias ere='set -a && . ~/.profile && set +a && echo reloaded .profile && :'
 ressh() { ssh -v \
