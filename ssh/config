@@ -13,6 +13,12 @@ Host 193.219.181.200 uk-untangle
 	User root
 	ForwardAgent yes
 
+Host 193.219.181.208 uk-tandberg
+	HostName 193.219.181.208
+	User admin
+	Ciphers 3des-cbc
+	MACs hmac-sha1
+
 Host 193.219.181.217 uk-pf-Maironio7
 	HostName 193.219.181.217
 	User root
