@@ -17,7 +17,7 @@ fi
 
 # libdefaults
 
-LIBVA_DRIVER_NAME="vdpau"
+LIBVA_DRIVER_NAME="gallium"
 # force `gem install nokogiri` to use system libxml2
 NOKOGIRI_USE_SYSTEM_LIBRARIES="1"
 
