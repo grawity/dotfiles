@@ -324,7 +324,7 @@ _show_status() {
 				status+=" or SIG$sig"
 			fi
 		fi
-		printf "\e[m\e[38;5;166m%s\e[m\n" "(returned $status)"
+		printf "\e[m\e[38;5;172m%s\e[m\n" "(returned $status)"
 	fi
 }
 
