@@ -53,6 +53,9 @@ Please also read <.environ.notes> if you find this file useful.
   - although technically it doesn't have to exist in the first place
     (autolaunch is unneeded as long as $DBUS_SESSION_BUS_SOCKET is set)
 
+~/.digrc – hardcoded ++ command line
+  - as alternative, just specify the same options in command line
+
 ~/.dvdcss/ – environment
   - $DVDCSS_CACHE overrides
 
