@@ -19,7 +19,7 @@ if [ -d ~/Private ] &&
 	if [ "$DISPLAY" ]; then
 		spawn ecryptfs-mount-x11
 	elif [ -t 2 ]; then
-		echo -e "\e[1mWarning: ~/Private not mounted\e[m" >&2
+		echo -e "\e[1;33mwarning:\e[;1m ~/Private not mounted\e[m" >&2
 	fi
 fi
 

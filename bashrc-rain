@@ -147,10 +147,13 @@ utelnet() {
 
 ukip() {
 	sudo: ip link set eth0 up
+	sudo: ip addr flush dev eth0
 	sudo: ip addr add 169.254.0.1/16  dev eth0 scope link
 	sudo: ip addr add 10.128.0.42/16  dev eth0
+	sudo: ip addr add 172.16.0.42/12  dev eth0
 	sudo: ip addr add 192.168.0.42/24 dev eth0
 	sudo: ip addr add 192.168.1.42/24 dev eth0
+	#sudo: ip addr add 192.168.172.42/24 dev eth0
 }
 
 vnet() {
