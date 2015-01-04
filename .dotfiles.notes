@@ -115,6 +115,10 @@ Please also read <.environ.notes> if you find this file useful.
   - $GEMRC is additionally used (colon-separated list)
     (search path: all of /etc/gemrc, ~/.gemrc, $GEMRC)
 
+~/.gens/ – hardcoded
+  (Gens – hardcoded)
+  (Gens-gs – hardcoded)
+
 ~/.gimp-2.8/ – environment
   - $GIMP2_DIRECTORY overrides
 
@@ -152,6 +156,8 @@ Please also read <.environ.notes> if you find this file useful.
   - recent Vim versions look in ~/.vim/gvimrc by default
   - $GVIMINIT can have an Ex command that sources an additional rc; e.g.
     - GVIMINIT=":so ~/.vim/gvimrc"
+
+~/.hatari/ – hardcoded
 
 ~/.hgrc – partial environment
   - $HGRCPATH overrides both system and user configs
