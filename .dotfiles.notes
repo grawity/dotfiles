@@ -24,6 +24,15 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.balsa/ – hardcoded
 
+~/.bash_logout – hardcoded
+
+~/.bash_profile – hardcoded
+  - use ~/.profile instead
+
+~/.bashrc – hardcoded / command-line
+  - you could use --init-file/--rcfile, but you'll generally need at least a
+    wrapper script for that, since many programs invoke /bin/sh directly
+
 ~/.bitcoin/ – hardcoded (TODO: check again)
 
 ~/.cabal/ – environment ++ configurable
@@ -301,6 +310,9 @@ Please also read <.environ.notes> if you find this file useful.
   - [global] "log_file = <path>" in ~/.pip/pip.conf overrides (no expansion)
   - docs: http://pip.readthedocs.org/en/latest/user_guide.html#environment-variables
 
+~/.profile – hardcoded/fixed
+  - sh, bash, various display managers expect it there
+
 ~/.pulse/ – XDG as of 3.0 (9ab510a69216), environment
   - ~/.config/pulse/ is the new location
   - $PULSE_CONFIG_PATH overrides
@@ -383,6 +395,12 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.Xresources – hardcoded/configurable
   - hardcoded in Xsession scripts of many DMs
   - however, ~/.xprofile and ~/.xinitrc can use a custom path
+
+~/.xbindkeysrc – command-line
+  - "-f <path>" or "--file <path>" overrides
+
+~/.xbindkeysrc.scm – command-line
+  - "-fg <path>" or "--file-guile <path>" overrides
 
 ~/.xchat2/ – command-line
   - "-d <path>" or "--cfgdir=<path>" overrides
