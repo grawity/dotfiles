@@ -28,6 +28,9 @@ if [ -t 1 ] && [ ! "$DISPLAY" ] && [ ! "$TMUX" ]; then
 fi
 
 if [ -t 1 ] && [ ! "$SILENT" ]; then
+	if [ "$SSH_CONNECTION" ]; then
+		echo -e "\e[1mYou are connecting from [${SSH_CONNECTION%% *}].\e[m"
+	fi
 	have acpi && acpi
 fi
 
