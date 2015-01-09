@@ -96,6 +96,7 @@ PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig"
 
 ## Library parameters:
 
+GTK_OVERLAY_SCROLLING="0"	# just in case
 LIBVA_DRIVER_NAME="vdpau"	# latest Mesa supports 'gallium'
 QT_IM_MODULE="xim"		# already the default
 SDL_AUDIODRIVER="pulse"		# autodetects correctly
