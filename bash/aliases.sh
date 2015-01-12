@@ -377,11 +377,6 @@ if have systemctl && [[ -d /run/systemd/system ]]; then
 	cgls() { SYSTEMD_PAGER='cat' systemd-cgls "$@"; }
 	usls() { cgls "/user.slice/user-$UID.slice/$*"; }
 	psls() { cgls "/user.slice/user-$UID.slice/session-$XDG_SESSION_ID.scope"; }
-elif have start && have stop; then
-	# Upstart
-	start()   { sudo start "$@"; }
-	stop()    { sudo stop "$@"; }
-	restart() { sudo restart "$@"; }
 elif have service; then
 	# Debian, other LSB
 	start()   { for _s; do sudo service "$_s" start; done; }
