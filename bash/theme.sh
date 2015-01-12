@@ -60,6 +60,23 @@ case $FQDN in
 	fmt_vcs='38;5;167'
 	;;
 
+    *.utenos-kolegija.lt)
+	item_name_pfx="["
+	item_name=$HOSTNAME
+	item_name_sfx="]"
+	if (( UID )); then
+		item_prompt='$'
+		fmt_name_pfx='|1;32'
+		fmt_name=''
+	else
+		item_prompt='#'
+		fmt_name_pfx='|1;31'
+		fmt_name='|1'
+	fi
+	fmt_prompt=$fmt_name_pfx
+	fullpwd=y
+	;;
+
     *.core|*.rune)
 	item_name_pfx="["
 	item_name=$FQDN
