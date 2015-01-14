@@ -112,6 +112,9 @@ ACK_PAGER="$PAGER"
 # Seems to be the default now, at least with Sun JRE
 _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
 
+# gnome-desktop < 3.15.1 (093e0a549c2ab2e465494105126ea7046f26e047)
+LANG="${LANG%.utf8}.UTF-8"
+
 # Easter egg
 SVN_I_LOVE_PANGALACTIC_GARGLE_BLASTERS="1"
 
