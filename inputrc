@@ -1,5 +1,7 @@
 # ~/.inputrc - readline(3), bash(1) - Readline library configuration
 
+$include /etc/inputrc
+
 set bell-style none
 
 # Tab completion
@@ -17,17 +19,8 @@ set revert-all-at-newline on
 # Arrows
 "\e[A": history-search-backward
 "\e[B": history-search-forward
-# Home/End
-"\e[1~": beginning-of-line
-"\e[4~": end-of-line
-"\e[H": beginning-of-line
-"\e[F": end-of-line
-# Insert/Delete
+# Insert
 "\e[2~": overwrite-mode
-"\e[3~": delete-char
-# Ctrl-arrows (Xterm)
-"\e[1;5D": backward-word
-"\e[1;5C": forward-word
 # Ctrl-arrows (PuTTY)
 "\eOD": backward-word
 "\eOC": forward-word
