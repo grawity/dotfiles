@@ -79,6 +79,7 @@ path() { if (( $# )); then which -a "$@"; else echo "${PATH//:/$'\n'}"; fi; }
 alias py='python'
 alias py2='python2'
 alias py3='python3'
+alias qrdecode='zbarimg --quiet --raw'
 alias rd='rmdir'
 alias re='hash -r && SILENT=1 . ~/.bashrc && echo reloaded .bashrc && :'
 alias ere='set -a && . ~/.profile && set +a && echo reloaded .profile && :'
