@@ -4,6 +4,8 @@ Please also read <.environ.notes> if you find this file useful.
 
 -------------------------------------------------------------------------------
 
+~/.ApacheDirectoryStudio/ – java-hack
+
 ~/.aMule/ – hardcoded
 
 ~/.aspell.conf – environment
@@ -185,6 +187,8 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.irssi/ – command line
   - "--home=<dir>" option exists
 
+~/.java/ – java-hack
+
 ~/.kde/ – environment
   - $KDEHOME overrides the default
   - optionally $KDEDIRS can point to additional read-only paths
@@ -349,6 +353,8 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.stalonetrayrc – command line
   - "-c/--config <path>" overrides
 
+~/.swt/ – java-hack
+
 ~/.subversion/ – hardcoded
 
 ~/.terminfo/ (ncurses) – environment
@@ -420,6 +426,10 @@ Please also read <.environ.notes> if you find this file useful.
   (s-nail – environment)
     - $MBOX overrides
 
+~/jagex* – java-hack
+
+~/Ubiquiti-Networks/ – java-hack
+
 ~/VirtualBox VMs/ – configurable
   - can be changed by `VBoxManage setproperty machinefolder <path>` or via GUI
   - see also ~/.VirtualBox/
@@ -442,6 +452,7 @@ Don't forget to symlink ~/.java into the redirect directory.
 "configurable" – can change a config option somewhere (usually another dotfile)
 "environment" – can set an environment variable
 "partial environment" – environment variable, but needs extra work
+"java-hack" – hardcoded, but can be tricked using 'java -Duser.home'
 "other locations" – non-XDG but still has better options than ~/.dotfile
   (e.g. single ~/.dotdir instead of multiple ~/.dotfiles)
 "command line" – must use a command line option
