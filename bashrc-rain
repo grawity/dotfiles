@@ -84,8 +84,10 @@ youtube-dl() {
 	)
 	cmd+=(
 		youtube-dl
+		--add-metadata
 		--console-title
 		--continue
+		--xattrs
 		"$@"
 	)
 	"${cmd[@]}"
