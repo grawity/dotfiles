@@ -16,9 +16,7 @@ if [ ! "$DESKTOP_SESSION" ]; then
 
 	/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
-	if have cinnamon-screensaver; then
-		cinnamon-screensaver
-	elif have gnome-screensaver; then
+	if have gnome-screensaver; then
 		gnome-screensaver
 	fi &
 
