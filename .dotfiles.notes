@@ -148,6 +148,9 @@ Please also read <.environ.notes> if you find this file useful.
   - "--config-dir <dir>" option exists in source code, but doesn't work
   - the program is unmaintained anyway, uses obsolete GnomeVFS
 
+~/.gnupg/ – environment
+  - $GNUPGHOME overrides
+
 ~/.gramps/ – environment
   - $GRAMPSHOME overrides
 
