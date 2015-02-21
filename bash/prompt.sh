@@ -337,7 +337,7 @@ _update_title() {
 		if [[ $DISPLAY && ( $DISPLAY != :* || $SSH_TTY ) ]]; then
 			t_display=" ($DISPLAY)"
 		fi
-		t_path=${PWD/#$HOME\//'~'/}
+		t_path=${PWD/#"$HOME/"/'~/'}
 		title="${t_user}${HOSTNAME} ${t_path}${t_display}"
 	fi
 	settitle "$title"
