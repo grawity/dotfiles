@@ -4,8 +4,6 @@
 have() { type "$1" > /dev/null 2>&1; }
 
 setpath() {
-	# real sh does not allow unsetting IFS,
-	# and `foo=bar join` does not always work
 	set +a; xIFS=$IFS; IFS=":"; set -a
 	var=$1; shift; eval "$var=\$*"; unset var
 	set +a; IFS=$xIFS; unset xIFS; set -a
