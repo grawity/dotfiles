@@ -19,8 +19,6 @@ trash() {
 			if case $hash in
 				# Debian ~/.profile
 				79d58526d0e0bf4df4f01b383ed3f49c428aaa2a) true;;
-				# ???
-				c7c4816f3cfa98298d7577af508ef63938426dd5) true;;
 				# Debian ~/.bash_logout
 				dc216ac4a4c232815731979db6e494f315b507dd) true;;
 				*) false;;
