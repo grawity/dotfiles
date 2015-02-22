@@ -108,6 +108,8 @@ if have tmux; then
 fi
 
 if [ "$DISPLAY" ]; then
+	link gui/XCompose ~/.XCompose
+
 	if have fc-cache; then
 		link gui/fonts.conf.xml ~/.config/fontconfig/fonts.conf
 	fi
