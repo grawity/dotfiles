@@ -74,6 +74,7 @@ mv() {
 	fi
 }
 alias nmap='nmap --reason'
+alias nm-con='nmcli -f name,type,autoconnect,state,device con'
 alias nosr='pkgfile -v'
 path() { if (( $# )); then which -a "$@"; else echo "${PATH//:/$'\n'}"; fi; }
 alias py='python'
