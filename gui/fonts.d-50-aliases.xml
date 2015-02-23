@@ -23,12 +23,14 @@
         <family>serif</family>
         <prefer>
             <family>Source Serif Pro</family>
+            <family>Times New Roman</family>
         </prefer>
     </alias>
 
     <alias>
         <family>sans-serif</family>
         <prefer>
+            <family>Source Sans Pro</family>
             <family>Arial</family>
         </prefer>
     </alias>
