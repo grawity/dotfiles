@@ -13,11 +13,11 @@
         <prefer> <family>Fixedsys Excelsior 3.01-L2</family> </prefer>
     </alias>
 
-	<match target="pattern">
-		<edit name="family" mode="append_last">
-			<string>Symbola</string>
-		</edit>
-	</match>
+    <match target="pattern">
+        <edit name="family" mode="append_last">
+            <string>Symbola</string>
+        </edit>
+    </match>
 
     <!--
     <alias>
