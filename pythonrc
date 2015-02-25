@@ -1,6 +1,7 @@
 # $PYTHONSTARTUP - Python interactive startup script
 # vim: ft=python:ts=4:sw=4:et
 
+import math
 import os
 import sys
 
