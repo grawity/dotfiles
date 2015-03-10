@@ -5,12 +5,6 @@ if have auca-seed; then
 	auca-seed &
 fi
 
-if [ -f ~/.config/synclient.conf ]; then
-	synclient $(grep "^[^#]" ~/.config/synclient.conf) > /dev/null &
-fi
-
-xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1 &
-
 if [ ! "$DESKTOP_SESSION" ]; then
 	compton &
 
@@ -26,6 +20,12 @@ if [ ! "$DESKTOP_SESSION" ]; then
 fi
 
 if [ "$DESKTOP_SESSION" != gnome ]; then
+	xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1 &
+
+	if [ -f ~/.config/synclient.conf ]; then
+		synclient $(grep "^[^#]" ~/.config/synclient.conf) > /dev/null &
+	fi
+
 	if [ "$HOSTNAME" = rain ]; then
 		mpDris2 &
 		mpris mpd notify-idle &
