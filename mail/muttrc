@@ -168,7 +168,7 @@ color index 	brightcolor12	default	"~T ~U"
 
 # %?<char>?<if>&<else>?
 #set index_format="%4C %Z %{%b %d} %-15.15F (%?l?%4l&%4c?) %s"
-set index_format="%4C %Z %-18.18F│%s %* %?H?{%H} ?%?M? ▶%M? %{'%y %b %d} "
+set index_format="%4C %Z %-18.18F│%s %* %?H?{%H} ?%?M? ▶ %M? %{'%y %b %d} "
 
 ### Keybindings
 
