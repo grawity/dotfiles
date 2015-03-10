@@ -145,7 +145,7 @@ color header		yellow		default	"^X-Bogosity: Unsure,"
 color header		brightyellow	default	"^X-Bogosity: Spam,"
 
 color attachment	yellow		default
-color quoted		color96		default
+color quoted		color132	default
 color quoted1		color172	color233
 color quoted2		color70		color233
 color quoted3		color73		color232
