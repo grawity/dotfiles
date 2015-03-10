@@ -16,7 +16,7 @@ if [ ! "$DESKTOP_SESSION" ]; then
 
 	/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
-	xinput set-int-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 8 1
+	xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1
 
 	if have gnome-screensaver; then
 		gnome-screensaver
