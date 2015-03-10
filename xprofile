@@ -9,14 +9,14 @@ if [ -f ~/.config/synclient.conf ]; then
 	synclient $(grep "^[^#]" ~/.config/synclient.conf) > /dev/null &
 fi
 
+xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1 &
+
 if [ ! "$DESKTOP_SESSION" ]; then
 	compton &
 
 	/usr/lib/notify-osd/notify-osd &
 
 	/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-
-	xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1
 
 	if have gnome-screensaver; then
 		gnome-screensaver
