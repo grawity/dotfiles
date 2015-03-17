@@ -15,6 +15,7 @@
 alias clock='tty-clock -c'
 alias gmm='run google-musicmanager'
 alias RM='/bin/rm -I'
+alias eof='IGNOREEOF=3'
 
 rm() {
 	local opts=() arg path nuke=() trash=()
