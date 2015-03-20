@@ -55,23 +55,11 @@ Host 193.219.181.192/26 uk-*
 
 # Cluenet and stuff
 
-Host abacus
-	HostName abacus.cluenet.org
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
 Host aurimo-seedbox
 	HostName 176.31.238.190
 
-Host decay
-	HostName decay.nullroute.eu.org
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
-Host eta
-	HostName eta.cluenet.org
+Host abacus eta hawking radian virgule
+	HostName %h.cluenet.org
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
@@ -83,8 +71,8 @@ Host gamma gamma.cluenet.org
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-Host hawking
-	HostName hawking.cluenet.org
+Host theos
+	HostName %h.kyriasis.com
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
@@ -94,13 +82,13 @@ Host moose
 	ForwardAgent yes
 
 Host panther
-	HostName panther.nathan7.eu
+	HostName %h.nathan7.eu
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-Host radian
-	HostName radian.cluenet.org
+Host decay sky taiga tide wolke
+	HostName %h.nullroute.eu.org
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
@@ -113,42 +101,6 @@ Host rain rain.local
 Host snow snow.home snow.local
 	HostkeyAlias snow.nullroute.eu.org
 	User Mantas
-
-Host sky
-	HostName sky.nullroute.eu.org
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
-Host taiga
-	HostName taiga.nullroute.eu.org
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
-Host theos
-	HostName theos.kyriasis.com
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
-Host tide
-	HostName tide.nullroute.eu.org
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
-Host virgule
-	HostName virgule.cluenet.org
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
-Host wolke
-	HostName wolke.nullroute.eu.org
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
 
 # other hosts
 
