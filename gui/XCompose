@@ -25,8 +25,6 @@ include "%L"
 <Multi_key> <p> <i>			: "π" # pi
 
 <Multi_key> <n> <n>			: "𝒏"
-<Multi_key> <n> <o>			: "№" # numero (N O, N o)
-<Multi_key> <p> <p>			: "¶" # pilcrow (P P)
 
 # various glyphs
 
