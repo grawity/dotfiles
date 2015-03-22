@@ -18,9 +18,34 @@ include "%L"
 <Multi_key> <v> <S>			: "Š"
 <Multi_key> <v> <s>			: "š"
 
+<Multi_key> <D> <A>			: "Δ" # Delta
+<Multi_key> <D> <a>			: "Δ" # Delta
+<Multi_key> <d> <a>			: "δ" # delta
+<Multi_key> <l> <a>			: "λ" # lambda
+<Multi_key> <p> <i>			: "π" # pi
+
 <Multi_key> <n> <n>			: "𝒏"
+<Multi_key> <n> <o>			: "№" # numero (N O, N o)
+<Multi_key> <p> <p>			: "¶" # pilcrow (P P)
+
+# various glyphs
+
+<Multi_key> <equal> <equal>		: "–" # ndash - - .
+<Multi_key> <equal> <asciitilde>	: "≈" # almost equal
+<Multi_key> <asciitilde> <asciitilde>	: "≈"
+<Multi_key> <zcaron> <zcaron>		: "–" # ndash - - .
+<Multi_key> <less> <3>			: "♥" # heart
+<Multi_key> <less> <4>			: "❤"
+<Multi_key> <3> <greater>		: "❥"
+<Multi_key> <exclam> <2>		: "‼"
+<Multi_key> <2> <exclam>		: "‼"
+<Multi_key> <slash> <slash>		: "⁄"
+<Multi_key> <v> <slash>			: "✔" # check
 
 # quotation marks
+
+<Multi_key> <l> <q>			: "“" # ldquo < "
+<Multi_key> <r> <q>			: "”" # rdquo > "
 
 <Multi_key> <bracketleft> <less>	: "〈"	U3008 # LEFT ANGLE BRACKET
 <Multi_key> <bracketright> <greater>	: "〉"	U3009 # RIGHT ANGLE BRACKET
@@ -37,41 +62,20 @@ include "%L"
 <Multi_key> <Multi_key> <bracketleft> <apostrophe>	: "｢" UFF62 # HALF… LEFT C B
 <Multi_key> <Multi_key> <bracketright> <apostrophe>	: "｣" UFF63 # HALF… RIGHT C B
 
-# various glyphs
+# invisible punctuation
 
-<Multi_key> <equal> <equal>		: "–" # ndash - - .
-<Multi_key> <l> <d> <a>			: "—————" # 3x mdash
-<Multi_key> <equal> <asciitilde>	: "≈" # almost equal
-<Multi_key> <asciitilde> <asciitilde>	: "≈"
-<Multi_key> <zcaron> <zcaron>		: "–" # ndash - - .
-<Multi_key> <h> <e> <a> <r> <t>		: "♥" # heart
-<Multi_key> <less> <3>			: "❤"
-<Multi_key> <3> <greater>		: "❥"
-<Multi_key> <l> <a>			: "λ" # lambda
-<Multi_key> <D> <A>			: "Δ" # Delta
-<Multi_key> <D> <a>			: "Δ" # Delta
-<Multi_key> <d> <a>			: "δ" # delta
-<Multi_key> <l> <q>			: "“" # ldquo < "
-<Multi_key> <r> <q>			: "”" # rdquo > "
-<Multi_key> <p> <i>			: "π" # pi
-<Multi_key> <s> <n> <o> <w> <m> <a> <n>	: "☃" # snowman
-<Multi_key> <l> <o> <o> <k>		: "ಠ_ಠ" # look of disapproval
-<Multi_key> <z> <w> <s>			: U200b # zero-width space
+<Multi_key> <n> <h> <y>			: U2011 # non-breaking hyphen
+<Multi_key> <s> <h> <y>			: U00ad # 'hyphen' soft hyphen
 <Multi_key> <z> <w> <n> <j>		: U200c # zero-width non-joiner
 <Multi_key> <z> <w> <j>			: U200d # zero-width joiner
+<Multi_key> <z> <w> <s>			: U200b # zero-width space
 <Multi_key> <Multi_key> <l> <r>		: U200e # left-to-right mark
 <Multi_key> <Multi_key> <r> <l>		: U200f # right-to-left mark
-<Multi_key> <p> <p>			: "¶" # pilcrow P P
-<Multi_key> <n> <o>			: "№" # numero N O
-<Multi_key> <s> <h> <y>			: U00ad # 'hyphen' soft hyphen
-<Multi_key> <n> <h> <y>			: U2011 # non-breaking hyphen
-<Multi_key> <v> <slash>			: "✔" # check
 
-<Multi_key> <exclam> <2>		: "‼"
-<Multi_key> <2> <exclam>		: "‼"
+# whole emoticons
 
-<Multi_key> <slash> <slash>		: "⁄"
-
+<Multi_key> <l> <o> <o> <k>		: "ಠ_ಠ" # look of disapproval
+<Multi_key> <s> <n> <o> <w> <m> <a> <n>	: "☃" # snowman
 <Multi_key> <Multi_key> <y> <1>		: "( •_•)>⌐■-■"
 <Multi_key> <Multi_key> <y> <2>		: "(⌐■_■)"
 
