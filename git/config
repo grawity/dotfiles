@@ -214,6 +214,9 @@
 	pushInsteadOf = nullroute:
 	pushInsteadOf = git://git.nullroute.eu.org/
 
+[url "http://anongit.freedesktop.org/git/"]
+	insteadOf = git://anongit.freedesktop.org/
+
 [url "git://anongit.freedesktop.org/"]
 	insteadOf = freedesktop:
 	insteadOf = fdo:
