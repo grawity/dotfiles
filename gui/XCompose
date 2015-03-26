@@ -72,10 +72,12 @@ include "%L"
 <Multi_key> <z> <w> <n> <j>		: U200c # zero-width non-joiner
 <Multi_key> <z> <w> <s>			: U200b # zero-width space
 
+# http://unicode.org/reports/tr9/#Directional_Formatting_Characters
+
 <Multi_key> <Multi_key> <l> <r> <e>	: U202a # left-to-right embedding
 <Multi_key> <Multi_key> <l> <r> <m>	: U200e # left-to-right mark
 <Multi_key> <Multi_key> <l> <r> <o>	: U202d # left-to-right override
-<Multi_key> <Multi_key> <p> <o> <p>	: U202c # pop directional formatting
+<Multi_key> <Multi_key> <p> <d> <f>	: U202c # pop directional formatting
 <Multi_key> <Multi_key> <r> <l> <e>	: U202b # right-to-left embedding
 <Multi_key> <Multi_key> <r> <l> <m>	: U200f # right-to-left mark
 <Multi_key> <Multi_key> <r> <l> <o>	: U202e # right-to-left override
