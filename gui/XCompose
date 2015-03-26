@@ -40,6 +40,10 @@ include "%L"
 <Multi_key> <slash> <slash>		: "⁄"
 <Multi_key> <v> <slash>			: "✔" # check
 
+# multiple glyphs
+
+<Multi_key> <l> <o> <o> <k>		: "ಠ_ಠ" # look of disapproval
+
 # quotation marks
 
 <Multi_key> <l> <q>			: "“" # ldquo < "
@@ -75,13 +79,6 @@ include "%L"
 <Multi_key> <Multi_key> <r> <l> <e>	: U202b # right-to-left embedding
 <Multi_key> <Multi_key> <r> <l> <m>	: U200f # right-to-left mark
 <Multi_key> <Multi_key> <r> <l> <o>	: U202e # right-to-left override
-
-# whole emoticons
-
-<Multi_key> <l> <o> <o> <k>		: "ಠ_ಠ" # look of disapproval
-<Multi_key> <s> <n> <o> <w> <m> <a> <n>	: "☃" # snowman
-<Multi_key> <Multi_key> <y> <1>		: "( •_•)>⌐■-■"
-<Multi_key> <Multi_key> <y> <2>		: "(⌐■_■)"
 
 # arrows
 
