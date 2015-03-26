@@ -32,11 +32,8 @@ include "%L"
 <Multi_key> <equal> <asciitilde>	: "≈"	U2248 # almost equal
 <Multi_key> <asciitilde> <asciitilde>	: "≈"	U2248
 <Multi_key> <zcaron> <zcaron>		: "–"	U2013 # EN DASH, - - .
-<Multi_key> <less> <3>			: "♥"	U2665 # heart
 <Multi_key> <less> <4>			: "❤"	U2764
 <Multi_key> <3> <greater>		: "❥"	U2765
-<Multi_key> <exclam> <2>		: "‼"	U203c # DOUBLE EXCLAMATION MARK
-<Multi_key> <2> <exclam>		: "‼"	U203c
 <Multi_key> <slash> <slash>		: "⁄"	U2044 # FRACTION SLASH
 <Multi_key> <v> <slash>			: "✔"	U2714 # check
 
