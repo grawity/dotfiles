@@ -36,6 +36,8 @@ include "%L"
 <Multi_key> <3> <greater>		: "❥"	U2765
 <Multi_key> <slash> <slash>		: "⁄"	U2044 # FRACTION SLASH
 <Multi_key> <v> <slash>			: "✔"	U2714 # check
+<Multi_key> <ampersand> <ampersand>	: "∧"	U2227 # LOGICAL AND
+<Multi_key> <bar> <bar>			: "∨"	U2228 # LOGICAL OR
 
 # multiple glyphs
 
