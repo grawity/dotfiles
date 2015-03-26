@@ -15,30 +15,30 @@ include "%L"
 <Multi_key> <G> <G>			: "Ȝ"	U021c # LATIN CAPITAL LETTER YOGH
 <Multi_key> <g> <g>			: "ȝ"	U021d # LATIN LETTER YOGH
 
-<Multi_key> <v> <S>			: "Š"
-<Multi_key> <v> <s>			: "š"
+<Multi_key> <v> <S>			: "Š"	U0160
+<Multi_key> <v> <s>			: "š"	U0161
 
-<Multi_key> <D> <A>			: "Δ" # Delta
-<Multi_key> <D> <a>			: "Δ" # Delta
-<Multi_key> <d> <a>			: "δ" # delta
-<Multi_key> <l> <a>			: "λ" # lambda
-<Multi_key> <p> <i>			: "π" # pi
+<Multi_key> <D> <A>			: "Δ"	U0394 # Delta
+<Multi_key> <D> <a>			: "Δ"	U0394 # Delta
+<Multi_key> <d> <a>			: "δ"	U03b4 # delta
+<Multi_key> <l> <a>			: "λ"	U03bb # lambda
+<Multi_key> <p> <i>			: "π"	U03c0 # pi
 
-<Multi_key> <n> <n>			: "𝒏"
+<Multi_key> <n> <n>			: "𝒏"	#U1d48f
 
 # various glyphs
 
-<Multi_key> <equal> <equal>		: "–" # ndash - - .
-<Multi_key> <equal> <asciitilde>	: "≈" # almost equal
-<Multi_key> <asciitilde> <asciitilde>	: "≈"
-<Multi_key> <zcaron> <zcaron>		: "–" # ndash - - .
-<Multi_key> <less> <3>			: "♥" # heart
-<Multi_key> <less> <4>			: "❤"
-<Multi_key> <3> <greater>		: "❥"
-<Multi_key> <exclam> <2>		: "‼"
-<Multi_key> <2> <exclam>		: "‼"
-<Multi_key> <slash> <slash>		: "⁄"
-<Multi_key> <v> <slash>			: "✔" # check
+<Multi_key> <equal> <equal>		: "–"	U2013 # EN DASH, - - .
+<Multi_key> <equal> <asciitilde>	: "≈"	U2248 # almost equal
+<Multi_key> <asciitilde> <asciitilde>	: "≈"	U2248
+<Multi_key> <zcaron> <zcaron>		: "–"	U2013 # EN DASH, - - .
+<Multi_key> <less> <3>			: "♥"	U2665 # heart
+<Multi_key> <less> <4>			: "❤"	U2764
+<Multi_key> <3> <greater>		: "❥"	U2765
+<Multi_key> <exclam> <2>		: "‼"	U203c # DOUBLE EXCLAMATION MARK
+<Multi_key> <2> <exclam>		: "‼"	U203c
+<Multi_key> <slash> <slash>		: "⁄"	U2044 # FRACTION SLASH
+<Multi_key> <v> <slash>			: "✔"	U2714 # check
 
 # multiple glyphs
 
@@ -46,20 +46,20 @@ include "%L"
 
 # quotation marks
 
-<Multi_key> <l> <q>			: "“" # ldquo < "
-<Multi_key> <r> <q>			: "”" # rdquo > "
+<Multi_key> <l> <q>			: "“"	U201c # ldquo < "
+<Multi_key> <r> <q>			: "”"	U201d # rdquo > "
 
 <Multi_key> <bracketleft> <less>	: "〈"	U3008 # LEFT ANGLE BRACKET
 <Multi_key> <bracketright> <greater>	: "〉"	U3009 # RIGHT ANGLE BRACKET
 
-<Multi_key> <bracketleft> <apostrophe>	: "「"	U300c # LEFT CORNER BRACKET
-<Multi_key> <bracketright> <apostrophe>	: "」"	U300d # RIGHT CORNER BRACKET
-
 <Multi_key> <bracketleft> <parenleft>	: "〔"	U3014 # LEFT TORTOISE SHELL BRACKET
 <Multi_key> <bracketright> <parenright>	: "〕"	U3015 # RIGHT TORTOISE SHELL BRACKET
 
-<Multi_key> <bracketleft> <quotedbl>	: "『"
-<Multi_key> <bracketright> <quotedbl>	: "』"
+<Multi_key> <bracketleft> <apostrophe>	: "「"	U300c # LEFT CORNER BRACKET
+<Multi_key> <bracketright> <apostrophe>	: "」"	U300d # RIGHT CORNER BRACKET
+
+<Multi_key> <bracketleft> <quotedbl>	: "『"	U300e
+<Multi_key> <bracketright> <quotedbl>	: "』"	U300f
 
 <Multi_key> <Multi_key> <bracketleft> <apostrophe>	: "｢" Uff62 # HALF… LEFT C B
 <Multi_key> <Multi_key> <bracketright> <apostrophe>	: "｣" Uff63 # HALF… RIGHT C B
