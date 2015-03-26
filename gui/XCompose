@@ -10,14 +10,6 @@ include "%L"
 
 # letters
 
-<Multi_key> <W> <W>			: "Ƿ"	U017f # LATIN CAPITAL LETTER WYNN
-<Multi_key> <w> <w>			: "ƿ"	U01bf # LATIN LETTER WYNN
-<Multi_key> <G> <G>			: "Ȝ"	U021c # LATIN CAPITAL LETTER YOGH
-<Multi_key> <g> <g>			: "ȝ"	U021d # LATIN LETTER YOGH
-
-<Multi_key> <v> <S>			: "Š"	U0160
-<Multi_key> <v> <s>			: "š"	U0161
-
 <Multi_key> <D> <A>			: "Δ"	U0394 # Delta
 <Multi_key> <D> <a>			: "Δ"	U0394 # Delta
 <Multi_key> <d> <a>			: "δ"	U03b4 # delta
