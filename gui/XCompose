@@ -10,10 +10,10 @@ include "%L"
 
 # letters
 
-<Multi_key> <W> <W>			: "Ƿ"	U017F # LATIN CAPITAL LETTER WYNN
-<Multi_key> <w> <w>			: "ƿ"	U01BF # LATIN LETTER WYNN
-<Multi_key> <G> <G>			: "Ȝ"	U021C # LATIN CAPITAL LETTER YOGH
-<Multi_key> <g> <g>			: "ȝ"	U021D # LATIN LETTER YOGH
+<Multi_key> <W> <W>			: "Ƿ"	U017f # LATIN CAPITAL LETTER WYNN
+<Multi_key> <w> <w>			: "ƿ"	U01bf # LATIN LETTER WYNN
+<Multi_key> <G> <G>			: "Ȝ"	U021c # LATIN CAPITAL LETTER YOGH
+<Multi_key> <g> <g>			: "ȝ"	U021d # LATIN LETTER YOGH
 
 <Multi_key> <v> <S>			: "Š"
 <Multi_key> <v> <s>			: "š"
@@ -52,8 +52,8 @@ include "%L"
 <Multi_key> <bracketleft> <less>	: "〈"	U3008 # LEFT ANGLE BRACKET
 <Multi_key> <bracketright> <greater>	: "〉"	U3009 # RIGHT ANGLE BRACKET
 
-<Multi_key> <bracketleft> <apostrophe>	: "「"	U300C # LEFT CORNER BRACKET
-<Multi_key> <bracketright> <apostrophe>	: "」"	U300D # RIGHT CORNER BRACKET
+<Multi_key> <bracketleft> <apostrophe>	: "「"	U300c # LEFT CORNER BRACKET
+<Multi_key> <bracketright> <apostrophe>	: "」"	U300d # RIGHT CORNER BRACKET
 
 <Multi_key> <bracketleft> <parenleft>	: "〔"	U3014 # LEFT TORTOISE SHELL BRACKET
 <Multi_key> <bracketright> <parenright>	: "〕"	U3015 # RIGHT TORTOISE SHELL BRACKET
@@ -61,8 +61,8 @@ include "%L"
 <Multi_key> <bracketleft> <quotedbl>	: "『"
 <Multi_key> <bracketright> <quotedbl>	: "』"
 
-<Multi_key> <Multi_key> <bracketleft> <apostrophe>	: "｢" UFF62 # HALF… LEFT C B
-<Multi_key> <Multi_key> <bracketright> <apostrophe>	: "｣" UFF63 # HALF… RIGHT C B
+<Multi_key> <Multi_key> <bracketleft> <apostrophe>	: "｢" Uff62 # HALF… LEFT C B
+<Multi_key> <Multi_key> <bracketright> <apostrophe>	: "｣" Uff63 # HALF… RIGHT C B
 
 # invisible punctuation
 
