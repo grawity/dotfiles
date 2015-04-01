@@ -94,12 +94,12 @@ syn case match
 
 " Clusters: contains=@... clusters {{{1
 "==================================
-syn cluster shArithList	contains=shArithmetic,shDeref,shDerefSimple,shEscape,shNumber,shOperator,shPosnParm,shExSingleQuote,shExDoubleQuote,shRedir,shSingleQuote,shDoubleQuote,shStatement,shCtrlSeq,shSpecial,shParen,shParenError
-syn cluster shCommandSubList	contains=shArithmetic,shDeref,shDerefSimple,shEscape,@shIfList,shNumber,shOperator,shPosnParm,shExSingleQuote,shSingleQuote,shExDoubleQuote,shDoubleQuote,shStatement,shSubSh,shCtrlSeq,shSpecial,shCmdParenRegion
+syn cluster shArithList	contains=shArithmetic,shDeref,shDerefSimple,shEscape,shOperator,shPosnParm,shExSingleQuote,shExDoubleQuote,shRedir,shSingleQuote,shDoubleQuote,shStatement,shCtrlSeq,shSpecial,shParen,shParenError
+syn cluster shCommandSubList	contains=shArithmetic,shDeref,shDerefSimple,shEscape,@shIfList,shOperator,shPosnParm,shExSingleQuote,shSingleQuote,shExDoubleQuote,shDoubleQuote,shStatement,shSubSh,shCtrlSeq,shSpecial,shCmdParenRegion
 syn cluster shDblQuoteList	contains=shCommandSub,shDeref,shDerefSimple,shEscape,shPosnParm,shCtrlSeq,shSpecial
 syn cluster shDerefList	contains=shDeref,shDerefSimple,shDerefVar,shDerefSpecial,shDerefWordError,shDerefPPS
 syn cluster shDerefVarList	contains=shDerefOp,shDerefVarArray,shDerefOpError
-syn cluster shExprList	contains=@shCommandSubList,@shIfList,shCharClass,shCommandSub,shComment,shCtrlSeq,shDeref,shDerefSimple,shDoubleQuote,shExDoubleQuote,shExSingleQuote,shExpr,shExpr,shHereDoc,shNumber,shOperator,shRedir,shSingleQuote,shStatement
+syn cluster shExprList	contains=@shCommandSubList,@shIfList,shCharClass,shCommandSub,shComment,shCtrlSeq,shDeref,shDerefSimple,shDoubleQuote,shExDoubleQuote,shExSingleQuote,shExpr,shExpr,shHereDoc,shOperator,shRedir,shSingleQuote,shStatement
 syn cluster shFunctionList	contains=@shCommandSubList,shCommandSub,shComment,shExpr,shHereDoc,shRedir,shStatement,shOperator,shCtrlSeq
 syn cluster shIfList	contains=shConditional,shExpr,shFunctionKey,shFunctionOne,shFunctionTwo
 
@@ -151,8 +151,6 @@ endif
 
 " String And Character Constants: {{{1
 "================================
-" shNumber: do not match when preceded by a letter, e.g. "UTF-8"
-syn match   shNumber	"[[:alpha:]-]\@<!-\=\<\d\+\>#\="
 syn match   shCtrlSeq	"\\\d\d\d\|\\[abcfnrtv0]"		contained
 if exists("b:is_bash")
  syn match   shSpecial	"\\\o\o\o\|\\x\x\x\|\\c[^"]\|\\[abefnrtv]"	contained
@@ -374,7 +372,6 @@ hi def link shCtrlSeq		Special
 hi def link shExprRegion		Delimiter
 hi def link shFunctionKey		Function
 hi def link shFunctionName		Function
-hi def link shNumber		Number
 hi def link shOperator		Operator
 hi def link shShellVariables		PreProc
 hi def link shSpecial		Special
