@@ -22,6 +22,7 @@ let python_no_builtin_highlight=1
 
 if has("syntax")
 	syntax on
+	syntax sync minlines=200
 endif
 
 " Color scheme
