@@ -12,7 +12,7 @@ trash() {
 		if [ ! -e "$file" ]; then
 			continue
 		elif [ -k "$file" ]; then
-			say "ignoring sticky $file"
+			trace "ignoring sticky $file"
 			continue
 		else
 			local hash=$(sha1sum "$file" | awk '{print $1}')
@@ -42,7 +42,7 @@ link() {
 		return
 	elif [ -e "$link" ]; then
 		if [ -k "$link" ]; then
-			say "ignoring sticky $link"
+			trace "ignoring sticky $link"
 			return
 		elif [ -h "$link" ]; then
 			rm -f "$link"
@@ -55,7 +55,7 @@ link() {
 			mkdir -p "$linkdir"
 		fi
 	fi
-	say "linking $link -> $target"
+	trace "linking $link -> $target"
 	sym -f "$target" "$link"
 }
 
@@ -98,7 +98,7 @@ if have msmtp; then
 fi
 
 if have ssh; then
-	say "updating $HOME/.ssh/config"
+	trace "updating $HOME/.ssh/config"
 	ssh/generate
 	link ssh/known_hosts
 fi
