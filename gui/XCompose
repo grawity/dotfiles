@@ -37,8 +37,11 @@ include "%L"
 
 # quotation marks
 
-<Multi_key> <l> <q>			: "“"	U201c # ldquo < "
-<Multi_key> <r> <q>			: "”"	U201d # rdquo > "
+<Multi_key> <l> <q>			: "“"	U201c # LEFT DOUBLE QUOT. MARK <"
+<Multi_key> <r> <q>			: "”"	U201d # RIGHT DOUBLE QUOT. MARK >"
+
+<Multi_key> <apostrophe> <period>	: "’"	U2019 # RIGHT SINGLE QUOT. MARK >'
+<Multi_key> <period> <apostrophe>	: "’"	U2019 # -same-
 
 <Multi_key> <bracketleft> <less>	: "〈"	U3008 # LEFT ANGLE BRACKET
 <Multi_key> <bracketright> <greater>	: "〉"	U3009 # RIGHT ANGLE BRACKET
