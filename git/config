@@ -19,18 +19,19 @@
 	clone-svnsync = svn clone --use-svnsync-props
 	co = checkout
 	di = diff
-	empty = !git init && git commit --allow-empty -m Initial
+	emerge = merge --edit --no-ff
 	export = !touch $(git rev-parse --git-dir)/git-daemon-export-ok
 	fa = fetch --all
 	follow = log --oneline --follow --stat --summary --
+	fpush = push --force-with-lease
 	ftime = "!date +'--date=%s' -r"
-	fun = "!git fsck | awk '/dangling commit/ {print $3 \"^!\"}' | xargs git log"
 	in = log --oneline --decorate ..@{upstream}
 	lg = log --oneline --decorate
 	lgs = log --format=\"%C(yellow)%h%C(reset)%C(cyan)% GK%C(reset) %s\"
+	logs = log --show-signature
+	lost = "!git fsck | awk '/dangling commit/ {print $3 \"^!\"}' | xargs git log"
 	ls = ls-files
 	lsr = "!_() { [ \"$1\" ] || set -- HEAD; git ls-tree -r \"$@\"; }; _"
-	logs = log --show-signature
 	mend = commit --amend --reuse-message HEAD
 	mirror = clone --mirror
 	mkobject = hash-object --stdin -w
@@ -51,13 +52,11 @@
 	tagv = !git tag -v $(git describe --abbrev=0)
 	tg = log --oneline --decorate --graph
 	tip = !git --no-pager log -1 --decorate --abbrev-commit --date=relative --show-signature
+	uncommit = reset HEAD^
 	undo = reset --soft HEAD^
 	unexport = !rm -v $(git rev-parse --git-dir)/git-daemon-export-ok
 	wdiff = diff --word-diff
 	wshow = show --word-diff
-	fpush = push --force-with-lease
-	uncommit = reset HEAD^
-	emerge = merge --edit --no-ff
 
 # Everything else
 
