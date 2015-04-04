@@ -20,7 +20,7 @@
 	co = checkout
 	di = diff
 	emerge = merge --edit --no-ff
-	export = !touch $(git rev-parse --git-dir)/git-daemon-export-ok
+	export = "!touch \"$(git rev-parse --git-dir)/git-daemon-export-ok\""
 	fa = fetch --all
 	follow = log --oneline --follow --stat --summary --
 	fpush = push --force-with-lease
@@ -54,7 +54,7 @@
 	tip = !git --no-pager log -1 --decorate --abbrev-commit --date=relative --show-signature
 	uncommit = reset HEAD^
 	undo = reset --soft HEAD^
-	unexport = !rm -v $(git rev-parse --git-dir)/git-daemon-export-ok
+	unexport = "!rm -v \"$(git rev-parse --git-dir)/git-daemon-export-ok\""
 	wdiff = diff --word-diff
 	wshow = show --word-diff
 
