@@ -102,12 +102,14 @@ sudo:() {
 }
 
 add-vlan() {
-	sudo: ip link add link "${1%.*}" name "$1" type vlan id "${1##*.}"
-	if [[ $2 == dhcp ]]; then
-		use-dhclient "$1"
-	elif [[ $2 ]]; then
-		sudo: ip link set "$1" up
-		sudo: ip addr add "$2" dev "$1"
+	local dev=$1 addr=$2
+	sudo: ip link add link "${dev%.*}" name "$dev" type vlan id "${dev##*.}"
+	if [[ $addr == dhcp ]]; then
+		use-dhclient "$dev"
+	elif [[ $addr ]]; then
+		[[ $addr == */* ]] || addr+="/16"
+		sudo: ip link set "$dev" up
+		sudo: ip addr add "$addr" dev "$dev"
 	fi
 }
 
