@@ -114,6 +114,10 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.freerdp/ – XDG as of 1.1.0 (edf6e7258d0e); hardcoded
   - $XDG_CONFIG_HOME/freerdp/ is used now
 
+~/.gale/ – environment
+  - $GALE_DIR overrides
+  - I'll get around to making it XDG someday
+
 ~/.gconf/ – XDG as of 3.2.6 (fc28caa7be86); hardcoded
   - $XDG_CONFIG_HOME/gconf/ is used now
 
@@ -367,6 +371,9 @@ Please also read <.environ.notes> if you find this file useful.
     - TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
   - $TERMINFO overrides (system path not searched)
   - docs: terminfo(5)
+
+~/.ttytterrc – command line
+  - "-rc=<path>" overrides
 
 ~/.tkabber/ – environment
   - $TKABBER_HOME overrides
