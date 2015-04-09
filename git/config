@@ -33,7 +33,6 @@
 	ls = ls-files
 	lsr = "!_() { [ \"$1\" ] || set -- HEAD; git ls-tree -r \"$@\"; }; _"
 	mend = commit --amend --reuse-message HEAD
-	mirror = clone --mirror
 	mkobject = hash-object --stdin -w
 	mrproper = !git reset --hard HEAD && git clean -fdx
 	out = log --oneline --decorate @{upstream}..
@@ -175,18 +174,27 @@
 	smtpServerOption = --read-envelope-from
 
 [tig]
+	# [v1 opts]
 	show-date = relative
 	#show-author = abbreviated
-	show-filename = false
 	author-width = 12
+	show-filename = false
 	show-rev-graph = true
-	line-graphics = true
-	commit-order = topo
-	split-view-height = 75%
 	#vertical-split = true
-	ignore-case = true
+
+	# [v2 opts]
+	#main-view = date:relative author:full,width=12 commit-title:graph=v1,refs=yes
+	main-view-date = relative
+	main-view-author-width = 12
+	main-view-commit-title-graph = v1
+
+	# [global opts]
+	commit-order = topo
 	#diff-options = --patience
-	#main-view = date:relative author:full,width=12 commit-title:graph=yes,refs=yes
+	ignore-case = true
+	line-graphics = true
+	show-changes = no
+	split-view-height = 75%
 
 [tig "bind"]
 	generic = Backspace view-close
