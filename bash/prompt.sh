@@ -152,7 +152,7 @@ _awesome_prompt() {
 
 	local HOME=${HOME%/}
 
-	local wdrepo= wdbase= wdhead= wdbody= wdtail=
+	local wdrepo= wdbase= wdparent= wdhead= wdbody= wdtail=
 	local -i collapsed=0 tilde=0
 
 	# find the working directory's root
@@ -178,11 +178,9 @@ _awesome_prompt() {
 		wdbase=${wdrepo:-$(readlink -f "$git")}
 	fi
 
-	# find the 'base' – the parent of the working directory
+	# find the parent of the working directory
 
-	_dbg "* orign wdbase='$wdbase'"
-	wdbase=${wdbase%/*}
-	_dbg "  trunc wdbase='$wdbase'"
+	wdparent=${wdbase%/*}
 
 	# split into 'head' (normal text) and 'tail' (highlighted text)
 	# Now, if only I remembered why this logic is so complex...
@@ -193,21 +191,22 @@ _awesome_prompt() {
 	#   inside bare repository
 
 	_dbg "* fullpwd='$fullpwd'"
-	_dbg "  wdrepo='$wdrepo'"
-	_dbg "  wdbase='$wdbase'"
+	_dbg "   wdrepo='$wdrepo'"
+	_dbg "   wdbase='$wdbase'"
+	_dbg " wdparent='$wdparent'"
 
 	if [[ $fullpwd != 'y' && $PWD == "$HOME" ]]; then
 		# special case with fullpwd=n:
 		# show full home directory with no highlight
 		_dbg "head/tail case 1 (special case for ~)"
 		wdhead=$PWD wdtail=''
-	elif [[ $wdbase && $PWD != "$wdbase" ]]; then
+	elif [[ $wdparent && $PWD != "$wdparent" ]]; then
 		# inside a subdirectory of working tree
-		_dbg "head/tail case 2 (under wdbase)"
-		wdhead=$wdbase/ wdtail=${PWD#$wdbase/}
-	elif [[ $git && ! $wdbase ]]; then
+		_dbg "head/tail case 2 (under wdparent)"
+		wdhead=$wdparent/ wdtail=${PWD#$wdparent/}
+	elif [[ $git && ! $wdparent ]]; then
 		# inside a bare Git repo
-		_dbg "head/tail case 3 (no wdbase, bare repo?)"
+		_dbg "head/tail case 3 (no wdparent, bare repo?)"
 		wdhead=/ wdtail=${PWD#/}
 	else
 		_dbg "head/tail case default"
