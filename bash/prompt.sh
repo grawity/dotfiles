@@ -204,9 +204,9 @@ _awesome_prompt() {
 		# inside a subdirectory of working tree
 		_dbg "head/tail case 2 (under wdparent)"
 		wdhead=$wdparent/ wdtail=${PWD#$wdparent/}
-	elif [[ $git && ! $wdparent ]]; then
-		# inside a bare Git repo
-		_dbg "head/tail case 3 (no wdparent, bare repo?)"
+	elif [[ $git && $wdbase && ! $wdparent ]]; then
+		# inside working tree immediately below root (e.g. /etc)
+		_dbg "head/tail case 3 (empty wdpaernt)"
 		wdhead=/ wdtail=${PWD#/}
 	else
 		_dbg "head/tail case default"
