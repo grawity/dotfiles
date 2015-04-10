@@ -203,7 +203,6 @@
 	generic = E !git format-patch -1 %(commit)
 	# noop on unrecognized escape sequences
 	main = ~ none
-	main = 4 toggle-graphic
 	main = G move-last-line
 
 [tig "color"]
