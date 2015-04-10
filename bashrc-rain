@@ -40,6 +40,7 @@ rm() {
 		~/*)			true;;
 		# include removable drives
 		/media/*)		true;;
+		/mnt/*)			true;;
 		/run/media/*)		true;;
 		# exclude everything else elsewhere
 		*)			false;;
