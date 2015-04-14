@@ -203,11 +203,11 @@ b64() { printf "%s" "$*" | base64 | tr -dc "A-Za-z0-9+/="; }
 ## Prompt
 
 _nolid_prompt() {
-	if [[ -e "$XDG_RUNTIME_DIR/nolid.hold" ]]; then
+	if [[ ! "$item_name_sfx" && -e "$XDG_RUNTIME_DIR/nolid.hold" ]]; then
 		item_name_sfx=':[lid]'
-	elif [[ -e "$XDG_RUNTIME_DIR/nolid.lock" ]]; then
+	elif [[ ! "$item_name_sfx" && -e "$XDG_RUNTIME_DIR/nolid.lock" ]]; then
 		item_name_sfx=':lid'
-	else
+	elif [[ "$item_name_sfx" == :*lid* ]]; then
 		item_name_sfx=''
 	fi
 	fmt_name_sfx='|38;5;238'
