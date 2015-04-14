@@ -175,12 +175,12 @@
 
 [tig]
 	# [v1 opts]
-	show-date = relative
-	#show-author = abbreviated
-	author-width = 12
-	show-filename = false
-	show-rev-graph = true
-	#vertical-split = true
+	# show-date = relative
+	# #show-author = abbreviated
+	# author-width = 12
+	# show-filename = false
+	# show-rev-graph = true
+	# #vertical-split = true
 
 	# [v2 opts]
 	#main-view = date:relative author:full,width=12 commit-title:graph=v1,refs=yes
