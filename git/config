@@ -221,12 +221,11 @@
 	pushInsteadOf = nullroute:
 	pushInsteadOf = git://git.nullroute.eu.org/
 
-[url "http://anongit.freedesktop.org/git/"]
-	insteadOf = git://anongit.freedesktop.org/
+#[url "http://anongit.freedesktop.org/git/"]
+#	insteadOf = git://anongit.freedesktop.org/
 
-[url "git://anongit.freedesktop.org/"]
-	insteadOf = freedesktop:
-	insteadOf = fdo:
+[url "https://github.com/"]
+	insteadOf = git://github.com/
 
 [url "git@gist.github.com:"]
 	pushInsteadOf = git://gist.github.com/
@@ -235,9 +234,6 @@
 [url "git@github.com:"]
 	pushInsteadOf = git://github.com/
 	pushInsteadOf = https://github.com/
-
-[url "git://git.gnome.org/"]
-	insteadOf = gnome:
 
 [url "https://kernel.googlesource.com/"]
 	insteadOf = kernel.org::
