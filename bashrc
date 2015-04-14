@@ -38,6 +38,8 @@ set -o physical			# resolve symlinks when 'cd'ing
 shopt -s autocd 2>/dev/null	# assume 'cd' when trying to exec a directory
 shopt -s checkjobs 2> /dev/null	# print job status on exit
 shopt -s checkwinsize		# update $ROWS/$COLUMNS after command
+shopt -s extglob		# @(…) +(…) etc. globs
+shopt -s globstar		# the ** glob
 shopt -s no_empty_cmd_completion
 
 shopt -s cmdhist		# store multi-line commands as single history entry
