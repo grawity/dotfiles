@@ -7,6 +7,16 @@
 #
 #   item_name, item_pwd, and item_vcs are surrounded by *_pfx and *_sfx
 
+# Theme ideas:
+#
+#  * item_name_pfx="{" item_name_sfx="}" fmt_name_pfx="38;5;42"
+#    item_prompt="›" fmt_prompt="1|38;5;42"
+#    (with current rain prompt (fmt_name="38;5;82") as base)
+#    https://a.pomf.se/yhcplx.png
+#
+#  * name='1;32' pwd='36' vcs='1;30'
+#    (vcs being a dark gray)
+
 unset ${!fmt_*} ${!item_*} ${!reset_*} fullpwd
 
 reset_pwd=' '
@@ -110,6 +120,3 @@ case $FQDN in
 esac
 
 # Host themes overridden in bashrc-$HOSTNAME
-
-# Theme ideas: name='1;32' pwd='36' vcs='1;30'
-#	       (vcs being a dark gray)
