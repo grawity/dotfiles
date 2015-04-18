@@ -183,8 +183,8 @@
 	# #vertical-split = true
 
 	# [v2 opts]
-	#main-view = date:relative author:full,width=12 commit-title:graph=v1,refs=yes
-	main-view = date:relative author:full,width=12 commit-title:graph=yes,refs=yes
+	#main-view = id:no date:relative author:full,width=12 commit-title:graph=v1,refs,overflow=no
+	main-view = id:no date:relative author:full,width=12 commit-title:graph,refs,overflow=no
 	# [v2.1 opts]
 	main-view-date = relative
 	main-view-author-width = 12
