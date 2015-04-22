@@ -34,7 +34,7 @@ Host 193.219.181.253 uk-radius ukradius
 	User grawity
 	ForwardAgent yes
 
-Host 193.219.181.238 uk-sw-b56-litnet
+Host 193.219.181.238 uk-sw-B56-border
 	HostName 193.219.181.238
 	Port 42
 	User admin
