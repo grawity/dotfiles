@@ -203,8 +203,8 @@
 	generic = <Backspace> view-close
 	generic = \\ scroll-line-up
 	generic = E !git format-patch -1 %(commit)
-	# noop on unrecognized escape sequences
-	main = ~ none
+	generic = ~ none
+	main = g :toggle commit-title-graph
 	main = G move-last-line
 
 [tig "color"]
