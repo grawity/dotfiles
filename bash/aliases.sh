@@ -79,7 +79,6 @@ mv() {
 }
 alias nmap='nmap --reason'
 alias nm-con='nmcli -f name,type,autoconnect,state,device con'
-alias nosr='pkgfile -v'
 path() { if (( $# )); then which -a "$@"; else echo "${PATH//:/$'\n'}"; fi; }
 alias py='python'
 alias py2='python2'
@@ -334,6 +333,13 @@ llpkg() {
 lscruft() {
 	if have dpkg;		then dpkg -l | awk '/^r/ {print $2}'
 	elif have pacman;	then find /etc -name '*.pacsave'
+	else echo "$FUNCNAME: no known package manager" >&2; return 1; fi
+}
+
+nosr() {
+	if have pkgfile;	then pkgfile -v "$@"
+	elif have apt-file;	then apt-file "$@"
+	elif have yum;		then yum whatprovides "$@"
 	else echo "$FUNCNAME: no known package manager" >&2; return 1; fi
 }
 
