@@ -46,8 +46,8 @@ alias logoff='logout'
 if [[ $DESKTOP_SESSION ]]; then
 	alias logout='~/code/x11/logout'
 fi
-look() { find . -iname "*$1*" "${@:2}"; }
-f() { find "$PWD" -iname "*$1*" "${@:2}" | treeify "$PWD"; }
+f() { find . -iname "*$1*" "${@:2}"; }
+ff() { find "$PWD" -iname "*$1*" "${@:2}" | treeify "$PWD"; }
 alias lchown='chown -h'
 ldapls() {
 	ldapsearch -LLL "$@" 1.1 | ldifunwrap | grep ^dn: \
@@ -136,8 +136,7 @@ alias '~~'='egrep -i'
 }
 ]() { popd; }
 
-alias good='git bisect good'
-alias bad='git bisect bad'
+# dates
 
 alias ssdate='date "+%Y%m%d"'
 alias sdate='date "+%Y-%m-%d"'
@@ -146,6 +145,13 @@ alias ldate='date "+%A, %B %-d, %Y %H:%M"'
 alias mboxdate='date "+%a %b %_d %H:%M:%S %Y"'
 alias mimedate='date "+%a, %d %b %Y %H:%M:%S %z"' # RFC 2822
 alias isodate='date "+%Y-%m-%dT%H:%M:%S%z"' # ISO 8601
+
+# git bisect
+
+alias good='git bisect good'
+alias bad='git bisect bad'
+
+# conditional aliases
 
 if have xdg-open; then
 	alias open='run xdg-open'
@@ -178,7 +184,7 @@ clip() {
 }
 
 sel() {
-	if (( $@ )); then
+	if (( $# )); then
 		echo -n "$*" | gsel
 	elif [[ ! -t 0 ]]; then
 		gsel
@@ -187,7 +193,7 @@ sel() {
 	fi
 }
 
-## OS-dependent aliases
+# OS-dependent aliases
 
 grepopt="--color=auto"
 alias grep='grep $grepopt'
@@ -235,7 +241,7 @@ unset lsopt
 
 alias who='who -HT'
 
-## misc functions
+# misc functions
 
 abs() {
 	local pkg=$1
@@ -309,7 +315,7 @@ x509fp() {
 		sed 's/^.*=//; y/ABCDEF/abcdef/'
 }
 
-## package management
+# package management
 
 lspkgs() {
 	if have dpkg;		then dpkg -l | awk '/^i/ {print $2}'
@@ -326,7 +332,6 @@ lspkg() {
 	elif have pacman;	then pacman -Qql "$@"
 	elif have rpm;		then rpm -ql "$@"
 	elif have pkg_info;	then pkg_info -Lq "$@"
-	#elif have pkg;		then pkg -l "$@"
 	else echo "$FUNCNAME: no known package manager" >&2; return 1
 	fi | sort
 }
@@ -359,7 +364,7 @@ owns() {
 	else echo "$FUNCNAME: no known package manager" >&2; return 1; fi
 }
 
-## service management
+# service management
 
 if have systemctl && [[ -d /run/systemd/system ]]; then
 	start()   { sudo systemctl start "$@";   systemctl status -a "$@"; }
