@@ -11,6 +11,7 @@ pager() { command ${PAGER:-more} "$@"; }
 alias bat='acpi -i'
 catsexp() { cat "$@" | sexp-conv -w $COLUMNS; }
 alias cindex='env TMPDIR=/var/tmp cindex'
+alias cpans='PERL_MM_OPT= PERL_MB_OPT= cpanm --sudo'
 count() { sort "$@" | uniq -c | sort -n -r | pager; }
 alias csearch='csearch -n'
 dist/head() {
@@ -128,7 +129,7 @@ alias '~'='egrep'
 alias '~~'='egrep -i'
 -() { cd -; }
 [() {
-	if [[ "${@:$#}" == "]" ]]; then
+	if [[ $# -eq 0 || "${@:$#}" == "]" ]]; then
 		builtin [ "$@"
 	else
 		pushd "$*"
@@ -153,13 +154,15 @@ alias bad='git bisect bad'
 
 # conditional aliases
 
+if have mpv; then
+	alias mplayer='mpv'
+fi
+
 if have xdg-open; then
 	alias open='run xdg-open'
 fi
 
-if have mpv; then
-	alias mplayer='mpv'
-fi
+# X11 clipboard
 
 if have xclip; then
 	alias psel='xclip -out -selection primary'
@@ -250,10 +253,6 @@ catlog() {
 		    *)    cat "$file";;
 		esac
 	done
-}
-
-cpans() {
-	PERL_MM_OPT= PERL_MB_OPT= cpanm --sudo "$@"
 }
 
 cat() {
