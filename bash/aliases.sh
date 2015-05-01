@@ -243,18 +243,6 @@ alias who='who -HT'
 
 # misc functions
 
-abs() {
-	local pkg=$1
-	if [[ $pkg != */* ]]; then
-		local repo=$(pacman -Si "$pkg" \
-			| sed -rn '/^Repository *: *(.+)$/{s//\1/p;q}')
-		[[ $repo ]] || return 1
-		pkg="$repo/$pkg"
-	fi
-	echo "Downloading $pkg"
-	command abs "$pkg" && cd "$ABSROOT/$pkg"
-}
-
 catlog() {
 	printf '%s\n' "$1" "$1".* | sort -rn | while read -r file; do
 		case $file in
