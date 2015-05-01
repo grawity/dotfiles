@@ -122,7 +122,7 @@ add-vlan() {
 	local dev=$1 addr=$2
 	sudo: ip link add link "${dev%.*}" name "$dev" type vlan id "${dev##*.}"
 	if [[ $addr == dhcp ]]; then
-		use-dhclient "$dev"
+		run-dhcp "$dev"
 	elif [[ $addr ]]; then
 		[[ $addr == */* ]] || addr+="/16"
 		sudo: ip link set "$dev" up
