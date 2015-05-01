@@ -306,6 +306,7 @@ x509fp() {
 lspkgs() {
 	if have dpkg;		then dpkg -l | awk '/^i/ {print $2}'
 	elif have pacman;	then pacman -Qq
+	elif have rpm;		then rpm -qa --qf "%{NAME}\n"
 	elif have pkg_info;	then pkg_info
 	elif have apt-cyg;	then apt-cyg show
 	else echo "$FUNCNAME: no known package manager" >&2; return 1; fi
