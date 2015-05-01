@@ -12,8 +12,10 @@
 
 ## Aliases
 
+alias @='_sshfs'
 alias clock='tty-clock -c'
 alias eof='IGNOREEOF=3'
+alias fumount='fusermount -u'
 alias gmm='run google-musicmanager'
 alias RM='/bin/rm -I'
 alias unrm='trash --restore'
@@ -88,6 +90,16 @@ scrape-reddit() {
 			echo "ಠ_ಠ"
 		fi
 	done
+}
+
+_sshfs() {
+	local host=$1
+	local dir=~/@$host
+	if ! mountpoint -q "$dir"; then
+		mkdir -p "$dir" &&
+		sshfs "$host:" "$dir" -o reconnect -o transform_symlinks
+	fi &&
+	echo "mounted at $dir"
 }
 
 vnet() { sudo: systemctl "${1:-status}" vm-network.target; }

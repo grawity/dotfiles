@@ -153,6 +153,9 @@ Please also read <.environ.notes> if you find this file useful.
   - "--config-dir <dir>" option exists in source code, but doesn't work
   - the program is unmaintained anyway, uses obsolete GnomeVFS
 
+~/.gnome2/, ~/.gnome2_private/ – hardcoded but obsolete
+  - seriously, time to upgrade
+
 ~/.gnupg/ – environment
   - $GNUPGHOME overrides
 
@@ -356,6 +359,9 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.Skype/ – command line
   - "--dbpath=<path>" overrides
+
+~/.sqldeveloper/ – hardcoded
+  - launcher script ignores the java-hack
 
 ~/.sqlite_history – hardcoded
 
