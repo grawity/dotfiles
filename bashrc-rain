@@ -13,9 +13,12 @@
 ## Aliases
 
 alias clock='tty-clock -c'
+alias eof='IGNOREEOF=3'
 alias gmm='run google-musicmanager'
 alias RM='/bin/rm -I'
-alias eof='IGNOREEOF=3'
+alias unrm='trash --restore'
+
+b64() { printf "%s" "$*" | base64 | tr -dc "A-Za-z0-9+/="; }
 
 rm() {
 	local opts=() arg path nuke=() trash=()
@@ -58,22 +61,36 @@ rm() {
 	fi
 }
 
-unrm() {
-	trash --restore "$@"
-}
-
-pull() {
-	IGNOREEOF=1
-	command pull "$@"
-}
-
 rpw() {
 	local pw=$(tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}")
 	echo "$pw"
 	if [[ -t 1 ]]; then
-		echo -n "$pw" | gclip
+		clip "$pw"
 	fi
 }
+
+sudo:() {
+	if (( UID ))
+		then do: sudo "$@"
+		else do: "$@"
+	fi
+}
+
+scrape-reddit() {
+	(( $# )) || set -- $(pclip)
+	local u; for u; do
+		if [[ $u == *[./]reddit.com/r/* ]]; then
+			local f=$(date +%s.%N)
+			~/code/net/scrape-reddit-comment "$u" \
+			| tee ~/tmp/Reddit/tmp/$f \
+			&& mv ~/tmp/Reddit/{tmp,new}/$f
+		else
+			echo "ಠ_ಠ"
+		fi
+	done
+}
+
+vnet() { sudo: systemctl "${1:-status}" vm-network.target; }
 
 youtube-dl() {
 	local cmd=()
@@ -94,18 +111,12 @@ youtube-dl() {
 		--add-metadata
 		--console-title
 		--continue
-		--xattrs
 		"$@"
 	)
 	"${cmd[@]}"
 }
 
-sudo:() {
-	if (( UID ))
-		then do: sudo "$@"
-		else do: "$@"
-	fi
-}
+## Network hackery
 
 add-vlan() {
 	local dev=$1 addr=$2
@@ -119,26 +130,17 @@ add-vlan() {
 	fi
 }
 
-use-dhcp() {
+run-autoip() { sudo: avahi-autoipd --force-bind "${1:-eth0}" "${@:2}"; }
+
+run-dhcp() { sudo: dhclient -4 -d "${1:-eth0}" "${@:2}"; }
+
+run-dhcpcd() {
 	sudo: dhcpcd --ipv4only --noarp --reboot 0 --timeout 0 --nobackground \
 		--nohook resolv.conf --debug "${1:-eth0}" "${@:2}"
 }
 
-use-dhclient() {
-	sudo: dhclient -4 -d -v "${1:-eth0}" "${@:2}"
-}
-
-use-autoip() {
-	sudo: avahi-autoipd --force-bind "${1:-eth0}" "${@:2}"
-}
-
-ecap() {
-	sudo: tcpdump -n -i "${dev:-eth0}" "$@"
-}
-
-earp() {
-	ecap -e "arp or (udp port 67 or 68)"
-}
+ecap() { sudo: tcpdump -n -i "${dev:-eth0}" "$@"; }
+earp() { ecap -e "arp or (udp port 67 or 68)"; }
 
 ecn() {
 	case $1 in
@@ -151,11 +153,6 @@ ecn() {
 	esac
 }
 
-utelnet() {
-	# connect to RedBoot on Ubiquiti PicoStations
-	do: telnet 192.168.1.20 9000
-}
-
 ukip() {
 	sudo: ip link set eth0 up
 	sudo: ip addr flush dev eth0
@@ -164,64 +161,27 @@ ukip() {
 	sudo: ip addr add 172.16.0.42/12  dev eth0
 	sudo: ip addr add 192.168.0.42/24 dev eth0
 	sudo: ip addr add 192.168.1.42/24 dev eth0
-	#sudo: ip addr add 192.168.172.42/24 dev eth0
 }
 
-vnet() {
-	sudo: systemctl "${1:-status}" vm-network.target
-}
+uredboot() { do: telnet 192.168.1.20 9000; }
 
-scrape-reddit() {
-	(( $# )) || set -- $(pclip)
-	local u; for u; do
-		if [[ $u == *[./]reddit.com/r/* ]]; then
-			local f=$(date +%s.%N)
-			~/code/net/scrape-reddit-comment "$u" \
-			| tee ~/tmp/Reddit/tmp/$f \
-			&& mv ~/tmp/Reddit/{tmp,new}/$f
-		else
-			echo "ಠ_ಠ"
-		fi
-	done
-}
+## Certificate hackery
 
-c2p() for _f; do
+c2p() for _f; {
 	openssl x509 -in "$_f" -inform DER -out "${_f%.*}.pem" -outform PEM
-done
+}
 
-p2c() for _f; do
+p2c() for _f; {
 	openssl x509 -in "$_f" -inform PEM -out "${_f%.*}.crt" -outform DER
-done
+}
 
 nssdb="sql:$HOME/.pki/nssdb"
 
 cu() { do: certutil -d "$nssdb" "$@"; }
-pu() { do: pk12util -d "$nssdb" "$@"; }
 mu() { do: modutil  -dbdir "$nssdb" "$@"; }
 pe() { do: pesign   -n "$nssdb" "$@"; }
+pu() { do: pk12util -d "$nssdb" "$@"; }
 st() { do: signtool -d "$nssdb" "$@"; }
-nss-import-key() { pu -i "$@"; }
+
 java-import-key() { keytool -importkeystore -srcstoretype PKCS12 -srckeystore "$@"; }
-
-b64() { printf "%s" "$*" | base64 | tr -dc "A-Za-z0-9+/="; }
-
-## Prompt
-
-_nolid_prompt() {
-	if [[ -e "$XDG_RUNTIME_DIR/nolid.hold" ]]; then
-		if [[ ! "$item_name_sfx" ]]; then
-			item_name_sfx=':[lid]'
-		fi
-	elif [[ -e "$XDG_RUNTIME_DIR/nolid.lock" ]]; then
-		if [[ ! "$item_name_sfx" ]]; then
-			item_name_sfx=':lid'
-		fi
-	else
-		if [[ "$item_name_sfx" == :*lid* ]]; then
-			item_name_sfx=''
-		fi
-	fi
-	fmt_name_sfx='|38;5;238'
-}
-
-PROMPT_COMMAND+="; _nolid_prompt"
+nss-import-key() { pu -i "$@"; }
