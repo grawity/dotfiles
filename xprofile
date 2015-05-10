@@ -33,4 +33,6 @@ if [ "$DESKTOP_SESSION" != gnome ]; then
 	fi
 fi
 
+systemctl --user --no-block start graphical.target
+
 true
