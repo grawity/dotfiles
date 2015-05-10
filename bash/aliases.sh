@@ -140,7 +140,8 @@ alias '~~'='egrep -i'
 
 alias ssdate='date "+%Y%m%d"'
 alias sdate='date "+%Y-%m-%d"'
-alias mdate='date "+%Y-%m-%d %H:%M"'
+alias mmdate='date "+%Y-%m-%d %H:%M"'
+alias mdate='date "+%Y-%m-%d %H:%M:%S %z"'
 alias ldate='date "+%A, %B %-d, %Y %H:%M"'
 alias mboxdate='date "+%a %b %_d %H:%M:%S %Y"'
 alias mimedate='date "+%a, %d %b %Y %H:%M:%S %z"' # RFC 2822
