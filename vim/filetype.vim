@@ -12,6 +12,7 @@ augroup filetypedetect
 	au BufNewFile,BufRead *.ontology setf desktop
 
 	au BufNewFile,BufRead ~/.local/share/applications/*	setf desktop
+	au BufNewFile,BufRead ~/.config/*mimeapps.list		setf desktop
 
 	au BufNewFile,BufRead /etc/systemd/network/*		setf desktop
 	au BufNewFile,BufRead /etc/systemd/system/*		setf desktop
