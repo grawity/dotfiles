@@ -398,12 +398,8 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.w3m/ – hardcoded
 
-~/.weechat/ – compile-time || command line
-  - "-d <path>" or "--dir <path>" is the suggested method
-  - the default can be set with a compile-time option
-  - developer refuses to implement anything else, although I might try writing
-    a patch for an environment variable, someday... just to prove them wrong.
-  - related: <https://savannah.nongnu.org/task/?10934>
+~/.weechat/ – environment || command-line
+  - $WEECHAT_HOME or "-d <path>" or "--dir <path>" overrides
 
 ~/.wgetrc – environment
   - $WGETRC overrides
