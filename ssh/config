@@ -24,6 +24,11 @@ Host 193.219.181.211 uk-vpn
 	User mantas
 	ForwardAgent yes
 
+Host 193.219.181.213 uk-epas
+	HostName 193.219.181.213
+	User root
+	ForwardAgent yes
+
 Host 193.219.181.217 uk-pf-Maironio7
 	HostName 193.219.181.217
 	User root
