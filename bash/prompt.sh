@@ -98,6 +98,9 @@ _awesome_prompt() {
 
 	if ! have git; then
 		git=
+	elif [[ $PWD == /n/uk* ]]; then
+		# add an exception for slowish network mounts
+		git=
 	elif [[ $GIT_DIR && -d $GIT_DIR ]]; then
 		git=$GIT_DIR
 	elif [[ ! $GIT_DIR && -d .git ]]; then
