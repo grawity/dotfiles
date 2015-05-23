@@ -79,6 +79,7 @@ if [ -d vim/undo ]; then
 fi
 
 link bashrc
+link htoprc
 link inputrc
 link profile
 link git ~/.config/git
