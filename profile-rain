@@ -23,9 +23,9 @@ if [ -d ~/Private ] &&
 	fi
 fi
 
-if [ -t 1 ] && [ ! "$DISPLAY" ] && [ ! "$TMUX" ]; then
-	(cd "Dropbox/Code recycle bin/mq" && ./mq-wallnotify 2>/dev/null &)
-fi
+#if [ -t 1 ] && [ ! "$DISPLAY" ] && [ ! "$TMUX" ]; then
+#	(cd "projects/mq" && ./mq-wallnotify 2>/dev/null &)
+#fi
 
 if [ -t 1 ] && [ ! "$SILENT" ]; then
 	if [ "$SSH_CONNECTION" ]; then
