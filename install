@@ -74,11 +74,17 @@ trash ~/.{sh,csh}rc
 rm -f ~/.viminfo
 
 link bashrc
-link htoprc
 link inputrc
 link profile
 link git ~/.config/git
 link vim
+
+if [ -d ~/.config/htop ]; then
+	rm -f ~/.htoprc
+elif [ ! -e ~/.htoprc ]; then
+	mkdir -p ~/.config/htop
+	cp htoprc ~/.config/htop/htoprc
+fi
 
 if [ -h ~/.gitconfig ] || ! git config --global github.user >/dev/null 2>&1; then
 	link git/config ~/.gitconfig
