@@ -79,6 +79,10 @@ link profile
 link git ~/.config/git
 link vim
 
+if [ -L ~/.htoprc ]; then
+	rm -f ~/.htoprc
+fi
+
 if [ -d ~/.config/htop ]; then
 	rm -f ~/.htoprc
 elif [ ! -e ~/.htoprc ]; then
