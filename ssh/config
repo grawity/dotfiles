@@ -60,7 +60,7 @@ Host 193.219.181.192/26 uk-*
 
 # Cluenet and stuff
 
-Host aurimo-seedbox
+Host aurimo-seedbox ns228507
 	HostName 176.31.238.190
 
 Host abacus eta hawking radian virgule
