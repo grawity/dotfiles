@@ -47,6 +47,8 @@ rm() {
 		/media/*)		true;;
 		/mnt/*)			true;;
 		/run/media/*)		true;;
+		# include stuff
+		/pub/*)			true;;
 		# exclude everything else elsewhere
 		*)			false;;
 		esac; then
@@ -197,3 +199,7 @@ st() { do: signtool -d "$nssdb" "$@"; }
 
 java-import-key() { keytool -importkeystore -srcstoretype PKCS12 -srckeystore "$@"; }
 nss-import-key() { pu -i "$@"; }
+
+## miscellany
+
+eris() { ssh wolke -t tmux attach -t eris; }
