@@ -339,7 +339,7 @@ lscruft() {
 }
 
 nosr() {
-	if have pkgfile;	then pkgfile -v "$@"
+	if have pkgfile;	then pkgfile "$@"
 	elif have apt-file;	then apt-file "$@"
 	elif have yum;		then yum whatprovides "$@"
 	else echo "$FUNCNAME: no known package manager" >&2; return 1; fi
