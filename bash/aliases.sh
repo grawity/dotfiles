@@ -60,7 +60,7 @@ alias lpt='sudo netstat -lpt --numeric-hosts'
 alias lpu='sudo netstat -lpu --numeric-hosts'
 lscsr() { openssl req -in "${1:-/dev/stdin}" -noout -text; }
 alias lsd='ls -d .*'
-alias lspart='lsblk -o name,partlabel,fstype,label,mountpoint'
+alias lspart='lsblk -o name,partlabel,size,fstype,label,mountpoint'
 alias md='mkdir'
 mir() { wget -m -np --reject-regex='.*\?C=.;O=.$' "$@"; }
 alias mkcert='mkcsr -x509 -days 3650'
@@ -71,8 +71,7 @@ mv() {
 	if [[ -t 0 && -t 1 && $# -eq 1 && -e $1 ]]; then
 		local old=$1 new=$1
 		read -p "rename to: " -e -i "$old" new
-		[[ "$old" != "$new" ]] &&
-		command mv -v "$old" "$new"
+		[[ "$old" != "$new" ]] && command mv -v "$old" "$new"
 	else
 		command mv "$@"
 	fi
@@ -381,7 +380,6 @@ if have systemctl && [[ -d /run/systemd/system ]]; then
 	alias tsd='tree /etc/systemd/system'
 	cgls() { SYSTEMD_PAGER='cat' systemd-cgls "$@"; }
 	usls() { cgls "/user.slice/user-$UID.slice/$*"; }
-	psls() { cgls "/user.slice/user-$UID.slice/session-$XDG_SESSION_ID.scope"; }
 elif have service; then
 	# Debian, other LSB
 	start()   { for _s; do sudo service "$_s" start; done; }
