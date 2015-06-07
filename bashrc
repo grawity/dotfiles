@@ -58,7 +58,7 @@ complete -A directory cd
 
 . ~/lib/dotfiles/bash/aliases.sh
 
-. ~/code/kerberos/kc.sh
+have kc.sh && . kc.sh
 
 if [[ -f ~/lib/dotfiles/bashrc-$HOSTNAME ]]; then
 	. ~/lib/dotfiles/bashrc-$HOSTNAME
