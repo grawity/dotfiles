@@ -16,11 +16,14 @@ alias @='_sshfs'
 alias clock='tty-clock -c'
 alias eof='IGNOREEOF=3'
 alias fumount='fusermount -u'
+alias gdm='sudo systemctl start gdm'
 alias gmm='run google-musicmanager'
 alias RM='/bin/rm -I'
 alias unrm='trash --restore'
 
 b64() { printf "%s" "$*" | base64 | tr -dc "A-Za-z0-9+/="; }
+
+eris() { ssh wolke -t tmux attach -t eris; }
 
 rm() {
 	local opts=() arg path nuke=() trash=()
@@ -201,5 +204,3 @@ java-import-key() { keytool -importkeystore -srcstoretype PKCS12 -srckeystore "$
 nss-import-key() { pu -i "$@"; }
 
 ## miscellany
-
-eris() { ssh wolke -t tmux attach -t eris; }
