@@ -36,6 +36,3 @@ NMAP_PRIVILEGED="1"
 PERL_CPANM_OPT="$PERL_CPANM_OPT --mirror http://ftp.litnet.lt/pub/CPAN/"
 PIDGIN_DEBUG_COLORED="1"
 TAR_OPTIONS="--xattrs"
-
-# https://wine-staging.com/news/2015-03-22-release-1.7.39.html
-STAGING_SHARED_MEMORY="1"
