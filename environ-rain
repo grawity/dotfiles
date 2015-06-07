@@ -11,10 +11,6 @@ if [ ! "$SSH_AUTH_SOCK" ]; then
 	SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 fi
 
-if [ ! "$GPG_AGENT_INFO" ]; then
-	GPG_AGENT_INFO="$HOME/.gnupg/S.gpg-agent:0:1"
-fi
-
 # libdefaults
 
 LIBVA_DRIVER_NAME="gallium"
