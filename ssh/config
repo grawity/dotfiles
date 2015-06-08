@@ -109,6 +109,10 @@ Host snow snow.home snow.local
 
 # other hosts
 
+Host aur
+	HostName aur4.archlinux.org
+	User aur
+
 Host bazaar.launchpad.net
 	IdentityFile ~/.ssh/id_global
 	IdentitiesOnly yes
