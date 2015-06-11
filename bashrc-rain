@@ -24,6 +24,7 @@ alias unrm='trash --restore'
 b64() { printf "%s" "$*" | base64 | tr -dc "A-Za-z0-9+/="; }
 
 eris() { ssh wolke -t tmux attach -t eris; }
+gale() { ssh wolke -t tmux attach -t gale; }
 
 rm() {
 	local opts=() arg path nuke=() trash=()
