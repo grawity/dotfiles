@@ -1,5 +1,8 @@
-application/zip;	file-roller %s
+application/zip;	vim %s; nametemplate=%s.zip; needsterminal
 application/zip;	zipinfo -2 /dev/stdin; copiousoutput
+
+application/x-zip-compressed;		vim %s; nametemplate=%s.zip; needsterminal
+application/x-zip-compressed;		zipinfo -2 /dev/stdin; copiousoutput
 
 image/*;		eog %s
 
