@@ -432,6 +432,9 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.xprofile – hardcoded
   - hardcoded in Xsession scripts of many DMs
 
+~/.xsel.log – command-line
+  - "-l /dev/null" or "--logfile /dev/null" overrides
+
 ~/dead.letter
   (s-nail – environment)
     - $DEAD overrides
