@@ -161,7 +161,7 @@ fi
 if [ "$LOCAL_PERL" = n ]; then
 	PERL_CPANM_OPT="--sudo"
 else
-	PERL_MM_OPT="INSTALL_BASE='$PREFIX'"
+	PERL_MM_OPT="INSTALL_BASE=$PREFIX"
 	PERL_MB_OPT="--install_base '$PREFIX'"
 fi
 
