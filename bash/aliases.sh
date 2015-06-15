@@ -281,17 +281,27 @@ putenv() {
 	gdb --batch "${args[@]}" -ex detach -p "$pid"
 }
 
-sslcert() {
-	local host=$1 port=$2
+tlsg() {
+	local host=$1 port=${2:-443}
+	gnutls-cli "$host" -p "$port" "${@:3}"
+}
+
+tlso() {
+	local host=$1 port=${2:-443}
 	case $host in
 	    *:*) local addr="[$host]";;
 	    *)   local addr="$host";;
 	esac
+	openssl s_client -connect "$addr:$port" -servername "$host" \
+		-status -no_ign_eof "${@:3}"
+}
+
+sslcert() {
+	local host=$1 port=$2
 	if have gnutls-cli; then
-		gnutls-cli "$1" -p "$2" --insecure --print-cert </dev/null | openssl x509
+		tlsg "$host" "$port" --insecure --print-cert
 	elif have openssl; then
-		openssl s_client -no_ign_eof -connect "$addr:$port" \
-			</dev/null 2>/dev/null | openssl x509
+		tlso "$host" "$port" -showcerts
 	fi
 }
 
