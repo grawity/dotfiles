@@ -41,7 +41,7 @@
   </placement>
   <theme>
     <name>wh-mod</name>
-    <titleLayout>LC</titleLayout>
+    <titleLayout>L</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
       N: window icon
@@ -55,7 +55,7 @@
     <keepBorder>yes</keepBorder>
     <animateIconify>yes</animateIconify>
     <font place="ActiveWindow">
-      <name>Sans</name>
+      <name>Monaco</name>
       <size>9</size>
       <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -63,31 +63,31 @@
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="InactiveWindow">
-      <name>Sans</name>
+      <name>Monaco</name>
       <size>9</size>
       <weight>Normal</weight>
       <slant>Normal</slant>
     </font>
     <font place="MenuHeader">
-      <name>sans</name>
+      <name>Monaco</name>
       <size>9</size>
       <weight>normal</weight>
       <slant>normal</slant>
     </font>
     <font place="MenuItem">
-      <name>sans</name>
+      <name>Monaco</name>
       <size>9</size>
       <weight>normal</weight>
       <slant>normal</slant>
     </font>
     <font place="ActiveOnScreenDisplay">
-      <name>Sans</name>
+      <name>Monaco</name>
       <size>11</size>
       <weight>Normal</weight>
       <slant>Normal</slant>
     </font>
     <font place="InactiveOnScreenDisplay">
-      <name>Sans</name>
+      <name>Monaco</name>
       <size>11</size>
       <weight>Normal</weight>
       <slant>Normal</slant>
