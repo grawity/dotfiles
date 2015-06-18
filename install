@@ -79,15 +79,15 @@ link profile
 link git ~/.config/git
 link vim
 
-if [ -L ~/.htoprc ]; then
+if [ -h ~/.htoprc ]; then
 	rm -f ~/.htoprc
 fi
 
 if [ -d ~/.config/htop ]; then
+	rm -f ~/.htoprc
 	if ! grep -qs "^#" ~/.config/htop/htoprc; then
 		cp htoprc ~/.config/htop/htoprc
 	fi
-	rm -f ~/.htoprc
 elif [ ! -e ~/.htoprc ]; then
 	mkdir -p ~/.config/htop
 	cp htoprc ~/.config/htop/htoprc
@@ -99,6 +99,14 @@ fi
 
 if [ -h ~/.gitignore ]; then
 	link git/ignore ~/.gitignore
+fi
+
+if [ -h ~/.makepkg.conf ]; then
+	rm -f ~/.makepkg.conf
+fi
+
+if have makepkg; then
+	link pacman/makepkg.conf ~/.config/pacman/makepkg.conf
 fi
 
 if have msmtp; then
