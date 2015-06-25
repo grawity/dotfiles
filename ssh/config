@@ -44,6 +44,7 @@ Host 193.219.181.238 uk-sw-B56-border
 	Port 42
 	User admin
 	IdentityFile ~/.ssh/id_ukolegija
+	IdentitiesOnly yes
 	ControlMaster no
 
 Host 193.219.181.240 uk-sw-Aukstaiciu9
@@ -51,6 +52,7 @@ Host 193.219.181.240 uk-sw-Aukstaiciu9
 	Port 42
 	User admin
 	IdentityFile ~/.ssh/id_ukolegija
+	IdentitiesOnly yes
 	ControlMaster no
 
 Host 193.219.181.192/26 uk-*
