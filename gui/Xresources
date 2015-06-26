@@ -20,6 +20,29 @@ Xcursor.size:		16
 
 !!! }}}
 
+!!! Rofi {{{
+
+rofi.key-run:			F2
+rofi.terminal:			gnome-terminal
+rofi.lazy-filter-limit:		10000
+rofi.levenshtein-sort:		0
+
+rofi.location:			0
+rofi.sidebar-mode:		0
+rofi.font:			Monospace 11
+
+rofi.bw:			0
+rofi.padding:			2
+
+rofi.color-enabled:		true
+rofi.color-window:		#222222,#111111
+!rofi.color-normal:		bg,fg,bgalt,hlbg,hlfg
+rofi.color-normal:		#222222,#bbbbbb,#222222,#005577,#eeeeee
+!rofi.color-urgent:		...
+!rofi.color-active:		...
+
+!!! }}}
+
 !!! Xterm {{{
 
 XTerm.termName:			xterm-256color
