@@ -95,9 +95,10 @@ alias riswhois='do: whois -h riswhois.ripe.net'
 alias rot13='tr N-ZA-Mn-za-m A-Za-z'
 rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}"; echo; }
 alias run='spawn -c'
+alias rsync='rsync -s'
 sp() { printf '%s' "$@"; printf '\n'; }
 splitext() { split -dC "${2-32K}" "$1" "${1%.*}-" --additional-suffix=".${1##*.}"; }
-alias srs='rsync -vhzaHAX'
+alias srs='rsync -vshzaHAX'
 alias sudo='sudo ' # for alias expansion in sudo args
 alias telnets='telnet-ssl -z ssl'
 _thiscommand() { history 1 | sed "s/^\s*[0-9]\+\s\+$1\s\+//"; }
