@@ -12,9 +12,10 @@ if [ ! "$DESKTOP_SESSION" ]; then
 
 	/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
-	if have gnome-screensaver; then
-		gnome-screensaver
-	fi &
+	# broken
+	#if have gnome-screensaver; then
+	#	gnome-screensaver
+	#fi &
 
 	xbindkeys &
 fi
