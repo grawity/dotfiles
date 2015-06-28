@@ -108,7 +108,7 @@
 	helper = lib gnomekeyring
 	#helper = lib windows
 	#helper = netrc
-	helper = store --file ~/.auth/git-credential-store
+	helper = store --file $XDG_CONFIG_HOME/git/credentials
 	useHttpPath = false
 
 [diff]
