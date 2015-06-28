@@ -138,7 +138,7 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.gimp-2.8/ – environment
   - $GIMP2_DIRECTORY overrides
 
-~/.git-credentials – partly-XDG as of 2.3.8 (17c7f4d8e4); command line
+~/.git-credentials – partly-XDG as of 2.3.8? 2.4? (17c7f4d8e4); command line
   - $XDG_CONFIG_HOME/git/credentials is used *if exists*
   - "--file=<path>" option exists
 
