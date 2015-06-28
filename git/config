@@ -104,11 +104,11 @@
 	logAllRefUpdates = true
 
 [credential]
-	helper = cache --socket $XDG_RUNTIME_DIR/git-credential-cache.socket
+	helper = cache --socket $XDG_RUNTIME_DIR/git-credential-cache
 	helper = lib gnomekeyring
 	#helper = lib windows
 	#helper = netrc
-	helper = store --file $XDG_CONFIG_HOME/git/credentials
+	helper = store
 	useHttpPath = false
 
 [diff]

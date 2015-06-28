@@ -101,6 +101,8 @@ if [ -h ~/.gitignore ]; then
 	link git/ignore ~/.gitignore
 fi
 
+(umask 077; touch ~/.config/git/credentials)
+
 if [ -h ~/.makepkg.conf ]; then
 	rm -f ~/.makepkg.conf
 fi
