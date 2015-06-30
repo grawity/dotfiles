@@ -109,6 +109,7 @@ NCURSES_NO_UTF8_ACS="1"
 
 ABSROOT="$HOME/pkg"
 PERL_CPANM_HOME="$XDG_CACHE_HOME/cpanminus"
+RLWRAP_HOME="$XDG_CACHE_HOME/rlwrap"
 
 IRBRC="$HOME/lib/dotfiles/irbrc"
 PYTHONSTARTUP="$HOME/lib/dotfiles/pythonrc"
