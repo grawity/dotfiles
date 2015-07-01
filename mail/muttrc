@@ -134,9 +134,9 @@ color normal		white		default
 color tree		brightred	default
 color indicator		default		color24
 color status		brightmagenta	default
-color message		yellow		default
+color message		color255	default
+color progress		color255	color236
 color error		brightwhite	red
-color progress		default		color236
 
 color hdrdefault	color241	default
 color header		color2		default	"^Date:"
