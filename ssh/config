@@ -161,9 +161,7 @@ Host *.vistech.net
 
 Host *.core
 	ForwardAgent yes
-#if Host rain
 	UserKnownHostsFile ~/.ssh/known_hosts.core
-#endif
 	ControlMaster no
 
 Host *.home *.local 10.* 192.168.*
