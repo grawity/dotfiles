@@ -51,6 +51,9 @@ set revert-all-at-newline on
 "\e8": ""
 "\e9": ""
 
+"\ep": ""
+"\en": ""
+
 # UTF-8 prefixes – insert Alt+characters literally instead of eating the first byte
 # two-byte prefixes
 "\e\xc0": self-insert
