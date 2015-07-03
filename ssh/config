@@ -8,55 +8,58 @@
 
 # work
 
-Host 193.219.181.200 uk-untangle
-	HostName 193.219.181.200
-	User root
+Host ukradius
+	HostName uk-radius.utenos-kolegija.lt
+	User grawity
+	IdentityFile ~/.ssh/id_ukolegija
 	ForwardAgent yes
 
-Host 193.219.181.208 uk-tandberg
+Host pf-aukstaiciu9 pf-ausros73 pf-m18-stud pf-m18-adm pf-maironio7 pf-utenio2
+	HostName %h.utenos-kolegija.lt
+	User root
+
+Host sw-b64-edge
+	HostName 193.219.181.238
+	Port 42
+	User admin
+	IdentitiesOnly yes
+	ControlMaster no
+
+Host sw-aukstaiciu9
+	HostName 193.219.181.240
+	Port 42
+	User admin
+	IdentitiesOnly yes
+	ControlMaster no
+
+Host uk-epas
+	HostName %h.utenos-kolegija.lt
+	User root
+
+Host uk-radius
+	HostName %h.utenos-kolegija.lt
+	User grawity
+
+Host uk-tandberg
 	HostName 193.219.181.208
+	#HostName %h.utenos-kolegija.lt
 	User admin
 	Ciphers 3des-cbc
 	MACs hmac-sha1
 
-Host 193.219.181.211 uk-vpn
-	HostName 193.219.181.211
+Host uk-untangle
+	HostName untangle.utenos-kolegija.lt
+	User root
+
+Host uk-vpn
+	HostName %h.utenos-kolegija.lt
 	User mantas
-	ForwardAgent yes
 
-Host 193.219.181.213 uk-epas
-	HostName 193.219.181.213
-	User root
-	ForwardAgent yes
-
-Host 193.219.181.217 uk-pf-Maironio7
-	HostName 193.219.181.217
-	User root
-	ForwardAgent yes
-
-Host 193.219.181.253 uk-radius ukradius
-	HostName 193.219.181.253
-	User grawity
-	ForwardAgent yes
-
-Host 193.219.181.238 uk-sw-B56-border
-	HostName 193.219.181.238
-	Port 42
-	User admin
+Host uk-* 193.219.181.192/26
 	IdentityFile ~/.ssh/id_ukolegija
-	IdentitiesOnly yes
-	ControlMaster no
+	ForwardAgent yes
 
-Host 193.219.181.240 uk-sw-Aukstaiciu9
-	HostName 193.219.181.240
-	Port 42
-	User admin
-	IdentityFile ~/.ssh/id_ukolegija
-	IdentitiesOnly yes
-	ControlMaster no
-
-Host 193.219.181.192/26 uk-*
-	User root
+Host *.utenos-kolegija.lt
 	IdentityFile ~/.ssh/id_ukolegija
 	ForwardAgent yes
 
