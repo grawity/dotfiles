@@ -181,9 +181,6 @@ Host *
 	NoHostAuthenticationForLocalhost yes
 	VerifyHostKeyDNS yes
 
-	ServerAliveInterval 600
-	#ServerAliveCountMax 3
-
 	ControlPath ~/.ssh/S.%r@%h:%p
 	ControlMaster auto
 	ControlPersist 5m
