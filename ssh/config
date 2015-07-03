@@ -174,7 +174,7 @@ Host *.home *.local 10.* 192.168.*
 
 Host *
 	Protocol 2
-	SendEnv LANG PULSE_SERVER TZ
+	SendEnv LANG TZ
 	ForwardX11Trusted yes
 
 	HashKnownHosts no
