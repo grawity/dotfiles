@@ -32,10 +32,6 @@ Host sw-aukstaiciu9
 	IdentitiesOnly yes
 	ControlMaster no
 
-Host uk-epas
-	HostName %h.utenos-kolegija.lt
-	User root
-
 Host uk-radius
 	HostName %h.utenos-kolegija.lt
 	User grawity
@@ -51,7 +47,7 @@ Host uk-untangle
 	HostName untangle.utenos-kolegija.lt
 	User root
 
-Host uk-vpn
+Host uk-epas uk-vpn
 	HostName %h.utenos-kolegija.lt
 	User mantas
 
