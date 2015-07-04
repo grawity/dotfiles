@@ -30,3 +30,7 @@ Sets up session environment – shared between all DMs and xinit. Currently – 
 If `$DESKTOP_SESSION` is empty (a bare WM is being started), starts necessary daemons: compositor, notification daemon, polkit agent, screensaver, systemd-logind lock event handler, xbindkeys.
 
 Also starts misc. daemons that are X11-dependent and per-session.
+
+## Misc notes
+
+  * the underscores are there so that I could have just a single `- dotfiles/vim/_*` rsync exclude rule instead of 4–5 separate ones
