@@ -18,7 +18,7 @@ Host pf-aukstaiciu9 pf-ausros73 pf-m18-stud pf-m18-adm pf-maironio7 pf-utenio2
 	HostName %h.utenos-kolegija.lt
 	User root
 
-Host sw-b64-edge
+Host sw-b56-edge
 	HostName 193.219.181.238
 	Port 42
 	User admin
