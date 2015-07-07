@@ -26,6 +26,14 @@ b64() { printf "%s" "$*" | base64 | tr -dc "A-Za-z0-9+/="; }
 eris() { ssh wolke -t tmux attach -t eris; }
 gale() { ssh wolke -t tmux attach -t gale; }
 
+gensid() {
+	local a=$(perl -e 'print int rand 0xFFFFFFFF')
+	local b=$(perl -e 'print int rand 0xFFFFFFFF')
+	local c=$(perl -e 'print int rand 0xFFFFFFFF')
+	echo "S-1-5-21-$a-$b-$c"
+}
+rand() { perl -e "print int rand $1"; }
+
 rm() {
 	local opts=() arg path nuke=() trash=()
 	for arg; do
