@@ -102,6 +102,7 @@
 	askpass = 
 	autocrlf = false
 	logAllRefUpdates = true
+	whitespace = trailing-space, space-before-tab, blank-at-eof
 
 [credential]
 	helper = cache --socket $XDG_RUNTIME_DIR/git-credential-cache
