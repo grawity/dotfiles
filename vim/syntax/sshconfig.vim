@@ -142,14 +142,13 @@ if version >= 508 || !exists("did_sshconfig_syntax_inits")
 
   HiLink sshconfigComment        Comment
   HiLink sshconfigTodo           Todo
-  HiLink sshconfigHostPort       sshconfigConstant
-  HiLink sshconfigConstant       Constant
-  HiLink sshconfigYesNo          sshconfigEnum
+  HiLink sshconfigHostPort       String
+  HiLink sshconfigYesNo          Boolean
   HiLink sshconfigVar            sshconfigEnum
   HiLink sshconfigEnum           Identifier
   HiLink sshconfigSpecial        Special
   HiLink sshconfigKeyword        Keyword
-  HiLink sshconfigHostSect       Type
+  HiLink sshconfigHostSect       Label
   delcommand HiLink
 endif
 
