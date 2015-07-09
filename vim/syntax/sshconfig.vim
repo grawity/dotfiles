@@ -39,7 +39,6 @@ syn keyword sshconfigYesNo force autoask none
 
 syn match sshconfigVar "%[rhplLdun]\>"
 syn match sshconfigSpecial "[*?]"
-syn match sshconfigNumber "\d\+"
 syn match sshconfigHostPort "\<\(\d\{1,3}\.\)\{3}\d\{1,3}\(:\d\+\)\?\>"
 syn match sshconfigHostPort "\<\([-a-zA-Z0-9]\+\.\)\+[-a-zA-Z0-9]\{2,}\(:\d\+\)\?\>"
 syn match sshconfigHostPort "\<\(\x\{,4}:\)\+\x\{,4}[:/]\d\+\>"
@@ -144,7 +143,6 @@ if version >= 508 || !exists("did_sshconfig_syntax_inits")
   HiLink sshconfigComment        Comment
   HiLink sshconfigTodo           Todo
   HiLink sshconfigHostPort       sshconfigConstant
-  HiLink sshconfigNumber         sshconfigConstant
   HiLink sshconfigConstant       Constant
   HiLink sshconfigYesNo          sshconfigEnum
   HiLink sshconfigVar            sshconfigEnum
