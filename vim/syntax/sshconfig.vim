@@ -37,14 +37,6 @@ syn keyword sshconfigYesNo yes no ask
 syn keyword sshconfigYesNo any auto
 syn keyword sshconfigYesNo force autoask none
 
-syn keyword sshconfigLogLevel QUIET FATAL ERROR INFO VERBOSE
-syn keyword sshconfigLogLevel DEBUG DEBUG1 DEBUG2 DEBUG3
-syn keyword sshconfigSysLogFacility DAEMON USER AUTH AUTHPRIV LOCAL0 LOCAL1
-syn keyword sshconfigSysLogFacility LOCAL2 LOCAL3 LOCAL4 LOCAL5 LOCAL6 LOCAL7
-syn keyword sshconfigAddressFamily  inet inet6
-
-syn keyword sshconfigTunnel	point-to-point ethernet
-
 syn match sshconfigVar "%[rhplLdun]\>"
 syn match sshconfigSpecial "[*?]"
 syn match sshconfigNumber "\d\+"
@@ -155,10 +147,6 @@ if version >= 508 || !exists("did_sshconfig_syntax_inits")
   HiLink sshconfigNumber         sshconfigConstant
   HiLink sshconfigConstant       Constant
   HiLink sshconfigYesNo          sshconfigEnum
-  HiLink sshconfigLogLevel       sshconfigEnum
-  HiLink sshconfigSysLogFacility sshconfigEnum
-  HiLink sshconfigAddressFamily  sshconfigEnum
-  HiLink sshconfigTunnel	 sshconfigEnum
   HiLink sshconfigVar            sshconfigEnum
   HiLink sshconfigEnum           Identifier
   HiLink sshconfigSpecial        Special
