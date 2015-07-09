@@ -5,7 +5,8 @@ set -e
 
 PATH="$HOME/code/bin:$PATH"
 
-. libfilterfile.bash
+. lib.bash || exit
+. libfilterfile.bash || exit
 
 progname='ssh/generate'
 
@@ -83,7 +84,7 @@ else
 		debug "ok, symlinked config found - overriding"
 		rm -f ~/.ssh/config
 	else
-		die "Refusing to overwrite local ~/.ssh/config"
+		die "refusing to overwrite local ~/.ssh/config"
 	fi
 	generate > ~/.ssh/$output
 	ln -sf $output ~/.ssh/config
