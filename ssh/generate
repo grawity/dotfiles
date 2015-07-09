@@ -81,8 +81,8 @@ else
 		debug "ok, generated config found - updating"
 		true
 	elif [[ -L ~/.ssh/config ]]; then
-		debug "ok, symlinked config found - overriding"
-		rm -f ~/.ssh/config
+		debug "symlinked config found - exiting"
+		exit 0
 	else
 		die "refusing to overwrite local ~/.ssh/config"
 	fi
