@@ -32,55 +32,16 @@ syn match sshconfigComment "\s#.*$" contains=sshconfigTodo
 
 syn keyword sshconfigTodo TODO FIXME NOTE contained
 
-
 " Constants
 syn keyword sshconfigYesNo yes no ask
 syn keyword sshconfigYesNo any auto
 syn keyword sshconfigYesNo force autoask none
-
-syn keyword sshconfigCipher  3des blowfish
-syn keyword sshconfigCiphers aes128-cbc 3des-cbc blowfish blowfish-cbc cast128-cbc
-syn keyword sshconfigCiphers aes192-cbc aes256-cbc aes128-ctr aes192-ctr aes256-ctr
-syn keyword sshconfigCiphers arcfour arcfour128 arcfour256 cast128-cbc
-
-syn keyword sshconfigMAC hmac-md5 hmac-sha1 hmac-ripemd160 hmac-sha1-96
-syn keyword sshconfigMAC hmac-md5-96
-syn keyword sshconfigMAC hmac-sha2-256 hmac-sha2-256-96 hmac-sha2-512
-syn keyword sshconfigMAC hmac-sha2-512-96
-syn match   sshconfigMAC "\<umac-64@openssh\.com\>"
-
-syn keyword sshconfigHostKeyAlg ssh-rsa ssh-dss
-syn match   sshconfigHostKeyAlg "\<ecdsa-sha2-nistp256-cert-v01@openssh\.com\>"
-syn match   sshconfigHostKeyAlg "\<ecdsa-sha2-nistp384-cert-v01@openssh\.com\>"
-syn match   sshconfigHostKeyAlg "\<ecdsa-sha2-nistp521-cert-v01@openssh\.com\>"
-syn match   sshconfigHostKeyAlg "\<ssh-rsa-cert-v01@openssh\.com\>"
-syn match   sshconfigHostKeyAlg "\<ssh-dss-cert-v01@openssh\.com\>"
-syn match   sshconfigHostKeyAlg "\<ssh-rsa-cert-v00@openssh\.com\>"
-syn match   sshconfigHostKeyAlg "\<ssh-dss-cert-v00@openssh\.com\>"
-syn keyword sshconfigHostKeyAlg ecdsa-sha2-nistp256 ecdsa-sha2-nistp384 ecdsa-sha2-nistp521
-
-syn keyword sshconfigPreferredAuth hostbased publickey password gssapi-with-mic
-syn keyword sshconfigPreferredAuth keyboard-interactive
 
 syn keyword sshconfigLogLevel QUIET FATAL ERROR INFO VERBOSE
 syn keyword sshconfigLogLevel DEBUG DEBUG1 DEBUG2 DEBUG3
 syn keyword sshconfigSysLogFacility DAEMON USER AUTH AUTHPRIV LOCAL0 LOCAL1
 syn keyword sshconfigSysLogFacility LOCAL2 LOCAL3 LOCAL4 LOCAL5 LOCAL6 LOCAL7
 syn keyword sshconfigAddressFamily  inet inet6
-
-syn match   sshconfigIPQoS	"af1[1234]"
-syn match   sshconfigIPQoS	"af2[23]"
-syn match   sshconfigIPQoS	"af3[123]"
-syn match   sshconfigIPQoS	"af4[123]"
-syn match   sshconfigIPQoS	"cs[0-7]"
-syn keyword sshconfigIPQoS	ef lowdelay throughput reliability
-syn keyword sshconfigKbdInteractive bsdauth pam skey
-
-syn keyword sshconfigKexAlgo	ecdh-sha2-nistp256 ecdh-sha2-nistp384 ecdh-sha2-nistp521
-syn keyword sshconfigKexAlgo	diffie-hellman-group-exchange-sha256
-syn keyword sshconfigKexAlgo	diffie-hellman-group-exchange-sha1
-syn keyword sshconfigKexAlgo	diffie-hellman-group14-sha1
-syn keyword sshconfigKexAlgo	diffie-hellman-group1-sha1
 
 syn keyword sshconfigTunnel	point-to-point ethernet
 
@@ -194,18 +155,10 @@ if version >= 508 || !exists("did_sshconfig_syntax_inits")
   HiLink sshconfigNumber         sshconfigConstant
   HiLink sshconfigConstant       Constant
   HiLink sshconfigYesNo          sshconfigEnum
-  HiLink sshconfigCipher         sshconfigEnum
-  HiLink sshconfigCiphers	 sshconfigEnum
-  HiLink sshconfigMAC            sshconfigEnum
-  HiLink sshconfigHostKeyAlg     sshconfigEnum
   HiLink sshconfigLogLevel       sshconfigEnum
   HiLink sshconfigSysLogFacility sshconfigEnum
   HiLink sshconfigAddressFamily  sshconfigEnum
-  HiLink sshconfigIPQoS		 sshconfigEnum
-  HiLink sshconfigKbdInteractive sshconfigEnum
-  HiLink sshconfigKexAlgo	 sshconfigEnum
   HiLink sshconfigTunnel	 sshconfigEnum
-  HiLink sshconfigPreferredAuth  sshconfigEnum
   HiLink sshconfigVar            sshconfigEnum
   HiLink sshconfigEnum           Identifier
   HiLink sshconfigSpecial        Special
