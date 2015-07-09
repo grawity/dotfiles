@@ -168,6 +168,9 @@ Host *.home *.local 10.* 192.168.*
 
 Host *
 	Protocol 2
+	IdentityFile ~/.ssh/id_ed25519_2015-05-15
+	IdentityFile ~/.ssh/id_rsa_2011-11-01
+
 	SendEnv LANG TZ
 	ForwardX11Trusted yes
 
