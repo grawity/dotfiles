@@ -198,7 +198,7 @@ _awesome_prompt() {
 	_dbg "   wdbase='$wdbase'"
 	_dbg " wdparent='$wdparent'"
 
-	if [[ $fullpwd != 'y' && $PWD == "$HOME" ]]; then
+	if [[ $fullpwd != [yh] && $PWD == "$HOME" ]]; then
 		# special case with fullpwd=n:
 		# show full home directory with no highlight
 		_dbg "head/tail case 1 (special case for ~)"
