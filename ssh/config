@@ -93,7 +93,7 @@ Host panther
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-Host decay ohtori sky wolke
+Host decay ohtori river sky wolke
 	HostName %h.nullroute.eu.org
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
