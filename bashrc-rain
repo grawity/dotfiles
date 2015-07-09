@@ -202,6 +202,7 @@ p2c() for _f; {
 }
 
 nssdb="sql:$HOME/.pki/nssdb"
+fxdb() { (nssdb="$HOME/.mozilla/firefox/ov6jazas.default"; "$@"); }
 
 cu() { do: certutil -d "$nssdb" "$@"; }
 mu() { do: modutil  -dbdir "$nssdb" "$@"; }
