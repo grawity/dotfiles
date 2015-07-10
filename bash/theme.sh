@@ -66,12 +66,17 @@ case $FQDN in
 	;;
 
     *.nullroute.eu.org)
-	item_name_pfx='('
-	item_name_sfx=')'
-	item_prompt='›'
-	fmt_name_pfx='|2|38;5;66'
+	item_name_pfx='‹'
+	item_name_sfx='›'
+	item_prompt='·'
+	fmt_name_pfx='|38;5;66'
 	fmt_name_root='|38;5;220'
-	fmt_name_self='|38;5;43'
+	case $HOSTNAME in
+	    sky)	fmt_name_self='|38;5;43';;
+	    river)	fmt_name_self='|38;5;33';;
+	    wolke)	fmt_name_self='|38;5;204';;
+	    *)		fmt_name_self='|38;5;109';;
+	esac
 	fmt_pwd='|2|38;5;82'
 	fmt_pwd_body='22|48;5;234'
 	fmt_pwd_tail=$fmt_noop
