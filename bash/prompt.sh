@@ -66,7 +66,68 @@ setwname() { [[ $wnamestring ]] && printf "$wnamestring" "$*"; }
 # This function automatically collapses long paths to fit on screen.
 # It is invoked from within $PS1 below.
 
+declare -A items=(
+	[:user]=$USER
+	[:host]=${HOSTNAME%%.*}
+)
+
+declare -A fmts=(
+	[:user]=32
+	[:host]=@:user
+)
+
+declare -A parts=(
+	[left]=":user [35]'@ :host . 'test"
+	[mid]=":pwd"
+	[right]=":vcs"
+)
+
 _awesome_prompt() {
+	local maxwidth=${COLUMNS:-$(tput cols)}
+
+	local -A strs=()
+	local -Ai lens=()
+
+	set -o noglob
+	for pos in left right; do
+		for item in ${parts[$pos]}; do
+			out=""
+			fmt=""
+
+			if [[ $item == \[*\]* ]]; then
+				fmt=${item%%\]*}
+				fmt=${fmt#\[}
+				item=${item#*\]}
+			fi
+
+			if [[ $item == :* ]]; then
+				out=${items[$item]}
+				fmt=${fmts[$item]}
+			elif [[ $item == +* ]]; then
+				fmt=${item#+}
+			elif [[ $item == . ]]; then
+				out=" "
+			elif [[ $item == \'* ]]; then
+				out=${item#\'}
+			fi
+
+			lens[$pos]+=${#out}
+			if [[ $fmt ]]; then
+				while [[ $fmt == @* ]]; do
+					fmt=${fmts[${fmt#@}]}
+				done
+				out=$'\e['${fmt//'|'/$'m\e['}'m'$out$'\e[m'
+			fi
+			strs[$pos]+=$out
+		done
+	done
+	set +o noglob
+
+	echo "${strs[left]} ${strs[mid]} ${strs[right]}"
+	return
+}
+
+_old_awesome_prompt() {
 	local maxwidth=${COLUMNS:-$(tput cols)}
 
 	# hostname or system name

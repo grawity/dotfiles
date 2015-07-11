@@ -64,7 +64,7 @@ case $FQDN in
     *.nullroute.eu.org)
 	item_name_pfx='{'
 	item_pwd_sfx='}'
-	item_prompt='›'
+	item_prompt="$HOSTNAME>"
 	fmt_name_pfx='|38;5;66'
 	fmt_name_root='|38;5;220'
 	case $HOSTNAME in
