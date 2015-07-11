@@ -1,3 +1,4 @@
+# vim: fdm=marker
 # bashrc -- shell prompt, window title, command exit status in prompt
 # (note: depends on $havecolor being set, see main bashrc)
 #
@@ -65,6 +66,8 @@ setwname() { [[ $wnamestring ]] && printf "$wnamestring" "$*"; }
 
 # This function automatically collapses long paths to fit on screen.
 # It is invoked from within $PS1 below.
+
+# awesomer {{{
 
 declare -A items=(
 	[:user]=$USER
@@ -135,6 +138,63 @@ _awesome_prompt() {
 
 	items[:pwd]=$PWD
 
+	# handle :vcs item
+
+	# Parts borrowed from git/contrib/completion/git-prompt.sh,
+	# trimmed down to not cause any noticeable slowdown.
+
+	_dbg() { if [[ $DEBUG ]]; then echo "[$*]"; fi; }
+
+	local git= br= re=
+
+	if ! have git; then
+		git=
+	elif [[ $PWD == /n/uk* ]]; then
+		# add an exception for slowish network mounts
+		git=
+	elif [[ $GIT_DIR && -d $GIT_DIR ]]; then
+		git=$GIT_DIR
+	elif [[ ! $GIT_DIR && -d .git ]]; then
+		git=.git
+	else
+		git=$(git rev-parse --git-dir 2>/dev/null)
+	fi
+
+	if [[ $git ]]; then
+		if [[ -f $git/rebase-merge/interactive ]]; then
+			br=$(<"$git/rebase-merge/head-name")
+			re='REBASE-i'
+		elif [[ -d $git/rebase-merge ]]; then
+			br=$(<"$git/rebase-merge/head-name")
+			re='REBASE-m'
+		else
+			br=$(git symbolic-ref HEAD 2>/dev/null ||
+			     #git describe --tags --exact-match HEAD 2>/dev/null ||
+			     git rev-parse --short HEAD 2>/dev/null ||
+			     echo 'unknown')
+
+			br=${br#refs/heads/}
+
+			if [[ -f $git/rebase-apply/rebasing ]]; then
+				re='REBASE'
+			elif [[ -f $git/rebase-apply/applying ]]; then
+				re='AM'
+			elif [[ -d $git/rebase-apply ]]; then
+				re='AM/REBASE'
+			elif [[ -f $git/MERGE_HEAD ]]; then
+				re='MERGE'
+			elif [[ -f $git/CHERRY_PICK_HEAD ]]; then
+				re='CHERRY'
+			elif [[ -f $git/BISECT_LOG ]]; then
+				re='BISECT'
+			fi
+		fi
+
+		br=${br}${re:+"|$re"}
+	fi
+
+	items[:vcs]=$br
+
 	# handle left & right parts first,
 	# to determine available space for middle
 
@@ -151,6 +211,10 @@ _awesome_prompt() {
 	echo "${strs[left]} ${strs[mid]}<$maxwidth> ${strs[right]}"
 	return
 }
+
+# }}}
+
+# awesome {{{
 
 _old_awesome_prompt() {
 	local maxwidth=${COLUMNS:-$(tput cols)}
@@ -372,6 +436,8 @@ _old_awesome_prompt() {
 		"${fmt_vcs_sfx//|/$csi}"		"$item_vcs_sfx"		\
 		""					""			;
 }
+
+# }}}
 
 _is_remote() {
 	[[ $SSH_TTY || $LOGIN || $REMOTEHOST ]]
