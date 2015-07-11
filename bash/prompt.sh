@@ -1,4 +1,3 @@
-# vim: fdm=marker
 # bashrc -- shell prompt, window title, command exit status in prompt
 # (note: depends on $havecolor being set, see main bashrc)
 #
@@ -9,37 +8,6 @@
 #   - Highlight toplevel directory of a Git repo
 #   - Collapse long paths to fit in one line
 #     ("~/one/two/three" to "~/…o/three")
-#
-# Formatting:
-#
-#   <name>:
-#     item_name_pfx: prefix
-#     item_name: area for the hostname (FQDN shown by default)
-#     item_name_sfx: suffix
-#   reset_pwd: space between <name> and <pwd>
-#   <pwd>:
-#     item_pwd_pfx: prefix
-#     _item_pwd: current working directory minus body+tail
-#     _item_pwd_body: "body" (Git toplevel, etc) of cwd
-#     _item_pwd_tail: basename (last element) of cwd
-#     item_pwd_sfx: suffix
-#   reset_vcs: space between <pwd> and <vcs>
-#   <vcs>:
-#     item_vcs_pfx: prefix
-#     _item_vcs: Git repository status
-#     item_cvs_sfx: suffix
-#   <second line>:
-#     item_prompt: the prompt character
-#
-#   - all ${_item_*} are recalculated every time and cannot be overridden
-#   - prefix/suffix are empty by default
-#   - each ${item_*} or ${_item_*} has a corresponding ${fmt_*} with ANSI fmt
-#   - each ${reset_*} also has a corresponding ${fmt_reset_*}
-#   - formats use '|' to emit separate CSI sequences (e.g. 256-color ones)
-#   - for example, fmt_name='1|38;5;71'
-#   - ${fmt_*_sfx} inherits from ${fmt_*_pfx}
-#   - ${fmt_name_pfx} inherits from ${fmt_prompt}
-#   - to suppress inheritance, set value to ${fmt_noop}
 #
 # Configuration:
 #
@@ -87,15 +55,73 @@ declare -A parts=(
 
 _dbg() { if [[ $DEBUG ]]; then echo "[$*]"; fi; }
 
-_awesome_pwd() {
-	local HOME=${HOME%/}
+_awesome_find_gitdir() {
+	local git=
+
+	if ! have git; then
+		git=
+	elif [[ $PWD == /n/uk* ]]; then
+		# add an exception for slowish network mounts
+		git=
+	elif [[ $GIT_DIR && -d $GIT_DIR ]]; then
+		git=$GIT_DIR
+	elif [[ ! $GIT_DIR && -d .git ]]; then
+		git=.git
+	else
+		git=$(git rev-parse --git-dir 2>/dev/null)
+	fi
+
+	items[.gitdir]=$git
+}
+
+_awesome_upd_vcs() {
+	local git=${items[.gitdir]} br= re=
+
+	if [[ $git ]]; then
+		if [[ -f $git/rebase-merge/interactive ]]; then
+			br=$(<"$git/rebase-merge/head-name")
+			re='REBASE-i'
+		elif [[ -d $git/rebase-merge ]]; then
+			br=$(<"$git/rebase-merge/head-name")
+			re='REBASE-m'
+		else
+			br=$(git symbolic-ref HEAD 2>/dev/null ||
+			     #git describe --tags --exact-match HEAD 2>/dev/null ||
+			     git rev-parse --short HEAD 2>/dev/null ||
+			     echo 'unknown')
+
+			br=${br#refs/heads/}
+
+			if [[ -f $git/rebase-apply/rebasing ]]; then
+				re='REBASE'
+			elif [[ -f $git/rebase-apply/applying ]]; then
+				re='AM'
+			elif [[ -d $git/rebase-apply ]]; then
+				re='AM/REBASE'
+			elif [[ -f $git/MERGE_HEAD ]]; then
+				re='MERGE'
+			elif [[ -f $git/CHERRY_PICK_HEAD ]]; then
+				re='CHERRY'
+			elif [[ -f $git/BISECT_LOG ]]; then
+				re='BISECT'
+			fi
+		fi
+
+		br=${br}${re:+"|$re"}
+	fi
+
+	items[:vcs]=$br
+}
+
+_awesome_upd_pwd() {
+	local git=${items[.gitdir]} HOME=${HOME%/}
+
+	_dbg "* git='$git'"
 
 	local wdrepo= wdbase= wdparent= wdhead= wdbody= wdtail=
 	local -i collapsed=0 tilde=0
 
 	# find the working directory's root
-
-	_dbg "* git='$git'"
 
 	if [[ $GIT_WORK_TREE ]]; then
 		_dbg "- wdbase <- GIT_WORK_TREE"
@@ -249,59 +275,9 @@ _awesome_prompt() {
 
 	# handle dynamic items
 
+	_awesome_find_gitdir
+	_awesome_upd_vcs
 	items[:pwd]=$PWD
-
-	# handle :vcs item
-
-	local git= br= re=
-
-	if ! have git; then
-		git=
-	elif [[ $PWD == /n/uk* ]]; then
-		# add an exception for slowish network mounts
-		git=
-	elif [[ $GIT_DIR && -d $GIT_DIR ]]; then
-		git=$GIT_DIR
-	elif [[ ! $GIT_DIR && -d .git ]]; then
-		git=.git
-	else
-		git=$(git rev-parse --git-dir 2>/dev/null)
-	fi
-
-	if [[ $git ]]; then
-		if [[ -f $git/rebase-merge/interactive ]]; then
-			br=$(<"$git/rebase-merge/head-name")
-			re='REBASE-i'
-		elif [[ -d $git/rebase-merge ]]; then
-			br=$(<"$git/rebase-merge/head-name")
-			re='REBASE-m'
-		else
-			br=$(git symbolic-ref HEAD 2>/dev/null ||
-			     #git describe --tags --exact-match HEAD 2>/dev/null ||
-			     git rev-parse --short HEAD 2>/dev/null ||
-			     echo 'unknown')
-
-			br=${br#refs/heads/}
-
-			if [[ -f $git/rebase-apply/rebasing ]]; then
-				re='REBASE'
-			elif [[ -f $git/rebase-apply/applying ]]; then
-				re='AM'
-			elif [[ -d $git/rebase-apply ]]; then
-				re='AM/REBASE'
-			elif [[ -f $git/MERGE_HEAD ]]; then
-				re='MERGE'
-			elif [[ -f $git/CHERRY_PICK_HEAD ]]; then
-				re='CHERRY'
-			elif [[ -f $git/BISECT_LOG ]]; then
-				re='BISECT'
-			fi
-		fi
-
-		br=${br}${re:+"|$re"}
-	fi
-
-	items[:vcs]=$br
 
 	# handle left & right parts first,
 	# to determine available space for middle
@@ -312,11 +288,9 @@ _awesome_prompt() {
 
 	(( maxwidth -= lens[left] + 1 + 1 + lens[right] + 1 ))
 
-	# update the :pwd item accordingly
-
-	_awesome_pwd
-
 	# finally handle the center/mid part
+
+	_awesome_upd_pwd
 
 	_awesome_items mid
 
