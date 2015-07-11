@@ -37,7 +37,7 @@ if (( havecolor )); then
 		item_prompt='$'
 	fi
 
-	if [[ $USER != @(root|grawity) ]]; then
+	if [[ $USER != grawity ]]; then
 		item_name="$USER@$item_name"
 	fi
 fi
