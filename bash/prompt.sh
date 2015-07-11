@@ -69,8 +69,6 @@ setwname() { [[ $wnamestring ]] && printf "$wnamestring" "$*"; }
 _awesome_prompt() {
 	local maxwidth=${COLUMNS:-$(tput cols)}
 
-	local item_name=$item_name
-
 	# hostname or system name
 	# + 1 ("…/")
 	# + 1 (trailing space to avoid hitting rmargin)
