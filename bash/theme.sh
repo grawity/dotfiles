@@ -66,8 +66,8 @@ case $FQDN in
 	;;
 
     *.nullroute.eu.org)
-	item_name_pfx='‹'
-	item_name_sfx='›'
+	item_name_pfx='{'
+	item_pwd_sfx='}'
 	item_prompt='›'
 	fmt_name_pfx='|38;5;66'
 	fmt_name_root='|38;5;220'
@@ -78,10 +78,10 @@ case $FQDN in
 	    *)		fmt_name_self='|38;5;109';;
 	esac
 	fmt_pwd='|2|38;5;82'
-	fmt_pwd_body='22|48;5;234'
+	fmt_pwd_body=$fmt_noop
 	fmt_pwd_tail=$fmt_noop
 	fmt_pwd_pfx=$fmt_name_pfx
-	fmt_prompt='38;5;238'
+	fmt_prompt=$fmt_name_pfx
 	fmt_vcs='38;5;197'
 	fullpwd=h
 	;;
