@@ -71,15 +71,6 @@ _awesome_prompt() {
 
 	local item_name=$item_name
 
-	if [[ $item_name = '$host' ]]; then
-		if [[ -r /etc/machine-info ]]; then
-			item_name=$(. /etc/machine-info \
-			           && echo "${PRETTY_HOSTNAME:-${HOSTNAME%%.*}}")
-		else
-			item_name=${HOSTNAME%%.*}
-		fi
-	fi
-
 	# hostname or system name
 	# + 1 ("…/")
 	# + 1 (trailing space to avoid hitting rmargin)
