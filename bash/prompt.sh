@@ -220,13 +220,17 @@ _awesome_upd_pwd() {
 _awesome_add_item() {
 	local pos=$1 item=$2
 
-	local out="" fmt=""
+	local out="" fmt="" itm=""
+
+	_dbg "-- item '$item' --"
 
 	if [[ $item == \[*\]* ]]; then
 		fmt=${item%%\]*}
 		fmt=${fmt#\[}
 		item=${item#*\]}
 	fi
+
+	_dbg "- item '$item'"
 
 	if [[ $item == \> ]]; then
 		out=" "
@@ -235,7 +239,33 @@ _awesome_add_item() {
 	elif [[ $item == :* ]]; then
 		if [[ -v items[$item] ]]; then
 			out=${items[$item]}
-			fmt=${fmts[$item]}
+			fmt=@$item
+			while true; do
+				while [[ $fmt == @* ]]; do
+					itm=${fmt#@}
+					fmt=${fmts[$itm]}
+					_dbg "- fmt [$itm]='$fmt'"
+				done
+				if [[ $fmt ]]; then
+					break
+				fi
+				if [[ ! $fmt && $itm == *.sfx ]]; then
+					itm=${itm/%.sfx/.pfx}
+					fmt=${fmts[$itm]}
+					if [[ $fmt == @*.pfx ]]; then
+						fmt=${fmt/%.pfx/.sfx}
+					fi
+					_dbg "- fmt [$itm]='$fmt'"
+				fi
+				if [[ ! $fmt && $itm == *.* ]]; then
+					itm=${itm%.*}
+					fmt=${fmts[$itm]}
+					_dbg "- fmt [$itm]='$fmt'"
+				fi
+				if [[ ! $fmt ]]; then
+					break
+				fi
+			done
 		else
 			out=">$item<"
 			fmt="30;43"
@@ -253,9 +283,6 @@ _awesome_add_item() {
 
 	lens[$pos]+=${#out}
 	if [[ $fmt ]]; then
-		while [[ $fmt == @* ]]; do
-			fmt=${fmts[${fmt#@}]}
-		done
 		out=$'\e['${fmt//'|'/$'m\e['}'m'$out$'\e[m'
 	fi
 	strs[$pos]+=$out

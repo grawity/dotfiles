@@ -41,11 +41,15 @@ fi
 fmts[:name.root]='1;37;41'
 fmts[:name.self]='1;32'
 fmts[:name.other]='1;33'
-fmts[:name]=@:name.self
+
+if (( UID )); then
+	fmts[:name]=@:name.self
+else
+	fmts[:name]=@:name.root
+fi
 
 fmts[:host.pfx]=@:name.pfx
 fmts[:host]=@:name
-fmts[:host.sfx]=@:host.pfx
 
 case $FQDN in
     rain.nullroute.eu.org)
