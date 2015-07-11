@@ -87,6 +87,115 @@ declare -A parts=(
 
 _dbg() { if [[ $DEBUG ]]; then echo "[$*]"; fi; }
 
+_awesome_pwd() {
+	local HOME=${HOME%/}
+
+	local wdrepo= wdbase= wdparent= wdhead= wdbody= wdtail=
+	local -i collapsed=0 tilde=0
+
+	# find the working directory's root
+
+	_dbg "* git='$git'"
+
+	if [[ $GIT_WORK_TREE ]]; then
+		_dbg "- wdbase <- GIT_WORK_TREE"
+		wdbase=$(readlink -f "$GIT_WORK_TREE")
+	elif [[ $git == .git ]]; then
+		_dbg "- wdbase <- PWD"
+		wdbase=$PWD
+	elif [[ $git == /*/.git ]]; then
+		_dbg "- wdbase <- \$git"
+		wdbase=${git%/.git}
+		if [[ $PWD != "$wdbase"/* ]]; then
+			_dbg "- wdbase <- nil (outside PWD)"
+			wdbase=
+		fi
+	elif [[ $git ]]; then
+		_dbg "- wdbase <- wdrepo"
+		wdrepo=$(git rev-parse --show-toplevel)
+		wdbase=${wdrepo:-$(readlink -f "$git")}
+	fi
+
+	# find the parent of the working directory
+
+	wdparent=${wdbase%/*}
+
+	# split into 'head' (normal text) and 'tail' (highlighted text)
+	# Now, if only I remembered why this logic is so complex...
+
+	# TODO: clearly handle the following
+	#   $PWD = $HOME
+	#   inside working tree
+	#   inside bare repository
+
+	_dbg "* fullpwd='$fullpwd'"
+	_dbg "   wdrepo='$wdrepo'"
+	_dbg "   wdbase='$wdbase'"
+	_dbg " wdparent='$wdparent'"
+
+	if [[ $fullpwd != [yh] && $PWD == "$HOME" ]]; then
+		# special case with fullpwd=n:
+		# show full home directory with no highlight
+		_dbg "head/tail case 1 (special case for ~)"
+		wdhead=$PWD wdtail=''
+	elif [[ $wdparent && $PWD != "$wdparent" ]]; then
+		# inside a subdirectory of working tree
+		_dbg "head/tail case 2 (under wdparent)"
+		wdhead=$wdparent/ wdtail=${PWD#$wdparent/}
+	elif [[ $git && $wdbase && ! $wdparent ]]; then
+		# inside working tree immediately below root (e.g. /etc)
+		_dbg "head/tail case 3 (empty wdpaernt)"
+		wdhead=/ wdtail=${PWD#/}
+	else
+		_dbg "head/tail case default"
+		wdhead=${PWD%/*}/ wdtail=${PWD##*/}
+	fi
+
+	if [[ ! $fullpwd && $PWD == "$HOME" ]]; then
+		wdhead='~/'
+	elif [[ $fullpwd != 'y' ]]; then
+		wdhead=${wdhead/#$HOME\//\~/}
+		if [[ ${wdhead:0:2} == '~/' ]]; then
+			tilde=2
+		fi
+	fi
+
+	_dbg "* wdhead='$wdhead'"
+	_dbg "  wdtail='$wdtail'"
+
+	# I honestly do not know why it's "maxwidth - tilde" in one place, but
+	# "maxwidth + tilde" in another.
+
+	if (( ${#wdtail} > maxwidth - tilde )); then
+		wdhead=''
+		if [[ $wdtail == */* ]]; then
+			(( maxwidth -= tilde ))
+			wdtail=${wdtail:${#wdtail}-maxwidth}
+		fi
+		collapsed=1
+	elif (( ${#wdhead} + ${#wdtail} > maxwidth + tilde )); then
+		(( maxwidth -= tilde ))
+		wdhead=${wdhead:${#wdhead}-(maxwidth-${#wdtail})}
+		collapsed=1
+	fi
+
+	if [[ $wdtail == */* ]]; then
+		wdbody=${wdtail%/*}'/' wdtail=${wdtail##*/}
+	fi
+
+	if (( collapsed )); then
+		wdhead='…'$wdhead
+		if (( tilde )); then
+			wdhead='~/'$wdhead
+		fi
+	fi
+
+	items[:pwd.head]=$wdhead
+	items[:pwd.body]=$wdbody
+	items[:pwd.tail]=$wdtail
+	items[:pwd]=$wdhead$wdbody$wdtail
+}
+
 _awesome_items() {
 	local pos=$1
 
@@ -137,6 +246,8 @@ _awesome_prompt() {
 
 	local -A strs=()
 	local -Ai lens=()
+
+	# handle dynamic items
 
 	items[:pwd]=$PWD
 
@@ -199,13 +310,17 @@ _awesome_prompt() {
 		_awesome_items $pos
 	done
 
-	(( maxwidth -= lens[left] + lens[right] ))
+	(( maxwidth -= lens[left] + 1 + 1 + lens[right] + 1 ))
+
+	# update the :pwd item accordingly
+
+	_awesome_pwd
 
 	# finally handle the center/mid part
 
 	_awesome_items mid
 
-	echo "${strs[left]} ${strs[mid]}<$maxwidth> ${strs[right]}"
+	echo "${strs[left]} ${strs[mid]} ${strs[right]}"
 	return
 }
 
