@@ -29,20 +29,16 @@ fmt_name_other='1;33'
 fmt_pwd_tail='1'
 
 if (( havecolor )); then
-	_hostname='$host'
+	item_name="${HOSTNAME%%.*}"
+
 	if (( UID == 0 )); then
-		item_name="$_hostname"
 		item_prompt='#'
-	elif [[ $USER == "grawity" ]]; then
-		item_name="$_hostname"
-		item_prompt='$'
 	else
-		item_name="$USER@$HOSTNAME"
 		item_prompt='$'
 	fi
-	unset _hostname
-	if _is_remote; then
-		item_prompt='^'
+
+	if [[ $USER != @(root|grawity) ]]; then
+		item_name="$USER@$item_name"
 	fi
 fi
 
