@@ -208,7 +208,7 @@ _awesome_prompt() {
 	fi
 
 	if [[ ! $fullpwd && $PWD == "$HOME" ]]; then
-		wdhead='~'
+		wdhead='~/'
 	elif [[ $fullpwd != 'y' ]]; then
 		wdhead=${wdhead/#$HOME\//\~/}
 		if [[ ${wdhead:0:2} == '~/' ]]; then
