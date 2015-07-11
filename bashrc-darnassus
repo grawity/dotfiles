@@ -1,12 +1,10 @@
 # vim: ft=sh
 
-item_name_pfx='┌ '
-item_name=$HOSTNAME
-item_name_sfx=':hurd'
-item_prompt='└'
-
-fmt_name_pfx='38;5;238'		# gray
-fmt_name='38;5;31'		# blue
-fmt_pwd='38;5;76'		# green
-fmt_vcs='38;5;198'		# magenta
-fmt_prompt=$fmt_name_pfx
+items[:name.pfx]='┌ '
+items[:name.sfx]=':hurd'
+items[:prompt]='└'
+fmts[:name.pfx]='38;5;238'	# gray
+fmts[:name]='38;5;31'		# blue
+fmts[:pwd]='38;5;76'		# green
+fmts[:vcs]='38;5;198'		# magenta
+fmts[:prompt]=@:name.pfx
