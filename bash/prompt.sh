@@ -77,7 +77,7 @@ declare -A fmts=(
 )
 
 declare -A parts=(
-	[left]=":user [35]'@ :host . 'test"
+	[left]=":user [35]>@ :host >> > wut > >test"
 	[mid]=":pwd"
 	[right]=":vcs"
 )
@@ -96,15 +96,18 @@ _awesome_items() {
 			item=${item#*\]}
 		fi
 
-		if [[ $item == :* ]]; then
+		if [[ $item == \> ]]; then
+			out=" "
+		elif [[ $item == \>* ]]; then
+			out=${item#\>}
+		elif [[ $item == :* ]]; then
 			out=${items[$item]}
 			fmt=${fmts[$item]}
 		elif [[ $item == +* ]]; then
 			fmt=${item#+}
-		elif [[ $item == . ]]; then
-			out=" "
-		elif [[ $item == \'* ]]; then
-			out=${item#\'}
+		else
+			out="?$item"
+			fmt='1;37;41'
 		fi
 
 		lens[$pos]+=${#out}
