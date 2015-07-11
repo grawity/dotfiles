@@ -222,47 +222,52 @@ _awesome_upd_pwd() {
 	items[:pwd]=$wdhead$wdbody$wdtail
 }
 
-_awesome_items() {
+_awesome_add_item() {
+	local pos=$1 item=$2
+
+	local out="" fmt=""
+
+	if [[ $item == \[*\]* ]]; then
+		fmt=${item%%\]*}
+		fmt=${fmt#\[}
+		item=${item#*\]}
+	fi
+
+	if [[ $item == \> ]]; then
+		out=" "
+	elif [[ $item == \>* ]]; then
+		out=${item#\>}
+	elif [[ $item == :* ]]; then
+		if [[ -v items[$item] ]]; then
+			out=${items[$item]}
+			fmt=${fmts[$item]}
+		else
+			out=">$item<"
+			fmt="30;43"
+		fi
+	elif [[ $item == +* ]]; then
+		fmt=${item#+}
+	else
+		out="<$item>"
+		fmt='1;37;41'
+	fi
+
+	lens[$pos]+=${#out}
+	if [[ $fmt ]]; then
+		while [[ $fmt == @* ]]; do
+			fmt=${fmts[${fmt#@}]}
+		done
+		out=$'\e['${fmt//'|'/$'m\e['}'m'$out$'\e[m'
+	fi
+	strs[$pos]+=$out
+}
+
+_awesome_fill_items() {
 	local pos=$1
 
 	set -o noglob
 	for item in ${parts[$pos]}; do
-		out=""
-		fmt=""
-
-		if [[ $item == \[*\]* ]]; then
-			fmt=${item%%\]*}
-			fmt=${fmt#\[}
-			item=${item#*\]}
-		fi
-
-		if [[ $item == \> ]]; then
-			out=" "
-		elif [[ $item == \>* ]]; then
-			out=${item#\>}
-		elif [[ $item == :* ]]; then
-			if [[ -v items[$item] ]]; then
-				out=${items[$item]}
-				fmt=${fmts[$item]}
-			else
-				out=">$item<"
-				fmt="30;43"
-			fi
-		elif [[ $item == +* ]]; then
-			fmt=${item#+}
-		else
-			out="<$item>"
-			fmt='1;37;41'
-		fi
-
-		lens[$pos]+=${#out}
-		if [[ $fmt ]]; then
-			while [[ $fmt == @* ]]; do
-				fmt=${fmts[${fmt#@}]}
-			done
-			out=$'\e['${fmt//'|'/$'m\e['}'m'$out$'\e[m'
-		fi
-		strs[$pos]+=$out
+		_awesome_add_item $pos $item
 	done
 	set +o noglob
 }
@@ -283,7 +288,7 @@ _awesome_prompt() {
 	# to determine available space for middle
 
 	for pos in left right; do
-		_awesome_items $pos
+		_awesome_fill_items $pos
 	done
 
 	(( maxwidth -= lens[left] + 1 + 1 + lens[right] + 1 ))
@@ -292,7 +297,7 @@ _awesome_prompt() {
 
 	_awesome_upd_pwd
 
-	_awesome_items mid
+	_awesome_fill_items 'mid'
 
 	echo "${strs[left]} ${strs[mid]} ${strs[right]}"
 	return
