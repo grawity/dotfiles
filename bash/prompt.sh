@@ -38,6 +38,7 @@ setwname() { [[ $wnamestring ]] && printf "$wnamestring" "$*"; }
 declare -A items=(
 	[:user]=$USER
 	[:host]=${HOSTNAME%%.*}
+	[:prompt]='$'
 )
 
 declare -A fmts=()
@@ -46,6 +47,7 @@ declare -A parts=(
 	[left]=":host"
 	[mid]=":pwd"
 	[right]=":vcs"
+	[prompt]=":prompt >"
 )
 
 _dbg() { if [[ $DEBUG ]]; then echo "[$*]"; fi; }
@@ -302,7 +304,7 @@ _awesome_add_item() {
 
 	lens[$pos]+=${#out}
 	if [[ $fmt ]]; then
-		out=$'\e['${fmt//'|'/$'m\e['}'m'$out$'\e[m'
+		out=$'\001\e['${fmt//'|'/$'m\e['}$'m\002'$out$'\001\e[m\002'
 	fi
 	strs[$pos]+=$out
 
@@ -336,7 +338,7 @@ _awesome_prompt() {
 	# handle left & right parts first,
 	# to determine available space for middle
 
-	for pos in left right; do
+	for pos in left right prompt; do
 		_awesome_fill_items $pos
 	done
 
@@ -348,8 +350,9 @@ _awesome_prompt() {
 
 	_awesome_fill_items 'mid'
 
-	echo "${strs[left]} ${strs[mid]} ${strs[right]}"
-	return
+	printf "%s\n%s" \
+		"${strs[left]} ${strs[mid]} ${strs[right]}" \
+		"${strs[prompt]}"
 }
 
 _is_remote() {
@@ -360,8 +363,7 @@ _is_remote() {
 
 if (( havecolor )); then
 	PS1="\n"
-	PS1="${PS1}\$(_awesome_prompt)\n"
-	PS1="${PS1}\[\e[m\e[\${fmt_prompt//|/m\e[}m\]\${item_prompt}\[\e[m\] "
+	PS1="${PS1}\$(_awesome_prompt)"
 	PS2="\[\e[0;1;30m\]...\[\e[m\] "
 	PS4="+\e[34m\${BASH_SOURCE:--}:\e[1m\$LINENO\e[m:\${FUNCNAME:+\e[33m\$FUNCNAME\e[m} "
 else
