@@ -40,12 +40,7 @@ declare -A items=(
 	[:host]=${HOSTNAME%%.*}
 )
 
-declare -A fmts=(
-	[:user]='36'
-	[:host]=@:user
-	[:pwd]='32'
-	[:vcs]='31'
-)
+declare -A fmts=()
 
 declare -A parts=(
 	[left]=":host"
@@ -252,6 +247,10 @@ _awesome_add_item() {
 		fmt='1;37;41'
 	fi
 
+	if [[ $item == :* && -v items[$item.pfx] ]]; then
+		_awesome_add_item $pos $item.pfx
+	fi
+
 	lens[$pos]+=${#out}
 	if [[ $fmt ]]; then
 		while [[ $fmt == @* ]]; do
@@ -260,6 +259,10 @@ _awesome_add_item() {
 		out=$'\e['${fmt//'|'/$'m\e['}'m'$out$'\e[m'
 	fi
 	strs[$pos]+=$out
+
+	if [[ $item == :* && -v items[$item.sfx] ]]; then
+		_awesome_add_item $pos $item.sfx
+	fi
 }
 
 _awesome_fill_items() {

@@ -17,16 +17,7 @@
 #  * name='1;32' pwd='36' vcs='1;30'
 #    (vcs being a dark gray)
 
-unset ${!fmt_*} ${!item_*} ${!reset_*} fullpwd
-
-reset_pwd=' '
-reset_vcs=' '
-
-fmt_noop='28' # "Visible (not hidden)"
-fmt_name_root='1;37;41'
-fmt_name_self='1;32'
-fmt_name_other='1;33'
-fmt_pwd_tail='1'
+unset fullpwd
 
 if (( havecolor )); then
 	item_name="${HOSTNAME%%.*}"
@@ -47,8 +38,18 @@ fi
 : ${FQDN:=$(fqdn)}
 : ${FQDN:=$HOSTNAME}
 
+fmts[:name.root]='1;37;41'
+fmts[:name.self]='1;32'
+fmts[:name.other]='1;33'
+fmts[:name]=@:name.self
+
+fmts[:host.pfx]=@:name.pfx
+fmts[:host]=@:name
+fmts[:host.sfx]=@:host.pfx
+
 case $FQDN in
     rain.nullroute.eu.org)
+	items[:name.pfx]='┌ '
 	item_name_pfx='┌ '
 	item_prompt='┘'
 	fmt_name_pfx='|38;5;236'
@@ -62,8 +63,9 @@ case $FQDN in
 	;;
 
     *.nullroute.eu.org)
-	item_name_pfx='{'
-	item_pwd_sfx='}'
+	items[:host.pfx]='{'
+	items[:host.sfx]='}'
+	fmts[:name.pfx]='|38;5;66'
 	item_prompt="$HOSTNAME>"
 	fmt_name_pfx='|38;5;66'
 	fmt_name_root='|38;5;220'
