@@ -82,48 +82,56 @@ declare -A parts=(
 	[right]=":vcs"
 )
 
+_awesome_items() {
+	local pos=$1
+
+	set -o noglob
+	for item in ${parts[$pos]}; do
+		out=""
+		fmt=""
+
+		if [[ $item == \[*\]* ]]; then
+			fmt=${item%%\]*}
+			fmt=${fmt#\[}
+			item=${item#*\]}
+		fi
+
+		if [[ $item == :* ]]; then
+			out=${items[$item]}
+			fmt=${fmts[$item]}
+		elif [[ $item == +* ]]; then
+			fmt=${item#+}
+		elif [[ $item == . ]]; then
+			out=" "
+		elif [[ $item == \'* ]]; then
+			out=${item#\'}
+		fi
+
+		lens[$pos]+=${#out}
+		if [[ $fmt ]]; then
+			while [[ $fmt == @* ]]; do
+				fmt=${fmts[${fmt#@}]}
+			done
+			out=$'\e['${fmt//'|'/$'m\e['}'m'$out$'\e[m'
+		fi
+		strs[$pos]+=$out
+	done
+	set +o noglob
+}
+
 _awesome_prompt() {
 	local maxwidth=${COLUMNS:-$(tput cols)}
 
 	local -A strs=()
 	local -Ai lens=()
 
-	set -o noglob
 	for pos in left right; do
-		for item in ${parts[$pos]}; do
-			out=""
-			fmt=""
-
-			if [[ $item == \[*\]* ]]; then
-				fmt=${item%%\]*}
-				fmt=${fmt#\[}
-				item=${item#*\]}
-			fi
-
-			if [[ $item == :* ]]; then
-				out=${items[$item]}
-				fmt=${fmts[$item]}
-			elif [[ $item == +* ]]; then
-				fmt=${item#+}
-			elif [[ $item == . ]]; then
-				out=" "
-			elif [[ $item == \'* ]]; then
-				out=${item#\'}
-			fi
-
-			lens[$pos]+=${#out}
-			if [[ $fmt ]]; then
-				while [[ $fmt == @* ]]; do
-					fmt=${fmts[${fmt#@}]}
-				done
-				out=$'\e['${fmt//'|'/$'m\e['}'m'$out$'\e[m'
-			fi
-			strs[$pos]+=$out
-		done
+		_awesome_items $pos
 	done
-	set +o noglob
 
-	echo "${strs[left]} ${strs[mid]} ${strs[right]}"
+	(( maxwidth -= lens[left] + lens[right] ))
+
+	echo "${strs[left]} ${strs[mid]}<$maxwidth> ${strs[right]}"
 	return
 }
 
