@@ -85,6 +85,8 @@ declare -A parts=(
 	[right]=":vcs"
 )
 
+_dbg() { if [[ $DEBUG ]]; then echo "[$*]"; fi; }
+
 _awesome_items() {
 	local pos=$1
 
@@ -139,11 +141,6 @@ _awesome_prompt() {
 	items[:pwd]=$PWD
 
 	# handle :vcs item
-
-	# Parts borrowed from git/contrib/completion/git-prompt.sh,
-	# trimmed down to not cause any noticeable slowdown.
-
-	_dbg() { if [[ $DEBUG ]]; then echo "[$*]"; fi; }
 
 	local git= br= re=
 
@@ -230,8 +227,6 @@ _old_awesome_prompt() {
 
 	# Parts borrowed from git/contrib/completion/git-prompt.sh,
 	# trimmed down to not cause any noticeable slowdown.
-
-	_dbg() { if [[ $DEBUG ]]; then echo "[$*]"; fi; }
 
 	local git= br= re=
 
