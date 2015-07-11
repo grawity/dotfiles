@@ -101,12 +101,17 @@ _awesome_items() {
 		elif [[ $item == \>* ]]; then
 			out=${item#\>}
 		elif [[ $item == :* ]]; then
-			out=${items[$item]}
-			fmt=${fmts[$item]}
+			if [[ -v items[$item] ]]; then
+				out=${items[$item]}
+				fmt=${fmts[$item]}
+			else
+				out=">$item<"
+				fmt="30;43"
+			fi
 		elif [[ $item == +* ]]; then
 			fmt=${item#+}
 		else
-			out="?$item"
+			out="<$item>"
 			fmt='1;37;41'
 		fi
 
@@ -128,11 +133,20 @@ _awesome_prompt() {
 	local -A strs=()
 	local -Ai lens=()
 
+	items[:pwd]=$PWD
+
+	# handle left & right parts first,
+	# to determine available space for middle
+
 	for pos in left right; do
 		_awesome_items $pos
 	done
 
 	(( maxwidth -= lens[left] + lens[right] ))
+
+	# finally handle the center/mid part
+
+	_awesome_items mid
 
 	echo "${strs[left]} ${strs[mid]}<$maxwidth> ${strs[right]}"
 	return
