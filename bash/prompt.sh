@@ -73,12 +73,14 @@ declare -A items=(
 )
 
 declare -A fmts=(
-	[:user]=32
+	[:user]='36'
 	[:host]=@:user
+	[:pwd]='32'
+	[:vcs]='31'
 )
 
 declare -A parts=(
-	[left]=":user [35]>@ :host >> > wut > >test"
+	[left]=":host"
 	[mid]=":pwd"
 	[right]=":vcs"
 )
