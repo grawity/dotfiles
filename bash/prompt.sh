@@ -220,9 +220,28 @@ _awesome_upd_pwd() {
 _awesome_add_item() {
 	local pos=$1 item=$2
 
-	local out="" fmt="" itm=""
+	local cond="" out="" fmt="" itm=""
 
 	_dbg "-- item '$item' --"
+
+	while [[ $item == \(*\)* ]]; do
+		cond=${item%%\)*}
+		cond=${cond#\(}
+		item=${item#*\)}
+		# I'm not proud of this
+		if if case ${cond#!} in
+			root)	(( UID == 0 )) ;;
+			host=*)	[[ $HOSTNAME == ${cond#*=} ]] ;;
+		esac; then
+			[[ $cond == !* ]]
+		else
+			[[ $cond != !* ]]
+		fi; then
+			return
+		fi
+	done
+
+	_dbg "- item '$item'"
 
 	if [[ $item == \[*\]* ]]; then
 		fmt=${item%%\]*}

@@ -38,6 +38,11 @@ fi
 : ${FQDN:=$(fqdn)}
 : ${FQDN:=$HOSTNAME}
 
+parts[left]=":name.pfx (root):user (root)>@ :host :name.sfx"
+
+items[:name.pfx]=''
+items[:name.sfx]=''
+
 fmts[:name.root]='1;37;41'
 fmts[:name.self]='1;32'
 fmts[:name.other]='1;33'
@@ -67,24 +72,18 @@ case $FQDN in
 	;;
 
     *.nullroute.eu.org)
-	items[:host.pfx]='{'
-	items[:host.sfx]='}'
+	items[:name.pfx]='{'
+	items[:name.sfx]='}'
 	fmts[:name.pfx]='|38;5;66'
-	item_prompt="$HOSTNAME>"
-	fmt_name_pfx='|38;5;66'
-	fmt_name_root='|38;5;220'
+	fmts[:name.root]='|38;5;220'
 	case $HOSTNAME in
-	    sky)	fmt_name_self='|38;5;43';;
-	    river)	fmt_name_self='|38;5;33';;
-	    wolke)	fmt_name_self='|38;5;204';;
-	    *)		fmt_name_self='|38;5;109';;
+	    sky)	fmts[:name.self]='|38;5;43';;
+	    river)	fmts[:name.self]='|38;5;33';;
+	    wolke)	fmts[:name.self]='|38;5;204';;
+	    *)		fmts[:name.self]='|38;5;109';;
 	esac
-	fmt_pwd='|2|38;5;82'
-	fmt_pwd_body=$fmt_noop
-	fmt_pwd_tail=$fmt_noop
-	fmt_pwd_pfx=$fmt_name_pfx
-	fmt_prompt=$fmt_name_pfx
-	fmt_vcs='38;5;197'
+	fmts[:pwd]='|2|38;5;82'
+	fmts[:vcs]='38;5;197'
 	fullpwd=h
 	;;
 
