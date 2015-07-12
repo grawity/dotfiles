@@ -224,13 +224,18 @@ _awesome_upd_pwd() {
 _awesome_add_item() {
 	local pos=$1 item=$2
 
-	local cond="" out="" fmt="" itm=""
-
+	local fullitem=$item
 	local errfmt=${fmts[error]:-"38;5;15|41"}
+
+	local out=""
+	local fmt=""
 
 	_dbg "-- item '$item' --"
 
+	# handle (condition) prefixes
+
 	while [[ $item == \(*\)* ]]; do
+		local cond=
 		cond=${item%%\)*}
 		cond=${cond#\(}
 		item=${item#*\)}
@@ -249,11 +254,19 @@ _awesome_add_item() {
 		fi
 	done
 
+	# handle probably-useless [format] prefix
+
 	if [[ $item == \[*\]* ]]; then
 		fmt=${item%%\]*}
 		fmt=${fmt#\[}
 		item=${item#*\]}
 	fi
+
+	# handle various item types
+	#   >		a space
+	#   >text	literal text
+	#   !part	sub-part with items
+	#   :item	text from item
 
 	if [[ $item == \> ]]; then
 		out=" "
@@ -261,10 +274,10 @@ _awesome_add_item() {
 		out=${item#\>}
 	elif [[ $item == !* ]]; then
 		if [[ ${_recursing[$item]} ]]; then
-			out="<looped $item>"
+			out="<looped '$item'>"
 			fmt=$errfmt
 		elif [[ -v parts[$item] ]]; then
-			local subitem
+			local subitem=
 			_recursing[$item]=1
 			for subitem in ${parts[$item]}; do
 				_awesome_add_item $pos $subitem
@@ -272,47 +285,49 @@ _awesome_add_item() {
 			_recursing[$item]=0
 			return
 		else
-			out="<no part $item>"
+			out="<no part '$item'>"
 			fmt=$errfmt
 		fi
 	elif [[ $item == :* ]]; then
 		if [[ -v items[$item] ]]; then
+			local subitem=
 			out=${items[$item]}
 			fmt=@$item
 			while true; do
 				while [[ $fmt == @* ]]; do
-					itm=${fmt#@}
-					fmt=${fmts[$itm]}
-					_dbg "- fmt [$itm]='$fmt'"
+					subitem=${fmt#@}
+					fmt=${fmts[$subitem]}
+					_dbg "- fmt [$subitem]='$fmt'"
 				done
 				if [[ $fmt ]]; then
 					break
 				fi
-				if [[ ! $fmt && $itm == *.sfx ]]; then
-					itm=${itm/%.sfx/.pfx}
-					fmt=${fmts[$itm]}
+				if [[ ! $fmt && $subitem == *.sfx ]]; then
+					subitem=${subitem/%.sfx/.pfx}
+					fmt=${fmts[$subitem]}
 					if [[ $fmt == @*.pfx ]]; then
 						fmt=${fmt/%.pfx/.sfx}
 					fi
-					_dbg "- fmt [$itm]='$fmt'"
+					_dbg "- fmt [$subitem]='$fmt'"
 				fi
-				if [[ ! $fmt && $itm == *.* ]]; then
-					itm=${itm%.*}
-					fmt=${fmts[$itm]}
-					_dbg "- fmt [$itm]='$fmt'"
+				if [[ ! $fmt && $subitem == *.* ]]; then
+					subitem=${subitem%.*}
+					fmt=${fmts[$subitem]}
+					_dbg "- fmt [$subitem]='$fmt'"
 				fi
 				if [[ ! $fmt ]]; then
 					break
 				fi
 			done
 		else
-			out="<no item $item>"
+			out="<no item '$item'>"
 			fmt=$errfmt
 		fi
-	elif [[ $item == +* ]]; then
-		fmt=${item#+}
+	elif [[ $item ]]; then
+		out="<unknown '$item'>"
+		fmt=$errfmt
 	else
-		out="<unknown $item>"
+		out="<null '$fullitem'>"
 		fmt=$errfmt
 	fi
 
