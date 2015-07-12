@@ -12,43 +12,39 @@
 
 unset fullpwd
 
+parts[!pwd]=":pwd.head :pwd.body :pwd.tail"
 parts[left]=":name.pfx (root):user :host :name.sfx"
+parts[mid]="!pwd"
 parts[right]=":vcs"
 
 items[:host]="${HOSTNAME%%.*}"
+items[:name.pfx]=''
+items[:name.sfx]=''
+items[:user.sfx]='@'
+
+fmts[:host.pfx]=@:name.pfx
+fmts[:host]=@:name
+fmts[:name.root]='1;37;41'
+fmts[:name.self]='1;32'
+fmts[:user]=@:name
 
 if (( UID == 0 )); then
+	fmts[:name]=@:name.self
 	items[:prompt]='#'
 else
+	fmts[:name]=@:name.root
 	items[:prompt]='$'
 fi
-
-item_prompt=${items[:prompt]}
 
 # Some domain-based themes
 
 : ${FQDN:=$(fqdn)}
 : ${FQDN:=$HOSTNAME}
 
-items[:name.pfx]=''
-items[:user.sfx]='@'
-items[:name.sfx]=''
-
-fmts[:name.root]='1;37;41'
-fmts[:name.self]='1;32'
-if (( UID )); then
-	fmts[:name]=@:name.self
-else
-	fmts[:name]=@:name.root
-fi
-fmts[:user]=@:name
-fmts[:host.pfx]=@:name.pfx
-fmts[:host]=@:name
-
 case $FQDN in
     rain.nullroute.eu.org)
 	items[:name.pfx]='┌ '
-	fmts[:name.pfx]='|38;5;236'
+	fmts[:name.pfx]='38;5;236'
 	fmts[:name.root]='38;5;231|41'
 	fmts[:name.self]='38;5;82'
 	fmts[:pwd]='38;5;39'
@@ -61,15 +57,15 @@ case $FQDN in
     *.nullroute.eu.org)
 	items[:name.pfx]='{'
 	items[:name.sfx]='}'
-	fmts[:name.pfx]='|38;5;66'
-	fmts[:name.root]='|38;5;220'
+	fmts[:name.pfx]='38;5;66'
+	fmts[:name.root]='38;5;220'
 	case $HOSTNAME in
-	    sky)	fmts[:name.self]='|38;5;43';;
-	    river)	fmts[:name.self]='|38;5;33';;
-	    wolke)	fmts[:name.self]='|38;5;204';;
-	    *)		fmts[:name.self]='|38;5;109';;
+	    sky)	fmts[:name.self]='38;5;43';;
+	    river)	fmts[:name.self]='38;5;33';;
+	    wolke)	fmts[:name.self]='38;5;204';;
+	    *)		fmts[:name.self]='38;5;109';;
 	esac
-	fmts[:pwd]='2|38;5;82'
+	fmts[:pwd]='38;5;82'
 	fmts[:vcs]='38;5;197'
 	fullpwd=h
 	;;
