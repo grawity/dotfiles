@@ -1,12 +1,5 @@
 # bashrc -- prompt appearance (color variables)
 
-# Prompt layout:
-#
-#   {item_name}{reset_pwd}{item_pwd}{reset_vcs}{item_vcs}
-#   {item_prompt}
-#
-#   item_name, item_pwd, and item_vcs are surrounded by *_pfx and *_sfx
-
 # Theme ideas:
 #
 #  * item_name_pfx="{" item_name_sfx="}" fmt_name_pfx="38;5;42"
@@ -17,29 +10,30 @@
 #  * name='1;32' pwd='36' vcs='1;30'
 #    (vcs being a dark gray)
 
-unset ${!fmt_*} ${!item_*} ${!reset_*} fullpwd
+unset fullpwd
 
-reset_pwd=' '
-reset_vcs=' '
+parts[!pwd]=":pwd.head :pwd.body :pwd.tail"
+parts[left]=":name.pfx (root):user :host :name.sfx"
+parts[mid]="!pwd"
+parts[right]=":vcs"
 
-fmt_noop='28' # "Visible (not hidden)"
-fmt_name_root='1;37;41'
-fmt_name_self='1;32'
-fmt_name_other='1;33'
-fmt_pwd_tail='1'
+items[:host]="${HOSTNAME%%.*}"
+items[:name.pfx]=''
+items[:name.sfx]=''
+items[:user.sfx]='@'
 
-if (( havecolor )); then
-	item_name="${HOSTNAME%%.*}"
+fmts[:host.pfx]=@:name.pfx
+fmts[:host]=@:name
+fmts[:name.root]='1;37;41'
+fmts[:name.self]='1;32'
+fmts[:user]=@:name
 
-	if (( UID == 0 )); then
-		item_prompt='#'
-	else
-		item_prompt='$'
-	fi
-
-	if [[ $USER != grawity ]]; then
-		item_name="$USER@$item_name"
-	fi
+if (( UID == 0 )); then
+	fmts[:name]=@:name.root
+	items[:prompt]='#'
+else
+	fmts[:name]=@:name.self
+	items[:prompt]='$'
 fi
 
 # Some domain-based themes
@@ -49,92 +43,81 @@ fi
 
 case $FQDN in
     rain.nullroute.eu.org)
-	item_name_pfx='┌ '
-	item_prompt='┘'
-	fmt_name_pfx='|38;5;236'
-	fmt_prompt=$fmt_name_pfx
-
-	fmt_name_root='38;5;231|41'
-	fmt_name_self='38;5;82'
-	fmt_pwd='38;5;39'
-	fmt_pwd_tail='1|38;5;45'
-	fmt_vcs='38;5;198'
+	items[:name.pfx]='┌ '
+	fmts[:name.pfx]='38;5;236'
+	fmts[:name.root]='38;5;231|41'
+	fmts[:name.self]='38;5;82'
+	fmts[:pwd]='38;5;39'
+	fmts[:pwd.tail]='1|38;5;45'
+	fmts[:vcs]='38;5;198'
+	items[:prompt]='┘'
+	fmts[:prompt]=@:name.pfx
 	;;
 
     *.nullroute.eu.org)
-	item_name_pfx='{'
-	item_pwd_sfx='}'
-	item_prompt='›'
-	fmt_name_pfx='|38;5;66'
-	fmt_name_root='|38;5;220'
+	items[:name.pfx]='{'
+	items[:name.sfx]='}'
+	fmts[:name.pfx]='38;5;66'
+	fmts[:name.root]='38;5;220'
 	case $HOSTNAME in
-	    sky)	fmt_name_self='|38;5;43';;
-	    river)	fmt_name_self='|38;5;33';;
-	    wolke)	fmt_name_self='|38;5;204';;
-	    *)		fmt_name_self='|38;5;109';;
+	    sky)	fmts[:name.self]='38;5;43';;
+	    river)	fmts[:name.self]='38;5;33';;
+	    wolke)	fmts[:name.self]='38;5;204';;
+	    *)		fmts[:name.self]='38;5;109';;
 	esac
-	fmt_pwd='|2|38;5;82'
-	fmt_pwd_body=$fmt_noop
-	fmt_pwd_tail=$fmt_noop
-	fmt_pwd_pfx=$fmt_name_pfx
-	fmt_prompt=$fmt_name_pfx
-	fmt_vcs='38;5;197'
+	fmts[:pwd]='38;5;82'
+	fmts[:pwd.tail]='1|38;5;82'
+	fmts[:vcs]='38;5;197'
 	fullpwd=h
 	;;
 
     *.cluenet.org|*.nathan7.eu)
-	fmt_name_self='1|38;5;71'
-	fmt_pwd='38;5;144'
-	fmt_vcs='38;5;167'
+	fmts[:name.self]='1|38;5;71'
+	fmts[:pwd]='38;5;144'
+	fmts[:vcs]='38;5;167'
 	;;
 
     *.utenos-kolegija.lt)
-	item_name_pfx="["
-	item_name=$HOSTNAME
-	item_name_sfx="]"
+	items[:name.pfx]="["
+	items[:name.sfx]="]"
+	fmts[:name]=
 	if (( UID )); then
-		item_prompt='$'
-		fmt_name_pfx='|1;32'
-		fmt_name=''
+		items[:prompt]='$'
+		fmts[:name.pfx]='1;32'
 	else
-		item_prompt='#'
-		fmt_name_pfx='|1;31'
-		fmt_name='|1'
+		items[:prompt]='#'
+		fmts[:name.pfx]='1;31'
+		fmts[:name]='1'
 	fi
-	fmt_prompt=$fmt_name_pfx
 	fullpwd=y
 	;;
 
     *.core|*.rune)
-	item_name_pfx="["
-	item_name=$FQDN
-	item_name_sfx="] $OSTYPE"
-	fmt_name_pfx='|38;5;242'
-	if (( UID )); then
-		fmt_name='38;5;71'
-	else
-		fmt_name='38;5;231|41'
-	fi
-	fmt_pwd='38;5;144'
-	fmt_vcs='38;5;167'
+	items[:name.pfx]="["
+	items[:host]=$FQDN
+	items[:name.sfx]="] $OSTYPE"
+	fmts[:name.pfx]='38;5;242'
+	fmts[:name.self]='38;5;71'
+	fmts[:name.root]='38;5;231|41'
+	fmts[:pwd]='38;5;144'
+	fmts[:vcs]='38;5;167'
 	fullpwd=y
 	;;
 
     *)
-	item_name_pfx='┌ '
-	item_name=$FQDN
+	items[:name.pfx]='┌ '
+	items[:host]=$FQDN
+	items[:prompt]='└'
 	fullpwd=y
-	item_prompt='└'
-	if (( UID )); then
-		fmt_name='38;5;31'
-	else
-		fmt_name_pfx='38;5;196'
-		fmt_name='|48;5;196'
+	fmts[:name.self]='38;5;31'
+	fmts[:name.root]='48;5;196'
+	if (( ! UID )); then
+		fmts[:name.pfx]='38;5;196'
 	fi
-	fmt_pwd='38;5;76'
-	fmt_vcs='38;5;198'
-	: ${fmt_name_pfx:=$fmt_name}
-	fmt_prompt=$fmt_name_pfx
+	fmts[:pwd]='38;5;76'
+	fmts[:vcs]='38;5;198'
+	fmts[:name.pfx]=@:name
+	fmts[:prompt]=@:name.pfx
 esac
 
 # Host themes overridden in bashrc-$HOSTNAME
