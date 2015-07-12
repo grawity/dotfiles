@@ -29,10 +29,10 @@ fmts[:name.self]='1;32'
 fmts[:user]=@:name
 
 if (( UID == 0 )); then
-	fmts[:name]=@:name.self
+	fmts[:name]=@:name.root
 	items[:prompt]='#'
 else
-	fmts[:name]=@:name.root
+	fmts[:name]=@:name.self
 	items[:prompt]='$'
 fi
 
