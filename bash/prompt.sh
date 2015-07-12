@@ -247,15 +247,11 @@ _awesome_add_item() {
 		fi
 	done
 
-	_dbg "- item '$item'"
-
 	if [[ $item == \[*\]* ]]; then
 		fmt=${item%%\]*}
 		fmt=${fmt#\[}
 		item=${item#*\]}
 	fi
-
-	_dbg "- item '$item'"
 
 	if [[ $item == \> ]]; then
 		out=" "
