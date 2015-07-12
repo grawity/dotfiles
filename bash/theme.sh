@@ -66,6 +66,7 @@ case $FQDN in
 	    *)		fmts[:name.self]='38;5;109';;
 	esac
 	fmts[:pwd]='38;5;82'
+	fmts[:pwd.tail]='1|38;5;82'
 	fmts[:vcs]='38;5;197'
 	fullpwd=h
 	;;
