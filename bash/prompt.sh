@@ -224,6 +224,8 @@ _awesome_add_item() {
 
 	local cond="" out="" fmt="" itm=""
 
+	local errfmt=${fmts[error]:-"38;5;15|41"}
+
 	_dbg "-- item '$item' --"
 
 	while [[ $item == \(*\)* ]]; do
@@ -288,14 +290,14 @@ _awesome_add_item() {
 				fi
 			done
 		else
-			out=">$item<"
-			fmt="30;43"
+			out="<no item $item>"
+			fmt=$errfmt
 		fi
 	elif [[ $item == +* ]]; then
 		fmt=${item#+}
 	else
-		out="<$item>"
-		fmt='1;37;41'
+		out="<unknown $item>"
+		fmt=$errfmt
 	fi
 
 	if [[ $item == :* && -v items[$item.pfx] ]]; then
