@@ -290,6 +290,7 @@ _awesome_add_item() {
 		fi
 	elif [[ $item == :* ]]; then
 		if [[ -v items[$item] ]]; then
+			local -i loop=0
 			local subitem=
 			out=${items[$item]}
 			fmt=@$item
@@ -316,6 +317,11 @@ _awesome_add_item() {
 					_dbg "- fmt [$subitem]='$fmt'"
 				fi
 				if [[ ! $fmt ]]; then
+					break
+				fi
+				if (( loop++ >= 10 )); then
+					out="<bad fmt for '$item'>"
+					fmt=$errfmt
 					break
 				fi
 			done
