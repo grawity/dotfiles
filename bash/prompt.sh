@@ -230,8 +230,6 @@ _awesome_add_item() {
 	local out=""
 	local fmt=""
 
-	_dbg "-- item '$item' --"
-
 	# handle (condition) prefixes
 
 	while [[ $item == \(*\)* ]]; do
@@ -295,12 +293,11 @@ _awesome_add_item() {
 			out=${items[$item]}
 			fmt=@$item
 			while true; do
-				while [[ $fmt == @* ]]; do
+				if [[ $fmt == @* ]]; then
 					subitem=${fmt#@}
 					fmt=${fmts[$subitem]}
-					_dbg "- fmt [$subitem]='$fmt'"
-				done
-				if [[ $fmt ]]; then
+				fi
+				if [[ $fmt && $fmt != @* ]]; then
 					break
 				fi
 				if [[ ! $fmt && $subitem == *.sfx ]]; then
@@ -309,12 +306,10 @@ _awesome_add_item() {
 					if [[ $fmt == @*.pfx ]]; then
 						fmt=${fmt/%.pfx/.sfx}
 					fi
-					_dbg "- fmt [$subitem]='$fmt'"
 				fi
 				if [[ ! $fmt && $subitem == *.* ]]; then
 					subitem=${subitem%.*}
 					fmt=${fmts[$subitem]}
-					_dbg "- fmt [$subitem]='$fmt'"
 				fi
 				if [[ ! $fmt ]]; then
 					break
