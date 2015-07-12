@@ -259,6 +259,10 @@ _awesome_add_item() {
 		out=" "
 	elif [[ $item == \>* ]]; then
 		out=${item#\>}
+	elif [[ $item == !pwd ]]; then
+		_awesome_add_item $pos :pwd.head
+		_awesome_add_item $pos :pwd.body
+		_awesome_add_item $pos :pwd.tail
 	elif [[ $item == :* ]]; then
 		if [[ -v items[$item] ]]; then
 			out=${items[$item]}
