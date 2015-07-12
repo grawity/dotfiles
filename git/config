@@ -106,7 +106,7 @@
 
 [credential]
 	helper = cache --socket $XDG_RUNTIME_DIR/git-credential-cache
-	helper = lib gnomekeyring
+	#helper = lib gnomekeyring
 	#helper = lib windows
 	#helper = netrc
 	helper = store

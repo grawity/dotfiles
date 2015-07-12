@@ -31,3 +31,6 @@
 [submodule "vim/bundle/vim-ps1"]
 	path = vim/bundle/vim-ps1
 	url = https://github.com/PProvost/vim-ps1
+[submodule "vim/bundle/Zenburn"]
+	path = vim/bundle/Zenburn
+	url = https://github.com/jnurmine/Zenburn

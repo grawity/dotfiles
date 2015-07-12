@@ -1,15 +1,37 @@
+# local configurations
+
+.rsync-filter
+.vimdir
+
+# backup files
+
+*~
+
+# build output
+
 *.a
 *.o
-*.py[co]
-*.sw[nop]
-*~
-.vimdir
-Thumbs.db
-\#*#
-__pycache__
-core
-!core/
-core.*.*
 
-# OpenOffice lock files
+# JIT cache
+
+*.py[co]
+__pycache__
+
+# lock & runtime files
+
+# OpenOffice
 .~lock.*#
+# Vim
+*.sw[nop]
+
+# other crud
+
+Thumbs.db
+
+core
+core.*.*
+!core/
+
+# unknown
+
+\#*#
