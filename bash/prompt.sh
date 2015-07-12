@@ -50,7 +50,7 @@ declare -A parts=(
 	[prompt]=":prompt >"
 )
 
-declare -A _recursing=()
+declare -Ai _recursing=()
 
 _dbg() { if [[ $DEBUG ]]; then echo "[$*]"; fi; }
 
@@ -273,7 +273,7 @@ _awesome_add_item() {
 	elif [[ $item == \>* ]]; then
 		out=${item#\>}
 	elif [[ $item == !* ]]; then
-		if [[ ${_recursing[$item]} ]]; then
+		if [[ ${_recursing[$item]} == 1 ]]; then
 			out="<looped '$item'>"
 			fmt=$errfmt
 		elif [[ -v parts[$item] ]]; then
