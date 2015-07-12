@@ -50,8 +50,6 @@ declare -A parts=(
 	[prompt]=":prompt >"
 )
 
-declare -i show_git_work_tree=0
-
 declare -Ai _recursing=()
 
 _dbg() { if [[ $DEBUG ]]; then echo "[$*]"; fi; }
@@ -122,7 +120,7 @@ _awesome_upd_pwd() {
 
 	# find the working directory's root
 
-	if (( show_git_work_tree )); then
+	if [[ ${fmts[:pwd.body]} ]]; then
 		_dbg "* git='$git'"
 
 		if [[ $GIT_WORK_TREE ]]; then
@@ -193,9 +191,6 @@ _awesome_upd_pwd() {
 
 	_dbg "* wdhead='$wdhead'"
 	_dbg "  wdtail='$wdtail'"
-
-	# I honestly do not know why it's "maxwidth - tilde" in one place, but
-	# "maxwidth + tilde" in another.
 
 	if (( ${#wdtail} > maxwidth - tilde )); then
 		wdhead=''
