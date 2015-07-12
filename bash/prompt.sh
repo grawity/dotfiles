@@ -50,7 +50,7 @@ declare -A parts=(
 	[prompt]=":prompt >"
 )
 
-declare -A recursing=()
+declare -A _recursing=()
 
 _dbg() { if [[ $DEBUG ]]; then echo "[$*]"; fi; }
 
@@ -238,6 +238,8 @@ _awesome_add_item() {
 		if if case ${cond#!} in
 			root)	(( UID == 0 )) ;;
 			host=*)	[[ $HOSTNAME == ${cond#*=} ]] ;;
+			user=*)	[[ $USER == ${cond#*=} ]] ;;
+			remote)	[[ $SSH_TTY || $LOGIN || $REMOTEHOST ]] ;;
 		esac; then
 			[[ $cond == !* ]]
 		else
@@ -258,16 +260,16 @@ _awesome_add_item() {
 	elif [[ $item == \>* ]]; then
 		out=${item#\>}
 	elif [[ $item == !* ]]; then
-		if [[ ${recursing[$item]} ]]; then
+		if [[ ${_recursing[$item]} ]]; then
 			out="<looped $item>"
 			fmt=$errfmt
 		elif [[ -v parts[$item] ]]; then
 			local subitem
-			recursing[$item]=1
+			_recursing[$item]=1
 			for subitem in ${parts[$item]}; do
 				_awesome_add_item $pos $subitem
 			done
-			recursing[$item]=0
+			_recursing[$item]=0
 			return
 		else
 			out="<no part $item>"
@@ -345,22 +347,18 @@ _awesome_prompt() {
 	local -A strs=()
 	local -Ai lens=()
 
-	# handle dynamic items
+	# handle left & right parts first,
+	# to determine available space for middle
 
 	_awesome_find_gitdir
 	_awesome_upd_vcs
 	items[:pwd]=$PWD
-
-	# handle left & right parts first,
-	# to determine available space for middle
 
 	for pos in left right prompt; do
 		_awesome_fill_items $pos
 	done
 
 	(( maxwidth -= lens[left] + 1 + 1 + lens[right] + 1 ))
-
-	# finally handle the center/mid part
 
 	_awesome_upd_pwd
 
@@ -371,9 +369,6 @@ _awesome_prompt() {
 		"${strs[prompt]}"
 }
 
-_is_remote() {
-	[[ $SSH_TTY || $LOGIN || $REMOTEHOST ]]
-}
 
 # Set prompts (PS1, PS2, &c.)
 
