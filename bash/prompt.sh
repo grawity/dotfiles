@@ -50,6 +50,8 @@ declare -A parts=(
 	[prompt]=":prompt >"
 )
 
+declare -i show_git_work_tree=0
+
 declare -Ai _recursing=()
 
 _dbg() { if [[ $DEBUG ]]; then echo "[$*]"; fi; }
@@ -115,30 +117,34 @@ _awesome_upd_vcs() {
 _awesome_upd_pwd() {
 	local git=${items[.gitdir]} HOME=${HOME%/}
 
-	_dbg "* git='$git'"
-
 	local wdrepo= wdbase= wdparent= wdhead= wdbody= wdtail=
 	local -i collapsed=0 tilde=0
 
 	# find the working directory's root
 
-	if [[ $GIT_WORK_TREE ]]; then
-		_dbg "- wdbase <- GIT_WORK_TREE"
-		wdbase=$(readlink -f "$GIT_WORK_TREE")
-	elif [[ $git == .git ]]; then
-		_dbg "- wdbase <- PWD"
-		wdbase=$PWD
-	elif [[ $git == /*/.git ]]; then
-		_dbg "- wdbase <- \$git"
-		wdbase=${git%/.git}
-		if [[ $PWD != "$wdbase"/* ]]; then
-			_dbg "- wdbase <- nil (outside PWD)"
-			wdbase=
+	if (( show_git_work_tree )); then
+		_dbg "* git='$git'"
+
+		if [[ $GIT_WORK_TREE ]]; then
+			_dbg "- wdbase <- GIT_WORK_TREE"
+			wdbase=$(readlink -f "$GIT_WORK_TREE")
+		elif [[ $git == .git ]]; then
+			_dbg "- wdbase <- PWD"
+			wdbase=$PWD
+		elif [[ $git == /*/.git ]]; then
+			_dbg "- wdbase <- \$git"
+			wdbase=${git%/.git}
+			if [[ $PWD != "$wdbase"/* ]]; then
+				_dbg "- wdbase <- nil (outside PWD)"
+				wdbase=
+			fi
+		elif [[ $git ]]; then
+			_dbg "- wdbase <- wdrepo"
+			wdrepo=$(git rev-parse --show-toplevel)
+			wdbase=${wdrepo:-$(readlink -f "$git")}
 		fi
-	elif [[ $git ]]; then
-		_dbg "- wdbase <- wdrepo"
-		wdrepo=$(git rev-parse --show-toplevel)
-		wdbase=${wdrepo:-$(readlink -f "$git")}
+	else
+		wdbase=$PWD
 	fi
 
 	# find the parent of the working directory
