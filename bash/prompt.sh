@@ -50,6 +50,8 @@ declare -A parts=(
 	[prompt]=":prompt >"
 )
 
+declare -A recursing=()
+
 _dbg() { if [[ $DEBUG ]]; then echo "[$*]"; fi; }
 
 _awesome_find_gitdir() {
@@ -259,10 +261,22 @@ _awesome_add_item() {
 		out=" "
 	elif [[ $item == \>* ]]; then
 		out=${item#\>}
-	elif [[ $item == !pwd ]]; then
-		_awesome_add_item $pos :pwd.head
-		_awesome_add_item $pos :pwd.body
-		_awesome_add_item $pos :pwd.tail
+	elif [[ $item == !* ]]; then
+		if [[ ${recursing[$item]} ]]; then
+			out="<looped $item>"
+			fmt=$errfmt
+		elif [[ -v parts[$item] ]]; then
+			local subitem
+			recursing[$item]=1
+			for subitem in ${parts[$item]}; do
+				_awesome_add_item $pos $subitem
+			done
+			recursing[$item]=0
+			return
+		else
+			out="<no part $item>"
+			fmt=$errfmt
+		fi
 	elif [[ $item == :* ]]; then
 		if [[ -v items[$item] ]]; then
 			out=${items[$item]}
