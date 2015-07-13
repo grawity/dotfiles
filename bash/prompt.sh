@@ -228,16 +228,18 @@ _awesome_add_item() {
 	# handle (condition) prefixes
 
 	while [[ $item == \(*\)* ]]; do
-		local cond=
+		local cond= cval=
 		cond=${item%%\)*}
 		cond=${cond#\(}
 		item=${item#*\)}
+		cval=${cond#!}
 		# I'm not proud of this
-		if if case ${cond#!} in
+		if if case ${cval} in
 			root)	(( UID == 0 )) ;;
 			host=*)	[[ $HOSTNAME == ${cond#*=} ]] ;;
 			user=*)	[[ $USER == ${cond#*=} ]] ;;
 			remote)	[[ $SSH_TTY || $LOGIN || $REMOTEHOST ]] ;;
+			:*)	[[ ${items[${cval#:}]} ]] ;;
 		esac; then
 			[[ $cond == !* ]]
 		else
