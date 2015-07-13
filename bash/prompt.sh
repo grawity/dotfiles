@@ -121,8 +121,6 @@ _awesome_upd_pwd() {
 	# find the working directory's root
 
 	if [[ ${fmts[:pwd.body]} ]]; then
-		_dbg "* git='$git'"
-
 		if [[ $GIT_WORK_TREE ]]; then
 			_dbg "- wdbase <- GIT_WORK_TREE"
 			wdbase=$(readlink -f "$GIT_WORK_TREE")
@@ -293,17 +291,21 @@ _awesome_add_item() {
 			local subitem=
 			out=${items[$item]}
 			fmt=@$item
+			_dbg "-- item $item fmt '$fmt' --"
 			while true; do
 				if [[ $fmt == @* ]]; then
 					subitem=${fmt#@}
 					fmt=${fmts[$subitem]}
+					_dbg " stripped @, got item '$subitem' fmt '$fmt'"
 				fi
 				if [[ $fmt && $fmt != @* ]]; then
+					_dbg " got final fmt '$fmt'"
 					break
 				fi
 				if [[ ! $fmt && $subitem == *.sfx ]]; then
 					subitem=${subitem/%.sfx/.pfx}
 					fmt=${fmts[$subitem]}
+					_dbg " stripped .sfx, got item '$subitem' fmt '$fmt'"
 					if [[ $fmt == @*.pfx ]]; then
 						fmt=${fmt/%.pfx/.sfx}
 					fi
@@ -311,8 +313,10 @@ _awesome_add_item() {
 				if [[ ! $fmt && $subitem == *.* ]]; then
 					subitem=${subitem%.*}
 					fmt=${fmts[$subitem]}
+					_dbg " stripped .*, got item '$subitem' fmt '$fmt'"
 				fi
 				if [[ ! $fmt ]]; then
+					_dbg " got empty fmt, giving up"
 					break
 				fi
 				if (( loop++ >= 10 )); then
