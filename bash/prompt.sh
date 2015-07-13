@@ -224,6 +224,7 @@ _awesome_add_item() {
 	local pos=$1 item=$2
 
 	local fullitem=$item
+	local baseitem=
 	local errfmt=${fmts[error]:-"38;5;15|41"}
 
 	local out=""
@@ -259,6 +260,8 @@ _awesome_add_item() {
 		item=${item#*\]}
 	fi
 
+	baseitem=$item
+
 	# handle various item types
 	#   >		a space
 	#   >text	literal text
@@ -289,10 +292,9 @@ _awesome_add_item() {
 		item=${item#:}
 		if [[ ${items[$item]+yes} ]]; then
 			local -i loop=0
-			local subitem=
 			out=${items[$item]}
 			fmt=@$item
-			_dbg "-- item $item fmt '$fmt' --"
+			_dbg "-- item '$item' value '$out' fmt '$fmt' --"
 			while true; do
 				if [[ $fmt == @* ]]; then
 					subitem=${fmt#@}
@@ -338,8 +340,8 @@ _awesome_add_item() {
 		fmt=$errfmt
 	fi
 
-	if [[ $item == :* && ${items[$item.pfx]+yes} ]]; then
-		_awesome_add_item $pos $item.pfx
+	if [[ $baseitem == :* && ${items[$item.pfx]+yes} ]]; then
+		_awesome_add_item $pos $baseitem.pfx
 	fi
 
 	lens[$pos]+=${#out}
@@ -348,8 +350,8 @@ _awesome_add_item() {
 	fi
 	strs[$pos]+=$out
 
-	if [[ $item == :* && ${items[$item.sfx]+yes} ]]; then
-		_awesome_add_item $pos $item.sfx
+	if [[ $baseitem == :* && ${items[$item.sfx]+yes} ]]; then
+		_awesome_add_item $pos $baseitem.sfx
 	fi
 }
 
