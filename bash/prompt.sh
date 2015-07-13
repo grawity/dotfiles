@@ -120,7 +120,7 @@ _awesome_upd_pwd() {
 
 	# find the working directory's root
 
-	if [[ ${fmts[:pwd.body]} ]]; then
+	if [[ ${fmts[pwd.body]} ]]; then
 		if [[ $GIT_WORK_TREE ]]; then
 			_dbg "- wdbase <- GIT_WORK_TREE"
 			wdbase=$(readlink -f "$GIT_WORK_TREE")
@@ -291,7 +291,7 @@ _awesome_add_item() {
 			local -i loop=0
 			local subitem=
 			out=${items[$item]}
-			fmt=@:$item
+			fmt=@$item
 			_dbg "-- item $item fmt '$fmt' --"
 			while true; do
 				if [[ $fmt == @* ]]; then
@@ -416,7 +416,7 @@ _show_status() {
 	local status=$?
 	items[status]=$status
 	if (( status > 0 )); then
-		fmts[:status]=@:status.err
+		fmts[status]=@status.err
 		if (( status > 128 && status <= 192 )); then
 			local sig=$(kill -l $status 2>/dev/null)
 			if [[ $sig ]]; then
@@ -425,7 +425,7 @@ _show_status() {
 		fi
 		printf "\e[m\e[38;5;172m%s\e[m\n" "(returned $status)"
 	else
-		fmts[:status]=@:status.ok
+		fmts[status]=@status.ok
 	fi
 }
 
