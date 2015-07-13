@@ -44,9 +44,7 @@ fi
 case $FQDN in
     rain.nullroute.eu.org)
 	items[name.pfx]='┌ '
-	fmts[status:ok]='38;5;236'
-	fmts[status:err]='1;31'
-	fmts[name.pfx]=@status
+	fmts[name.pfx]='38;5;236'
 	fmts[name:root]='38;5;231|41'
 	fmts[name:self]='38;5;82'
 	fmts[pwd]='38;5;39'
