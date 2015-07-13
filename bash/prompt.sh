@@ -36,9 +36,9 @@ setwname() { [[ $wnamestring ]] && printf "$wnamestring" "$*"; }
 # It is invoked from within $PS1 below.
 
 declare -A items=(
-	[:user]=$USER
-	[:host]=${HOSTNAME%%.*}
-	[:prompt]='$'
+	[user]=$USER
+	[host]=${HOSTNAME%%.*}
+	[prompt]='$'
 )
 
 declare -A fmts=()
@@ -109,7 +109,7 @@ _awesome_upd_vcs() {
 		br=${br}${re:+"|$re"}
 	fi
 
-	items[:vcs]=$br
+	items[vcs]=$br
 }
 
 _awesome_upd_pwd() {
@@ -214,10 +214,10 @@ _awesome_upd_pwd() {
 		fi
 	fi
 
-	items[:pwd.head]=$wdhead
-	items[:pwd.body]=$wdbody
-	items[:pwd.tail]=$wdtail
-	items[:pwd]=$wdhead$wdbody$wdtail
+	items[pwd.head]=$wdhead
+	items[pwd.body]=$wdbody
+	items[pwd.tail]=$wdtail
+	items[pwd]=$wdhead$wdbody$wdtail
 }
 
 _awesome_add_item() {
@@ -286,11 +286,12 @@ _awesome_add_item() {
 			fmt=$errfmt
 		fi
 	elif [[ $item == :* ]]; then
+		item=${item#:}
 		if [[ -v items[$item] ]]; then
 			local -i loop=0
 			local subitem=
 			out=${items[$item]}
-			fmt=@$item
+			fmt=@:$item
 			_dbg "-- item $item fmt '$fmt' --"
 			while true; do
 				if [[ $fmt == @* ]]; then
@@ -373,7 +374,7 @@ _awesome_prompt() {
 
 	_awesome_find_gitdir
 	_awesome_upd_vcs
-	items[:pwd]=$PWD
+	items[pwd]=$PWD
 
 	for pos in left right prompt; do
 		_awesome_fill_items $pos
@@ -413,7 +414,7 @@ export PS4
 
 _show_status() {
 	local status=$?
-	items[:status]=$status
+	items[status]=$status
 	if (( status > 0 )); then
 		fmts[:status]=@:status.err
 		if (( status > 128 && status <= 192 )); then

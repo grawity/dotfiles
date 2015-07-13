@@ -17,10 +17,10 @@ parts[left]=":name.pfx (root):user :host :name.sfx"
 parts[mid]="!pwd"
 parts[right]=":vcs"
 
-items[:host]="${HOSTNAME%%.*}"
-items[:name.pfx]=''
-items[:name.sfx]=''
-items[:user.sfx]='@'
+items[host]="${HOSTNAME%%.*}"
+items[name.pfx]=''
+items[name.sfx]=''
+items[user.sfx]='@'
 
 fmts[:host.pfx]=@:name.pfx
 fmts[:host]=@:name
@@ -30,10 +30,10 @@ fmts[:user]=@:name
 
 if (( UID == 0 )); then
 	fmts[:name]=@:name.root
-	items[:prompt]='#'
+	items[prompt]='#'
 else
 	fmts[:name]=@:name.self
-	items[:prompt]='$'
+	items[prompt]='$'
 fi
 
 # Some domain-based themes
@@ -43,20 +43,20 @@ fi
 
 case $FQDN in
     rain.nullroute.eu.org)
-	items[:name.pfx]='┌ '
+	items[name.pfx]='┌ '
 	fmts[:name.pfx]='38;5;236'
 	fmts[:name.root]='38;5;231|41'
 	fmts[:name.self]='38;5;82'
 	fmts[:pwd]='38;5;39'
 	fmts[:pwd.tail]='1|38;5;45'
 	fmts[:vcs]='38;5;198'
-	items[:prompt]='┘'
+	items[prompt]='┘'
 	fmts[:prompt]=@:name.pfx
 	;;
 
     *.nullroute.eu.org)
-	items[:name.pfx]='{'
-	items[:name.sfx]='}'
+	items[name.pfx]='{'
+	items[name.sfx]='}'
 	fmts[:name.pfx]='38;5;66'
 	fmts[:name.root]='38;5;220'
 	case $HOSTNAME in
@@ -78,14 +78,14 @@ case $FQDN in
 	;;
 
     *.utenos-kolegija.lt)
-	items[:name.pfx]="["
-	items[:name.sfx]="]"
+	items[name.pfx]="["
+	items[name.sfx]="]"
 	fmts[:name]=
 	if (( UID )); then
-		items[:prompt]='$'
+		items[prompt]='$'
 		fmts[:name.pfx]='1;32'
 	else
-		items[:prompt]='#'
+		items[prompt]='#'
 		fmts[:name.pfx]='1;31'
 		fmts[:name]='1'
 	fi
@@ -93,9 +93,9 @@ case $FQDN in
 	;;
 
     *.core|*.rune)
-	items[:name.pfx]="["
-	items[:host]=$FQDN
-	items[:name.sfx]="] $OSTYPE"
+	items[name.pfx]="["
+	items[host]=$FQDN
+	items[name.sfx]="] $OSTYPE"
 	fmts[:name.pfx]='38;5;242'
 	fmts[:name.self]='38;5;71'
 	fmts[:name.root]='38;5;231|41'
@@ -105,9 +105,9 @@ case $FQDN in
 	;;
 
     *)
-	items[:name.pfx]='┌ '
-	items[:host]=$FQDN
-	items[:prompt]='└'
+	items[name.pfx]='┌ '
+	items[host]=$FQDN
+	items[prompt]='└'
 	fullpwd=y
 	fmts[:name.self]='38;5;31'
 	fmts[:name.root]='48;5;196'
