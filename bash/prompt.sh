@@ -223,8 +223,9 @@ _awesome_upd_pwd() {
 _awesome_add_item() {
 	local pos=$1 item=$2
 
-	local fullitem=$item
-	local baseitem=
+	local full_item=$item
+	local add_prefix=
+	local add_suffix=
 	local errfmt=${fmts[error]:-"38;5;15|41"}
 
 	local out=""
@@ -328,6 +329,12 @@ _awesome_add_item() {
 					break
 				fi
 			done
+			if [[ ${items[$item.pfx]+yes} ]]; then
+				add_prefix=:$item.pfx
+			fi
+			if [[ ${items[$item.sfx]+yes} ]]; then
+				add_suffix=:$item.sfx
+			fi
 		else
 			out="<no item '$item'>"
 			fmt=$errfmt
@@ -336,12 +343,12 @@ _awesome_add_item() {
 		out="<unknown '$item'>"
 		fmt=$errfmt
 	else
-		out="<null '$fullitem'>"
+		out="<null '$full_item'>"
 		fmt=$errfmt
 	fi
 
-	if [[ $baseitem == :* && ${items[$item.pfx]+yes} ]]; then
-		_awesome_add_item $pos $baseitem.pfx
+	if [[ $add_prefix ]]; then
+		_awesome_add_item $pos $add_prefix
 	fi
 
 	lens[$pos]+=${#out}
@@ -350,8 +357,8 @@ _awesome_add_item() {
 	fi
 	strs[$pos]+=$out
 
-	if [[ $baseitem == :* && ${items[$item.sfx]+yes} ]]; then
-		_awesome_add_item $pos $baseitem.sfx
+	if [[ $add_suffix ]]; then
+		_awesome_add_item $pos $add_suffix
 	fi
 }
 
