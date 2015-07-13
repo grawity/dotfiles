@@ -54,7 +54,7 @@ declare -Ai _recursing=()
 
 _dbg() { if [[ $DEBUG ]]; then echo "[$*]"; fi; }
 
-_awesome_find_gitdir() {
+_awesome_upd_vcs() {
 	local git=
 
 	if ! have git; then
@@ -69,12 +69,6 @@ _awesome_find_gitdir() {
 	else
 		git=$(git rev-parse --git-dir 2>/dev/null)
 	fi
-
-	items[.gitdir]=$git
-}
-
-_awesome_upd_vcs() {
-	local git=${items[.gitdir]} br= re=
 
 	if [[ $git ]]; then
 		if [[ -f $git/rebase-merge/interactive ]]; then
@@ -363,13 +357,15 @@ _awesome_add_item() {
 }
 
 _awesome_fill_items() {
-	local pos=$1
+	local pos
 
-	set -o noglob
-	for item in ${parts[$pos]}; do
-		_awesome_add_item $pos $item
+	for pos in "$@"; do
+		set -o noglob
+		for item in ${parts[$pos]}; do
+			_awesome_add_item $pos $item
+		done
+		set +o noglob
 	done
-	set +o noglob
 }
 
 _awesome_prompt() {
@@ -381,19 +377,17 @@ _awesome_prompt() {
 	# handle left & right parts first,
 	# to determine available space for middle
 
-	_awesome_find_gitdir
 	_awesome_upd_vcs
+
 	items[pwd]=$PWD
 
-	for pos in left right prompt; do
-		_awesome_fill_items $pos
-	done
+	_awesome_fill_items 'left' 'right'
 
 	(( maxwidth -= lens[left] + 1 + 1 + lens[right] + 1 ))
 
 	_awesome_upd_pwd
 
-	_awesome_fill_items 'mid'
+	_awesome_fill_items 'mid' 'prompt'
 
 	printf "%s\n%s" \
 		"${strs[left]} ${strs[mid]} ${strs[right]}" \
