@@ -55,7 +55,7 @@ declare -Ai _recursing=()
 _dbg() { if [[ $DEBUG ]]; then echo "[$*]"; fi; }
 
 _awesome_upd_vcs() {
-	local git=
+	local git= br= re=
 
 	if ! have git; then
 		git=
@@ -99,11 +99,11 @@ _awesome_upd_vcs() {
 				re='BISECT'
 			fi
 		fi
-
-		br=${br}${re:+"|$re"}
 	fi
 
-	items[vcs]=$br
+	items[vcs]=${br}${re:+" ($re)"}
+	items[vcs.br]=$br
+	items[vcs.re]=$re
 }
 
 _awesome_upd_pwd() {
