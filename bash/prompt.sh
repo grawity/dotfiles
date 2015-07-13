@@ -409,7 +409,9 @@ export PS4
 
 _show_status() {
 	local status=$?
+	items[:status]=$status
 	if (( status > 0 )); then
+		fmts[:status]=@:status.err
 		if (( status > 128 && status <= 192 )); then
 			local sig=$(kill -l $status 2>/dev/null)
 			if [[ $sig ]]; then
@@ -417,6 +419,8 @@ _show_status() {
 			fi
 		fi
 		printf "\e[m\e[38;5;172m%s\e[m\n" "(returned $status)"
+	else
+		fmts[:status]=@:status.ok
 	fi
 }
 
