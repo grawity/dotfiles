@@ -273,7 +273,7 @@ _awesome_add_item() {
 		if [[ ${_recursing[$item]} == 1 ]]; then
 			out="<looped '$item'>"
 			fmt=$errfmt
-		elif [[ -v parts[$item] ]]; then
+		elif [[ ${parts[$item]+yes} ]]; then
 			local subitem=
 			_recursing[$item]=1
 			for subitem in ${parts[$item]}; do
@@ -287,7 +287,7 @@ _awesome_add_item() {
 		fi
 	elif [[ $item == :* ]]; then
 		item=${item#:}
-		if [[ -v items[$item] ]]; then
+		if [[ ${items[$item]+yes} ]]; then
 			local -i loop=0
 			local subitem=
 			out=${items[$item]}
@@ -338,7 +338,7 @@ _awesome_add_item() {
 		fmt=$errfmt
 	fi
 
-	if [[ $item == :* && -v items[$item.pfx] ]]; then
+	if [[ $item == :* && ${items[$item.pfx]+yes} ]]; then
 		_awesome_add_item $pos $item.pfx
 	fi
 
@@ -348,7 +348,7 @@ _awesome_add_item() {
 	fi
 	strs[$pos]+=$out
 
-	if [[ $item == :* && -v items[$item.sfx] ]]; then
+	if [[ $item == :* && ${items[$item.sfx]+yes} ]]; then
 		_awesome_add_item $pos $item.sfx
 	fi
 }
