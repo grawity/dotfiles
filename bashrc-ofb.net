@@ -1,11 +1,11 @@
 # vim: ft=sh
 
-items[:name.pfx]='['
-items[:host]='OFB'
-items[:name.sfx]=']'
-fmts[:name]='1;37;40'
-fmts[:pwd]='38;5;112'
-fmts[:vcs]='38;5;202'
-items[:prompt]='$'
+items[name.pfx]='['
+items[host]='OFB'
+items[name.sfx]=']'
+fmts[name]='1;37;40'
+fmts[pwd]='38;5;112'
+fmts[vcs]='38;5;202'
+items[prompt]='$'
 
 fullpwd=y
