@@ -12,15 +12,17 @@
 
 unset fullpwd
 
-parts[!pwd]=":pwd.head :pwd.body :pwd.tail"
-parts[left]=":name.pfx (root):user :host :name.sfx"
-parts[mid]="!pwd"
+parts[left]=":name.pfx (root)(:user:root):user (!root)(:user:self):user :host :name.sfx"
+parts[mid]=":pwd.head :pwd.body :pwd.tail"
 parts[right]=":vcs"
 
 items[host]="${HOSTNAME%%.*}"
 items[name.pfx]=''
 items[name.sfx]=''
 items[user.sfx]='@'
+
+items[user:root]=y
+items[user:self]=
 
 fmts[host.pfx]=@name.pfx
 fmts[host]=@name
