@@ -276,9 +276,15 @@ _awesome_add_item() {
 		elif [[ ${parts[$item]+yes} ]]; then
 			local subitem=
 			_recursing[$item]=1
+			if [[ ${items[$item.pfx]+yes} ]]; then
+				_awesome_add_item $pos :$item.pfx
+			fi
 			for subitem in ${parts[$item]}; do
 				_awesome_add_item $pos $subitem
 			done
+			if [[ ${items[$item.sfx]+yes} ]]; then
+				_awesome_add_item $pos :$item.sfx
+			fi
 			_recursing[$item]=0
 			return
 		else
