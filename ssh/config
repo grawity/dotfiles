@@ -115,6 +115,7 @@ Host aur
 	User aur
 
 Host bazaar.launchpad.net
+	KexAlgorithms diffie-hellman-group1-sha1
 	IdentityFile ~/.ssh/id_global
 	IdentitiesOnly yes
 
