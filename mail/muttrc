@@ -88,6 +88,7 @@ set status_format="─── Folder %f (%?M?%M/?%m messages%?n?, %n new/unseen?%
 ignore *
 unignore From: Subject: To: Cc: Date: Reply-To:
 unignore Newsgroups:
+unignore X-Mailer:
 unignore X-Bogosity:
 hdr_order Date From To Cc Subject
 
