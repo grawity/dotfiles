@@ -4,6 +4,8 @@
 # note that the '#if' directives are not supported by any SSH client directly;
 # instead, they are processed by the ssh/generate script.
 
+IgnoreUnknown PubkeyAcceptedKeyTypes
+
 # host aliases
 
 # work
@@ -116,8 +118,7 @@ Host aur
 
 Host bazaar.launchpad.net
 	KexAlgorithms diffie-hellman-group1-sha1
-	IdentityFile ~/.ssh/id_global
-	IdentitiesOnly yes
+	PubkeyAcceptedKeyTypes ssh-rsa
 
 Host ofb.net
 	ForwardAgent yes
