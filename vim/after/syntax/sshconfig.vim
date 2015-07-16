@@ -1,0 +1,2 @@
+syn keyword sshconfigKeyword IgnoreUnknown
+syn keyword sshconfigKeyword PubkeyAcceptedKeyTypes
