@@ -22,7 +22,7 @@ fi
 
 if [ "$DESKTOP_SESSION" != gnome ]; then
 	xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1 &
-	xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Accel Speed" 1.0 &
+	#xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Accel Speed" 1.0 &
 
 	if [ -f ~/.config/synclient.conf ]; then
 		synclient $(grep "^[^#]" ~/.config/synclient.conf) > /dev/null &
