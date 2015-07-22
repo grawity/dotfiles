@@ -1,3 +1,5 @@
+application/pdf;	evince %s; nametemplate=%s.pdf
+
 application/zip;	vim %s; nametemplate=%s.zip; needsterminal
 application/zip;	zipinfo -2 /dev/stdin; copiousoutput
 

@@ -31,6 +31,7 @@ fc-fontformat() {
 	fc-list -f "%10{fontformat}: %{family}\n" \
 	| sed 's/,.*//' | sort -t: -k2 -u
 }
+fc-file() { fc-query -f "%{file}: %{family} (%{fontversion}, %{fontformat})\n" "$@"; }
 gerp() { egrep $grepopt -r -I -D skip --exclude-dir={.bzr,.git,.hg,.svn} -H -n "$@"; }
 gpgfp() { gpg --with-colons --fingerprint "$1" | awk -F: '/^fpr:/ {print $10}'; }
 alias hex='xxd -p'

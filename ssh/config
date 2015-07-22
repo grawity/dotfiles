@@ -16,10 +16,6 @@ Host ukradius
 	IdentityFile ~/.ssh/id_ukolegija
 	ForwardAgent yes
 
-Host pf-aukstaiciu9 pf-ausros73 pf-m18-stud pf-m18-adm pf-maironio7 pf-utenio2
-	HostName %h.utenos-kolegija.lt
-	User root
-
 Host sw-b56-edge
 	HostName 193.219.181.238
 	Port 42
@@ -45,13 +41,34 @@ Host uk-tandberg
 	Ciphers 3des-cbc
 	MACs hmac-sha1
 
-Host uk-untangle
-	HostName untangle.utenos-kolegija.lt
-	User root
-
 Host uk-epas uk-vpn
 	HostName %h.utenos-kolegija.lt
 	User mantas
+
+Host uk-pf-aukstaiciu9 uk-pf-a9
+	HostName pf-aukstaiciu9.utenos-kolegija.lt
+
+Host uk-pf-ausros73 uk-pf-a73
+	HostName pf-ausros73.utenos-kolegija.lt
+
+Host uk-pf-maironio7 uk-pf-m7
+	HostName pf-maironio7.utenos-kolegija.lt
+
+Host uk-pf-m18-adm
+	HostName pf-m18-adm.utenos-kolegija.lt
+
+Host uk-pf-m18-stud
+	HostName pf-m18-stud.utenos-kolegija.lt
+
+Host uk-pf-utenio2 uk-pf-u2
+	HostName pf-utenio2.utenos-kolegija.lt
+
+Host uk-pf-*
+	User root
+
+Host uk-untangle
+	HostName untangle.utenos-kolegija.lt
+	User root
 
 Host uk-* 193.219.181.192/26
 	IdentityFile ~/.ssh/id_ukolegija
