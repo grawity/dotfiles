@@ -408,6 +408,10 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.wgetrc – environment
   - $WGETRC overrides
 
+~/.wget-hsts – command line
+  - "--hsts-file <path>" overrides
+  - probably can be stored in wgetrc?
+
 ~/.wireshark/ – hardcoded
 
 ~/.Xkbmap – hardcoded/configurable
