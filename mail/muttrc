@@ -9,9 +9,10 @@ set from="grawity@gmail.com"
 set reverse_name
 reply-hook ~l 'set from="grawity@gmail.com"'
 
-alternates "@nullroute\.eu\.org$"
+alternates "^(grawity|mantas)(\\+.+)?@nullroute\.eu\.org$"
 alternates "^grawity(\\+.+)?@gmail\.com$"
-alternates "^grawity@(\w+\.)?cluenet\.org$"
+alternates "^grawity(\\+.+)?@(\w+\.)?cluenet\.org$"
+alternates "^mantas(:.+)?@utenos-kolegija\.lt$"
 
 ### Mailing lists
 
