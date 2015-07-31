@@ -28,11 +28,6 @@ case $TERM,$OSTYPE in
 		havecolor=8;;
 esac
 
-case $TERM in
-	xterm*|rxvt*)
-		printf '\e[5 q';;
-esac
-
 export GPG_TTY=$(tty)
 
 ### Interactive options
