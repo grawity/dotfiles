@@ -98,7 +98,9 @@ PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig"
 
 GTK_OVERLAY_SCROLLING="0"	# just in case
 LIBVA_DRIVER_NAME="vdpau"	# latest Mesa supports 'gallium'
+QT_FONT_DPI="96"
 QT_IM_MODULE="xim"		# already the default
+QT_STYLE_OVERRIDE="oxygen"
 SDL_AUDIODRIVER="pulse"		# autodetects correctly
 VDPAU_DRIVER="r600"		# autodetects correctly
 XCURSOR_THEME="adwaita"		# already set in Xresources and XSETTINGS
