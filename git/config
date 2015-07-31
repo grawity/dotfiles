@@ -50,7 +50,7 @@
 	statg = diff --cached --stat
 	tagv = !git tag -v $(git describe --abbrev=0)
 	tg = log --oneline --decorate --graph
-	tip = !git --no-pager log -1 --decorate --abbrev-commit --date=relative --show-signature
+	tip = !git --no-pager log -1 --decorate --abbrev-commit --date=relative
 	uncommit = reset HEAD^
 	undo = reset --soft HEAD^
 	unexport = "!rm -v \"$(git rev-parse --git-dir)/git-daemon-export-ok\""

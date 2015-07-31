@@ -55,7 +55,7 @@ shopt -s histreedit		# allow re-editing failed history subst
 HISTSIZE=10000
 HISTFILESIZE=10000
 HISTCONTROL=ignoreboth
-HISTIGNORE="../*/:testrad * pass *"
+HISTIGNORE="../*/"
 
 complete -A directory cd
 
