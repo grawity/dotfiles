@@ -59,7 +59,7 @@ _awesome_upd_vcs() {
 
 	if ! have git; then
 		git=
-	elif [[ $PWD == /n/uk* ]]; then
+	elif [[ $PWD == @(/afs|/n/uk)* ]]; then
 		# add an exception for slowish network mounts
 		git=
 	elif [[ $GIT_DIR && -d $GIT_DIR ]]; then
