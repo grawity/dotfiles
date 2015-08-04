@@ -68,6 +68,7 @@ XTerm*vt100.translations:	#override			\n\
 
 XTerm.toolBar:			false
 XTerm*vt100.cursorBlink:	true
+XTerm*vt100.font:		-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
 !XTerm*vt100.faceName:		DejaVu Sans Mono
 !XTerm*vt100.faceSize:		9
 XTerm*vt100.geometry:		100x35

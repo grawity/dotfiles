@@ -4,8 +4,9 @@ set xfer:clobber no
 
 ### interface
 
-alias ls cls -h
-alias ll cls -lh
+alias .. "cd .."
+alias ls "cls -h"
+alias ll "cls -lh"
 alias rels "cache flush; ls"
 
 set cmd:prompt "\\[\\e[38;5;173m\\]lftp \\[\\e[38;5;216m\\]\\S\\? \\u\\@\\h:\\w>\\[\\e[m\\] "

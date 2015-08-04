@@ -237,3 +237,5 @@ unset pgp_auto_decode
 set pgp_use_gpg_agent
 
 source "~/lib/dotfiles/mail/muttrc.sh|"
+
+#set ssl_starttls=no
