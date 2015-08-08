@@ -4,8 +4,8 @@ set v15-compat
 
 # interface
 
-set quiet # hide version message
-set bsdcompat
+#set quiet
+#set bsdcompat
 
 # reading
 
@@ -13,14 +13,14 @@ retain From To Sender Date Subject X-Bogosity
 
 # listing
 
-set autothread
+set autosort=thread
 
 # composing
 
-set ask # ask for message subject
+set ask
 unset askcc
 set editheaders
-set dot # accept . as message terminator
+set dot
 
 set indentprefix="> "
 set signature="~/.signature"
@@ -29,8 +29,8 @@ set sendcharsets="utf-8"
 
 # mail storage
 
-set hold # don't move to mbox
-set keep # don't delete $MAIL
+set hold
+set keep
 
 # remote
 
