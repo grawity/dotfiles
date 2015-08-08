@@ -215,3 +215,23 @@ java-import-key() { keytool -importkeystore -srcstoretype PKCS12 -srckeystore "$
 nss-import-key() { pu -i "$@"; }
 
 ## miscellany
+
+parts[right]+=" (:lid:held)(:vcs)> (:lid:held):lid"
+
+#fmts[lid]='38;5;240'
+#fmts[lid]='38;5;226'
+fmts[lid]='38;5;184'
+
+#items[lid]="⏾"
+#items[lid]="☼"
+items[lid]="☀"
+
+_prompt_lid() {
+	if [[ -e "$XDG_RUNTIME_DIR/nolid.lock" ]]; then
+		items[lid:held]=y
+	else
+		items[lid:held]=
+	fi
+}
+
+PROMPT_COMMAND="$PROMPT_COMMAND; _prompt_lid"
