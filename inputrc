@@ -19,11 +19,14 @@ set revert-all-at-newline on
 # Arrows
 "\e[A": history-search-backward
 "\e[B": history-search-forward
+# Ctrl-arrows
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
+# Ctrl-arrows (PuTTY)
+"\eOC": forward-word
+"\eOD": backward-word
 # Insert
 "\e[2~": overwrite-mode
-# Ctrl-arrows (PuTTY)
-"\eOD": backward-word
-"\eOC": forward-word
 # Page Up/Down
 "\e[5~": ""
 "\e[6~": menu-complete
