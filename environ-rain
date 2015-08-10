@@ -8,7 +8,7 @@ if have ruby; then
 fi
 
 if [ ! "$SSH_AUTH_SOCK" ]; then
-	SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+	SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent"
 fi
 
 # libdefaults
