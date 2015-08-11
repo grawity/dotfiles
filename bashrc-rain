@@ -220,23 +220,31 @@ nss-import-key() { pu -i "$@"; }
 	local var=$1 k=; local -n ref=$1
 	echo "$var=("; for k in ${!ref[@]}; do echo "  [$k]='${ref[$k]}'"; done; echo ")"
 }
-parts[right]+=" (:lid:held)(:vcs)> (:lid:held):lid"
 
 ## Prompt enhancements
 
-#fmts[lid]='38;5;240'
-#fmts[lid]='38;5;226'
-fmts[lid]='38;5;184'
+parts[right]+=" (:vcs)>"
+parts[right]+=" (:nested?):parent (:nested?)>"
+parts[right]+=" (:lid:held?):lid (:lid:held?)>"
 
-#items[lid]="⏾"
-#items[lid]="☼"
+if (( SHLVL > 1 )); then
+	items[nested?]=y
+fi
+
+items[parent]=$(</proc/$PPID/comm)+$SHLVL
+items[parent.pfx]='{'
+items[parent.sfx]='}'
+fmts[parent]='38;5;15'
+fmts[parent.pfx]='38;5;198'
+
 items[lid]="☀"
+fmts[lid]='38;5;184'
 
 _prompt_lid() {
 	if [[ -e "$XDG_RUNTIME_DIR/nolid.lock" ]]; then
-		items[lid:held]=y
+		items[lid:held?]=y
 	else
-		items[lid:held]=
+		items[lid:held?]=
 	fi
 }
 
