@@ -1,3 +1,45 @@
+parts:
+	left mid right
+	prompt
+
+	mid should only have :pwd, which is compressed/collapsed to fit one line
+	(currently everything breaks if non-:pwd stuff is added to mid)
+
+	example:
+
+		| rain ~/…ry/directory/directory/directory/directory master |
+
+		| rain ~/…ectory/directory master |
+
+items:
+	>foo - literal string (or space)
+	:foo - variable from items[]
+	!foo - another part (recursive)
+
+item prefixes:
+	(foo) - condition (can be stacked)
+	[foo] - ansi format (for literals)
+
+item conditions:
+	(root) - is uid 0?
+	(:foo) - is item 'foo' non-empty?
+
+automatic items:
+	:foo.pfx :foo :foo.sfx
+
+predefined items:
+	:vcs
+	:pwd
+	:pwd.head - path until current directory, or until Git repo root
+	:pwd.body - path inside Git repo root
+	:pwd.tail - last item of path
+
+	~/lib/dotfiles/vim/after/syntax
+	                         ^^^^^^ -- pwd.tail
+		       ^^^^^^^^^^ -- pwd.body
+	^^^^^^^^^^^^^^^ -- pwd.head
+
+
 ┌ rain ~/lib/dotfiles master 
 ┘ :pp parts
 parts=(
