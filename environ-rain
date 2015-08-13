@@ -3,7 +3,7 @@
 
 # paths/locations
 
-PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
+PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
 
 if [ ! "$SSH_AUTH_SOCK" ]; then
 	SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent"
