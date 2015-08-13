@@ -22,6 +22,7 @@ NOKOGIRI_USE_SYSTEM_LIBRARIES="1"
 ACCDB="$HOME/Private/accdb/accounts.txt"
 CSEARCHINDEX="$XDG_CACHE_HOME/codesearch/csearchindex"
 GEMRC="$XDG_CONFIG_HOME/gemrc"
+_JAVA_OPTIONS="-Duser.home='$XDG_DATA_HOME/java-home'"
 VBOX_USER_HOME="$XDG_CONFIG_HOME/VirtualBox"
 WWW_HOME="http://nullroute.eu.org/"
 
