@@ -1,8 +1,6 @@
 # ~/.environ - sh/bash global environment
 # vim: ft=sh
 
-have() { type "$1" > /dev/null 2>&1; }
-
 setpath() {
 	set +a; xIFS=$IFS; IFS=":"; set -a
 	var=$1; shift; eval "$var=\$*"; unset var

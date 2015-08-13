@@ -1,6 +1,8 @@
 # host-specific additions to ~/.environ
 # vim: ft=sh
 
+have() { type "$1" > /dev/null 2>&1; }
+
 # paths/locations
 
 if have ruby; then
