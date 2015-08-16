@@ -55,6 +55,7 @@ ldapls() {
 	ldapsearch -LLL "$@" 1.1 | ldifunwrap | grep ^dn: \
 	| perl -MMIME::Base64 -pe 's/^(.+?):: (.+)$/"$1: ".decode_base64($2)/e'
 }
+ldapshow() { ldapsearch -b "$1" -s base -LLL "${@:2}"; }
 ldapstat() { ldapsearch -b "" -s base -x -LLL "$@" \* +; }
 alias lp='sudo netstat -lptu --numeric-hosts'
 alias lpt='sudo netstat -lpt --numeric-hosts'
