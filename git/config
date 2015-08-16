@@ -222,6 +222,7 @@
 [url "grawity@virgule.cluenet.org:pub/git/"]
 	insteadOf = nullroute+ssh:
 	pushInsteadOf = nullroute:
+	pushInsteadOf = git://nullroute.eu.org/
 	pushInsteadOf = git://git.nullroute.eu.org/
 
 #[url "http://anongit.freedesktop.org/git/"]
