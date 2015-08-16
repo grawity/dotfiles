@@ -227,11 +227,11 @@ parts[right]+=" (:vcs)>"
 parts[right]+=" (:nested?):parent (:nested?)>"
 parts[right]+=" (:lid:held?):lid (:lid:held?)>"
 
-if (( SHLVL > 1 )); then
+_parent=$(</proc/$PPID/comm)
+if (( SHLVL > 1 )) && [[ $_parent != sudo ]]; then
 	items[nested?]=y
 fi
-
-items[parent]=$(</proc/$PPID/comm)+$SHLVL
+items[parent]="$_parent #$SHLVL"
 items[parent.pfx]='{'
 items[parent.sfx]='}'
 fmts[parent]='38;5;15'
