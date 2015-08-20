@@ -57,6 +57,7 @@ ldapls() {
 }
 ldapshow() { ldapsearch -b "$1" -s base -LLL "${@:2}"; }
 ldapstat() { ldapsearch -b "" -s base -x -LLL "$@" \* +; }
+alias ldapvi='ldapvi --bind sasl'
 alias lp='sudo netstat -lptu --numeric-hosts'
 alias lpt='sudo netstat -lpt --numeric-hosts'
 alias lpu='sudo netstat -lpu --numeric-hosts'
