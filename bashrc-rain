@@ -228,7 +228,7 @@ parts[right]+=" (:nested?):parent (:nested?)>"
 parts[right]+=" (:lid:held?):lid (:lid:held?)>"
 
 _parent=$(</proc/$PPID/comm)
-if (( SHLVL > 1 )) && [[ $_parent != sudo ]]; then
+if [[ ${_parent%-} != @(sshd|sudo|*terminal) ]]; then
 	items[nested?]=y
 fi
 items[parent]="$_parent #$SHLVL"
