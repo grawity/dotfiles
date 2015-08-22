@@ -356,7 +356,7 @@ _awesome_add_item() {
 		fmt=$errfmt
 	fi
 
-	if [[ $add_space && ${strs[$pos]} && $out ]]; then
+	if [[ $add_space && ${strs[$pos]} ]]; then
 		lens[$pos]+=${#add_space}
 		strs[$pos]+=$add_space
 	fi
