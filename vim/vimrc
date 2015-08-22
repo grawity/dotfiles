@@ -72,9 +72,9 @@ set splitbelow splitright
 set tabpagemax=20		" increase max tab pages
 
 if &t_Co > 16
-	"setl cursorline
-	"au WinEnter * setl cursorline
-	"au WinLeave * setl nocursorline
+	setl cursorline
+	au WinEnter * setl cursorline
+	au WinLeave * setl nocursorline
 endif
 
 set wildmenu
