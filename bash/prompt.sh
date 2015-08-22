@@ -52,7 +52,7 @@ declare -A parts=(
 
 declare -Ai _recursing=()
 
-_dbg() { if [[ $DEBUG ]]; then echo "[$*]"; fi; }
+_dbg() { if [[ $DEBUG ]]; then echo "$*"; fi; }
 
 _awesome_upd_vcs() {
 	local git= br= re=
@@ -194,7 +194,7 @@ _awesome_upd_pwd() {
 			wdtail=${wdtail:${#wdtail}-maxwidth}
 		fi
 		collapsed=1
-	elif (( ${#wdhead} + ${#wdtail} > maxwidth + tilde )); then
+	elif (( ${#wdhead} + ${#wdtail} >= maxwidth + tilde )); then
 		_dbg "tail case 2, wdhead + wdtail > maxwidth + tilde"
 		(( maxwidth -= tilde ))
 		wdhead=${wdhead:${#wdhead}-(maxwidth-${#wdtail})}
@@ -397,7 +397,11 @@ _awesome_prompt() {
 
 	_awesome_fill_items 'left' 'right'
 
+	_dbg "* maxwidth before recalc = $maxwidth"
+	_dbg "    left = '${strs[left]}' (${lens[left]})"
+	_dbg "    right = '${strs[right]}' (${lens[right]})"
 	(( maxwidth -= lens[left] + 1 + 1 + lens[right] + 1 ))
+	_dbg "  maxwidth after recalc = $maxwidth"
 
 	_awesome_upd_pwd
 
