@@ -175,16 +175,19 @@ _awesome_upd_pwd() {
 	if [[ ! $fullpwd && $PWD == "$HOME" ]]; then
 		wdhead='~'
 	elif [[ $fullpwd != 'y' ]]; then
-		wdhead=${wdhead/#$HOME\//\~/}
+		wdhead=${wdhead/#"$HOME/"/"~/"}
 		if [[ ${wdhead:0:2} == '~/' ]]; then
 			tilde=2
 		fi
 	fi
 
-	_dbg "* wdhead='$wdhead'"
-	_dbg "  wdtail='$wdtail'"
+	_dbg "* wdhead='$wdhead' [${#wdhead}]"
+	_dbg "  wdtail='$wdtail' [${#wdtail}]"
+	_dbg "  head+tail=$(( ${#wdhead} + ${#wdtail} )), maxwidth=$maxwidth, tilde=$tilde"
 
-	if (( ${#wdtail} > maxwidth - tilde )); then
+	if (( tilde + ${#wdtail} > maxwidth )); then
+		# even the tail alone cannot fit, hence don't show the head
+		_dbg "tail case 1, wdtail > maxwidth - tilde"
 		wdhead=''
 		if [[ $wdtail == */* ]]; then
 			(( maxwidth -= tilde ))
@@ -192,9 +195,12 @@ _awesome_upd_pwd() {
 		fi
 		collapsed=1
 	elif (( ${#wdhead} + ${#wdtail} > maxwidth + tilde )); then
+		_dbg "tail case 2, wdhead + wdtail > maxwidth + tilde"
 		(( maxwidth -= tilde ))
 		wdhead=${wdhead:${#wdhead}-(maxwidth-${#wdtail})}
 		collapsed=1
+	else
+		_dbg "tail case 3, wdhead + wdtail all fit"
 	fi
 
 	if [[ $wdtail == */* ]]; then
