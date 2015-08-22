@@ -11,6 +11,10 @@ fi
 
 # libdefaults
 
+GTK_IM_MODULE="ibus"
+QT_IM_MODULE="ibus"
+XMODIFIERS="@im=ibus"
+
 LIBVA_DRIVER_NAME="gallium"
 # force `gem install nokogiri` to use system libxml2
 NOKOGIRI_USE_SYSTEM_LIBRARIES="1"
