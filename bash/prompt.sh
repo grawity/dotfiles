@@ -406,7 +406,7 @@ _awesome_prompt() {
 	_dbg "* maxwidth before recalc = $maxwidth"
 	_dbg "    left = '${strs[left]}' (${lens[left]})"
 	_dbg "    right = '${strs[right]}' (${lens[right]})"
-	(( maxwidth -= lens[left] + 1 + 1 + lens[right] + 1 ))
+	(( maxwidth -= lens[left] + !!lens[left] + !!lens[right] + lens[right] + 1 ))
 	_dbg "  maxwidth after recalc = $maxwidth"
 
 	_awesome_upd_pwd
