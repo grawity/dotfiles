@@ -189,15 +189,11 @@ _awesome_upd_pwd() {
 		# even the tail alone cannot fit, hence don't show the head
 		_dbg "tail case 1, wdtail > maxwidth - tilde"
 		wdhead=''
-		if [[ $wdtail == */* ]]; then
-			(( maxwidth -= tilde ))
-			wdtail=${wdtail:${#wdtail}-maxwidth}
-		fi
+		wdtail=${wdtail:${#wdtail}-(maxwidth-tilde-1)}
 		collapsed=1
 	elif (( ${#wdhead} + ${#wdtail} >= maxwidth + tilde )); then
 		_dbg "tail case 2, wdhead + wdtail > maxwidth + tilde"
-		(( maxwidth -= tilde ))
-		wdhead=${wdhead:${#wdhead}-(maxwidth-${#wdtail})}
+		wdhead=${wdhead:${#wdhead}-(maxwidth-tilde-${#wdtail}-1)}
 		collapsed=1
 	else
 		_dbg "tail case 3, wdhead + wdtail all fit"
