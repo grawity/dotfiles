@@ -389,7 +389,7 @@ _awesome_fill_items() {
 }
 
 _awesome_prompt() {
-	local maxwidth=${COLUMNS:-$(tput cols)}
+	local maxwidth=$COLUMNS
 
 	local -A strs=()
 	local -Ai lens=()
