@@ -224,6 +224,7 @@ _awesome_add_item() {
 	local pos=$1 item=$2
 
 	local full_item=$item
+	local add_space=
 	local add_prefix=
 	local add_suffix=
 	local errfmt=${fmts[error]:-"38;5;15|41"}
@@ -261,6 +262,11 @@ _awesome_add_item() {
 		fmt=${item%%\]*}
 		fmt=${fmt#\[}
 		item=${item#*\]}
+	fi
+
+	if [[ $item == \<* ]]; then
+		add_space=" "
+		item=${item#\<}
 	fi
 
 	baseitem=$item
@@ -353,6 +359,11 @@ _awesome_add_item() {
 	else
 		out="<null '$full_item'>"
 		fmt=$errfmt
+	fi
+
+	if [[ $add_space && ${strs[$pos]} && $out ]]; then
+		lens[$pos]+=${#add_space}
+		strs[$pos]+=$add_space
 	fi
 
 	if [[ $add_prefix ]]; then

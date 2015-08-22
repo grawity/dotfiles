@@ -19,6 +19,7 @@ items:
 item prefixes:
 	(foo) - condition (can be stacked)
 	[foo] - ansi format (for literals)
+	< - prefix with space if non-empty
 
 item conditions:
 	(root) - is uid 0?
@@ -44,7 +45,7 @@ predefined items:
 ┘ :pp parts
 parts=(
   [prompt]=':prompt >'
-  [right]=':vcs (:vcs)> (:nested?):parent (:nested?)> (:lid:held?):lid (:lid:held?)>'
+  [right]=':vcs (:nested?)<:parent (:lid:held?)<:lid'
   [left]=':name.pfx (root)(:user:root):user (!root)(:user:self):user :host :name.sfx'
   [mid]=':pwd.head :pwd.body :pwd.tail'
 )

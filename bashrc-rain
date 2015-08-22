@@ -223,9 +223,8 @@ nss-import-key() { pu -i "$@"; }
 
 ## Prompt enhancements
 
-parts[right]+=" (:vcs)>"
-parts[right]+=" (:nested?):parent (:nested?)>"
-parts[right]+=" (:lid:held?):lid (:lid:held?)>"
+parts[right]+=" (:nested?)<:parent"
+parts[right]+=" (:lid:held?)<:lid"
 
 _parent=$(</proc/$PPID/comm)
 if [[ ${_parent%-} != @(sshd|sudo|*terminal) ]]; then
