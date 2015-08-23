@@ -23,10 +23,10 @@ fi
 if [ "$DESKTOP_SESSION" != gnome ]; then
 	xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1 &
 
-	if [ "$HOSTNAME" = rain ]; then
-		mpDris2 &
-		mpris mpd notify-idle &
-	fi
+	#if [ "$HOSTNAME" = rain ]; then
+	#	mpDris2 &
+	#	mpris mpd notify-idle &
+	#fi
 fi
 
 systemctl --user --no-block start graphical.target
