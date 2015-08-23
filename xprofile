@@ -23,10 +23,6 @@ fi
 if [ "$DESKTOP_SESSION" != gnome ]; then
 	xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1 &
 
-	if [ -f ~/.config/synclient.conf ]; then
-		synclient $(grep "^[^#]" ~/.config/synclient.conf) > /dev/null &
-	fi
-
 	if [ "$HOSTNAME" = rain ]; then
 		mpDris2 &
 		mpris mpd notify-idle &
