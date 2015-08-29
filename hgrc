@@ -29,7 +29,7 @@ rebase =
 #generaldelta = True
 
 [share]
-pool = ~/src/_makepkg
+pool = ~/src/_makepkg/_hg
 
 [ui]
 username = $NAME <$EMAIL>
