@@ -96,6 +96,9 @@ EXEC			38;5;118
 
 # audio formats
 .aac	00;36
+.aif	00;36
+.aiff	00;36
+.ape	00;36
 .au	00;36
 .flac	00;36
 .m4a	00;36
@@ -105,5 +108,7 @@ EXEC			38;5;118
 .mp3	00;36
 .oga	00;36
 .ogg	00;36
+.opus	00;36
 .ra	00;36
 .wav	00;36
+.wma	00;36
