@@ -86,7 +86,7 @@ LINGUAS="en lt"
 # libdefaults
 
 FT2_SUBPIXEL_HINTING="1"
-#GTK_IM_MODULE="xim"
+GTK_IM_MODULE="xim"
 NCURSES_NO_UTF8_ACS="1"
 
 # appdefaults
