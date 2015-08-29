@@ -1,8 +1,13 @@
 # ~/.XCompose - Compose(5) - Compose (Multi) key mappings for XIM input method
-# enabling compose key: <https://wiki.ubuntu.com/ComposeKey>
-
-# NOTE: custom definitions only work with 'xim'
-# see GTK_IM_MODULE in my "environ" file
+#
+# Enabling compose key: <https://wiki.ubuntu.com/ComposeKey>
+#
+# NOTE: In GTK, custom definitions work only with 'ibus' or 'xim' immodules.
+#       (see GTK_IM_MODULE in my "environ" file)
+#
+# NOTE: IBus support for XCompose is incomplete – only 2-letter shortcuts are
+#       supported, e.g. "<Multi_key> <z> <w> <j>" won't work. However, stacked
+#       <Multi_key> works fine.
 
 # defaults: /usr/share/X11/locale/en_US.UTF-8/Compose
 
