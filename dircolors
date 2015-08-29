@@ -52,26 +52,26 @@ EXEC			38;5;118
 .zip	38;5;9
 
 # still image formats
-.bmp	00;35
-.emf	00;35
-.gif	00;35
-.jpeg	00;35
-.jpg	00;35
-.pbm	00;35
-.pcx	00;35
-.pgm	00;35
-.png	00;35
-.ppm	00;35
-.svg	00;35
-.svgz	00;35
-.tga	00;35
-.tif	00;35
-.tiff	00;35
-.webp	00;35
-.xbm	00;35
-.xcf	00;35
-.xpm	00;35
-.xwd	00;35
+.bmp	0;35
+.emf	0;35
+.gif	0;35
+.jpeg	0;35
+.jpg	0;35
+.pbm	0;35
+.pcx	0;35
+.pgm	0;35
+.png	0;35
+.ppm	0;35
+.svg	0;35
+.svgz	0;35
+.tga	0;35
+.tif	0;35
+.tiff	0;35
+.webp	0;35
+.xbm	0;35
+.xcf	0;35
+.xpm	0;35
+.xwd	0;35
 
 # video formats
 .avi	38;5;13
@@ -95,20 +95,20 @@ EXEC			38;5;118
 .webm	38;5;13
 
 # audio formats
-.aac	00;36
-.aif	00;36
-.aiff	00;36
-.ape	00;36
-.au	00;36
-.flac	00;36
-.m4a	00;36
-.mid	00;36
-.midi	00;36
-.mka	00;36
-.mp3	00;36
-.oga	00;36
-.ogg	00;36
-.opus	00;36
-.ra	00;36
-.wav	00;36
-.wma	00;36
+.aac	0;36
+.aif	0;36
+.aiff	0;36
+.ape	0;36
+.au	0;36
+.flac	0;36
+.m4a	0;36
+.mid	0;36
+.midi	0;36
+.mka	0;36
+.mp3	0;36
+.oga	0;36
+.ogg	0;36
+.opus	0;36
+.ra	0;36
+.wav	0;36
+.wma	0;36
