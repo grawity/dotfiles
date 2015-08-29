@@ -245,6 +245,7 @@
 # Local settings
 
 [include]
+	path = ~/.config/git/config.local
 	path = ~/.gitconfig-local
 
 # EOF
