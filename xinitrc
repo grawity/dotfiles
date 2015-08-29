@@ -31,17 +31,18 @@ if have hsetroot; then
 	hsetroot -solid "$bgcolor" -tile "$bgimage"
 fi
 
-# Set command-line, DESKTOP_SESSION for xprofile
+# Normalize command line (expand aliases)
 
 case $1 in
 	cinnamon)	set -- cinnamon-session;;
+	e|e17)		set -- enlightenment_start -i-really-know-what-i-am-doing-and-accept-full-responsibility-for-it;;
 	gnome)		set -- gnome-session;;
-	e|e17)		set -- enlightenment_start \
-		-i-really-know-what-i-am-doing-and-accept-full-responsibility-for-it;;
-	mate)		set -- mate-session;;
 	kde)		set -- startkde;;
+	mate)		set -- mate-session;;
 	xfce)		set -- startxfce4;;
 esac
+
+# Set $DESKTOP_SESSION for xprofile and others
 
 case $1 in
 	cinnamon-session)	DESKTOP_SESSION=cinnamon;;
