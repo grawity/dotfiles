@@ -3,6 +3,8 @@
 
 . ~/lib/dotfiles/environ
 
+have() { type "$1" > /dev/null 2>&1; }
+
 case $0:$TMUX:$SILENT in -*::)
 	# only in login shells, not in tmux, and not if $SILENT
 
