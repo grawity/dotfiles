@@ -51,6 +51,9 @@ set imap_idle
 #set imap_check_subscribed
 #unset imap_servernoise
 
+# http://dev.mutt.org/trac/ticket/3242 – bug with . → /
+set imap_delim_chars="/"
+
 folder-hook . 'unset spoolfile'
 
 ### Composing
