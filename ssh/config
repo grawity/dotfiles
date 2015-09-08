@@ -129,6 +129,9 @@ Host snow snow.home snow.local
 
 # other hosts
 
+Host m-net.arbornet.org
+	HostKeyAlgorithms +ssh-dss
+
 Host aur
 	HostName aur.archlinux.org
 	User aur
