@@ -94,7 +94,7 @@ case $FQDN in
 	fullpwd=y
 	;;
 
-    *.core|*.rune)
+    *)
 	items[name.pfx]="["
 	items[host]=$FQDN
 	items[name.sfx]="] $OSTYPE"
@@ -105,21 +105,6 @@ case $FQDN in
 	fmts[vcs]='38;5;167'
 	fullpwd=y
 	;;
-
-    *)
-	items[name.pfx]='┌ '
-	items[host]=$FQDN
-	items[prompt]='└'
-	fullpwd=y
-	fmts[name:self]='38;5;31'
-	fmts[name:root]='48;5;196'
-	if (( ! UID )); then
-		fmts[name.pfx]='38;5;196'
-	fi
-	fmts[pwd]='38;5;76'
-	fmts[vcs]='38;5;198'
-	fmts[name.pfx]=@name
-	fmts[prompt]=@name.pfx
 esac
 
 # Host themes overridden in bashrc-$HOSTNAME
