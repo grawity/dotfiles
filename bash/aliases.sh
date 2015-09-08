@@ -69,6 +69,7 @@ mir() { wget -m -np --reject-regex='.*\?C=.;O=.$' "$@"; }
 alias mkcert='mkcsr -x509 -days 3650'
 alias mkcsr='openssl req -new -sha256'
 mkmaildir() { mkdir -p "${@/%//cur}" "${@/%//new}" "${@/%//tmp}"; }
+alias mtrr='mtr --report-wide -c 3'
 alias mutagen='mid3v2'
 mv() {
 	if [[ -t 0 && -t 1 && $# -eq 1 && -e $1 ]]; then
@@ -124,6 +125,7 @@ visexp() { (echo "; vim: ft=sexp"; echo "; file: $1"; sexp-conv < "$1") \
 	| vipe | sexp-conv -s canonical | sponge "$1"; }
 alias w3m='w3m -title'
 wim() { local w=$(which "$1") && [[ $w ]] && editor "$w"; }
+alias unwine='printf "\e[?1l \e>"'
 alias xf='ps xf -O ppid'
 alias xx='chmod a+rx'
 alias zt1='zerotier-cli'
