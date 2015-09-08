@@ -236,7 +236,7 @@ items[parent.sfx]='}'
 fmts[parent]='38;5;15'
 fmts[parent.pfx]='38;5;198'
 
-items[lid]="☀"
+items[lid]="∠"
 fmts[lid]='38;5;184'
 
 _prompt_lid() {
