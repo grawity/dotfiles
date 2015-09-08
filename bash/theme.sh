@@ -95,12 +95,15 @@ case $FQDN in
 	;;
 
     *)
+	parts[left]+=" (:ostype)<:ostype"
 	items[name.pfx]="["
 	items[host]=$FQDN
-	items[name.sfx]="] $OSTYPE"
+	items[name.sfx]="]"
+	items[ostype]=$OSTYPE
 	fmts[name.pfx]='38;5;242'
 	fmts[name:self]='38;5;71'
 	fmts[name:root]='38;5;231|41'
+	fmts[ostype]=@name.sfx
 	fmts[pwd]='38;5;144'
 	fmts[vcs]='38;5;167'
 	fullpwd=y
