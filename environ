@@ -128,7 +128,7 @@ esac
 
 # local
 
-FQDN=$(fqdn)
+FQDN=$(LC_ALL="C" fqdn)
 
 case $FQDN in
     *.core)
