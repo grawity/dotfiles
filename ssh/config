@@ -193,7 +193,7 @@ Host *
 	IdentityFile ~/.ssh/id_rsa_2011-11-01
 	IdentityFile ~/.ssh/id_ed25519_2015-05-15
 
-	SendEnv LANG TZ
+	SendEnv TZ
 	ForwardX11Trusted yes
 
 	HashKnownHosts no
