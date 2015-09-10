@@ -130,7 +130,7 @@ Host snow snow.home snow.local
 # other hosts
 
 Host m-net.arbornet.org
-	HostKeyAlgorithms +ssh-dss
+	HostKeyAlgorithms ssh-rsa,ssh-dss
 
 Host aur
 	HostName aur.archlinux.org
