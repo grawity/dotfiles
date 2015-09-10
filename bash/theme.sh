@@ -30,6 +30,11 @@ fmts[name:root]='1;37;41'
 fmts[name:self]='1;32'
 fmts[user]=@name
 
+if [[ $LOGNAME != grawity ]]; then
+	items[user:self]=y
+	fullpwd=y
+fi
+
 if (( UID == 0 )); then
 	fmts[name]=@name:root
 	items[prompt]='#'
@@ -74,6 +79,8 @@ case $FQDN in
 	;;
 
     *.cluenet.org|*.nathan7.eu)
+	items[user.sfx]=' @ '
+	fmts[user.sfx]='38;5;252'
 	fmts[name:self]='1|38;5;71'
 	fmts[pwd]='38;5;144'
 	fmts[vcs]='38;5;167'
