@@ -287,6 +287,8 @@ putenv() {
 	gdb --batch "${args[@]}" -ex detach -p "$pid"
 }
 
+alias tlsc='tlsg'
+
 tlsg() {
 	local host=$1 port=${2:-443}
 	gnutls-cli "$host" -p "$port" "${@:3}"
