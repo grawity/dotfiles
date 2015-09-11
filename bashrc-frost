@@ -4,7 +4,7 @@
 
 iwps() {
 	if [[ $* ]]; then
-		iw ${WLAN_DEV:-wlan0} set power_save "$@"
+		sudo iw ${WLAN_DEV:-wlan0} set power_save "$@"
 	fi
 	iw ${WLAN_DEV:-wlan0} get power_save
 }
