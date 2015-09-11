@@ -49,6 +49,18 @@ fi
 : ${FQDN:=$HOSTNAME}
 
 case $FQDN in
+    frost.nullroute.eu.org)
+	items[name.pfx]='┌ '
+	fmts[name.pfx]='38;5;236'
+	fmts[name:root]='38;5;231|41'
+	fmts[name:self]='38;5;109'
+	fmts[pwd]='38;5;65'
+	fmts[pwd.tail]='38;5;108'
+	fmts[vcs]='38;5;131'
+	items[prompt]='┘'
+	fmts[prompt]=@name.pfx
+	;;
+
     rain.nullroute.eu.org)
 	items[name.pfx]='┌ '
 	fmts[name.pfx]='38;5;236'
@@ -62,8 +74,8 @@ case $FQDN in
 	;;
 
     *.nullroute.eu.org)
-	items[name.pfx]='{'
-	items[name.sfx]='}'
+	items[name.pfx]='['
+	items[name.sfx]=']'
 	fmts[name.pfx]='38;5;66'
 	fmts[name:root]='38;5;220'
 	case $HOSTNAME in
