@@ -189,6 +189,8 @@ ukip() {
 	sudo: ip addr add 192.168.1.42/24 dev eth0
 }
 
+ukvpn() { do: nmcli con "$1" "Utenos kolegija (admin OpenVPN)"; }
+
 uredboot() { do: telnet 192.168.1.20 9000; }
 
 ## Certificate hackery
