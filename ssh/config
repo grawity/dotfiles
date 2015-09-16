@@ -16,17 +16,19 @@ Host ukradius
 	IdentityFile ~/.ssh/id_ukolegija
 	ForwardAgent yes
 
-Host sw-b56-edge
+Host 193.219.181.238 sw-b56-edge
 	HostName 193.219.181.238
 	Port 42
 	User admin
+	IdentityFile ~/.ssh/id_ukolegija
 	IdentitiesOnly yes
 	ControlMaster no
 
-Host sw-aukstaiciu9
+Host 193.219.181.240 sw-aukstaiciu9
 	HostName 193.219.181.240
 	Port 42
 	User admin
+	IdentityFile ~/.ssh/id_ukolegija
 	IdentitiesOnly yes
 	ControlMaster no
 
