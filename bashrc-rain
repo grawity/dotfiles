@@ -147,11 +147,11 @@ youtube-dl() {
 add-vlan() {
 	local dev=$1 addr=$2
 	sudo: ip link add link "${dev%.*}" name "$dev" type vlan id "${dev##*.}"
+	sudo: ip link set "$dev" up
 	if [[ $addr == dhcp ]]; then
 		run-dhcp "$dev"
 	elif [[ $addr ]]; then
 		[[ $addr == */* ]] || addr+="/16"
-		sudo: ip link set "$dev" up
 		sudo: ip addr add "$addr" dev "$dev"
 	fi
 }
