@@ -31,6 +31,10 @@ if have hsetroot; then
 	hsetroot -solid "$bgcolor" -tile "$bgimage"
 fi
 
+# Set up D-Bus
+
+dbus-update-activation-environment --systemd DISPLAY XAUTHORITY
+
 # Normalize command line (expand aliases)
 
 case $1 in

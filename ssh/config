@@ -123,6 +123,11 @@ Host rain rain.local
 	ForwardAgent yes
 	ForwardX11 yes
 
+Host rain-zt1
+	HostName zt1.rain.nullroute.eu.org
+	HostkeyAlias rain.nullroute.eu.org
+	ForwardAgent yes
+
 Host snow snow.home snow.local
 	HostkeyAlias snow.nullroute.eu.org
 	User Mantas
