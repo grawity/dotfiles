@@ -403,4 +403,7 @@ elif have service; then
 	start()   { for _s; do sudo service "$_s" start; done; }
 	stop()    { for _s; do sudo service "$_s" stop; done; }
 	restart() { for _s; do sudo service "$_s" restart; done; }
+	status()  { for _s; do sudo service "$_s" status; done; }
+	enable()  { for _s; do sudo update-rc.d "$_s" enable; done; }
+	disable() { for _s; do sudo update-rc.d "$_s" disable; done; }
 fi
