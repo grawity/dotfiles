@@ -9,4 +9,12 @@ iwps() {
 	iw ${WLAN_DEV:-wlan0} get power_save
 }
 
+unison() {
+	if [[ -t 1 ]]; then
+		run unison-x11 "$@"
+	else
+		unison-text "$@"
+	fi
+}
+
 . ~/lib/dotfiles/bashrc-rain

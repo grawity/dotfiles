@@ -126,6 +126,11 @@ Host rain rain.local
 	ForwardAgent yes
 	ForwardX11 yes
 
+Host rain-vpn
+	HostName 10.112.0.2
+	HostkeyAlias rain.nullroute.eu.org
+	ForwardAgent yes
+
 Host rain-zt1
 	HostName zt1.rain.nullroute.eu.org
 	HostkeyAlias rain.nullroute.eu.org
