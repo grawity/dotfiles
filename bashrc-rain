@@ -10,6 +10,10 @@
 #	have() { command -v "$@" &>/dev/null; }
 #fi
 
+if [[ -e /usr/share/doc/pkgfile/command-not-found.bash ]]; then
+	. /usr/share/doc/pkgfile/command-not-found.bash
+fi
+
 ## Aliases
 
 alias @='_sshfs'
