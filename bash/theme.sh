@@ -121,7 +121,6 @@ case $FQDN in
     *)
 	parts[left]+=" (:ostype)<:ostype"
 	items[name.pfx]="["
-	items[host]=$FQDN
 	items[name.sfx]="]"
 	items[ostype]=$OSTYPE
 	fmts[name.pfx]='38;5;242'
