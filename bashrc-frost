@@ -17,4 +17,13 @@ unison() {
 	fi
 }
 
+usb() {
+	sudo: modprobe $* -v xhci_pci
+}
+
+alias 'usb?'='lsmod | grep xhci'
+alias '?usb'='usb?'
+alias 'usb+'='sudo: modprobe -v xhci_pci'
+alias 'usb-'='sudo: modprobe -r -v xhci_pci'
+
 . ~/lib/dotfiles/bashrc-rain

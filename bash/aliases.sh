@@ -82,6 +82,7 @@ mv() {
 }
 alias nmap='nmap --reason'
 alias nm-con='nmcli -f name,type,autoconnect,state,device con'
+alias pamcan='pacman'
 path() { if (( $# )); then which -a "$@"; else echo "${PATH//:/$'\n'}"; fi; }
 alias py='python'
 alias py2='python2'
