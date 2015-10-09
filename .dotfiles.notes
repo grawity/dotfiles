@@ -414,6 +414,18 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.wireshark/ – hardcoded
 
+~/.XCompose – environment/hardcoded/other locations
+  (libX11 aka xim)
+    - $XCOMPOSEFILE overrides (see the Compose(5) manual page)
+  (GTK aka gtk-im-context-simple)
+    - hardcoded ~/.XCompose
+       - intentional: https://bugzilla.gnome.org/show_bug.cgi?id=721120#c30
+    - but, $XDG_CONFIG_HOME/gtk-3.0/Compose is also supported
+    - NOTE: only as of commit a41f02f9b1843e0f0085f801430e55f413a9bf9c
+            (previous versions did not use the file at all)
+  (ibus)
+    - not sure
+
 ~/.Xkbmap – hardcoded/configurable
   - hardcoded in /etc/gdm/Xsession (although GNOME uses dconf)
     as well as other Xsession scripts in other DMs

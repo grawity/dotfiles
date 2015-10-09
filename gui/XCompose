@@ -2,8 +2,9 @@
 #
 # Enabling compose key: <https://wiki.ubuntu.com/ComposeKey>
 #
-# NOTE: In GTK, custom definitions work only with 'ibus' or 'xim' immodules.
-#       (see GTK_IM_MODULE in my "environ" file)
+# NOTE: In GTK, custom definitions only work in 3.18+gitmaster (as of commit
+#       a41f02f9b1843e0f0085f801430e55f413a9bf9c). For older versions, switch
+#       to 'ibus' or 'xim' immodules (see GTK_IM_MODULE in my "environ" file)
 #
 # NOTE: IBus support for XCompose is incomplete – only 2-letter shortcuts are
 #       supported, e.g. "<Multi_key> <z> <w> <j>" won't work. However, stacked
