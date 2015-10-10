@@ -18,6 +18,8 @@ XMODIFIERS="@im=ibus"
 LIBVA_DRIVER_NAME="gallium"
 # force `gem install nokogiri` to use system libxml2
 NOKOGIRI_USE_SYSTEM_LIBRARIES="1"
+# LibreOffice -- use stable gtk2, not experimental gtk3
+SAL_USE_VCLPLUGIN="gtk"
 
 # appdefaults
 
