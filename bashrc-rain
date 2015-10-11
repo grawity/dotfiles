@@ -2,14 +2,6 @@
 
 [[ $- != *i* ]] && return
 
-## Completion
-
-#if [[ -e /usr/share/bash-completion/bash_completion ]]; then
-#	. /usr/share/bash-completion/bash_completion
-#	# redeclare after bash-completion nukes it
-#	have() { command -v "$@" &>/dev/null; }
-#fi
-
 if [[ -e /usr/share/doc/pkgfile/command-not-found.bash ]]; then
 	. /usr/share/doc/pkgfile/command-not-found.bash
 fi
@@ -120,7 +112,13 @@ _sshfs() {
 	echo "mounted at $dir"
 }
 
-vnet() { sudo: systemctl "${1:-status}" vm-network.target; }
+vnet() {
+	case $1 in
+		up) set -- start;;
+		down) set -- stop;;
+	esac
+	sudo: systemctl "${1:-status}" vm-network.target
+}
 
 youtube-dl() {
 	local cmd=()
@@ -144,6 +142,11 @@ youtube-dl() {
 		"$@"
 	)
 	"${cmd[@]}"
+}
+
+:pp() {
+	local var=$1 k=; local -n ref=$1
+	echo "$var=("; for k in ${!ref[@]}; do echo "  [$k]='${ref[$k]}'"; done; echo ")"
 }
 
 ## Network hackery
@@ -220,10 +223,3 @@ st() { do: signtool -d "$nssdb" "$@"; }
 
 java-import-key() { keytool -importkeystore -srcstoretype PKCS12 -srckeystore "$@"; }
 nss-import-key() { pu -i "$@"; }
-
-## Miscellany
-
-:pp() {
-	local var=$1 k=; local -n ref=$1
-	echo "$var=("; for k in ${!ref[@]}; do echo "  [$k]='${ref[$k]}'"; done; echo ")"
-}
