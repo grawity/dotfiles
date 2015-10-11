@@ -227,20 +227,3 @@ nss-import-key() { pu -i "$@"; }
 	local var=$1 k=; local -n ref=$1
 	echo "$var=("; for k in ${!ref[@]}; do echo "  [$k]='${ref[$k]}'"; done; echo ")"
 }
-
-## Prompt enhancements
-
-parts[right]+=" (:lid:held?)<:lid"
-
-items[lid]="lid"
-fmts[lid]='38;5;184'
-
-_prompt_lid() {
-	if [[ -e "$XDG_RUNTIME_DIR/nolid.lock" ]]; then
-		items[lid:held?]=y
-	else
-		items[lid:held?]=
-	fi
-}
-
-PROMPT_COMMAND="$PROMPT_COMMAND; _prompt_lid"
