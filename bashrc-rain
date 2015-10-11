@@ -194,7 +194,7 @@ ukip() {
 	sudo: ip addr add 192.168.1.42/24 dev $dev
 }
 
-ukvpn() { do: nmcli con "$1" "Utenos kolegija (admin OpenVPN)"; }
+ukvpn() { do: nmcli con "$1" "Utenos kolegija (admin OV)"; }
 
 uredboot() { do: telnet 192.168.1.20 9000; }
 
@@ -243,7 +243,7 @@ items[parent.sfx]='}'
 fmts[parent]='38;5;15'
 fmts[parent.pfx]='38;5;198'
 
-items[lid]="∠"
+items[lid]="lid"
 fmts[lid]='38;5;184'
 
 _prompt_lid() {
