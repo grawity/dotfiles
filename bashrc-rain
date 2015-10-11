@@ -230,18 +230,7 @@ nss-import-key() { pu -i "$@"; }
 
 ## Prompt enhancements
 
-parts[right]+=" (:nested?)<:parent"
 parts[right]+=" (:lid:held?)<:lid"
-
-_parent=$(</proc/$PPID/comm)
-if [[ ${_parent%-} != @(login|sshd|sudo|termi*|*term|*terminal) ]]; then
-	items[nested?]=y
-fi
-items[parent]="$_parent #$SHLVL"
-items[parent.pfx]='{'
-items[parent.sfx]='}'
-fmts[parent]='38;5;15'
-fmts[parent.pfx]='38;5;198'
 
 items[lid]="lid"
 fmts[lid]='38;5;184'
