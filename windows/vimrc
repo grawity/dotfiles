@@ -4,4 +4,5 @@ set runtimepath-=~/vimfiles
 set runtimepath-=~/vimfiles/after
 set runtimepath^=$USERPROFILE/.dotfiles/vim
 set runtimepath+=$USERPROFILE/.dotfiles/vim/after
+
 source $USERPROFILE/.dotfiles/vimrc

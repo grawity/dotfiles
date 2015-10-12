@@ -1,4 +1,0 @@
-/d=dir($*)
-/h=help($*)
-/p=print "\n".join(str(_) for _ in $*)
-=exit()

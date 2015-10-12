@@ -1,5 +1,0 @@
-#!/bin/bash
-[ -f ~/.profile ]	&& . ~/.profile
-[ -f ~/.xprofile ]	&& . ~/.xprofile
-[ -f ~/.Xresources ]	&& xrdb -merge ~/.Xresources
-xterm
