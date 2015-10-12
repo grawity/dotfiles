@@ -215,10 +215,8 @@ if (( UID == 0 )); then
 fi
 case $OSTYPE in
 	linux-gnu*|cygwin)
-		if (( havecolor )); then
-			lsopt="$lsopt --color=auto"
-			eval $(dircolors ~/lib/dotfiles/dircolors 2>/dev/null)
-		fi
+		lsopt="$lsopt --color=auto"
+		eval $(dircolors ~/lib/dotfiles/dircolors 2>/dev/null)
 		alias df='df -Th'
 		alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs'
 		alias lsd='ls -a --ignore="[^.]*"'
@@ -230,10 +228,8 @@ case $OSTYPE in
 		alias w='w -h'
 		;;
 	gnu)
-		if (( havecolor )); then
-			lsopt="$lsopt --color=auto"
-			eval $(dircolors ~/lib/dotfiles/dircolors 2>/dev/null)
-		fi
+		lsopt="$lsopt --color=auto"
+		eval $(dircolors ~/lib/dotfiles/dircolors 2>/dev/null)
 		alias lsd='ls -a --ignore="[^.]*"'
 		alias w='w -hU'
 		;;

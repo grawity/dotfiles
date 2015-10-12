@@ -1,5 +1,4 @@
 # bashrc -- shell prompt, window title, command exit status in prompt
-# (note: depends on $havecolor being set, see main bashrc)
 #
 # Features:
 #
@@ -421,16 +420,10 @@ _awesome_prompt() {
 
 # Set prompts (PS1, PS2, &c.)
 
-if (( havecolor )); then
-	PS1="\n"
-	PS1="${PS1}\$(_awesome_prompt)"
-	PS2="\[\e[0;1;30m\]...\[\e[m\] "
-	PS4="+\e[34m\${BASH_SOURCE:--}:\e[1m\$LINENO\e[m:\${FUNCNAME:+\e[33m\$FUNCNAME\e[m} "
-else
-	PS1='\n\u@\h \w\n\$ '
-	PS2='... '
-	PS4="+\${BASH_SOURCE:--}:\$LINENO:\$FUNCNAME "
-fi
+PS1="\n"
+PS1="${PS1}\$(_awesome_prompt)"
+PS2="\[\e[0;1;30m\]...\[\e[m\] "
+PS4="+\e[34m\${BASH_SOURCE:--}:\e[1m\$LINENO\e[m:\${FUNCNAME:+\e[33m\$FUNCNAME\e[m} "
 
 . ~/lib/dotfiles/bash/theme.sh
 
