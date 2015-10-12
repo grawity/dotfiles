@@ -1,13 +1,9 @@
-# ~/.screenrc - screen(1)
-# vim: fdm=marker:
+# ~/.screenrc
 
 startup_message off
 vbell off
 
-# Terminal capabilities {{{
-
 term 'screen-256color'
-
 altscreen on
 
 # Do not send own status messages to hardstatus, use it only for program titles
@@ -16,68 +12,24 @@ hardstatus off
 hardstatus lastline
 defhstatus "^%t (window ^%n)"
 
-# }}}
-# Collected workarounds from example screenrc {{{
-
-# all termcap entries are now duplicated as terminfo entries.
-# only difference should be the slightly modified syntax, and check for
-# terminfo entries, that are already corected in the database.
-# 
-# G0 	we have a SEMI-GRAPHICS-CHARACTER-MODE
-# WS	this sequence resizes our window.
-# cs    this sequence changes the scrollregion
-# hs@	we have no hardware statusline. screen will only believe that
-#       there is a hardware status line if hs,ts,fs,ds are all set.
-# ts    to statusline
-# fs    from statusline
-# ds    delete statusline
-# al    add one line
-# AL    add multiple lines
-# dl    delete one line
-# DL    delete multiple lines
-# ic    insert one char (space)
-# IC    insert multiple chars
-# nx    terminal uses xon/xoff
-
-termcapinfo vt100|xterm 'LP:G0'
-
-# the vt100 description does not mention "dl". *sigh*
-termcapinfo vt100 'dl=5\E[M'
-
-# make sun termcap/info better
-termcap  sun 'up=^K:AL=\E[%dL:DL=\E[%dM:UP=\E[%dA:DO=\E[%dB:LE=\E[%dD:RI=\E[%dC:IC=\E[%d@:WS=1000\E[8;%d;%dt'
-terminfo sun 'up=^K:AL=\E[%p1%dL:DL=\E[%p1%dM:UP=\E[%p1%dA:DO=\E[%p1%dB:LE=\E[%p1%dD:RI=\E[%p1%dC:IC=\E[%p1%d@:WS=\E[8;%p1%d;%p2%dt$<1000>'
-
+# (from default screenrc)
 # xterm understands both im/ic and doesn't have a status line.
-# Note: Do not specify im and ic in the real termcap/info file as
-# some programs (e.g. vi) will (no,no, may (jw)) not work anymore.
 termcap  xterm* 'hs@:cs=\E[%i%d;%dr:im=\E[4h:ei=\E[4l'
 terminfo xterm* 'hs@:cs=\E[%i%p1%d;%p2%dr:im=\E[4h:ei=\E[4l'
 
+# (from default screenrc)
 # we do not want the width to change to 80 characters on startup:
-# on suns, /etc/termcap has :is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;3;4;6l:
 termcapinfo xterm* 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
 
-# }}}
-# Custom termcap/info entries {{{
-
-# 80/132 column switching must be enabled for ^AW to work
-# change init sequence to not switch width
-# note: disabled because denied by vte
-#termcapinfo xterm* 'Z0=\E[?3h:Z1=\E[?3l:is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
-
-# Make the output buffer large for (fast) xterms.
+# (from default screenrc)
+# make the output buffer large for (fast) xterms
 termcapinfo xterm* 'OL=10000'
 
-# tell screen that xterm can switch to dark background and has function
-# keys.
+# (from default screenrc)
+# tell screen that xterm can switch to dark background and has function keys.
 #termcapinfo xterm* 'VR=\E[?5h:VN=\E[?5l'
 #termcapinfo xterm* 'k1=\E[11~:k2=\E[12~:k3=\E[13~:k4=\E[14~'
 #termcapinfo xterm* 'kh=\EOH:kI=\E[2~:kD=\E[3~:kH=\EOF:kP=\E[5~:kN=\E[6~'
 
 # xterm can use GUI titlebar as hardstatus
 termcapinfo xterm*|rxvt*|kterm*|Eterm*|cygwin 'hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007'
-
-# }}}
-
-dinfo

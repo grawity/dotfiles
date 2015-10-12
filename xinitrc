@@ -5,12 +5,7 @@ have() { type "$1" > /dev/null 2>&1; }
 
 cd ~
 
-# Load basic profile
-
-[ -f /etc/profile ]	&& . /etc/profile
-[ -f ~/.profile ]	&& . ~/.profile
-
-# Ensure a ssh-agent
+# ensure ssh-agent, session bus
 
 if [ ! "$SSH_AUTH_SOCK" ] && have ssh-agent; then
 	exec ssh-agent ~/.xinitrc "$@" || exit
@@ -20,22 +15,22 @@ if [ ! "$DBUS_SESSION_BUS_ADDRESS" ] && have dbus-launch; then
 	exec dbus-launch --exit-with-session ~/.xinitrc "$@" || exit
 fi
 
-# Set up some basic things
-
-bgcolor='#222222'
-bgimage=~/lib/dotfiles/gui/noise.png
-
-xsetroot -solid "$bgcolor" -cursor_name 'left_ptr'
-
-if have hsetroot; then
-	hsetroot -solid "$bgcolor" -tile "$bgimage"
-fi
-
-# Set up D-Bus
-
 dbus-update-activation-environment --systemd DISPLAY XAUTHORITY
 
-# Normalize command line (expand aliases)
+# load global profile
+
+[ -f /etc/profile ]	&& . /etc/profile
+[ -f ~/.profile ]	&& . ~/.profile
+
+# initial appearance
+
+bg_color='#222222'
+bg_image=~/lib/dotfiles/gui/noise.png
+
+xsetroot -solid "$bg_color" -cursor_name 'left_ptr'
+have hsetroot && hsetroot -solid "$bg_color" -tile "$bg_image"
+
+# normalize command line (expand aliases)
 
 case $1 in
 	cinnamon)	set -- cinnamon-session;;
@@ -46,7 +41,7 @@ case $1 in
 	xfce)		set -- startxfce4;;
 esac
 
-# Set $DESKTOP_SESSION for xprofile and others
+# set $DESKTOP_SESSION (for .xprofile and others)
 
 case $1 in
 	cinnamon-session)	DESKTOP_SESSION=cinnamon;;
@@ -60,16 +55,16 @@ esac
 
 export DESKTOP_SESSION
 
-# Load X11-specific profile
+# load X11-specific profile
 
 [ -f /etc/xprofile ]	&& . /etc/xprofile
 [ -f ~/.xprofile ]	&& . ~/.xprofile
 [ -f ~/.Xresources ]	&& xrdb -merge ~/.Xresources
 [ -f ~/.Xkbmap ]	&& setxkbmap $(cat ~/.Xkbmap)
 
-# Set up a session
+# run the session
 
-if [ "$1" ]; then
+if [ "$*" ]; then
 	exec "$@"
 else
 	exec openbox --startup ~/.config/openbox/autostart

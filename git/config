@@ -14,8 +14,6 @@
 	bra = branch -vv
 	ci = commit
 	ci-m = commit -m
-	cim = commit -m
-	#clone-svnsync = svn clone --use-svnsync-props --preserve-empty-dirs
 	clone-svnsync = svn clone --use-svnsync-props
 	co = checkout
 	di = diff
@@ -34,7 +32,6 @@
 	lsr = "!_() { [ \"$1\" ] || set -- HEAD; git ls-tree -r \"$@\"; }; _"
 	mend = commit --amend --reuse-message HEAD
 	mkobject = hash-object --stdin -w
-	mrproper = !git reset --hard HEAD && git clean -fdx
 	out = log --oneline --decorate @{upstream}..
 	rbc = rebase --continue
 	rbs = rebase -i
@@ -57,8 +54,6 @@
 	wdiff = diff --word-diff
 	wshow = show --word-diff
 	ic = ci
-
-# Everything else
 
 [advice]
 	detachedHead = false
@@ -90,26 +85,20 @@
 	linenumber = green
 
 [column]
-	# option order matters, apparently?
 	ui = auto
 	branch = never
 	status = never
 	tag = auto dense
 
 [core]
-	excludesfile = ~/.config/git/ignore
-	# never use an askpass even if $SSH_ASKPASS is set
-	# (uses "password" entry even for usernames, confusing)
 	askpass = 
 	autocrlf = false
+	excludesfile = ~/.config/git/ignore
 	logAllRefUpdates = true
 	whitespace = trailing-space, space-before-tab, blank-at-eof
 
 [credential]
 	helper = cache --socket $XDG_RUNTIME_DIR/git-credential-cache
-	#helper = lib gnomekeyring
-	#helper = lib windows
-	#helper = netrc
 	helper = store
 	useHttpPath = false
 
@@ -152,8 +141,8 @@
 	templateDir = ~/.config/git/template
 
 [merge]
-	defaultToUpstream = true
 	conflictStyle = diff3
+	defaultToUpstream = true
 
 [pack]
 	writebitmaps = true
@@ -177,16 +166,7 @@
 	smtpServerOption = --read-envelope-from
 
 [tig]
-	# [v1 opts]
-	# show-date = relative
-	# #show-author = abbreviated
-	# author-width = 12
-	# show-filename = false
-	# show-rev-graph = true
-	# #vertical-split = true
-
 	# [v2 opts]
-	#main-view = id:no date:relative author:full,width=12 commit-title:graph=v1,refs,overflow=no
 	main-view = id:no date:relative author:full,width=12 commit-title:graph=yes,refs,overflow=no
 	# [v2.1 opts]
 	main-view-date = relative
@@ -195,7 +175,6 @@
 
 	# [global opts]
 	commit-order = topo
-	#diff-options = --patience
 	ignore-case = true
 	line-graphics = true
 	show-changes = no
@@ -244,10 +223,6 @@
 [url "https://kernel.googlesource.com/"]
 	insteadOf = kernel.org::
 
-# Local settings
-
 [include]
 	path = ~/.config/git/config.local
 	path = ~/.gitconfig-local
-
-# EOF

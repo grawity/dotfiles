@@ -2,28 +2,28 @@
 
 [[ $- != *i* ]] && return
 
+. ~/lib/dotfiles/bashrc-rain
+
+wlan=wlan0
+
 iwps() {
 	if [[ $* ]]; then
-		sudo iw ${WLAN_DEV:-wlan0} set power_save "$@"
+		sudo iw $wlan set power_save "$@"
 	fi
-	iw ${WLAN_DEV:-wlan0} get power_save
+	iw $wlan get power_save
 }
 
 unison() {
-	if [[ -t 1 ]]; then
+	if [[ $DISPLAY ]] && [[ -t 1 ]]; then
 		run unison-x11 "$@"
 	else
 		unison-text "$@"
 	fi
 }
 
-usb() {
-	sudo: modprobe $* -v xhci_pci
-}
+usb() { sudo: modprobe $* -v xhci_pci; }
 
 alias 'usb?'='lsmod | grep xhci'
 alias '?usb'='usb?'
 alias 'usb+'='sudo: modprobe -v xhci_pci'
 alias 'usb-'='sudo: modprobe -r -v xhci_pci'
-
-. ~/lib/dotfiles/bashrc-rain

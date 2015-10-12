@@ -1,3 +1,5 @@
+# ~/.gtkrc
+
 include "/usr/share/themes/Delightfully-Smooth/gtk/gtkrc"
 
 style "default" {

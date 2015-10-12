@@ -1,10 +1,10 @@
-# ~/.inputrc - readline(3), bash(1) - Readline library configuration
+# ~/.inputrc
 
 $include /etc/inputrc
 
 set bell-style none
 
-# Tab completion
+# tab completion
 set show-all-if-ambiguous on
 set visible-stats on
 set colored-stats on
@@ -13,35 +13,45 @@ set completion-ignore-case on
 set completion-query-items 500
 #set page-completions off
 
-# Disallow modifying history
+# disallow modifying history
 set revert-all-at-newline on
 
-# Arrows
+# arrows
 "\e[A": history-search-backward
 "\e[B": history-search-forward
+
 # Ctrl-arrows
 "\e[1;5C": forward-word
 "\e[1;5D": backward-word
+
 # Ctrl-arrows (PuTTY)
 "\eOC": forward-word
 "\eOD": backward-word
+
 # Insert
 "\e[2~": overwrite-mode
+
 # Page Up/Down
 "\e[5~": ""
 "\e[6~": menu-complete
+
 # Shift-Tab
-#"\C-i": menu-complete
 "\e[Z": complete-hostname
+
+# for nested shells
+"\C-x\C-x": "suspend\n"
+
+# unbind other stuff
+
+"\ep": ""
+"\en": ""
 
 # "Bracketed paste" markers
 "\e[200~": ""
 "\e[201~": ""
 
-# convenience shortcut for working in nested shells
-"\C-x\C-x": "suspend\n"
+# unbind the Alt+numbers
 
-# unbind the useless default Alt+numbers
 "\e-": ""
 "\e0": ""
 "\e1": ""
@@ -54,10 +64,9 @@ set revert-all-at-newline on
 "\e8": ""
 "\e9": ""
 
-"\ep": ""
-"\en": ""
-
 # UTF-8 prefixes – insert Alt+characters literally instead of eating the first byte
+# for the record, "UTF-16 compatibility" pushers are utter dingbats
+
 # two-byte prefixes
 "\e\xc0": self-insert
 "\e\xc1": self-insert
@@ -117,5 +126,11 @@ set revert-all-at-newline on
 "\e\xf5": self-insert
 "\e\xf6": self-insert
 "\e\xf7": self-insert
-# five/six-byte prefixes skipped because someone is fucking stupid and forbid
-# those in the name of UTF-16 compatibility
+# five-byte prefixes
+"\e\xf8": self-insert
+"\e\xf9": self-insert
+"\e\xfa": self-insert
+"\e\xfb": self-insert
+# six-byte prefixes
+"\e\xfc": self-insert
+"\e\xfd": self-insert

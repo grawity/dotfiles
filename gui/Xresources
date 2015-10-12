@@ -1,7 +1,7 @@
-! ~/.Xresources: X11 resources
+! ~/.Xresources
 ! vim: fdm=marker
 
-!!! Xft {{{
+! Xft {{{
 
 !Xft.antialias:	1
 !Xft.dpi:	96
@@ -12,15 +12,13 @@
 !Xft.lcdfilter:	lcddefault
 
 ! }}}
-
-!!! Xcursor {{{
+! Xcursor {{{
 
 Xcursor.theme:		Adwaita
 Xcursor.size:		16
 
-!!! }}}
-
-!!! Rofi {{{
+! }}}
+! Rofi {{{
 
 rofi.key-run:			F2
 rofi.terminal:			gnome-terminal
@@ -41,9 +39,8 @@ rofi.color-normal:		#222222,#bbbbbb,#222222,#005577,#eeeeee
 !rofi.color-urgent:		...
 !rofi.color-active:		...
 
-!!! }}}
-
-!!! Xterm {{{
+! }}}
+! Xterm {{{
 
 XTerm.termName:			xterm-256color
 
@@ -72,7 +69,6 @@ XTerm*vt100.font:		-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
 !XTerm*vt100.faceName:		DejaVu Sans Mono
 !XTerm*vt100.faceSize:		9
 XTerm*vt100.geometry:		100x35
-!XTerm*vt100.showBlinkAsBold:	true
 XTerm*vt100.showMissingGlyphs:	true
 XTerm*vt100.utf8Fonts:		always
 XTerm*vt100.utf8Title:		true
@@ -101,9 +97,8 @@ XTerm*color15:		#eeeeec
 XTerm*boldColors:	true
 XTerm*boldMode:		true
 
-!!! }}}
-
-!!! Rxvt {{{
+! }}}
+! Rxvt {{{
 
 URxvt.termName:		rxvt-unicode-256color
 
@@ -146,28 +141,14 @@ Rxvt.color13:		#ad7fa8
 Rxvt.color14:		#34e2e2
 Rxvt.color15:		#eeeeec
 
-! plugins
-
-!Rxvt.perl-ext-common:	default,matcher
-!Rxvt.matcher.button:	3
-!Rxvt.tabbed.tabbar-fg:	2
-!Rxvt.tabbed.tabbar-bg:	0
-!Rxvt.tabbed.tab-fg:	0
-!Rxvt.tabbed.tab-bg:	3
-!Rxvt.urlLauncher:	xdg-open
-
-!!! }}}
-
-!!! Mwm {{{
+! }}}
+! Mwm {{{
 
 Mwm*configFile:			~/.config/mwmrc
 Mwm*useClientIcon:		true
-! explicit, pointer
-!Mwm*keyboardFocusPolicy:	pointer
 
-!!! }}}
-
-!!! Mosaic {{{
+! }}}
+! Mosaic {{{
 
 Mosaic*homeDocument: http://nullroute.eu.org
 Mosaic*confirmExit: false
@@ -179,4 +160,4 @@ Mosaic*defaultAuthorEmail: grawity@gmail.com
 Mosaic*signature: Foo.
 !Mosaic*enableTables: true
 
-!!! }}}
+! }}}

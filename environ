@@ -7,17 +7,17 @@ setpath() {
 	set +a; IFS=$xIFS; unset xIFS; set -a
 }
 
-# basic environ
+# basic
 
 umask 022
 
-[ "$UID" ]      || UID=$(id -u)
-[ "$USER" ]     || USER=$(id -un)
-[ "$HOSTNAME" ] || HOSTNAME=$(hostname)
+test "$UID"      || UID=$(id -u)
+test "$USER"     || USER=$(id -un)
+test "$HOSTNAME" || HOSTNAME=$(hostname)
 
 set -a
 
-# paths/locations
+# paths
 
 # initially $PREFIX was just for my personal use, but apparently it is used by
 # npm (which defaults to /usr) also other things that I forget; I think
@@ -60,28 +60,24 @@ test "$XDG_CONFIG_HOME" || XDG_CONFIG_HOME="$HOME/.config"
 test "$XDG_DATA_HOME"   || XDG_DATA_HOME="$HOME/.local/share"
 test "$XDG_RUNTIME_DIR" || XDG_RUNTIME_DIR="$XDG_CACHE_HOME"
 
-GNULIB_SRCDIR="$HOME/src/gnu/gnulib"
-
-# identity
+# identity, locale
 
 NAME='Mantas Mikulėnas'
 EMAIL="grawity@gmail.com"
 TZ="Europe/Vilnius"
 
+#case $LANG in
+#    en_*) ;;
+#    *) LANG="en_US.UTF-8";;
+#esa
+
 # preferred programs
 
 BROWSER="web-browser"
 EDITOR="vim"
-unset VISUAL
 PAGER="less"
 
-# locale
-
-#case $LANG in
-#    en_*) ;;
-#    *) LANG="en_US.UTF-8";;
-#esac
-LINGUAS="en lt"
+unset VISUAL
 
 # libdefaults
 
@@ -91,12 +87,12 @@ NCURSES_NO_UTF8_ACS="1"
 # appdefaults
 
 ABSROOT="$HOME/pkg"
+GNULIB_SRCDIR="$HOME/src/gnu/gnulib"
 PERL_CPANM_HOME="$XDG_CACHE_HOME/cpanminus"
 RLWRAP_HOME="$XDG_CACHE_HOME/rlwrap"
 
 IRBRC="$HOME/lib/dotfiles/irbrc"
 PYTHONSTARTUP="$HOME/lib/dotfiles/pythonrc"
-
 VIMINIT=":so ~/.vim/vimrc"
 GVIMINIT=":so ~/.vim/gvimrc"
 
@@ -104,8 +100,9 @@ BZR_LOG="/dev/null"
 GCC_COLORS="1"
 GIT_MERGE_AUTOEDIT="no"
 LESS="e M q R F X z -3"
-LESS_TERMCAP_us='[3m'		# italic
-LESS_TERMCAP_ue='[23m'	# no-italic
+LESS_TERMCAP_us='[3m'		# change underline to italic
+LESS_TERMCAP_ue='[23m'	# un-italic
+LINGUAS="en lt"			# install fewer nls translations
 MAKEFLAGS="-j $(nproc)"
 SUDO_PROMPT="sudo password for %p@[30;43m%h[m: "
 
@@ -127,12 +124,7 @@ esac
 
 # local
 
-FQDN=$(LC_ALL="C" fqdn)
-
-case $FQDN in
-    *.core)
-	. ~/lib/dotfiles/environ-vm.rain;;
-esac
+test "$FQDN" || FQDN=$(LC_ALL="C" fqdn)
 
 if [ -f ~/lib/dotfiles/environ-$HOSTNAME ]; then
 	. ~/lib/dotfiles/environ-$HOSTNAME

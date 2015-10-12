@@ -6,15 +6,12 @@
 have() { type "$1" > /dev/null 2>&1; }
 
 case $0:$TMUX:$SILENT in -*::)
-	# only in login shells, not in tmux, and not if $SILENT
-
-	# assume that XDG variables are set by ~/.environ
+	# XDG variables are set by ~/.environ
 	test -d "$XDG_CACHE_HOME"  || mkdir -p -m 0700 "$XDG_CACHE_HOME"
 	test -d "$XDG_CONFIG_HOME" || mkdir -p -m 0700 "$XDG_CONFIG_HOME"
 	test -d "$XDG_DATA_HOME"   || mkdir -p -m 0700 "$XDG_DATA_HOME"
 
 	test -f ~/.hushlogin && motd -q
-
 	echo `uptime`
 esac
 

@@ -8,7 +8,6 @@ fi
 
 ## Aliases
 
-alias @='_sshfs'
 alias clock='tty-clock -c'
 alias eof='IGNOREEOF=3'
 alias fumount='fusermount -u'
@@ -17,10 +16,10 @@ alias gmm='run google-musicmanager'
 alias RM='/bin/rm -I'
 alias unrm='trash --restore'
 
-b64() { printf "%s" "$*" | base64 | tr -dc "A-Za-z0-9+/="; }
+alias eris='ssh wolke -t tmux attach -t eris'
+alias gale='ssh wolke -t tmux attach -t gale'
 
-eris() { ssh wolke -t tmux attach -t eris; }
-gale() { ssh wolke -t tmux attach -t gale; }
+b64() { printf "%s" "$*" | base64 | tr -dc "A-Za-z0-9+/="; }
 
 gensid() {
 	local a=$(perl -e 'print int rand 0xFFFFFFFF')
@@ -28,6 +27,7 @@ gensid() {
 	local c=$(perl -e 'print int rand 0xFFFFFFFF')
 	echo "S-1-5-21-$a-$b-$c"
 }
+
 rand() { perl -e "print int rand $1"; }
 
 rm() {
@@ -102,16 +102,6 @@ scrape-reddit() {
 	done
 }
 
-_sshfs() {
-	local host=$1
-	local dir=~/@$host
-	if ! mountpoint -q "$dir"; then
-		mkdir -p "$dir" &&
-		sshfs "$host:" "$dir" -o reconnect -o transform_symlinks
-	fi &&
-	echo "mounted at $dir"
-}
-
 vnet() {
 	case $1 in
 		up) set -- start;;
@@ -173,6 +163,7 @@ run-dhcpcd() {
 }
 
 ecap() { sudo: tcpdump -n -i "${dev:-eth0}" "$@"; }
+
 earp() { ecap -e "arp or (udp port 67 or 68)"; }
 
 ecn() {
@@ -192,7 +183,6 @@ ukip() {
 	sudo: ip addr flush dev $dev
 	sudo: ip addr add 169.254.0.1/16  dev $dev scope link
 	sudo: ip addr add 10.128.0.42/16  dev $dev
-	sudo: ip addr add 172.16.0.42/12  dev $dev
 	sudo: ip addr add 192.168.0.42/24 dev $dev
 	sudo: ip addr add 192.168.1.42/24 dev $dev
 }
@@ -203,12 +193,16 @@ uredboot() { do: telnet 192.168.1.20 9000; }
 
 ## Certificate hackery
 
-c2p() for _f; {
-	openssl x509 -in "$_f" -inform DER -out "${_f%.*}.pem" -outform PEM
+c2p() {
+	for file; do
+		openssl x509 -in "$file" -inform DER -out "${file%.*}.pem" -outform PEM
+	done
 }
 
-p2c() for _f; {
-	openssl x509 -in "$_f" -inform PEM -out "${_f%.*}.crt" -outform DER
+p2c() {
+	for file; do
+		openssl x509 -in "$file" -inform PEM -out "${file%.*}.crt" -outform DER
+	done
 }
 
 nssdb="sql:$HOME/.pki/nssdb"

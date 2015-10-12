@@ -1,8 +1,8 @@
 # ~/.config/gtk-3.0/settings.ini
-# https://wiki.archlinux.org/index.php/GNOME_3#GTK3_theme_via_settings.ini
-# http://developer.gnome.org/gtk3/3.2/GtkSettings.html
+# vim: ft=dosini
+# http://developer.gnome.org/gtk3/3.18/GtkSettings.html
 
 [Settings]
-gtk-theme-name=Adwaita
-gtk-font-name=Cantarell 10
-gtk-error-bell=false
+#gtk-theme-name=Adwaita
+#gtk-font-name=Cantarell 10
+#gtk-error-bell=false

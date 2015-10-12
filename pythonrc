@@ -10,20 +10,12 @@ def _init_():
     import readline
     import rlcompleter
 
-    # line editing
-
     readline.parse_and_bind("tab: complete")
 
-    # history
-
     hist_file = os.path.expanduser("~/.cache/python.history")
-
     if os.path.exists(hist_file):
         readline.read_history_file(hist_file)
-
     atexit.register(lambda: readline.write_history_file(hist_file))
-
-    # prompts
 
     fmt = lambda s: "\001%s\002" % s
     csi = lambda s: fmt("\033[%sm" % s)

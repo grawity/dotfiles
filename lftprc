@@ -2,7 +2,7 @@
 
 set xfer:clobber no
 
-### interface
+# interface
 
 alias .. "cd .."
 alias ls "cls -h"
@@ -11,14 +11,12 @@ alias rels "cache flush; ls"
 
 set cmd:prompt "\\[\\e[38;5;173m\\]lftp \\[\\e[38;5;216m\\]\\S\\? \\u\\@\\h:\\w>\\[\\e[m\\] "
 
-### network
+# network
 
 set dns:SRV-query yes
 set ftp:anon-pass "grawity@gmail.com"
 #set ftp:port-range 37000-37999
 set ftp:use-ip-tos yes
-
-### transport security
 
 set ssl:cert-file "~/.pki/private/auth-grawity.pem"
 set ssl:key-file "~/.pki/private/auth-grawity.pem"
@@ -31,7 +29,7 @@ set ftp:ssl-protect-fxp yes
 # (disabled by default due to improperly multihomed servers)
 set ftp:verify-address yes
 
-### compatibility
+# compatibility
 
 set ftp:charset/212.164.230.75 "cp1251"
 
