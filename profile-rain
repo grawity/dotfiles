@@ -1,4 +1,3 @@
-# host-specific additions to ~/.profile
 # vim: ft=sh
 
 if [ -d "$XDG_RUNTIME_DIR" ]; then
@@ -13,23 +12,17 @@ if [ -d "$XDG_RUNTIME_DIR" ]; then
 	fi >/dev/null 2>&1
 fi
 
-if [ -d ~/Private ] &&
-   ! mountpoint -q ~/Private &&
-   have ecryptfs-mount-private; then
+if [ -e ~/.ecryptfs/Private.mnt ] && ! mountpoint -q ~/Private; then
 	if [ "$DISPLAY" ]; then
 		spawn ecryptfs-mount-x11
-	elif [ -t 2 ]; then
-		echo -e "\e[1;33mwarning:\e[;1m ~/Private not mounted\e[m" >&2
+	elif [ -t 1 ] && [ ! "$SILENT" ]; then
+		echo -e "\e[1;33mwarning:\e[;1m ~/Private not mounted\e[m"
 	fi
-fi
-
-#if [ -t 1 ] && [ ! "$DISPLAY" ] && [ ! "$TMUX" ]; then
-#	(cd "projects/mq" && ./mq-wallnotify 2>/dev/null &)
-#fi
+fi >&2
 
 if [ -t 1 ] && [ ! "$SILENT" ]; then
 	if [ "$SSH_CONNECTION" ]; then
-		echo -e "\e[1mYou are connecting from [${SSH_CONNECTION%% *}].\e[m"
+		echo -e "\e[1mYou are connecting from ${SSH_CONNECTION%% *}\e[m"
 	fi
 	have acpi && acpi
 fi
