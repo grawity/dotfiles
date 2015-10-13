@@ -13,6 +13,8 @@ fi
 
 export GPG_TTY=$(tty)
 
+export -n VTE_VERSION
+
 ### Interactive options
 
 [[ $- == *i* ]] || return 0
