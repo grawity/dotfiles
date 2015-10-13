@@ -14,22 +14,21 @@ defhstatus "^%t (window ^%n)"
 
 # (from default screenrc)
 # xterm understands both im/ic and doesn't have a status line.
-termcap  xterm* 'hs@:cs=\E[%i%d;%dr:im=\E[4h:ei=\E[4l'
 terminfo xterm* 'hs@:cs=\E[%i%p1%d;%p2%dr:im=\E[4h:ei=\E[4l'
 
 # (from default screenrc)
 # we do not want the width to change to 80 characters on startup:
-termcapinfo xterm* 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
+terminfo xterm* 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
 
 # (from default screenrc)
 # make the output buffer large for (fast) xterms
-termcapinfo xterm* 'OL=10000'
+terminfo xterm* 'OL=10000'
 
 # (from default screenrc)
 # tell screen that xterm can switch to dark background and has function keys.
-#termcapinfo xterm* 'VR=\E[?5h:VN=\E[?5l'
-#termcapinfo xterm* 'k1=\E[11~:k2=\E[12~:k3=\E[13~:k4=\E[14~'
-#termcapinfo xterm* 'kh=\EOH:kI=\E[2~:kD=\E[3~:kH=\EOF:kP=\E[5~:kN=\E[6~'
+#terminfo xterm* 'VR=\E[?5h:VN=\E[?5l'
+#terminfo xterm* 'k1=\E[11~:k2=\E[12~:k3=\E[13~:k4=\E[14~'
+#terminfo xterm* 'kh=\EOH:kI=\E[2~:kD=\E[3~:kH=\EOF:kP=\E[5~:kN=\E[6~'
 
 # xterm can use GUI titlebar as hardstatus
-termcapinfo xterm*|rxvt*|kterm*|Eterm*|cygwin 'hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007'
+terminfo xterm*|rxvt*|kterm*|Eterm*|cygwin 'hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007'
