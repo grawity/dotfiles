@@ -335,7 +335,7 @@ lspkg() {
 	elif have rpm; then rpm -ql "$@"
 	elif have pkg; then
 		case $OSTYPE in
-			FreeBSD) pkg list "$@";;
+			FreeBSD) pkg query %Fp "$@";;
 		esac
 	elif have pkg_info; then pkg_info -Lq "$@"
 	else echo "$FUNCNAME: no known package manager" >&2; return 1
