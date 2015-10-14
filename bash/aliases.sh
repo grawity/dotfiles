@@ -330,10 +330,14 @@ lspkgs() {
 lspkg() {
 	if [[ -z $1 ]]
 	then echo "$FUNCNAME: package not specified" >&2; return 2
-	elif have dpkg;		then dpkg -L "$@"
-	elif have pacman;	then pacman -Qql "$@"
-	elif have rpm;		then rpm -ql "$@"
-	elif have pkg_info;	then pkg_info -Lq "$@"
+	elif have dpkg; then dpkg -L "$@"
+	elif have pacman; then pacman -Qql "$@"
+	elif have rpm; then rpm -ql "$@"
+	elif have pkg; then
+		case $OSTYPE in
+			FreeBSD) pkg list "$@";;
+		esac
+	elif have pkg_info; then pkg_info -Lq "$@"
 	else echo "$FUNCNAME: no known package manager" >&2; return 1
 	fi | sort
 }
