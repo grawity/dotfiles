@@ -53,7 +53,7 @@
 	unexport = "!rm -v \"$(git rev-parse --git-dir)/git-daemon-export-ok\""
 	wdiff = diff --word-diff
 	wshow = show --word-diff
-	ic = ci
+	ic = commit
 
 [advice]
 	detachedHead = false
