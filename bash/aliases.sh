@@ -47,7 +47,7 @@ alias l='ls -log'
 alias ll='ls -l'
 alias logoff='logout'
 if [[ $DESKTOP_SESSION ]]; then
-	alias logout='~/code/x11/logout'
+	alias logout='env logout'
 fi
 f() { find . -iname "*$1*" "${@:2}"; }
 ff() { find "$PWD" -iname "*$1*" "${@:2}" | treeify "$PWD"; }
