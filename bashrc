@@ -11,6 +11,11 @@ if [[ ! $PREFIX ]]; then
 	#(. lib.bash && warn "had to load .environ from .bashrc")
 fi
 
+if [[ $TERM == @(screen|tmux|xterm) ]]; then
+	OLDTERM="$TERM"
+	TERM="$TERM-256color"
+fi
+
 export GPG_TTY=$(tty)
 
 export -n VTE_VERSION
