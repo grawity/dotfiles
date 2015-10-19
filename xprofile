@@ -21,7 +21,14 @@ if [ ! "$DESKTOP_SESSION" ]; then
 fi
 
 if [ "$DESKTOP_SESSION" != gnome ]; then
-	xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1 &
+	case $HOSTNAME in
+		rain)	touchpad="ETPS/2 Elantech Touchpad";;
+		frost)	touchpad="DLL063E:00 06CB:2934";;
+	esac
+
+	if [ "$touchpad" ]; then
+		xinput set-prop "$touchpad" "libinput Tapping Enabled" 1 &
+	fi
 
 	#if [ "$HOSTNAME" = rain ]; then
 	#	mpDris2 &
