@@ -251,7 +251,7 @@ alias who='who -HT'
 # misc functions
 
 catlog() {
-	printf '%s\n' "$1" "$1".* | sort -rn | while read -r file; do
+	printf '%s\n' "$1" "$1".* | natsort | tac | while read -r file; do
 		case $file in
 		    *.gz) zcat "$file";;
 		    *)    cat "$file";;
