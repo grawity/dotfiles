@@ -31,8 +31,8 @@ setpath PATH \
 	"$HOME/bin"			\
 	"$HOME/code/bin"		\
 	"$HOME/code/obj/host.$HOSTNAME"	\
-	"$HOME/projects/hacks/bin"	\
-	"$HOME/projects/hacks/obj/host.$HOSTNAME" \
+	"$HOME/lib/hacks/bin"		\
+	"$HOME/lib/hacks/obj/host.$HOSTNAME" \
 	"$GOPATH/bin"			\
 	"$HOME/.cabal/bin"		\
 	"$PREFIX/bin"			\
