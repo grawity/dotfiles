@@ -25,7 +25,8 @@ dist/pull() { ~/code/dist/pull "$@" && SILENT=1 . ~/.profile; }
 alias dnstracer='dnstracer -s .'
 alias ed='ed -p:'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
-alias etpkcs11-tool='pkcs11-tool --module libeTPkcs11.so'
+alias etoken-tool='pkcs11-tool --module libeTPkcs11.so'
+alias gemalto-tool='pkcs11-tool --module /usr/lib/pkcs11/libgclib.so'
 alias facl='getfacl -pt'
 alias fdf='findmnt -o target,size,used,avail,use%,fstype'
 fc-fontformat() {
