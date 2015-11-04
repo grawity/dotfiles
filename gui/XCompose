@@ -40,6 +40,8 @@ include "%L"
 
 # multiple glyphs
 
+<Multi_key> <s> <h>			: "¯\_(ツ)_/¯" # shrug
+
 <Multi_key> <l> <o> <o> <k>		: "ಠ_ಠ" # look of disapproval
 
 # quotation marks
