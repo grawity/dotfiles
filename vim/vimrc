@@ -98,13 +98,11 @@ set modeline
 
 set backupcopy=yes		" fixes issues with vipw
 set autoread
-set autowrite
+set hidden			" do not unload abandoned buffers
 
 if !has('nvim')
 	set viminfo+=n~/.vim/_viminfo
 endif
-
-set hidden			" do not unload abandoned buffers
 
 " Swap file location – use // to include full path in swapnames
 if has("unix")
