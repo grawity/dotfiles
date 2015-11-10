@@ -130,7 +130,7 @@ set autoindent
 set smartindent
 set nocindent
 set cinkeys=0{,0},0),:,!,o,O,e
-set formatoptions=tcrqn
+set formatoptions=tcrqnj
 set gdefault
 
 set comments-=:%
