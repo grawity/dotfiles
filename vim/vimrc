@@ -278,7 +278,6 @@ au! BufNewFile
 """ Still not sorted
 
 set backspace=indent,eol,start
-set history=50
 " prevent auto-unindenting on pressing # (by smartindent)
 inoremap # X#
 
