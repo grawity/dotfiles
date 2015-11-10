@@ -92,7 +92,8 @@ link bashrc
 link inputrc
 link profile
 link git ~/.config/git
-link vim
+link vim ~/.vim
+link vim ~/.config/nvim
 
 if [ -h ~/.htoprc ]; then
 	rm -f ~/.htoprc
