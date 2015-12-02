@@ -183,12 +183,21 @@ ecn() {
 
 ukip() {
 	local dev=${dev:-eth0}
-	sudo: ip link set $dev up
-	sudo: ip addr flush dev $dev
-	sudo: ip addr add 169.254.0.1/16  dev $dev scope link
-	sudo: ip addr add 10.128.0.42/16  dev $dev
-	sudo: ip addr add 192.168.0.42/24 dev $dev
-	sudo: ip addr add 192.168.1.42/24 dev $dev
+	case $1 in
+	    -)
+		sudo: ip addr flush dev $dev
+		do:   nmcli dev set $dev managed yes
+		;;
+	    *)
+		do:   nmcli dev set $dev managed no
+		sudo: ip link set $dev up
+		sudo: ip addr flush dev $dev
+		sudo: ip addr add 169.254.0.1/16  dev $dev scope link
+		sudo: ip addr add 10.128.0.42/16  dev $dev
+		sudo: ip addr add 192.168.0.42/24 dev $dev
+		sudo: ip addr add 192.168.1.42/24 dev $dev
+		;;
+	esac
 }
 
 ukvpn() {
