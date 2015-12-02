@@ -196,6 +196,7 @@ ukip() {
 		sudo: ip addr add 10.128.0.42/16  dev $dev
 		sudo: ip addr add 192.168.0.42/24 dev $dev
 		sudo: ip addr add 192.168.1.42/24 dev $dev
+		sudo: ip addr add 192.168.2.42/24 dev $dev
 		;;
 	esac
 }
