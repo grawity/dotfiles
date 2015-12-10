@@ -2,9 +2,9 @@
 # vim: ft=sh
 
 setpath() {
-	set +a; xIFS=$IFS; IFS=":"; set -a
-	var=$1; shift; eval "$var=\$*"; unset var
-	set +a; IFS=$xIFS; unset xIFS; set -a
+	xIFS=$IFS; IFS=":"; var=$1;
+	shift; eval "$var=\$*";
+	IFS=$xIFS; unset var xIFS;
 }
 
 # basic
