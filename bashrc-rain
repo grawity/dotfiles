@@ -201,6 +201,13 @@ ukip() {
 	esac
 }
 
+ukdns() {
+	local server='uk-main2.utenos-kolegija.lt'
+	local zone='utenos-kolegija.lt'
+
+	do: samba-tool dns "$1" "$server" "$zone" "${@:2}"
+}
+
 ukvpn() {
 	local con="Utenos kolegija (admin OV)"
 	case $1 in
