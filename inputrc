@@ -11,7 +11,6 @@ set colored-stats on
 set skip-completed-text on
 set completion-ignore-case on
 set completion-query-items 500
-#set page-completions off
 
 # disallow modifying history
 set revert-all-at-newline on
@@ -23,8 +22,6 @@ set revert-all-at-newline on
 # Ctrl-arrows
 "\e[1;5C": forward-word
 "\e[1;5D": backward-word
-
-# Ctrl-arrows (PuTTY)
 "\eOC": forward-word
 "\eOD": backward-word
 
@@ -42,7 +39,6 @@ set revert-all-at-newline on
 "\C-x\C-x": "suspend\n"
 
 # unbind other stuff
-
 "\ep": ""
 "\en": ""
 
@@ -51,7 +47,6 @@ set revert-all-at-newline on
 "\e[201~": ""
 
 # unbind the Alt+numbers
-
 "\e-": ""
 "\e0": ""
 "\e1": ""

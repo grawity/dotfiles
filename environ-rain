@@ -1,4 +1,3 @@
-# host-specific additions to ~/.environ
 # vim: ft=sh
 
 # paths
@@ -29,7 +28,6 @@ WWW_HOME="http://nullroute.eu.org/"
 CN_LDAP_SERVER="ldap://wolke.nullroute.eu.org"
 MANLESS="]0;\$MAN_PN ?ltline %lt?L/%L.:byte %bB?s/%s..?e (END):?pB %pB\\%.. "
 MPD_HOST="$(cat "$XDG_CONFIG_HOME/mpd/password")@$XDG_RUNTIME_DIR/mpd.control"
-NMAP_PRIVILEGED="1"
 PERL_CPANM_OPT="$PERL_CPANM_OPT --mirror http://ftp.litnet.lt/pub/CPAN/"
 PIDGIN_DEBUG_COLORED="1"
 TAR_OPTIONS="--xattrs"

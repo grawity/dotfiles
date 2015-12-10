@@ -1,1 +1,3 @@
+# vim: ft=sh
+
 . ~/lib/dotfiles/environ-rain
