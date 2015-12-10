@@ -1,3 +1,7 @@
 # vim: ft=sh
 
 . ~/lib/dotfiles/environ-rain
+
+# libdefaults
+
+unset LIBVA_DRIVER_NAME
