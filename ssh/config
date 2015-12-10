@@ -205,10 +205,12 @@ Host *.home *.local 10.* 192.168.*
 
 # global options
 
-Host *
-	Protocol 2
+Host * !bazaar.launchpad.net
 	IdentityFile ~/.ssh/id_rsa_2011-11-01
 	IdentityFile ~/.ssh/id_ed25519_2015-05-15
+
+Host *
+	Protocol 2
 
 	SendEnv LANG TZ
 	ForwardX11Trusted yes
