@@ -85,9 +85,6 @@ Host *.utenos-kolegija.lt
 
 # Cluenet and stuff
 
-Host aurimo-seedbox ns228507
-	HostName 176.31.238.190
-
 Host abacus eta hawking radian virgule
 	HostName %h.cluenet.org
 	GSSAPIAuthentication yes
@@ -117,7 +114,7 @@ Host panther
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-Host decay ohtori river sky wolke
+Host decay river sky wolke
 	HostName %h.nullroute.eu.org
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
