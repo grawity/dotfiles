@@ -14,6 +14,8 @@ XMODIFIERS="@im=ibus"
 
 LIBVA_DRIVER_NAME="gallium"
 NOKOGIRI_USE_SYSTEM_LIBRARIES="1"	# nokogiri gem - use system libxml2
+QT_FONT_DPI="84"			# Qt5 - style-override screws DPI
+QT_STYLE_OVERRIDE="breeze"		# Qt5 - avoid the GTK+ look
 SAL_USE_VCLPLUGIN="gtk"			# LibreOffice - avoid unstable gtk3 VCL
 
 # appdefaults
