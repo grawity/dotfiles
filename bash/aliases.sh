@@ -40,7 +40,6 @@ alias hex='xxd -p'
 alias unhex='xxd -p -r'
 alias hup='pkill -HUP -x'
 alias init='telinit' # for systemd
-alias ipa='ip addr show up'
 alias kssh='ssh \
 	-o PreferredAuthentications=gssapi-keyex,gssapi-with-mic \
 	-o GSSAPIAuthentication=yes \
