@@ -99,7 +99,8 @@ hdr_order Date From To Cc Subject
 
 unset digest_collapse
 unset collapse_unread
-folder-hook . 'push <collapse-all>'
+#folder-hook . 'push <collapse-all>'
+# note: collapse is confusing as 'T' does not tag collapsed child-messages
 
 set pager_index_lines=6
 set pager_context=3
