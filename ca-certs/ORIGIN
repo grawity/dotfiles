@@ -1,2 +1,6 @@
 DN42_Internal_CA__UNVERIFIED_
 	https://git.dn42/git/dn42/pki/plain/dn42-ca.crt
+
+Hackint_IRC_Network_Root_CA
+	https://hackint.org/crt/rootca.crt
+	https://hackint.org/crt/sigs/combined.asc
