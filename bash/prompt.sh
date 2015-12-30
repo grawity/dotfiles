@@ -103,6 +103,11 @@ _awesome_upd_vcs() {
 	items[vcs]=${br}${re:+" ($re)"}
 	items[vcs.br]=$br
 	items[vcs.re]=$re
+
+	if [[ $br = annex/direct/* ]]; then
+		items[vcs]="(annex)"
+		items[vcs.annex?]=y
+	fi
 }
 
 _awesome_upd_pwd() {
