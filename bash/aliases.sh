@@ -8,7 +8,9 @@ editor() { command ${EDITOR:-vi} "$@"; }
 browser() { command ${BROWSER:-lynx} "$@"; }
 pager() { command ${PAGER:-more} "$@"; }
 
+alias annex='git annex'
 alias bat='acpi -i'
+alias cal='cal -m'
 catsexp() { cat "$@" | sexp-conv -w $COLUMNS; }
 alias cindex='env TMPDIR=/var/tmp cindex'
 alias cpans='PERL_MM_OPT= PERL_MB_OPT= cpanm --sudo'
