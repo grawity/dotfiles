@@ -145,6 +145,10 @@ fi
 if [ "$DISPLAY" ]; then
 	link gui/XCompose ~/.XCompose
 
+	[ -d ~/.thumbnails ] || sym -f ~/.cache/thumbnails   ~/.thumbnails
+	[ -d ~/.fonts ]      || sym -f ~/.local/share/fonts  ~/.fonts
+	[ -d ~/.themes ]     || sym -f ~/.local/share/themes ~/.themes
+
 	if have fc-cache; then
 		link gui/fontconfig/fonts.conf ~/.config/fontconfig/fonts.conf
 		link gui/fontconfig/conf.avail ~/.config/fontconfig/conf.avail
