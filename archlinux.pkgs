@@ -1,0 +1,58 @@
+# X11
+mesa-demos
+xclip
+xf86-input-libinput
+xf86-video-ati
+xorg-xauth
+xorg-xdpyinfo
+xorg-xwininfo
+xsel
+
+# base fonts
+adobe-source-code-pro-fonts
+adobe-source-sans-pro-fonts
+adobe-source-serif-pro-fonts
+
+# extra fonts
+adobe-source-han-sans-otc-fonts
+noto-fonts
+noto-fonts-emoji
+
+# GNOME core
+gdm
+gnome-backgrounds
+gtk-engines
+gvfs
+gvfs-mtp
+gvfs-smb
+
+# GNOME apps
+dconf-editor
+eog
+epiphany
+evince
+gedit
+gnome-control-center
+gnome-disk-utility
+gnome-system-monitor
+gnome-terminal
+gnome-tweak-tool
+
+# misc
+git
+tig
+vim
+
+# sysadmin
+htop
+lsof
+openssh
+pkgfile
+rsync
+strace
+sudo
+
+# hardware
+libu2f-host
+networkmanager
+ntfs-3g
