@@ -145,6 +145,11 @@ fi
 if [ "$DISPLAY" ]; then
 	link gui/XCompose ~/.XCompose
 
+	if ! [ -d ~/.local/share/themes/Adwaita ]; then
+		mkdir -p ~/.local/share/themes/Adwaita
+		ln -s /usr/share/themes/Clearlooks/gtk-2.0 ~/.local/share/themes/Adwaita/
+	fi
+
 	[ -d ~/.thumbnails ] || sym -f ~/.cache/thumbnails   ~/.thumbnails
 	[ -d ~/.fonts ]      || sym -f ~/.local/share/fonts  ~/.fonts
 	[ -d ~/.themes ]     || sym -f ~/.local/share/themes ~/.themes
