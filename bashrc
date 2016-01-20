@@ -12,12 +12,11 @@ if [[ ! $PREFIX ]]; then
 fi
 
 if [[ $TERM == @(screen|tmux|xterm) ]]; then
-	OLDTERM="$TERM"
+	OLD_TERM="$TERM"
 	TERM="$TERM-256color"
 fi
 
 export GPG_TTY=$(tty)
-
 export -n VTE_VERSION
 
 ### Interactive options
@@ -45,7 +44,6 @@ HISTIGNORE="../*/"
 complete -A directory cd
 
 . ~/lib/dotfiles/bash/prompt.sh
-
 . ~/lib/dotfiles/bash/aliases.sh
 
 have kc.sh && . kc.sh
