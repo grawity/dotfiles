@@ -9,6 +9,8 @@ browser() { command ${BROWSER:-lynx} "$@"; }
 pager() { command ${PAGER:-more} "$@"; }
 
 alias annex='git annex'
+alias annex-wanted='git annex find --want-get --not --in .'
+alias annex-unwanted='git annex find --want-drop --in .'
 alias bat='acpi -i'
 alias cal='cal -m'
 catsexp() { cat "$@" | sexp-conv -w $COLUMNS; }
