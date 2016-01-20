@@ -121,6 +121,9 @@ _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
 # gnome-desktop < 3.15.1 (093e0a549c2ab2e465494105126ea7046f26e047)
 LANG="${LANG%.utf8}.UTF-8"
 
+# neovim
+NVIM_TUI_ENABLE_TRUE_COLOR="1"	# need to test first (juicessh, putty)
+
 # Easter egg
 SVN_I_LOVE_PANGALACTIC_GARGLE_BLASTERS="1"
 
