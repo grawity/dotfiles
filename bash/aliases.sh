@@ -8,7 +8,6 @@ editor() { command ${EDITOR:-vi} "$@"; }
 browser() { command ${BROWSER:-lynx} "$@"; }
 pager() { command ${PAGER:-more} "$@"; }
 
-alias annex='git annex'
 alias annex-wanted='git annex find --want-get --not --in .'
 alias annex-unwanted='git annex find --want-drop --in .'
 alias bat='acpi -i'
@@ -166,6 +165,10 @@ alias good='git bisect good'
 alias bad='git bisect bad'
 
 # conditional aliases
+
+if ! have annex; then
+	alias annex='git annex'
+fi
 
 if have mpv; then
 	alias mplayer='mpv'
