@@ -26,6 +26,7 @@ augroup filetypedetect
 	au BufNewFile,BufRead ~/.config/systemd/user/*		setf desktop
 
 	" INI-style
+	au BufNewFile,BufRead *.inf setf dosini
 	au BufNewFile,BufRead *.pkla,*.pkla~ setf dosini
 	au BufNewFile,BufRead *.url setf dosini
 	au BufNewFile,BufRead /etc/dconf/db/* setf dosini
