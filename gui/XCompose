@@ -37,6 +37,8 @@ include "%L"
 <Multi_key> <ampersand> <ampersand>	: "∧"	U2227 # LOGICAL AND
 <Multi_key> <bar> <bar>			: "∨"	U2228 # LOGICAL OR
 <Multi_key> <minus> <period>		: "⋯"	U22EF # MID HORIZ ELLIPSIS
+<Multi_key> <bar> <period>		: "⁝"	U205D # TRICOLON
+<Multi_key> <4> <period>		: "⁞"	U205E # VERTICAL FOUR DOTS
 
 # multiple glyphs
 
