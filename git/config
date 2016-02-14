@@ -203,9 +203,6 @@
 	pushInsteadOf = git://nullroute.eu.org/
 	pushInsteadOf = git://git.nullroute.eu.org/
 
-[url "grawity@virgule.cluenet.org:pub/git/~grawity/annex/"]
-	insteadOf = nullroute+annex:
-
 [url "https://github.com/"]
 	insteadOf = git://github.com/
 
