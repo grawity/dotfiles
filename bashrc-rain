@@ -19,10 +19,6 @@ alias unrm='trash --restore'
 alias eris='ssh wolke -t tmux attach -t eris'
 alias gale='ssh wolke -t tmux attach -t gale'
 
-if have nvim; then
-	alias vim='nvim'
-fi
-
 b64() { printf "%s" "$*" | base64 | tr -dc "A-Za-z0-9+/="; }
 
 gensid() {

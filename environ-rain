@@ -8,8 +8,8 @@ test "$SSH_AUTH_SOCK" || SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent"
 
 # libdefaults
 
-EDITOR="nvim"
-VISUAL="nvim"
+EDITOR="vim"
+VISUAL="vim"
 
 GTK_IM_MODULE="ibus"
 QT_IM_MODULE="ibus"
