@@ -165,6 +165,9 @@ Host ubnt
 	StrictHostKeyChecking no
 	ControlPersist no
 
+Host 192.168.*
+	KexAlgorithms +diffie-hellman-group1-sha1
+
 # domain-wide settings
 
 Host *.cluenet.org
