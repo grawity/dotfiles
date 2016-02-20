@@ -203,6 +203,9 @@
 	pushInsteadOf = git://nullroute.eu.org/
 	pushInsteadOf = git://git.nullroute.eu.org/
 
+[url "ukradius:fs1/"]
+	insteadOf = fs1:/
+
 [url "https://github.com/"]
 	insteadOf = git://github.com/
 
