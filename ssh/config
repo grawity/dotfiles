@@ -218,4 +218,4 @@ Host *
 
 	ControlPath ~/.ssh/S.%r@%h:%p
 	ControlMaster auto
-	ControlPersist 5m
+	ControlPersist 1m
