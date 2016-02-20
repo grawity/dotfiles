@@ -53,8 +53,9 @@ alias logoff='logout'
 if [[ $DESKTOP_SESSION ]]; then
 	alias logout='env logout'
 fi
-f() { find . -iname "*$1*" "${@:2}"; }
-ff() { find "$PWD" -iname "*$1*" "${@:2}" | treeify "$PWD"; }
+f() { find . \( -name .git -prune \) , \( -iname "*$1*" "${@:2}" \); }
+ff() { find "$PWD" \( -name .git -prune \) , \( -iname "*$1*" "${@:2}" \) \
+	| treeify "$PWD"; }
 alias lchown='chown -h'
 ldapls() {
 	ldapsearch -LLL "$@" 1.1 | ldifunwrap | grep ^dn: \
