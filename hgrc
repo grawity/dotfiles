@@ -4,6 +4,7 @@
 lg = log --template "{rev}:{node|short} {desc|firstline}\n"
 mirror = clone --noupdate
 nudge = push --rev .
+pending = incoming --template '* {desc|firstline}\n'
 untrack = rm -Af
 
 [diff]

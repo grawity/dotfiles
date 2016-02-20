@@ -1,16 +1,19 @@
-application/pdf;	evince %s; nametemplate=%s.pdf
+application/pdf; evince %s; nametemplate=%s.pdf
 
-application/zip;	vim %s; nametemplate=%s.zip; needsterminal
-application/zip;	zipinfo -2 /dev/stdin; copiousoutput
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; libreoffice %s; nametemplate=%s.docx
 
-application/x-zip-compressed;		vim %s; nametemplate=%s.zip; needsterminal
-application/x-zip-compressed;		zipinfo -2 /dev/stdin; copiousoutput
+application/x-zip-compressed; vim %s; nametemplate=%s.zip; needsterminal
+application/x-zip-compressed; zipinfo -2 /dev/stdin; copiousoutput
 
-image/*;		eog %s
+application/zip; vim %s; nametemplate=%s.zip; needsterminal
+application/zip; zipinfo -2 /dev/stdin; copiousoutput
 
-message/disposition-notification;	cat %s; copiousoutput
+image/*; eog %s
 
-text/html;		epiphany %s; nametemplate=%s.html
-text/html;		w3m -I %{charset} -T %t %s; nametemplate=%s.html; needsterminal
-text/html;		w3m -I %{charset} -T %t -dump %s; nametemplate=%s.html; copiousoutput
-text/x-vcard;		show-vcard; copiousoutput
+message/disposition-notification; cat %s; copiousoutput
+
+text/html; epiphany %s; nametemplate=%s.html
+text/html; w3m -I %{charset} -T %t %s; nametemplate=%s.html; needsterminal
+text/html; w3m -I %{charset} -T %t -dump %s; nametemplate=%s.html; copiousoutput
+
+text/x-vcard; show-vcard; copiousoutput
