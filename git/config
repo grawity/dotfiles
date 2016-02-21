@@ -144,9 +144,6 @@
 	conflictStyle = diff3
 	defaultToUpstream = true
 
-[pack]
-	writebitmaps = true
-
 [push]
 	#default = upstream
 	default = current
