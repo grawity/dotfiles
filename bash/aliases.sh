@@ -187,10 +187,10 @@ if have xclip; then
 	alias pclip='xclip -out -selection clipboard'
 	alias gclip='xclip -in -selection clipboard'
 elif have xsel; then
-	alias psel='xsel -o -p -l/dev/null'
-	alias gsel='xsel -i -p -l/dev/null'
-	alias pclip='xsel -o -b -l/dev/null'
-	alias gclip='xsel -i -b -l/dev/null'
+	alias psel='xsel -o -p -l /dev/null'
+	alias gsel='xsel -i -p -l /dev/null'
+	alias pclip='xsel -o -b -l /dev/null'
+	alias gclip='xsel -i -b -l /dev/null'
 fi
 
 clip() {
