@@ -181,16 +181,16 @@ fi
 
 # X11 clipboard
 
-if have xclip; then
-	alias psel='xclip -out -selection primary'
-	alias gsel='xclip -in -selection primary'
-	alias pclip='xclip -out -selection clipboard'
-	alias gclip='xclip -in -selection clipboard'
-elif have xsel; then
+if have xsel; then
 	alias psel='xsel -o -p -l /dev/null'
 	alias gsel='xsel -i -p -l /dev/null'
 	alias pclip='xsel -o -b -l /dev/null'
 	alias gclip='xsel -i -b -l /dev/null'
+elif have xclip; then
+	alias psel='xclip -out -selection primary'
+	alias gsel='xclip -in -selection primary'
+	alias pclip='xclip -out -selection clipboard'
+	alias gclip='xclip -in -selection clipboard'
 fi
 
 clip() {
