@@ -1,0 +1,14 @@
+# vim: ft=sh
+
+_bgpath() {
+	local f=~/bgpath.pl
+	if [[ -e $f ]]; then
+		perl $f
+	else
+		ssh wolke "perl $f"
+	fi
+}
+
+//() { sudo vtysh -c "$*"; }
+
+//path() { sudo vtysh -c "show ip bgp $1" | _bgpath; }
