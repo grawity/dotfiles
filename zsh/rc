@@ -9,12 +9,13 @@ autoload zsh/terminfo
 
 bindkey -e
 
-bindkey '\e[H' beginning-of-line	# home
-bindkey '\e[F' end-of-line		# end
-bindkey '\eOH' beginning-of-line	# home
-bindkey '\eOF' end-of-line		# end
-bindkey '\e[5~' beep			# page-up
-bindkey '\e[6~' beep			# page-down
+bindkey '\e[H' beginning-of-line	# Home
+bindkey '\e[F' end-of-line		# End
+bindkey '\eOH' beginning-of-line	# Home
+bindkey '\eOF' end-of-line		# End
+bindkey '\e[3~' delete-char		# Del
+bindkey '\e[5~' beep			# Page Up
+bindkey '\e[6~' beep			# Page Down
 bindkey '\eOQ' describe-key-briefly	# F2
 
 # macros
