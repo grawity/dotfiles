@@ -46,7 +46,7 @@ augroup filetypedetect
 	au BufNewFile,BufRead /etc/cjdroute.conf setf javascript
 	\ | setl ts=4 sw=4 et
 
-	au BufNewFile,BufRead /tmp/ldapvi* setf ldif
+	au BufNewFile,BufRead /tmp/ldapvi*,/tmp/ldbedit.* setf ldif
 
 	" Lua
 	au BufNewFile,BufRead *.nse setf lua
