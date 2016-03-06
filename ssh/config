@@ -74,12 +74,10 @@ Host uk-untangle
 	User root
 
 Host uk-* 193.219.181.192/26
-	User mantas
 	IdentityFile ~/.ssh/id_ukolegija
 	ForwardAgent yes
 
 Host *.utenos-kolegija.lt
-	User mantas
 	IdentityFile ~/.ssh/id_ukolegija
 	ForwardAgent yes
 
