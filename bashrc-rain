@@ -40,23 +40,17 @@ rm() {
 		~/Private/*)		false;;
 		~/fs/*)			false;;
 		~/@*)			false;;
-		# skip system stuff
-		~/lib/*)		false;;
-		~/pkg/*)		false;;
-		~/src/*)		false;;
-		# skip dotfiles and temp
-		#~/.*)			false;;
+		# skip junk
 		~/.local/share/Trash/*)	false;;
 		*.tmp)			false;;
 		.unison.*)		false;;
-		# include everything else in $HOME
+		# include $HOME
 		~/*)			true;;
+		/pub/*)			true;;
 		# include removable drives
 		/media/*)		true;;
 		/mnt/*)			true;;
 		/run/media/*)		true;;
-		# include stuff
-		/pub/*)			true;;
 		# exclude everything else elsewhere
 		*)			false;;
 		esac; then
