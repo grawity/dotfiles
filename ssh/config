@@ -45,6 +45,10 @@ Host uk-tandberg
 	Ciphers 3des-cbc
 	MACs hmac-sha1
 
+Host uk-untangle
+	HostName untangle.utenos-kolegija.lt
+	User root
+
 Host uk-epas uk-vpn
 	HostName %h.utenos-kolegija.lt
 
@@ -67,10 +71,6 @@ Host uk-pf-utenio2 uk-pf-u2
 	HostName pf-utenio2.utenos-kolegija.lt
 
 Host uk-pf-*
-	User root
-
-Host uk-untangle
-	HostName untangle.utenos-kolegija.lt
 	User root
 
 Host uk-* 193.219.181.192/26
