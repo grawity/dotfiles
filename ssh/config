@@ -5,7 +5,7 @@
 # instead, they are processed by the ssh/generate script.
 
 #if OpenSSH && Version 6.3
-IgnoreUnknown PubkeyAcceptedKeyTypes
+IgnoreUnknown GSSAPIKeyExchange,PubkeyAcceptedKeyTypes
 #endif
 
 # host aliases
@@ -86,6 +86,7 @@ Host *.utenos-kolegija.lt
 Host abacus eta hawking radian virgule
 	HostName %h.cluenet.org
 	GSSAPIAuthentication yes
+	GSSAPIKeyExchange yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
@@ -93,12 +94,14 @@ Host gamma gamma.cluenet.org
 	HostName gamma.cluenet.org
 	Port 2223
 	GSSAPIAuthentication yes
+	GSSAPIKeyExchange yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host theos
 	HostName %h.kyriasis.com
 	GSSAPIAuthentication yes
+	GSSAPIKeyExchange yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
@@ -109,12 +112,14 @@ Host moose
 Host panther
 	HostName %h.nathan7.eu
 	GSSAPIAuthentication yes
+	GSSAPIKeyExchange yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host decay river sky wolke
 	HostName %h.nullroute.eu.org
 	GSSAPIAuthentication yes
+	GSSAPIKeyExchange yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
@@ -168,24 +173,27 @@ Host ubnt
 	ControlPersist no
 
 #if OpenSSH && Version 7.0
-Host 192.168.*
-	KexAlgorithms +diffie-hellman-group1-sha1
+#Host 192.168.*
+#	KexAlgorithms diffie-hellman-group1-sha1
 #endif
 
 # domain-wide settings
 
 Host *.cluenet.org
 	GSSAPIAuthentication yes
+	GSSAPIKeyExchange yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host *.kyriasis.com
 	GSSAPIAuthentication yes
+	GSSAPIKeyExchange yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host *.nullroute.eu.org *.home
 	GSSAPIAuthentication yes
+	GSSAPIKeyExchange yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
