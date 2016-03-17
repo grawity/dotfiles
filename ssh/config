@@ -201,14 +201,10 @@ Host * !bazaar.launchpad.net
 
 Host *
 	Protocol 2
-	GSSAPIAuthentication yes
-	GSSAPIKeyExchange yes
-
-	SendEnv LANG TZ
-	ForwardX11Trusted yes
-
 	HashKnownHosts no
 	NoHostAuthenticationForLocalhost yes
 	VerifyHostKeyDNS yes
-
+	GSSAPIAuthentication yes
+	GSSAPIKeyExchange yes
+	SendEnv LANG TZ
 	ControlPath ~/.ssh/S.%r@%h:%p
