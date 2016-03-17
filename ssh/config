@@ -39,8 +39,7 @@ Host uk-radius
 	User grawity
 
 Host uk-tandberg
-	HostName 193.219.181.208
-	#HostName %h.utenos-kolegija.lt
+	HostName tandberg.utenos-kolegija.lt
 	User admin
 	Ciphers 3des-cbc
 	MACs hmac-sha1
