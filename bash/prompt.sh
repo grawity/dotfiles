@@ -70,6 +70,8 @@ _awesome_upd_vcs() {
 	fi
 
 	if [[ $git ]]; then
+		items[.gitdir]=$git
+
 		if [[ -f $git/rebase-merge/interactive ]]; then
 			br=$(<"$git/rebase-merge/head-name")
 			re='REBASE-i'
@@ -136,6 +138,8 @@ _awesome_upd_pwd() {
 			_dbg "- wdbase <- wdrepo"
 			wdrepo=$(git rev-parse --show-toplevel)
 			wdbase=${wdrepo:-$(readlink -f "$git")}
+		else
+			_dbg "- wdbase ! no \$git"
 		fi
 	else
 		wdbase=$PWD
