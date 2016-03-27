@@ -70,8 +70,6 @@ _awesome_upd_vcs() {
 	fi
 
 	if [[ $git ]]; then
-		items[.gitdir]=$git
-
 		if [[ -f $git/rebase-merge/interactive ]]; then
 			br=$(<"$git/rebase-merge/head-name")
 			re='REBASE-i'
@@ -101,6 +99,8 @@ _awesome_upd_vcs() {
 			fi
 		fi
 	fi
+
+	items[.gitdir]=$git
 
 	items[vcs]=${br}${re:+" ($re)"}
 	items[vcs.br]=$br
