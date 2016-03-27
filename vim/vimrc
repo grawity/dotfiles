@@ -62,7 +62,7 @@ set showmode
 set showcmd
 set display+=lastline
 set linebreak			" soft word-wrap
-set showbreak=!\ 		" prefix wrapped lines
+"set showbreak=↵\ 		" prefix wrapped lines
 silent! set number
 silent! set numberwidth=4
 silent! set mouse=a
