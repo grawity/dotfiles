@@ -66,7 +66,7 @@ syn match       zoneNumber      contained /\<[0-9]\+\(\s\|;\|$\)\@=/
 syn match       zoneSerial      contained /\<[0-9]\{9,10}\(\s\|;\|$\)\@=/
 
 syn match       zoneErrParen    /)/
-syn region      zoneParen       contained start="(" end=")" contains=zoneSerial,zoneTTL,zoneNumber,zoneComment
+syn region      zoneParen       contained start="(" end=")" contains=zoneSerial,zoneTTL,zoneNumber,zoneComment,zoneText
 syn match       zoneComment     /;.*/
 
 " Define the default highlighting.
