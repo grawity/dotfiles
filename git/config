@@ -220,6 +220,12 @@
 [url "https://kernel.googlesource.com/"]
 	insteadOf = kernel.org::
 
+[url "https://aur.archlinux.org/"]
+	insteadOf = aur:
+
+[url "aur:"]
+	pushInsteadOf = aur:
+
 [include]
 	path = ~/.config/git/config.local
 	path = ~/.gitconfig-local
