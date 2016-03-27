@@ -1,11 +1,36 @@
-DN42_Internal_CA__UNVERIFIED_
-	https://git.dn42/git/dn42/pki/plain/dn42-ca.crt
+Cluenet_CA
+	info: https://www.cluenet.org/certificates.html
+	fetch-crt: https://www.cluenet.org/files/Cluenet.pem
+	fetch-sig: https://www.cluenet.org/files/Cluenet.pem.asc
+	signer: grawity 2357E10CEF4F7ED27E233AD5D24F6CB2C1B52632
 
-Hackint_IRC_Network_Root_CA
-	https://hackint.org/crt/rootca.crt
-	https://hackint.org/crt/sigs/combined.asc
+Nullroute_CA_r4
+	info: https://nullroute.eu.org/ca.html
+	fetch-crt: https://nullroute.eu.org/files/x509-ca/Nullroute_CA_r4.pem
+	fetch-sig: https://nullroute.eu.org/files/x509-ca/Nullroute_CA_r4.pem.asc
+	signer: grawity 2357E10CEF4F7ED27E233AD5D24F6CB2C1B52632
 
-dn42
-	owner: xuu@sour.is
-	source: https://git.dn42/git/dn42/pki/plain/dn42-ca.crt
+Utenos_kolegija
+	info: https://login.utenos-kolegija.lt/ca-certificate.html
+	fetch-crt: https://login.utenos-kolegija.lt/static/Utenos_kolegija.crt
+	fetch-sig: https://login.utenos-kolegija.lt/static/Utenos_kolegija.crt.asc
+	signer: grawity 2357E10CEF4F7ED27E233AD5D24F6CB2C1B52632
+	signer: grawity 8A4A3CABA6465550DC658700626EC71E00758E5F
+
+dn42.net/dn42_Root_Authority_CA
 	info: https://dn42.net/services/Certificate-Authority
+	fetch-crt: https://ca.dn42.us/crt/root-ca.crt
+	fetch-crt: https://git.dn42/git/dn42/pki/plain/dn42-ca.crt
+
+hackint.org/Hackint_IRC_Network_Root_CA
+	info: https://www.hackint.org/ca
+	fetch-crt: https://www.hackint.org/crt/rootca.crt
+	fetch-sig: https://hackint.org/crt/sigs/combined.asc
+	-- signer: chris BE3170F7176AD95A83971A846671B37E60837A90 (expired)
+	signer: cr0n E8C5F8E90D554FE794F1B86EBEEB5C6733A263F0
+	signer: hexa- EED01602BCBD196C38BC9A1FBD4AA0528F63F17E
+	signer: ManiacTwister 1DCD956E31B2F9FF9F570C6951356E29CAED85B6
+	signer: rdnzl 8021C34BF6011AC1CF1CCEC70F8B3249FB441276
+	signer: reissmann DCB10B43273C0E235268AD00646122564468FB98
+	signer: willrs3 065C29149F4F5C1B427D90ED8385BB042A849C37
+	-- signer: zakx D5AEF02F2D6166F05A2BE7E155AA2E2D8B19E532 (expired)
