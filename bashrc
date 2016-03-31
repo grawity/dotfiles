@@ -40,6 +40,7 @@ HISTSIZE=10000
 HISTFILESIZE=10000
 HISTCONTROL=ignoreboth
 HISTIGNORE="../*/"
+HISTTIMEFORMAT="(%F %T) "
 
 complete -A directory cd
 
