@@ -28,6 +28,7 @@ dist/pull() { ~/code/dist/pull "$@" && SILENT=1 . ~/.profile; }
 alias dnstracer='dnstracer -s .'
 alias ed='ed -p:'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
+alias ccard-tool='pkcs11-tool --module libccpkip11.so'
 alias etoken-tool='pkcs11-tool --module libeTPkcs11.so'
 alias gemalto-tool='pkcs11-tool --module /usr/lib/pkcs11/libgclib.so'
 alias facl='getfacl -pt'
@@ -95,6 +96,7 @@ alias py2='python2'
 alias py3='python3'
 alias qrdecode='zbarimg --quiet --raw'
 alias rd='rmdir'
+alias rdu='du -hsc */ | awk "\$1 !~ /K/" | sort -h'
 alias re='hash -r && SILENT=1 . ~/.bashrc && echo reloaded .bashrc && :'
 alias ere='set -a && . ~/.profile && set +a && echo reloaded .profile && :'
 ressh() { ssh -v \
