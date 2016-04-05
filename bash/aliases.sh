@@ -114,7 +114,7 @@ splitext() { split -dC "${2-32K}" "$1" "${1%.*}-" --additional-suffix=".${1##*.}
 alias srs='rsync -vshzaHAX'
 alias sudo='sudo ' # for alias expansion in sudo args
 alias telnets='telnet-ssl -z ssl'
-_thiscommand() { history 1 | sed "s/^\s*[0-9]\+\s\+$1\s\+//"; }
+_thiscommand() { history 1 | sed "s/^\s*[0-9]\+([^)]\+)\s\+$1\s\+//"; }
 alias tidiff='infocmp -Ld'
 alias todo:='todo "$(_thiscommand todo:)" #'
 alias traceroute='traceroute -e'
