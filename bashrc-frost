@@ -30,3 +30,6 @@ alias 'usb-'='sudo: modprobe -r -v xhci_pci'
 
 fxdb() { (nssdb="$HOME/.mozilla/firefox/r0fd79nc.default"; "$@"); }
 thdb() { (nssdb="$HOME/.thunderbird/7pkkqarz.default"; "$@"); }
+
+_xspecs[unzip]='!*.@(zip|[ejsw]ar|exe|pk3|wsz|zargo|xpi|s[tx][cdiw]|sx[gm]|o[dt][tspgfc]|od[bm]|oxt|epub|apk|do[ct][xm]|[ab]doc|p[op]t[mx]|xl[st][xm])'
+_xspecs[zipinfo]=${_xspecs[unzip]}
