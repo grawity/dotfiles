@@ -107,7 +107,7 @@ Host panther
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-Host decay river sky wolke
+Host decay ghost river sky wolke
 	HostName %h.nullroute.eu.org
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
