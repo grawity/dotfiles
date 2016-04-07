@@ -71,7 +71,6 @@ alias lpu='sudo netstat -lpu --numeric-hosts'
 lscsr() { openssl req -in "${1:-/dev/stdin}" -noout -text; }
 alias lsd='ls -d .*'
 alias lspart='lsblk -o name,partlabel,size,fstype,label,mountpoint'
-alias md='mkdir'
 mir() { wget -m -np --reject-regex='.*\?C=.;O=.$' "$@"; }
 alias mkcert='mkcsr -x509 -days 3650'
 alias mkcsr='openssl req -new -sha256'
