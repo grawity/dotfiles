@@ -199,7 +199,7 @@ ukdns() {
 }
 
 ukvpn() {
-	local con="Utenos kolegija (admin OV)"
+	local con="Utenos kolegija (admin)"
 	case $1 in
 	    up|down)
 		do: nmcli con "$1" "$con";;
