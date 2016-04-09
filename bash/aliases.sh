@@ -194,11 +194,6 @@ elif have xsel; then
 	alias gclip='xsel -i -b -l /dev/null'
 fi
 
-if have gpaste-client; then
-	alias pclip='gpaste-client get 0'
-	alias gclip='cat | gpaste-client'
-fi
-
 clip() {
 	if (( $# )); then
 		echo -n "$*" | gclip
