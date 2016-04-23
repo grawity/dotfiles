@@ -83,26 +83,13 @@ sudo:() {
 	fi
 }
 
-scrape-reddit() {
-	(( $# )) || set -- $(pclip)
-	local u; for u; do
-		if [[ $u == *[./]reddit.com/r/* ]]; then
-			local f=$(date +%s.%N)
-			~/code/net/scrape-reddit-comment "$u" \
-			| tee ~/tmp/Reddit/tmp/$f \
-			&& mv ~/tmp/Reddit/{tmp,new}/$f
-		else
-			echo "ಠ_ಠ"
-		fi
-	done
-}
-
 vnet() {
-	case $1 in
-		up) set -- start;;
-		down) set -- stop;;
+	local arg=${1:-status}
+	case $arg in
+		up) arg="start";;
+		down) arg="stop";;
 	esac
-	sudo: systemctl "${1:-status}" vm-network.target
+	sudo: systemctl $arg vm-network.target
 }
 
 youtube-dl() {
@@ -132,20 +119,6 @@ youtube-dl() {
 :pp() {
 	local var=$1 k=; local -n ref=$1
 	echo "$var=("; for k in ${!ref[@]}; do echo "  [$k]='${ref[$k]}'"; done; echo ")"
-}
-
-## Certificate hackery
-
-c2p() {
-	for file; do
-		openssl x509 -in "$file" -inform DER -out "${file%.*}.pem" -outform PEM
-	done
-}
-
-p2c() {
-	for file; do
-		openssl x509 -in "$file" -inform PEM -out "${file%.*}.crt" -outform DER
-	done
 }
 
 nssdb="sql:$HOME/.pki/nssdb"
