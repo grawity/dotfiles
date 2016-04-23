@@ -382,6 +382,11 @@ Please also read <.environ.notes> if you find this file useful.
   - $TERMINFO overrides (system path not searched)
   - docs: terminfo(5)
 
+~/.tigrc – compile-time, other locations
+  - gitconfig [tig], [tig ...] sections can be used instead
+  - as of tig-2.1.1-100-g9916cb8,
+    `make TIG_USER_CONFIG=<path>` at build time overrides
+
 ~/.ttytterrc – command line
   - "-rc=<path>" overrides
 
