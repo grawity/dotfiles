@@ -350,16 +350,10 @@ elif have rpm; then
 	lspkgs() { rpm -qa --qf '%{NAME}\n'; }
 	lspkg() { rpm -ql "$@"; }
 	_pkg_owns() { rpm -q --whatprovides "$@"; }
-elif have pkg && [[ $OSTYPE == FreeBSD ]]; then
+elif [[ $OSTYPE == FreeBSD ]] && have pkg; then
 	lspkgs() { pkg info -q; }
 	lspkg() { pkg query '%Fp' "$@"; }
 	_pkg_owns() { pkg which "$@"; }
-elif have pkg_info; then
-	lspkgs() { pkg_info; }
-	lspkg() { pkg_info -Lq "$@"; }
-elif have apt-cyg; then
-	lspkgs() { apt-cyg show; }
-	_pkg_owns() { apt-cyg packageof "$@"; }
 fi
 
 if have lspkg; then
