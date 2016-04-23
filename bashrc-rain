@@ -175,11 +175,11 @@ ecn() {
 ukip() {
 	local dev=${dev:-eth0}
 	case $1 in
-	    -)
+	    down|-)
 		sudo: ip addr flush dev $dev
 		do:   nmcli dev set $dev managed yes
 		;;
-	    *)
+	    up|*)
 		do:   nmcli dev set $dev managed no
 		sudo: ip link set $dev up
 		sudo: ip addr flush dev $dev
