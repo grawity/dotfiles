@@ -164,6 +164,9 @@
 	#smtpServerOption = --debug
 	smtpServerOption = --read-envelope-from
 
+[tag]
+	forceSignAnnotated = true
+
 [tig]
 	# [v2 opts]
 	main-view = id:no date:relative author:full,width=12 commit-title:graph=yes,refs,overflow=no
