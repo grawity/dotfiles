@@ -13,6 +13,7 @@ alias eof='IGNOREEOF=3'
 alias fumount='fusermount -u'
 alias gdm='sudo systemctl start gdm'
 alias gmm='run google-musicmanager'
+alias journalctl='journalctl --no-hostname'
 alias RM='/bin/rm -I'
 alias unrm='trash --restore'
 

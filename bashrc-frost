@@ -4,6 +4,8 @@
 
 . ~/lib/dotfiles/bashrc-rain
 
+unalias journalctl
+
 unison() {
 	if [[ $DISPLAY ]] && [[ -t 1 ]]; then
 		run unison-x11 "$@"
