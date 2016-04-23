@@ -4,15 +4,6 @@
 
 . ~/lib/dotfiles/bashrc-rain
 
-wlan=wlan0
-
-iwps() {
-	if [[ $* ]]; then
-		sudo iw $wlan set power_save "$@"
-	fi
-	iw $wlan get power_save
-}
-
 unison() {
 	if [[ $DISPLAY ]] && [[ -t 1 ]]; then
 		run unison-x11 "$@"
