@@ -12,13 +12,6 @@ unison() {
 	fi
 }
 
-usb() { sudo: modprobe $* -v xhci_pci; }
-
-alias 'usb?'='lsmod | grep xhci'
-alias '?usb'='usb?'
-alias 'usb+'='sudo: modprobe -v xhci_pci'
-alias 'usb-'='sudo: modprobe -r -v xhci_pci'
-
 fxdb() { (nssdb="$HOME/.mozilla/firefox/r0fd79nc.default"; "$@"); }
 thdb() { (nssdb="$HOME/.thunderbird/7pkkqarz.default"; "$@"); }
 
