@@ -77,18 +77,4 @@ ukdns() {
 	do: samba-tool dns "$1" "$server" "$zone" "${@:2}"
 }
 
-ukvpn() {
-	local con="Utenos kolegija (admin)"
-	case $1 in
-	    up|down)
-		do: nmcli con "$1" "$con";;
-	    wan)
-		do: nmcli con modify "$con" ipv4.never-default no;;
-	    lan)
-		do: nmcli con modify "$con" ipv4.never-default yes;;
-	    *)
-		echo "Huh?";;
-	esac
-}
-
 uredboot() { do: telnet 192.168.1.20 9000; }

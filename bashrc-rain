@@ -83,6 +83,20 @@ sudo:() {
 	fi
 }
 
+ukvpn() {
+	local con="Utenos kolegija (admin)"
+	case $1 in
+	    up|down)
+		do: nmcli con "$1" "$con";;
+	    wan)
+		do: nmcli con modify "$con" ipv4.never-default no;;
+	    lan)
+		do: nmcli con modify "$con" ipv4.never-default yes;;
+	    *)
+		echo "Huh?";;
+	esac
+}
+
 vnet() {
 	local arg=${1:-status}
 	case $arg in
