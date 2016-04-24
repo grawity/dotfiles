@@ -343,9 +343,7 @@ elif have pacman; then
 	lscruft() { find /etc -name '*.pacsave'; }
 	lspkg() { pacman -Qql "$@"; }
 	_pkg_owns() { pacman -Qo "$@"; }
-	if have pkgfile; then
-		alias nosr='pkgfile'
-	fi
+	alias nosr='pkgfile'
 elif have rpm; then
 	lspkgs() { rpm -qa --qf '%{NAME}\n'; }
 	lspkg() { rpm -ql "$@"; }
