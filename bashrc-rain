@@ -13,6 +13,7 @@ alias eof='IGNOREEOF=3'
 alias fumount='fusermount -u'
 alias gdm='sudo systemctl start gdm'
 alias gmm='run google-musicmanager'
+alias journalctl='journalctl --no-hostname'
 alias RM='/bin/rm -I'
 alias unrm='trash --restore'
 
@@ -82,26 +83,27 @@ sudo:() {
 	fi
 }
 
-scrape-reddit() {
-	(( $# )) || set -- $(pclip)
-	local u; for u; do
-		if [[ $u == *[./]reddit.com/r/* ]]; then
-			local f=$(date +%s.%N)
-			~/code/net/scrape-reddit-comment "$u" \
-			| tee ~/tmp/Reddit/tmp/$f \
-			&& mv ~/tmp/Reddit/{tmp,new}/$f
-		else
-			echo "ಠ_ಠ"
-		fi
-	done
+ukvpn() {
+	local con="Utenos kolegija (admin)"
+	case $1 in
+	    up|down)
+		do: nmcli con "$1" "$con";;
+	    wan)
+		do: nmcli con modify "$con" ipv4.never-default no;;
+	    lan)
+		do: nmcli con modify "$con" ipv4.never-default yes;;
+	    *)
+		echo "Huh?";;
+	esac
 }
 
 vnet() {
-	case $1 in
-		up) set -- start;;
-		down) set -- stop;;
+	local arg=${1:-status}
+	case $arg in
+		up) arg="start";;
+		down) arg="stop";;
 	esac
-	sudo: systemctl "${1:-status}" vm-network.target
+	sudo: systemctl $arg vm-network.target
 }
 
 youtube-dl() {
@@ -131,101 +133,6 @@ youtube-dl() {
 :pp() {
 	local var=$1 k=; local -n ref=$1
 	echo "$var=("; for k in ${!ref[@]}; do echo "  [$k]='${ref[$k]}'"; done; echo ")"
-}
-
-## Network hackery
-
-add-vlan() {
-	local dev=$1 addr=$2
-	sudo: ip link add link "${dev%.*}" name "$dev" type vlan id "${dev##*.}"
-	sudo: ip link set "$dev" up
-	if [[ $addr == dhcp ]]; then
-		run-dhcp "$dev"
-	elif [[ $addr ]]; then
-		[[ $addr == */* ]] || addr+="/16"
-		sudo: ip addr add "$addr" dev "$dev"
-	fi
-}
-
-run-autoip() { sudo: avahi-autoipd --force-bind "${1:-eth0}" "${@:2}"; }
-
-run-dhcp() { sudo: dhclient -4 -d "${1:-eth0}" "${@:2}"; }
-
-run-dhcpcd() {
-	sudo: dhcpcd --ipv4only --noarp --reboot 0 --timeout 0 --nobackground \
-		--nohook resolv.conf --debug "${1:-eth0}" "${@:2}"
-}
-
-ecap() { sudo: tcpdump -n -i "${dev:-eth0}" "$@"; }
-
-earp() { ecap -e "arp or (udp port 67 or 68)"; }
-
-ecn() {
-	case $1 in
-	    1|y*|on)
-		sudo: sysctl -q net.ipv4.tcp_ecn=1;;
-	    0|n*|off)
-		sudo: sysctl -q net.ipv4.tcp_ecn=0;;
-	    *)
-		sysctl net.ipv4.tcp_ecn;;
-	esac
-}
-
-ukip() {
-	local dev=${dev:-eth0}
-	case $1 in
-	    -)
-		sudo: ip addr flush dev $dev
-		do:   nmcli dev set $dev managed yes
-		;;
-	    *)
-		do:   nmcli dev set $dev managed no
-		sudo: ip link set $dev up
-		sudo: ip addr flush dev $dev
-		sudo: ip addr add 169.254.0.1/16  dev $dev scope link
-		sudo: ip addr add 10.128.0.42/16  dev $dev
-		sudo: ip addr add 192.168.0.42/24 dev $dev
-		sudo: ip addr add 192.168.1.42/24 dev $dev
-		sudo: ip addr add 192.168.2.42/24 dev $dev
-		;;
-	esac
-}
-
-ukdns() {
-	local server='uk-main2.utenos-kolegija.lt'
-	local zone='utenos-kolegija.lt'
-
-	do: samba-tool dns "$1" "$server" "$zone" "${@:2}"
-}
-
-ukvpn() {
-	local con="Utenos kolegija (admin)"
-	case $1 in
-	    up|down)
-		do: nmcli con "$1" "$con";;
-	    wan)
-		do: nmcli con modify "$con" ipv4.never-default no;;
-	    lan)
-		do: nmcli con modify "$con" ipv4.never-default yes;;
-	    *)
-		echo "Huh?";;
-	esac
-}
-
-uredboot() { do: telnet 192.168.1.20 9000; }
-
-## Certificate hackery
-
-c2p() {
-	for file; do
-		openssl x509 -in "$file" -inform DER -out "${file%.*}.pem" -outform PEM
-	done
-}
-
-p2c() {
-	for file; do
-		openssl x509 -in "$file" -inform PEM -out "${file%.*}.crt" -outform DER
-	done
 }
 
 nssdb="sql:$HOME/.pki/nssdb"

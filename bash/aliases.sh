@@ -333,64 +333,41 @@ x509fp() {
 
 # package management
 
-lspkgs() {
-	if have dpkg;		then dpkg -l | awk '/^i/ {print $2}'
-	elif have pacman;	then pacman -Qq
-	elif have rpm;		then rpm -qa --qf "%{NAME}\n"
-	elif have pkg_info;	then pkg_info
-	elif have apt-cyg;	then apt-cyg show
-	else echo "$FUNCNAME: no known package manager" >&2; return 1; fi
-}
+if have dpkg; then
+	lspkgs() { dpkg -l | awk '/^i/ {print $2}'; }
+	lscruft() { dpkg -l | awk '/^r/ {print $2}'; }
+	lspkg() { dpkg -L "$@"; }
+	_pkg_owns() { dpkg -S "$@"; }
+elif have pacman; then
+	lspkgs() { pacman -Qq; }
+	lscruft() { find /etc -name '*.pacsave'; }
+	lspkg() { pacman -Qql "$@"; }
+	_pkg_owns() { pacman -Qo "$@"; }
+	alias nosr='pkgfile'
+elif have rpm; then
+	lspkgs() { rpm -qa --qf '%{NAME}\n'; }
+	lspkg() { rpm -ql "$@"; }
+	_pkg_owns() { rpm -q --whatprovides "$@"; }
+elif [[ $OSTYPE == FreeBSD ]] && have pkg; then
+	lspkgs() { pkg info -q; }
+	lspkg() { pkg query '%Fp' "$@"; }
+	_pkg_owns() { pkg which "$@"; }
+fi
 
-lspkg() {
-	if [[ -z $1 ]]
-	then echo "$FUNCNAME: package not specified" >&2; return 2
-	elif have dpkg; then dpkg -L "$@"
-	elif have pacman; then pacman -Qql "$@"
-	elif have rpm; then rpm -ql "$@"
-	elif have pkg; then
-		case $OSTYPE in
-			FreeBSD) pkg query %Fp "$@";;
-		esac
-	elif have pkg_info; then pkg_info -Lq "$@"
-	else echo "$FUNCNAME: no known package manager" >&2; return 1
-	fi | sort
-}
+if have lspkg; then
+	lcpkg() { lspkg "$@" | xargs -d '\n' ls -d --color=always 2>&1 | pager; }
+	llpkg() { lspkg "$@" | xargs -d '\n' ls -ldh --color=always 2>&1 | pager; }
+fi
 
-lcpkg() {
-	lspkg "$@" | xargs -d '\n' ls -d --color=always 2>&1 | pager
-}
-
-llpkg() {
-	lspkg "$@" | xargs -d '\n' ls -ldh --color=always 2>&1 | pager
-}
-
-lscruft() {
-	if have dpkg;		then dpkg -l | awk '/^r/ {print $2}'
-	elif have pacman;	then find /etc -name '*.pacsave'
-	else echo "$FUNCNAME: no known package manager" >&2; return 1; fi
-}
-
-nosr() {
-	if have pkgfile;	then pkgfile "$@"
-	elif have apt-file;	then apt-file "$@"
-	elif have yum;		then yum whatprovides "$@"
-	else echo "$FUNCNAME: no known package manager" >&2; return 1; fi
-}
-
-owns() {
-	local file=$1
-	if [[ $file != */* ]] && have "$file"; then
-		file=$(which "$file")
-	fi
-	file=$(readlink -f "$file")
-	if have dpkg;		then dpkg -S "$file"
-	elif have pacman;	then pacman -Qo "$file"
-	elif have rpm;		then rpm -q --whatprovides "$file"
-	elif have pkg;		then pkg which "$file"
-	elif have apt-cyg;	then apt-cyg packageof "$file"
-	else echo "$FUNCNAME: no known package manager" >&2; return 1; fi
-}
+if have _pkg_owns; then
+	owns() {
+		local file=$1
+		if [[ $file != */* ]] && have "$file"; then
+			file=$(which "$file")
+		fi
+		_pkg_owns "$(readlink -f "$file")"
+	}
+fi
 
 # service management
 

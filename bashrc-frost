@@ -4,32 +4,77 @@
 
 . ~/lib/dotfiles/bashrc-rain
 
-wlan=wlan0
-
-iwps() {
-	if [[ $* ]]; then
-		sudo iw $wlan set power_save "$@"
-	fi
-	iw $wlan get power_save
-}
-
-unison() {
-	if [[ $DISPLAY ]] && [[ -t 1 ]]; then
-		run unison-x11 "$@"
-	else
-		unison-text "$@"
-	fi
-}
-
-usb() { sudo: modprobe $* -v xhci_pci; }
-
-alias 'usb?'='lsmod | grep xhci'
-alias '?usb'='usb?'
-alias 'usb+'='sudo: modprobe -v xhci_pci'
-alias 'usb-'='sudo: modprobe -r -v xhci_pci'
+unalias journalctl
 
 fxdb() { (nssdb="$HOME/.mozilla/firefox/r0fd79nc.default"; "$@"); }
 thdb() { (nssdb="$HOME/.thunderbird/7pkkqarz.default"; "$@"); }
 
-_xspecs[unzip]='!*.@(zip|[ejsw]ar|exe|pk3|wsz|zargo|xpi|s[tx][cdiw]|sx[gm]|o[dt][tspgfc]|od[bm]|oxt|epub|apk|do[ct][xm]|[ab]doc|p[op]t[mx]|xl[st][xm])'
-_xspecs[zipinfo]=${_xspecs[unzip]}
+## Network hackery
+
+add-vlan() {
+	local dev=$1 addr=$2
+	sudo: ip link add link "${dev%.*}" name "$dev" type vlan id "${dev##*.}"
+	sudo: ip link set "$dev" up
+	if [[ $addr ]]; then
+		[[ $addr == */* ]] || addr+="/16"
+		sudo: ip addr add "$addr" dev "$dev"
+	fi
+}
+
+run-autoip() {
+	sudo: avahi-autoipd --force-bind "${1:-eth0}" "${@:2}"
+}
+
+run-dhclient() {
+	sudo: dhclient -4 -d "${1:-eth0}" "${@:2}"
+}
+
+run-dhcpcd() {
+	sudo: dhcpcd --ipv4only --noarp --reboot 0 --timeout 0 --nobackground \
+		--nohook resolv.conf --debug "${1:-eth0}" "${@:2}"
+}
+
+ecap() {
+	sudo: tcpdump -n -i "${1:-eth0}" "${@:2}"
+}
+
+earp() {
+	ecap "$1" -e "arp or (udp port 67 or 68)"
+}
+
+ecn() {
+	case $1 in
+	    1|on)  sudo: sysctl -q net.ipv4.tcp_ecn=1;;
+	    0|off) sudo: sysctl -q net.ipv4.tcp_ecn=0;;
+	    *)     sysctl net.ipv4.tcp_ecn;;
+	esac
+}
+
+ukip() {
+	local dev=${dev:-eth0}
+	case $1 in
+	    down|-)
+		sudo: ip addr flush dev $dev
+		do:   nmcli dev set $dev managed yes
+		;;
+	    up|*)
+		do:   nmcli dev set $dev managed no
+		sudo: ip link set $dev up
+		sudo: ip addr flush dev $dev
+		sudo: ip addr add 169.254.0.1/16  dev $dev scope link
+		sudo: ip addr add 10.128.0.42/16  dev $dev
+		sudo: ip addr add 192.168.0.42/24 dev $dev
+		sudo: ip addr add 192.168.1.42/24 dev $dev
+		sudo: ip addr add 192.168.2.42/24 dev $dev
+		;;
+	esac
+}
+
+ukdns() {
+	local server='uk-main2.utenos-kolegija.lt'
+	local zone='utenos-kolegija.lt'
+
+	do: samba-tool dns "$1" "$server" "$zone" "${@:2}"
+}
+
+uredboot() { do: telnet 192.168.1.20 9000; }
