@@ -48,7 +48,8 @@ alias kssh='ssh \
 	-o PreferredAuthentications=gssapi-keyex,gssapi-with-mic \
 	-o GSSAPIAuthentication=yes \
 	-o GSSAPIDelegateCredentials=yes'
-alias l='ls -log'
+#alias l='ls -log'
+alias l='~/code/thirdparty/l'
 alias ll='ls -l'
 alias logoff='logout'
 if [[ $DESKTOP_SESSION ]]; then
