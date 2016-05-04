@@ -1,5 +1,6 @@
 /git/config.local
 /git/credentials
+/git/git-remote-dropbox.json
 /git/gitk
 /git/spindle
 /vim/.netrwhist
