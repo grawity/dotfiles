@@ -284,6 +284,8 @@ cat() {
 man() {
 	if [[ $1 == *://* ]]; then
 		curl -LsfS "$1" | command man /dev/stdin
+	elif [[ $1 == *.[0-9]* && $1 != */* && ! $2 && -f $1 ]]; then
+		command man "./$1"
 	else
 		command man "$@"
 	fi
