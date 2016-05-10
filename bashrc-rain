@@ -127,6 +127,7 @@ youtube-dl() {
 		--add-metadata
 		--console-title
 		--continue
+		--format "bestvideo+m4a/bestvideo+bestaudio/best"
 		"$@"
 	)
 	"${cmd[@]}"
