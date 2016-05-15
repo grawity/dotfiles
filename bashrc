@@ -29,6 +29,8 @@ shopt -s checkjobs 2> /dev/null	# print job status on exit
 shopt -s checkwinsize		# update $ROWS/$COLUMNS after command
 shopt -s extglob		# @(…) +(…) etc. globs
 shopt -s globstar		# the ** glob
+
+shopt -u hostcomplete		# no special treatment for Tab at @
 shopt -s no_empty_cmd_completion
 
 set +o histexpand		# disable !history expansion
