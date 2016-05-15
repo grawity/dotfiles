@@ -107,14 +107,14 @@ endif
 " Swap file location – use // to include full path in swapnames
 if has("unix")
 	if has("nvim")
-		set backupdir=$XDG_DATA_HOME/nvim/backup
-		"set backupdir-=.
+		set backupdir-=.
+		set undofile
 	else
 		set directory=~/.vim/_backup//
 		set backupdir=~/.vim/_backup//
 		silent! set undodir=~/.vim/_undo//
+		silent! set undofile
 	end
-	silent! set undofile	" persistent undo
 endif
 
 if hostname() == "rain"
