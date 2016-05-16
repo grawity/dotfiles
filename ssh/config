@@ -26,14 +26,6 @@ Host 193.219.181.238 sw-b56-edge
 	IdentitiesOnly yes
 	ControlMaster no
 
-Host 193.219.181.240 sw-aukstaiciu9
-	HostName 193.219.181.240
-	Port 42
-	User admin
-	IdentityFile ~/.ssh/id_ukolegija
-	IdentitiesOnly yes
-	ControlMaster no
-
 Host uk-radius
 	HostName %h.utenos-kolegija.lt
 	User grawity
@@ -71,6 +63,13 @@ Host uk-pf-wisp uk-pf-m18-stud
 
 Host uk-pf-*
 	User root
+
+Host uk-sw-a9
+	HostName sw-a9.utenos-kolegija.lt
+	Port 42
+	User admin
+	IdentitiesOnly yes
+	ControlMaster no
 
 Host uk-* 193.219.181.192/26
 	IdentityFile ~/.ssh/id_ukolegija
