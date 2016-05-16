@@ -71,7 +71,7 @@ Host uk-sw-a9
 	IdentitiesOnly yes
 	ControlMaster no
 
-Host uk-* 193.219.181.192/26
+Host uk-* 193.219.181.192/26 2001:778:e27f::/48
 	IdentityFile ~/.ssh/id_ukolegija
 	ForwardAgent yes
 
