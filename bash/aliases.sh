@@ -17,6 +17,7 @@ alias cindex='env TMPDIR=/var/tmp cindex'
 alias cpans='PERL_MM_OPT= PERL_MB_OPT= cpanm --sudo'
 count() { sort "$@" | uniq -c | sort -n -r | pager; }
 alias csearch='csearch -n'
+alias demo='PS1="\\n\\$ "'
 dist/head() {
 	echo -e "\e[1m== ~/code\e[m"
 	(cd ~/code && git tip)

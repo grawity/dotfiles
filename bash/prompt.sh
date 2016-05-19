@@ -51,7 +51,7 @@ declare -A parts=(
 
 declare -Ai _recursing=()
 
-_dbg() { if [[ $DEBUG ]]; then echo "$*"; fi; }
+_dbg() { if [[ ${DEBUG-} ]]; then echo "$*"; fi; }
 
 _awesome_upd_vcs() {
 	local git= br= re=
@@ -61,9 +61,9 @@ _awesome_upd_vcs() {
 	elif [[ $PWD == @(/afs|/n/uk)* ]]; then
 		# add an exception for slowish network mounts
 		git=
-	elif [[ $GIT_DIR && -d $GIT_DIR ]]; then
+	elif [[ ${GIT_DIR-} && -d $GIT_DIR ]]; then
 		git=$GIT_DIR
-	elif [[ ! $GIT_DIR && -d .git ]]; then
+	elif [[ ! ${GIT_DIR-} && -d .git ]]; then
 		git=.git
 	else
 		git=$(git rev-parse --git-dir 2>/dev/null)
@@ -120,7 +120,7 @@ _awesome_upd_pwd() {
 
 	# find the working directory's root
 
-	if [[ ${fmts[pwd.body]} ]]; then
+	if [[ ${fmts[pwd.body]-} ]]; then
 		if [[ $GIT_WORK_TREE ]]; then
 			_dbg "- wdbase <- GIT_WORK_TREE"
 			wdbase=$(readlink -f "$GIT_WORK_TREE")
@@ -157,12 +157,12 @@ _awesome_upd_pwd() {
 	#   inside working tree
 	#   inside bare repository
 
-	_dbg "* fullpwd='$fullpwd'"
+	_dbg "* fullpwd='${fullpwd-}'"
 	_dbg "   wdrepo='$wdrepo'"
 	_dbg "   wdbase='$wdbase'"
 	_dbg " wdparent='$wdparent'"
 
-	if [[ $fullpwd != [yh] && $PWD == "$HOME" ]]; then
+	if [[ ${fullpwd-} != [yh] && $PWD == "$HOME" ]]; then
 		# special case with fullpwd=n:
 		# show full home directory with no highlight
 		_dbg "head/tail case 1 (special case for ~)"
@@ -180,9 +180,9 @@ _awesome_upd_pwd() {
 		wdhead=${PWD%/*}/ wdtail=${PWD##*/}
 	fi
 
-	if [[ ! $fullpwd && $PWD == "$HOME" ]]; then
+	if [[ ! ${fullpwd-} && $PWD == "$HOME" ]]; then
 		wdhead='~'
-	elif [[ $fullpwd != 'y' ]]; then
+	elif [[ ${fullpwd-} != 'y' ]]; then
 		wdhead=${wdhead/#"$HOME/"/"~/"}
 		if [[ ${wdhead:0:2} == '~/' ]]; then
 			tilde=2
@@ -248,8 +248,8 @@ _awesome_add_item() {
 			root)	(( UID == 0 )) ;;
 			host=*)	[[ $HOSTNAME == ${cond#*=} ]] ;;
 			user=*)	[[ $USER == ${cond#*=} ]] ;;
-			remote)	[[ $SSH_TTY || $LOGIN || $REMOTEHOST ]] ;;
-			:*)	[[ ${items[${cval#:}]} ]] ;;
+			remote)	[[ ${SSH_TTY-} || ${LOGIN-} || ${REMOTEHOST-} ]] ;;
+			:*)	[[ ${items[${cval#:}]-} ]] ;;
 		esac; then
 			[[ $cond == !* ]]
 		else
@@ -316,7 +316,7 @@ _awesome_add_item() {
 			while true; do
 				if [[ $fmt == @* ]]; then
 					subitem=${fmt#@}
-					fmt=${fmts[$subitem]}
+					fmt=${fmts[$subitem]-}
 					_dbg " stripped @, got item '$subitem' fmt '$fmt'"
 				fi
 				if [[ $fmt && $fmt != @* ]]; then
@@ -325,7 +325,7 @@ _awesome_add_item() {
 				fi
 				if [[ ! $fmt && $subitem == *.sfx ]]; then
 					subitem=${subitem/%.sfx/.pfx}
-					fmt=${fmts[$subitem]}
+					fmt=${fmts[$subitem]-}
 					_dbg " stripped .sfx, got item '$subitem' fmt '$fmt'"
 					if [[ $fmt == @*.pfx ]]; then
 						fmt=${fmt/%.pfx/.sfx}
@@ -333,7 +333,7 @@ _awesome_add_item() {
 				fi
 				if [[ ! $fmt && $subitem == *.* ]]; then
 					subitem=${subitem%.*}
-					fmt=${fmts[$subitem]}
+					fmt=${fmts[$subitem]-}
 					_dbg " stripped .*, got item '$subitem' fmt '$fmt'"
 				fi
 				if [[ ! $fmt ]]; then
@@ -459,19 +459,19 @@ _show_status() {
 }
 
 _update_title() {
-	if [[ ! $title ]]; then
+	if [[ ! ${title-} ]]; then
 		local title= t_user= t_display= t_path=
 		if [[ $USER != 'grawity' ]]; then
 			t_user="$USER@"
 		fi
-		if [[ $DISPLAY && ( $DISPLAY != :* || $SSH_TTY ) ]]; then
+		if [[ ${DISPLAY-} && ( $DISPLAY != :* || ${SSH_TTY-} ) ]]; then
 			t_display=" ($DISPLAY)"
 		fi
 		t_path=${PWD/#"$HOME/"/'~/'}
 		title="${t_user}${HOSTNAME} ${t_path}${t_display}"
 	fi
 	settitle "$title"
-	if [[ $DISPLAY && $VTE_VERSION ]]; then
+	if [[ ${DISPLAY-} && ${VTE_VERSION-} ]]; then
 		printf '\e]7;file://%s%s\a' "$HOSTNAME" "$(urlencode -r -p "$PWD")"
 	fi
 }
