@@ -71,6 +71,7 @@ alias lpt='sudo netstat -lpt --numeric-hosts'
 alias lpu='sudo netstat -lpu --numeric-hosts'
 lscsr() { openssl req -in "${1:-/dev/stdin}" -noout -text; }
 alias lsd='ls -d .*'
+lsftp() { lftp "sftp://$1"; }
 alias lspart='lsblk -o name,partlabel,size,fstype,label,mountpoint'
 mir() { wget -m -np --reject-regex='.*\?C=.;O=.$' "$@"; }
 alias mkcert='mkcsr -x509 -days 3650'
