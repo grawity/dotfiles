@@ -44,7 +44,6 @@ set connect_timeout=10
 set mail_check=10
 set timeout=20
 account-hook . 'unset tunnel imap_pass; set imap_user="grawity"'
-source "silentcat ~/.auth/muttrc|"
 
 set imap_headers="X-BOGOSITY X-PRIORITY"
 set imap_idle

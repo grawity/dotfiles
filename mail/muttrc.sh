@@ -17,6 +17,8 @@ set header_cache="~/.cache/mutt"
 set message_cachedir="~/.cache/mutt"
 !
 
+[[ -f ~/.auth/muttrc ]] && cat ~/.auth/muttrc
+
 [[ -f ~/.muttrc-"$HOSTNAME" ]] && cat ~/.muttrc-"$HOSTNAME"
 
 exit 0
