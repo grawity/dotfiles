@@ -10,6 +10,18 @@ IgnoreUnknown GSSAPIKeyExchange,PubkeyAcceptedKeyTypes
 
 # host aliases
 
+Host frost/m7
+	HostName frost.nullroute.eu.org
+	ProxyCommand ssh -W [2001:778:e27f:a22:3f2f:dbc0:52ea:8359]:22 uk-pf-m7
+
+Host frost/m7c
+	HostName frost.nullroute.eu.org
+	ProxyCommand ssh -W 10.36.0.6:22 uk-pf-m7
+
+Host frost/sky
+	HostName frost.nullroute.eu.org
+	ProxyCommand ssh -W 172.16.42.10:22 sky
+
 # work
 
 Host ukradius
@@ -18,8 +30,16 @@ Host ukradius
 	IdentityFile ~/.ssh/id_ukolegija
 	ForwardAgent yes
 
-Host 193.219.181.238 sw-b56-edge
+Host sw-b56-edge
 	HostName 193.219.181.238
+	Port 42
+	User admin
+	IdentityFile ~/.ssh/id_ukolegija
+	IdentitiesOnly yes
+	ControlMaster no
+
+Host sw-a9-core
+	HostName sw-a9-core.utenos-kolegija.lt
 	Port 42
 	User admin
 	IdentityFile ~/.ssh/id_ukolegija
@@ -63,13 +83,6 @@ Host uk-pf-wisp uk-pf-m18-stud
 
 Host uk-pf-*
 	User root
-
-Host uk-sw-a9
-	HostName sw-a9.utenos-kolegija.lt
-	Port 42
-	User admin
-	IdentitiesOnly yes
-	ControlMaster no
 
 Host uk-* 193.219.181.192/26 2001:778:e27f::/48
 	IdentityFile ~/.ssh/id_ukolegija
