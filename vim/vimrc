@@ -186,6 +186,9 @@ nnoremap <Up> gk
 nnoremap j gj
 nnoremap k gk
 
+inoremap <C-Down> <Esc>gja
+inoremap <C-Up> <Esc>gka
+
 inoremap <F1> <Esc>
 nnoremap <F1> <Esc>
 vnoremap <F1> <Esc>
