@@ -72,6 +72,7 @@ alias lpt='sudo netstat -lpt --numeric-hosts'
 alias lpu='sudo netstat -lpu --numeric-hosts'
 lscsr() { openssl req -in "${1:-/dev/stdin}" -noout -text; }
 alias lsd='ls -d .*'
+lsftp() { lftp "sftp://$1"; }
 alias lspart='lsblk -o name,partlabel,size,fstype,label,mountpoint'
 mir() { wget -m -np --reject-regex='.*\?C=.;O=.$' "$@"; }
 alias mkcert='mkcsr -x509 -days 3650'
@@ -134,7 +135,7 @@ virdf() { vim -c "setf n3" <(rapper -q -o turtle "$@"); }
 visexp() { (echo "; vim: ft=sexp"; echo "; file: $1"; sexp-conv < "$1") \
 	| vipe | sexp-conv -s canonical | sponge "$1"; }
 alias w3m='w3m -title'
-wim() { local w=$(which "$1") && [[ $w ]] && editor "$w"; }
+wim() { local file=$(which "$1") && [[ $file ]] && editor "$file" "${@:2}"; }
 alias unwine='printf "\e[?1l \e>"'
 alias xf='ps xf -O ppid'
 alias xx='chmod a+rx'

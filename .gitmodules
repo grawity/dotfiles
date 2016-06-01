@@ -1,36 +1,39 @@
 [submodule "vim/bundle/vim-commentary"]
 	path = vim/bundle/vim-commentary
-	url = git://github.com/tpope/vim-commentary.git
+	url = https://github.com/tpope/vim-commentary.git
 [submodule "vim/bundle/vim-fugitive"]
 	path = vim/bundle/vim-fugitive
-	url = git://github.com/tpope/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
 [submodule "vim/bundle/vim-liquid"]
 	path = vim/bundle/vim-liquid
-	url = git://github.com/tpope/vim-liquid.git
+	url = https://github.com/tpope/vim-liquid.git
 [submodule "vim/bundle/vim-markdown"]
 	path = vim/bundle/vim-markdown
-	url = git://github.com/tpope/vim-markdown.git
+	url = https://github.com/tpope/vim-markdown.git
 [submodule "vim/bundle/vim-perl"]
 	path = vim/bundle/vim-perl
-	url = git://github.com/vim-perl/vim-perl.git
+	url = https://github.com/vim-perl/vim-perl.git
 [submodule "vim/bundle/tagbar"]
 	path = vim/bundle/tagbar
-	url = git://github.com/majutsushi/tagbar.git
+	url = https://github.com/majutsushi/tagbar.git
 [submodule "vim/bundle/vim-easymotion"]
 	path = vim/bundle/vim-easymotion
-	url = git://github.com/Lokaltog/vim-easymotion.git
+	url = https://github.com/Lokaltog/vim-easymotion.git
 [submodule "vim/bundle/vim-solarized"]
 	path = vim/bundle/vim-solarized
-	url = git://github.com/altercation/vim-colors-solarized.git
+	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "vim/bundle/vim-pathogen"]
 	path = vim/bundle/vim-pathogen
-	url = git://github.com/tpope/vim-pathogen.git
+	url = https://github.com/tpope/vim-pathogen.git
 [submodule "vim/bundle/vim-bracketed-paste"]
 	path = vim/bundle/vim-bracketed-paste
-	url = git://github.com/ConradIrwin/vim-bracketed-paste.git
+	url = https://github.com/ConradIrwin/vim-bracketed-paste.git
 [submodule "vim/bundle/vim-ps1"]
 	path = vim/bundle/vim-ps1
 	url = https://github.com/PProvost/vim-ps1
 [submodule "vim/bundle/Zenburn"]
 	path = vim/bundle/Zenburn
 	url = https://github.com/jnurmine/Zenburn
+[submodule "vim/bundle/vim-indent-object"]
+	path = vim/bundle/vim-indent-object
+	url = https://github.com/michaeljsmith/vim-indent-object.git
