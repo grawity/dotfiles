@@ -19,10 +19,6 @@ set -a
 
 # paths
 
-# initially $PREFIX was just for my personal use, but apparently it is used by
-# npm (which defaults to /usr) also other things that I forget; I think
-# Module::Build too
-
 PREFIX="$HOME/.local"
 
 GOPATH="$PREFIX/go"
@@ -31,7 +27,6 @@ setpath PATH \
 	"$HOME/bin"				\
 	"$HOME/code/bin"			\
 	"$HOME/code/obj/host.$HOSTNAME"		\
-	"$HOME/lib/hacks/bin"			\
 	"$HOME/lib/hacks/obj/host.$HOSTNAME"	\
 	"$GOPATH/bin"				\
 	"$HOME/.cabal/bin"			\
