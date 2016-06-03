@@ -5,7 +5,7 @@
 # instead, they are processed by the ssh/generate script.
 
 #if OpenSSH && Version 6.3
-IgnoreUnknown GSSAPIKeyExchange,PubkeyAcceptedKeyTypes
+IgnoreUnknown CanonicalDomains,CanonicalizeHostname,GSSAPIKeyExchange,PubkeyAcceptedKeyTypes
 #endif
 
 # host aliases
@@ -212,6 +212,8 @@ Host * !bazaar.launchpad.net
 	IdentityFile ~/.ssh/id_ed25519_2015-05-15
 
 Host *
+	CanonicalizeHostname yes
+	CanonicalDomains nullroute.eu.org utenos-kolegija.lt
 	Protocol 2
 	HashKnownHosts no
 	NoHostAuthenticationForLocalhost yes
