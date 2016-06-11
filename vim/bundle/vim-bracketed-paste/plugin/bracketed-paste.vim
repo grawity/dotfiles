@@ -14,7 +14,7 @@ if !exists("g:bracketed_paste_tmux_wrap")
 endif
 
 function! WrapForTmux(s)
-  if !g:bracketed_paste_tmux_wrap || !exists('$TMUX')
+  if !g:bracketed_paste_tmux_wrap || !exists('$TMUX') || system('tmux -V')[5] >= '2'
     return a:s
   endif
 
@@ -24,8 +24,8 @@ function! WrapForTmux(s)
   return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
 endfunction
 
-let &t_SI .= WrapForTmux("\<Esc>[?2004h")
-let &t_EI .= WrapForTmux("\<Esc>[?2004l")
+let &t_ti .= WrapForTmux("\<Esc>[?2004h")
+let &t_te .= WrapForTmux("\<Esc>[?2004l")
 
 function! XTermPasteBegin(ret)
   set pastetoggle=<f29>
