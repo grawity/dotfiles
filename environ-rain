@@ -23,7 +23,6 @@ SAL_USE_VCLPLUGIN="gtk"			# LibreOffice - avoid unstable gtk3 VCL
 # appdefaults
 
 ACCDB="$HOME/Private/accdb/accounts.txt"
-CSEARCHINDEX="$XDG_CACHE_HOME/codesearch/csearchindex"
 GEMRC="$XDG_CONFIG_HOME/gemrc"
 #_JAVA_OPTIONS="-Duser.home='$XDG_DATA_HOME/java-home'"
 VBOX_USER_HOME="$XDG_CONFIG_HOME/VirtualBox"
@@ -33,5 +32,4 @@ CN_LDAP_SERVER="ldap://wolke.nullroute.eu.org"
 MANLESS="]0;\$MAN_PN ?ltline %lt?L/%L.:byte %bB?s/%s..?e (END):?pB %pB\\%.. "
 MPD_HOST="$(cat "$XDG_CONFIG_HOME/mpd/password")@$XDG_RUNTIME_DIR/mpd.control"
 PERL_CPANM_OPT="$PERL_CPANM_OPT --mirror http://ftp.litnet.lt/pub/CPAN/"
-PIDGIN_DEBUG_COLORED="1"
 TAR_OPTIONS="--xattrs"
