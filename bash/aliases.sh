@@ -78,7 +78,7 @@ mir() { wget -m -np --reject-regex='.*\?C=.;O=.$' "$@"; }
 alias mkcert='mkcsr -x509 -days 3650'
 alias mkcsr='openssl req -new -sha256'
 mkmaildir() { mkdir -p "${@/%//cur}" "${@/%//new}" "${@/%//tmp}"; }
-alias mtrr='mtr --report-wide -c 3'
+alias mtrr='mtr -w -c 3 -z'
 alias mutagen='mid3v2'
 mv() {
 	if [[ -t 0 && -t 1 && $# -eq 1 && -e $1 ]]; then
