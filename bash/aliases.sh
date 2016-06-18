@@ -78,7 +78,7 @@ mir() { wget -m -np --reject-regex='.*\?C=.;O=.$' "$@"; }
 alias mkcert='mkcsr -x509 -days 3650'
 alias mkcsr='openssl req -new -sha256'
 mkmaildir() { mkdir -p "${@/%//cur}" "${@/%//new}" "${@/%//tmp}"; }
-alias mtrr='mtr -w -c 3 -z'
+alias mtrr='mtr --report-wide --report-cycles 3 --aslookup'
 alias mutagen='mid3v2'
 mv() {
 	if [[ -t 0 && -t 1 && $# -eq 1 && -e $1 ]]; then
@@ -119,8 +119,8 @@ alias telnets='telnet-ssl -z ssl'
 _thiscommand() { history 1 | sed "s/^\s*[0-9]\+([^)]\+)\s\+$1\s\+//"; }
 alias tidiff='infocmp -Ld'
 alias todo:='todo "$(_thiscommand todo:)" #'
-alias traceroute='traceroute -e'
-alias tracert='traceroute -I --mtu'
+alias traceroute='traceroute --extensions'
+alias tracert='traceroute --icmp --mtu'
 alias treedu='tree --du -h'
 up() { local p i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
 vercmp() {
