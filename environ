@@ -71,7 +71,7 @@ unset VISUAL
 
 # libdefaults
 
-FT2_SUBPIXEL_HINTING="1"
+FT2_SUBPIXEL_HINTING="2"
 NCURSES_NO_UTF8_ACS="1"
 
 # appdefaults
