@@ -224,6 +224,9 @@
 	pushInsteadOf = git://github.com/
 	pushInsteadOf = https://github.com/
 
+[uri "https://git.kernel.org/"]
+	insteadOf = git://git.kernel.org/
+
 [url "https://kernel.googlesource.com/"]
 	insteadOf = kernel.org::
 
