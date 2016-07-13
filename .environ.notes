@@ -110,6 +110,10 @@ XCURSOR_SIZE="16"		# already set in Xresources and XSETTINGS
 # LibreOffice
 SAL_USE_VCLPLUGIN="gtk"		# gen, gtk, gtk3, kde4
 
+# Freetype - upstream alternative to heftig's FT2_SUBPIXEL_HINTING=2
+# (v40 will become the default in 2.7 series, but there are more parameters)
+FREETYPE_PROPERTIES="truetype:interpreter-version=40"
+
 ## Miscellaneous:
 
 # I don't use this.
