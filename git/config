@@ -109,6 +109,7 @@
 [diff]
 	renames = copies
 	submodule = log
+	compactionHeuristic = true
 
 [diff "gpg"]
 	textconv = gpg -v
@@ -143,6 +144,9 @@
 
 [init]
 	templateDir = ~/.config/git/template
+
+[log]
+	showSignature = true
 
 [merge]
 	conflictStyle = diff3
