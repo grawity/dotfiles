@@ -14,8 +14,8 @@
 ! }}}
 ! Xcursor {{{
 
-Xcursor.theme:		Adwaita
-Xcursor.size:		16
+!Xcursor.theme:		Adwaita
+!Xcursor.size:		16
 
 ! }}}
 ! Rofi {{{
