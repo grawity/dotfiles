@@ -31,6 +31,7 @@
 	logs = log --show-signature
 	lost = "!git fsck | awk '/dangling commit/ {print $3 \"^!\"}' | xargs git log"
 	ls = ls-files
+	lsf = ls-files
 	lsr = "!_() { [ \"$1\" ] || set -- HEAD; git ls-tree -r \"$@\"; }; _"
 	mend = commit --amend --reuse-message HEAD
 	mkobject = hash-object --stdin -w
