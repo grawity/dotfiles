@@ -95,16 +95,13 @@ Host *.utenos-kolegija.lt
 
 # Cluenet and stuff
 
-Host abacus eta hawking radian virgule
+Host abacus eta gamma hawking radian virgule
 	HostName %h.cluenet.org
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host gamma gamma.cluenet.org
-	HostName gamma.cluenet.org
 	Port 2223
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
 
 Host theos
 	HostName %h.kyriasis.com
