@@ -378,11 +378,12 @@ fi
 # service management
 
 if have systemctl && [[ -d /run/systemd/system ]]; then
-	start()   { sudo systemctl start "$@";   systemctl status -a "$@"; }
-	stop()    { sudo systemctl stop "$@";    systemctl status -a "$@"; }
-	restart() { sudo systemctl restart "$@"; systemctl status -a "$@"; }
-	reload()  { sudo systemctl reload "$@";  systemctl status -a "$@"; }
+	start()   { sudo systemctl start "$@";   _status "$@"; }
+	stop()    { sudo systemctl stop "$@";    _status "$@"; }
+	restart() { sudo systemctl restart "$@"; _status "$@"; }
+	reload()  { sudo systemctl reload "$@";  _status "$@"; }
 	status()  { systemctl status -a "$@"; }
+	_status() { sudo systemctl status -a -n0 "$@"; }
 	alias enable='sudo systemctl enable'
 	alias disable='sudo systemctl disable'
 	alias list='systemctl list-units -t path,service,socket --no-legend'
