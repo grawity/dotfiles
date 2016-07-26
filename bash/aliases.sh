@@ -124,6 +124,7 @@ alias tidiff='infocmp -Ld'
 alias todo:='todo "$(_thiscommand todo:)" #'
 alias traceroute='traceroute --extensions'
 alias tracert='traceroute --icmp --mtu'
+alias tree='tree --dirsfirst'
 alias treedu='tree --du -h'
 up() { local p i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
 vercmp() {
@@ -321,7 +322,7 @@ tlso() {
 	    *)   local addr="$host";;
 	esac
 	openssl s_client -connect "$addr:$port" -servername "$host" \
-		-status -no_ign_eof "${@:3}"
+		-verify_hostname "$host" -status -no_ign_eof "${@:3}"
 }
 
 sslcert() {
@@ -380,16 +381,18 @@ fi
 # service management
 
 if have systemctl && [[ -d /run/systemd/system ]]; then
-	start()   { sudo systemctl start "$@";   systemctl status -a "$@"; }
-	stop()    { sudo systemctl stop "$@";    systemctl status -a "$@"; }
-	restart() { sudo systemctl restart "$@"; systemctl status -a "$@"; }
-	reload()  { sudo systemctl reload "$@";  systemctl status -a "$@"; }
-	status()  { systemctl status -a "$@"; }
+	start()   { sudo systemctl start "$@";   _status "$@"; }
+	stop()    { sudo systemctl stop "$@";    _status "$@"; }
+	restart() { sudo systemctl restart "$@"; _status "$@"; }
+	reload()  { sudo systemctl reload "$@";  _status "$@"; }
+	status()  { SYSTEMD_PAGER='cat' systemctl status -a "$@"; }
+	_status() { sudo SYSTEMD_PAGER='cat' systemctl status -a -n0 "$@"; }
 	alias enable='sudo systemctl enable'
 	alias disable='sudo systemctl disable'
 	alias list='systemctl list-units -t path,service,socket --no-legend'
 	alias userctl='systemctl --user'
 	alias u='systemctl --user'
+	alias y='systemctl'
 	ustart()   { userctl start "$@";   userctl status -a "$@"; }
 	ustop()    { userctl stop "$@";    userctl status -a "$@"; }
 	urestart() { userctl restart "$@"; userctl status -a "$@"; }
