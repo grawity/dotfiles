@@ -4,5 +4,4 @@
 
 # libdefaults
 
-unset LIBVA_DRIVER_NAME
 VDPAU_DRIVER="va_gl"
