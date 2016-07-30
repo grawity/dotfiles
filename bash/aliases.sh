@@ -2,7 +2,7 @@
 
 unalias -a
 
-do:() { (PS4='+ '; set -x; "$@") }
+do:() { (PS4=$'\e[32m+\e[m '; set -x; "$@") }
 
 editor() { command ${EDITOR:-vi} "$@"; }
 browser() { command ${BROWSER:-lynx} "$@"; }
