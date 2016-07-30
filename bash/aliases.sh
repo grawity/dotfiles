@@ -32,6 +32,9 @@ entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
 alias ccard-tool='pkcs11-tool --module libccpkip11.so'
 alias etoken-tool='pkcs11-tool --module libeTPkcs11.so'
 alias gemalto-tool='pkcs11-tool --module /usr/lib/pkcs11/libgclib.so'
+cymruname() { arpaname "$1" | sed 's/\.in-addr\.arpa/.origin/i; s/\.ip6\.arpa/.origin6/i; s/$/.asn.cymru.com./'; }
+cymrudig() { local n=$(cymruname "$1") && [[ $n ]] && dig +short "$n" TXT; }
+alias cymruwhois='whois -h whois.radb.net'
 alias facl='getfacl -pt'
 alias fdf='findmnt -o target,size,used,avail,use%,fstype'
 fc-fontformat() {
@@ -111,9 +114,6 @@ alias rot13='tr N-ZA-Mn-za-m A-Za-z'
 rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}"; echo; }
 alias run='spawn -c'
 alias rsync='rsync -s'
-cymruname() { arpaname "$1" | sed 's/\.in-addr\.arpa/.origin/i; s/\.ip6\.arpa/.origin6/i; s/$/.asn.cymru.com./'; }
-rtdig() { local n=$(cymruname "$1") && [[ $n ]] && dig +short "$n" TXT; }
-alias rtwhois='whois -h whois.radb.net'
 sp() { printf '%s' "$@"; printf '\n'; }
 splitext() { split -dC "${2-32K}" "$1" "${1%.*}-" --additional-suffix=".${1##*.}"; }
 alias srs='rsync -vshzaHAX'
