@@ -46,6 +46,8 @@ gerp() { egrep $grepopt -r -I -D skip --exclude-dir={.bzr,.git,.hg,.svn} -H -n "
 gpgfp() { gpg --with-colons --fingerprint "$1" | awk -F: '/^fpr:/ {print $10}'; }
 alias hex='xxd -p'
 alias unhex='xxd -p -r'
+hostname.bind() { do: dig +short "${@:2}" "@$1" "$FUNCNAME." TXT CH; }
+version.bind() { do: dig +short "${@:2}" "@$1" "$FUNCNAME." TXT CH; }
 alias hup='pkill -HUP -x'
 alias init='telinit' # for systemd
 alias kssh='ssh \
@@ -145,6 +147,12 @@ alias xf='ps xf -O ppid'
 alias xx='chmod a+rx'
 alias ypiv='yubico-piv-tool'
 alias zt1='zerotier-cli'
+ztset() {
+	if [[ $1 != 8056c2e21c?????? ]]; then
+		set -- 8056c2e21c288b81 "$@"
+	fi
+	zt1 set "$@"
+}
 alias '~'='egrep'
 alias '~~'='egrep -i'
 -() { cd -; }
