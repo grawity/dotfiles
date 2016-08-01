@@ -199,7 +199,7 @@ Host *.core
 	UserKnownHostsFile ~/.ssh/known_hosts.core
 	ControlMaster no
 
-Host *.home *.local 10.* 192.168.*
+Host *.home *.local 10.* 192.168.* 10.0.0.0/8 192.168.0.0/16
 	ForwardAgent yes
 	UserKnownHostsFile ~/.ssh/known_hosts.local
 

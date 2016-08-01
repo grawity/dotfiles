@@ -3,7 +3,7 @@ augroup filetypedetect
 
 	au BufNewFile,BufRead /etc/motd setf motd
 
-	au BufNewFile,BufRead *.axfr,*.dns setf bindzone
+	au BufNewFile,BufRead *.axfr,*.dns,*.zone setf bindzone
 
 	" config
 	au BufNewFile,BufRead ~/.irssi/config setf c-conf

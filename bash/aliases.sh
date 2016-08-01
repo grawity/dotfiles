@@ -2,7 +2,7 @@
 
 unalias -a
 
-do:() { (PS4='+ '; set -x; "$@") }
+do:() { (PS4=$'\e[32m+\e[m '; set -x; "$@") }
 
 editor() { command ${EDITOR:-vi} "$@"; }
 browser() { command ${BROWSER:-lynx} "$@"; }
@@ -32,6 +32,9 @@ entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
 alias ccard-tool='pkcs11-tool --module libccpkip11.so'
 alias etoken-tool='pkcs11-tool --module libeTPkcs11.so'
 alias gemalto-tool='pkcs11-tool --module /usr/lib/pkcs11/libgclib.so'
+cymruname() { arpaname "$1" | sed 's/\.in-addr\.arpa/.origin/i; s/\.ip6\.arpa/.origin6/i; s/$/.asn.cymru.com./'; }
+cymrudig() { local n=$(cymruname "$1") && [[ $n ]] && dig +short "$n" TXT; }
+alias cymruwhois='whois -h whois.radb.net'
 alias facl='getfacl -pt'
 alias fdf='findmnt -o target,size,used,avail,use%,fstype'
 fc-fontformat() {
@@ -43,6 +46,8 @@ gerp() { egrep $grepopt -r -I -D skip --exclude-dir={.bzr,.git,.hg,.svn} -H -n "
 gpgfp() { gpg --with-colons --fingerprint "$1" | awk -F: '/^fpr:/ {print $10}'; }
 alias hex='xxd -p'
 alias unhex='xxd -p -r'
+hostname.bind() { do: dig +short "${@:2}" "@$1" "$FUNCNAME." TXT CH; }
+version.bind() { do: dig +short "${@:2}" "@$1" "$FUNCNAME." TXT CH; }
 alias hup='pkill -HUP -x'
 alias init='telinit' # for systemd
 alias kssh='ssh \
@@ -111,9 +116,6 @@ alias rot13='tr N-ZA-Mn-za-m A-Za-z'
 rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}"; echo; }
 alias run='spawn -c'
 alias rsync='rsync -s'
-cymruname() { arpaname "$1" | sed 's/\.in-addr\.arpa/.origin/i; s/\.ip6\.arpa/.origin6/i; s/$/.asn.cymru.com./'; }
-rtdig() { local n=$(cymruname "$1") && [[ $n ]] && dig +short "$n" TXT; }
-alias rtwhois='whois -h whois.radb.net'
 sp() { printf '%s' "$@"; printf '\n'; }
 splitext() { split -dC "${2-32K}" "$1" "${1%.*}-" --additional-suffix=".${1##*.}"; }
 alias srs='rsync -vshzaHAX'
@@ -145,6 +147,12 @@ alias xf='ps xf -O ppid'
 alias xx='chmod a+rx'
 alias ypiv='yubico-piv-tool'
 alias zt1='zerotier-cli'
+ztset() {
+	if [[ $1 != 8056c2e21c?????? ]]; then
+		set -- 8056c2e21c288b81 "$@"
+	fi
+	zt1 set "$@"
+}
 alias '~'='egrep'
 alias '~~'='egrep -i'
 -() { cd -; }
