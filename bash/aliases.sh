@@ -12,7 +12,7 @@ alias annex-wanted='git annex find --want-get --not --in .'
 alias annex-unwanted='git annex find --want-drop --in .'
 alias bat='acpi -i'
 alias cal='cal -m'
-catsexp() { cat "$@" | sexp-conv -w $COLUMNS; }
+catsexp() { cat "$@" | sexp-conv -w $((COLUMNS-1)); }
 alias cindex='env TMPDIR=/var/tmp cindex'
 alias cpans='PERL_MM_OPT= PERL_MB_OPT= cpanm --sudo'
 count() { sort "$@" | uniq -c | sort -n -r | pager; }
