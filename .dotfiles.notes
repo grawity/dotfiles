@@ -341,7 +341,8 @@ Please also read <.environ.notes> if you find this file useful.
   - v3.0 hardcoded to ~/.config/pulse/cookie
   - v6.0 started using $XDG_CONFIG_HOME properly
 
-~/.putty/ – environment
+~/.putty/ – XDG as of 0.64 (9952b2d5bd5), environment
+  - "$XDG_CONFIG_HOME/putty/" is used as of 0.63-853-g9952b2d
   - $PUTTYDIR overrides
   - subdirectories can be overridden separately:
       - ./sessions: $PUTTYSESSIONS
@@ -382,8 +383,10 @@ Please also read <.environ.notes> if you find this file useful.
   - $TERMINFO overrides (system path not searched)
   - docs: terminfo(5)
 
-~/.tigrc – compile-time, other locations
+~/.tigrc – XDG, compile-time, other locations
   - gitconfig [tig], [tig ...] sections can be used instead
+  - as of tig-2.1.1-121-g1e6da9d,
+    "$XDG_CONFIG_HOME/tig/config" is preferred
   - as of tig-2.1.1-100-g9916cb8,
     `make TIG_USER_CONFIG=<path>` at build time overrides
 

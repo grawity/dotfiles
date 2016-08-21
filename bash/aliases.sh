@@ -12,7 +12,7 @@ alias annex-wanted='git annex find --want-get --not --in .'
 alias annex-unwanted='git annex find --want-drop --in .'
 alias bat='acpi -i'
 alias cal='cal -m'
-catsexp() { cat "$@" | sexp-conv -w $COLUMNS; }
+catsexp() { cat "$@" | sexp-conv -w $((COLUMNS-1)); }
 alias cindex='env TMPDIR=/var/tmp cindex'
 alias cpans='PERL_MM_OPT= PERL_MB_OPT= cpanm --sudo'
 count() { sort "$@" | uniq -c | sort -n -r | pager; }
@@ -83,7 +83,7 @@ mir() { wget -m -np --reject-regex='.*\?C=.;O=.$' "$@"; }
 alias mkcert='mkcsr -x509 -days 3650'
 alias mkcsr='openssl req -new -sha256'
 mkmaildir() { mkdir -p "${@/%//cur}" "${@/%//new}" "${@/%//tmp}"; }
-alias mtrr='mtr --report-wide --report-cycles 3 --aslookup'
+alias mtrr='mtr --report-wide --report-cycles 3 --aslookup --mpls'
 alias mutagen='mid3v2'
 mv() {
 	if [[ -t 0 && -t 1 && $# -eq 1 && -e $1 ]]; then
@@ -111,7 +111,8 @@ ressh() { ssh -v \
 	-o ControlMaster=no \
 	-o ControlPath=none \
 	"$@" ":"; }
-alias riswhois='do: whois -h riswhois.ripe.net'
+alias rawhois='do: whois -h whois.ra.net --'
+alias riswhois='do: whois -h riswhois.ripe.net --'
 alias rot13='tr N-ZA-Mn-za-m A-Za-z'
 rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}"; echo; }
 alias run='spawn -c'
