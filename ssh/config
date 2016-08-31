@@ -151,9 +151,10 @@ Host github.com
 
 Host bazaar.launchpad.net
 	KexAlgorithms diffie-hellman-group1-sha1
-#if OpenSSH && Version 7.0
 	PubkeyAcceptedKeyTypes ssh-rsa
-#endif
+
+Host ix.aperture-laboratories.science
+	PubkeyAcceptedKeyTypes ssh-rsa
 
 Host ofb.net
 	ForwardAgent yes
