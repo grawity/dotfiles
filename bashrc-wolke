@@ -13,4 +13,4 @@ _bgpath() {
 #//path() { sudo vtysh -c "show ip bgp $1" | _bgpath; }
 
 //() { sudo birdc "$@"; }
-//path() { sudo birdc show route all "$1" | _bgpath; }
+//path() { sudo birdc show route all "$@" | _bgpath; }
