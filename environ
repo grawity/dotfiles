@@ -72,7 +72,6 @@ unset VISUAL
 # libdefaults
 
 FREETYPE_PROPERTIES="truetype:interpreter-version=40"
-FT2_SUBPIXEL_HINTING="2" # remove for 2.7
 NCURSES_NO_UTF8_ACS="1"
 
 # appdefaults
