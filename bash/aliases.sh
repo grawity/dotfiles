@@ -35,6 +35,7 @@ alias gemalto-tool='pkcs11-tool --module /usr/lib/pkcs11/libgclib.so'
 cymruname() { arpaname "$1" | sed 's/\.in-addr\.arpa/.origin/i; s/\.ip6\.arpa/.origin6/i; s/$/.asn.cymru.com./'; }
 cymrudig() { local n=$(cymruname "$1") && [[ $n ]] && dig +short "$n" TXT; }
 alias cymruwhois='whois -h whois.radb.net'
+each() { xargs -r -t -d '\n' "$@"; }
 alias facl='getfacl -pt'
 alias fdf='findmnt -o target,size,used,avail,use%,fstype'
 fc-fontformat() {

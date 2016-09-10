@@ -21,16 +21,11 @@ pager =
 progress =
 purge =
 rebase =
-# new in v3.5
-#share =
 
 [format]
 # I think this is on by default?
 # also read http://gregoryszorc.com/blog/2014/02/05/the-mercurial-revlog/
 #generaldelta = True
-
-[share]
-pool = ~/src/_makepkg/_hg
 
 [ui]
 username = $NAME <$EMAIL>

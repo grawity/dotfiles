@@ -189,7 +189,6 @@
 	line-graphics = true
 	show-changes = no
 	split-view-height = 75%
-	wrap-lines = true
 
 [tig "bind"]
 	generic = Backspace view-close
