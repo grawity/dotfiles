@@ -321,11 +321,17 @@ putenv() {
 alias tlsc='tlsg'
 
 tlsg() {
+	if [[ $2 == -p ]]; then
+		set -- "$1" "${@:3}"
+	fi
 	local host=$1 port=${2:-443}
 	gnutls-cli "$host" -p "$port" "${@:3}"
 }
 
 tlso() {
+	if [[ $2 == -p ]]; then
+		set -- "$1" "${@:3}"
+	fi
 	local host=$1 port=${2:-443}
 	case $host in
 	    *:*) local addr="[$host]";;
@@ -336,7 +342,10 @@ tlso() {
 }
 
 sslcert() {
-	local host=$1 port=$2
+	if [[ $2 == -p ]]; then
+		set -- "$1" "${@:3}"
+	fi
+	local host=$1 port=${2:-443}
 	if have gnutls-cli; then
 		tlsg "$host" "$port" --insecure --print-cert
 	elif have openssl; then
