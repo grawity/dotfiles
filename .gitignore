@@ -1,4 +1,5 @@
 /git/config.local
+/git/cookies
 /git/credentials
 /git/git-remote-dropbox.json
 /git/gitk
