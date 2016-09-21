@@ -9,6 +9,7 @@
 [alias]
 	a = add --all
 	a-p = add --all --patch
+	ainit = "!git init && git add --all && git commit -m 'initial commit'"
 	amend = commit --amend
 	br = branch
 	bra = branch -vv
@@ -142,6 +143,9 @@
 	encoding = utf-8
 	fontdiff = -family \"DejaVu Sans Mono\" -size 9 -weight normal -slant roman -underline 0 -overstrike 0
 	spellingdictionary = none
+
+[http]
+	cookieFile = /home/grawity/.config/git/cookies
 
 [init]
 	templateDir = ~/.config/git/template

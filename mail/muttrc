@@ -88,6 +88,8 @@ spam "^X-Bogosity: Spam,.* spamicity=([0-9.]+)" "bogus"
 spam "^X-Bogosity: Unsure,.* spamicity=([0-9.]+)" "unsure"
 
 set status_format="─── Folder %f (%?M?%M/?%m messages%?n?, %n new/unseen?%?o?, %o old/unread?%?d?, %d deleted?) %*─ %P ───"
+set ts_enabled=yes
+set ts_status_format="Mutt %f (%?M?%M/?%m messages%?n?, %n new/unseen?%?o?, %o old/unread?)"
 
 ### Message view
 
