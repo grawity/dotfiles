@@ -27,6 +27,8 @@ setpath PATH \
 	"$HOME/bin"				\
 	"$HOME/code/bin"			\
 	"$HOME/code/obj/host.$HOSTNAME"		\
+	"$HOME/lib/code/bin"			\
+	"$HOME/lib/code/obj/host.$HOSTNAME"	\
 	"$HOME/lib/hacks/obj/host.$HOSTNAME"	\
 	"$GOPATH/bin"				\
 	"$HOME/.cabal/bin"			\

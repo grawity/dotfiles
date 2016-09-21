@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-PATH=$HOME/code/bin:$PATH
+for dir in ~/lib/code ~/etc/code ~/code; do
+	if [[ -d $dir/bin ]]; then
+		PATH=$dir/bin:$PATH
+		break
+	fi
+done
 
 . lib.bash || exit
 
