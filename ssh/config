@@ -154,6 +154,7 @@ Host bazaar.launchpad.net
 	PubkeyAcceptedKeyTypes ssh-rsa
 
 Host ix.aperture-laboratories.science
+	User NULLROUTE-MNT
 	PubkeyAcceptedKeyTypes ssh-rsa
 
 Host ofb.net
