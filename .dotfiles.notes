@@ -354,6 +354,9 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.renpy/ – hardcoded
 
+~/.rnd – environment
+  - $RANDFILE overrides directory
+
 ~/.screenrc – environment
   - $SCREENRC overrides
 
