@@ -170,7 +170,7 @@ _awesome_upd_pwd() {
 	elif [[ $wdparent && $PWD != "$wdparent" ]]; then
 		# inside a subdirectory of working tree
 		_dbg "head/tail case 2 (under wdparent)"
-		wdhead=$wdparent/ wdtail=${PWD#$wdparent/}
+		wdhead=$wdparent/ wdtail=${PWD#"$wdparent"/}
 	elif [[ $git && $wdbase && ! $wdparent ]]; then
 		# inside working tree immediately below root (e.g. /etc)
 		_dbg "head/tail case 3 (empty wdpaernt)"
