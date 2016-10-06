@@ -51,23 +51,28 @@ ecn() {
 }
 
 ukip() {
-	local dev=${dev:-eth0}
-	case $1 in
-	    down|-)
-		sudo: ip addr flush dev $dev
-		do:   nmcli dev set $dev managed yes
-		;;
-	    up|*)
-		do:   nmcli dev set $dev managed no
-		sudo: ip link set $dev up
-		sudo: ip addr flush dev $dev
-		sudo: ip addr add 169.254.0.1/16  dev $dev scope link
-		sudo: ip addr add 10.128.0.42/16  dev $dev
-		sudo: ip addr add 192.168.0.42/24 dev $dev
-		sudo: ip addr add 192.168.1.42/24 dev $dev
-		sudo: ip addr add 192.168.2.42/24 dev $dev
-		;;
-	esac
+	local arg dev=eth0
+	for arg; do
+		case $arg in
+		eth*)
+			dev=$arg
+			;;
+		up)
+			do:   nmcli dev set $dev managed no
+			sudo: ip link set $dev up
+			sudo: ip addr flush dev $dev
+			sudo: ip addr add 169.254.0.1/16  dev $dev scope link
+			sudo: ip addr add 10.128.0.42/16  dev $dev
+			sudo: ip addr add 192.168.0.42/24 dev $dev
+			sudo: ip addr add 192.168.1.42/24 dev $dev
+			sudo: ip addr add 192.168.2.42/24 dev $dev
+			;;
+		down)
+			sudo: ip addr flush dev $dev
+			do:   nmcli dev set $dev managed yes
+			;;
+		esac
+	done
 }
 
 ukdns() {
