@@ -8,15 +8,12 @@ editor() { command ${EDITOR:-vi} "$@"; }
 browser() { command ${BROWSER:-lynx} "$@"; }
 pager() { command ${PAGER:-more} "$@"; }
 
-alias annex-wanted='git annex find --want-get --not --in .'
-alias annex-unwanted='git annex find --want-drop --in .'
 alias bat='acpi -i'
 alias cal='cal -m'
 catsexp() { cat "$@" | sexp-conv -w $((COLUMNS-1)); }
 alias cindex='env TMPDIR=/var/tmp cindex'
 alias cpans='PERL_MM_OPT= PERL_MB_OPT= cpanm --sudo'
 count() { sort "$@" | uniq -c | sort -n -r | pager; }
-alias csearch='csearch -n'
 alias demo='PS1="\\n\\$ "'
 dist/head() {
 	echo -e "\e[1m== ~/code\e[m"
@@ -26,7 +23,7 @@ dist/head() {
 	(cd ~/lib/dotfiles && git tip)
 }
 dist/pull() { ~/code/dist/pull "$@" && SILENT=1 . ~/.profile; }
-alias dnstracer='dnstracer -s .'
+alias dnstrace='dnstracer -s .'
 alias ed='ed -p:'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
 alias ccard-tool='pkcs11-tool --module libccpkip11.so'
@@ -97,8 +94,6 @@ mv() {
 }
 alias nmap='nmap --reason'
 alias nm-con='nmcli -f name,type,autoconnect,state,device con'
-alias pamcan='pacman'
-path() { if (( $# )); then which -a "$@"; else echo "${PATH//:/$'\n'}"; fi; }
 alias py='python'
 alias py2='python2'
 alias py3='python3'
@@ -158,14 +153,6 @@ ztset() {
 alias '~'='egrep'
 alias '~~'='egrep -i'
 -() { cd -; }
-[() {
-	if [[ $# -eq 0 || "${@:$#}" == "]" ]]; then
-		builtin [ "$@"
-	else
-		pushd "$*"
-	fi
-}
-]() { popd; }
 
 # dates
 
