@@ -38,7 +38,4 @@ set ftp:charset/212.164.230.75 "cp1251"
 #set ftp:prefer-epsv yes
 #set ftp:prefer-epsv/ftp.ukolegija.lt no
 
-set ftp:sync-mode no
-set ftp:sync-mode/gein.vistech.net yes
-
 set ftp:use-mlsd yes
