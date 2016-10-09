@@ -106,7 +106,8 @@
 
 [credential]
 	helper = cache --socket $XDG_RUNTIME_DIR/git-credential-cache
-	helper = store
+	#helper = gnome-keyring
+	helper = readonly -e store
 	useHttpPath = false
 
 [diff]
@@ -147,6 +148,7 @@
 
 [http]
 	cookieFile = /home/grawity/.config/git/cookies
+	delegation = policy
 
 [init]
 	templateDir = ~/.config/git/template
