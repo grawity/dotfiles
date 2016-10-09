@@ -48,6 +48,12 @@ hostname.bind() { do: dig +short "${@:2}" "@$1" "$FUNCNAME." TXT CH; }
 version.bind() { do: dig +short "${@:2}" "@$1" "$FUNCNAME." TXT CH; }
 alias hup='pkill -HUP -x'
 alias init='telinit' # for systemd
+iwlink() {
+	local dev=${1:-wlan0}
+	iw $dev info && echo &&
+	iw $dev link && echo &&
+	iw $dev station dump
+}
 alias kssh='ssh \
 	-o PreferredAuthentications=gssapi-keyex,gssapi-with-mic \
 	-o GSSAPIAuthentication=yes \
@@ -99,7 +105,7 @@ alias py2='python2'
 alias py3='python3'
 alias qrdecode='zbarimg --quiet --raw'
 alias rd='rmdir'
-alias rdu='du -hsc */ | awk "\$1 !~ /K/" | sort -h'
+alias rdu='du -hsc */ | awk "\$1 !~ /K/" | sort -h' # TODO: args
 alias re='hash -r && SILENT=1 . ~/.bashrc && echo reloaded .bashrc && :'
 alias ere='set -a && . ~/.profile && set +a && echo reloaded .profile && :'
 ressh() { ssh -v \
