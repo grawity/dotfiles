@@ -147,7 +147,7 @@ wim() { local file=$(which "$1") && [[ $file ]] && editor "$file" "${@:2}"; }
 alias unwine='printf "\e[?1l \e>"'
 alias xf='ps xf -O ppid'
 alias xx='chmod a+rx'
-alias ypiv='yubico-piv-tool'
+alias ykpiv='yubico-piv-tool'
 alias zt1='zerotier-cli'
 ztset() {
 	if [[ $1 != 8056c2e21c?????? ]]; then
