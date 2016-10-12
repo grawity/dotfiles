@@ -189,26 +189,10 @@ nnoremap k gk
 inoremap <C-Down> <Esc>gja
 inoremap <C-Up> <Esc>gka
 
-inoremap <F1> <Esc>
-nnoremap <F1> <Esc>
-vnoremap <F1> <Esc>
-
 nnoremap ; :
 nnoremap q :q
 nnoremap Q <nop>
 nnoremap K <nop>
-
-" CUA cut/copy, non-CUA paste
-"vmap <C-x> "pd
-"nmap <C-x> "pdiw
-"vmap <C-c> "py
-"nmap <C-c> "pyiw
-"vmap <C-p> "pP
-nmap <C-p> "+gp
-imap <C-p> <Esc>"+gpa
-
-nmap ,s :source $MYVIMRC<CR>
-nmap ,e :e $MYVIMRC<CR>
 
 if $TERM =~ "^xterm"
 	" Ctrl-(Left/Right)
