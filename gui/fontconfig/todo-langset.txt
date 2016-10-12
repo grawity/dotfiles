@@ -1,0 +1,90 @@
+commit 3c862aad9f49be4b098cb679a67449c85b58f1f5
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Dec 6 12:38:18 2010 +0900
+
+    Add editing langset feature.
+    
+    The syntax to add any langset to the langset table looks like:
+    
+    <match target="scan">
+        <test name="family">
+            <string>Buggy Sans</string>
+        </test>
+        <edit name="lang" mode="assign">
+            <plus>
+                <name>lang</name>
+                <langset>
+                    <string>zh-cn</string>
+                    <string>zh-tw</string>
+                </langset>
+            </plus>
+        </edit>
+    </match>
+    
+    To remove any langset from the langset table:
+    
+    <match target="scan">
+        <test name="family">
+            <string>Buggy Sans</string>
+        </test>
+        <edit name="lang" mode="assign">
+            <minus>
+                <name>lang</name>
+                <langset>
+                    <string>ja</string>
+                </langset>
+            </minus>
+        </edit>
+    </match>
+
+commit 857b7efe1e301f670329c6836da52fbab8c5df66
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Dec 6 12:10:17 2010 +0900
+
+    Add charset editing feature.
+    
+    The syntax to add any characters to the charset table looks like:
+    
+    <match target="scan">
+        <test name="family">
+            <string>Buggy Sans</string>
+        </test>
+        <edit name="charset" mode="assign">
+            <plus>
+                <name>charset</name>
+                <charset>
+                    <int>0x3220</int>    <!-- PARENTHESIZED IDEOGRAPH ONE -->
+                </charset>
+            </plus>
+        </edit>
+    </match>
+    
+    To remove any characters from the charset table:
+    
+    <match target="scan">
+        <test name="family">
+            <string>Buggy Sans</string>
+        </test>
+        <edit name="charset" mode="assign">
+            <minus>
+                <name>charset</name>
+                <charset>
+                    <int>0x06CC</int>    <!-- ARABIC LETTER FARSI YEH -->
+                    <int>0x06D2</int>    <!-- ARABIC LETTER YEH BARREE -->
+                    <int>0x06D3</int>    <!-- ARABIC LETTER YEH BARREE WITH HAMZA ABOVE -->
+                </charset>
+            </minus>
+        </edit>
+    </match>
+    
+    You could also use the range element for convenience:
+    
+    ...
+                <charset>
+                    <int>0x06CC</int>    <!-- ARABIC LETTER FARSI YEH -->
+                    <range>
+                        <int>0x06D2</int>    <!-- ARABIC LETTER YEH BARREE -->
+                        <int>0x06D3</int>    <!-- ARABIC LETTER YEH BARREE WITH HAMZA ABOVE -->
+                    </range>
+                </charset>
+    ...
