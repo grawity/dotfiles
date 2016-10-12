@@ -126,6 +126,7 @@ endif
 
 """ Text editing
 
+" tabs
 set tabstop=8
 set softtabstop=4
 set shiftwidth=8
@@ -134,9 +135,16 @@ set autoindent
 set smartindent
 set nocindent
 set cinkeys=0{,0},0),:,!,o,O,e
-set formatoptions=tcrqnj
-set gdefault
 
+" allow backspacing over everything
+set backspace=indent,eol,start
+" t,c: auto-wrap text, comments according to textwidth
+" r,o: insert comment leader after Return, o/O
+" q: allow gq to format comments
+" n: detect numbered lists
+" j: remove comment leader when joining
+set formatoptions=tcrqnj
+" don't recognize S-lang comment leaders, X11 crazy stuff
 set comments-=:%
 set comments-=:XCOMM
 
@@ -148,8 +156,9 @@ silent! set listchars=eol:¬,tab:→.,extends:»,precedes:«,trail:•
 
 set incsearch
 set nohlsearch
-set ignorecase
-set smartcase
+set ignorecase	    " enable //i by default
+set smartcase	    " ignorecase unless upper-case was used
+set gdefault	    " enable s///g by default
 
 """ Keyboard and custom commands
 
@@ -163,6 +172,9 @@ nnoremap ; :
 nnoremap K <nop>
 nnoremap q :q
 nnoremap Q gq
+
+" stop smartindent from auto-unindenting when # is input
+inoremap # X#
 
 " navigate visible lines, not physical lines
 nnoremap k gk
@@ -241,6 +253,11 @@ if $TERM =~ "^xterm"
 	lmap <Esc>OS -
 endif
 
+" copied from defaults.vim – timeout key codes
+
+set ttimeout		" time out for key codes
+set ttimeoutlen=100	" wait up to 100ms after Esc for special key
+
 """ File-specific behavior
 
 if has("autocmd")
@@ -257,17 +274,11 @@ if has("autocmd")
 	\ 0r %:h/_template.html
 endif
 
-""" Still not sorted
-
-set backspace=indent,eol,start
-" prevent auto-unindenting on pressing # (by smartindent)
-inoremap # X#
+""" Plugins
 
 func! JoinPara()
 	:g/^\S/ .,/^$/-1 join
 endfunc
-
-""" Plugins
 
 call pathogen#infect()
 
