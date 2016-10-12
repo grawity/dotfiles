@@ -176,9 +176,6 @@ inoremap <C-Down> <Esc>gja
 nnoremap <Tab> %
 vnoremap <Tab> %
 
-" display Command-T
-nnoremap <C-t> :CommandT<CR>
-
 " list buffers
 nnoremap <Leader>l :ls<CR>:b<Space>
 " rename word under cursor
