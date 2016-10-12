@@ -244,28 +244,16 @@ endif
 """ File-specific behavior
 
 if has("autocmd")
-	au BufNewFile,BufRead
-	\ COMMIT_EDITMSG,git-rebase-todo
+	au BufNewFile,BufRead COMMIT_EDITMSG,git-rebase-todo
 	\ setl nomodeline
 
-	au BufNewFile,BufRead
-	\ /etc/motd
+	au BufNewFile,BufRead /etc/motd
 	\ setl et
 
-	au BufNewFile,BufRead
-	\ authorized_keys,authorized_keys.*,known_hosts,id_*.pub
-	\ setl wrap nolinebreak
+	au BufNewFile,BufRead authorized_keys*,known_hosts,id_*.pub
+	\ setl ft=conf wrap nolinebreak
 
-	au BufNewFile,BufRead
-	\ authorized_keys.*
-	\ set ft=conf
-
-	au BufReadPost
-	\ host-acls
-	\ %!sexp-conv -w 0
-
-	au! BufNewFile
-	\ */_posts/2*.html
+	au! BufNewFile */_posts/2*.html
 	\ 0r %:h/_template.html
 endif
 
