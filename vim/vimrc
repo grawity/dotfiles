@@ -253,10 +253,7 @@ if $TERM =~ "^xterm"
 	lmap <Esc>OS -
 endif
 
-" copied from defaults.vim – timeout key codes
-
-set ttimeout		" time out for key codes
-set ttimeoutlen=100	" wait up to 100ms after Esc for special key
+set nottimeout		" disable timeout for key codes (enabled by defaults.vim)
 
 """ File-specific behavior
 
