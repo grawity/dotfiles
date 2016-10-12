@@ -160,9 +160,9 @@ if &term != "builtin_gui"
 endif
 
 nnoremap ; :
-nnoremap q :q
-nnoremap Q <nop>
 nnoremap K <nop>
+nnoremap q :q
+nnoremap Q gq
 
 " navigate visible lines, not physical lines
 nnoremap k gk
