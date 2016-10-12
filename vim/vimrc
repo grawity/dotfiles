@@ -159,6 +159,26 @@ if &term != "builtin_gui"
 	set iminsert=1
 endif
 
+nnoremap ; :
+nnoremap q :q
+nnoremap Q <nop>
+nnoremap K <nop>
+
+" navigate visible lines, not physical lines
+nnoremap k gk
+nnoremap j gj
+nnoremap <Up> gk
+nnoremap <Down> gj
+inoremap <C-Up> <Esc>gka
+inoremap <C-Down> <Esc>gja
+
+" jump between parens
+nnoremap <Tab> %
+vnoremap <Tab> %
+
+" display Command-T
+nnoremap <C-t> :CommandT<CR>
+
 " list buffers
 nnoremap <Leader>l :ls<CR>:b<Space>
 " rename word under cursor
@@ -169,30 +189,12 @@ nnoremap <Leader>s :set spell!<CR>
 nnoremap <Leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 " display Tagbar
 nnoremap <Leader>t :TagbarToggle<CR>
-" display Command-T
-nnoremap <C-t> :CommandT<CR>
 " reselect pasted text
 nnoremap <Leader>v `[V`]
 " rewrap current paragraph
 nnoremap <Leader>w gq}
 " strip trailing whitespace
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=""<CR>
-
-nnoremap <Tab> %
-vnoremap <Tab> %
-
-nnoremap <Down> gj
-nnoremap <Up> gk
-nnoremap j gj
-nnoremap k gk
-
-inoremap <C-Down> <Esc>gja
-inoremap <C-Up> <Esc>gka
-
-nnoremap ; :
-nnoremap q :q
-nnoremap Q <nop>
-nnoremap K <nop>
 
 if $TERM =~ "^xterm"
 	" Ctrl-(Left/Right)
