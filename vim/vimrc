@@ -243,29 +243,31 @@ endif
 
 """ File-specific behavior
 
-silent! au BufNewFile,BufRead
-\ COMMIT_EDITMSG,git-rebase-todo
-\ setl nomodeline
+if has("autocmd")
+	au BufNewFile,BufRead
+	\ COMMIT_EDITMSG,git-rebase-todo
+	\ setl nomodeline
 
-silent! au BufNewFile,BufRead
-\ /etc/motd
-\ setl et
+	au BufNewFile,BufRead
+	\ /etc/motd
+	\ setl et
 
-silent! au BufNewFile,BufRead
-\ authorized_keys,authorized_keys.*,known_hosts,id_*.pub
-\ setl wrap nolinebreak
+	au BufNewFile,BufRead
+	\ authorized_keys,authorized_keys.*,known_hosts,id_*.pub
+	\ setl wrap nolinebreak
 
-silent! au BufNewFile,BufRead
-\ authorized_keys.*
-\ set ft=conf
+	au BufNewFile,BufRead
+	\ authorized_keys.*
+	\ set ft=conf
 
-silent! au BufReadPost
-\ host-acls
-\ %!sexp-conv -w 0
+	au BufReadPost
+	\ host-acls
+	\ %!sexp-conv -w 0
 
-au! BufNewFile
-\ */_posts/2*.html
-\ 0r %:h/_template.html
+	au! BufNewFile
+	\ */_posts/2*.html
+	\ 0r %:h/_template.html
+endif
 
 """ Still not sorted
 
