@@ -75,6 +75,8 @@ if &t_Co > 16
 	setl cursorline
 	au WinEnter * setl cursorline
 	au WinLeave * setl nocursorline
+	au FocusGained * setl cursorline
+	au FocusLost * setl nocursorline
 endif
 
 set wildmenu
