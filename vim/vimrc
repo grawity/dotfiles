@@ -164,10 +164,6 @@ set gdefault	    " enable s///g by default
 
 com! -complete=file -bang -nargs=? W :w<bang> <args>
 
-if &term != "builtin_gui"
-	set iminsert=1
-endif
-
 nnoremap ; :
 nnoremap K <nop>
 nnoremap q :q
@@ -205,37 +201,27 @@ nnoremap <Leader>w gq}
 " strip trailing whitespace
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=""<CR>
 
-if $TERM =~ "^xterm"
-	" Ctrl-(Left/Right)
-	map <Esc>OA <Esc>[1A
-	map <Esc>OB <Esc>[1B
-	map <Esc>OC <Esc>[1C
-	map <Esc>OD <Esc>[1D
-	map! <Esc>OA <Esc>[1A
-	map! <Esc>OB <Esc>[1B
-	map! <Esc>OC <Esc>[1C
-	map! <Esc>OD <Esc>[1D
+" fix application-numpad mode in PuTTY
+" (neovim does not activate it by default)
+if !has("nvim") && $TERM =~ "^xterm"
+	set iminsert=1
 
-	" PuTTY madness
-	map <Esc>[C <S-Right>
-	map <Esc>[D <S-Left>
+	map! <Esc>Ol +
+	map! <Esc>On .
+	map! <Esc>Op 0
+	map! <Esc>Oq 1
+	map! <Esc>Or 2
+	map! <Esc>Os 3
+	map! <Esc>Ot 4
+	map! <Esc>Ou 5
+	map! <Esc>Ov 6
+	map! <Esc>Ow 7
+	map! <Esc>Ox 8
+	map! <Esc>Oy 9
+	map! <Esc>OQ /
+	map! <Esc>OR *
+	map! <Esc>OS -
 
-	" Application keypad
-	map <Esc>Ol +
-	map <Esc>On .
-	map <Esc>Op 0
-	map <Esc>Oq 1
-	map <Esc>Or 2
-	map <Esc>Os 3
-	map <Esc>Ot 4
-	map <Esc>Ou 5
-	map <Esc>Ov 6
-	map <Esc>Ow 7
-	map <Esc>Ox 8
-	map <Esc>Oy 9
-	map <Esc>OQ /
-	map <Esc>OR *
-	map <Esc>OS -
 	lmap <Esc>Ol +
 	lmap <Esc>On .
 	lmap <Esc>Op 0
