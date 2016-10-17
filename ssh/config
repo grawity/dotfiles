@@ -8,20 +8,6 @@
 IgnoreUnknown CanonicalDomains,CanonicalizeHostname,GSSAPIKeyExchange,PubkeyAcceptedKeyTypes
 #endif
 
-# host aliases
-
-Host frost/m7
-	HostName frost.nullroute.eu.org
-	ProxyCommand ssh -W [2001:778:e27f:a22:3f2f:dbc0:52ea:8359]:22 uk-pf-m7
-
-Host frost/m7c
-	HostName frost.nullroute.eu.org
-	ProxyCommand ssh -W 10.36.0.6:22 uk-pf-m7
-
-Host frost/sky
-	HostName frost.nullroute.eu.org
-	ProxyCommand ssh -W 172.16.42.10:22 sky
-
 # work
 
 Host ukradius
