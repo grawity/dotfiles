@@ -302,6 +302,8 @@ man() {
 		curl -LsfS "$1" | command man /dev/stdin
 	elif [[ $1 == *.[0-9]* && $1 != */* && ! $2 && -f $1 ]]; then
 		command man "./$1"
+	elif [[ $1 == annex ]]; then
+		command man git-annex "${@:2}"
 	else
 		command man "$@"
 	fi
