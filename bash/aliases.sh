@@ -8,15 +8,12 @@ editor() { command ${EDITOR:-vi} "$@"; }
 browser() { command ${BROWSER:-lynx} "$@"; }
 pager() { command ${PAGER:-more} "$@"; }
 
-alias annex-wanted='git annex find --want-get --not --in .'
-alias annex-unwanted='git annex find --want-drop --in .'
 alias bat='acpi -i'
 alias cal='cal -m'
 catsexp() { cat "$@" | sexp-conv -w $((COLUMNS-1)); }
 alias cindex='env TMPDIR=/var/tmp cindex'
 alias cpans='PERL_MM_OPT= PERL_MB_OPT= cpanm --sudo'
 count() { sort "$@" | uniq -c | sort -n -r | pager; }
-alias csearch='csearch -n'
 alias demo='PS1="\\n\\$ "'
 dist/head() {
 	echo -e "\e[1m== ~/code\e[m"
@@ -26,7 +23,7 @@ dist/head() {
 	(cd ~/lib/dotfiles && git tip)
 }
 dist/pull() { ~/code/dist/pull "$@" && SILENT=1 . ~/.profile; }
-alias dnstracer='dnstracer -s .'
+alias dnstrace='dnstracer -s .'
 alias ed='ed -p:'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
 alias ccard-tool='pkcs11-tool --module libccpkip11.so'
@@ -51,6 +48,12 @@ hostname.bind() { do: dig +short "${@:2}" "@$1" "$FUNCNAME." TXT CH; }
 version.bind() { do: dig +short "${@:2}" "@$1" "$FUNCNAME." TXT CH; }
 alias hup='pkill -HUP -x'
 alias init='telinit' # for systemd
+iwlink() {
+	local dev=${1:-wlan0}
+	iw $dev info && echo &&
+	iw $dev link && echo &&
+	iw $dev station dump
+}
 alias kssh='ssh \
 	-o PreferredAuthentications=gssapi-keyex,gssapi-with-mic \
 	-o GSSAPIAuthentication=yes \
@@ -97,14 +100,12 @@ mv() {
 }
 alias nmap='nmap --reason'
 alias nm-con='nmcli -f name,type,autoconnect,state,device con'
-alias pamcan='pacman'
-path() { if (( $# )); then which -a "$@"; else echo "${PATH//:/$'\n'}"; fi; }
 alias py='python'
 alias py2='python2'
 alias py3='python3'
 alias qrdecode='zbarimg --quiet --raw'
 alias rd='rmdir'
-alias rdu='du -hsc */ | awk "\$1 !~ /K/" | sort -h'
+alias rdu='du -hsc */ | awk "\$1 !~ /K/" | sort -h' # TODO: args
 alias re='hash -r && SILENT=1 . ~/.bashrc && echo reloaded .bashrc && :'
 alias ere='set -a && . ~/.profile && set +a && echo reloaded .profile && :'
 ressh() { ssh -v \
@@ -128,7 +129,6 @@ alias tidiff='infocmp -Ld'
 alias todo:='todo "$(_thiscommand todo:)" #'
 alias traceroute='traceroute --extensions'
 alias tracert='traceroute --icmp --mtu'
-alias tree='tree --dirsfirst'
 alias treedu='tree --du -h'
 up() { local p i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
 vercmp() {
@@ -147,7 +147,7 @@ wim() { local file=$(which "$1") && [[ $file ]] && editor "$file" "${@:2}"; }
 alias unwine='printf "\e[?1l \e>"'
 alias xf='ps xf -O ppid'
 alias xx='chmod a+rx'
-alias ypiv='yubico-piv-tool'
+alias ykpiv='yubico-piv-tool'
 alias zt1='zerotier-cli'
 ztset() {
 	if [[ $1 != 8056c2e21c?????? ]]; then
@@ -158,14 +158,6 @@ ztset() {
 alias '~'='egrep'
 alias '~~'='egrep -i'
 -() { cd -; }
-[() {
-	if [[ $# -eq 0 || "${@:$#}" == "]" ]]; then
-		builtin [ "$@"
-	else
-		pushd "$*"
-	fi
-}
-]() { popd; }
 
 # dates
 
@@ -239,8 +231,10 @@ alias egrep='egrep $grepopt'
 alias fgrep='fgrep $grepopt'
 
 lsopt="-F -h"
+treeopt="--dirsfirst"
 if (( UID == 0 )); then
 	lsopt="$lsopt -a"
+	treeopt="$treeopt -a"
 fi
 case $OSTYPE in
 	linux-gnu*|cygwin)
@@ -275,6 +269,8 @@ case $OSTYPE in
 esac
 alias ls="ls $lsopt"
 unset lsopt
+alias tree="tree $treeopt"
+unset treeopt
 
 alias who='who -HT'
 

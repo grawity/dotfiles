@@ -75,6 +75,8 @@ if &t_Co > 16
 	setl cursorline
 	au WinEnter * setl cursorline
 	au WinLeave * setl nocursorline
+	au FocusGained * setl cursorline
+	au FocusLost * setl nocursorline
 endif
 
 set wildmenu
@@ -126,17 +128,25 @@ endif
 
 """ Text editing
 
+" tabs
 set tabstop=8
-"set softtabstop=8
+set softtabstop=4
 set shiftwidth=8
-set smarttab
+set smarttab copyindent preserveindent
 set autoindent
 set smartindent
 set nocindent
 set cinkeys=0{,0},0),:,!,o,O,e
-set formatoptions=tcrqnj
-set gdefault
 
+" allow backspacing over everything
+set backspace=indent,eol,start
+" t,c: auto-wrap text, comments according to textwidth
+" r,o: insert comment leader after Return, o/O
+" q: allow gq to format comments
+" n: detect numbered lists
+" j: remove comment leader when joining
+set formatoptions=tcrqnj
+" don't recognize S-lang comment leaders, X11 crazy stuff
 set comments-=:%
 set comments-=:XCOMM
 
@@ -148,16 +158,33 @@ silent! set listchars=eol:¬,tab:→.,extends:»,precedes:«,trail:•
 
 set incsearch
 set nohlsearch
-set ignorecase
-set smartcase
+set ignorecase	    " enable //i by default
+set smartcase	    " ignorecase unless upper-case was used
+set gdefault	    " enable s///g by default
 
 """ Keyboard and custom commands
 
 com! -complete=file -bang -nargs=? W :w<bang> <args>
 
-if &term != "builtin_gui"
-	set iminsert=1
-endif
+nnoremap ; :
+nnoremap K <nop>
+nnoremap q :q
+nnoremap Q gq
+
+" stop smartindent from auto-unindenting when # is input
+inoremap # X#
+
+" navigate visible lines, not physical lines
+nnoremap k gk
+nnoremap j gj
+nnoremap <Up> gk
+nnoremap <Down> gj
+inoremap <C-Up> <Esc>gka
+inoremap <C-Down> <Esc>gja
+
+" jump between parens
+nnoremap <Tab> %
+vnoremap <Tab> %
 
 " list buffers
 nnoremap <Leader>l :ls<CR>:b<Space>
@@ -169,8 +196,6 @@ nnoremap <Leader>s :set spell!<CR>
 nnoremap <Leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 " display Tagbar
 nnoremap <Leader>t :TagbarToggle<CR>
-" display Command-T
-nnoremap <C-t> :CommandT<CR>
 " reselect pasted text
 nnoremap <Leader>v `[V`]
 " rewrap current paragraph
@@ -178,69 +203,27 @@ nnoremap <Leader>w gq}
 " strip trailing whitespace
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=""<CR>
 
-nnoremap <Tab> %
-vnoremap <Tab> %
+" fix application-numpad mode in PuTTY
+" (neovim does not activate it by default)
+if !has("nvim") && $TERM =~ "^xterm"
+	set iminsert=1
 
-nnoremap <Down> gj
-nnoremap <Up> gk
-nnoremap j gj
-nnoremap k gk
+	map! <Esc>Ol +
+	map! <Esc>On .
+	map! <Esc>Op 0
+	map! <Esc>Oq 1
+	map! <Esc>Or 2
+	map! <Esc>Os 3
+	map! <Esc>Ot 4
+	map! <Esc>Ou 5
+	map! <Esc>Ov 6
+	map! <Esc>Ow 7
+	map! <Esc>Ox 8
+	map! <Esc>Oy 9
+	map! <Esc>OQ /
+	map! <Esc>OR *
+	map! <Esc>OS -
 
-inoremap <C-Down> <Esc>gja
-inoremap <C-Up> <Esc>gka
-
-inoremap <F1> <Esc>
-nnoremap <F1> <Esc>
-vnoremap <F1> <Esc>
-
-nnoremap ; :
-nnoremap q :q
-nnoremap Q <nop>
-nnoremap K <nop>
-
-" CUA cut/copy, non-CUA paste
-"vmap <C-x> "pd
-"nmap <C-x> "pdiw
-"vmap <C-c> "py
-"nmap <C-c> "pyiw
-"vmap <C-p> "pP
-nmap <C-p> "+gp
-imap <C-p> <Esc>"+gpa
-
-nmap ,s :source $MYVIMRC<CR>
-nmap ,e :e $MYVIMRC<CR>
-
-if $TERM =~ "^xterm"
-	" Ctrl-(Left/Right)
-	map <Esc>OA <Esc>[1A
-	map <Esc>OB <Esc>[1B
-	map <Esc>OC <Esc>[1C
-	map <Esc>OD <Esc>[1D
-	map! <Esc>OA <Esc>[1A
-	map! <Esc>OB <Esc>[1B
-	map! <Esc>OC <Esc>[1C
-	map! <Esc>OD <Esc>[1D
-
-	" PuTTY madness
-	map <Esc>[C <S-Right>
-	map <Esc>[D <S-Left>
-
-	" Application keypad
-	map <Esc>Ol +
-	map <Esc>On .
-	map <Esc>Op 0
-	map <Esc>Oq 1
-	map <Esc>Or 2
-	map <Esc>Os 3
-	map <Esc>Ot 4
-	map <Esc>Ou 5
-	map <Esc>Ov 6
-	map <Esc>Ow 7
-	map <Esc>Ox 8
-	map <Esc>Oy 9
-	map <Esc>OQ /
-	map <Esc>OR *
-	map <Esc>OS -
 	lmap <Esc>Ol +
 	lmap <Esc>On .
 	lmap <Esc>Op 0
@@ -258,50 +241,29 @@ if $TERM =~ "^xterm"
 	lmap <Esc>OS -
 endif
 
+set nottimeout		" disable timeout for key codes (enabled by defaults.vim)
+
 """ File-specific behavior
 
-silent! au BufNewFile,BufRead
-\ COMMIT_EDITMSG,git-rebase-todo
-\ setl nomodeline
+if has("autocmd")
+	au BufNewFile,BufRead COMMIT_EDITMSG,git-rebase-todo
+	\ setl nomodeline
 
-silent! au BufNewFile,BufRead
-\ /etc/motd
-\ setl et
+	au BufNewFile,BufRead /etc/motd
+	\ setl et
 
-silent! au BufNewFile,BufRead
-\ authorized_keys,authorized_keys.*,known_hosts,id_*.pub
-\ setl wrap nolinebreak
+	au BufNewFile,BufRead authorized_keys*,known_hosts,id_*.pub
+	\ setl ft=conf wrap nolinebreak
 
-silent! au BufNewFile,BufRead
-\ authorized_keys.*
-\ set ft=conf
+	au! BufNewFile */_posts/2*.html
+	\ 0r %:h/_template.html
+endif
 
-silent! au BufReadPost
-\ host-acls
-\ %!sexp-conv -w 0
-
-au! BufNewFile
-\ */_posts/2*.html
-\ 0r %:h/_template.html
-
-""" Still not sorted
-
-set backspace=indent,eol,start
-" prevent auto-unindenting on pressing # (by smartindent)
-inoremap # X#
+""" Plugins
 
 func! JoinPara()
 	:g/^\S/ .,/^$/-1 join
 endfunc
-
-""" Plugins
-
-let g:gitgutter_sign_column_always=1
-let g:gitgutter_eager=0
-
-if &term !~ "^\\(xterm\\|builtin_gui\\)\\(-\\|$\\)"
-	let g:Powerline_loaded = 1
-endif
 
 call pathogen#infect()
 
