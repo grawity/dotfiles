@@ -29,6 +29,7 @@ augroup filetypedetect
 	au BufNewFile,BufRead *.inf setf dosini
 	au BufNewFile,BufRead *.pkla,*.pkla~ setf dosini
 	au BufNewFile,BufRead *.url setf dosini
+	au BufNewFile,BufRead php.ini* setf dosini
 	au BufNewFile,BufRead /etc/dconf/db/* setf dosini
 	au BufNewFile,BufRead /etc/pacman.d/hooks/*.hook setf dosini
 	au BufNewFile,BufRead /usr/share/libalpm/hooks/*.hook setf dosini
