@@ -87,6 +87,7 @@ mir() { wget -m -np --reject-regex='.*\?C=.;O=.$' "$@"; }
 alias mkcert='mkcsr -x509 -days 3650'
 alias mkcsr='openssl req -new -sha256'
 mkmaildir() { mkdir -p "${@/%//cur}" "${@/%//new}" "${@/%//tmp}"; }
+mtr() { settitle "$HOSTNAME: mtr $*"; command mtr "$@"; }
 alias mtrr='mtr --report-wide --report-cycles 3 --aslookup --mpls'
 alias mutagen='mid3v2'
 mv() {
