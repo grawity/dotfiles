@@ -164,7 +164,7 @@ Host *.kyriasis.com
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-Host *.nullroute.eu.org *.home *.zt1
+Host *.nullroute.eu.org
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
@@ -174,6 +174,9 @@ Host *.nathan7.eu
 Host *.vistech.net
 	User grwty
 	ControlMaster no
+
+Host *.zt1
+	HostName %h.nullroute.eu.org
 
 # virtual machines on the laptop
 
@@ -209,5 +212,4 @@ Host *
 
 Match exec "test ! -e /var/lib/zerotier-one/iddb.d/b63fe35308"
 	Host *.zt1
-		HostName %h.nullroute.eu.org
 		ProxyJump wolke
