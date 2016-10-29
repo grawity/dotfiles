@@ -203,3 +203,11 @@ Host *
 	GSSAPIKeyExchange yes
 	SendEnv LANG TZ
 	ControlPath ~/.ssh/S.%r@%h:%p
+
+# zerotier reachability (not perfect, as iddb.d might have things cached even
+# after leaving, but networks.d is only readable by root)
+
+Match exec "test ! -e /var/lib/zerotier-one/iddb.d/b63fe35308"
+	Host *.zt1
+		HostName %h.nullroute.eu.org
+		ProxyJump wolke
