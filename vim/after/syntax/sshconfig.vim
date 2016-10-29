@@ -1,2 +1,7 @@
+syn keyword sshconfigKeyword CanonicalDomains
+syn keyword sshconfigKeyword CanonicalizeHostname
 syn keyword sshconfigKeyword IgnoreUnknown
+syn keyword sshconfigKeyword ProxyJump
 syn keyword sshconfigKeyword PubkeyAcceptedKeyTypes
+
+"syn keyword sshconfigHostSect Match
