@@ -178,6 +178,9 @@ Host *.vistech.net
 Host *.zt1
 	HostName %h.nullroute.eu.org
 
+Match host *.zt1.nullroute.eu.org exec "test ! -e /var/lib/zerotier-one/iddb.d/b63fe35308"
+	ProxyJump wolke
+
 # virtual machines on the laptop
 
 Host *.core
@@ -206,9 +209,3 @@ Host *
 	GSSAPIKeyExchange yes
 	SendEnv LANG TZ
 	ControlPath ~/.ssh/S.%r@%h:%p
-
-# zerotier reachability (not perfect, as iddb.d might have things cached even
-# after leaving, but networks.d is only readable by root)
-
-Match host *.zt1.nullroute.eu.org exec "test ! -e /var/lib/zerotier-one/iddb.d/b63fe35308"
-	ProxyJump wolke
