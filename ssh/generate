@@ -59,6 +59,7 @@ Version() {
 
 generate() {
 	echo "# GENERATED FILE, DO NOT BOTHER EDITING"
+	echo "# Updated on $(date) by $USER@$HOSTNAME"
 	cat "${input[@]}" 2>/dev/null | filter_file match_eval
 }
 
