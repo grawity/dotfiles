@@ -210,5 +210,5 @@ Host *
 # zerotier reachability (not perfect, as iddb.d might have things cached even
 # after leaving, but networks.d is only readable by root)
 
-Match host *.zt1 exec "test ! -e /var/lib/zerotier-one/iddb.d/b63fe35308"
+Match host *.zt1.nullroute.eu.org exec "test ! -e /var/lib/zerotier-one/iddb.d/b63fe35308"
 	ProxyJump wolke
