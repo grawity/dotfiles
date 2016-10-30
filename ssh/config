@@ -178,7 +178,7 @@ Host *.vistech.net
 Host *.zt1
 	HostName %h.nullroute.eu.org
 
-Match host *.zt1.nullroute.eu.org exec "test ! -e /var/lib/zerotier-one/iddb.d/b63fe35308"
+Match host *.zt1.nullroute.eu.org exec "test ! -e /var/lib/zerotier-one/networks.d/8056c2e21c288b81.conf"
 	ProxyJump wolke
 
 # virtual machines on the laptop
