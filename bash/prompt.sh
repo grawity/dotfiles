@@ -19,7 +19,7 @@ case $TERM in
 	[xkE]term*|rxvt*|cygwin|dtterm|termite)
 		titlestring='\e]0;%s\a';
 		wnamestring=;;
-	screen*)
+	screen*|tmux*)
 		titlestring='\e]0;%s\a';
 		wnamestring='\ek%s\e\\';;
 	*)
