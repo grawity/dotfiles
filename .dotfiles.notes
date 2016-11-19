@@ -277,7 +277,7 @@ Please also read <.environ.notes> if you find this file useful.
   - $XDG_CONFIG_HOME/mutt/ is the new default
 
 ~/.muttrc – XDG as of ??? (commit b4bab3bd08fc); other locations
-  - $XDG_CONFIG_HOME/mutt/ is the new default
+  - $XDG_CONFIG_HOME/mutt/muttrc is the new default
   - ~/.mutt/muttrc is an alternate path
   - "-F <path>" option exists
 
