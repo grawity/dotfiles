@@ -273,7 +273,11 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.mtoolsrc – environment
   - $MTOOLSRC is additionally used
 
-~/.muttrc – other locations
+~/.mutt/ – XDG as of ??? (commit b4bab3bd08fc)
+  - $XDG_CONFIG_HOME/mutt/ is the new default
+
+~/.muttrc – XDG as of ??? (commit b4bab3bd08fc); other locations
+  - $XDG_CONFIG_HOME/mutt/ is the new default
   - ~/.mutt/muttrc is an alternate path
   - "-F <path>" option exists
 
