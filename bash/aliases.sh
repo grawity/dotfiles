@@ -349,7 +349,7 @@ sslcert() {
 		tlsg "$host" "$port" --insecure --print-cert
 	elif have openssl; then
 		tlso "$host" "$port" -showcerts
-	fi
+	fi < /dev/null
 }
 
 x509fp() {

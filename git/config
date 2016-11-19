@@ -107,6 +107,7 @@
 [credential]
 	helper = cache --socket $XDG_RUNTIME_DIR/git-credential-cache
 	#helper = gnome-keyring
+	#helper = libsecret
 	helper = readonly -e store
 	useHttpPath = false
 
