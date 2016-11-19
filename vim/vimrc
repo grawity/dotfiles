@@ -48,11 +48,6 @@ else
 	silent! color slate
 endif
 
-" For gitgutter, make sign column look the same as number
-" column, as zenburn sets it to something crazy
-highlight clear SignColumn
-highlight link SignColumn GitGutterChange
-
 let solarized=0
 
 " UI elements
