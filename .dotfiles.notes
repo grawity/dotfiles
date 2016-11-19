@@ -260,7 +260,7 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.mpdconf – XDG as of 0.18; other locations, command line
   - $XDG_CONFIG_HOME/mpd/mpd.conf is the new default
-  - ~/.mpd/mpd.conf is an alternate path
+  - ~/.mpd/mpd.conf is also supported
   - <path> accepted in command line
 
 ~/.mpv/ – XDG as of ??? (commit cb250d); environment
@@ -274,11 +274,11 @@ Please also read <.environ.notes> if you find this file useful.
   - $MTOOLSRC is additionally used
 
 ~/.mutt/ – XDG as of ??? (commit b4bab3bd08fc)
-  - $XDG_CONFIG_HOME/mutt/ is the new default
+  - $XDG_CONFIG_HOME/mutt/ is also supported
 
 ~/.muttrc – XDG as of ??? (commit b4bab3bd08fc); other locations
-  - $XDG_CONFIG_HOME/mutt/muttrc is the new default
-  - ~/.mutt/muttrc is an alternate path
+  - $XDG_CONFIG_HOME/mutt/muttrc is also supported
+  - ~/.mutt/muttrc is also supported
   - "-F <path>" option exists
 
 ~/.mysql_history – environment
