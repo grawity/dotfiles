@@ -273,11 +273,13 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.mtoolsrc – environment
   - $MTOOLSRC is additionally used
 
-~/.mutt/ – XDG as of ??? (commit b4bab3bd08fc)
-  - $XDG_CONFIG_HOME/mutt/ is also supported
-
 ~/.muttrc – XDG as of ??? (commit b4bab3bd08fc); other locations
-  - $XDG_CONFIG_HOME/mutt/muttrc is also supported
+  (mutt)
+  - as of b4bab3bd08fc, $XDG_CONFIG_HOME/mutt/muttrc is also supported
+  (neomutt)
+  - as of 239c0e93f8be, $XDG_CONFIG_HOME/neomutt/config is preferred
+  - ~/.mutt/neomuttrc is also supported
+  (all)
   - ~/.mutt/muttrc is also supported
   - "-F <path>" option exists
 
