@@ -145,6 +145,8 @@ set formatoptions=tcrqnj
 set comments-=:%
 set comments-=:XCOMM
 
+set clipboard+=unnamedplus
+
 set noshowmatch
 "silent! let loaded_matchparen=1
 silent! set listchars=eol:¬,tab:→.,extends:»,precedes:«,trail:•
