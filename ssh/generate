@@ -49,8 +49,8 @@ Version() {
 		else
 			debug "compare $minhead = $curhead, continuing"
 		fi
-		minversion=${minversion#*.}.
-		curversion=${curversion#*.}.
+		minversion=${minversion#*.}
+		curversion=${curversion#*.}
 		(( ++loop > 10 )) && break
 	done
 }
