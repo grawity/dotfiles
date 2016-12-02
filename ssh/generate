@@ -35,24 +35,31 @@ Version() {
 				sed -rn 's/^\w+_([^ ,]+),? .*/\1/p')}
 	minversion=${minversion%p*}.
 	curversion=${curversion%p*}.
-	local loop=0
+	local minorig=$minversion curorig=$curversion
+	local minhead curhead loop=0
 
 	while [[ $minversion && $curversion ]]; do
-		local minhead=${minversion%%.*}
-		local curhead=${curversion%%.*}
-		if (( minhead > curhead )); then
-			debug "compare $minhead > $curhead, too old"
-			return 1
-		elif (( minhead < curhead )); then
-			debug "compare $minhead < $curhead, accepted"
-			return 0
-		else
-			debug "compare $minhead = $curhead, continuing"
-		fi
+		debug "comparing '$minversion' vs '$curversion'"
+		minhead=${minversion%%.*}
+		curhead=${curversion%%.*}
 		minversion=${minversion#*.}
 		curversion=${curversion#*.}
-		(( ++loop > 10 )) && break
+		if (( minhead > curhead )); then
+			debug "compare '$minhead' > '$curhead', too old"
+			return 1
+		elif (( minhead < curhead )); then
+			debug "compare '$minhead' < '$curhead', accepted"
+			return 0
+		else
+			debug "compare '$minhead' = '$curhead', continuing"
+		fi
+		if (( ++loop > 50 )); then
+			err "BUG: infinite loop while comparing '$minorig' vs '$curorig'"
+			return 1
+		fi
 	done
+	debug "all components identical, accepted"
+	return 0
 }
 
 # generator
