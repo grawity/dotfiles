@@ -48,7 +48,7 @@ hostname.bind() { do: dig +short "${@:2}" "@$1" "$FUNCNAME." TXT CH; }
 version.bind() { do: dig +short "${@:2}" "@$1" "$FUNCNAME." TXT CH; }
 alias hup='pkill -HUP -x'
 alias init='telinit' # for systemd
-iwlink() {
+iwstat() {
 	local dev=${1:-wlan0}
 	iw $dev info && echo &&
 	iw $dev link && echo &&
