@@ -79,11 +79,9 @@ alias ldapvi='ldapvi --bind sasl'
 alias lp='sudo netstat -lptu --numeric-hosts'
 alias lpt='sudo netstat -lpt --numeric-hosts'
 alias lpu='sudo netstat -lpu --numeric-hosts'
-lscsr() { openssl req -in "${1:-/dev/stdin}" -noout -text; }
 alias lsd='ls -d .*'
 lsftp() { lftp "sftp://$1"; }
 alias lspart='lsblk -o name,partlabel,size,fstype,label,mountpoint'
-mir() { wget -m -np --reject-regex='.*\?C=.;O=.$' "$@"; }
 alias mkcert='mkcsr -x509 -days 3650'
 alias mkcsr='openssl req -new -sha256'
 mkmaildir() { mkdir -p "${@/%//cur}" "${@/%//new}" "${@/%//tmp}"; }
@@ -148,14 +146,7 @@ wim() { local file=$(which "$1") && [[ $file ]] && editor "$file" "${@:2}"; }
 alias unwine='printf "\e[?1l \e>"'
 alias xf='ps xf -O ppid'
 alias xx='chmod a+rx'
-alias ykpiv='yubico-piv-tool'
 alias zt1='zerotier-cli'
-ztset() {
-	if [[ $1 != 8056c2e21c?????? ]]; then
-		set -- 8056c2e21c288b81 "$@"
-	fi
-	zt1 set "$@"
-}
 alias '~'='egrep'
 alias '~~'='egrep -i'
 -() { cd -; }
@@ -291,6 +282,14 @@ cat() {
 		curl -LsfS "$1"
 	else
 		command cat "$@"
+	fi
+}
+
+mksrcinfo() {
+	if have mksrcinfo; then
+		command mksrcinfo
+	else
+		makepkg --printsrcinfo > .SRCINFO || rm -f .SRCINFO
 	fi
 }
 
