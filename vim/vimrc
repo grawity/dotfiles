@@ -181,6 +181,10 @@ inoremap <C-Down> <Esc>gja
 nnoremap <Tab> %
 vnoremap <Tab> %
 
+if has("nvim")
+	tnoremap <Esc> <C-\><C-n>
+endif
+
 " list buffers
 nnoremap <Leader>l :ls<CR>:b<Space>
 " rename word under cursor
