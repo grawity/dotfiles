@@ -200,9 +200,11 @@ Host *.home *.local 10.* 192.168.* 10.0.0.0/8 192.168.0.0/16
 
 # global options
 
+#if [ -e ~/.ssh/id_rsa_2011-11-01 ]
 Host * !bazaar.launchpad.net
 	IdentityFile ~/.ssh/id_rsa_2011-11-01
 	IdentityFile ~/.ssh/id_ed25519_2015-05-15
+#endif
 
 Host *
 	CanonicalizeHostname yes
