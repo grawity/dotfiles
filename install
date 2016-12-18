@@ -160,9 +160,7 @@ if [ "$DISPLAY" ]; then
 	[ -d ~/.themes ]     || sym -f ~/.local/share/themes ~/.themes
 
 	if have fc-cache; then
-		link gui/fontconfig/fonts.conf ~/.config/fontconfig/fonts.conf
-		link gui/fontconfig/conf.avail ~/.config/fontconfig/conf.avail
-		dcopy gui/fontconfig/conf.d ~/.config/fontconfig/conf.d
+		link gui/fontconfig ~/.config/fontconfig
 	fi
 
 	if have openbox; then
