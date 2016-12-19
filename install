@@ -20,10 +20,8 @@ trash() {
 			trace "ignoring sticky $file"
 			continue
 		else
-			if [ ! -d "$trash" ]; then
-				mkdir -pm 0700 "$trash"
-			fi
 			echo "backing up $file -> $trash"
+			mkdir -pm 0700 "$trash"
 			mv "$file" "$trash/old_${file##*/}"
 		fi
 	done
