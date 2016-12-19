@@ -114,14 +114,6 @@ elif [ ! -e ~/.htoprc ]; then
 	cp htoprc ~/.config/htop/htoprc
 fi
 
-if [ -h ~/.gitconfig ] || ! git config --global github.user >/dev/null 2>&1; then
-	link git/config ~/.gitconfig
-fi
-
-if [ -h ~/.gitignore ]; then
-	link git/ignore ~/.gitignore
-fi
-
 (umask 077; touch ~/.config/git/credentials)
 
 if [ -h ~/.makepkg.conf ]; then
