@@ -116,10 +116,6 @@ fi
 
 (umask 077; touch ~/.config/git/credentials)
 
-if [ -h ~/.makepkg.conf ]; then
-	rm -f ~/.makepkg.conf
-fi
-
 if have makepkg; then
 	link pacman/makepkg.conf ~/.config/pacman/makepkg.conf
 fi
