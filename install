@@ -168,8 +168,8 @@ if [ "$DISPLAY" ]; then
 		link gui/openbox-autostart ~/.config/openbox/autostart
 	fi
 
-	if [ ! -f "$XDG_CONFIG_HOME/user-dirs.dirs" ]; then
-		cp gui/user-dirs.dirs "$XDG_CONFIG_HOME/user-dirs.dirs"
+	if [ ! -f ~/.config/user-dirs.dirs ]; then
+		cp gui/user-dirs.dirs ~/.config/user-dirs.dirs
 	fi
 fi
 
