@@ -14,12 +14,9 @@ progname='dotfiles/install'
 trash() {
 	local file
 	for file; do
-		if [ ! -e "$file" ]; then
-			continue
-		elif [ -k "$file" ]; then
+		if [ -k "$file" ]; then
 			trace "ignoring sticky $file"
-			continue
-		else
+		elif [ -e "$file" ] || [ -h "$file" ]; then
 			echo "backing up $file -> $trash"
 			mkdir -pm 0700 "$trash"
 			mv "$file" "$trash/old_${file##*/}"
