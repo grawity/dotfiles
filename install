@@ -64,21 +64,6 @@ link() {
 	sym -f "$target" "$link"
 }
 
-dcopy() {
-	local source=$dir/${1%/} dir=${2:-$HOME/.$1}
-	if [ ! -d "$source" ]; then
-		err "dcopy source is missing: $source"
-		return
-	elif [ -d "$dir" ]; then
-		trace "ignoring existing dir $dir"
-		return
-	else
-		mkdir -p "$dir"
-	fi
-	trace "copying $dir <- $source"
-	cp -r "$source"/* "$dir"
-}
-
 if [[ -t 0 ]]; then
 	VERBOSE=1
 fi
