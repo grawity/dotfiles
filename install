@@ -126,13 +126,20 @@ if [ "$DISPLAY" ]; then
 	fi
 fi
 
-badfiles=( ~/.*_history ~/.lesshst ~/.rnd )
+badfiles=( ~/.*_history ~/.lesshst ~/.rnd
+           ~/.config ~/.cache ~/.gnupg ~/.local/share )
 
 for f in "${badfiles[@]}"; do
-	if [ -e "$f" ] && [ ! -O "$f" ]; then
+	if [ -h "$f" ]; then
+		continue
+	elif [ -e "$f" ] && [ ! -O "$f" ]; then
 		trace "file '$f' not owned by me, replacing"
 		trash "$f"
-		touch "$f"
+		(umask 077; touch "$f")
+	elif [ -d "$f" ] && [ ! -O "$f" ]; then
+		trace "dir '$f' not owned by me, replacing"
+		trash "$f"
+		(umask 077; mkdir "$f")
 	fi
 done
 
