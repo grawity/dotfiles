@@ -1,0 +1,16 @@
+The load order is:
+
+  /etc/fonts/fonts.conf
+  ├─ /etc/fonts/conf.d/00…49-*.conf
+  ├─ /etc/fonts/conf.d/50-user.conf
+  │  ├─ ~/.config/fontconfig/conf.d/*.conf
+  │  └─ ~/.config/fontconfig/fonts.conf
+  └─ /etc/fonts/conf.d/51…99-*.conf
+
+In other words, per-user configuration files are loaded *after* the system-wide
+49-sansserif.conf and so on. This is different from how systemd stuff works!
+
+Remember this next time you're about to spend 15 minutes figuring out why an
+<alias> default is being ignored.
+
+-- 2016-12-18 grawity

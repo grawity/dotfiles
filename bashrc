@@ -19,6 +19,10 @@ fi
 export GPG_TTY=$(tty)
 export -n VTE_VERSION
 
+if [[ $SSH_CLIENT ]]; then
+	SELF=${SSH_CLIENT%% *}
+fi
+
 ### Interactive options
 
 [[ $- == *i* ]] || return 0

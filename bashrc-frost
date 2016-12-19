@@ -52,7 +52,7 @@ ecn() {
 
 ukip() {
 	local arg dev=eth0
-	for arg; do
+	for arg in "${@:-up}"; do
 		case $arg in
 		up)
 			do:   nmcli dev set $dev managed no
