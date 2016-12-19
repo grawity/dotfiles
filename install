@@ -20,17 +20,6 @@ trash() {
 			trace "ignoring sticky $file"
 			continue
 		else
-			local hash=$(sha1sum "$file" | awk '{print $1}')
-			if case $hash in
-				# Debian ~/.profile
-				79d58526d0e0bf4df4f01b383ed3f49c428aaa2a) true;;
-				# Debian ~/.bash_logout
-				dc216ac4a4c232815731979db6e494f315b507dd) true;;
-				*) false;;
-			esac; then
-				rm -f "$file"
-				continue
-			fi
 			if [ ! -d "$trash" ]; then
 				mkdir -pm 0700 "$trash"
 			fi
