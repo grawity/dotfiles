@@ -159,7 +159,7 @@ if [ "$DISPLAY" ]; then
 	[ -d ~/.fonts ]      || sym -f ~/.local/share/fonts  ~/.fonts
 	[ -d ~/.themes ]     || sym -f ~/.local/share/themes ~/.themes
 
-	if have fc-cache; then
+	if have fc-cache && [ ! -d ~/.config/fontconfig ]; then
 		link gui/fontconfig ~/.config/fontconfig
 	fi
 

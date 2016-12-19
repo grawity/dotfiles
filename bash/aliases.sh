@@ -9,7 +9,7 @@ browser() { command ${BROWSER:-lynx} "$@"; }
 pager() { command ${PAGER:-more} "$@"; }
 
 alias bat='acpi -i'
-alias cal='cal -m'
+alias cal='cal -m' # LC_TIME=en_DK.UTF-8
 catsexp() { cat "$@" | sexp-conv -w $((COLUMNS-1)); }
 alias cindex='env TMPDIR=/var/tmp cindex'
 alias cpans='PERL_MM_OPT= PERL_MB_OPT= cpanm --sudo'
