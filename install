@@ -126,4 +126,14 @@ if [ "$DISPLAY" ]; then
 	fi
 fi
 
+badfiles=( ~/.*_history ~/.lesshst ~/.rnd )
+
+for f in "${badfiles[@]}"; do
+	if [ -e "$f" ] && [ ! -O "$f" ]; then
+		trace "file '$f' not owned by me, replacing"
+		trash "$f"
+		touch "$f"
+	fi
+done
+
 exit 0
