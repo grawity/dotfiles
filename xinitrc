@@ -12,6 +12,8 @@ if [ ! "$SSH_AUTH_SOCK" ]; then
 		export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
 	elif have ssh-agent; then
 		exec ssh-agent ~/.xinitrc "$@" || exit
+	else
+		echo "error: no SSH agent" >&2; exit
 	fi
 fi
 
@@ -22,6 +24,8 @@ if [ ! "$DBUS_SESSION_BUS_ADDRESS" ]; then
 		exec dbus-run-session ~/.xinitrc "$@" || exit
 	elif have dbus-launch; then
 		exec dbus-launch --exit-with-session ~/.xinitrc "$@" || exit
+	else
+		echo "error: no D-Bus session bus" >&2; exit
 	fi
 fi
 
