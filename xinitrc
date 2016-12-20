@@ -10,6 +10,8 @@ cd ~
 if [ ! "$SSH_AUTH_SOCK" ]; then
 	if [ -S "$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh" ]; then
 		export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
+	elif [ -S "$XDG_RUNTIME_DIR/ssh-agent" ]; then
+		export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent"
 	elif have ssh-agent; then
 		exec ssh-agent ~/.xinitrc "$@" || exit
 	else
