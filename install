@@ -48,6 +48,23 @@ link() {
 	sym -f "$target" "$link"
 }
 
+check_owner() {
+	local f
+	for f in "$@"; do
+		if [ -h "$f" ]; then
+			continue
+		elif [ -e "$f" ] && [ ! -O "$f" ]; then
+			notice "file '$f' not owned by me, replacing"
+			trash "$f"
+			(umask 077; touch "$f")
+		elif [ -d "$f" ] && [ ! -O "$f" ]; then
+			notice "dir '$f' not owned by me, replacing"
+			trash "$f"
+			(umask 077; mkdir "$f")
+		fi
+	done
+}
+
 if [[ -t 0 ]]; then
 	VERBOSE=1
 fi
@@ -130,21 +147,8 @@ if [ "$DISPLAY" ]; then
 	fi
 fi
 
-badfiles=( ~/.*_history ~/.lesshst ~/.rnd
-           ~/.config ~/.cache ~/.gnupg ~/.local/share )
+## Check frequent root-ownership accidents
 
-for f in "${badfiles[@]}"; do
-	if [ -h "$f" ]; then
-		continue
-	elif [ -e "$f" ] && [ ! -O "$f" ]; then
-		trace "file '$f' not owned by me, replacing"
-		trash "$f"
-		(umask 077; touch "$f")
-	elif [ -d "$f" ] && [ ! -O "$f" ]; then
-		trace "dir '$f' not owned by me, replacing"
-		trash "$f"
-		(umask 077; mkdir "$f")
-	fi
-done
+check_owner ~/.*_history ~/.lesshst ~/.rnd ~/.cache ~/.config ~/.gnupg ~/.local/share
 
 exit 0
