@@ -1,0 +1,6 @@
+# ~/.config/radare2/radare2rc
+e asm.pseudo = true
+e cmd.stack = true
+e scr.truecolor = true
+e scr.utf8 = true
+eco xvilka

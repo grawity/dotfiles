@@ -90,6 +90,10 @@ if have msmtp; then
 	chmod 600 ~/.msmtprc
 fi
 
+if have radare2; then
+	link radare2rc ~/.config/radare2/radare2rc
+fi
+
 if have ssh; then
 	trace "updating $HOME/.ssh/config"
 	ssh/generate
