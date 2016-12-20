@@ -7,20 +7,22 @@ cd ~
 
 # ensure ssh-agent, session bus
 
-if [ ! "$SSH_AUTH_SOCK" ] && [ -S "$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh" ]; then
-	export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
+if [ ! "$SSH_AUTH_SOCK" ]; then
+	if [ -S "$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh" ]; then
+		export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
+	elif have ssh-agent; then
+		exec ssh-agent ~/.xinitrc "$@" || exit
+	fi
 fi
 
-if [ ! "$SSH_AUTH_SOCK" ] && have ssh-agent; then
-	exec ssh-agent ~/.xinitrc "$@" || exit
-fi
-
-if [ ! "$DBUS_SESSION_BUS_ADDRESS" ] && [ -S "$XDG_RUNTIME_DIR/bus" ]; then
-	export DBUS_SESSION_BUS_ADDRESS="$XDG_RUNTIME_DIR/bus"
-fi
-
-if [ ! "$DBUS_SESSION_BUS_ADDRESS" ] && have dbus-launch; then
-	exec dbus-launch --exit-with-session ~/.xinitrc "$@" || exit
+if [ ! "$DBUS_SESSION_BUS_ADDRESS" ]; then
+	if [ -S "$XDG_RUNTIME_DIR/bus" ]; then
+		export DBUS_SESSION_BUS_ADDRESS="$XDG_RUNTIME_DIR/bus"
+	elif have dbus-run-session; then
+		exec dbus-run-session ~/.xinitrc "$@" || exit
+	elif have dbus-launch; then
+		exec dbus-launch --exit-with-session ~/.xinitrc "$@" || exit
+	fi
 fi
 
 dbus-update-activation-environment --systemd DISPLAY XAUTHORITY
