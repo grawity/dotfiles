@@ -2,20 +2,9 @@
 
 set v15-compat
 
-# interface
-
 #set quiet
-#set bsdcompat
-
-# reading
-
+#set autosort=thread
 retain From To Sender Date Subject X-Bogosity
-
-# listing
-
-set autosort=thread
-
-# composing
 
 set ask
 unset askcc
@@ -24,51 +13,21 @@ set dot
 
 set indentprefix="> "
 set signature="~/.signature"
-
 set sendcharsets="utf-8"
-
-# mail storage
 
 set hold
 set keep
-
-# remote
 
 set sendmail="/usr/bin/msmtp"
 set sendmail-arguments="--read-envelope-from"
 set sendwait
 
-set pop3-use-starttls
-set imap-use-starttls
-set smtp-use-starttls
-
 account nullroute {
 	set from="grawity@nullroute.eu.org"
-	set folder="imap://grawity@mail.nullroute.eu.org"
-	set record="+Sent"
-	set imap-auth="gssapi"
-	#set smtp="mail.nullroute.eu.org:587"
-	#set smtp-auth="gssapi"
 }
-
 account gmail {
 	set from="grawity@gmail.com"
-	set folder="imaps://grawity%40gmail.com@imap.gmail.com"
-	#set smtp="grawity%40gmail.com@smtp.gmail.com:587"
-	#set smtp-auth="plain"
 }
-
 account ukolegija {
 	set from="mantas@utenos-kolegija.lt"
-	set folder="imaps://mantas@mail.utenos-kolegija.lt"
-	#set smtp="mail.utenos-kolegija.lt:587"
-	#set smtp-auth="plain"
 }
-
-source ~/.auth/nailrc
-
-# security
-
-set nss-config-dir="sql:$HOME/.pki/nssdb"
-set ssl-ca-dir="~/.pki/ca"
-set smime-ca-dir="~/.pki/ca"
