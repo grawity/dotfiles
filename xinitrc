@@ -7,8 +7,16 @@ cd ~
 
 # ensure ssh-agent, session bus
 
+if [ ! "$SSH_AUTH_SOCK" ] && [ -S "$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh" ]; then
+	export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
+fi
+
 if [ ! "$SSH_AUTH_SOCK" ] && have ssh-agent; then
 	exec ssh-agent ~/.xinitrc "$@" || exit
+fi
+
+if [ ! "$DBUS_SESSION_BUS_ADDRESS" ] && [ -S "$XDG_RUNTIME_DIR/bus" ]; then
+	export DBUS_SESSION_BUS_ADDRESS="$XDG_RUNTIME_DIR/bus"
 fi
 
 if [ ! "$DBUS_SESSION_BUS_ADDRESS" ] && have dbus-launch; then
