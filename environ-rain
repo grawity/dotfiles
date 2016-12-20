@@ -18,7 +18,6 @@ XMODIFIERS="@im=ibus"
 
 NOKOGIRI_USE_SYSTEM_LIBRARIES="1"	# nokogiri gem - use system libxml2
 QT_STYLE_OVERRIDE="breeze"		# Qt5 - avoid the GTK+ look
-SAL_USE_VCLPLUGIN="gtk"			# LibreOffice - avoid unstable gtk3 VCL
 
 # appdefaults
 
@@ -28,7 +27,6 @@ GEMRC="$XDG_CONFIG_HOME/gemrc"
 VBOX_USER_HOME="$XDG_CONFIG_HOME/VirtualBox"
 WWW_HOME="http://nullroute.eu.org/"
 
-CN_LDAP_SERVER="ldap://wolke.nullroute.eu.org"
 MANLESS="]0;\$MAN_PN ?ltline %lt?L/%L.:byte %bB?s/%s..?e (END):?pB %pB\\%.. "
 MPD_HOST="$(cat "$XDG_CONFIG_HOME/mpd/password")@$XDG_RUNTIME_DIR/mpd.control"
 PERL_CPANM_OPT="$PERL_CPANM_OPT --mirror http://ftp.litnet.lt/pub/CPAN/"
