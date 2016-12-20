@@ -24,7 +24,6 @@ QT_STYLE_OVERRIDE="breeze"		# Qt5 - avoid the GTK+ look
 ACCDB="$HOME/Private/accdb/accounts.txt"
 GEMRC="$XDG_CONFIG_HOME/gemrc"
 #_JAVA_OPTIONS="-Duser.home='$XDG_DATA_HOME/java-home'"
-VBOX_USER_HOME="$XDG_CONFIG_HOME/VirtualBox"
 WWW_HOME="http://nullroute.eu.org/"
 
 MANLESS="]0;\$MAN_PN ?ltline %lt?L/%L.:byte %bB?s/%s..?e (END):?pB %pB\\%.. "
