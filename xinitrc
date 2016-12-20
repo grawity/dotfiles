@@ -14,8 +14,6 @@ if [ ! "$SSH_AUTH_SOCK" ]; then
 		export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent"
 	elif have ssh-agent; then
 		exec ssh-agent ~/.xinitrc "$@" || exit
-	else
-		echo "error: no SSH agent" >&2; exit
 	fi
 fi
 
@@ -26,8 +24,6 @@ if [ ! "$DBUS_SESSION_BUS_ADDRESS" ]; then
 		exec dbus-run-session ~/.xinitrc "$@" || exit
 	elif have dbus-launch; then
 		exec dbus-launch --exit-with-session ~/.xinitrc "$@" || exit
-	else
-		echo "error: no D-Bus session bus" >&2; exit
 	fi
 fi
 
@@ -43,8 +39,12 @@ dbus-update-activation-environment --systemd DISPLAY XAUTHORITY
 bg_color='#222222'
 bg_image=~/lib/dotfiles/gui/noise.png
 
-xsetroot -solid "$bg_color" -cursor_name 'left_ptr'
-have hsetroot && hsetroot -solid "$bg_color" -tile "$bg_image"
+if have xsetroot; then
+	xsetroot -solid "$bg_color" -cursor_name 'left_ptr'
+fi
+if have hsetroot; then
+	hsetroot -solid "$bg_color" -tile "$bg_image"
+fi
 
 # normalize command line (expand aliases)
 
@@ -84,5 +84,4 @@ if [ "$*" ]; then
 	exec "$@"
 else
 	exec openbox --startup ~/.config/openbox/autostart
-	#exec openbox-session
 fi

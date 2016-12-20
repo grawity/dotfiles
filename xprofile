@@ -8,18 +8,15 @@ fi
 if [ ! "$DESKTOP_SESSION" ]; then
 	compton &
 
-	/usr/lib/notify-osd/notify-osd &
+	{ /usr/lib/notify-osd/notify-osd ||
+	  /usr/lib/notification-daemon-1.0/notification-daemon; } &
 
 	{ /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 ||
 	  /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1; } &
 
-	if have gnome-screensaver; then
-		gnome-screensaver
-	fi &
+	gnome-screensaver &
 
-	if have ibus-daemon; then
-		ibus-daemon --xim
-	fi &
+	ibus-daemon --xim &
 
 	xbindkeys &
 fi
@@ -31,14 +28,9 @@ if [ "$DESKTOP_SESSION" != gnome ]; then
 	esac
 
 	if [ "$touchpad" ]; then
-		xinput set-prop "$touchpad" "libinput Tapping Enabled" 1 &
-		xinput set-prop "$touchpad" "libinput Natural Scrolling Enabled" 1 &
-	fi
-
-	#if [ "$HOSTNAME" = rain ]; then
-	#	mpDris2 &
-	#	mpris mpd notify-idle &
-	#fi
+		xinput set-prop "$touchpad" "libinput Tapping Enabled" 1
+		xinput set-prop "$touchpad" "libinput Natural Scrolling Enabled" 1
+	fi &
 fi
 
 systemctl --user --no-block start graphical.target
