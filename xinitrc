@@ -46,18 +46,19 @@ if have hsetroot; then
 	hsetroot -solid "$bg_color" -tile "$bg_image"
 fi
 
-# normalize command line (expand aliases)
+# expand aliases in command line
 
 case $1 in
 	cinnamon)	set -- cinnamon-session;;
-	e|e17)		set -- enlightenment_start -i-really-know-what-i-am-doing-and-accept-full-responsibility-for-it;;
+	e)		set -- enlightenment_start -i-really-know-what-i-am-doing-and-accept-full-responsibility-for-it;;
 	gnome)		set -- gnome-session;;
 	kde)		set -- startkde;;
 	mate)		set -- mate-session;;
 	xfce)		set -- startxfce4;;
+	"")		set -- openbox --startup ~/.config/openbox/autostart;;
 esac
 
-# set $DESKTOP_SESSION (for .xprofile and others)
+# inform .xprofile about session type
 
 case $1 in
 	cinnamon-session)	DESKTOP_SESSION=cinnamon;;
@@ -80,8 +81,4 @@ export DESKTOP_SESSION
 
 # run the session
 
-if [ "$*" ]; then
-	exec "$@"
-else
-	exec openbox --startup ~/.config/openbox/autostart
-fi
+exec "$@"
