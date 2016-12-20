@@ -117,8 +117,8 @@ if [ "$DISPLAY" ]; then
 	fi
 
 	if have openbox; then
-		link gui/openbox-rc.xml ~/.config/openbox/rc.xml
-		link gui/openbox-autostart ~/.config/openbox/autostart
+		link gui/openbox/autostart ~/.config/openbox/autostart
+		link gui/openbox/rc.xml    ~/.config/openbox/rc.xml
 	fi
 
 	if [ ! -f ~/.config/user-dirs.dirs ]; then
