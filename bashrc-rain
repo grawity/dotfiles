@@ -27,8 +27,12 @@ gensid() {
 	echo "S-1-5-21-$a-$b-$c"
 }
 
-oldssh() { ssh -o KexAlgorithms="+diffie-hellman-group1-sha1" \
-		-o HostKeyAlgorithms="+ssh-dss" "$@"; }
+oldssh() {
+	ssh -o KexAlgorithms="+diffie-hellman-group1-sha1" \
+	    -o HostKeyAlgorithms="+ssh-dss" \
+	    -o Ciphers="+3des-cbc" \
+	    "$@";
+}
 
 rand() { perl -e "print int rand $1"; }
 
