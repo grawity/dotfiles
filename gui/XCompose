@@ -41,12 +41,6 @@ include "%L"
 <Multi_key> <bar> <period>		: "⁝"	U205D # TRICOLON
 <Multi_key> <4> <period>		: "⁞"	U205E # VERTICAL FOUR DOTS
 
-# multiple glyphs
-
-<Multi_key> <s> <h>			: "¯\_(ツ)_/¯" # shrug
-
-<Multi_key> <l> <o> <o> <k>		: "ಠ_ಠ" # look of disapproval
-
 # quotation marks
 
 <Multi_key> <l> <q>			: "“"	U201c # LEFT DOUBLE QUOT. MARK <"
