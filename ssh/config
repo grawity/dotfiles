@@ -108,13 +108,7 @@ Host decay ghost river sky wolke
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-Host rain rain.local
-	HostkeyAlias rain.nullroute.eu.org
-	ForwardAgent yes
-	ForwardX11 yes
-
-Host rain-vpn
-	HostName 10.112.0.2
+Host rain
 	HostkeyAlias rain.nullroute.eu.org
 	ForwardAgent yes
 
