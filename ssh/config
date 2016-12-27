@@ -18,7 +18,7 @@ Host ukradius
 
 Host sw-a9-core sw-b56-edge
 	HostName %h.utenos-kolegija.lt
-	Ciphers +3des-cbc
+	Ciphers 3des-cbc
 	User admin
 	IdentityFile ~/.ssh/id_ukolegija
 	IdentitiesOnly yes
