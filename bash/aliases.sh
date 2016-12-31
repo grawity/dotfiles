@@ -41,6 +41,7 @@ fc-fontformat() {
 fc-file() { fc-query -f "%{file}: %{family} (%{fontversion}, %{fontformat})\n" "$@"; }
 gerp() { egrep $grepopt -r -I -D skip --exclude-dir={.bzr,.git,.hg,.svn} -H -n "$@"; }
 gpgfp() { gpg --with-colons --fingerprint "$1" | awk -F: '/^fpr:/ {print $10}'; }
+alias hd='hexdump -C'
 alias hex='xxd -p'
 alias unhex='xxd -p -r'
 hostname.bind() { do: dig +short "${@:2}" "@$1" "$FUNCNAME." TXT CH; }
@@ -84,8 +85,8 @@ alias lspart='lsblk -o name,partlabel,size,fstype,label,mountpoint'
 alias mkcert='mkcsr -x509 -days 3650'
 alias mkcsr='openssl req -new -sha256'
 mkmaildir() { mkdir -p "${@/%//cur}" "${@/%//new}" "${@/%//tmp}"; }
-mtr() { settitle "$HOSTNAME: mtr $*"; command mtr "$@"; }
-alias mtrr='mtr --report-wide --report-cycles 3 --aslookup --mpls'
+mtr() { settitle "$HOSTNAME: mtr $*"; command mtr --show-ips "$@"; }
+alias mtrr='mtr --report-wide --report-cycles 3 --show-ips --aslookup --mpls'
 alias mutagen='mid3v2'
 mv() {
 	if [[ -t 0 && -t 1 && $# -eq 1 && -e $1 ]]; then
