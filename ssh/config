@@ -18,6 +18,7 @@ Host ukradius
 
 Host sw-a9-core sw-b56-edge
 	HostName %h.utenos-kolegija.lt
+	Ciphers 3des-cbc
 	User admin
 	IdentityFile ~/.ssh/id_ukolegija
 	IdentitiesOnly yes
@@ -34,9 +35,9 @@ Host uk-radius
 
 Host uk-tandberg
 	HostName tandberg.utenos-kolegija.lt
-	User admin
 	Ciphers 3des-cbc
 	MACs hmac-sha1
+	User admin
 
 Host uk-untangle
 	HostName untangle.utenos-kolegija.lt
@@ -107,13 +108,7 @@ Host decay ghost river sky wolke
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-Host rain rain.local
-	HostkeyAlias rain.nullroute.eu.org
-	ForwardAgent yes
-	ForwardX11 yes
-
-Host rain-vpn
-	HostName 10.112.0.2
+Host rain
 	HostkeyAlias rain.nullroute.eu.org
 	ForwardAgent yes
 

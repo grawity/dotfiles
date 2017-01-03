@@ -11,11 +11,17 @@ if [ ! "$SSH_AUTH_SOCK" ] && have ssh-agent; then
 	exec ssh-agent ~/.xinitrc "$@" || exit
 fi
 
+if [ ! "$DBUS_SESSION_BUS_ADDRESS" ] && have dbus-run-session; then
+	exec dbus-run-session ~/.xinitrc "$@" || exit
+fi
+
 if [ ! "$DBUS_SESSION_BUS_ADDRESS" ] && have dbus-launch; then
 	exec dbus-launch --exit-with-session ~/.xinitrc "$@" || exit
 fi
 
-dbus-update-activation-environment --systemd DISPLAY XAUTHORITY
+if have dbus-update-activation-environment; then
+	dbus-update-activation-environment --systemd DISPLAY XAUTHORITY
+fi
 
 # load global profile
 
@@ -27,21 +33,26 @@ dbus-update-activation-environment --systemd DISPLAY XAUTHORITY
 bg_color='#222222'
 bg_image=~/lib/dotfiles/gui/noise.png
 
-xsetroot -solid "$bg_color" -cursor_name 'left_ptr'
-have hsetroot && hsetroot -solid "$bg_color" -tile "$bg_image"
+if have xsetroot; then
+	xsetroot -solid "$bg_color" -cursor_name 'left_ptr'
+fi
+if have hsetroot; then
+	hsetroot -solid "$bg_color" -tile "$bg_image"
+fi
 
-# normalize command line (expand aliases)
+# expand aliases in command line
 
 case $1 in
 	cinnamon)	set -- cinnamon-session;;
-	e|e17)		set -- enlightenment_start -i-really-know-what-i-am-doing-and-accept-full-responsibility-for-it;;
+	e)		set -- enlightenment_start -i-really-know-what-i-am-doing-and-accept-full-responsibility-for-it;;
 	gnome)		set -- gnome-session;;
 	kde)		set -- startkde;;
 	mate)		set -- mate-session;;
 	xfce)		set -- startxfce4;;
+	"")		set -- openbox --startup ~/.config/openbox/autostart;;
 esac
 
-# set $DESKTOP_SESSION (for .xprofile and others)
+# inform .xprofile about session type
 
 case $1 in
 	cinnamon-session)	DESKTOP_SESSION=cinnamon;;
@@ -64,9 +75,4 @@ export DESKTOP_SESSION
 
 # run the session
 
-if [ "$*" ]; then
-	exec "$@"
-else
-	exec openbox --startup ~/.config/openbox/autostart
-	#exec openbox-session
-fi
+exec "$@"

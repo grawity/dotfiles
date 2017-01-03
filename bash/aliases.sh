@@ -32,7 +32,6 @@ alias gemalto-tool='pkcs11-tool --module /usr/lib/pkcs11/libgclib.so'
 cymruname() { arpaname "$1" | sed 's/\.in-addr\.arpa/.origin/i; s/\.ip6\.arpa/.origin6/i; s/$/.asn.cymru.com./'; }
 cymrudig() { local n=$(cymruname "$1") && [[ $n ]] && dig +short "$n" TXT; }
 alias cymruwhois='whois -h whois.radb.net'
-each() { xargs -r -t -d '\n' "$@"; }
 alias facl='getfacl -pt'
 alias fdf='findmnt -o target,size,used,avail,use%,fstype'
 fc-fontformat() {
@@ -42,6 +41,7 @@ fc-fontformat() {
 fc-file() { fc-query -f "%{file}: %{family} (%{fontversion}, %{fontformat})\n" "$@"; }
 gerp() { egrep $grepopt -r -I -D skip --exclude-dir={.bzr,.git,.hg,.svn} -H -n "$@"; }
 gpgfp() { gpg --with-colons --fingerprint "$1" | awk -F: '/^fpr:/ {print $10}'; }
+alias hd='hexdump -C'
 alias hex='xxd -p'
 alias unhex='xxd -p -r'
 hostname.bind() { do: dig +short "${@:2}" "@$1" "$FUNCNAME." TXT CH; }
@@ -85,8 +85,8 @@ alias lspart='lsblk -o name,partlabel,size,fstype,label,mountpoint'
 alias mkcert='mkcsr -x509 -days 3650'
 alias mkcsr='openssl req -new -sha256'
 mkmaildir() { mkdir -p "${@/%//cur}" "${@/%//new}" "${@/%//tmp}"; }
-mtr() { settitle "$HOSTNAME: mtr $*"; command mtr "$@"; }
-alias mtrr='mtr --report-wide --report-cycles 3 --aslookup --mpls'
+mtr() { settitle "$HOSTNAME: mtr $*"; command mtr --show-ips "$@"; }
+alias mtrr='mtr --report-wide --report-cycles 3 --show-ips --aslookup --mpls'
 alias mutagen='mid3v2'
 mv() {
 	if [[ -t 0 && -t 1 && $# -eq 1 && -e $1 ]]; then
@@ -127,7 +127,7 @@ _thiscommand() { history 1 | sed "s/^\s*[0-9]\+([^)]\+)\s\+$1\s\+//"; }
 alias tidiff='infocmp -Ld'
 alias todo:='todo "$(_thiscommand todo:)" #'
 alias traceroute='traceroute --extensions'
-alias tracert='traceroute --icmp --mtu'
+alias tracert='traceroute --icmp'
 alias treedu='tree --du -h'
 up() { local p i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
 vercmp() {
@@ -144,6 +144,7 @@ visexp() { (echo "; vim: ft=sexp"; echo "; file: $1"; sexp-conv < "$1") \
 alias w3m='w3m -title'
 wim() { local file=$(which "$1") && [[ $file ]] && editor "$file" "${@:2}"; }
 alias unwine='printf "\e[?1l \e>"'
+xar() { xargs -r -t -d '\n' "$@"; }
 alias xf='ps xf -O ppid'
 alias xx='chmod a+rx'
 alias zt1='zerotier-cli'

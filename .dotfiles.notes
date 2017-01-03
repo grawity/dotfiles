@@ -405,7 +405,8 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.tkabber/ – environment
   - $TKABBER_HOME overrides
 
-~/.VirtualBox/ – environment
+~/.VirtualBox/ – XDG as of 4.3, environment
+  - as of 4.3, "$XDG_CONFIG_HOME/VirtualBox" is used
   - $VBOX_USER_HOME overrides
   - see also ~/VirtualBox VMs/
 
