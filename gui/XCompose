@@ -28,9 +28,10 @@ include "%L"
 # various glyphs
 
 <Multi_key> <equal> <equal>		: "–"	U2013 # EN DASH, - - .
+<Multi_key> <zcaron> <zcaron>		: "–"	U2013 # EN DASH, - - .
+<Multi_key> <e> <u>			: "€"	U20AC # EURO SIGN, e =
 <Multi_key> <equal> <asciitilde>	: "≈"	U2248 # almost equal
 <Multi_key> <asciitilde> <asciitilde>	: "≈"	U2248
-<Multi_key> <zcaron> <zcaron>		: "–"	U2013 # EN DASH, - - .
 <Multi_key> <less> <4>			: "❤"	U2764
 <Multi_key> <3> <greater>		: "❥"	U2765
 <Multi_key> <slash> <slash>		: "⁄"	U2044 # FRACTION SLASH
