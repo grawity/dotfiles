@@ -460,7 +460,7 @@ _show_status() {
 
 _update_title() {
 	if [[ ! ${title-} ]]; then
-		local title= t_user= t_display= t_path=
+		local title= t_user= t_host= t_display= t_path=
 		if [[ $USER != 'grawity' ]]; then
 			t_user="$USER@"
 		fi
@@ -468,7 +468,8 @@ _update_title() {
 			t_display=" ($DISPLAY)"
 		fi
 		t_path=${PWD/#"$HOME/"/'~/'}
-		title="${t_user}${HOSTNAME} ${t_path}${t_display}"
+		t_host=$HOSTNAME
+		title="${t_user}${t_host} ${t_path}${t_display}"
 	fi
 	settitle "$title"
 	if [[ ${DISPLAY-} && ${VTE_VERSION-} ]]; then
