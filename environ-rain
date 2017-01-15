@@ -10,7 +10,7 @@ test -S "$SSH_AUTH_SOCK" || SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent"
 # libdefaults
 
 EDITOR="nvim"
-VISUAL="nvim"
+VISUAL="$EDITOR"
 
 GTK_IM_MODULE="ibus"
 QT_IM_MODULE="ibus"
@@ -23,8 +23,6 @@ QT_STYLE_OVERRIDE="breeze"		# Qt5 - avoid the GTK+ look
 
 ACCDB="$HOME/Private/accdb/accounts.txt"
 GEMRC="$XDG_CONFIG_HOME/gemrc"
-#_JAVA_OPTIONS="-Duser.home='$XDG_DATA_HOME/java-home'"
-WWW_HOME="http://nullroute.eu.org/"
 
 MANLESS="]0;\$MAN_PN ?ltline %lt?L/%L.:byte %bB?s/%s..?e (END):?pB %pB\\%.. "
 MPD_HOST="$(cat "$XDG_CONFIG_HOME/mpd/password")@$XDG_RUNTIME_DIR/mpd.control"

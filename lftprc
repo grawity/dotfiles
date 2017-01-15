@@ -15,11 +15,7 @@ set cmd:prompt "\\[\\e[38;5;173m\\]lftp \\[\\e[38;5;216m\\]\\S\\? \\u\\@\\h:\\w>
 
 set dns:SRV-query yes
 set ftp:anon-pass "grawity@gmail.com"
-#set ftp:port-range 37000-37999
 set ftp:use-ip-tos yes
-
-set ssl:cert-file "~/.pki/private/auth-grawity.pem"
-set ssl:key-file "~/.pki/private/auth-grawity.pem"
 
 set ftp:ssl-allow-anonymous yes
 set ftp:ssl-protect-data yes

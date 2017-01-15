@@ -30,19 +30,16 @@ set revert-all-at-newline on
 
 # Page Up/Down
 "\e[5~": ""
-"\e[6~": menu-complete
+"\e[6~": ""
 
 # Shift-Tab
 "\e[Z": complete-hostname
-
-# for nested shells
-"\C-x\C-x": "suspend\n"
 
 # unbind other stuff
 "\ep": ""
 "\en": ""
 
-# "Bracketed paste" markers
+# ignore "bracketed paste" markers
 "\e[200~": ""
 "\e[201~": ""
 
