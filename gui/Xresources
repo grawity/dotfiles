@@ -1,7 +1,6 @@
 ! ~/.Xresources
-! vim: fdm=marker
 
-! Xft {{{
+! --- Xft ---
 
 !Xft.antialias:	1
 !Xft.dpi:	96
@@ -11,14 +10,12 @@
 !Xft.rgba:	rgb
 !Xft.lcdfilter:	lcddefault
 
-! }}}
-! Xcursor {{{
+! --- Xcursor ---
 
 !Xcursor.theme:		Adwaita
 !Xcursor.size:		16
 
-! }}}
-! Rofi {{{
+! --- Rofi ---
 
 rofi.key-run:			F2
 rofi.terminal:			gnome-terminal
@@ -39,8 +36,7 @@ rofi.color-normal:		#222222,#bbbbbb,#222222,#005577,#eeeeee
 !rofi.color-urgent:		...
 !rofi.color-active:		...
 
-! }}}
-! Xterm {{{
+! --- XTerm ---
 
 XTerm.termName:			xterm-256color
 
@@ -95,8 +91,7 @@ XTerm*color15:		#eeeeec
 XTerm*boldColors:	true
 XTerm*boldMode:		true
 
-! }}}
-! Rxvt {{{
+! --- Rxvt/URxvt ---
 
 URxvt.termName:		rxvt-unicode-256color
 
@@ -135,5 +130,3 @@ Rxvt.color12:		#729fcf
 Rxvt.color13:		#ad7fa8
 Rxvt.color14:		#34e2e2
 Rxvt.color15:		#eeeeec
-
-! }}}
