@@ -6,6 +6,7 @@
 
 alias clock='tty-clock -c'
 alias eof='IGNOREEOF=3'
+alias eris='ssh wolke -t tmux attach -t eris'
 alias fumount='fusermount -u'
 alias gdm='sudo systemctl start gdm'
 alias gmm='run google-musicmanager'
@@ -15,9 +16,7 @@ alias powerdown='udisksctl poweroff -b'
 alias RM='/bin/rm -I'
 alias unrm='trash --restore'
 
-alias eris='ssh wolke -t tmux attach -t eris'
-
-b64() { printf "%s" "$*" | base64 | tr -dc "A-Za-z0-9+/="; }
+b64() { printf "%s" "$*" | base64 -w0; }
 
 gensid() {
 	local a=$(perl -e 'print int rand 0xFFFFFFFF')
@@ -98,7 +97,7 @@ ukvpn() {
 		    lan)
 			do: nmcli con modify "$con" ipv4.never-default yes;;
 		    *)
-			echo "Huh?";;
+			echo "'$arg'?";;
 		esac
 	done
 }
