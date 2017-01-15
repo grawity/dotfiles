@@ -66,8 +66,6 @@ XTerm*vt100.translations:	#override			\n\
 XTerm.toolBar:			false
 XTerm*vt100.cursorBlink:	true
 XTerm*vt100.font:		-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
-!XTerm*vt100.faceName:		DejaVu Sans Mono
-!XTerm*vt100.faceSize:		9
 XTerm*vt100.geometry:		100x35
 XTerm*vt100.showMissingGlyphs:	true
 XTerm*vt100.utf8Fonts:		always
@@ -115,9 +113,6 @@ Rxvt.geometry:		100x35
 Rxvt.font:		-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
 !Rxvt.font:		-*-fixed-medium-r-*-*-18-*-*-*-*-*-iso10646-*
 !Rxvt.font:		-*-fixed-medium-r-*-*-20-*-*-*-*-*-iso10646-*
-!Rxvt.font:		xft:Monospace:pixelsize=12
-!Rxvt.font:		xft:DejaVu Sans Mono:size=9
-!Rxvt.letterSpace:	-1
 
 ! colors (gnome-terminal Tango scheme)
 
