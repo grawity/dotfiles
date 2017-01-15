@@ -142,9 +142,3 @@ Rxvt.color14:		#34e2e2
 Rxvt.color15:		#eeeeec
 
 ! }}}
-! Mwm {{{
-
-Mwm*configFile:			~/.config/mwmrc
-Mwm*useClientIcon:		true
-
-! }}}
