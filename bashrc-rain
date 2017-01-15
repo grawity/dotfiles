@@ -16,7 +16,6 @@ alias RM='/bin/rm -I'
 alias unrm='trash --restore'
 
 alias eris='ssh wolke -t tmux attach -t eris'
-alias gale='ssh wolke -t tmux attach -t gale'
 
 b64() { printf "%s" "$*" | base64 | tr -dc "A-Za-z0-9+/="; }
 
