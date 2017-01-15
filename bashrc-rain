@@ -137,14 +137,6 @@ youtube-dl() {
 	"${cmd[@]}"
 }
 
-zwan() {
-	case $1 in
-		on) zerotier-cli set 8056c2e21c288b81 allowDefault=1;;
-		off) zerotier-cli set 8056c2e21c288b81 allowDefault=0;;
-		*) return 1;;
-	esac
-}
-
 :pp() {
 	local var=$1 k=; local -n ref=$1
 	echo "$var=("; for k in ${!ref[@]}; do echo "  [$k]='${ref[$k]}'"; done; echo ")"
