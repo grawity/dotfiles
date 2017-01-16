@@ -120,9 +120,6 @@
 [diff "ldif"]
 	xfuncname = "^(dn: .+)$"
 
-[diff "polkit"]
-	xfuncname = "(<action id=\\\".+\\\">)"
-
 [filter "merge-known-hosts"]
 	clean = ssh-duphosts -m -
 	smudge = cat
