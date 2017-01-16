@@ -105,7 +105,7 @@
 	whitespace = trailing-space, space-before-tab, blank-at-eof
 
 [credential]
-	helper = libsecret
+	#helper = libsecret
 	useHttpPath = false
 
 [diff]
