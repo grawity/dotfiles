@@ -5,11 +5,6 @@ if [ -d "$XDG_RUNTIME_DIR" ]; then
 		ln -nsf "/run/media/$USER" "$XDG_RUNTIME_DIR/media"
 		ln -nsf "$XDG_RUNTIME_DIR" "$HOME/.run"
 	fi
-
-	if [ ! -e "$XDG_RUNTIME_DIR/gvfs" ]; then
-		mountpoint -q "$XDG_RUNTIME_DIR/gvfs" &&
-		fusermount -u "$XDG_RUNTIME_DIR/gvfs"
-	fi >/dev/null 2>&1
 fi
 
 if [ -e ~/.ecryptfs/Private.mnt ] && ! mountpoint -q ~/Private; then

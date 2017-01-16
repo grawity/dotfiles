@@ -1,10 +1,6 @@
 # ~/.xprofile - X11-specific login script (after ~/.profile)
 # vim: ft=sh
 
-if have auca-seed; then
-	auca-seed &
-fi
-
 if [ ! "$DESKTOP_SESSION" ]; then
 	compton &
 

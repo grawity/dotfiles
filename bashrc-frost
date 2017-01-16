@@ -4,6 +4,10 @@
 
 . ~/lib/dotfiles/bashrc-rain
 
+## Aliases
+
+unalias journalctl
+
 _update_title() {
 	if [[ ! ${title-} ]]; then
 		local title= t_user= t_host= t_display= t_path=
@@ -29,7 +33,7 @@ _update_title() {
 	fi
 }
 
-unalias journalctl
+## Smartcard hackery
 
 fxdb() { (nssdb="$HOME/.mozilla/firefox/r0fd79nc.default"; "$@"); }
 thdb() { (nssdb="$HOME/.thunderbird/7pkkqarz.default"; "$@"); }
@@ -44,10 +48,6 @@ add-vlan() {
 		[[ $addr == */* ]] || addr+="/16"
 		sudo: ip addr add "$addr" dev "$dev"
 	fi
-}
-
-run-autoip() {
-	sudo: avahi-autoipd --force-bind "${1:-eth0}" "${@:2}"
 }
 
 run-dhclient() {
@@ -65,14 +65,6 @@ ecap() {
 
 earp() {
 	ecap "$1" -e "arp or (udp port 67 or 68)"
-}
-
-ecn() {
-	case $1 in
-	    1|on)  sudo: sysctl -q net.ipv4.tcp_ecn=1;;
-	    0|off) sudo: sysctl -q net.ipv4.tcp_ecn=0;;
-	    *)     sysctl net.ipv4.tcp_ecn;;
-	esac
 }
 
 ukip() {
@@ -102,11 +94,6 @@ ukip() {
 	done
 }
 
-ukdns() {
-	local server='uk-main2.utenos-kolegija.lt'
-	local zone='utenos-kolegija.lt'
-
-	do: samba-tool dns "$1" "$server" "$zone" "${@:2}"
+uredboot() {
+	do: telnet 192.168.1.20 9000
 }
-
-uredboot() { do: telnet 192.168.1.20 9000; }

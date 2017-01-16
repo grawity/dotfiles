@@ -22,11 +22,6 @@ progress =
 purge =
 rebase =
 
-[format]
-# I think this is on by default?
-# also read http://gregoryszorc.com/blog/2014/02/05/the-mercurial-revlog/
-#generaldelta = True
-
 [ui]
 username = $NAME <$EMAIL>
 

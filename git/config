@@ -97,7 +97,6 @@
 	tag = auto dense
 
 [core]
-	abbrev = 12
 	askpass = 
 	autocrlf = false
 	excludesfile = ~/.config/git/ignore
