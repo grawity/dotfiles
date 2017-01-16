@@ -105,10 +105,7 @@
 	whitespace = trailing-space, space-before-tab, blank-at-eof
 
 [credential]
-	helper = cache --socket $XDG_RUNTIME_DIR/git-credential-cache
-	#helper = gnome-keyring
-	#helper = libsecret
-	helper = readonly -e store
+	helper = libsecret
 	useHttpPath = false
 
 [diff]
