@@ -212,3 +212,6 @@ Host *
 	GSSAPIKeyExchange yes
 	SendEnv LANG TZ
 	ControlPath ~/.ssh/S.%r@%h:%p
+	# probably of little use, but at least more meaningful
+	# than the default TOS values which are officially obsolete
+	IPQoS cs3 cs0
