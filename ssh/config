@@ -10,7 +10,7 @@ IgnoreUnknown CanonicalDomains,CanonicalizeHostname,GSSAPIKeyExchange,PubkeyAcce
 
 # work
 
-Host ukradius
+Host uk-radius ukradius radius
 	HostName radius.utenos-kolegija.lt
 	User grawity
 	IdentityFile ~/.ssh/id_ukolegija
@@ -28,10 +28,6 @@ Host sw-m7-adm sw-m7-klases
 	HostName %h.utenos-kolegija.lt
 	User admin
 	KexAlgorithms diffie-hellman-group14-sha1
-
-Host uk-radius
-	HostName radius.utenos-kolegija.lt
-	User grawity
 
 Host uk-tandberg
 	HostName tandberg.utenos-kolegija.lt
