@@ -145,10 +145,6 @@ Host *.nullroute.eu.org
 Host *.nathan7.eu
 	ForwardAgent yes
 
-Host *.vistech.net
-	User grwty
-	ControlMaster no
-
 Host *.zt1
 	HostName %h.nullroute.eu.org
 
