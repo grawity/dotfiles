@@ -46,27 +46,6 @@ Host uk-untangle
 Host uk-epas uk-vpn uk-linux1
 	HostName %h.utenos-kolegija.lt
 
-Host uk-pf-aukstaiciu9 uk-pf-a9
-	HostName pf-a9.utenos-kolegija.lt
-
-Host uk-pf-ausros73 uk-pf-a73
-	HostName pf-a73.utenos-kolegija.lt
-
-Host uk-pf-maironio7 uk-pf-m7
-	HostName pf-m7.utenos-kolegija.lt
-
-Host uk-pf-maironio18 uk-pf-m18-adm uk-pf-m18
-	HostName pf-m18.utenos-kolegija.lt
-
-Host uk-pf-utenio2 uk-pf-u2
-	HostName pf-u2.utenos-kolegija.lt
-
-Host uk-pf-wisp uk-pf-m18-stud
-	HostName pf-wisp.utenos-kolegija.lt
-
-Host uk-pf-*
-	User root
-
 Host pf-*
 	HostName %h.utenos-kolegija.lt
 	User root
