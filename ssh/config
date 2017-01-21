@@ -181,7 +181,6 @@ Host *
 	CanonicalDomains nullroute.eu.org utenos-kolegija.lt
 	Protocol 2
 	HashKnownHosts no
-	NoHostAuthenticationForLocalhost yes
 	VerifyHostKeyDNS yes
 	GSSAPIAuthentication yes
 	GSSAPIKeyExchange yes
