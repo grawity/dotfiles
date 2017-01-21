@@ -187,6 +187,6 @@ Host *
 	GSSAPIKeyExchange yes
 	SendEnv LANG TZ
 	ControlPath ~/.ssh/S.%r@%h:%p
-	# probably of little use, but at least more meaningful
-	# than the default TOS values which are officially obsolete
+	# probably of little use, but at least DSCP is more meaningful than
+	# the default values, which use the obsolete 'ToS bits' interpretation
 	IPQoS cs3 cs0
