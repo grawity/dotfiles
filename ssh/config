@@ -71,7 +71,7 @@ Host pf-*
 	HostName %h.utenos-kolegija.lt
 	User root
 
-Host uk-* 193.219.181.192/26 2001:778:e27f::/48
+Host uk-* 193.219.181.* 2001:778:e27f:*
 	IdentityFile ~/.ssh/id_ukolegija
 	ForwardAgent yes
 
@@ -189,7 +189,7 @@ Host *.core
 	UserKnownHostsFile ~/.ssh/known_hosts.core
 	ControlMaster no
 
-Host *.home *.local 10.* 192.168.* 10.0.0.0/8 192.168.0.0/16
+Host *.home *.local 10.* 192.168.*
 	ForwardAgent yes
 	UserKnownHostsFile ~/.ssh/known_hosts.local
 
