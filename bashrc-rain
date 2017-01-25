@@ -92,6 +92,8 @@ ukvpn() {
 		case $arg in
 		    up|down)
 			do: nmcli con "$arg" "$con";;
+		    up!|down!)
+			sudo: nmcli con "${arg%!}" "$con";;
 		    wan)
 			do: nmcli con modify "$con" ipv4.never-default no;;
 		    lan)
