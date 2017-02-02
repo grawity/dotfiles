@@ -104,10 +104,7 @@
 	whitespace = trailing-space, space-before-tab, blank-at-eof
 
 [credential]
-	helper = cache --socket $XDG_RUNTIME_DIR/git-credential-cache
-	#helper = gnome-keyring
 	#helper = libsecret
-	helper = readonly -e store
 	useHttpPath = false
 
 [diff]
@@ -121,9 +118,6 @@
 
 [diff "ldif"]
 	xfuncname = "^(dn: .+)$"
-
-[diff "polkit"]
-	xfuncname = "(<action id=\\\".+\\\">)"
 
 [filter "merge-known-hosts"]
 	clean = ssh-duphosts -m -

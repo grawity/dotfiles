@@ -35,3 +35,6 @@ set ftp:charset/212.164.230.75 "cp1251"
 #set ftp:prefer-epsv/ftp.ukolegija.lt no
 
 set ftp:use-mlsd yes
+
+set ssl:verify-certificate/eu.ftp.muffnet.xyz no
+#set ssl:check-hostname/eu.ftp.muffnet.xyz no

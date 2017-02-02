@@ -10,7 +10,7 @@ IgnoreUnknown CanonicalDomains,CanonicalizeHostname,GSSAPIKeyExchange,PubkeyAcce
 
 # work
 
-Host ukradius
+Host uk-radius ukradius radius
 	HostName radius.utenos-kolegija.lt
 	User grawity
 	IdentityFile ~/.ssh/id_ukolegija
@@ -29,10 +29,6 @@ Host sw-m7-adm sw-m7-klases
 	User admin
 	KexAlgorithms diffie-hellman-group14-sha1
 
-Host uk-radius
-	HostName radius.utenos-kolegija.lt
-	User grawity
-
 Host uk-tandberg
 	HostName tandberg.utenos-kolegija.lt
 	Ciphers 3des-cbc
@@ -45,27 +41,6 @@ Host uk-untangle
 
 Host uk-epas uk-vpn uk-linux1
 	HostName %h.utenos-kolegija.lt
-
-Host uk-pf-aukstaiciu9 uk-pf-a9
-	HostName pf-a9.utenos-kolegija.lt
-
-Host uk-pf-ausros73 uk-pf-a73
-	HostName pf-a73.utenos-kolegija.lt
-
-Host uk-pf-maironio7 uk-pf-m7
-	HostName pf-m7.utenos-kolegija.lt
-
-Host uk-pf-maironio18 uk-pf-m18-adm uk-pf-m18
-	HostName pf-m18.utenos-kolegija.lt
-
-Host uk-pf-utenio2 uk-pf-u2
-	HostName pf-u2.utenos-kolegija.lt
-
-Host uk-pf-wisp uk-pf-m18-stud
-	HostName pf-wisp.utenos-kolegija.lt
-
-Host uk-pf-*
-	User root
 
 Host pf-*
 	HostName %h.utenos-kolegija.lt
@@ -170,10 +145,6 @@ Host *.nullroute.eu.org
 Host *.nathan7.eu
 	ForwardAgent yes
 
-Host *.vistech.net
-	User grwty
-	ControlMaster no
-
 Host *.zt1
 	HostName %h.nullroute.eu.org
 
@@ -206,9 +177,11 @@ Host *
 	CanonicalDomains nullroute.eu.org utenos-kolegija.lt
 	Protocol 2
 	HashKnownHosts no
-	NoHostAuthenticationForLocalhost yes
 	VerifyHostKeyDNS yes
 	GSSAPIAuthentication yes
 	GSSAPIKeyExchange yes
 	SendEnv LANG TZ
 	ControlPath ~/.ssh/S.%r@%h:%p
+	# probably of little use, but at least DSCP is more meaningful than
+	# the default values, which use the obsolete 'ToS bits' interpretation
+	IPQoS cs3 cs0
