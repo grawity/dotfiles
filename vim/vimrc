@@ -48,6 +48,17 @@ else
 	silent! color slate
 endif
 
+if has("termguicolors")
+	" Vim 8: use RGB colors if possible <https://gist.github.com/XVilka/8346728>
+	if &term == "tmux-256color"
+		let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+		let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+	endif
+	if &t_8f != ""
+		set termguicolors
+	endif
+endif
+
 let solarized=0
 
 " UI elements
