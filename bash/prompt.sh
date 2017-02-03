@@ -120,7 +120,7 @@ _awesome_upd_pwd() {
 
 	# find the working directory's root
 
-	if [[ ${fmts[pwd.body]-} ]]; then
+	if [[ ${fmts[pwd:body]-} ]]; then
 		if [[ $GIT_WORK_TREE ]]; then
 			_dbg "- wdbase <- GIT_WORK_TREE"
 			wdbase=$(readlink -f "$GIT_WORK_TREE")
@@ -217,9 +217,9 @@ _awesome_upd_pwd() {
 		fi
 	fi
 
-	items[pwd.head]=$wdhead
-	items[pwd.body]=$wdbody
-	items[pwd.tail]=$wdtail
+	items[pwd:head]=$wdhead
+	items[pwd:body]=$wdbody
+	items[pwd:tail]=$wdtail
 	items[pwd]=$wdhead$wdbody$wdtail
 }
 
@@ -291,14 +291,14 @@ _awesome_add_item() {
 		elif [[ ${parts[$item]+yes} ]]; then
 			local subitem=
 			_recursing[$item]=1
-			if [[ ${items[$item.pfx]+yes} ]]; then
-				_awesome_add_item $pos :$item.pfx
+			if [[ ${items[$item:pfx]+yes} ]]; then
+				_awesome_add_item $pos :$item:pfx
 			fi
 			for subitem in ${parts[$item]}; do
 				_awesome_add_item $pos $subitem
 			done
-			if [[ ${items[$item.sfx]+yes} ]]; then
-				_awesome_add_item $pos :$item.sfx
+			if [[ ${items[$item:sfx]+yes} ]]; then
+				_awesome_add_item $pos :$item:sfx
 			fi
 			_recursing[$item]=0
 			return
@@ -317,27 +317,27 @@ _awesome_add_item() {
 				if [[ $fmt == @* ]]; then
 					subitem=${fmt#@}
 					fmt=${fmts[$subitem]-}
-					_dbg " stripped @, got item '$subitem' fmt '$fmt'"
+					_dbg " had @ in fmt, recursed, got item '$subitem' fmt '$fmt'"
 				fi
 				if [[ $fmt && $fmt != @* ]]; then
 					_dbg " got final fmt '$fmt'"
 					break
 				fi
-				if [[ ! $fmt && $subitem == *.sfx ]]; then
-					subitem=${subitem/%.sfx/.pfx}
+				if [[ ! $fmt && $subitem == *:sfx ]]; then
+					subitem=${subitem/%:sfx/:pfx}
 					fmt=${fmts[$subitem]-}
-					_dbg " stripped .sfx, got item '$subitem' fmt '$fmt'"
-					if [[ $fmt == @*.pfx ]]; then
-						fmt=${fmt/%.pfx/.sfx}
+					_dbg " had empty fmt, stripped :sfx, got item '$subitem' fmt '$fmt'"
+					if [[ $fmt == @*:pfx ]]; then
+						fmt=${fmt/%:pfx/:sfx}
 					fi
 				fi
-				if [[ ! $fmt && $subitem == *.* ]]; then
-					subitem=${subitem%.*}
+				if [[ ! $fmt && $subitem == *:* ]]; then
+					subitem=${subitem%:*}
 					fmt=${fmts[$subitem]-}
-					_dbg " stripped .*, got item '$subitem' fmt '$fmt'"
+					_dbg " had empty fmt, stripped :*, got item '$subitem' fmt '$fmt'"
 				fi
 				if [[ ! $fmt ]]; then
-					_dbg " got empty fmt, giving up"
+					_dbg " still have empty fmt, giving up"
 					break
 				fi
 				if (( loop++ >= 10 )); then
@@ -346,11 +346,11 @@ _awesome_add_item() {
 					break
 				fi
 			done
-			if [[ ${items[$item.pfx]+yes} ]]; then
-				add_prefix=:$item.pfx
+			if [[ ${items[$item:pfx]+yes} ]]; then
+				add_prefix=:$item:pfx
 			fi
-			if [[ ${items[$item.sfx]+yes} ]]; then
-				add_suffix=:$item.sfx
+			if [[ ${items[$item:sfx]+yes} ]]; then
+				add_suffix=:$item:sfx
 			fi
 		else
 			out="<no item '$item'>"
