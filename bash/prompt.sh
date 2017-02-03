@@ -51,7 +51,7 @@ declare -A parts=(
 
 declare -Ai _recursing=()
 
-_dbg() { if [[ ${DEBUG-} ]]; then echo "$*"; fi; }
+_dbg() { if [[ ${PS1_DEBUG-} ]]; then echo "[${FUNCNAME[1]}] $*"; fi; }
 
 _awesome_upd_vcs() {
 	local git= br= re=
