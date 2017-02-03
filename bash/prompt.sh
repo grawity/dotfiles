@@ -336,6 +336,11 @@ _awesome_add_item() {
 					fmt=${fmts[$subitem]-}
 					_dbg " had empty fmt, stripped :*, got item '$subitem' fmt '$fmt'"
 				fi
+				if [[ ! $fmt && $subitem == *.* ]]; then
+					subitem=${subitem%.*}
+					fmt=${fmts[$subitem]-}
+					_dbg " had empty fmt, stripped .*, got item '$subitem' fmt '$fmt'"
+				fi
 				if [[ ! $fmt ]]; then
 					_dbg " still have empty fmt, giving up"
 					break
