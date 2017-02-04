@@ -92,11 +92,11 @@ ukvpn() {
 	for arg; do
 		case $arg in
 		    up|down)
-			do: nmcli con "$arg" "$con";;
+			sudo: nmcli con "$arg" "$con";;
 		    wan)
-			do: nmcli con modify "$con" ipv4.never-default no;;
+			sudo: nmcli con modify "$con" ipv4.never-default no;;
 		    lan)
-			do: nmcli con modify "$con" ipv4.never-default yes;;
+			sudo: nmcli con modify "$con" ipv4.never-default yes;;
 		    *)
 			echo "'$arg'?";;
 		esac
