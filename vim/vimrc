@@ -118,14 +118,14 @@ if has("unix")
 		set backupdir=~/.vim/_backup//
 		silent! set undodir=~/.vim/_undo//
 		silent! set undofile
-	end
+	endif
 endif
 
 if hostname() == "rain"
 	set nofsync
 	if !has("nvim")
 		set swapsync=
-	end
+	endif
 endif
 
 """ Text editing
