@@ -21,6 +21,7 @@ _xyank() {
 
 _xyankq() {
 	local str=$(pclip)
+	str="${str@Q} "
 	READLINE_LINE=${READLINE_LINE:0:$READLINE_POINT}${str}${READLINE_LINE:$READLINE_POINT}
 	READLINE_POINT=$((READLINE_POINT + ${#str}))
 }
