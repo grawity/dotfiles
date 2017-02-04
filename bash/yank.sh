@@ -14,7 +14,9 @@ _xkill() {
 }
 
 _xyank() {
-	READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}$(pclip)${READLINE_LINE:$READLINE_POINT}"
+	local str=$(pclip)
+	READLINE_LINE=${READLINE_LINE:0:$READLINE_POINT}${str}${READLINE_LINE:$READLINE_POINT}
+	READLINE_POINT=$((READLINE_POINT + ${#str}))
 }
 
 if have gclip && have pclip; then
