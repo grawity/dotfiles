@@ -24,6 +24,7 @@ dist/head() {
 }
 dist/pull() { ~/code/dist/pull "$@" && SILENT=1 . ~/.profile; }
 alias dnstrace='dnstracer -s .'
+alias easy-rsa='easyrsa'
 alias ed='ed -p:'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
 alias ccard-tool='pkcs11-tool --module libccpkip11.so'
