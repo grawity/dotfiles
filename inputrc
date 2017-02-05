@@ -33,7 +33,11 @@ set revert-all-at-newline on
 "\e[6~": ""
 
 # Shift-Tab
-"\e[Z": complete-hostname
+"\e[Z": complete-into-braces
+#"\e[Z": dynamic-complete-history
+
+# Alt-Enter
+#"\e\n": "foo"
 
 # unbind other stuff
 "\ep": ""
