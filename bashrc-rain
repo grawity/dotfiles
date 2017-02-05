@@ -2,6 +2,10 @@
 
 [[ $- != *i* ]] && return
 
+if [[ $DISPLAY ]]; then
+	. ~/lib/dotfiles/bash/yank.sh
+fi
+
 ## Aliases
 
 alias clock='tty-clock -c'
