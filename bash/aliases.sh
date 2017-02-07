@@ -310,17 +310,6 @@ man() {
 	fi
 }
 
-putenv() {
-	local pid=$1 var val args=()
-	for var in "${@:2}"; do
-		val=$(urlencode -x "${!var}")
-		var=$(urlencode -x "$var")
-		args=("${args[@]}" "-ex" "p putenv(\"$var=$val\")")
-	done
-	args gdb --batch "${args[@]}" -ex detach -p "$pid"
-	gdb --batch "${args[@]}" -ex detach -p "$pid"
-}
-
 alias tlsc='tlsg'
 
 tlsg() {
