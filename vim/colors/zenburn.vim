@@ -229,7 +229,7 @@ hi Folded          guifg=#93b3a3 guibg=#3f4040
 hi Function        guifg=#efef8f                              ctermfg=228
 hi Identifier      guifg=#efdcbc                              ctermfg=223 cterm=none
 hi IncSearch       guifg=#f8f893 guibg=#385f38                ctermfg=228 ctermbg=23
-hi Keyword         guifg=#f0dfaf                              ctermfg=223
+hi Keyword         guifg=#f0dfaf gui=bold                     ctermfg=223 cterm=bold
 hi Macro           guifg=#ffcfaf gui=bold                     ctermfg=223 cterm=bold
 hi ModeMsg         guifg=#ffcfaf gui=none                     ctermfg=223 cterm=none
 hi MoreMsg         guifg=#ffffff gui=bold                     ctermfg=231 cterm=bold
@@ -238,7 +238,7 @@ hi Operator        guifg=#f0efd0                              ctermfg=230
 hi PmenuSbar       guibg=#2e3330 guifg=#000000                ctermfg=16  ctermbg=236
 hi PmenuThumb      guibg=#a0afa0 guifg=#040404                ctermfg=232 ctermbg=151
 hi PreCondit       guifg=#dfaf8f gui=bold                     ctermfg=180 cterm=bold
-hi PreProc         guifg=#ffcfaf                              ctermfg=223
+hi PreProc         guifg=#ffcfaf gui=bold                     ctermfg=223 cterm=bold
 hi Question        guifg=#ffffff gui=bold                     ctermfg=231 cterm=bold
 hi Repeat          guifg=#ffd7a7 gui=bold                     ctermfg=223 cterm=bold
 hi Search          guifg=#ffffe0 guibg=#284f28                ctermfg=230 ctermbg=22
