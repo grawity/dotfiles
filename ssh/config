@@ -182,6 +182,9 @@ Host *
 	GSSAPIKeyExchange yes
 	SendEnv LANG TZ
 	ControlPath ~/.ssh/S.%r@%h:%p
+	# speed up git-annex batch tasks
+	ControlMaster auto
+	ControlPersist 10s
 	# probably of little use, but at least DSCP is more meaningful than
 	# the default values, which use the obsolete 'ToS bits' interpretation
 	IPQoS cs3 cs0
