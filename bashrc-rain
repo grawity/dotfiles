@@ -171,7 +171,7 @@ _check_kernel() {
 				. "$_cache" && return
 			fi
 			items[oldkernel]=$(uname -r | sed 's/-ARCH$//')
-			items[newkernel]=$(pacman -Q linux | sed 's/^.* //')
+			items[newkernel]=$(expac %v linux)
 			echo "items[oldkernel]=${items[oldkernel]@Q}" > "$_cache"
 			echo "items[newkernel]=${items[newkernel]@Q}" >> "$_cache"
 		fi
