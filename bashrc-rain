@@ -143,7 +143,11 @@ youtube-dl() {
 
 :pp() {
 	local var=$1 k=; local -n ref=$1
-	echo "$var=("; for k in ${!ref[@]}; do echo "  [$k]='${ref[$k]}'"; done; echo ")"
+	echo "$var=("
+	for k in ${!ref[@]}; do
+		echo "  [$k]='${ref[$k]}'"
+	done
+	echo ")"
 }
 
 nssdb="sql:$HOME/.pki/nssdb"
