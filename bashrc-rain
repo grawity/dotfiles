@@ -177,7 +177,7 @@ _check_kernel() {
 		fi
 	else
 		if [[ -e "$_cache" ]]; then
-			command rm -f "$cache"
+			command rm -f "$_cache"
 		fi
 		unset items[oldkernel]
 		unset items[newkernel]
