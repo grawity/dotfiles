@@ -158,3 +158,33 @@ st() { do: signtool -d "$nssdb" "$@"; }
 
 java-import-key() { keytool -importkeystore -srcstoretype PKCS12 -srckeystore "$@"; }
 nss-import-key() { pu -i "$@"; }
+
+## Prompt
+
+_check_kernel() {
+	local _cache="$XDG_RUNTIME_DIR/check-kernel.bash" _old _new
+
+	if [[ /boot/vmlinuz-linux -nt /proc/sys ]]; then
+		if [[ ! "${items[oldkernel]}" ]]; then
+			# this runs on every prompt display, has to be fast
+			if [[ /boot/vmlinuz-linux -ot "$_cache" ]]; then
+				. "$_cache" && return
+			fi
+			items[oldkernel]=$(uname -r | sed 's/-ARCH$//')
+			items[newkernel]=$(pacman -Q linux | sed 's/^.* //')
+			echo "items[oldkernel]=${items[oldkernel]@Q}" > "$_cache"
+			echo "items[newkernel]=${items[newkernel]@Q}" >> "$_cache"
+		fi
+	else
+		if [[ -e "$_cache" ]]; then
+			command rm -f "$cache"
+		fi
+		unset items[oldkernel]
+		unset items[newkernel]
+	fi
+}
+PROMPT_COMMAND+="; _check_kernel"
+parts[right]+=" (:oldkernel)!kernel"
+parts[!kernel]="<:oldkernel <:newkernel"
+fmts[oldkernel]="38;5;202"
+fmts[newkernel]="@name"
