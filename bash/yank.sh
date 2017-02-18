@@ -15,15 +15,16 @@ _xkill() {
 
 _xyank() {
 	local str=$(pclip)
+	local len=$(printf '%s' "$str" | wc -c)
 	READLINE_LINE=${READLINE_LINE:0:$READLINE_POINT}${str}${READLINE_LINE:$READLINE_POINT}
-	READLINE_POINT=$((READLINE_POINT + ${#str}))
+	READLINE_POINT=$((READLINE_POINT + len))
 }
 
 _xyankq() {
-	local str=$(pclip)
-	str="${str@Q} "
+	local str=$(pclip); str="${str@Q} "
+	local len=$(printf '%s' "$str" | wc -c)
 	READLINE_LINE=${READLINE_LINE:0:$READLINE_POINT}${str}${READLINE_LINE:$READLINE_POINT}
-	READLINE_POINT=$((READLINE_POINT + ${#str}))
+	READLINE_POINT=$((READLINE_POINT + len))
 }
 
 if have gclip && have pclip; then

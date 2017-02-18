@@ -89,15 +89,6 @@ mkmaildir() { mkdir -p "${@/%//cur}" "${@/%//new}" "${@/%//tmp}"; }
 mtr() { settitle "$HOSTNAME: mtr $*"; command mtr --show-ips "$@"; }
 alias mtrr='mtr --report-wide --report-cycles 3 --show-ips --aslookup --mpls'
 alias mutagen='mid3v2'
-mv() {
-	if [[ -t 0 && -t 1 && $# -eq 1 && -e $1 ]]; then
-		local old=$1 new=$1
-		read -p "rename to: " -e -i "$old" new
-		[[ "$old" != "$new" ]] && command mv -v "$old" "$new"
-	else
-		command mv "$@"
-	fi
-}
 alias nmap='nmap --reason'
 alias nm-con='nmcli -f name,type,autoconnect,state,device con'
 alias py='python'
@@ -287,6 +278,18 @@ cat() {
 	fi
 }
 
+imv() {
+	local old new
+	if (( ! $# )); then
+		echo "imv: no files" >&2
+		return 1
+	fi
+	for old; do
+		new=$old; read -p "rename to: " -e -i "$old" new
+		[[ "$old" == "$new" ]] || command mv -v "$old" "$new"
+	done
+}
+
 mksrcinfo() {
 	if have mksrcinfo; then
 		command mksrcinfo
@@ -305,17 +308,6 @@ man() {
 	else
 		command man "$@"
 	fi
-}
-
-putenv() {
-	local pid=$1 var val args=()
-	for var in "${@:2}"; do
-		val=$(urlencode -x "${!var}")
-		var=$(urlencode -x "$var")
-		args=("${args[@]}" "-ex" "p putenv(\"$var=$val\")")
-	done
-	args gdb --batch "${args[@]}" -ex detach -p "$pid"
-	gdb --batch "${args[@]}" -ex detach -p "$pid"
 }
 
 alias tlsc='tlsg'
