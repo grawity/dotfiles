@@ -4,9 +4,12 @@
 set sendmail="msmtp"
 !
 
-[[ $GPG_AGENT_INFO || -S ~/.gnupg/S.gpg-agent ]] && cat <<!
+[[ $GPG_AGENT_INFO ]] ||
+[[ -S ~/.gnupg/S.gpg-agent ]] ||
+[[ -S /run/user/$UID/gnupg/S.gpg-agent ]] && cat <<!
 set crypt_use_gpgme
 !
+# (yes, gnupg more or less hardcodes the /run path)
 
 [[ -f /usr/share/doc/mutt/README.Debian ]] && cat <<!
 set xterm_set_titles
