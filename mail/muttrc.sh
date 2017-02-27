@@ -22,6 +22,10 @@ set message_cachedir="~/.cache/mutt"
 
 [[ -f ~/.auth/muttrc ]] && cat ~/.auth/muttrc
 
-[[ -f ~/.muttrc-"$HOSTNAME" ]] && cat ~/.muttrc-"$HOSTNAME"
+if [[ -f ~/.config/mutt/muttrc-"$HOSTNAME" ]]; then
+	cat ~/.config/mutt/muttrc-"$HOSTNAME"
+elif [[ -f ~/.muttrc-"$HOSTNAME" ]]; then
+	cat ~/.muttrc-"$HOSTNAME"
+fi
 
 exit 0
