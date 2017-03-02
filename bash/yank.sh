@@ -14,14 +14,16 @@ _xkill() {
 }
 
 _xyank() {
-	local str=$(pclip)
+	local func=${1:-pclip}
+	local str=$(eval $func)
 	local len=$(printf '%s' "$str" | wc -c)
 	READLINE_LINE=${READLINE_LINE:0:$READLINE_POINT}${str}${READLINE_LINE:$READLINE_POINT}
 	READLINE_POINT=$((READLINE_POINT + len))
 }
 
 _xyankq() {
-	local str=$(pclip); str="${str@Q} "
+	local func=${1:-pclip}
+	local str=$(eval $func); str="${str@Q} "
 	local len=$(printf '%s' "$str" | wc -c)
 	READLINE_LINE=${READLINE_LINE:0:$READLINE_POINT}${str}${READLINE_LINE:$READLINE_POINT}
 	READLINE_POINT=$((READLINE_POINT + len))
@@ -31,6 +33,6 @@ if have gclip && have pclip; then
 	bind -m emacs -x '"\eu": _xdiscard'
 	bind -m emacs -x '"\ek": _xkill'
 	bind -m emacs -x '"\ey": _xyank'
-	bind -m emacs -x '"\ev": _xyankq'
-	bind -m emacs -x '"\C-g": _xyankq'
+	bind -m emacs -x '"\C-f": _xyankq psel'
+	bind -m emacs -x '"\C-g": _xyankq pclip'
 fi
