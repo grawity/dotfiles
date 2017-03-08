@@ -9,6 +9,11 @@
 " Docs on mapping fast escape codes in vim
 " http://vim.wikia.com/wiki/Mapping_fast_keycodes_in_terminal_Vim
 
+" 2017-03-08 grawity: disable if native support is present
+if has("nvim") || &t_BE != ""
+  finish
+endif
+
 if !exists("g:bracketed_paste_tmux_wrap")
   let g:bracketed_paste_tmux_wrap = 1
 endif
