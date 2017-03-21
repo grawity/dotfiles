@@ -3,6 +3,7 @@ application/pdf; evince %s; nametemplate=%s.pdf
 application/vnd.openxmlformats-officedocument.wordprocessingml.document; libreoffice %s; nametemplate=%s.docx
 
 application/x-zip-compressed; vim %s; nametemplate=%s.zip; needsterminal
+application/x-zip-compressed; file-roller %s; nametemplate=%s.zip
 application/x-zip-compressed; zipinfo -2 /dev/stdin; copiousoutput
 
 application/zip; vim %s; nametemplate=%s.zip; needsterminal
