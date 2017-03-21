@@ -34,6 +34,8 @@ augroup filetypedetect
 	au BufNewFile,BufRead /etc/pacman.d/hooks/*.hook setf dosini
 	au BufNewFile,BufRead /usr/share/libalpm/hooks/*.hook setf dosini
 
+	au BufNewFile,BufRead *.gv setf dot
+
 	" Git
 	au BufNewFile,BufRead MERGE_MSG setf gitcommit
 
