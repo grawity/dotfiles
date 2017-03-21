@@ -149,7 +149,6 @@
 
 [log]
 	decorate = auto
-	showSignature = true
 
 [merge]
 	conflictStyle = diff3
