@@ -148,6 +148,7 @@
 	templateDir = ~/.config/git/template
 
 [log]
+	decorate = auto
 	showSignature = true
 
 [merge]
