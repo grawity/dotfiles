@@ -55,6 +55,11 @@ iwstat() {
 	iw $dev link && echo &&
 	iw $dev station dump
 }
+kernels() {
+	cat https://www.kernel.org/finger_banner \
+	| sed -r 's/^The latest (.+) version.*:/\1/' \
+	| column -t
+}
 alias kssh='ssh \
 	-o PreferredAuthentications=gssapi-keyex,gssapi-with-mic \
 	-o GSSAPIAuthentication=yes \
