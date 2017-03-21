@@ -60,11 +60,11 @@ run-dhcpcd() {
 }
 
 ecap() {
-	sudo: tcpdump -n -i "${1:-eth0}" "${@:2}"
+	sudo: tcpdump -Unei "${dev:-eth0}" "${1:-not (port 5353)}"
 }
 
 earp() {
-	ecap "$1" -e "arp or (udp port 67 or 68)"
+	ecap "arp or (udp port 67 or 68)"
 }
 
 ukip() {
