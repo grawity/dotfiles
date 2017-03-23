@@ -10,7 +10,7 @@
 " http://vim.wikia.com/wiki/Mapping_fast_keycodes_in_terminal_Vim
 
 " 2017-03-08 grawity: disable if native support is present
-if has("nvim") || &t_BE != ""
+if has("nvim") || (exists("&t_BE") && &t_BE != "")
   finish
 endif
 
