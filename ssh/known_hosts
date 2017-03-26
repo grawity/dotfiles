@@ -97,7 +97,6 @@ uk-vpn.utenos-kolegija.lt,193.219.181.211,2001:778:e27f::211 ecdsa-sha2-nistp256
 uk-web1.utenos-kolegija.lt,193.219.181.250,2001:778:e27f::250 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBfAkmKEmZuSd6w3tBHUZ7rQ5Yksdz6HLgxd8TszLNhdt1fjmYdGdSdBmtOeb/fO+MzNDvpts0xllhFoEImmrKY=
 uk-webproxy.utenos-kolegija.lt,2001:778:e27f::aff:fe80:605 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBOWrkC43bUFI8qPIUJW6xKGp6z3eksWQyXQsN1PmsI8h3oLONxTNvqq+HH45oqbXa4bHBe2xmOcFBfqNBmsBR4Y=
 unifi.utenos-kolegija.lt,2001:778:e27f:0:215:5dff:fe21:cf13 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK/YjXZl65Tg34tLiJxZU6L6QVe3F5hysBdDc4ToF03juY1u0tzqtTHvOGlncDl8DRgTh16E1bW35c3MLT2HJdc=
-untangle.utenos-kolegija.lt,193.219.181.200 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBGzm7tmOqDx4KlGhF3/ZyWIuI7CAwZxutVNE3CNugiPgpk9fHzM2/WG7tfTj9Ni/YSg9v+OqKkZLSnie86MD8Zo=
 user.me.uk,77.241.206.238 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNRzffrKw3oJJYCiKCcRNSgiU+PoJ73n43tfbfjQyeLpiQvTnuOPKVuQhewEBkVhlL/zDbJyXBtOJOi4+KaUwyI=
 uten.litnet.lt,2001:778:e27f::1 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFwCupZX1TTPJJD8SOkO9jPzc4pNkwMEI1e5KSemqHiDJQvojQO/sCjg7OauAAN+BberSgApHv1biJI4aHSPGXM=
 vingis.ktu.lt,193.219.61.13 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEFxqwTKubcbi1+Ehcq6B2TrwcF6Ga3SdywJMEK7UAOK
@@ -118,3 +117,4 @@ sf1.hashbang.sh,45.58.38.222 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTY
 ny1.hashbang.sh,45.58.35.111 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBIQwZl7VgCjKxn3Bl9tpEM6MGTMiUIaul0YjIO0eLKg3a51uogYiK+EOznngtpDQcThZTo1lukSn0EsuFabcbA4=
 da1.hashbang.sh,104.245.35.240 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBkDkuJm3T7WgZpKOS8O8cq3PJqu+jmvgFoNLq26jA1lmRlVbnHNITn81Hs5/NCJrlMW5CnIRg2DhZrLDyjaXFc=
 aircontrol.utenos-kolegija.lt,2001:778:e27f::aff:fe80:607 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBG0ytfENaXVjwgyJ7q7OHYrd4Totyk8+m349947j8kqkXZoO7mCDJxgXw8xC98FGuTrWwQdv23iAymaNqgWNYAc=
+gw-core.utenos-kolegija.lt,193.219.181.194 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJJvB4AzXDnZGlOKiL0pEBShzjU1xN/EcefBYj7y5gig
