@@ -50,6 +50,7 @@ rm() {
 		~/fs/*)			false;;
 		~/@*)			false;;
 		# skip junk
+		~/.cache/pacaur/*)	false;;
 		~/.local/share/Trash/*)	false;;
 		*.tmp)			false;;
 		.unison.*)		false;;
