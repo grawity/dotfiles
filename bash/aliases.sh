@@ -335,7 +335,7 @@ tlso() {
 	    *)   local addr="$host";;
 	esac
 	openssl s_client -connect "$addr:$port" -servername "$host" \
-		-verify_hostname "$host" -status -no_ign_eof "${@:3}"
+		-verify_hostname "$host" -status -no_ign_eof -nocommands "${@:3}"
 }
 
 sslcert() {
