@@ -27,13 +27,6 @@ set ftp:verify-address yes
 
 # compatibility
 
-set ftp:charset/212.164.230.75 "cp1251"
-
-#set ftp:passive-mode/ftp.ukolegija.lt no
-
-#set ftp:prefer-epsv yes
-#set ftp:prefer-epsv/ftp.ukolegija.lt no
-
 set ftp:use-mlsd yes
 
 set ssl:verify-certificate/eu.ftp.muffnet.xyz no
