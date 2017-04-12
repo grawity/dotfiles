@@ -1,5 +1,6 @@
 application/pdf; evince %s; nametemplate=%s.pdf
 
+application/msword; libreoffice %s; nametemplate=%s.doc
 application/vnd.openxmlformats-officedocument.wordprocessingml.document; libreoffice %s; nametemplate=%s.docx
 
 application/x-zip-compressed; vim %s; nametemplate=%s.zip; needsterminal
