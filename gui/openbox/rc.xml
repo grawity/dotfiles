@@ -95,20 +95,14 @@
   </theme>
   <desktops>
     <!-- this stuff is only used at startup, pagers allow you to change them
-       during a session
-
-       these are default values to use when other ones are not already set
-       by other applications, or saved in your session
-
-       use obconf if you want to change these without having to log out
-       and back in -->
+         during a session -->
     <number>4</number>
     <firstdesk>1</firstdesk>
     <names>
       <!-- set names up here if you want to, like this:
-    <name>desktop 1</name>
-    <name>desktop 2</name>
-    -->
+      <name>desktop 1</name>
+      <name>desktop 2</name>
+      -->
     </names>
     <popupTime>600</popupTime>
     <!-- The number of milliseconds to show the popup for when switching
@@ -124,16 +118,16 @@
       <!-- these are used if popupPosition is set to 'Fixed' -->
       <x>10</x>
       <!-- positive number for distance from left edge, negative number for
-         distance from right edge, or 'Center' -->
+           distance from right edge, or 'Center' -->
       <y>10</y>
       <!-- positive number for distance from top edge, negative number for
-         distance from bottom edge, or 'Center' -->
+           distance from bottom edge, or 'Center' -->
     </popupFixedPosition>
   </resize>
   <!-- You can reserve a portion of your screen where windows will not cover when
-     they are maximized, or when they are initially placed.
-     Many programs reserve space automatically, but you can use this in other
-     cases. -->
+       they are maximized, or when they are initially placed.
+       Many programs reserve space automatically, but you can use this in other
+       cases. -->
   <margins>
     <top>0</top>
     <bottom>0</bottom>
