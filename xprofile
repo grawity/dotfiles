@@ -12,7 +12,9 @@ if [ ! "$DESKTOP_SESSION" ]; then
 
 	gnome-screensaver &
 
-	ibus-daemon --xim &
+	ibus-daemon --xim --single --daemonize &
+	# without --single it breaks modifier keys
+	# ayekat says --daemonize works better than &
 
 	xbindkeys &
 fi
