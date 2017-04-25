@@ -43,7 +43,8 @@ Each part consists of a series of individual items:
 Items can be prefixed with (in exactly this order):
 
   * `(foo)` – condition (multiple prefixes are ANDed)
-  * `[foo]` – format/color code (only works with literals)
+  * `[link]` – OSC 8 hyperlink marker (item text is the URL)
+  * `[foo]` – ANSI format/color code (only works with literals)
   * `<` – insert a space only if needed
 
 The conditions are:
