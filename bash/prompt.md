@@ -77,10 +77,10 @@ For example:
     ┌ rain ~/lib/dotfiles master 
     ┘ :pp parts
     parts=(
-      [prompt]=':prompt >'
+      [prompt]=':prompt _'
       [right]=':vcs (:nested?)<:parent (:lid:held?)<:lid'
       [left]=':name.pfx (root)(:user:root):user (!root)(:user:self):user :host :name.sfx'
-      [mid]=':pwd.head :pwd.body :pwd.tail'
+      [mid]='[link]:pwd.url :pwd.head :pwd.body :pwd.tail [link]>'
     )
 
     ┌ rain ~/lib/dotfiles master 
