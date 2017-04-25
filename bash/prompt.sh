@@ -487,7 +487,7 @@ _update_title() {
 	fi
 	settitle "$title"
 	if [[ ${DISPLAY-} && ${VTE_VERSION-} ]]; then
-		items[pwd.url]="file://${HOSTNAME}$(urlencode -r -p "$PWD")"
+		items[pwd.url]="file://${HOSTNAME}$(urlencode -r -p -a "$PWD")"
 		printf '\e]7;%s\e\\' "${items[pwd.url]}"
 	fi
 }
