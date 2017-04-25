@@ -35,7 +35,8 @@ The reason for the above is that `:pwd`, the working directory item, is trimmed 
 
 Each part consists of a series of individual items:
 
-  * `>foo` – a literal string (or a space)
+  * `_` – a space
+  * `>foo` – a literal string
   * `:foo` – a variable from the items[] array
   * `!foo` – recursively insert a sub-part
 

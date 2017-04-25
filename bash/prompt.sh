@@ -46,7 +46,7 @@ declare -A parts=(
 	[left]=":host"
 	[mid]=":pwd"
 	[right]=":vcs"
-	[prompt]=":prompt >"
+	[prompt]=":prompt _"
 )
 
 declare -Ai _recursing=()
@@ -275,12 +275,12 @@ _awesome_add_item() {
 	baseitem=$item
 
 	# handle various item types
-	#   >		a space
+	#   _		a space
 	#   >text	literal text
 	#   !part	sub-part with items
 	#   :item	text from item
 
-	if [[ $item == \> ]]; then
+	if [[ $item == _ ]]; then
 		out=" "
 	elif [[ $item == \>* ]]; then
 		out=${item#\>}
