@@ -103,4 +103,7 @@ augroup filetypedetect
 
 	" XML
 	au BufNewFile,BufRead *.doap setf xml
+
+	" YAML
+	au BufNewFile,BufRead *.sls setf yaml | setl ts=2 sw=2 et
 augroup END
