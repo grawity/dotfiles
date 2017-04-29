@@ -30,6 +30,7 @@ entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
 alias ccard-tool='pkcs11-tool --module libccpkip11.so'
 alias etoken-tool='pkcs11-tool --module libeTPkcs11.so'
 alias gemalto-tool='pkcs11-tool --module /usr/lib/pkcs11/libgclib.so'
+alias ykcs11-tool='pkcs11-tool --module libykcs11.so'
 cymruname() { arpaname "$1" | sed 's/\.in-addr\.arpa/.origin/i; s/\.ip6\.arpa/.origin6/i; s/$/.asn.cymru.com./'; }
 cymrudig() { local n=$(cymruname "$1") && [[ $n ]] && dig +short "$n" TXT; }
 alias cymruwhois='whois -h whois.radb.net'
@@ -141,7 +142,7 @@ visexp() { (echo "; vim: ft=sexp"; echo "; file: $1"; sexp-conv < "$1") \
 alias w3m='w3m -title'
 wim() { local file=$(which "$1") && [[ $file ]] && editor "$file" "${@:2}"; }
 alias unwine='printf "\e[?1l \e>"'
-xar() { xargs -r -t -d '\n' "$@"; }
+xar() { xargs -r -d '\n' "$@"; }
 alias xf='ps xf -O ppid'
 alias xx='chmod a+rx'
 alias zt1='zerotier-cli'
