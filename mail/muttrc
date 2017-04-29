@@ -121,6 +121,7 @@ auto_view application/x-zip-compressed
 auto_view text/html
 auto_view text/x-vcard
 auto_view message/disposition-notification
+auto_view message/feedback-report
 
 ### Generic appearance
 
