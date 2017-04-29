@@ -107,6 +107,7 @@ Host github.com
 Host bazaar.launchpad.net
 	KexAlgorithms diffie-hellman-group1-sha1
 	PubkeyAcceptedKeyTypes ssh-rsa
+	IdentityFile ~/.ssh/id_global
 
 Host asix
 	HostName ix.aperture-laboratories.science
