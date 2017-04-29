@@ -6,6 +6,7 @@ augroup filetypedetect
 	au BufNewFile,BufRead *.axfr,*.dns,*.zone setf bindzone
 
 	" config
+	au BufNewFile,BufRead ~/.config/pkcs11/* setf conf
 	au BufNewFile,BufRead ~/.irssi/config setf c-conf
 
 	" XDG Desktop Entry
