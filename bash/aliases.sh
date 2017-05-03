@@ -339,7 +339,7 @@ tlso() {
 		-verify_hostname "$host" -status -no_ign_eof -nocommands "${@:3}"
 }
 
-sslcert() {
+tlscert() {
 	if [[ $2 == -p ]]; then
 		set -- "$1" "${@:3}"
 	fi
@@ -351,10 +351,21 @@ sslcert() {
 	fi < /dev/null
 }
 
+alias sslcert='tlscert'
+
 x509fp() {
 	local file=${1:-/dev/stdin}
-	openssl x509 -noout -fingerprint -sha1 -in "$file" |
-		sed 's/^.*=//; y/ABCDEF/abcdef/'
+	openssl x509 -in "$file" -noout -fingerprint -sha1 | sed 's/.*=//' | tr A-F a-f
+}
+
+x509subj() {
+	local file=${1:-/dev/stdin}
+	openssl x509 -in "$file" -noout -subject -nameopt RFC2253 | sed 's/^subject=//'
+}
+
+x509subject() {
+	local file=${1:-/dev/stdin}
+	openssl x509 -in "$file" -noout -subject -issuer -nameopt utf8,multiline,dn_rev
 }
 
 # package management
