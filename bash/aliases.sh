@@ -339,7 +339,7 @@ tlso() {
 		-verify_hostname "$host" -status -no_ign_eof -nocommands "${@:3}"
 }
 
-sslcert() {
+tlscert() {
 	if [[ $2 == -p ]]; then
 		set -- "$1" "${@:3}"
 	fi
@@ -351,9 +351,11 @@ sslcert() {
 	fi < /dev/null
 }
 
+alias sslcert='tlscert'
+
 x509fp() {
 	local file=${1:-/dev/stdin}
-	openssl x509 -in "$file" -noout -fingerprint -sha1 | sed 's/^.*=//; y/ABCDEF/abcdef/'
+	openssl x509 -in "$file" -noout -fingerprint -sha1 | sed 's/.*=//' | tr A-F a-f
 }
 
 x509subj() {
