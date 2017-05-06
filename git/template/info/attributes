@@ -1,0 +1,3 @@
+# don't diffstat translations by default
+*.po -diff
+*.pot -diff
