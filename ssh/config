@@ -35,6 +35,9 @@ Host tandberg.utenos-kolegija.lt
 Host pf-*.utenos-kolegija.lt
 	User root
 
+Host gw-b56.utenos-kolegija.lt
+	User mantas
+
 Host uk-* 193.219.181.* 2001:778:e27f:*
 	IdentityFile ~/.ssh/id_ukolegija
 	ForwardAgent yes
