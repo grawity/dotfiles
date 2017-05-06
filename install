@@ -46,8 +46,13 @@ check_owner() {
 		if [ -h "$f" ]; then
 			continue
 		elif [ -e "$f" ] && [ ! -O "$f" ]; then
-			notice "file '$f' not owned by me, replacing"
-			trash "$f"
+			case $f in
+			.lesshst)
+				rm -f "$f" ;;
+			*)
+				notice "file '$f' not owned by me, replacing"
+				trash "$f" ;;
+			esac
 			(umask 077; touch "$f")
 		elif [ -d "$f" ] && [ ! -O "$f" ]; then
 			notice "dir '$f' not owned by me, replacing"

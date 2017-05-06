@@ -365,7 +365,7 @@ x509subj() {
 
 x509subject() {
 	local file=${1:-/dev/stdin}
-	openssl x509 -in "$file" -noout -subject -issuer -nameopt utf8,multiline,dn_rev
+	openssl x509 -in "$file" -noout -subject -issuer -nameopt multiline,dn_rev
 }
 
 # package management
