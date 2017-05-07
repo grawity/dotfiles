@@ -10,7 +10,7 @@ IgnoreUnknown CanonicalDomains,CanonicalizeHostname,GSSAPIKeyExchange,PubkeyAcce
 
 # work
 
-Host uk-radius ukradius radius
+Host uk-radius ukradius
 	HostName radius.utenos-kolegija.lt
 	User grawity
 	IdentityFile ~/.ssh/id_ukolegija
@@ -19,7 +19,6 @@ Host uk-radius ukradius radius
 Host sw-a9-core.utenos-kolegija.lt sw-b56-edge.utenos-kolegija.lt
 	Ciphers 3des-cbc
 	User admin
-	IdentityFile ~/.ssh/id_ukolegija
 	IdentitiesOnly yes
 	ControlMaster no
 
@@ -53,16 +52,9 @@ Host abacus eta gamma hawking radian virgule
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-Host gamma gamma.cluenet.org
-	Port 2223
-
 Host theos
 	HostName %h.kyriasis.com
 	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
-Host moose
-	HostName moose.lairofthelords.com
 	ForwardAgent yes
 
 Host panther
@@ -70,7 +62,7 @@ Host panther
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-Host decay ghost river sky wolke
+Host ghost sky wolke
 	HostName %h.nullroute.eu.org
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
@@ -85,9 +77,6 @@ Host snow snow.home snow.local
 
 # other hosts
 
-Host m-net.arbornet.org
-	HostKeyAlgorithms ssh-rsa,ssh-dss
-
 Host aur
 	HostName aur.archlinux.org
 	User aur
@@ -97,17 +86,6 @@ Host github.com
 	ControlPersist 5m
 
 Host bazaar.launchpad.net
-	KexAlgorithms diffie-hellman-group1-sha1
-	PubkeyAcceptedKeyTypes ssh-rsa
-	IdentityFile ~/.ssh/id_global
-
-Host asix
-	HostName ix.aperture-laboratories.science
-	User NULLROUTE-MNT
-	PubkeyAcceptedKeyTypes ssh-rsa
-
-Host ix.aperture-laboratories.science
-	User NULLROUTE-MNT
 	PubkeyAcceptedKeyTypes ssh-rsa
 
 Host ofb.net
@@ -160,7 +138,7 @@ Host *.home *.local 10.* 192.168.*
 # global options
 
 #if [ -e ~/.ssh/id_rsa_2011-11-01 ]
-Host * !bazaar.launchpad.net
+Host *
 	IdentityFile ~/.ssh/id_rsa_2011-11-01
 	IdentityFile ~/.ssh/id_ed25519_2015-05-15
 #endif
