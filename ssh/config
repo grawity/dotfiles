@@ -42,7 +42,7 @@ Host uk-* 193.219.181.* 2001:778:e27f:*
 	IdentityFile ~/.ssh/id_ukolegija
 	ForwardAgent yes
 
-Host *.utenos-kolegija.lt
+Host *.utenos-kolegija.lt *.ukolegija.lt
 	IdentityFile ~/.ssh/id_ukolegija
 	ForwardAgent yes
 
@@ -167,7 +167,7 @@ Host * !bazaar.launchpad.net
 
 Host *
 	CanonicalizeHostname yes
-	CanonicalDomains nullroute.eu.org utenos-kolegija.lt
+	CanonicalDomains nullroute.eu.org nullroute.eu nullroute.lt utenos-kolegija.lt ukolegija.lt
 	Protocol 2
 	HashKnownHosts no
 	VerifyHostKeyDNS yes
