@@ -10,11 +10,8 @@ IgnoreUnknown CanonicalDomains,CanonicalizeHostname,GSSAPIKeyExchange,PubkeyAcce
 
 # work
 
-Host uk-radius ukradius
+Host ukradius
 	HostName radius.utenos-kolegija.lt
-	User grawity
-	IdentityFile ~/.ssh/id_ukolegija
-	ForwardAgent yes
 
 Host sw-a9-core.utenos-kolegija.lt sw-b56-edge.utenos-kolegija.lt
 	Ciphers 3des-cbc
@@ -37,11 +34,7 @@ Host pf-*.utenos-kolegija.lt
 Host gw-b56.utenos-kolegija.lt
 	User mantas
 
-Host uk-* 193.219.181.* 2001:778:e27f:*
-	IdentityFile ~/.ssh/id_ukolegija
-	ForwardAgent yes
-
-Host *.utenos-kolegija.lt *.ukolegija.lt
+Host *.utenos-kolegija.lt *.ukolegija.lt 2001:778:e27f:* 193.219.181.*
 	IdentityFile ~/.ssh/id_ukolegija
 	ForwardAgent yes
 
@@ -49,30 +42,14 @@ Host *.utenos-kolegija.lt *.ukolegija.lt
 
 Host abacus eta gamma hawking radian virgule
 	HostName %h.cluenet.org
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
 
 Host theos
 	HostName %h.kyriasis.com
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
 
 Host panther
 	HostName %h.nathan7.eu
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
 
-Host ghost sky wolke
-	HostName %h.nullroute.eu.org
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
-Host rain
-	HostkeyAlias rain.nullroute.eu.org
-	ForwardAgent yes
-
-Host snow snow.home snow.local
-	HostkeyAlias snow.nullroute.eu.org
+Host snow.nullroute.eu.org
 	User Mantas
 
 # other hosts
