@@ -38,20 +38,6 @@ Host *.utenos-kolegija.lt *.ukolegija.lt 2001:778:e27f:* 193.219.181.*
 	IdentityFile ~/.ssh/id_ukolegija
 	ForwardAgent yes
 
-# Cluenet and stuff
-
-Host abacus eta gamma hawking radian virgule
-	HostName %h.cluenet.org
-
-Host theos
-	HostName %h.kyriasis.com
-
-Host panther
-	HostName %h.nathan7.eu
-
-Host snow.nullroute.eu.org
-	User Mantas
-
 # other hosts
 
 Host aur
@@ -65,9 +51,6 @@ Host github.com
 Host bazaar.launchpad.net
 	PubkeyAcceptedKeyTypes ssh-rsa
 
-Host ofb.net
-	ForwardAgent yes
-
 Host ubnt
 	HostName 192.168.1.20
 	User ubnt
@@ -78,19 +61,34 @@ Host ubnt
 
 # domain-wide settings
 
+Host abacus eta gamma hawking radian virgule
+	HostName %h.cluenet.org
+
 Host *.cluenet.org
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
+
+Host theos
+	HostName %h.kyriasis.com
 
 Host *.kyriasis.com
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
+Host snow.nullroute.eu.org
+	User Mantas
+
 Host *.nullroute.eu.org
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
+Host panther
+	HostName %h.nathan7.eu
+
 Host *.nathan7.eu
+	ForwardAgent yes
+
+Host ofb.net
 	ForwardAgent yes
 
 Host *.zt1
