@@ -38,27 +38,6 @@ Host *.utenos-kolegija.lt *.ukolegija.lt 2001:778:e27f:* 193.219.181.*
 	IdentityFile ~/.ssh/id_ukolegija
 	ForwardAgent yes
 
-# other hosts
-
-Host aur
-	HostName aur.archlinux.org
-	User aur
-
-Host github.com
-	ControlMaster auto
-	ControlPersist 5m
-
-Host bazaar.launchpad.net
-	PubkeyAcceptedKeyTypes ssh-rsa
-
-Host ubnt
-	HostName 192.168.1.20
-	User ubnt
-	UserKnownHostsFile /dev/null
-	GlobalKnownHostsFile /dev/null
-	StrictHostKeyChecking no
-	ControlPersist no
-
 # domain-wide settings
 
 Host abacus eta gamma hawking radian virgule
@@ -104,6 +83,27 @@ Host *.core
 Host *.home *.local 10.* 192.168.*
 	ForwardAgent yes
 	UserKnownHostsFile ~/.ssh/known_hosts.local
+
+# other hosts
+
+Host aur
+	HostName aur.archlinux.org
+	User aur
+
+Host github.com
+	ControlMaster auto
+	ControlPersist 5m
+
+Host bazaar.launchpad.net
+	PubkeyAcceptedKeyTypes ssh-rsa
+
+Host ubnt
+	HostName 192.168.1.20
+	User ubnt
+	UserKnownHostsFile /dev/null
+	GlobalKnownHostsFile /dev/null
+	StrictHostKeyChecking no
+	ControlPersist no
 
 # global options
 
