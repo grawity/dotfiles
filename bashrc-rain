@@ -9,7 +9,6 @@ fi
 ## Aliases
 
 alias clock='tty-clock -c'
-alias cower='pacaur'
 alias eof='IGNOREEOF=3'
 alias eris='ssh wolke -t tmux attach -t eris'
 alias fumount='fusermount -u'
