@@ -47,7 +47,7 @@ check_owner() {
 			continue
 		elif [ -e "$f" ] && [ ! -O "$f" ]; then
 			case $f in
-			.lesshst)
+			*/.lesshst)
 				rm -f "$f" ;;
 			*)
 				notice "file '$f' not owned by me, replacing"
