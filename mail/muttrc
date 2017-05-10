@@ -12,7 +12,7 @@ reply-hook ~l 'set from="grawity@gmail.com"'
 alternates "^(grawity|mantas)(\\+.+)?@nullroute\.eu\.org$"
 alternates "^grawity(\\+.+)?@gmail\.com$"
 alternates "^grawity(\\+.+)?@(\w+\.)?cluenet\.org$"
-alternates "^mantas(:.+)?@utenos-kolegija\.lt$"
+alternates "^mantas(:.+)?@u(tenos-)?kolegija\.lt$"
 
 ### Mailing lists
 
