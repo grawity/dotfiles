@@ -137,6 +137,7 @@ vercmp() {
 	esac
 }
 vimpaste() { vim <(getpaste "$1"); }
+alias vinft='sudo -E vim /etc/nftables.conf && sudo nft -f /etc/nftables.conf'
 virdf() { vim -c "setf n3" <(rapper -q -o turtle "$@"); }
 visexp() { (echo "; vim: ft=sexp"; echo "; file: $1"; sexp-conv < "$1") \
 	| vipe | sexp-conv -s canonical | sponge "$1"; }
