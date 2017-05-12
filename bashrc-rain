@@ -45,7 +45,6 @@ rm() {
 			opts+=("$arg")
 		elif case $(realpath -s "$arg") in
 		# skip filesystems
-		~/Private/*)		false;;
 		~/fs/*)			false;;
 		~/@*)			false;;
 		# skip junk
