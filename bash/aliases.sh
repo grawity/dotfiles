@@ -76,6 +76,7 @@ f() { find . \( -name .git -prune \) , \( -iname "*$1*" "${@:2}" \); }
 ff() { find "$PWD" \( -name .git -prune \) , \( -iname "*$1*" "${@:2}" \) \
 	| treeify "$PWD"; }
 alias lchown='chown -h'
+vildap() { ldapvi -s base -b "$@" '(objectclass=*)' '*' '+'; }
 ldapls() {
 	ldapsearch -LLL "$@" 1.1 | ldifunwrap | grep ^dn: \
 	| perl -MMIME::Base64 -pe 's/^(.+?):: (.+)$/"$1: ".decode_base64($2)/e'
@@ -113,7 +114,7 @@ ressh() { ssh -v \
 alias rawhois='do: whois -h whois.ra.net --'
 alias riswhois='do: whois -h riswhois.ripe.net --'
 alias rot13='tr N-ZA-Mn-za-m A-Za-z'
-rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}"; echo; }
+rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-16}"; echo; }
 alias run='spawn -c'
 alias rsync='rsync -s'
 sp() { printf '%s' "$@"; printf '\n'; }
@@ -354,6 +355,16 @@ tlscert() {
 }
 
 alias sslcert='tlscert'
+
+lspkcs12() {
+	if [[ $1 == -g ]]; then
+		certtool --p12-info --inder "${@:2}"
+	elif [[ $1 == -n ]]; then
+		pk12util -l "${@:2}"
+	elif [[ $1 == -o ]]; then
+		openssl pkcs12 -info -nokeys -in "${@:2}"
+	fi
+}
 
 x509fp() {
 	local file=${1:-/dev/stdin}
