@@ -128,6 +128,8 @@ alias todo:='todo "$(_thiscommand todo:)" #'
 alias traceroute='traceroute --extensions'
 alias tracert='traceroute --icmp'
 alias treedu='tree --du -h'
+alias try-openconnect='openconnect --verbose --authenticate'
+alias try-openvpn='openvpn --verb 3 --dev null --{ifconfig,route}-noexec --client'
 up() { local p i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
 vercmp() {
 	case $(command vercmp "$@") in
