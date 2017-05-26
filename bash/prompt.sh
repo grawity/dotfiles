@@ -486,7 +486,7 @@ _update_title() {
 		title="${t_user}${t_host} ${t_path}${t_display}"
 	fi
 	settitle "$title"
-	if [[ ${DISPLAY-} && ${VTE_VERSION-} ]]; then
+	if [[ ${DISPLAY-} && ${VTE_VERSION-}${TILIX_ID-} ]]; then
 		items[pwd.url]="file://${HOSTNAME}$(urlencode -r -p -a "$PWD")"
 		printf '\e]7;%s\e\\' "${items[pwd.url]}"
 	fi

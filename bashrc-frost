@@ -28,7 +28,7 @@ _update_title() {
 		title="${t_user}${t_host} ${t_path}${t_display}"
 	fi
 	settitle "$title"
-	if [[ ${DISPLAY-} && ${VTE_VERSION-} ]]; then
+	if [[ ${DISPLAY-} && ${VTE_VERSION-}${TILIX_ID-} ]]; then
 		printf '\e]7;file://%s%s\a' "$HOSTNAME" "$(urlencode -r -p "$PWD")"
 	fi
 }
