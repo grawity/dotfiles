@@ -190,6 +190,8 @@
 	show-changes = no
 	split-view-height = 75%
 
+	mouse = true
+
 [tig "bind"]
 	generic = Backspace view-close
 	generic = <Backspace> view-close
