@@ -26,9 +26,6 @@ Host sw-m7-adm.utenos-kolegija.lt sw-m7-klases.utenos-kolegija.lt
 Host pf-*.utenos-kolegija.lt
 	User root
 
-Host gw-b56.utenos-kolegija.lt
-	User mantas
-
 Host *.utenos-kolegija.lt *.ukolegija.lt 2001:778:e27f:* 193.219.181.*
 	IdentityFile ~/.ssh/id_ukolegija
 	ForwardAgent yes
