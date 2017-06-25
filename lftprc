@@ -1,17 +1,11 @@
 # ~/.config/lftp/rc
 
-set xfer:clobber no
-
-# interface
-
 alias .. "cd .."
 alias ls "cls -h"
 alias ll "cls -lh"
 alias rels "cache flush; ls"
 
 set cmd:prompt "\\[\\e[38;5;173m\\]lftp \\[\\e[38;5;216m\\]\\S\\? \\u\\@\\h:\\w>\\[\\e[m\\] "
-
-# network
 
 set dns:SRV-query yes
 set ftp:anon-pass "grawity@gmail.com"
@@ -21,13 +15,6 @@ set ftp:ssl-allow-anonymous yes
 set ftp:ssl-protect-data yes
 set ftp:ssl-protect-fxp yes
 
-# require active-data connections to come from control peer
-# (disabled by default due to improperly multihomed servers)
-set ftp:verify-address yes
-
-# compatibility
-
 set ftp:use-mlsd yes
 
-set ssl:verify-certificate/eu.ftp.muffnet.xyz no
-#set ssl:check-hostname/eu.ftp.muffnet.xyz no
+set xfer:clobber no
