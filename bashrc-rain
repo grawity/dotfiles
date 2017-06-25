@@ -112,10 +112,11 @@ ukvpn() {
 }
 
 vnet() {
-	local arg=${1:-status}
+	local arg=${1:-show}
 	case $arg in
 		up) arg="start";;
 		down) arg="stop";;
+		show) arg="list-dependencies";;
 	esac
 	sudo: systemctl $arg vm-network.target
 }
@@ -160,9 +161,5 @@ thdb() { (nssdb="$HOME/.thunderbird/1xrzgg5b.default"; "$@"); }
 
 cu() { do: certutil -d "$nssdb" "$@"; }
 mu() { do: modutil  -dbdir "$nssdb" "$@"; }
-pe() { do: pesign   -n "$nssdb" "$@"; }
 pu() { do: pk12util -d "$nssdb" "$@"; }
 st() { do: signtool -d "$nssdb" "$@"; }
-
-java-import-key() { keytool -importkeystore -srcstoretype PKCS12 -srckeystore "$@"; }
-nss-import-key() { pu -i "$@"; }
