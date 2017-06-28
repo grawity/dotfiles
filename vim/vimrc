@@ -82,6 +82,8 @@ if &t_Co > 16
 	au WinLeave * setl nocursorline
 	au FocusGained * setl cursorline
 	au FocusLost * setl nocursorline
+	" disable BCE (bugfix)
+	set t_ut=
 endif
 
 set wildmenu
