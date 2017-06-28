@@ -97,7 +97,9 @@ link profile
 
 link git ~/.config/git
 (umask 077
- touch ~/.config/git/credentials)
+ touch ~/.config/git/credentials
+ mkdir -p ~/.local/share/tig
+ touch ~/.local/share/tig/history)
 
 ssh/generate
 link ssh/known_hosts
