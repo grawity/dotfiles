@@ -29,5 +29,9 @@ set ftp:verify-address yes
 
 set ftp:use-mlsd yes
 
+set ftp:passive-mode/ftp.isu.edu.tw no
+
 set ssl:verify-certificate/eu.ftp.muffnet.xyz no
-#set ssl:check-hostname/eu.ftp.muffnet.xyz no
+
+set ftp:use-feat/ftp.vlk.lt no
+set ftp:ssl-allow/ftp.vlk.lt no
