@@ -191,6 +191,7 @@
 	split-view-height = 75%
 
 	mouse = true
+	truncation-delimiter = utf-8
 
 [tig "bind"]
 	generic = Backspace view-close
