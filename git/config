@@ -192,6 +192,9 @@
 
 	mouse = true
 
+	# [diff opts]
+	diff-highlight = /usr/share/git/diff-highlight/diff-highlight
+
 [tig "bind"]
 	generic = Backspace view-close
 	generic = <Backspace> view-close
@@ -204,6 +207,8 @@
 
 [tig "color"]
 	cursor = black green
+	#diff-add-highlight = color83 color22
+	#diff-del-highlight = blue color52
 	#title-focus = color16 color39
 	#title-blur = color16 color25
 
