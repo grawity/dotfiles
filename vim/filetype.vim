@@ -84,6 +84,7 @@ augroup filetypedetect
 	" Shell
 	au BufNewFile,BufRead /etc/rc.conf setf sh
 	au BufNewFile,BufRead /tmp/bash-fc-* setl ft=sh
+	au BufNewFile,BufRead policy-rc.d setl ft=sh
 	
 	" tmux
 	au BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
