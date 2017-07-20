@@ -22,7 +22,7 @@ fi
 if [ "$DESKTOP_SESSION" != gnome ]; then
 	case $HOSTNAME in
 		rain)	touchpad="ETPS/2 Elantech Touchpad";;
-		frost)	touchpad="DLL063E:00 06CB:2934";;
+		frost)	touchpad="Synaptics s3203";;
 	esac
 
 	if [ "$touchpad" ]; then
