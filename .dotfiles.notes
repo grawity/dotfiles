@@ -355,7 +355,8 @@ Please also read <.environ.notes> if you find this file useful.
       - ./sshhostkeys: $PUTTYSSHHOSTKEYS
       - ./randomseed: $PUTTYRANDOMSEED
 
-~/.quodlibet/ – environment
+~/.quodlibet/ – XDG as of 3.10.0, environment
+  - "$XDG_CONFIG_HOME/quodlibet/" is usedas of 3.10.0 (4e9545b2fa0eff6)
   - $QUODLIBET_USERDIR overrides
 
 ~/.renpy/ – hardcoded
