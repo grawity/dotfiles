@@ -207,6 +207,8 @@
 
 [tig "color"]
 	cursor = black green
+	diff-add-highlight = black green
+	diff-del-highlight = black red
 	#diff-add-highlight = color83 color22
 	#diff-del-highlight = blue color52
 	#title-focus = color16 color39
