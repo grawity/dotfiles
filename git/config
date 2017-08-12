@@ -24,8 +24,8 @@
 	follow = log --oneline --follow --stat --summary --
 	fpush = push --force-with-lease
 	ftime = "!date +'--date=%s' -r"
-	get-notes = "!git config --add remote.origin.fetch \"+refs/notes/*:refs/notes/*\" && git fetch origin"
-	get-pulls = "!git config --add remote.origin.fetch \"+refs/pull/*/head:refs/remotes/pull/*\" && git fetch origin"
+	fetch-notes = "!git config --add remote.origin.fetch \"+refs/notes/*:refs/notes/*\" && git fetch origin"
+	fetch-pr = "!git config --add remote.origin.fetch \"+refs/pull/*/head:refs/remotes/pr/*\" && git fetch origin"
 	in = log --oneline --decorate ..@{upstream}
 	lg = log --oneline --decorate
 	lgs = log --format=\"%C(yellow)%h%C(reset)%C(cyan)% GK%C(reset) %s\"
