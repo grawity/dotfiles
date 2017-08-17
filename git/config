@@ -194,7 +194,7 @@
 	truncation-delimiter = utf-8
 
 	# [diff opts]
-	diff-highlight = /usr/share/git/diff-highlight/diff-highlight
+	diff-highlight = diff-highlight
 
 [tig "bind"]
 	generic = <Backspace> view-close
