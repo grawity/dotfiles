@@ -19,7 +19,7 @@ Host sw-a9-core.utenos-kolegija.lt sw-b56-edge.utenos-kolegija.lt
 	IdentitiesOnly yes
 	ControlMaster no
 
-Host sw-m7-adm.utenos-kolegija.lt sw-m7-klases.utenos-kolegija.lt
+Host sw-m7-adm.utenos-kolegija.lt sw-m7-klases.utenos-kolegija.lt sw-m18-lan.utenos-kolegija.lt
 	User admin
 	KexAlgorithms diffie-hellman-group14-sha1
 
