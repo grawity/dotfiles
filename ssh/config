@@ -13,6 +13,9 @@ IgnoreUnknown CanonicalDomains,CanonicalizeHostname,GSSAPIKeyExchange,PubkeyAcce
 Host ukradius
 	HostName radius.utenos-kolegija.lt
 
+Host cacti cacti.utenos-kolegija.lt
+	HostName uk-cacti.utenos-kolegija.lt
+
 Host sw-a9-core.utenos-kolegija.lt sw-b56-edge.utenos-kolegija.lt
 	Ciphers 3des-cbc
 	User admin
