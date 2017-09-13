@@ -42,6 +42,7 @@ include "%L"
 <Multi_key> <bar> <period>		: "⁝"	U205D # TRICOLON
 <Multi_key> <4> <period>		: "⁞"	U205E # VERTICAL FOUR DOTS
 <Multi_key> <backslash> <backslash>	: "¦"	U00A6 # BROKEN BAR
+<Multi_key> <bar> <greater>		: "❯"
 
 <Multi_key> <Multi_key> <bar> <bar>		: "∩"	U2229 # INTERSECTION
 <Multi_key> <Multi_key> <ampersand> <ampersand>	: "∪"	U222A # UNION
