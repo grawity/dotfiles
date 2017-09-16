@@ -13,13 +13,16 @@ IgnoreUnknown CanonicalDomains,CanonicalizeHostname,GSSAPIKeyExchange,PubkeyAcce
 Host ukradius
 	HostName radius.utenos-kolegija.lt
 
+Host cacti cacti.utenos-kolegija.lt
+	HostName uk-cacti.utenos-kolegija.lt
+
 Host sw-a9-core.utenos-kolegija.lt sw-b56-edge.utenos-kolegija.lt
 	Ciphers 3des-cbc
 	User admin
 	IdentitiesOnly yes
 	ControlMaster no
 
-Host sw-m7-adm.utenos-kolegija.lt sw-m7-klases.utenos-kolegija.lt
+Host sw-m7-adm.utenos-kolegija.lt sw-m7-klases.utenos-kolegija.lt sw-m18-lan.utenos-kolegija.lt
 	User admin
 	KexAlgorithms diffie-hellman-group14-sha1
 

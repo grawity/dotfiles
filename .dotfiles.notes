@@ -57,6 +57,8 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.d-feet/ – XDG as of 0.1.15 (7f6104bbc5ab); hardcoded
   - $XDG_CONFIG_HOME/d-feet/ is used now
 
+~/.darcs/ – XDG as of 2.10
+
 ~/.dc++/ – hardcoded
 
 ~/.dbus/ – fixed

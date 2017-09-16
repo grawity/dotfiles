@@ -192,6 +192,8 @@ if have xclip; then
 	alias gsel='xclip -in -selection primary'
 	alias pclip='xclip -out -selection clipboard'
 	alias gclip='xclip -in -selection clipboard'
+	alias lssel='psel -target TARGETS'
+	alias lsclip='pclip -target TARGETS'
 elif have xsel; then
 	alias psel='xsel -o -p -l /dev/null'
 	alias gsel='xsel -i -p -l /dev/null'

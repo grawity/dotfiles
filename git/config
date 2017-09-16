@@ -197,7 +197,6 @@
 	diff-highlight = diff-highlight
 
 [tig "bind"]
-	generic = Backspace view-close
 	generic = <Backspace> view-close
 	generic = \\ scroll-line-up
 	generic = E !git format-patch -1 %(commit)
