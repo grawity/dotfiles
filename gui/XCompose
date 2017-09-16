@@ -18,9 +18,12 @@ include "%L"
 
 <Multi_key> <D> <A>			: "Δ"	U0394 # Delta
 <Multi_key> <D> <a>			: "Δ"	U0394 # Delta
-<Multi_key> <d> <a>			: "δ"	U03b4 # delta
-<Multi_key> <l> <a>			: "λ"	U03bb # lambda
-<Multi_key> <p> <i>			: "π"	U03c0 # pi
+<Multi_key> <d> <a>			: "δ"	U03B4 # delta
+<Multi_key> <l> <a>			: "λ"	U03BB # lambda
+<Multi_key> <O> <M>			: "Ω"	U03A9 # Omega
+<Multi_key> <O> <m>			: "Ω"	U03A9 # Omega
+<Multi_key> <o> <m>			: "ω"	U03C9 # omega
+<Multi_key> <p> <i>			: "π"	U03C0 # pi
 
 <Multi_key> <n> <n>			: "𝒏"	#U1d48f
 <Multi_key> <n> <quotedbl>		: "n̈"	# SPINAL TAP
