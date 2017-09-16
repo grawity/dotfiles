@@ -96,6 +96,7 @@ mkmaildir() { mkdir -p "${@/%//cur}" "${@/%//new}" "${@/%//tmp}"; }
 mtr() { settitle "$HOSTNAME: mtr $*"; command mtr --show-ips "$@"; }
 alias mtrr='mtr --report-wide --report-cycles 3 --show-ips --aslookup --mpls'
 alias mutagen='mid3v2'
+mvln() { mv "$1" "$2" && sym -v "$2" "$1"; }
 alias nmap='nmap --reason'
 alias nm-con='nmcli -f name,type,autoconnect,state,device con'
 alias py='python'
