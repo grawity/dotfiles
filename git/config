@@ -4,7 +4,9 @@
 [user]
 	name = Mantas Mikulėnas
 	email = grawity@gmail.com
-	signingKey = "D24F6CB2C1B52632"
+	#signingKey = "2357E10CEF4F7ED27E233AD5D24F6CB2C1B52632"
+	signingKey = "2C9DD6A768AE6C3EDC5295B4F19E6940B2113ABB!"
+	# sign with the ed25519 subkey
 
 [alias]
 	a = add --all
