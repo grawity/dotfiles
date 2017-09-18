@@ -1,2 +1,6 @@
 *.ldif		diff=ldif
 *.policy.in	diff=polkit
+
+# don't diffstat translations by default
+*.po		-diff
+*.pot		-diff

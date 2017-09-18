@@ -4,7 +4,9 @@
 [user]
 	name = Mantas Mikulėnas
 	email = grawity@gmail.com
-	signingKey = "D24F6CB2C1B52632"
+	#signingKey = "2357E10CEF4F7ED27E233AD5D24F6CB2C1B52632"
+	signingKey = "2C9DD6A768AE6C3EDC5295B4F19E6940B2113ABB!"
+	# sign with the ed25519 subkey
 
 [alias]
 	a = add --all
@@ -24,8 +26,8 @@
 	follow = log --oneline --follow --stat --summary --
 	fpush = push --force-with-lease
 	ftime = "!date +'--date=%s' -r"
-	get-notes = "!git config --add remote.origin.fetch \"+refs/notes/*:refs/notes/*\" && git fetch origin"
-	get-pulls = "!git config --add remote.origin.fetch \"+refs/pull/*/head:refs/remotes/pull/*\" && git fetch origin"
+	fetch-notes = "!git config --add remote.origin.fetch \"+refs/notes/*:refs/notes/*\" && git fetch origin"
+	fetch-pr = "!git config --add remote.origin.fetch \"+refs/pull/*/head:refs/remotes/pr/*\" && git fetch origin"
 	in = log --oneline --decorate ..@{upstream}
 	lg = log --oneline --decorate
 	lgs = log --format=\"%C(yellow)%h%C(reset)%C(cyan)% GK%C(reset) %s\"
