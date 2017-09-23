@@ -22,12 +22,17 @@ set sendmail="/usr/bin/msmtp"
 set sendmail-arguments="--read-envelope-from"
 set sendwait
 
+set imap-use-starttls
 account nullroute {
 	set from="grawity@nullroute.eu.org"
+	set folder="imap://grawity@mail.nullroute.eu.org"
+	set imap-auth="gssapi"
 }
 account gmail {
 	set from="grawity@gmail.com"
+	set folder="imaps://grawity%40gmail.com@imap.gmail.com"
 }
 account ukolegija {
 	set from="mantas@utenos-kolegija.lt"
+	set folder="imap://mantas@mail.utenos-kolegija.lt"
 }
