@@ -254,14 +254,6 @@
 [url "https://git.archlinux.org/"]
 	insteadOf = git://projects.archlinux.org/
 
-# annex aliases
-
-[url "ukradius:fs1/"]
-	insteadOf = fs1:/
-
-[url "ukradius:/mnt/vol5/"]
-	insteadOf = vol5:/
-
 # local config
 
 [include]

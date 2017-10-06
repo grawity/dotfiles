@@ -15,13 +15,6 @@ alias cindex='env TMPDIR=/var/tmp cindex'
 alias cpans='PERL_MM_OPT= PERL_MB_OPT= cpanm --sudo'
 count() { sort "$@" | uniq -c | sort -n -r | pager; }
 alias demo='PS1="\\n\\$ "'
-dist/head() {
-	echo -e "\e[1m== ~/code\e[m"
-	(cd ~/code && git tip)
-	echo
-	echo -e "\e[1m== ~/lib/dotfiles\e[m"
-	(cd ~/lib/dotfiles && git tip)
-}
 dist/pull() { ~/code/dist/pull "$@" && SILENT=1 . ~/.profile; }
 alias dnstrace='dnstracer -s .'
 alias easy-rsa='easyrsa'
@@ -31,11 +24,12 @@ alias ccard-tool='pkcs11-tool --module libccpkip11.so'
 alias etoken-tool='pkcs11-tool --module libeTPkcs11.so'
 alias gemalto-tool='pkcs11-tool --module /usr/lib/pkcs11/libgclib.so'
 alias ykcs11-tool='pkcs11-tool --module libykcs11.so'
-cymruname() { arpaname "$1" | sed 's/\.in-addr\.arpa/.origin/i; s/\.ip6\.arpa/.origin6/i; s/$/.asn.cymru.com./'; }
+cymruname() { arpaname "$1" | sed 's/\.in-addr\.arpa/.origin/i;
+                                   s/\.ip6\.arpa/.origin6/i;
+                                   s/$/.asn.cymru.com./'; }
 cymrudig() { local n=$(cymruname "$1") && [[ $n ]] && dig +short "$n" TXT; }
 alias cymruwhois='whois -h whois.radb.net'
 alias facl='getfacl -pt'
-alias fdf='findmnt -o target,size,used,avail,use%,fstype'
 fc-fontformat() {
 	fc-list -f "%10{fontformat}: %{family}\n" \
 	| sed 's/,.*//' | sort -t: -k2 -u
@@ -65,7 +59,6 @@ alias kssh='ssh \
 	-o PreferredAuthentications=gssapi-keyex,gssapi-with-mic \
 	-o GSSAPIAuthentication=yes \
 	-o GSSAPIDelegateCredentials=yes'
-#alias l='ls -log'
 alias l='~/code/thirdparty/l'
 alias ll='ls -l'
 alias logoff='logout'
@@ -99,6 +92,7 @@ alias mutagen='mid3v2'
 mvln() { mv "$1" "$2" && sym -v "$2" "$1"; }
 alias nmap='nmap --reason'
 alias nm-con='nmcli -f name,type,autoconnect,state,device con'
+prime() { DRI_PRIME=1 "$@"; }
 alias py='python'
 alias py2='python2'
 alias py3='python3'
@@ -140,7 +134,7 @@ vercmp() {
 	esac
 }
 vimpaste() { vim <(getpaste "$1"); }
-alias vinft='sudo -E vim /etc/nftables.conf && sudo nft -f /etc/nftables.conf'
+alias vinft='sudo -E sh -c "vim /etc/nftables.conf && nft -f /etc/nftables.conf"'
 virdf() { vim -c "setf n3" <(rapper -q -o turtle "$@"); }
 visexp() { (echo "; vim: ft=sexp"; echo "; file: $1"; sexp-conv < "$1") \
 	| vipe | sexp-conv -s canonical | sponge "$1"; }
