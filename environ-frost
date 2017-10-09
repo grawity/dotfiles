@@ -2,6 +2,6 @@
 
 . ~/lib/dotfiles/environ-rain
 
-# libdefaults
+SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
 
 VDPAU_DRIVER="va_gl"
