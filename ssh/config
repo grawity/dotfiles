@@ -105,12 +105,6 @@ Host ubnt
 
 # global options
 
-#if [ -e ~/.ssh/id_rsa_2011-11-01 ]
-Host *
-	IdentityFile ~/.ssh/id_rsa_2011-11-01
-	IdentityFile ~/.ssh/id_ed25519_2015-05-15
-#endif
-
 Host *
 	CanonicalizeHostname yes
 	CanonicalDomains nullroute.eu.org nullroute.eu nullroute.lt utenos-kolegija.lt ukolegija.lt
