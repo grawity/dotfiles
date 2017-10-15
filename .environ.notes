@@ -109,6 +109,8 @@ VDPAU_DRIVER="r600"		# autodetects correctly
 XCURSOR_THEME="adwaita"		# already set in Xresources and XSETTINGS
 XCURSOR_SIZE="16"		# already set in Xresources and XSETTINGS
 
+SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS="0"
+
 # LibreOffice
 SAL_USE_VCLPLUGIN="gtk"		# gen, gtk, gtk3, kde4
 
