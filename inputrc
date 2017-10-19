@@ -17,6 +17,16 @@ set completion-map-case on
 # disallow modifying history
 set revert-all-at-newline on
 
+# reduce timeout for `
+$if Bash
+set keyseq-timeout 200
+$endif
+
+# typos
+$if Bash
+"`/": "~/"
+$endif
+
 # arrows
 "\e[A": history-search-backward
 "\e[B": history-search-forward
