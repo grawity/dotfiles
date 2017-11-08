@@ -60,6 +60,12 @@ if has("termguicolors")
 	endif
 endif
 
+if has("nvim")
+	" Neovim 0.2.1: disable cursor styling using DEC sequences,
+	" as it is not properly reset on exit
+	silent! set guicursor=
+endif
+
 " UI elements
 
 set ruler
