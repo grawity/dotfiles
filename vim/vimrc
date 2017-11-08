@@ -274,6 +274,11 @@ if has("autocmd")
 
 	au! BufNewFile */_posts/2*.html
 	\ 0r %:h/_template.html
+
+	if has("nvim")
+		" Neovim 0.2.1: terminal buffers now have line numbers
+		au! TermOpen * setl nonumber norelativenumber
+	endif
 endif
 
 """ Plugins
