@@ -28,10 +28,8 @@ if [ "$touchpad" ]; then
 	if [ "$DESKTOP_SESSION" != gnome ]; then
 		# org.gnome.desktop.peripherals.touchpad tap-to-click true
 		# org.gnome.desktop.peripherals.touchpad natural-scroll true
-		# org.gnome.desktop.peripherals.touchpad disable-while-typing false
 		xinput set-prop "$touchpad" "libinput Tapping Enabled" 1
 		xinput set-prop "$touchpad" "libinput Natural Scrolling Enabled" 1
-		xinput set-prop "$touchpad" "libinput Disable While Typing Enabled" 0
 	fi
 fi
 
