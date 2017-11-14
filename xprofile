@@ -19,12 +19,12 @@ if [ ! "$DESKTOP_SESSION" ]; then
 	xbindkeys &
 fi
 
-if [ "$DESKTOP_SESSION" != gnome ]; then
-	case $HOSTNAME in
-		rain)	touchpad="ETPS/2 Elantech Touchpad";;
-		frost)	touchpad="Synaptics s3203";;
-	esac
+case $HOSTNAME in
+	rain)	touchpad="ETPS/2 Elantech Touchpad";;
+	frost)	touchpad="Synaptics s3203";;
+esac
 
+if [ "$DESKTOP_SESSION" != gnome ]; then
 	if [ "$touchpad" ]; then
 		xinput set-prop "$touchpad" "libinput Tapping Enabled" 1
 		xinput set-prop "$touchpad" "libinput Natural Scrolling Enabled" 1
