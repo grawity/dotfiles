@@ -19,13 +19,13 @@ if [ ! "$DESKTOP_SESSION" ]; then
 	xbindkeys &
 fi
 
-case $HOSTNAME in
-	rain)	touchpad="ETPS/2 Elantech Touchpad";;
-	frost)	touchpad="Synaptics s3203";;
-esac
+if [ "$DESKTOP_SESSION" != gnome ]; then
+	case $HOSTNAME in
+		rain)	touchpad="ETPS/2 Elantech Touchpad";;
+		frost)	touchpad="Synaptics s3203";;
+	esac
 
-if [ "$touchpad" ]; then
-	if [ "$DESKTOP_SESSION" != gnome ]; then
+	if [ "$touchpad" ]; then
 		# org.gnome.desktop.peripherals.touchpad tap-to-click true
 		# org.gnome.desktop.peripherals.touchpad natural-scroll true
 		xinput set-prop "$touchpad" "libinput Tapping Enabled" 1
