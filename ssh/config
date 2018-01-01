@@ -37,6 +37,10 @@ Host gw-b56-bypass
 	HostName 193.219.181.189
 	HostkeyAlias gw-b56.utenos-kolegija.lt
 
+Host gw-m7-bypass
+	HostName 193.219.181.206
+	ProxyJump gw-b56-bypass
+
 Host radius-bypass
 	HostName 193.219.181.253
 	ProxyJump gw-b56-bypass
