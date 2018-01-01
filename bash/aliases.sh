@@ -140,6 +140,7 @@ visexp() { (echo "; vim: ft=sexp"; echo "; file: $1"; sexp-conv < "$1") \
 	| vipe | sexp-conv -s canonical | sponge "$1"; }
 alias w3m='w3m -title'
 wim() { local file=$(which "$1") && [[ $file ]] && editor "$file" "${@:2}"; }
+alias unpickle='python -m pickletools'
 alias unwine='printf "\e[?1l \e>"'
 xar() { xargs -r -d '\n' "$@"; }
 alias xf='ps xf -O ppid'
