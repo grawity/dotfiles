@@ -527,33 +527,6 @@ endif
 "syn region shParen matchgroup=shArithRegion start='[^$]\zs(\%(\ze[^(]\|$\)' end=')' contains=@shArithParenList
 syn region shParen matchgroup=shArithRegion start='\$\@!(\%(\ze[^(]\|$\)' end=')' contains=@shArithParenList
 
-" Useful sh Keywords: {{{1
-" ===================
-syn keyword shStatement break cd chdir continue eval exec exit kill newgrp pwd read readonly return shift test trap ulimit umask wait
-syn keyword shConditional contained elif else then
-if !exists("g:sh_no_error")
- syn keyword shCondError elif else then
-endif
-
-" Useful ksh Keywords: {{{1
-" ====================
-if exists("b:is_kornshell") || exists("b:is_bash")
- syn keyword shStatement autoload bg false fc fg functions getopts hash history integer jobs let nohup printf r stop suspend times true type unalias whence
- if exists("b:is_posix")
-  syn keyword shStatement command
- else
-  syn keyword shStatement time
- endif
-
-" Useful bash Keywords: {{{1
-" =====================
- if exists("b:is_bash")
-  syn keyword shStatement bind builtin dirs disown enable help logout popd pushd shopt source
- else
-  syn keyword shStatement login newgrp
- endif
-endif
-
 " Synchronization: {{{1
 " ================
 if !exists("g:sh_minlines")
