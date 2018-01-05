@@ -684,7 +684,6 @@ if !exists("skip_sh_syntax_inits")
  hi def link shExprRegion		Delimiter
  hi def link shFunctionKey		Function
  hi def link shFunctionName		Function
- hi def link shNumber		Number
  hi def link shOperator		Operator
  hi def link shRepeat		Repeat
  hi def link shSet		Statement
