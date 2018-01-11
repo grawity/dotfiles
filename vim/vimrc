@@ -119,7 +119,9 @@ endif
 
 " Swap file location – use // to include full path in swapnames
 if has("unix")
-	if has("nvim")
+	if $USER == "root"
+		set nobackup
+	elseif has("nvim")
 		set backupdir-=.
 		set undofile
 	else
