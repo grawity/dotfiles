@@ -250,6 +250,7 @@
 
 [url "aur:"]
 	pushInsteadOf = aur:
+	pushInsteadOf = https://aur.archlinux.org/
 
 [url "https://git.archlinux.org/"]
 	insteadOf = git://projects.archlinux.org/
