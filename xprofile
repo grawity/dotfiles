@@ -26,9 +26,11 @@ if [ "$DESKTOP_SESSION" != gnome ]; then
 	esac
 
 	if [ "$touchpad" ]; then
+		# org.gnome.desktop.peripherals.touchpad tap-to-click true
+		# org.gnome.desktop.peripherals.touchpad natural-scroll true
 		xinput set-prop "$touchpad" "libinput Tapping Enabled" 1
 		xinput set-prop "$touchpad" "libinput Natural Scrolling Enabled" 1
-	fi &
+	fi
 fi
 
 systemctl --user --no-block start graphical.target
