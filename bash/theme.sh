@@ -80,6 +80,7 @@ case $FQDN in
 	fmts[name.root]='38;5;220'
 	case $HOSTNAME in
 	    sky)	fmts[name.self]='38;5;43';;
+	    star)	fmts[name.self]='38;5;208';;
 	    river)	fmts[name.self]='38;5;33';;
 	    wolke)	fmts[name.self]='38;5;204';;
 	    *)		fmts[name.self]='38;5;109';;
