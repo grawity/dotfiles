@@ -77,7 +77,7 @@ rm() {
 }
 
 rpw() {
-	local pw=$(tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-12}")
+	local pw=$(tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-16}")
 	echo "$pw"
 	if [[ -t 1 ]]; then
 		clip "$pw"
