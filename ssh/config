@@ -10,9 +10,6 @@ IgnoreUnknown CanonicalDomains,CanonicalizeHostname,GSSAPIKeyExchange,PubkeyAcce
 
 # work
 
-Host ukradius
-	HostName radius.utenos-kolegija.lt
-
 Host cacti cacti.utenos-kolegija.lt
 	HostName uk-cacti.utenos-kolegija.lt
 
