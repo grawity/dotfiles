@@ -108,6 +108,7 @@ link tmux.conf
 
 link vim ~/.vim
 link vim ~/.config/nvim
+mkdir -p ~/.local/share/nvim/{backup,shada,swap,undo}
 
 # Copy certain settings insted of symlinking
 # (common base parameters, but remains host-specific)
