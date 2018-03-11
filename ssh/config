@@ -108,9 +108,6 @@ Host github.com
 	ControlMaster auto
 	ControlPersist 5m
 
-Host bazaar.launchpad.net
-	PubkeyAcceptedKeyTypes ssh-rsa
-
 Host ubnt
 	HostName 192.168.1.20
 	User ubnt
