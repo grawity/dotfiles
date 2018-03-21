@@ -8,6 +8,7 @@ augroup filetypedetect
 	" config
 	au BufNewFile,BufRead ~/.config/pkcs11/* setf conf
 	au BufNewFile,BufRead ~/.irssi/config setf c-conf
+	au BufNewFile,BufRead *.hcl setf c-conf
 
 	" XDG Desktop Entry
 	au BufNewFile,BufRead *.ontology setf desktop
