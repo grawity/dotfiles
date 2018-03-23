@@ -17,7 +17,7 @@ SOCK			1;35
 DOOR			1;35
 BLK			1;33;40
 CHR			1;33;40
-ORPHAN			1;31;40
+ORPHAN			31;40
 SETUID			37;41
 SETGID			30;43
 CAPABILITY		30;41
@@ -27,29 +27,29 @@ STICKY			37;44	# o+t
 EXEC			38;5;118
 
 # archives or compressed
-.7z	38;5;9
-.Z	38;5;9
-.ace	38;5;9
-.arj	38;5;9
-.bz2	38;5;9
-.cpio	38;5;9
-.deb	38;5;9
-.ear	38;5;9
-.gz	38;5;9
-.jar	38;5;9
-.lzh	38;5;9
-.lzma	38;5;9
-.rar	38;5;9
-.rpm	38;5;9
-.tar	38;5;9
-.taz	38;5;9
-.tbz	38;5;9
-.tbz2	38;5;9
-.tgz	38;5;9
-.tlz	38;5;9
-.txz	38;5;9
-.xz	38;5;9
-.zip	38;5;9
+.7z	38;5;174
+.Z	38;5;174
+.ace	38;5;174
+.arj	38;5;174
+.bz2	38;5;174
+.cpio	38;5;174
+.deb	38;5;174
+.ear	38;5;174
+.gz	38;5;174
+.jar	38;5;174
+.lzh	38;5;174
+.lzma	38;5;174
+.rar	38;5;174
+.rpm	38;5;174
+.tar	38;5;174
+.taz	38;5;174
+.tbz	38;5;174
+.tbz2	38;5;174
+.tgz	38;5;174
+.tlz	38;5;174
+.txz	38;5;174
+.xz	38;5;174
+.zip	38;5;174
 
 # still image formats
 .bmp	0;35
