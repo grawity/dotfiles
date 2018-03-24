@@ -51,7 +51,7 @@ Host radius-bypass
 
 # domain-wide settings
 
-Host abacus eta radian virgule
+Host abacus eta radian
 	HostName %h.cluenet.org
 
 Host *.cluenet.org
@@ -68,7 +68,7 @@ Host *.kyriasis.com
 Host snow.nullroute.eu.org
 	User Mantas
 
-Host frost rain
+Host frost rain virgule
 	HostName %h.nullroute.eu.org
 
 Host *.nullroute.eu.org
