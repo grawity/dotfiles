@@ -37,6 +37,9 @@ Host *.utenos-kolegija.lt *.ukolegija.lt 2001:778:e27f:* 193.219.181.*
 	IdentityFile ~/.ssh/id_ukolegija
 	ForwardAgent yes
 
+Host radius
+	AddressFamily inet6
+
 Host gw-b56-bypass
 	HostName 193.219.181.189
 	HostkeyAlias gw-b56.utenos-kolegija.lt
