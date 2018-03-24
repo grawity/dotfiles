@@ -65,9 +65,6 @@ Host *.kyriasis.com
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-Host snow.nullroute.eu.org
-	User Mantas
-
 Host frost rain virgule
 	HostName %h.nullroute.eu.org
 
