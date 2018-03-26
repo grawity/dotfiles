@@ -52,10 +52,12 @@ rm() {
 		~/.cache/pacaur/*)	false;;
 		~/.local/share/Trash/*)	false;;
 		*.tmp)			false;;
+		*/.Trash/*)		false;;
 		.unison.*)		false;;
 		# include $HOME
 		~/*)			true;;
 		/pub/*)			true;;
+		/ssd.home/*)		true;;
 		# include removable drives
 		/media/*)		true;;
 		/mnt/*)			true;;
