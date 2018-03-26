@@ -24,6 +24,9 @@ Please also read <.environ.notes> if you find this file useful.
   - in theory, literal "<lang>" should do the right substitution, but doesn't
     (which means you're limited to one language if you choose to override!)
 
+~/.atom/ – environment
+  - $ATOM_HOME can be used
+
 ~/.balsa/ – hardcoded
 
 ~/.bash_logout – hardcoded

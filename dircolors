@@ -17,7 +17,7 @@ SOCK			1;35
 DOOR			1;35
 BLK			1;33;40
 CHR			1;33;40
-ORPHAN			1;31;40
+ORPHAN			31;40
 SETUID			37;41
 SETGID			30;43
 CAPABILITY		30;41
@@ -27,29 +27,29 @@ STICKY			37;44	# o+t
 EXEC			38;5;118
 
 # archives or compressed
-.7z	38;5;9
-.Z	38;5;9
-.ace	38;5;9
-.arj	38;5;9
-.bz2	38;5;9
-.cpio	38;5;9
-.deb	38;5;9
-.ear	38;5;9
-.gz	38;5;9
-.jar	38;5;9
-.lzh	38;5;9
-.lzma	38;5;9
-.rar	38;5;9
-.rpm	38;5;9
-.tar	38;5;9
-.taz	38;5;9
-.tbz	38;5;9
-.tbz2	38;5;9
-.tgz	38;5;9
-.tlz	38;5;9
-.txz	38;5;9
-.xz	38;5;9
-.zip	38;5;9
+.7z	38;5;65
+.Z	38;5;65
+.ace	38;5;65
+.arj	38;5;65
+.bz2	38;5;65
+.cpio	38;5;65
+.deb	38;5;65
+.ear	38;5;65
+.gz	38;5;65
+.jar	38;5;65
+.lzh	38;5;65
+.lzma	38;5;65
+.rar	38;5;65
+.rpm	38;5;65
+.tar	38;5;65
+.taz	38;5;65
+.tbz	38;5;65
+.tbz2	38;5;65
+.tgz	38;5;65
+.tlz	38;5;65
+.txz	38;5;65
+.xz	38;5;65
+.zip	38;5;65
 
 # still image formats
 .bmp	0;35
@@ -114,15 +114,15 @@ EXEC			38;5;118
 .wma	0;36
 
 # document formats
-.doc	38;5;2
-.docx	38;5;2
-.odt	38;5;2
+#.doc	38;5;2
+#.docx	38;5;2
+#.odt	38;5;2
 #.pdf	38;5;2
 # spreadsheets
-.xls	38;5;2
-.xlsx	38;5;2
-.ods	38;5;2
+#.xls	38;5;2
+#.xlsx	38;5;2
+#.ods	38;5;2
 # presentations
-.ppt	38;5;2
-.pptx	38;5;2
-.odp	38;5;2
+#.ppt	38;5;2
+#.pptx	38;5;2
+#.odp	38;5;2

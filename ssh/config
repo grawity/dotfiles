@@ -10,9 +10,6 @@ IgnoreUnknown CanonicalDomains,CanonicalizeHostname,GSSAPIKeyExchange,PubkeyAcce
 
 # work
 
-Host ukradius
-	HostName radius.utenos-kolegija.lt
-
 Host cacti cacti.utenos-kolegija.lt
 	HostName uk-cacti.utenos-kolegija.lt
 
@@ -22,16 +19,19 @@ Host sw-a9-core.utenos-kolegija.lt sw-b56-edge.utenos-kolegija.lt
 	IdentitiesOnly yes
 	ControlMaster no
 
-Host sw-m7-adm.utenos-kolegija.lt sw-m7-klases.utenos-kolegija.lt sw-m18-lan.utenos-kolegija.lt
+Host sw-m7-adm.utenos-kolegija.lt sw-m7-lan.utenos-kolegija.lt sw-m18-lan.utenos-kolegija.lt
 	User admin
 	KexAlgorithms diffie-hellman-group14-sha1
 
+#if Host radius
+#else
 Host pf-*.utenos-kolegija.lt
 	User root
 	ProxyJump radius
 
 Host uk-vpn.utenos-kolegija.lt
 	ProxyJump radius
+#endif
 
 Host *.utenos-kolegija.lt *.ukolegija.lt 2001:778:e27f:* 193.219.181.*
 	IdentityFile ~/.ssh/id_ukolegija
@@ -51,7 +51,7 @@ Host radius-bypass
 
 # domain-wide settings
 
-Host abacus eta radian virgule
+Host abacus eta
 	HostName %h.cluenet.org
 
 Host *.cluenet.org
@@ -65,10 +65,7 @@ Host *.kyriasis.com
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-Host snow.nullroute.eu.org
-	User Mantas
-
-Host frost rain
+Host frost rain virgule
 	HostName %h.nullroute.eu.org
 
 Host *.nullroute.eu.org
@@ -108,9 +105,6 @@ Host github.com
 	ControlMaster auto
 	ControlPersist 5m
 
-Host bazaar.launchpad.net
-	PubkeyAcceptedKeyTypes ssh-rsa
-
 Host ubnt
 	HostName 192.168.1.20
 	User ubnt
@@ -123,7 +117,7 @@ Host ubnt
 
 Host *
 	CanonicalizeHostname yes
-	CanonicalDomains nullroute.eu.org nullroute.eu nullroute.lt utenos-kolegija.lt ukolegija.lt
+	CanonicalDomains nullroute.eu.org nullroute.lt utenos-kolegija.lt ukolegija.lt
 	Protocol 2
 	HashKnownHosts no
 	VerifyHostKeyDNS yes
