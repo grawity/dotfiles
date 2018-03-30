@@ -239,6 +239,9 @@
 	pushInsteadOf = git://github.com/
 	pushInsteadOf = https://github.com/
 
+[url "git@gitlab.gnome.org:"]
+	pushInsteadOf = https://gitlab.gnome.org/
+
 [url "https://git.gnome.org/browse/"]
 	insteadOf = git://git.gnome.org/
 
