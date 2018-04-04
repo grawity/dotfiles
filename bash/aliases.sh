@@ -40,8 +40,11 @@ gpgfp() { gpg --with-colons --fingerprint "$1" | awk -F: '/^fpr:/ {print $10}'; 
 alias hd='hexdump -C'
 alias hex='xxd -p'
 alias unhex='xxd -p -r'
-hostname.bind() { do: dig +short "${@:2}" "@$1" "$FUNCNAME." TXT CH; }
-version.bind() { do: dig +short "${@:2}" "@$1" "$FUNCNAME." TXT CH; }
+hostname.bind() {
+	for _s in id.server hostname.bind version.bind; do
+		echo "$_s = $(dig +short "${@:2}" "@${1#@}" "$_s." TXT CH)"
+	done
+}
 alias hup='pkill -HUP -x'
 alias init='telinit' # for systemd
 iwstat() {
