@@ -344,6 +344,13 @@ tlso() {
 		-verify_hostname "$host" -status -no_ign_eof -nocommands "${@:3}"
 }
 
+tlsb() {
+	if [[ $2 == -p ]]; then
+		set -- "$1" "--port=$3" "${@:4}"
+	fi
+	botan tls_client "$@"
+}
+
 tlscert() {
 	if [[ $2 == -p ]]; then
 		set -- "$1" "${@:3}"
