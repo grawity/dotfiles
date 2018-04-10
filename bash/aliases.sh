@@ -40,8 +40,11 @@ gpgfp() { gpg --with-colons --fingerprint "$1" | awk -F: '/^fpr:/ {print $10}'; 
 alias hd='hexdump -C'
 alias hex='xxd -p'
 alias unhex='xxd -p -r'
-hostname.bind() { do: dig +short "${@:2}" "@$1" "$FUNCNAME." TXT CH; }
-version.bind() { do: dig +short "${@:2}" "@$1" "$FUNCNAME." TXT CH; }
+hostname.bind() {
+	for _s in id.server hostname.bind version.bind; do
+		echo "$_s = $(dig +short "${@:2}" "@${1#@}" "$_s." TXT CH)"
+	done
+}
 alias hup='pkill -HUP -x'
 alias init='telinit' # for systemd
 iwstat() {
@@ -339,6 +342,13 @@ tlso() {
 	esac
 	openssl s_client -connect "$addr:$port" -servername "$host" \
 		-verify_hostname "$host" -status -no_ign_eof -nocommands "${@:3}"
+}
+
+tlsb() {
+	if [[ $2 == -p ]]; then
+		set -- "$1" "--port=$3" "${@:4}"
+	fi
+	botan tls_client "$@"
 }
 
 tlscert() {
