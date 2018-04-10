@@ -3,17 +3,17 @@
 $include /etc/inputrc
 
 set bell-style none
-
+set enable-bracketed-paste on
 # tab completion
 set show-all-if-ambiguous on
 set visible-stats on
 set colored-stats on
+set colored-completion-prefix on
 set skip-completed-text on
 set completion-ignore-case on
 set completion-query-items 500
 # treat - and _ as casefold-equal
 set completion-map-case on
-
 # disallow modifying history
 set revert-all-at-newline on
 
