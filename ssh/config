@@ -130,4 +130,4 @@ Host *
 	ControlPersist 10s
 	# probably of little use, but at least DSCP is more meaningful than
 	# the default values, which use the obsolete 'ToS bits' interpretation
-	IPQoS cs3 cs0
+	IPQoS af21 cs1
