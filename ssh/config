@@ -65,8 +65,11 @@ Host *.kyriasis.com
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-Host frost rain virgule
+Host blizzard frost rain virgule
 	HostName %h.nullroute.eu.org
+
+Host blizzard.nullroute.eu.org
+	User mantas
 
 Host *.nullroute.eu.org
 	GSSAPIDelegateCredentials yes
