@@ -24,6 +24,8 @@ alias ccard-tool='pkcs11-tool --module libccpkip11.so'
 alias etoken-tool='pkcs11-tool --module libeTPkcs11.so'
 alias gemalto-tool='pkcs11-tool --module /usr/lib/pkcs11/libgclib.so'
 alias ykcs11-tool='pkcs11-tool --module libykcs11.so'
+alias pwpw-tool='pkcs11-tool --module pwpw-card-pkcs11.so'
+alias osc-tool='pkcs11-tool --module opensc-pkcs11.so'
 cymruname() { arpaname "$1" | sed 's/\.in-addr\.arpa/.origin/i;
                                    s/\.ip6\.arpa/.origin6/i;
                                    s/$/.asn.cymru.com./'; }
