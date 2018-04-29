@@ -6,7 +6,7 @@ augroup filetypedetect
 	au BufNewFile,BufRead *.axfr,*.dns,*.zone setf bindzone
 
 	" config
-	au BufNewFile,BufRead ~/.config/pkcs11/* setf conf
+	au BufNewFile,BufRead */pkcs11/modules/* setf conf
 	au BufNewFile,BufRead ~/.irssi/config setf c-conf
 	au BufNewFile,BufRead *.hcl setf c-conf
 
