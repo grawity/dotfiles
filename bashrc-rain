@@ -173,3 +173,12 @@ cu() { do: certutil -d "$nssdb" "$@"; }
 mu() { do: modutil  -dbdir "$nssdb" "$@"; }
 pu() { do: pk12util -d "$nssdb" "$@"; }
 st() { do: signtool -d "$nssdb" "$@"; }
+
+_update_cwd() {
+	# after `git mkbare`
+	if [[ ! -d "$PWD" ]] && [[ -d "$PWD.git" ]]; then
+		echo "* changing directory to $PWD.git"
+		cd "$PWD.git"
+	fi
+}
+PROMPT_COMMAND="_update_cwd; $PROMPT_COMMAND"
