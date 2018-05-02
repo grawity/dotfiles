@@ -165,6 +165,10 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.gnome2/, ~/.gnome2_private/ – hardcoded but obsolete
   - seriously, time to upgrade
 
+~/.gnucash/ – XDG (3.0), environment
+  - in 2.x, $GNC_DOT_DIR overrides
+  - in 3.x, $XDG_CONFIG_HOME/gnucash is used
+
 ~/.gnupg/ – environment
   - $GNUPGHOME overrides
 

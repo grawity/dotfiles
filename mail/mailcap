@@ -1,7 +1,9 @@
 application/pdf; evince %s; nametemplate=%s.pdf
 
 application/msword; libreoffice %s; nametemplate=%s.doc
+application/msword; libreoffice --cat %s; nametemplate=%s.doc; copiousoutput
 application/vnd.openxmlformats-officedocument.wordprocessingml.document; libreoffice %s; nametemplate=%s.docx
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; libreoffice --cat %s; nametemplate=%s.docx; copiousoutput
 
 application/x-zip-compressed; vim %s; nametemplate=%s.zip; needsterminal
 application/x-zip-compressed; file-roller %s; nametemplate=%s.zip
