@@ -266,6 +266,10 @@
 	# added 2018-04-10
 	insteadOf = git://pkgs.fedoraproject.org/
 
+[url "https://anongit.freedesktop.org/git/"]
+	# added 2018-05-02
+	insteadOf = git://anongit.freedesktop.org/
+
 [url "https://git.code.sf.net/"]
 	# temporary 2018-04-10
 	insteadOf = git://git.code.sf.net/
