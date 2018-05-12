@@ -5,7 +5,7 @@
 # instead, they are processed by the ssh/generate script.
 
 #if OpenSSH && Version 6.3
-IgnoreUnknown CanonicalDomains,CanonicalizeHostname,GSSAPIKeyExchange,PubkeyAcceptedKeyTypes
+IgnoreUnknown CanonicalDomains,CanonicalizeHostname,GSSAPIAuthentication,GSSAPIDelegateCredentials,GSSAPIKeyExchange,PubkeyAcceptedKeyTypes
 #endif
 
 # work
