@@ -356,6 +356,8 @@ Please also read <.environ.notes> if you find this file useful.
   - v3.0 hardcoded to ~/.config/pulse/cookie
   - v6.0 started using $XDG_CONFIG_HOME properly
 
+~/.purple/ – XDG as of 3.0.0, command-line
+
 ~/.putty/ – XDG as of 0.64 (9952b2d5bd5), environment
   - "$XDG_CONFIG_HOME/putty/" is used as of 0.63-853-g9952b2d
   - $PUTTYDIR overrides
