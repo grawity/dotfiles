@@ -271,6 +271,10 @@
 	# added 2018-05-02
 	insteadOf = git://anongit.freedesktop.org/
 
+[url "https://dev.gnupg.org/source/"]
+	# temporary 2018-05-13
+	insteadOf = git://git.gnupg.org/
+
 [url "https://git.code.sf.net/"]
 	# temporary 2018-04-10
 	insteadOf = git://git.code.sf.net/
