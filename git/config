@@ -271,6 +271,11 @@
 	# added 2018-05-02
 	insteadOf = git://anongit.freedesktop.org/
 
+[url "https://git.savannah.nongnu.org/git/"]
+	# added 2018-05-13
+	insteadOf = git://git.sv.gnu.org/
+	insteadOf = git://git.savannah.gnu.org/
+
 [url "https://dev.gnupg.org/source/"]
 	# temporary 2018-05-13
 	insteadOf = git://git.gnupg.org/
