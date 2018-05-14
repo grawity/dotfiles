@@ -176,9 +176,11 @@ st() { do: signtool -d "$nssdb" "$@"; }
 
 _update_cwd() {
 	# after `git mkbare`
+	local r=$?
 	if [[ ! -d "$PWD" ]] && [[ -d "$PWD.git" ]]; then
 		echo "* changing directory to $PWD.git"
 		cd "$PWD.git"
 	fi
+	return $r
 }
 PROMPT_COMMAND="_update_cwd; $PROMPT_COMMAND"
