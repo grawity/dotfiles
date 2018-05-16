@@ -51,13 +51,6 @@ Host radius-bypass
 
 # domain-wide settings
 
-Host abacus eta
-	HostName %h.cluenet.org
-
-Host *.cluenet.org
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
 Host theos
 	HostName %h.kyriasis.com
 

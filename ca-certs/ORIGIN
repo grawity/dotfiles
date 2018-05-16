@@ -4,12 +4,6 @@
 	fetch-sig: https://nullroute.eu.org/files/x509-ca/Nullroute_CA_r4.pem.asc
 	signer: grawity 2357E10CEF4F7ED27E233AD5D24F6CB2C1B52632
 
-cluenet.org/Cluenet_CA.crt
-	info: https://www.cluenet.org/certificates.html
-	fetch-crt: https://www.cluenet.org/files/Cluenet.pem
-	fetch-sig: https://www.cluenet.org/files/Cluenet.pem.asc
-	signer: grawity 2357E10CEF4F7ED27E233AD5D24F6CB2C1B52632
-
 dn42.net/dn42_Root_Authority_CA.crt
 	info: https://dn42.net/services/Certificate-Authority
 	fetch-crt: https://ca.dn42.us/crt/root-ca.crt
