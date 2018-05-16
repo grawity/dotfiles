@@ -76,11 +76,11 @@ ff() { find "$PWD" \( -name .git -prune \) , \( -iname "*$1*" "${@:2}" \) \
 alias lchown='chown -h'
 vildap() { ldapvi -s base -b "$@" '(objectclass=*)' '*' '+'; }
 ldapls() {
-	ldapsearch -LLL "$@" 1.1 | ldifunwrap | grep ^dn: \
+	ldapsearch -LLL -o ldif-wrap=no "$@" 1.1 | grep ^dn: \
 	| perl -MMIME::Base64 -pe 's/^(.+?):: (.+)$/"$1: ".decode_base64($2)/e'
 }
 ldapshow() { ldapsearch -b "$1" -s base -LLL "${@:2}"; }
-ldapstat() { ldapsearch -b "" -s base -x -LLL "$@" \* +; }
+ldapstat() { ldapsearch -b "" -s base -LLL "$@" \* +; }
 alias ldapvi='ldapvi --bind sasl'
 alias lp='sudo netstat -lptu --numeric-hosts'
 alias lpt='sudo netstat -lpt --numeric-hosts'
@@ -97,7 +97,6 @@ alias mutagen='mid3v2'
 mvln() { mv "$1" "$2" && sym -v "$2" "$1"; }
 alias nmap='nmap --reason'
 alias nm-con='nmcli -f name,type,autoconnect,state,device con'
-prime() { DRI_PRIME=1 "$@"; }
 alias py='python'
 alias py2='python2'
 alias py3='python3'
