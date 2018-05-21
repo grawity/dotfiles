@@ -22,14 +22,19 @@ fi
 if [ "$DESKTOP_SESSION" != gnome ]; then
 	case $HOSTNAME in
 		rain)	touchpad="ETPS/2 Elantech Touchpad";;
-		frost)	touchpad="Synaptics s3203";;
+		#frost)	touchpad="Synaptics s3203";;
+		frost)	touchpad="SynPS/2 Synaptics TouchPad" accel="0.2";;
 	esac
 
 	if [ "$touchpad" ]; then
 		# org.gnome.desktop.peripherals.touchpad tap-to-click true
-		# org.gnome.desktop.peripherals.touchpad natural-scroll true
 		xinput set-prop "$touchpad" "libinput Tapping Enabled" 1
+		# org.gnome.desktop.peripherals.touchpad natural-scroll true
 		xinput set-prop "$touchpad" "libinput Natural Scrolling Enabled" 1
+	fi
+	if [ "$touchpad" ] && [ "$accel" ]; then
+		# org.gnome.desktop.peripherals.touchpad speed
+		xinput set-prop "$touchpad" "libinput Accel Speed" "$accel"
 	fi
 fi
 
