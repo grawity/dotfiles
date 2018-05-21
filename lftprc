@@ -21,6 +21,7 @@ set xfer:clobber no
 
 set ftp:passive-mode/ftp.isu.edu.tw no
 
+set ssl:verify-certificate/items-uploads.archive.org no
 set ssl:verify-certificate/eu.ftp.muffnet.xyz no
 set ssl:verify-certificate/us.ftp.muffnet.xyz no
 
