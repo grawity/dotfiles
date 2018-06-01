@@ -29,7 +29,7 @@ _update_title() {
 	fi
 	settitle "$title"
 	if [[ ${DISPLAY-} && ${VTE_VERSION-}${TILIX_ID-} ]]; then
-		printf '\e]7;file://%s%s\a' "$HOSTNAME" "$(urlencode -r -p "$PWD")"
+		printf '\e]7;file://%s%s\a' "$HOSTNAME" "$(urlencode -n -p -a "$PWD")"
 	fi
 }
 

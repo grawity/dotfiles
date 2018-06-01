@@ -29,7 +29,6 @@ setpath PATH \
 	"$HOME/code/obj/host.$HOSTNAME"		\
 	"$HOME/lib/code/bin"			\
 	"$HOME/lib/code/obj/host.$HOSTNAME"	\
-	"$HOME/lib/hacks/obj/host.$HOSTNAME"	\
 	"$GOPATH/bin"				\
 	"$HOME/.cabal/bin"			\
 	"$PREFIX/bin"				\
@@ -39,9 +38,9 @@ setpath PATH \
 	"/sbin"					\
 	"$HOME/code/bin/fallback"		;
 
-PERL5LIB="$PREFIX/lib/perl5:$HOME/code/lib/perl5:$HOME/lib/hacks/lib/perl5"
+PERL5LIB="$PREFIX/lib/perl5:$HOME/code/lib/perl5"
 
-PYTHONPATH="$PREFIX/lib/python:$HOME/code/lib/python:$HOME/lib/hacks/lib/python"
+PYTHONPATH="$PREFIX/lib/python:$HOME/code/lib/python"
 
 PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig"
 
