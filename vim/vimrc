@@ -197,8 +197,10 @@ inoremap <C-Down> <Esc>gja
 nnoremap <Tab> %
 vnoremap <Tab> %
 
-if has("nvim")
+if has("nvim") || has("terminal")
 	tnoremap <Esc> <C-\><C-n>
+	" other shortcuts:
+	" Vim 8.1 - http://vimhelp.appspot.com/terminal.txt.html
 endif
 
 " list buffers
