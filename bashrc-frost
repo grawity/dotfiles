@@ -55,8 +55,16 @@ run-dhclient() {
 }
 
 run-dhcpcd() {
-	sudo: dhcpcd --ipv4only --noarp --reboot 0 --timeout 0 --nobackground \
-		--nohook resolv.conf --debug "${1:-eth0}" "${@:2}"
+	sudo: dhcpcd \
+		--ipv4only \
+		--noarp \
+		--nodelay \
+		--reboot 0 \
+		--timeout 0 \
+		--nobackground \
+		--nohook resolv.conf \
+		--debug \
+		"${1:-eth0}" "${@:2}"
 }
 
 ecap() {
@@ -75,7 +83,7 @@ ukip() {
 			do:   nmcli dev set $dev managed no
 			sudo: ip link set $dev up
 			sudo: ip addr flush dev $dev
-			sudo: ip addr add 169.254.0.42/16 dev $dev scope link
+			#sudo: ip addr add 169.254.0.42/16 dev $dev scope link
 			sudo: ip addr add 192.168.0.42/24 dev $dev
 			sudo: ip addr add 192.168.1.42/24 dev $dev
 			;;
