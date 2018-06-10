@@ -4,11 +4,17 @@
 if [ ! "$DESKTOP_SESSION" ]; then
 	compton &
 
+	case $(uname -s -m) in
+		'Linux i686') DARCH='i386-linux-gnu';;
+	esac
+
 	{ /usr/lib/notify-osd/notify-osd ||
 	  /usr/lib/notification-daemon-1.0/notification-daemon; } &
 
 	{ /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 ||
-	  /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1; } &
+	  /usr/lib/$DARCH/polkit-mate/polkit-mate-authentication-agent-1 ||
+	  /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 ||
+	  /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1; } &
 
 	gnome-screensaver &
 
