@@ -19,12 +19,12 @@ _bgpath() {
 	column -ts '';
 }
 
-::() { sudo birdc6 "$@"; }
+::() { sudo birdc "$@"; }
 
-::path() { sudo birdc6 show route all "$@" | _bgpath; }
+::path() { sudo birdc show route all "$@" | _bgpath; }
 
 ::proto() {
-	sudo birdc6 show protocols |
+	sudo birdc show protocols |
 	perl -nE 'say join "", split /\s+/, $_, 7' |
 	column -ts '';
 }
