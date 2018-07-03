@@ -258,12 +258,6 @@
 	pushInsteadOf = aur:
 	pushInsteadOf = https://aur.archlinux.org/
 
-# force HTTPS
-
-[url "https://git.netfilter.org/"]
-	# added 2018-04-06
-	insteadOf = git://git.netfilter.org/
-
 # rewrites of obsolete repos (to be removed eventually)
 
 [url "https://git.archlinux.org/"]
