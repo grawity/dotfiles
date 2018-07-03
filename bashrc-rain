@@ -151,6 +151,7 @@ youtube-dl() {
 		--console-title
 		--continue
 		--format "bestvideo+m4a/bestvideo+bestaudio/best"
+		--no-playlist
 		"$@"
 	)
 	"${cmd[@]}"
