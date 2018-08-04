@@ -273,6 +273,7 @@
 [url "https://anongit.freedesktop.org/git/"]
 	# added 2018-05-02
 	insteadOf = git://anongit.freedesktop.org/
+	insteadOf = http://anongit.freedesktop.org/
 
 [url "https://git.savannah.nongnu.org/git/"]
 	# added 2018-05-13
