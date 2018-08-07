@@ -185,6 +185,9 @@
 	main-view-author-width = 12
 	main-view-commit-title-graph = v1
 
+	# revert to default
+	#blame-view = date:default author:full file-name:auto id:yes,color line-number:no,interval=5 text
+
 	# [global opts]
 	commit-order = topo
 	ignore-case = true
@@ -267,18 +270,16 @@
 	# added 2018-04-10
 	insteadOf = git://pkgs.fedoraproject.org/
 
-[url "https://anongit.freedesktop.org/git/"]
-	# added 2018-05-02
+[url "https://gitlab.freedesktop.org/"]
+	# added 2018-08-04
 	insteadOf = git://anongit.freedesktop.org/
+	insteadOf = http://anongit.freedesktop.org/
+	insteadOf = https://anongit.freedesktop.org/
 
 [url "https://git.savannah.nongnu.org/git/"]
 	# added 2018-05-13
 	insteadOf = git://git.sv.gnu.org/
 	insteadOf = git://git.savannah.gnu.org/
-
-[url "https://dev.gnupg.org/source/"]
-	# temporary 2018-05-13
-	insteadOf = git://git.gnupg.org/
 
 [url "https://git.code.sf.net/"]
 	# temporary 2018-04-10

@@ -4,7 +4,7 @@
 import math
 import os
 import sys
-from pprint import pprint
+from pprint import pprint as pp
 
 def _init_():
     import atexit
@@ -27,3 +27,5 @@ def _init_():
     sys.ps2 = " " * len(name) + csi(";1;30") + "..." + csi("") + " "
 
 _init_()
+
+del _init_
