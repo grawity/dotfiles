@@ -68,12 +68,12 @@ unset VISUAL
 
 FREETYPE_PROPERTIES="truetype:interpreter-version=40"
 IBUS_ENABLE_CTRL_SHIFT_U="1"
+# 2018-08-16 grawity: this can be removed once PuTTY 0.71 is out
 NCURSES_NO_UTF8_ACS="1"
 NSS_DEFAULT_DB_TYPE="sql"
 
 # appdefaults
 
-ANSIBLE_NOCOWS="1"
 GNULIB_SRCDIR="$HOME/src/gnu/gnulib"
 PERL_CPANM_HOME="$XDG_CACHE_HOME/cpanminus"
 RLWRAP_HOME="$XDG_CACHE_HOME/rlwrap"
@@ -81,6 +81,7 @@ RLWRAP_HOME="$XDG_CACHE_HOME/rlwrap"
 IRBRC="$HOME/lib/dotfiles/irbrc"
 PYTHONSTARTUP="$HOME/lib/dotfiles/pythonrc"
 
+ANSIBLE_NOCOWS="1"
 GCC_COLORS="1"
 GIT_MERGE_AUTOEDIT="no"
 LESS="e M q R F X z -3"
