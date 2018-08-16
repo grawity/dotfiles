@@ -442,7 +442,8 @@ Please also read <.environ.notes> if you find this file useful.
   - "--hsts-file <path>" overrides
   - probably can be stored in wgetrc?
 
-~/.wireshark/ – hardcoded
+~/.wireshark/ – XDG as of 1.12??, hardcoded previously
+  - "$XDG_CONFIG_HOME/wireshark" is used
 
 ~/.XCompose – environment/hardcoded/other locations
   (libX11 aka xim)
