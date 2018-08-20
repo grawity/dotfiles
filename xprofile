@@ -30,8 +30,7 @@ if [ "$DESKTOP_SESSION" != gnome ]; then
 		rain)
 			touchpad="ETPS/2 Elantech Touchpad";;
 		frost)
-			#touchpad="Synaptics s3203";;
-			touchpad="SynPS/2 Synaptics TouchPad" accel="0.2";;
+			touchpad="Synaptics s3203" accel="0.1";;
 		fujitsu)
 			touchpad="AlpsPS/2 ALPS GlidePoint";;
 	esac
