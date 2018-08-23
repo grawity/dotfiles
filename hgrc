@@ -11,14 +11,10 @@ untrack = rm -Af
 git = True
 
 [extensions]
-color =
 convert =
 gpg =
-hgk =
 mq =
 pager =
-# default as of v3.5
-progress =
 purge =
 rebase =
 
