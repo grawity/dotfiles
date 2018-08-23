@@ -196,7 +196,6 @@
 	split-view-height = 75%
 
 	mouse = true
-	truncation-delimiter = utf-8
 
 	# [diff opts]
 	diff-highlight = diff-highlight
