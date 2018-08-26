@@ -269,11 +269,10 @@
 	# added 2018-04-10
 	insteadOf = git://pkgs.fedoraproject.org/
 
-[url "https://gitlab.freedesktop.org/"]
-	# added 2018-08-04
-	insteadOf = git://anongit.freedesktop.org/git/
-	insteadOf = http://anongit.freedesktop.org/git/
-	insteadOf = https://anongit.freedesktop.org/git/
+[url "https://anongit.freedesktop.org/git/"]
+	# added 2018-05-02
+	insteadOf = git://anongit.freedesktop.org/
+	insteadOf = http://anongit.freedesktop.org/
 
 [url "https://git.savannah.nongnu.org/git/"]
 	# added 2018-05-13
