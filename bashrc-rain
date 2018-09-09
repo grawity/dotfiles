@@ -44,6 +44,8 @@ rm() {
 	for arg; do
 		if [[ $arg == -* ]]; then
 			opts+=("$arg")
+		elif (( UID == 0 )); then
+			nuke+=("$arg")
 		elif case $(realpath -s "$arg") in
 		# skip filesystems
 		~/fs/*)			false;;

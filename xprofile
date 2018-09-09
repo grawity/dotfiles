@@ -48,6 +48,7 @@ if [ "$DESKTOP_SESSION" != gnome ]; then
 	fi
 fi
 
+systemctl --user import-environment DISPLAY XAUTHORITY
 systemctl --user --no-block start graphical.target
 
 true
