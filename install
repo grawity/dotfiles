@@ -104,7 +104,7 @@ link git ~/.config/git
 link lftprc ~/.config/lftp/rc
 
 chmod 600 mail/msmtprc
-link mail/msmtprc ~/.config/msmtp/config
+link msmtprc ~/.config/msmtp/config
 # manual: older versions use ~/.msmtprc
 
 ssh/generate
