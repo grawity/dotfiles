@@ -101,6 +101,12 @@ link git ~/.config/git
  mkdir -p ~/.local/share/tig
  touch ~/.local/share/tig/history)
 
+link lftprc ~/.config/lftp/rc
+
+chmod 600 msmtprc
+link msmtprc ~/.config/msmtp/config
+# manual: older versions use ~/.msmtprc
+
 ssh/generate
 link ssh/known_hosts
 
@@ -120,17 +126,9 @@ fi
 
 # Install conditional configs
 
-if have lftp; then
-	link lftprc ~/.config/lftp/rc
-fi
 
 if have makepkg; then
 	link pacman/makepkg.conf ~/.config/pacman/makepkg.conf
-fi
-
-if have msmtp; then
-	chmod 600 mail/msmtprc
-	link mail/msmtprc ~/.msmtprc
 fi
 
 if have radare2; then

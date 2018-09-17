@@ -1,3 +1,4 @@
+# vim: ft=sh
 fmts[.orange0]='38;5;166'
 fmts[.orange1]='38;5;202'
 fmts[.orange2]='38;5;208'
