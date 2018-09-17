@@ -130,7 +130,11 @@ fi
 
 if have msmtp; then
 	chmod 600 mail/msmtprc
-	link mail/msmtprc ~/.msmtprc
+	if msmtp --version |& egrep -qs 'msmtp version 1\.([789]\.|[0-9][^.])'; then
+		link mail/msmtprc ~/.config/msmtp/config
+	else
+		link mail/msmtprc ~/.msmtprc
+	fi
 fi
 
 if have radare2; then
