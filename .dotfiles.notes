@@ -276,7 +276,8 @@ Please also read <.environ.notes> if you find this file useful.
   - $XDG_CONFIG_HOME/mpv/ is the new default
   - $MPV_HOME overrides
 
-~/.msmtprc – command line
+~/.msmtprc – XDG as of 1.6.3 (af2f409); command line
+  - $XDG_CONFIG_HOME/msmtp/config is the new default
   - "--file <config>" option exists
 
 ~/.mtoolsrc – environment
