@@ -105,7 +105,7 @@ alias py2='python2'
 alias py3='python3'
 alias qrdecode='zbarimg --quiet --raw'
 alias rd='rmdir'
-alias rdu='du -hsc */ | awk "\$1 !~ /K/" | sort -h' # TODO: args
+rdu() { (( $# )) || set -- */; du -hsc "$@" | awk '$1 !~ /K/ || $2 == "total"' | sort -h; }
 alias re='hash -r && SILENT=1 . ~/.bashrc && echo reloaded .bashrc && :'
 alias ere='set -a && . ~/.profile && set +a && echo reloaded .profile && :'
 ressh() { ssh -v \
