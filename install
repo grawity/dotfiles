@@ -120,8 +120,7 @@ mkdir -p ~/.local/share/nvim/{backup,shada,swap,undo}
 # (common base parameters, but remains host-specific)
 
 if ! grep -qs "^#" ~/.config/htop/htoprc; then
-	mkdir -p ~/.config/htop
-	cp htoprc ~/.config/htop/htoprc
+	install -D -m 0644 htoprc ~/.config/htop/htoprc
 fi
 
 # Install conditional configs
