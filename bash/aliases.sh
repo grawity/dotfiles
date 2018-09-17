@@ -246,22 +246,18 @@ case $OSTYPE in
 		alias df='df -Th'
 		alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs'
 		alias lsd='ls -a --ignore="[^.]*"'
-		alias w='PROCPS_USERLEN=16 w -hsu'
 		;;
 	freebsd*)
 		lsopt="$lsopt -G"
 		alias df='df -h'
-		alias w='w -h'
 		;;
 	gnu)
 		lsopt="$lsopt --color=auto"
 		eval $(dircolors ~/lib/dotfiles/dircolors 2>/dev/null)
 		alias lsd='ls -a --ignore="[^.]*"'
-		alias w='w -hU'
 		;;
 	netbsd|openbsd*)
 		alias df='df -h'
-		alias w='w -h'
 		;;
 	*)
 		alias df='df -h'
