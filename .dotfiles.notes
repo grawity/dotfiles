@@ -272,6 +272,10 @@ Please also read <.environ.notes> if you find this file useful.
   - ~/.mpd/mpd.conf is also supported
   - <path> accepted in command line
 
+~/.mpoprc – XDG as of 1.2.7 (c70f9da); command line
+  - $XDG_CONFIG_HOME/mpop/config is the new default
+  - "--file <config>" option exists
+
 ~/.mpv/ – XDG as of ??? (commit cb250d); environment
   - $XDG_CONFIG_HOME/mpv/ is the new default
   - $MPV_HOME overrides
