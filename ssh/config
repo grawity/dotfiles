@@ -24,6 +24,7 @@ Host uk-vpn.utenos-kolegija.lt
 #endif
 
 Host *.utenos-kolegija.lt *.ukolegija.lt 2001:778:e27f:* 193.219.181.*
+	GSSAPIAuthentication no
 	IdentityFile ~/.ssh/work/id_ukolegija
 	IdentityFile ~/.ssh/id_ed25519
 	IdentityFile ~/.ssh/id_global_2015-05-15
