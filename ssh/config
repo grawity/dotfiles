@@ -118,6 +118,3 @@ Host *
 	# speed up git-annex batch tasks
 	ControlMaster auto
 	ControlPersist 10s
-	# probably of little use, but at least DSCP is more meaningful than
-	# the default values, which use the obsolete 'ToS bits' interpretation
-	IPQoS af21 cs1
