@@ -25,6 +25,9 @@ Host uk-vpn.utenos-kolegija.lt
 
 Host *.utenos-kolegija.lt *.ukolegija.lt 2001:778:e27f:* 193.219.181.*
 	IdentityFile ~/.ssh/work/id_ukolegija
+	IdentityFile ~/.ssh/id_ed25519
+	IdentityFile ~/.ssh/id_global_2015-05-15
+	IdentityFile ~/.ssh/id_global_2011-11-01
 	ForwardAgent yes
 
 Host gw-b56-bypass
