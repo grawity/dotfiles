@@ -8,5 +8,6 @@ fmts[name:pfx]='38;5;214'
 fmts[name.self]='38;5;109'
 
 items[name:pfx]='*'
-items[name:pfx]=$'✨\uFE0E'
+#items[name:pfx]=$'✨\uFE0E'
+items[name:pfx]=$'✨'
 items[name:sfx]=''
