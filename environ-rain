@@ -17,7 +17,6 @@ QT_IM_MODULE="ibus"
 XMODIFIERS="@im=ibus"
 
 NOKOGIRI_USE_SYSTEM_LIBRARIES="1"	# nokogiri gem - use system libxml2
-QT_STYLE_OVERRIDE="breeze"		# Qt5 - avoid the GTK+ look
 
 # appdefaults
 
