@@ -157,6 +157,7 @@ alias zt1='zerotier-cli'
 alias '~'='egrep'
 alias '~~'='egrep -i'
 -() { cd -; }
+,() { run xdg-open "${@:-.}"; }
 
 # dates
 
