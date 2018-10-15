@@ -37,7 +37,9 @@ fc-fontformat() {
 	| sed 's/,.*//' | sort -t: -k2 -u
 }
 fc-file() { fc-query -f "%{file}: %{family} (%{fontversion}, %{fontformat})\n" "$@"; }
+alias fanficfare='fanficfare -f html'
 alias fiemap='xfs_io -r -c "fiemap -v"'
+alias fff='fanficfare'
 gerp() { egrep $grepopt -r -I -D skip --exclude-dir={.bzr,.git,.hg,.svn} -H -n "$@"; }
 gpgfp() { gpg --with-colons --fingerprint "$1" | awk -F: '/^fpr:/ {print $10}'; }
 alias hd='hexdump -C'
@@ -103,7 +105,7 @@ alias py2='python2'
 alias py3='python3'
 alias qrdecode='zbarimg --quiet --raw'
 alias rd='rmdir'
-alias rdu='du -hsc */ | awk "\$1 !~ /K/" | sort -h' # TODO: args
+rdu() { (( $# )) || set -- */; du -hsc "$@" | awk '$1 !~ /K/ || $2 == "total"' | sort -h; }
 alias re='hash -r && SILENT=1 . ~/.bashrc && echo reloaded .bashrc && :'
 alias ere='set -a && . ~/.profile && set +a && echo reloaded .profile && :'
 ressh() { ssh -v \
@@ -245,22 +247,18 @@ case $OSTYPE in
 		alias df='df -Th'
 		alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs'
 		alias lsd='ls -a --ignore="[^.]*"'
-		alias w='PROCPS_USERLEN=16 w -hsu'
 		;;
 	freebsd*)
 		lsopt="$lsopt -G"
 		alias df='df -h'
-		alias w='w -h'
 		;;
 	gnu)
 		lsopt="$lsopt --color=auto"
 		eval $(dircolors ~/lib/dotfiles/dircolors 2>/dev/null)
 		alias lsd='ls -a --ignore="[^.]*"'
-		alias w='w -hU'
 		;;
 	netbsd|openbsd*)
 		alias df='df -h'
-		alias w='w -h'
 		;;
 	*)
 		alias df='df -h'

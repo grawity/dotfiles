@@ -11,12 +11,18 @@ if [ ! "$SSH_AUTH_SOCK" ] && have ssh-agent; then
 	exec ssh-agent ~/.xinitrc "$@" || exit
 fi
 
-if [ ! "$DBUS_SESSION_BUS_ADDRESS" ] && have dbus-run-session; then
-	exec dbus-run-session ~/.xinitrc "$@" || exit
-fi
+if [ ! "$XDG_RUNTIME_DIR" ] || [ ! -S "$XDG_RUNTIME_DIR/bus" ]; then
+	# As of systemd v240 (2b2b7228bf), $DBUS_SESSION_BUS_ADDRESS is no longer set.
+	# (I expect they'll revert this as soon as someone informs them that not all
+	#  DBus clients are based on libdbus or glib2.)
 
-if [ ! "$DBUS_SESSION_BUS_ADDRESS" ] && have dbus-launch; then
-	exec dbus-launch --exit-with-session ~/.xinitrc "$@" || exit
+	if [ ! "$DBUS_SESSION_BUS_ADDRESS" ] && have dbus-run-session; then
+		exec dbus-run-session ~/.xinitrc "$@" || exit
+	fi
+
+	if [ ! "$DBUS_SESSION_BUS_ADDRESS" ] && have dbus-launch; then
+		exec dbus-launch --exit-with-session ~/.xinitrc "$@" || exit
+	fi
 fi
 
 if have dbus-update-activation-environment; then
