@@ -42,7 +42,7 @@ thdb() { (nssdb="$HOME/.thunderbird/7pkkqarz.default"; "$@"); }
 
 add-vlan() {
 	local dev=$1 addr=$2
-	sudo: ip link add link "${dev%.*}" name "$dev" type vlan id "${dev##*.}"
+	sudo: ip link add "$dev" link "${dev%.*}" type vlan id "${dev##*.}"
 	sudo: ip link set "$dev" up
 	if [[ $addr ]]; then
 		[[ $addr == */* ]] || addr+="/16"
