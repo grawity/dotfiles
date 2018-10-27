@@ -394,7 +394,7 @@ x509subject() {
 
 # package management
 
-if have dpkg; then
+if have dpkg && [[ -e /etc/apt/sources.list ]]; then
 	lspkgs() { dpkg -l | awk '/^i/ {print $2}'; }
 	lscruft() { dpkg -l | awk '/^r/ {print $2}'; }
 	lspkg() { dpkg -L "$@"; }
