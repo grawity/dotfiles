@@ -11,6 +11,7 @@ def _init_():
     import readline
     import rlcompleter
 
+    readline.read_init_file()
     readline.parse_and_bind("tab: complete")
     hist_file = os.path.expanduser("~/.cache/python.history")
     if os.path.exists(hist_file):
