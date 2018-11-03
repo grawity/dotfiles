@@ -1,6 +1,0 @@
-#!/usr/bin/env zsh
-
-emulate sh
-# . ~/.profile
-. ~/lib/dotfiles/environ
-emulate zsh
