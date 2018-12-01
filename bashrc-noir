@@ -1,6 +1,0 @@
-# vim: ft=sh
-
-[[ $- != *i* ]] && return
-
-. ~/lib/dotfiles/bashrc-rain
-
