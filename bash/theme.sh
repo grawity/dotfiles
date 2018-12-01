@@ -49,46 +49,12 @@ fi
 : ${FQDN:=$HOSTNAME}
 
 case $FQDN in
-    frost.nullroute.eu.org)
-	items[name:pfx]='┌ '
-	fmts[name:pfx]='38;5;236'
-	fmts[name.root]='38;5;231|41'
-	fmts[name.self]='38;5;109'
-	fmts[pwd]='38;5;65'
-	fmts[pwd:tail]='38;5;108'
-	fmts[vcs]='38;5;131'
-	items[prompt]='┘'
-	fmts[prompt]=@name:pfx
-	;;
-
-    rain.nullroute.eu.org)
-	items[name:pfx]='┌ '
-	fmts[name:pfx]='38;5;236'
-	fmts[name.root]='38;5;231|41'
-	fmts[name.self]='38;5;82'
-	fmts[pwd]='38;5;39'
-	fmts[pwd:tail]='1|38;5;45'
-	fmts[vcs]='38;5;198'
-	items[prompt]='┘'
-	fmts[prompt]=@name:pfx
-	;;
-
     *.nullroute.eu.org)
-	items[name:pfx]='['
-	items[name:sfx]=']'
-	fmts[name:pfx]='38;5;66'
-	fmts[name.root]='38;5;220'
-	case $HOSTNAME in
-	    sky)	fmts[name.self]='38;5;43';;
-	    star)	fmts[name.self]='38;5;208';;
-	    river)	fmts[name.self]='38;5;33';;
-	    wolke)	fmts[name.self]='38;5;204';;
-	    *)		fmts[name.self]='38;5;109';;
-	esac
-	fmts[pwd]='38;5;82'
-	fmts[pwd:tail]='1|38;5;82'
-	fmts[vcs]='38;5;197'
-	fullpwd=h
+	if [[ -e ~/lib/dotfiles/bash/theme-$HOSTNAME.sh ]]; then
+		. ~/lib/dotfiles/bash/theme-$HOSTNAME.sh
+	else
+		. ~/lib/dotfiles/bash/theme-nullroute.sh
+	fi
 	;;
 
     *.cluenet.org|*.nathan7.eu)
