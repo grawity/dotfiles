@@ -107,18 +107,12 @@ ukvpn() {
 	local con="Utenos kolegija (admin)"
 	for arg; do
 		case $arg in
-		    up|down)
-			sudo: nmcli con "$arg" "$con";;
-		    wan4|wan)
-			sudo: nmcli con modify "$con" ipv4.never-default no;;
-		    lan4|lan)
-			sudo: nmcli con modify "$con" ipv4.never-default yes;;
-		    wan6)
-			sudo: nmcli con modify "$con" ipv6.never-default no;;
-		    lan6)
-			sudo: nmcli con modify "$con" ipv6.never-default yes;;
-		    *)
-			echo "'$arg'?";;
+		    up|down)	sudo: nmcli con "$arg" "$con";;
+		    wan4|wan)	sudo: nmcli con modify "$con" ipv4.never-default no;;
+		    lan4|lan)	sudo: nmcli con modify "$con" ipv4.never-default yes;;
+		    wan6)	sudo: nmcli con modify "$con" ipv6.never-default no;;
+		    lan6)	sudo: nmcli con modify "$con" ipv6.never-default yes;;
+		    *)		echo "'$arg'?";;
 		esac
 	done
 }
