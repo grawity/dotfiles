@@ -157,7 +157,15 @@ alias zt1='zerotier-cli'
 alias '~'='egrep'
 alias '~~'='egrep -i'
 -() { cd -; }
-,() if (. lib.bash; for arg; { [[ $arg == *://* || -e $arg ]] || die "path '$arg' not found"; }); then run xdg-open "${@:-.}"; fi
+,() {
+	for _a in "${@:-.}"; do
+		if [[ $_a == *://* || -e $_a ]]
+			then run xdg-open "$_a"
+			else (. lib.bash; err "path '$arg' not found"); return
+		fi
+	done
+}
+alias open=,
 
 # dates
 
@@ -183,10 +191,6 @@ fi
 
 if have mpv; then
 	alias mplayer='mpv'
-fi
-
-if have xdg-open; then
-	alias open='run xdg-open'
 fi
 
 # X11 clipboard
