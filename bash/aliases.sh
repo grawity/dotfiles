@@ -157,7 +157,7 @@ alias zt1='zerotier-cli'
 alias '~'='egrep'
 alias '~~'='egrep -i'
 -() { cd -; }
-,() { run xdg-open "${@:-.}"; }
+,() if (. lib.bash; for arg; { [[ $arg == *://* || -e $arg ]] || die "path '$arg' not found"; }); then run xdg-open "${@:-.}"; fi
 
 # dates
 
