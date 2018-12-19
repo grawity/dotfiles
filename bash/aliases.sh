@@ -161,7 +161,7 @@ alias '~~'='egrep -i'
 	for _a in "${@:-.}"; do
 		if [[ $_a == *://* || -e $_a ]]
 			then run xdg-open "$_a"
-			else (. lib.bash; err "path '$arg' not found"); return
+			else (. lib.bash; err "path '$_a' not found"); return
 		fi
 	done
 }
