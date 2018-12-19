@@ -60,7 +60,8 @@ XTerm*vt100.translations:	#override			\n\
 XTerm.toolBar:			false
 XTerm*vt100.cursorBlink:	true
 XTerm*vt100.font:		-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
-XTerm*vt100.faceName:		Source Code Pro:size=10
+XTerm*vt100.faceName:		Source Code Pro
+XTerm*vt100.faceSize:		10
 XTerm*vt100.geometry:		100x35
 XTerm*vt100.showMissingGlyphs:	true
 XTerm*vt100.renderFont:		true
