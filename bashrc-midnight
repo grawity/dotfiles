@@ -4,6 +4,9 @@
 
 . ~/.dotfiles/bashrc-rain
 
+fxdb() { (nssdb="$HOME/.mozilla/firefox/9y9rjsca.default"; "$@"); }
+thdb() { (nssdb="$HOME/.thunderbird/jms00rh7.default"; "$@"); }
+
 unset items[ostype]
 fullpwd=h
 
