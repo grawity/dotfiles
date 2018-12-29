@@ -100,7 +100,7 @@ tzsp() {
 }
 
 tzsp-gui() {
-	run wireshark-gtk -k -f "udp port 37008" -i "${1:-wlan0}" "${@:2}"
+	run wireshark -k -f "udp port 37008" -i "${1:-wlan0}" "${@:2}"
 }
 
 ukvpn() {
