@@ -206,6 +206,7 @@
 	generic = E !git format-patch -1 %(commit)
 	generic = w :toggle wrap-lines
 	generic = ~ none
+	main = <Backspace> none
 	main = g :toggle commit-title-graph
 	main = G move-last-line
 
