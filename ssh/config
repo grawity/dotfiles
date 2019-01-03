@@ -116,4 +116,4 @@ Host *
 	ControlPath ~/.ssh/S.%r@%h:%p
 	# speed up git-annex batch tasks
 	ControlMaster auto
-	ControlPersist 10s
+	ControlPersist 60s

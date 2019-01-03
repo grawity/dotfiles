@@ -505,6 +505,7 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/FS-UAE/ - environment; configurable?
   - $FS_UAE_BASE_DIR
+    deprecated
   - supposedly $XDG_CONFIG_HOME/fs-uae/fs-uae.conf can override it
     (e.g. "base_dir = $HOME/.local/share/fs-uae/")
     but the python-based launcher completely ignores it
