@@ -104,7 +104,7 @@ tzsp-gui() {
 }
 
 ukvpn() {
-	local con="Utenos kolegija (admin)"
+	local con="Utenos kolegija admin"
 	for arg; do
 		case $arg in
 		    up|down)	sudo: nmcli con "$arg" "$con";;
