@@ -81,7 +81,14 @@ rm() {
 }
 
 rpw() {
-	local pw=$(tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-16}")
+	if [[ $1 ]]; then
+		local pw=$(tr -dc "A-Za-z0-9" < /dev/urandom |
+		           head -c "${1:-16}")
+	else
+		local pw=$(tr -dc "A-Za-z0-9" < /dev/urandom |
+		           head -c $[4*5] |
+		           sed -r 's/.{5}/&-/g; s/-$//')
+	fi
 	echo "$pw"
 	if [[ -t 1 ]]; then
 		clip "$pw"
