@@ -37,3 +37,5 @@ myssh() { do: ssh -b "$routed6" "$@"; }
 mytraceroute() { do: traceroute -s "$routed6" "$@"; }
 mytracert() { do: tracert -s "$routed6" "$@"; }
 mytracert6() { do: tracert6 -s "$routed6" "$@"; }
+
+routed6="2a06:e881:108:1::1"
