@@ -12,6 +12,7 @@ unalias journalctl
 
 fxdb() { (nssdb="$HOME/.mozilla/firefox/r0fd79nc.default"; "$@"); }
 thdb() { (nssdb="$HOME/.thunderbird/7pkkqarz.default"; "$@"); }
+smdb() { (nssdb="$HOME/.mozilla/seamonkey/x7zj66ef.default"; "$@"); }
 
 ## Network hackery
 

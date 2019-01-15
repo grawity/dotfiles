@@ -8,6 +8,7 @@ editor() { command ${EDITOR:-vi} "$@"; }
 browser() { command ${BROWSER:-lynx} "$@"; }
 pager() { command ${PAGER:-more} "$@"; }
 
+alias aa-reload='apparmor_parser -r -T -W'
 alias bat='acpi -i'
 alias cal='cal -m' # LC_TIME=en_DK.UTF-8
 catsexp() { cat "$@" | sexp-conv -w $((COLUMNS-1)); }
