@@ -4,6 +4,10 @@ alias .. "cd .."
 alias ls "cls -h"
 alias ll "cls -lh"
 alias rels "cache flush; ls"
+alias rget "mirror"
+alias rput "mirror -R"
+#alias rgetmove "mirror --Move"
+#alias rputmove "mirror -R --Move"
 
 set cmd:prompt "\\[\\e[38;5;173m\\]lftp \\[\\e[38;5;216m\\]\\S\\? \\u\\@\\h:\\w>\\[\\e[m\\] "
 
