@@ -196,7 +196,8 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.hatari/ – hardcoded
 
-~/.hgrc – partial environment
+~/.hgrc -- XDG as of 4.2, previously partial environment
+  - $XDG_CONFIG_HOME/hg/hgrc used as of 4.2
   - $HGRCPATH overrides both system and user configs
     (colon-separated list, may point to files or dirs containing *.rc files)
 
