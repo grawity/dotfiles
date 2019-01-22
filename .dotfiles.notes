@@ -401,7 +401,8 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.sqldeveloper/ – hardcoded
   - launcher script ignores the java-hack
 
-~/.sqlite_history – hardcoded
+~/.sqlite_history -- environment, previously hardcoded
+  - $SQLITE_HISTORY overrides
 
 ~/.stalonetrayrc – command line
   - "-c/--config <path>" overrides
