@@ -352,6 +352,11 @@ Please also read <.environ.notes> if you find this file useful.
   - [global] "log_file = <path>" in ~/.pip/pip.conf overrides (no expansion)
   - docs: http://pip.readthedocs.org/en/latest/user_guide.html#environment-variables
 
+~/.pki/nssdb/
+  - $XDG_DATA_HOME/pki/nssdb/ is used as of 3.42 (commit 7f21d4f49),
+    hardcoded in older versions
+    (unless the program specifies a custom path, e.g. certutil -d <path>)
+
 ~/.profile – hardcoded/fixed
   - sh, bash, various display managers expect it there
 
