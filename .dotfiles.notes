@@ -66,10 +66,11 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.dc++/ – hardcoded
 
-~/.dbus/ – fixed
+~/.dbus/ – fixed by spec, but avoidable
   - ~/.dbus/session-bus/$MACHINE_ID-$DISPLAY is part of the DBus spec
   - although technically it doesn't have to exist in the first place
     (autolaunch is unneeded as long as $DBUS_SESSION_BUS_SOCKET is set)
+  - in modern Arch systems, you won't have this at all
 
 ~/.digrc – hardcoded ++ command line
   - as alternative, just specify the same options in command line
