@@ -74,6 +74,7 @@ NSS_DEFAULT_DB_TYPE="sql"
 
 # appdefaults
 
+EXA_COLORS="ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0:uu=0:gu=0:da=38;5;8"
 GNULIB_SRCDIR="$HOME/src/gnu/gnulib"
 PERL_CPANM_HOME="$XDG_CACHE_HOME/cpanminus"
 RLWRAP_HOME="$XDG_CACHE_HOME/rlwrap"
