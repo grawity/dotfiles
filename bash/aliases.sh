@@ -8,6 +8,7 @@ editor() { command ${EDITOR:-vi} "$@"; }
 browser() { command ${BROWSER:-lynx} "$@"; }
 pager() { command ${PAGER:-more} "$@"; }
 
+alias aa-reload='apparmor_parser -r -T -W'
 alias bat='acpi -i'
 alias cal='cal -m' # LC_TIME=en_DK.UTF-8
 catsexp() { cat "$@" | sexp-conv -w $((COLUMNS-1)); }
@@ -39,7 +40,7 @@ fc-fontformat() {
 fc-file() { fc-query -f "%{file}: %{family} (%{fontversion}, %{fontformat})\n" "$@"; }
 alias fanficfare='fanficfare -f html'
 alias fiemap='xfs_io -r -c "fiemap -v"'
-alias fff='fanficfare'
+alias fff='fanficfare -f html'
 gerp() { egrep $grepopt -r -I -D skip --exclude-dir={.bzr,.git,.hg,.svn} -H -n "$@"; }
 gpgfp() { gpg --with-colons --fingerprint "$1" | awk -F: '/^fpr:/ {print $10}'; }
 alias hd='hexdump -C'
@@ -116,7 +117,10 @@ ressh() { ssh -v \
 alias rawhois='do: whois -h whois.ra.net --'
 alias riswhois='do: whois -h riswhois.ripe.net --'
 alias rot13='tr N-ZA-Mn-za-m A-Za-z'
-rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-16}"; echo; }
+rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | case $1 in
+		"") head -c 20 | sed -r "s/.{5}/-&/g; s/^-//";;
+		*) head -c "$1";;
+	esac; echo; }
 alias run='spawn -c'
 alias rsync='rsync -s'
 sp() { printf '%s' "$@"; printf '\n'; }
@@ -157,6 +161,15 @@ alias zt1='zerotier-cli'
 alias '~'='egrep'
 alias '~~'='egrep -i'
 -() { cd -; }
+,() {
+	for _a in "${@:-.}"; do
+		if [[ $_a == *://* || -e $_a ]]
+			then run xdg-open "$_a"
+			else (. lib.bash; err "path '$_a' not found"); return
+		fi
+	done
+}
+alias open=,
 
 # dates
 
@@ -182,10 +195,6 @@ fi
 
 if have mpv; then
 	alias mplayer='mpv'
-fi
-
-if have xdg-open; then
-	alias open='run xdg-open'
 fi
 
 # X11 clipboard
@@ -393,7 +402,7 @@ x509subject() {
 
 # package management
 
-if have dpkg; then
+if have dpkg && [[ -e /etc/apt/sources.list ]]; then
 	lspkgs() { dpkg -l | awk '/^i/ {print $2}'; }
 	lscruft() { dpkg -l | awk '/^r/ {print $2}'; }
 	lspkg() { dpkg -L "$@"; }

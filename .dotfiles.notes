@@ -6,6 +6,39 @@ Please also read <.environ.notes> if you find this file useful.
 
 -------------------------------------------------------------------------------
 
+Already migrated to XDG in a release:
+
+~/.d-feet/          <config>/d-feet/                0.1.15 (7f6104bbc5ab)
+~/.darcs/           [various]/darcs/                2.10
+~/.freerdp/         <config>/freerdp/               1.1.0 (edf6e7258d0e)
+~/.gconf/           <config>/gconf/                 3.2.6 (fc28caa7be86)
+~/.gconf.path       <config>/gconf.path             3.2.6 (fc28caa7be86)
+~/.gimp-2.8/        <config>/GIMP/2.10/             2.10
+~/.gitconfig        <config>/git/config             1.7.12 (0d94427ef844)
+~/.gitignore        <config>/git/ignore [note]      1.7.12 (0d94427ef844)
+~/.gitk             <config>/git/gitk               1.9-rc1 (8f86339858c1)
+~/.gnucash/         <config>/gnucash/               3.0
+~/.hgrc             <config>/hg/hgrc                4.2 (354020079723)
+~/.keybase/         [various]/keybase/              0.6.0 (99531f058b3b57)
+~/.makepkg.conf     <config>/pacman/makepkg.conf    4.2.0
+~/.mpdconf          <config>/mpd/mpd.conf           0.18
+~/.mpoprc           <config>/mpop/config            1.2.7 (c70f9da)
+~/.mpv/             <config>/mpv/                   ??? (cb250d)
+~/.muttrc           <config>/mutt/muttrc            mutt ??? (b4bab3bd08fc)
+~/.muttrc           <config>/neomutt/config         neomutt ??? (239c0e93f8be)
+~/.msmtprc          <config>/msmtp/config           1.6.3 (af2f409)
+~/.offlineimaprc    <config>/offlineimap/config     6.5.6 (5150de5514d1)
+~/.pki/nssdb/       <config>/pki/nssdb/             nss 3.42? (7f21d4f49)
+~/.pulse/           <config>/pulse/                 3.0 (9ab510a69216)
+~/.pulse-cookie     <config>/pulse/cookie           3.0, 6.0 (59a8618dcd91)
+~/.purple/          <config>/purple/                3.0.0
+~/.putty/           <config>/putty/                 0.64 (9952b2d5bd5)
+~/.quodlibet/       <config>/quodlibet/             3.10.0 (4e9545b2fa0eff6)
+~/.tigrc            <config>/tig/config [note]      2.1.1 (1e6da9d)
+~/.wireshark/       <config>/wireshark/             1.12
+
+-------------------------------------------------------------------------------
+
 ~/.ApacheDirectoryStudio/ – java-hack
 
 ~/.aMule/ – hardcoded
@@ -59,17 +92,13 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.cvspass – environment
   - $CVS_PASSFILE overrides
 
-~/.d-feet/ – XDG as of 0.1.15 (7f6104bbc5ab); hardcoded
-  - $XDG_CONFIG_HOME/d-feet/ is used now
-
-~/.darcs/ – XDG as of 2.10
-
 ~/.dc++/ – hardcoded
 
-~/.dbus/ – fixed
+~/.dbus/ – fixed by spec, but avoidable
   - ~/.dbus/session-bus/$MACHINE_ID-$DISPLAY is part of the DBus spec
   - although technically it doesn't have to exist in the first place
     (autolaunch is unneeded as long as $DBUS_SESSION_BUS_SOCKET is set)
+  - in modern Arch systems, you won't have this at all
 
 ~/.digrc – hardcoded ++ command line
   - as alternative, just specify the same options in command line
@@ -118,18 +147,9 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.fossil – hardcoded
 
-~/.freerdp/ – XDG as of 1.1.0 (edf6e7258d0e); hardcoded
-  - $XDG_CONFIG_HOME/freerdp/ is used now
-
 ~/.gale/ – environment
   - $GALE_DIR overrides
   - I'll get around to making it XDG someday
-
-~/.gconf/ – XDG as of 3.2.6 (fc28caa7be86); hardcoded
-  - $XDG_CONFIG_HOME/gconf/ is used now
-
-~/.gconf.path – see ~/.gconf/
-  - $XDG_CONFIG_HOME/gconf.path is used now
 
 ~/.gdbinit – command line
   - "gdb -nh -x <path>"
@@ -142,23 +162,14 @@ Please also read <.environ.notes> if you find this file useful.
   (Gens – hardcoded)
   (Gens-gs – hardcoded)
 
-~/.gimp-2.8/ – environment
-  - $GIMP2_DIRECTORY overrides
-
 ~/.git-credentials – partly-XDG as of 2.3.8? 2.4? (17c7f4d8e4); command line
   - $XDG_CONFIG_HOME/git/credentials is used *if exists*
   - "--file=<path>" option exists
-
-~/.gitconfig – XDG as of 1.7.12 (0d94427ef844); hardcoded
-  - $XDG_CONFIG_HOME/git/config is used now
 
 ~/.gitignore – XDG as of 1.7.12 (0d94427ef844); configurable
   - $XDG_CONFIG_HOME/git/ignore is used now
   - (note that there was no default previously; ~/.gitignore was merely the
     most commonly used place, due to proximity to ~/.gitconfig)
-
-~/.gitk – XDG as of 1.9-rc1 (8f86339858c1); hardcoded
-  - $XDG_CONFIG_HOME/git/gitk is used now
 
 ~/.gnome-commander/ – hardcoded/command line?
   - "--config-dir <dir>" option exists in source code, but doesn't work
@@ -166,10 +177,6 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.gnome2/, ~/.gnome2_private/ – hardcoded but obsolete
   - seriously, time to upgrade
-
-~/.gnucash/ – XDG (3.0), environment
-  - in 2.x, $GNC_DOT_DIR overrides
-  - in 3.x, $XDG_CONFIG_HOME/gnucash is used
 
 ~/.gnupg/ – environment
   - $GNUPGHOME overrides
@@ -196,10 +203,6 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/.hatari/ – hardcoded
 
-~/.hgrc – partial environment
-  - $HGRCPATH overrides both system and user configs
-    (colon-separated list, may point to files or dirs containing *.rc files)
-
 ~/.httpie/ – environment
   - $HTTPIE_CONFIG_DIR overrides
 
@@ -222,13 +225,6 @@ Please also read <.environ.notes> if you find this file useful.
   - <http://techbase.kde.org/KDE_System_Administration/Configuration_Files>
 
 ~/.kde4/ – see ~/.kde/
-
-~/.keybase/ – XDG as of 0.6.0 (commit 99531f058b3b57); command line
-  - $XDG_CONFIG_HOME/keybase/ is used for configuration
-  - $XDG_CACHE_HOME/keybase/ is used for session data
-  - $XDG_DATA_HOME/keybase/ is used for signature cache
-    (not cache as it includes local signatures that are not replicated to the site)
-  - "--homedir <dir>" option exists
 
 ~/.kvirc4.rc – hardcoded, build-time?
   - when built with KDE support, uses native KDE location (probably somewhere
@@ -262,42 +258,8 @@ Please also read <.environ.notes> if you find this file useful.
     - $MAILRC overrides default
     - $NAILRC overrides both
 
-~/.makepkg.conf – XDG as of 4.2.0; partial environment
-  - $XDG_CONFIG_HOME/pacman/makepkg.conf is the new default
-  - $MAKEPKG_CONF overrides *both* system and user configs
-
-~/.mpd/ – XDG as of 0.18; command line
-  - $XDG_CONFIG_HOME/mpd/mpd.conf is the new default
-
-~/.mpdconf – XDG as of 0.18; other locations, command line
-  - $XDG_CONFIG_HOME/mpd/mpd.conf is the new default
-  - ~/.mpd/mpd.conf is also supported
-  - <path> accepted in command line
-
-~/.mpoprc – XDG as of 1.2.7 (c70f9da); command line
-  - $XDG_CONFIG_HOME/mpop/config is the new default
-  - "--file <config>" option exists
-
-~/.mpv/ – XDG as of ??? (commit cb250d); environment
-  - $XDG_CONFIG_HOME/mpv/ is the new default
-  - $MPV_HOME overrides
-
-~/.msmtprc – XDG as of 1.6.3 (af2f409); command line
-  - $XDG_CONFIG_HOME/msmtp/config is the new default
-  - "--file <config>" option exists
-
 ~/.mtoolsrc – environment
   - $MTOOLSRC is additionally used
-
-~/.muttrc – XDG as of ??? (commit b4bab3bd08fc); other locations
-  (mutt)
-  - as of b4bab3bd08fc, $XDG_CONFIG_HOME/mutt/muttrc is also supported
-  (neomutt)
-  - as of 239c0e93f8be, $XDG_CONFIG_HOME/neomutt/config is preferred
-  - ~/.mutt/neomuttrc is also supported
-  (all)
-  - ~/.mutt/muttrc is also supported
-  - "-F <path>" option exists
 
 ~/.mysql_history – environment
   - $MYSQL_HISTFILE overrides
@@ -329,10 +291,6 @@ Please also read <.environ.notes> if you find this file useful.
   - doc: npm-config(7)
   - see also `npm config get globalconfig` & `npm config get userconfig`
 
-~/.offlineimaprc – XDG as of ??? (5150de5514d1); command line
-  - $XDG_CONFIG_HOME/offlineimap/config is the new default
-  - for older versions, "-c <path>" option exists
-
 ~/.opera/ – partial environment
   - $OPERA_PERSONALDIR overrides
   - however, 1 file remains (~/.opera/OperaAutoupdateChecker.sqlite)
@@ -352,30 +310,13 @@ Please also read <.environ.notes> if you find this file useful.
   - [global] "log_file = <path>" in ~/.pip/pip.conf overrides (no expansion)
   - docs: http://pip.readthedocs.org/en/latest/user_guide.html#environment-variables
 
+~/.pki/nssdb/
+  - $XDG_DATA_HOME/pki/nssdb/ is used as of 3.42 (commit 7f21d4f49),
+    hardcoded in older versions
+    (unless the program specifies a custom path, e.g. certutil -d <path>)
+
 ~/.profile – hardcoded/fixed
   - sh, bash, various display managers expect it there
-
-~/.pulse/ – XDG as of 3.0 (9ab510a69216), environment
-  - ~/.config/pulse/ is the new location
-  - $PULSE_CONFIG_PATH overrides
-
-~/.pulse-cookie – XDG as of 3.0 (87ae83070579, also v5.0-135-g59a8618dcd91)
-  - v3.0 hardcoded to ~/.config/pulse/cookie
-  - v6.0 started using $XDG_CONFIG_HOME properly
-
-~/.purple/ – XDG as of 3.0.0, command-line
-
-~/.putty/ – XDG as of 0.64 (9952b2d5bd5), environment
-  - "$XDG_CONFIG_HOME/putty/" is used as of 0.63-853-g9952b2d
-  - $PUTTYDIR overrides
-  - subdirectories can be overridden separately:
-      - ./sessions: $PUTTYSESSIONS
-      - ./sshhostkeys: $PUTTYSSHHOSTKEYS
-      - ./randomseed: $PUTTYRANDOMSEED
-
-~/.quodlibet/ – XDG as of 3.10.0, environment
-  - "$XDG_CONFIG_HOME/quodlibet/" is usedas of 3.10.0 (4e9545b2fa0eff6)
-  - $QUODLIBET_USERDIR overrides
 
 ~/.renpy/ – hardcoded
 
@@ -396,7 +337,8 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.sqldeveloper/ – hardcoded
   - launcher script ignores the java-hack
 
-~/.sqlite_history – hardcoded
+~/.sqlite_history -- environment, previously hardcoded
+  - $SQLITE_HISTORY overrides
 
 ~/.stalonetrayrc – command line
   - "-c/--config <path>" overrides
@@ -411,12 +353,9 @@ Please also read <.environ.notes> if you find this file useful.
   - $TERMINFO overrides (system path not searched)
   - docs: terminfo(5)
 
-~/.tigrc – XDG, compile-time, other locations
-  - gitconfig [tig], [tig ...] sections can be used instead
-  - as of tig-2.1.1-121-g1e6da9d,
-    "$XDG_CONFIG_HOME/tig/config" is preferred
-  - as of tig-2.1.1-100-g9916cb8,
-    `make TIG_USER_CONFIG=<path>` at build time overrides
+~/.tigrc -- XDG, other locations
+  - Instead of a standalone tigrc, configuration can be embedded in the Git
+    config file via [tig ...] sections.
 
 ~/.ttytterrc – command line
   - "-rc=<path>" overrides
@@ -448,9 +387,6 @@ Please also read <.environ.notes> if you find this file useful.
 ~/.wget-hsts – command line
   - "--hsts-file <path>" overrides
   - probably can be stored in wgetrc?
-
-~/.wireshark/ – XDG as of 1.12??, hardcoded previously
-  - "$XDG_CONFIG_HOME/wireshark" is used
 
 ~/.XCompose – environment/hardcoded/other locations
   (libX11 aka xim)
@@ -505,6 +441,7 @@ Please also read <.environ.notes> if you find this file useful.
 
 ~/FS-UAE/ - environment; configurable?
   - $FS_UAE_BASE_DIR
+    deprecated
   - supposedly $XDG_CONFIG_HOME/fs-uae/fs-uae.conf can override it
     (e.g. "base_dir = $HOME/.local/share/fs-uae/")
     but the python-based launcher completely ignores it

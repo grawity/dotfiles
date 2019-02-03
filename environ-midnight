@@ -1,0 +1,2 @@
+ACCDB="$XDG_DATA_HOME/nullroute.eu.org/accdb/accounts.txt"
+VDPAU_DRIVER="va_gl"

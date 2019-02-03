@@ -8,41 +8,17 @@
 
 unalias journalctl
 
-_update_title() {
-	if [[ ! ${title-} ]]; then
-		local title= t_user= t_host= t_display= t_path=
-		if [[ $USER != 'grawity' ]]; then
-			t_user="$USER@"
-		fi
-		if [[ ${DISPLAY-} && ( $DISPLAY != :* || ${SSH_TTY-} ) ]]; then
-			t_display=" ($DISPLAY)"
-		fi
-		t_path=${PWD/#"$HOME/"/'~/'}
-		if [[ $t_path == /* ]]; then
-			t_host=$HOSTNAME
-			t_path=${t_path/#'/'/'› '}
-		else
-			t_path=${t_path/#'~/'/''}
-		fi
-		t_path=${t_path//'/'/' › '}
-		title="${t_user}${t_host} ${t_path}${t_display}"
-	fi
-	settitle "$title"
-	if [[ ${DISPLAY-} && ${VTE_VERSION-}${TILIX_ID-} ]]; then
-		printf '\e]7;file://%s%s\a' "$HOSTNAME" "$(urlencode -n -p -a "$PWD")"
-	fi
-}
-
 ## Smartcard hackery
 
 fxdb() { (nssdb="$HOME/.mozilla/firefox/r0fd79nc.default"; "$@"); }
 thdb() { (nssdb="$HOME/.thunderbird/7pkkqarz.default"; "$@"); }
+smdb() { (nssdb="$HOME/.mozilla/seamonkey/x7zj66ef.default"; "$@"); }
 
 ## Network hackery
 
 add-vlan() {
 	local dev=$1 addr=$2
-	sudo: ip link add link "${dev%.*}" name "$dev" type vlan id "${dev##*.}"
+	sudo: ip link add "$dev" link "${dev%.*}" type vlan id "${dev##*.}"
 	sudo: ip link set "$dev" up
 	if [[ $addr ]]; then
 		[[ $addr == */* ]] || addr+="/16"

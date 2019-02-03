@@ -30,9 +30,12 @@ _bgpath() {
 }
 
 # Shortcuts for making connections from my /48
-mycurl() { do: curl --interface "$host" "$@"; }
-mymtr() { do: mtr -a "$host" "$@"; }
-myping() { do: ping -I "$host" "$@"; }
-mytraceroute() { do: traceroute -s "$host" "$@"; }
-mytracert() { do: tracert -s "$host" "$@"; }
-mytracert6() { do: tracert6 -s "$host" "$@"; }
+mycurl() { do: curl --interface "$routed6" "$@"; }
+mymtr() { do: mtr -a "$routed6" "$@"; }
+myping() { do: ping -I "$routed6" "$@"; }
+myssh() { do: ssh -b "$routed6" "$@"; }
+mytraceroute() { do: traceroute -s "$routed6" "$@"; }
+mytracert() { do: tracert -s "$routed6" "$@"; }
+mytracert6() { do: tracert6 -s "$routed6" "$@"; }
+
+routed6="2a06:e881:108:1::1"

@@ -11,6 +11,17 @@ def _init_():
     import readline
     import rlcompleter
 
+    if hasattr(sys, "__interactivehook__"):
+        # As of v3.4, sys.__interactivehook__ in site.py already performs the
+        # same except with ~/.python_history as the path, and only if history
+        # is still empty after our read_history_file call.
+        #
+        # This means that the 1st startup will create *both* histfiles on exit,
+        # although the 2nd startup will use ours. Remove the site.py hook to
+        # avoid this.
+        del sys.__interactivehook__
+
+    readline.read_init_file()
     readline.parse_and_bind("tab: complete")
     hist_file = os.path.expanduser("~/.cache/python.history")
     if os.path.exists(hist_file):
