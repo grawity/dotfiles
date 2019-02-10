@@ -117,7 +117,10 @@ ressh() { ssh -v \
 alias rawhois='do: whois -h whois.ra.net --'
 alias riswhois='do: whois -h riswhois.ripe.net --'
 alias rot13='tr N-ZA-Mn-za-m A-Za-z'
-rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | head -c "${1:-16}"; echo; }
+rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | case $1 in
+		"") head -c 20 | sed -r "s/.{5}/-&/g; s/^-//";;
+		*) head -c "$1";;
+	esac; echo; }
 alias run='spawn -c'
 alias rsync='rsync -s'
 sp() { printf '%s' "$@"; printf '\n'; }

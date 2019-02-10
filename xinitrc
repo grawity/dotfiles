@@ -54,7 +54,7 @@ case $1 in
 	gnome)		set -- gnome-session;;
 	kde)		set -- startkde;;
 	mate)		set -- mate-session;;
-	xfce)		set -- startxfce4;;
+	xfce)		set -- xfce4-session;;
 	"")		set -- openbox --startup ~/.config/openbox/autostart;;
 esac
 
