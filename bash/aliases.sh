@@ -399,6 +399,10 @@ x509subject() {
 
 # package management
 
+lsflatpak() { (cd "$(flatpak info --show-location "$1")/files" && find); }
+lcflatpak() { (cd "$(flatpak info --show-location "$1")/files" && find | xargs -d '\n' ls -d --color=always 2>&1 | pager); }
+treeflatpak() { tree "$(flatpak info --show-location "$1")/files"; }
+
 if have dpkg && [[ -e /etc/apt/sources.list ]]; then
 	lspkgs() { dpkg -l | awk '/^i/ {print $2}'; }
 	lscruft() { dpkg -l | awk '/^r/ {print $2}'; }
