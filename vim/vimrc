@@ -197,8 +197,8 @@ inoremap <C-Up> <Esc>gka
 inoremap <C-Down> <Esc>gja
 
 " paste without yanking old text
-vnoremap p "0p
-vnoremap P "0P
+"vnoremap p "0p
+"vnoremap P "0P
 
 " jump between parens
 nnoremap <Tab> %
