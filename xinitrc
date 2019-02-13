@@ -3,6 +3,8 @@
 
 have() { type "$1" > /dev/null 2>&1; }
 
+[ "$1" ] || set -- openbox
+
 cd ~
 
 # ensure ssh-agent, session bus
@@ -54,8 +56,8 @@ case $1 in
 	gnome)		set -- gnome-session;;
 	kde)		set -- startkde;;
 	mate)		set -- mate-session;;
+	openbox)	set -- openbox --startup ~/.config/openbox/autostart;;
 	xfce)		set -- xfce4-session;;
-	"")		set -- openbox --startup ~/.config/openbox/autostart;;
 esac
 
 # inform .xprofile about session type
