@@ -6,6 +6,7 @@ if [ ! "$DESKTOP_SESSION" ]; then
 
 	case $(uname -s -m) in
 		'Linux i686') DARCH='i386-linux-gnu';;
+		'Linux x86_64') DARCH='x86_64-linux-gnu';;
 	esac
 
 	{ /usr/lib/notify-osd/notify-osd ||
