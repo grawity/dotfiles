@@ -94,6 +94,15 @@ Host github.com
 	ControlMaster auto
 	ControlPersist 5m
 
+Host ftp.ext.hpe.com
+	Port 2222
+	# 2019-03-21: Server includes umac-64@openssh.com at the end of
+	# proposal, but hangs after MSG_NEWKEYS if it is selected. (Which it is
+	# for some reason, despite the client *not* including the non-ETM
+	# version in its proposal...)
+	MACs -umac-*
+	PreferredAuthentications password
+
 Host ubnt
 	HostName 192.168.1.20
 	User ubnt
