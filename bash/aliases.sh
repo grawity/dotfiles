@@ -101,6 +101,7 @@ alias mutagen='mid3v2'
 mvln() { mv "$1" "$2" && sym -v "$2" "$1"; }
 alias nmap='nmap --reason'
 alias nm-con='nmcli -f name,type,autoconnect,state,device con'
+alias plink='plink -no-antispoof'
 alias py='python'
 alias py2='python2'
 alias py3='python3'
