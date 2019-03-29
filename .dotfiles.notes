@@ -28,6 +28,7 @@ Already migrated to XDG in a release:
 ~/.muttrc           <config>/neomutt/config         neomutt ??? (239c0e93f8be)
 ~/.msmtprc          <config>/msmtp/config           1.6.3 (af2f409)
 ~/.offlineimaprc    <config>/offlineimap/config     6.5.6 (5150de5514d1)
+~/.oidentd.conf     <config>/oidentd.conf           post-2.3.2 (8a6e9654889)
 ~/.pki/nssdb/       <config>/pki/nssdb/             nss 3.42? (7f21d4f49)
 ~/.pulse/           <config>/pulse/                 3.0 (9ab510a69216)
 ~/.pulse-cookie     <config>/pulse/cookie           3.0, 6.0 (59a8618dcd91)
