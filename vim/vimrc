@@ -212,6 +212,8 @@ endif
 
 " list buffers
 nnoremap <Leader>l :ls<CR>:b<Space>
+" remove search highlight
+nnoremap <Leader>h :nohlsearch<CR>
 " rename word under cursor
 nnoremap <Leader>rw :%s/\<<C-r><C-w>\>/
 " toggle spell checking
