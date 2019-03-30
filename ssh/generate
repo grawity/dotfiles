@@ -89,8 +89,13 @@ else
 		debug "ok, generated config found - updating"
 		true
 	elif [[ -L ~/.ssh/config ]]; then
-		debug "symlinked config found - exiting"
-		exit 0
+		if [[ $(readlink ~/.ssh/config) == .generated-config-* ]]; then
+			debug "ok, generated config found - updating"
+			true
+		else
+			debug "symlinked config found - exiting"
+			exit 0
+		fi
 	else
 		die "refusing to overwrite local ~/.ssh/config"
 	fi
