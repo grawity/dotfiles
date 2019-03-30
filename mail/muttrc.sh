@@ -21,8 +21,6 @@ set header_cache="~/.cache/mutt"
 set message_cachedir="~/.cache/mutt"
 !
 
-[[ -f ~/.auth/muttrc ]] && cat ~/.auth/muttrc
-
 if [[ -f ~/.config/mutt/muttrc-"$HOSTNAME" ]]; then
 	cat ~/.config/mutt/muttrc-"$HOSTNAME"
 elif [[ -f ~/.muttrc-"$HOSTNAME" ]]; then
