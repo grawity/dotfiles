@@ -135,6 +135,19 @@ if have radare2; then
 	link radare2rc ~/.config/radare2/radare2rc
 fi
 
+if have mutt || have neomutt; then
+	if [ ! -e ~/.config/mutt ]; then
+		(umask 077;
+		 mkdir -p ~/.config/mutt;
+		 touch ~/.config/mutt/muttrc)
+		echo "source \"~/.dotfiles/muttrc\"" > ~/.config/mutt/muttrc
+		echo "source \"~/.dotfiles/muttrc.sh\"" >> ~/.config/mutt/muttrc
+	fi
+	if [ ! -e ~/.config/neomutt ]; then
+		ln -vnsf mutt ~/.config/neomutt
+	fi
+fi
+
 # Install GUI configs
 
 if [ "$DISPLAY" ]; then
