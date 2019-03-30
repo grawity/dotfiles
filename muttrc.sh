@@ -5,10 +5,6 @@
 set sendmail="msmtp"
 !
 
-[[ -f /usr/share/doc/mutt/README.Debian ]] && cat <<!
-set xterm_set_titles
-!
-
 [[ -d ~/.cache/mutt ]] && cat <<!
 set header_cache="~/.cache/mutt"
 set message_cachedir="~/.cache/mutt"

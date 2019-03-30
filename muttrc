@@ -128,6 +128,8 @@ unset beep
 set beep_new
 set menu_context=3
 set menu_scroll
+# 'set xterm_set_titles' is neomutt-specific
+set xterm_set_titles
 
 set quote_regexp="^([ \t]*[|>:}#])+"	# default
 set quote_regexp="^[|>#]+|^ U>"
@@ -143,6 +145,7 @@ set quote_regexp="^[|>#]+|^ U>"
 # ITEM			FOREGROUND	BACKGROUND
 color normal		white		default
 
+# 'color progress' is neomutt-specific
 color tree		brightred	default
 color indicator		default		color24
 color status		brightmagenta	default
