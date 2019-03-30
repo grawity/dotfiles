@@ -1,19 +1,18 @@
 #!/bin/bash
 
-[[ -f ~/.msmtprc ]] ||
-[[ -f ~/.config/msmtp/config ]] && cat <<!
-set sendmail="msmtp"
-!
+if [[ -f ~/.config/msmtp/config || -f ~/.msmtprc ]]; then
+	echo 'set sendmail="msmtp"'
+fi
 
-[[ -d ~/.cache/mutt ]] && cat <<!
-set header_cache="~/.cache/mutt"
-set message_cachedir="~/.cache/mutt"
-!
+if [[ -d ~/.cache/mutt ]]; then
+	echo 'set header_cache="~/.cache/mutt"'
+	echo 'set message_cachedir="~/.cache/mutt"'
+fi
 
 if [[ -f ~/.config/mutt/muttrc-"$HOSTNAME" ]]; then
-	cat ~/.config/mutt/muttrc-"$HOSTNAME"
+	echo "source \"~/.config/mutt/muttrc-$HOSTNAME\""
 elif [[ -f ~/.muttrc-"$HOSTNAME" ]]; then
-	cat ~/.muttrc-"$HOSTNAME"
+	echo "source \"~/.muttrc-$HOSTNAME\""
 fi
 
 exit 0
