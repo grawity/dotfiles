@@ -17,7 +17,6 @@ image/*; eog %s
 message/disposition-notification; cat %s; copiousoutput
 message/feedback-report; cat %s; copiousoutput
 
-text/html; epiphany %s; nametemplate=%s.html
 text/html; w3m -I %{charset} -T %t %s; nametemplate=%s.html; needsterminal
 text/html; w3m -I %{charset} -T %t -dump %s; nametemplate=%s.html; copiousoutput
 

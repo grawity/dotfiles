@@ -115,10 +115,7 @@ set tilde
 
 set pager_format="─── Message %C of %m: \"%s\" %*── %P ───"
 
-auto_view application/zip
-auto_view application/x-zip-compressed
-auto_view text/html
-auto_view text/x-vcard
+# other auto_view types are conditional in muttrc.sh
 auto_view message/disposition-notification
 auto_view message/feedback-report
 
