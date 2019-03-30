@@ -1,2 +1,8 @@
 ACCDB="$XDG_DATA_HOME/nullroute.eu.org/accdb/accounts.txt"
 VDPAU_DRIVER="va_gl"
+
+# 2019-01-05: Get rid of wine-mono/wine-gecko alerts
+WINEDLLOVERRIDES="mscoree,mshtml="
+
+# 2019-03-09: Use /dev/tpm0 for IBM TSS tools
+TPM_INTERFACE_TYPE="dev"
