@@ -1,6 +1,7 @@
 #!/bin/bash
 
-[[ -f ~/.msmtprc ]] && cat <<!
+[[ -f ~/.msmtprc ]] ||
+[[ -f ~/.config/msmtp/config ]] && cat <<!
 set sendmail="msmtp"
 !
 
