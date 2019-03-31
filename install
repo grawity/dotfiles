@@ -144,7 +144,7 @@ if have mutt || have neomutt; then
 		echo "source \"~/.dotfiles/muttrc.sh\"" >> ~/.config/mutt/muttrc
 	fi
 	if [ ! -e ~/.config/neomutt ]; then
-		ln -vnsf mutt ~/.config/neomutt
+		ln -nsf mutt ~/.config/neomutt
 	fi
 fi
 
