@@ -17,9 +17,6 @@ alternates "^mantas(:.+)?@u(tenos-)?kolegija\.lt$"
 
 subscribe "^flos-freeware@freelists\.org$"
 subscribe "^systemd-devel@lists\.freedesktop\.org$"
-subscribe "^arch-(general|dev-public)@archlinux\.org$"
-subscribe "^kerberos@mit\.edu$"
-subscribe "^cryptography@randombit\.net$"
 
 lists ".*@freelists\.org$"
 lists ".*@lists\.freedesktop\.org$"
