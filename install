@@ -143,8 +143,9 @@ if have mutt || have neomutt; then
 		(umask 077;
 		 mkdir -p ~/.config/mutt;
 		 touch ~/.config/mutt/muttrc)
-		echo "source \"~/.dotfiles/muttrc\"" > ~/.config/mutt/muttrc
-		echo "source \"~/.dotfiles/muttrc.sh|\"" >> ~/.config/mutt/muttrc
+		xdotdir="~/${dotdir#"$HOME/"}"
+		echo "source \"$xdotdir/muttrc\"" > ~/.config/mutt/muttrc
+		echo "source \"$xdotdir/muttrc.sh|\"" >> ~/.config/mutt/muttrc
 	fi
 	if [ ! -e ~/.config/neomutt ]; then
 		ln -nsf mutt ~/.config/neomutt
