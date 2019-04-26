@@ -101,6 +101,7 @@ alias mutagen='mid3v2'
 mvln() { mv "$1" "$2" && sym -v "$2" "$1"; }
 alias nmap='nmap --reason'
 alias nm-con='nmcli -f name,type,autoconnect,state,device con'
+alias pamcan='pacman'
 alias plink='plink -no-antispoof'
 alias py='python'
 alias py2='python2'
@@ -132,6 +133,7 @@ alias sudo='sudo ' # for alias expansion in sudo args
 alias telnets='telnet-ssl -z ssl'
 _thiscommand() { history 1 | sed "s/^\s*[0-9]\+\s\+([^)]\+)\s\+$1\s\+//"; }
 alias tidiff='infocmp -Ld'
+tigdiff() { diff -u "$@" | tig; }
 alias todo:='todo "$(_thiscommand todo:)" #'
 alias traceroute='traceroute --extensions'
 alias tracert='traceroute --icmp'
