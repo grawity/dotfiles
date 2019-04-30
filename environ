@@ -24,6 +24,7 @@ PREFIX="$HOME/.local"
 GOPATH="$PREFIX/go"
 
 setpath PATH \
+	"$PREFIX/bin"				\
 	"$HOME/bin"				\
 	"$HOME/code/bin"			\
 	"$HOME/code/obj/host.$HOSTNAME"		\
@@ -32,7 +33,6 @@ setpath PATH \
 	"$HOME/lib/bin"				\
 	"$GOPATH/bin"				\
 	"$HOME/.cabal/bin"			\
-	"$PREFIX/bin"				\
 	"$PATH"					\
 	"/usr/local/sbin" 			\
 	"/usr/sbin"				\
