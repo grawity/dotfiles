@@ -1,0 +1,244 @@
+# ~/.muttrc <via stub>: Mutt configuration
+# vim: nowrap
+
+### User identity
+
+set realname="Mantas Mikulėnas"
+#set from="grawity@nullroute.eu.org"
+set from="grawity@gmail.com"
+set reverse_name
+reply-hook ~l 'set from="grawity@gmail.com"'
+
+alternates "^(grawity|mantas)(\\+.+)?@nullroute\.eu\.org$"
+alternates "^grawity(\\+.+)?@gmail\.com$"
+alternates "^mantas(:.+)?@u(tenos-)?kolegija\.lt$"
+
+### Mailing lists
+
+subscribe "^flos-freeware@freelists\.org$"
+subscribe "^systemd-devel@lists\.freedesktop\.org$"
+
+lists ".*@freelists\.org$"
+lists ".*@lists\.freedesktop\.org$"
+
+### Mail storage
+
+set folder="imap://mail.nullroute.eu.org/"
+set spoolfile="+INBOX"
+set postponed="+Drafts"
+set record="+Sent"
+mailboxes =INBOX
+
+unset confirmappend
+set confirmcreate
+set delete
+
+# Remote mail
+
+set imap_user="grawity"
+account-hook . \
+	'unset tunnel imap_pass; set imap_user="grawity"'
+account-hook "^imaps?://imap\.ietf\.org/$" \
+	'set imap_user="anonymous" imap_pass="anonymous"'
+
+set connect_timeout=10
+set mail_check=10
+set timeout=20
+set imap_headers="X-BOGOSITY X-PRIORITY"
+set imap_authenticators="GS2-KRB5:GSSAPI:PLAIN"
+set imap_idle
+#set imap_check_subscribed
+#unset imap_servernoise
+
+# http://dev.mutt.org/trac/ticket/3242 – bug with . → /
+set imap_delim_chars="/"
+
+folder-hook . 'unset spoolfile'
+
+### Composing
+
+set edit_headers
+
+set alias_file="~/lib/mutt-aliases"
+source "silentcat ~/lib/mutt-aliases|"
+set reverse_alias
+set query_command="muttquery '%s'"
+
+set compose_format="─── Composing (%l in %a parts) %*──"
+
+### Sending
+
+set use_envelope_from # pass '-f $from' to sendmail; useful for msmtp
+
+#set hostname="nullroute.eu.org"
+#set use_8bitmime
+
+### List view
+
+set sort=threads
+set auto_tag # auto-add tag prefix
+
+unset help
+set status_on_top
+
+spam "^X-Bogosity: Spam,.* spamicity=([0-9.]+)" "bogus"
+spam "^X-Bogosity: Unsure,.* spamicity=([0-9.]+)" "unsure"
+
+set status_format="─── Folder %f (%?M?%M/?%m messages%?n?, %n new/unseen?%?o?, %o old/unread?%?d?, %d deleted?) %*─ %P ───"
+set ts_enabled=yes
+set ts_status_format="Mutt %f (%?M?%M/?%m messages%?n?, %n new/unseen?%?o?, %o old/unread?)"
+
+### Message view
+
+ignore *
+unignore From: Subject: To: Cc: Date: Reply-To:
+unignore Newsgroups:
+unignore X-Mailer:
+unignore User-Agent:
+unignore X-Bogosity:
+hdr_order Date From To Cc Subject
+
+unset digest_collapse
+unset collapse_unread
+#folder-hook . 'push <collapse-all>'
+# note: collapse is confusing as 'T' does not tag collapsed child-messages
+
+set pager_index_lines=6
+set pager_context=3
+set search_context=3
+unset markers
+set smart_wrap
+set tilde
+
+set pager_format="─── Message %C of %m: \"%s\" %*── %P ───"
+
+# other auto_view types are conditional in muttrc.sh
+auto_view message/disposition-notification
+auto_view message/feedback-report
+
+### Generic appearance
+
+unset beep
+set beep_new
+set menu_context=3
+set menu_scroll
+# 'set xterm_set_titles' is neomutt-specific
+set xterm_set_titles
+
+set quote_regexp="^([ \t]*[|>:}#])+"	# default
+set quote_regexp="^[|>#]+|^ U>"
+#set quote_regexp="^[|>#](( [|>#])*|([|>#])*)"
+# I think the desired pattern is impossible to write in plain POSIX regexen.
+# Specifically it fails to match "> > >"-like quoting correctly. Either the
+# first two levels are joined (i.e. 0 0 1 2 instead of 0 1 2 3), or a horrible
+# mess results... That, and somehow /^ U>|^ >/ causes " U>" to be detected as
+# second level instead of first, even though it cannot POSSIBLY match the /^ >/
+# part. I even ran the algorithm as documented in a Python script and it
+# returned all the right levels. So...what the actual fuck?
+
+# ITEM			FOREGROUND	BACKGROUND
+color normal		white		default
+
+# 'color progress' is neomutt-specific
+color tree		brightred	default
+color indicator		default		color24
+color status		brightmagenta	default
+color message		color255	default
+color progress		color255	color236
+color error		brightwhite	red
+
+color hdrdefault	color241	default
+color header		color2		default	"^Date:"
+color header		color10		default	"^From:"
+color header		brightcolor10	default	"^Subject:"
+color header		yellow		default	"^X-Bogosity: Unsure,"
+color header		brightyellow	default	"^X-Bogosity: Spam,"
+
+color attachment	yellow		default
+color quoted		color168	default
+color quoted1		color172	color233
+color quoted2		color70		color233
+color quoted3		color73		color232
+color quoted4		color148	color233
+color quoted5		color48		color234
+color signature		blue		default
+color tilde		blue		default
+color search		black		brightyellow
+
+#color index	brightred	default	'~h "^X-Priority: [12]$"'
+#color index	brightred	default	'~h "^X-Facebook-Notify: login_notification;"'
+#color index	yellow		default	'~h "^X-Bogosity: Spam,"'
+color index	brightwhite	default	~F # flagged
+color index	color11		default	~U # unseen
+color index	brightcolor11	default	"~F ~U"
+color index	color240	default	~D # deleted
+color index 	color12		default	~T # tagged
+color index 	brightcolor12	default	"~T ~U"
+# last rule takes priority!
+
+# %?<char>?<if>&<else>?
+#set index_format="%4C %Z %{%b %d} %-15.15F (%?l?%4l&%4c?) %s"
+set index_format="%4C %Z %-18.18F│%s %* %?H?{%H} ?%?M? ‣ %M? %{%Y %b %d} "
+
+### Keybindings
+
+bind generic,pager ,w what-key
+
+bind index,pager <S-Up> previous-entry	# [<Up> is previous-undeleted]
+bind index,pager <S-Down> next-entry	# [<Down> is next-undeleted]
+bind index,pager <C-Up> previous-thread
+bind index,pager <C-Down> next-thread
+bind index,pager <Delete> delete-message
+macro index,pager a "<save-message>=Archive\n"
+macro index,pager \cA "<save-message>~/mbox\n"
+macro index,pager A "<copy-message>~/mbox\n"
+macro index,pager <Esc>i "<enter-command>unset wait_key\n<pipe-message>gpg --import |& tig\n<enter-command>set wait_key\n"
+
+bind index ! flag-message
+bind index G last-entry
+macro index * "<tag-pattern>.\n"
+macro index ^ "<tag-entry><previous-entry><previous-entry>"
+bind index \\ collapse-thread
+bind index \c? quit			# Backspace
+
+bind pager \' previous-line		# [symmetric with <Enter>]
+bind pager \\ previous-line		# [symmetric with <Enter>]
+bind pager G bottom
+bind pager \c? exit			# Backspace
+
+bind pager <Esc>n noop
+bind pager <Esc>p check-traditional-pgp
+
+# <Home> and <End> in some weird-ass terminals, perhaps.
+#bind index <Esc>[1~ first-entry
+#bind index <Esc>[4~ last-entry
+#bind pager <Esc>[1~ top
+#bind pager <Esc>[4~ bottom
+#macro generic,index,pager <Esc>f "<enter-command>set from=grawity@"
+#macro index,pager ,h "<copy-message>=Spam/ham"
+#macro index,pager ,s "<copy-message>=Spam/spam"
+
+folder-hook . '\
+bind index,pager d delete-message;\
+bind index,pager D delete-message;\
+bind index,pager \cD delete-thread'
+
+#folder-hook '/spam/' '\
+#bind index,pager d delete-message;\
+#bind index,pager D delete-message;\
+#bind index,pager \cD delete-thread'
+
+account-hook '^imaps?://' 'macro index . "<imap-fetch-mail><refresh>"'
+
+### Crypto
+
+set crypt_use_gpgme
+set crypt_use_pka
+unset pgp_auto_decode
+set pgp_use_gpg_agent
+set pgp_self_encrypt
+set smime_self_encrypt
+
+source "~/lib/dotfiles/mail/muttrc.sh|"
+
+#set ssl_starttls=no
