@@ -75,7 +75,7 @@ alias logoff='logout'
 if [[ $DESKTOP_SESSION ]]; then
 	alias logout='env logout'
 fi
-f() { find . \( -name .git -prune \) , \( -iname "*$1*" "${@:2}" \); }
+f() { find . \( -name .git -prune \) , \( -iname "*$1*" "${@:2}" \) | natsort; }
 ff() { find "$PWD" \( -name .git -prune \) , \( -iname "*$1*" "${@:2}" \) \
 	| treeify "$PWD"; }
 alias lchown='chown -h'
