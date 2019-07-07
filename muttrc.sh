@@ -12,6 +12,7 @@ fi
 if [[ -f ~/.mailcap ]]; then
 	printf 'auto_view %s\n' \
 		application/{zip,x-zip-compressed} \
+		application/tlsrpt+gzip \
 		text/{html,x-vcard} ;
 fi
 
