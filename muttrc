@@ -44,7 +44,7 @@ account-hook "^imaps?://imap\.ietf\.org/$" \
 set connect_timeout=10
 set mail_check=10
 set timeout=20
-set imap_headers="X-BOGOSITY X-PRIORITY"
+set imap_headers="X-BOGOSITY X-PRIORITY AUTHENTICATION-RESULTS"
 set imap_authenticators="GSSAPI:GS2-KRB5:PLAIN"
 set imap_idle
 #set imap_check_subscribed
@@ -83,6 +83,10 @@ set status_on_top
 
 spam "^X-Bogosity: Spam,.* spamicity=([0-9.]+)" "bogus"
 spam "^X-Bogosity: Unsure,.* spamicity=([0-9.]+)" "unsure"
+spam "^Authentication-Results: [^;]+; spf=softfail" "spf?"
+spam "^Authentication-Results: [^;]+; spf=fail" "spf!"
+spam "^Authentication-Results: [^;]+; dkim=fail" "dkim!"
+spam "^Authentication-Results: [^;]+; dmarc=fail" "dmarc!"
 
 set status_format="─── Folder %f (%?M?%M/?%m messages%?n?, %n new/unseen?%?o?, %o old/unread?%?d?, %d deleted?) %*─ %P ───"
 set ts_enabled=yes

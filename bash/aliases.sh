@@ -43,6 +43,7 @@ alias fiemap='xfs_io -r -c "fiemap -v"'
 alias fff='fanficfare -f html'
 gerp() { egrep $grepopt -r -I -D skip --exclude-dir={.bzr,.git,.hg,.svn} -H -n "$@"; }
 gpgfp() { gpg --with-colons --fingerprint "$1" | awk -F: '/^fpr:/ {print $10}'; }
+alias gmpv='gnome-mpv'
 alias hd='hexdump -C'
 alias hex='xxd -p'
 alias unhex='xxd -p -r'
@@ -74,9 +75,8 @@ alias logoff='logout'
 if [[ $DESKTOP_SESSION ]]; then
 	alias logout='env logout'
 fi
-f() { find . \( -name .git -prune \) , \( -iname "*$1*" "${@:2}" \); }
-ff() { find "$PWD" \( -name .git -prune \) , \( -iname "*$1*" "${@:2}" \) \
-	| treeify "$PWD"; }
+f() { find . \( -name .git -prune \) , \( -iname "*$1*" "${@:2}" \) | natsort; }
+ff() { f "$@" | sed 's,^\./,,' | treeify --fake-root "$PWD"; }
 alias lchown='chown -h'
 vildap() { ldapvi -s base -b "$@" '(objectclass=*)' '*' '+'; }
 ldapls() {
