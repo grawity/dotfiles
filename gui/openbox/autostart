@@ -5,4 +5,21 @@
 #	openbox --reconfigure
 #  done; } &
 
+if [[ $HOSTNAME == fujitsu ]]; then
+	xset s $[5*60]
+
+	xss-lock ~/bin/lock-session auto &
+
+	xsettingsd &
+
+	#stalonetray &
+	xfce4-panel &
+
+	nm-applet &
+
+	upower-monitor &
+
+	start-dropbox &
+fi
+
 gnome-terminal &
