@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-{ inotifywait -r -m -q -e close_write ~/.themes/wh-mod/openbox-3/themerc \
-  | while read event; do
-	openbox --reconfigure
-  done; } &
+#{ inotifywait -r -m -q -e close_write ~/.themes/wh-mod/openbox-3/themerc \
+#  | while read event; do
+#	openbox --reconfigure
+#  done; } &
 
 gnome-terminal &
