@@ -478,3 +478,15 @@ elif have service; then
 	enable()  { for _s; do sudo update-rc.d "$_s" enable; done; }
 	disable() { for _s; do sudo update-rc.d "$_s" disable; done; }
 fi
+
+# shortcuts for making connections over alternate uplink
+
+if [[ $routed6 ]]; then
+	mycurl()       { do: curl --interface "$routed6" "$@"; }
+	mymtr()        { do: mtr -a "$routed6" "$@"; }
+	myping()       { do: ping -I "$routed6" "$@"; }
+	myssh()        { do: ssh -b "$routed6" "$@"; }
+	mytraceroute() { do: traceroute -s "$routed6" "$@"; }
+	mytracert()    { do: sudo tracert -s "$routed6" "$@"; }
+	mytracert6()   { do: tracert6 -s "$routed6" "$@"; }
+fi
