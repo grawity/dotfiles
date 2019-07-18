@@ -116,6 +116,7 @@ ressh() { ssh -v \
 	-o ControlMaster=no \
 	-o ControlPath=none \
 	"$@" ":"; }
+alias bgpmon='do: whois -h whois.bgpmon.net --'
 alias rawhois='do: whois -h whois.ra.net --'
 alias riswhois='do: whois -h riswhois.ripe.net --'
 alias rot13='tr N-ZA-Mn-za-m A-Za-z'
