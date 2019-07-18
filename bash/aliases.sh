@@ -103,7 +103,7 @@ alias nmap='nmap --reason'
 alias nm-con='nmcli -f name,type,autoconnect,state,device con'
 alias pamcan='pacman'
 alias plink='plink -no-antispoof'
-alias py='python'
+alias py='python3'
 alias py2='python2'
 alias py3='python3'
 alias qrdecode='zbarimg --quiet --raw'
@@ -478,4 +478,16 @@ elif have service; then
 	status()  { for _s; do sudo service "$_s" status; done; }
 	enable()  { for _s; do sudo update-rc.d "$_s" enable; done; }
 	disable() { for _s; do sudo update-rc.d "$_s" disable; done; }
+fi
+
+# shortcuts for making connections over alternate uplink
+
+if [[ $routed6 ]]; then
+	mycurl()       { do: curl --interface "$routed6" "$@"; }
+	mymtr()        { do: mtr -a "$routed6" "$@"; }
+	myping()       { do: ping -I "$routed6" "$@"; }
+	myssh()        { do: ssh -b "$routed6" "$@"; }
+	mytraceroute() { do: traceroute -s "$routed6" "$@"; }
+	mytracert()    { do: sudo tracert -s "$routed6" "$@"; }
+	mytracert6()   { do: tracert6 -s "$routed6" "$@"; }
 fi

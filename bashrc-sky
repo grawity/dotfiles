@@ -1,6 +1,4 @@
 # vim: ft=sh
 
-. ~/lib/dotfiles/bashrc-wolke
-
 native6='2a01:6f0:ffff:1::2'
 routed6='2a06:e881:108:1::2'

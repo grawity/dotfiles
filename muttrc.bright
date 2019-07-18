@@ -1,0 +1,18 @@
+color normal		default default
+color message		default default
+color indicator		default white
+color status		brightwhite blue
+
+color hdrdefault	color247 default
+color header		blue default	"^Date:"
+color header		blue default	"^From:"
+color header		blue default	"^Subject:"
+color header		yellow default	"^X-Bogosity: Unsure,"
+color header		yellow default	"^X-Bogosity: Spam,"
+
+color index	yellow		default	~F # flagged
+color index	red		default	~U # unseen
+color index	brightcolor11	default	"~F ~U"
+color index	color251	default	~D # deleted
+color index 	color12		default	~T # tagged
+color index 	brightcolor12	default	"~T ~U"
