@@ -103,7 +103,7 @@ alias nmap='nmap --reason'
 alias nm-con='nmcli -f name,type,autoconnect,state,device con'
 alias pamcan='pacman'
 alias plink='plink -no-antispoof'
-alias py='python'
+alias py='python3'
 alias py2='python2'
 alias py3='python3'
 alias qrdecode='zbarimg --quiet --raw'
@@ -116,6 +116,7 @@ ressh() { ssh -v \
 	-o ControlMaster=no \
 	-o ControlPath=none \
 	"$@" ":"; }
+alias bgpmon='do: whois -h whois.bgpmon.net --'
 alias rawhois='do: whois -h whois.ra.net --'
 alias riswhois='do: whois -h riswhois.ripe.net --'
 alias rot13='tr N-ZA-Mn-za-m A-Za-z'
@@ -478,3 +479,13 @@ elif have service; then
 	enable()  { for _s; do sudo update-rc.d "$_s" enable; done; }
 	disable() { for _s; do sudo update-rc.d "$_s" disable; done; }
 fi
+
+# shortcuts for making connections over alternate uplink
+
+mycurl()       { do: curl --interface "$routed6" "$@"; }
+mymtr()        { do: mtr -a "$routed6" "$@"; }
+myping()       { do: ping -I "$routed6" "$@"; }
+myssh()        { do: ssh -b "$routed6" "$@"; }
+mytraceroute() { do: traceroute -s "$routed6" "$@"; }
+mytracert()    { do: sudo tracert -s "$routed6" "$@"; }
+mytracert6()   { do: tracert6 -s "$routed6" "$@"; }

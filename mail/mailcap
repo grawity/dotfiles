@@ -21,3 +21,6 @@ text/html; w3m -I %{charset} -T %t %s; nametemplate=%s.html; needsterminal
 text/html; w3m -I %{charset} -T %t -dump %s; nametemplate=%s.html; copiousoutput
 
 text/x-vcard; show-vcard; copiousoutput
+
+application/tlsrpt; cat %s | jq; copiousoutput
+application/tlsrpt+gzip; zcat %s | jq; copiousoutput

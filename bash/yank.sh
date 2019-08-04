@@ -16,7 +16,7 @@ _xkill() {
 _xyank() {
 	local func=${1:-pclip}
 	local str=$(eval $func)
-	local len=$(printf '%s' "$str" | wc -c)
+	local len=${#str}
 	READLINE_LINE=${READLINE_LINE:0:$READLINE_POINT}${str}${READLINE_LINE:$READLINE_POINT}
 	READLINE_POINT=$((READLINE_POINT + len))
 }
@@ -24,7 +24,7 @@ _xyank() {
 _xyankq() {
 	local func=${1:-pclip}
 	local str=$(eval $func); str="${str@Q} "
-	local len=$(printf '%s' "$str" | wc -c)
+	local len=${#str}
 	READLINE_LINE=${READLINE_LINE:0:$READLINE_POINT}${str}${READLINE_LINE:$READLINE_POINT}
 	READLINE_POINT=$((READLINE_POINT + len))
 }
