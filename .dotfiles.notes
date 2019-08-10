@@ -24,7 +24,7 @@ Already migrated to XDG in a release:
 ~/.mpdconf          <config>/mpd/mpd.conf           0.18
 ~/.mpoprc           <config>/mpop/config            1.2.7 (c70f9da)
 ~/.mpv/             <config>/mpv/                   ??? (cb250d)
-~/.muttrc           <config>/mutt/muttrc            mutt ??? (b4bab3bd08fc)
+~/.muttrc           <config>/mutt/muttrc            mutt 1.8? (b17cd6731291)
 ~/.muttrc           <config>/neomutt/config         neomutt ??? (239c0e93f8be)
 ~/.msmtprc          <config>/msmtp/config           1.6.3 (af2f409)
 ~/.offlineimaprc    <config>/offlineimap/config     6.5.6 (5150de5514d1)
