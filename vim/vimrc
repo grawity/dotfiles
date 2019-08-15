@@ -7,11 +7,11 @@ set nocompatible
 " Window title
 
 set title
-set titlelen=0			" do not left-truncate titles
+set titlelen=0
 set titlestring=%t%(\ %m%)%(\ (%{hostname()}\ %{expand(\"%:p:~:h\")})%)%(\ %a%)
 
 if &term =~ "^screen"
-	" teach vim to set window title inside screen
+	" deal with screen's inability to recognize \e]; as \e]0;
 	set t_ts=]2; t_fs=
 endif
 
