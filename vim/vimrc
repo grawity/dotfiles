@@ -294,6 +294,6 @@ func! JoinPara()
 	:g/^\S/ .,/^$/-1 join
 endfunc
 
-call pathogen#infect()
+execute pathogen#infect()
 
 filetype plugin on
