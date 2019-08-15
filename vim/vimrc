@@ -70,8 +70,10 @@ endif
 set ruler
 set showmode
 set showcmd
-set display+=lastline
 set linebreak			" soft word-wrap
+set display+=lastline		" show partial line if it doesn't fit
+set display+=truncate		" like lastline but still show '@@@' once
+set display+=uhex		" show unprintable chars as <hex>
 "set showbreak=↵\ 		" prefix wrapped lines
 silent! set number
 silent! set numberwidth=4
