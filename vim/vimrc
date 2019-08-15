@@ -131,13 +131,6 @@ if has("unix")
 	endif
 endif
 
-if hostname() == "rain"
-	set nofsync
-	if !has("nvim")
-		set swapsync=
-	endif
-endif
-
 """ Text editing
 
 " tabs
