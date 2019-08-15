@@ -297,5 +297,3 @@ func! JoinPara()
 endfunc
 
 execute pathogen#infect()
-
-filetype plugin on
