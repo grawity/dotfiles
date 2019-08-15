@@ -70,11 +70,14 @@ endif
 set ruler
 set showmode
 set showcmd
+
 set linebreak			" soft word-wrap
 set display+=lastline		" show partial line if it doesn't fit
 set display+=truncate		" like lastline but still show '@@@' once
-set display+=uhex		" show unprintable chars as <hex>
 "set showbreak=↵\ 		" prefix wrapped lines
+set display+=uhex		" show unprintable chars as <hex>
+silent! set listchars=eol:¬,tab:→.,extends:»,precedes:«,trail:•
+
 silent! set number
 silent! set numberwidth=4
 silent! set mouse=a
@@ -91,7 +94,7 @@ if &t_Co > 16
 	au FocusLost * setl nocursorline
 endif
 
-set wildmenu
+set wildmenu			" show menu when tab-completing :commands
 "set wildmode=list:longest
 silent! set wildignorecase
 
@@ -157,7 +160,6 @@ set comments-=:XCOMM
 
 set noshowmatch
 "silent! let loaded_matchparen=1
-silent! set listchars=eol:¬,tab:→.,extends:»,precedes:«,trail:•
 
 " Searching
 
