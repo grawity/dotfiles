@@ -272,7 +272,7 @@ hi SpellLocal guisp=#7cac7c guifg=#9ccc9c  ctermfg=151 ctermbg=237
 
 if exists("g:zenburn_high_Contrast") && g:zenburn_high_Contrast
     " use new darker background
-    hi Normal        guifg=#dcdccc guibg=#1f1f1f           ctermfg=188 ctermbg=234
+    hi Normal        guifg=#dcdccc guibg=#1c1c1c           ctermfg=188 ctermbg=234
     hi ColorColumn   guibg=#33332f                         ctermbg=235
     hi CursorLine    guibg=#121212 gui=bold                ctermbg=233 cterm=none
     hi CursorLineNr  guifg=#f2f3bb guibg=#161616           ctermfg=229 ctermbg=233
