@@ -101,6 +101,7 @@ MESA_GL_VERSION_OVERRIDE="3.0"	# some apps choke on new core profiles
 GTK_IM_MODULE="xim"		# no longer needed
 GTK_OVERLAY_SCROLLING="0"	# just in case
 LIBVA_DRIVER_NAME="vdpau"	# latest Mesa supports 'gallium'
+MESA_LOADER_DRIVER_OVERRIDE="iris"
 QT_FONT_DPI="96"
 QT_IM_MODULE="xim"		# already the default
 QT_STYLE_OVERRIDE="fusion"	# Qt5 default
