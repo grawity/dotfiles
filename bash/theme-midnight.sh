@@ -1,6 +1,5 @@
 # vim: ft=sh
 fullpwd=h
-
 fmts[name.self]=@a
 fmts[name:pfx]=@c
 fmts[pwd]=@b

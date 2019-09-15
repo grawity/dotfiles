@@ -2,7 +2,6 @@
 
 [[ $- != *i* ]] && return
 
-#native6='2a02:7b40:50d1:e466::1'
 routed6='2a06:e881:108:36::9'
 
 . ~/.dotfiles/bashrc-rain
