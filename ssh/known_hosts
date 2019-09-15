@@ -449,3 +449,4 @@ lish-london.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICt7/UlVU+egVeFrdyULq
 lish-singapore.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKTySt/NM6rbUp+ifR0j6/kUqk2jVrK+qdQZdP8nYpKG
 lish-tokyo.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDWoLYQChU+ioS/kC+mGRoEYJmd4frdb9I9FyXN9RJlK
 lish-tokyo2.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICIxuOiy0m5GSItA6CxCF/6MW6N6djcrbkwPmd9cJFiW
+sdf.eu,85.13.149.147 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJcGee/9USXlMA2fy53LaYXUwFV7DbXKiZ8gHZqx6n2GIpVNhMyrZt+Ux8QmCy5bRv7gJKHdccEl+GpCEevyDvc=
