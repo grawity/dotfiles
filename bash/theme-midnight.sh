@@ -1,13 +1,6 @@
 # vim: ft=sh
-unset items[ostype]
 fullpwd=h
 
-unset fmts[name:pfx]
-unset fmts[name:sfx]
-unset fmts[pwd:tail]
-
-items[name:pfx]=""
-items[name:sfx]=""
 fmts[name.self]=@a
 fmts[name:pfx]=@c
 fmts[pwd]=@b
