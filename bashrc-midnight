@@ -10,6 +10,11 @@ routed6='2a06:e881:108:36::9'
 fxdb() { (nssdb="$HOME/.mozilla/firefox/9y9rjsca.default"; "$@"); }
 thdb() { (nssdb="$HOME/.thunderbird/jms00rh7.default"; "$@"); }
 
+wwan() { nmcli radio wwan on; nmcli radio wifi off; }
+wlan() { nmcli radio wifi on; nmcli radio wwan off; }
+alias lte=wwan
+alias wifi=wlan
+
 unset items[ostype]
 fullpwd=h
 
