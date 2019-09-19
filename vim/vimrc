@@ -7,11 +7,11 @@ set nocompatible
 " Window title
 
 set title
-set titlelen=0			" do not left-truncate titles
+set titlelen=0
 set titlestring=%t%(\ %m%)%(\ (%{hostname()}\ %{expand(\"%:p:~:h\")})%)%(\ %a%)
 
 if &term =~ "^screen"
-	" teach vim to set window title inside screen
+	" deal with screen's inability to recognize \e]; as \e]0;
 	set t_ts=]2; t_fs=
 endif
 
@@ -54,12 +54,7 @@ if has("termguicolors")
 		let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 		let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 	endif
-	" yes, this breaks tmux again, but OTOH it fixes PuTTY
-	" 2018-08-16 grawity: This doesn't *actually* work, because my .bashrc
-	"                     unexports $VTE_VERSION... opening files in vim
-	"                     from nautilus bypasses bash so it still happens
-	"                     there.
-	if $VTE_VERSION != ""
+	if &term =~ "^(tmux|xterm)-256color"
 		set termguicolors
 	endif
 endif
@@ -75,9 +70,14 @@ endif
 set ruler
 set showmode
 set showcmd
-set display+=lastline
+
 set linebreak			" soft word-wrap
+set display+=lastline		" show partial line if it doesn't fit
+set display+=truncate		" like lastline but still show '@@@' once
 "set showbreak=↵\ 		" prefix wrapped lines
+set display+=uhex		" show unprintable chars as <hex>
+silent! set listchars=eol:¬,tab:→.,extends:»,precedes:«,trail:•
+
 silent! set number
 silent! set numberwidth=4
 silent! set mouse=a
@@ -94,7 +94,7 @@ if &t_Co > 16
 	au FocusLost * setl nocursorline
 endif
 
-set wildmenu
+set wildmenu			" show menu when tab-completing :commands
 "set wildmode=list:longest
 silent! set wildignorecase
 
@@ -134,19 +134,12 @@ if has("unix")
 	endif
 endif
 
-if hostname() == "rain"
-	set nofsync
-	if !has("nvim")
-		set swapsync=
-	endif
-endif
-
 """ Text editing
 
 " tabs
 set tabstop=8
-set softtabstop=4
-set shiftwidth=8
+"set softtabstop=4
+"set shiftwidth=8
 set smarttab copyindent preserveindent
 set autoindent
 set smartindent
@@ -167,7 +160,6 @@ set comments-=:XCOMM
 
 set noshowmatch
 "silent! let loaded_matchparen=1
-silent! set listchars=eol:¬,tab:→.,extends:»,precedes:«,trail:•
 
 " Searching
 
@@ -304,7 +296,7 @@ func! JoinPara()
 	:g/^\S/ .,/^$/-1 join
 endfunc
 
-call pathogen#infect()
+execute pathogen#infect()
 
 filetype plugin on
 filetype indent off

@@ -272,7 +272,7 @@ hi SpellLocal guisp=#7cac7c guifg=#9ccc9c  ctermfg=151 ctermbg=237
 
 if exists("g:zenburn_high_Contrast") && g:zenburn_high_Contrast
     " use new darker background
-    hi Normal        guifg=#dcdccc guibg=#1f1f1f           ctermfg=188 ctermbg=234
+    hi Normal        guifg=#dcdccc guibg=#1c1c1c           ctermfg=188 ctermbg=234
     hi ColorColumn   guibg=#33332f                         ctermbg=235
     hi CursorLine    guibg=#121212 gui=bold                ctermbg=233 cterm=none
     hi CursorLineNr  guifg=#f2f3bb guibg=#161616           ctermfg=229 ctermbg=233
@@ -461,6 +461,11 @@ if exists("g:zenburn_enable_TagHighlight") && g:zenburn_enable_TagHighlight
         hi link LocalVariable     WarningMsg
         hi link Structure         WarningMsg
         hi link Union             WarningMsg
+endif
+
+" Terminal support for Vim 8+
+if version >= 800
+    hi Terminal ctermbg=232 guibg=#0f0f0f ctermfg=248 guifg=#a8a8a8
 endif
 
 " TODO check for more obscure syntax groups that they're ok
