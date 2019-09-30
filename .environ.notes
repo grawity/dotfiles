@@ -150,6 +150,10 @@ GALLIUM_HUD="cpu0+cpu1+cpu2+cpu3:100,cpu:100,fps;draw-calls,requested-VRAM+reque
 DXVK_HUD="devinfo,fps,frametimes,submissions,drawcalls,pipelines,memory,version,api"
 DXVK_HUD="full"
 
+# Reduce CPU usage in games
+#WINEDEBUG="-all"
+#DXVK_LOG_LEVEL="none"
+
 # GLib 2 extension points
 # https://developer.gnome.org/gio/stable/running-gio-apps.html
 #GIO_USE_FILE_MONITOR="inotify"	    # "fam"
