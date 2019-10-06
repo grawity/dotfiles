@@ -3,13 +3,11 @@
 
 have() { command -v "$1" >&/dev/null; }
 
-if [[ ! $PREFIX ]]; then
-	. ~/lib/dotfiles/environ
-	# this currently happens when:
-	# - `sudo -s` preserves $HOME but cleans other envvars
-	# - bash is built with #define SSH_SOURCE_BASHRC (e.g. Debian)
-	#(. lib.bash && warn "had to load .environ from .bashrc")
-fi
+. ~/lib/dotfiles/environ
+# Reload environ for every terminal because:
+# - `sudo -s` preserves $HOME but cleans other envvars
+# - bash is built with #define SSH_SOURCE_BASHRC (e.g. Debian)
+# - systemd rejects envvars which contain \e (ESC)
 
 if [[ $TERM == @(screen|tmux|xterm) ]]; then
 	OLD_TERM="$TERM"

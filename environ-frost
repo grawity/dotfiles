@@ -2,6 +2,8 @@
 
 . ~/lib/dotfiles/environ-rain
 
+BORG_REPO="/vol4/Backup/Homes/$HOSTNAME.borg"
+
 SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
 
 VDPAU_DRIVER="va_gl"
