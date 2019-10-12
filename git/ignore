@@ -26,7 +26,10 @@ __pycache__
 
 # other crud
 
+# Windows
 Thumbs.db
+# KDE Dolphin
+.directory
 
 core
 core.*.*
