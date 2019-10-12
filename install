@@ -131,10 +131,6 @@ if have makepkg; then
 	link pacman/makepkg.conf ~/.config/pacman/makepkg.conf
 fi
 
-if have radare2; then
-	link radare2rc ~/.config/radare2/radare2rc
-fi
-
 if have mutt || have neomutt; then
 	if echo "39089071962b19a4786d5d8ba21dd1a66d1295e8  $HOME/.config/mutt/muttrc" | sha1sum --check --status 2>/dev/null; then
 		rm -f ~/.config/mutt/muttrc
