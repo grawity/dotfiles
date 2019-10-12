@@ -16,6 +16,8 @@ GTK_IM_MODULE="ibus"
 QT_IM_MODULE="ibus"
 XMODIFIERS="@im=ibus"
 
+QT_QPA_PLATFORM_THEME="kde"
+
 NOKOGIRI_USE_SYSTEM_LIBRARIES="1"	# nokogiri gem - use system libxml2
 
 # appdefaults
