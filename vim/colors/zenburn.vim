@@ -229,6 +229,7 @@ hi Folded          guifg=#93b3a3 guibg=#3f4040
 hi Function        guifg=#efef8f                              ctermfg=228
 hi Identifier      guifg=#efdcbc                              ctermfg=223 cterm=none
 hi IncSearch       guifg=#f8f893 guibg=#385f38                ctermfg=228 ctermbg=23
+" grawity: Keyword un-bolded
 hi Keyword         guifg=#f0dfaf                              ctermfg=223
 hi Macro           guifg=#ffcfaf gui=bold                     ctermfg=223 cterm=bold
 hi ModeMsg         guifg=#ffcfaf gui=none                     ctermfg=223 cterm=none
@@ -238,6 +239,7 @@ hi Operator        guifg=#f0efd0                              ctermfg=230
 hi PmenuSbar       guibg=#2e3330 guifg=#000000                ctermfg=16  ctermbg=236
 hi PmenuThumb      guibg=#a0afa0 guifg=#040404                ctermfg=232 ctermbg=151
 hi PreCondit       guifg=#dfaf8f gui=bold                     ctermfg=180 cterm=bold
+" grawity: PreProc un-bolded
 hi PreProc         guifg=#ffcfaf                              ctermfg=223
 hi Question        guifg=#ffffff gui=bold                     ctermfg=231 cterm=bold
 hi Repeat          guifg=#ffd7a7 gui=bold                     ctermfg=223 cterm=bold
@@ -272,6 +274,7 @@ hi SpellLocal guisp=#7cac7c guifg=#9ccc9c  ctermfg=151 ctermbg=237
 
 if exists("g:zenburn_high_Contrast") && g:zenburn_high_Contrast
     " use new darker background
+    " grawity: guibg darkened slightly, to match 256-color palette
     hi Normal        guifg=#dcdccc guibg=#1c1c1c           ctermfg=188 ctermbg=234
     hi Conceal       guifg=#8f8f8f guibg=#333333           ctermfg=246 ctermbg=235
     hi ColorColumn   guibg=#33332f                         ctermbg=235
