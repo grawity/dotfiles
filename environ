@@ -89,7 +89,6 @@ GIT_MERGE_AUTOEDIT="no"
 LESS="e M q R F X z -3"
 LESS_TERMCAP_us='[3m'		# change underline to italic
 LESS_TERMCAP_ue='[23m'	# un-italic
-LINGUAS="en lt"			# install fewer nls translations
 MAKEFLAGS="-j $(nproc)"
 MOZ_USE_XINPUT2="1"		# better scrolling
 SUDO_PROMPT="sudo password for %p@[30;43m%h[m: "
