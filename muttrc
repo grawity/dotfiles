@@ -27,7 +27,7 @@ set folder="imap://mail.nullroute.eu.org/"
 set spoolfile="+INBOX"
 set postponed="+Drafts"
 set record="+Sent"
-mailboxes =INBOX
+#mailboxes =INBOX
 
 unset confirmappend
 set confirmcreate
@@ -35,11 +35,24 @@ set delete
 
 # Remote mail
 
+# 2019-10-25 grawity: In current NeoMutt, 'mailboxes' takes effect immediately,
+# so it must be called only after the authentication-related options and hooks
+# have been set.
+
+# Note: If folder-hook patterns start with ^ or @, they will be treated as
+# shortcut expansions and not as regexes. Put the regex in parens to avoid
+# this. (See also section 6.2 "Mailbox Matching in Hooks".)
+
 set imap_user="grawity"
+
 account-hook . \
 	'unset tunnel imap_pass; set imap_user="grawity"'
+
 account-hook "^imaps?://imap\.ietf\.org/$" \
 	'set imap_user="anonymous" imap_pass="anonymous"'
+
+folder-hook "(^imaps?://mail\.nullroute\.eu\.org/$)" \
+	'mailboxes =INBOX'
 
 set connect_timeout=10
 set mail_check=10
