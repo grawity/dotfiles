@@ -258,7 +258,7 @@ case $OSTYPE in
 		lsopt="$lsopt -N"
 		eval $(dircolors ~/lib/dotfiles/dircolors 2>/dev/null)
 		alias df='df -Th'
-		alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs'
+		alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs -xafs'
 		alias lsd='ls -a --ignore="[^.]*"'
 		;;
 	freebsd*)
