@@ -90,7 +90,13 @@ alias lp='sudo netstat -lptu --numeric-hosts'
 alias lpt='sudo netstat -lpt --numeric-hosts'
 alias lpu='sudo netstat -lpu --numeric-hosts'
 alias lsd='ls -d .*'
-lsftp() { lftp "sftp://$1"; }
+lsftp() {
+	case $1 in
+	*:/*)	lftp "sftp://${1/:/}";;
+	*:*)	lftp "sftp://${1/:/'/~/'}";;
+	*)	lftp "sftp://$1";;
+	esac
+}
 alias lspart='lsblk -o name,partlabel,size,fstype,label,mountpoint'
 alias mkcert='mkcsr -x509 -days 3650'
 alias mkcsr='openssl req -new -sha256'
