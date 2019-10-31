@@ -233,7 +233,7 @@
 	pushInsteadOf = git://git.nullroute.eu.org/
 	pushInsteadOf = https://git.nullroute.eu.org/
 
-[url "grawity@star.nullroute.eu.org:Attic/"]
+[url "grawity@star.nullroute.eu.org:lib/annexgit/"]
 	insteadOf = annex:Attic/
 
 [url "https://github.com/"]
