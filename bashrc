@@ -1,6 +1,11 @@
 # ~/.bashrc - bash interactive startup file
 # vim: ft=sh
 
+if [[ ${LINES@a} == *x* || ${COLUMNS@a} == *x* ]]; then
+	printf "\e[m\e[38;5;15m\e[48;5;196m%s\e[m\n" \
+		"\$LINES/\$COLUMNS found in environment! (early check)"
+fi
+
 have() { command -v "$1" >&/dev/null; }
 
 . ~/lib/dotfiles/environ
@@ -8,6 +13,11 @@ have() { command -v "$1" >&/dev/null; }
 # - `sudo -s` preserves $HOME but cleans other envvars
 # - bash is built with #define SSH_SOURCE_BASHRC (e.g. Debian)
 # - systemd rejects envvars which contain \e (ESC)
+
+if [[ ${LINES@a} == *x* || ${COLUMNS@a} == *x* ]]; then
+	printf "\e[m\e[38;5;15m\e[48;5;196m%s\e[m\n" \
+		"\$LINES/\$COLUMNS found in environment! (after sourcing environ)"
+fi
 
 if [[ $TERM == @(screen|tmux|xterm) ]]; then
 	OLD_TERM="$TERM"
