@@ -1,0 +1,4 @@
+syn keyword apacheDeclaration IncludeOptional
+syn keyword apacheDeclaration Protocols
+syn keyword apacheDeclaration SSLStaplingCache
+syn keyword apacheDeclaration SSLUseStapling
