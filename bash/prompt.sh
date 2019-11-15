@@ -494,6 +494,18 @@ _update_title() {
 		items[pwd.url]="file://${HOSTNAME}$(urlencode -n -p -a "$PWD")"
 		printf '\e]7;%s\e\\' "${items[pwd.url]}"
 	fi
+	if [[ ${TMUX-} ]]; then
+		local t_dir=
+		local t_par=
+		t_dir=${PWD##*/}
+		if (( ${#t_dir} > 5 )); then
+			t_dir=${t_dir::5}
+		fi
+		t_par=${PWD%/*}
+		t_par=${t_par##*/}
+		t_dir=${t_par::2}/$t_dir
+		setwname "$t_dir"
+	fi
 }
 
 PROMPT_COMMAND="_show_status; _update_title"
