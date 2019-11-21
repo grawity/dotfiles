@@ -7,6 +7,3 @@ BORG_REPO="/vol4/Backup/Homes/$HOSTNAME.borg"
 SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
 
 VDPAU_DRIVER="va_gl"
-
-# 2019-10-14: Battle.net workaround
-WINEDLLOVERRIDES="api-ms-win-crt-private-l1-1-0=n;ucrtbase=n"
