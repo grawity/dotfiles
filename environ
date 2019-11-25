@@ -67,6 +67,7 @@ unset VISUAL
 
 # libdefaults
 
+DXVK_STATE_CACHE_PATH="$XDG_CACHE_HOME/dxvk"
 FREETYPE_PROPERTIES="truetype:interpreter-version=40"
 IBUS_ENABLE_CTRL_SHIFT_U="1"
 # 2018-08-16 grawity: this can be removed once PuTTY 0.71 is out
