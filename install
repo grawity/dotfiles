@@ -47,6 +47,8 @@ check_owner() {
 			continue
 		elif [ -e "$f" ] && [ ! -O "$f" ]; then
 			case $f in
+			*/.mysql_history)
+				continue ;;
 			*/.lesshst)
 				rm -f "$f" ;;
 			*)
