@@ -27,4 +27,8 @@ Proc.new{
 		RETURN: "\e[38;5;11m" + "=>" + "\e[m" + " %s\n",
 	}
 	IRB.conf[:PROMPT_MODE] = :my
+
+        # tame down new 2.7 stuff until I get used to it
+	IRB.conf[:AUTO_INDENT] = false
+	IRB.conf[:USE_COLORIZE] = false
 }.call
