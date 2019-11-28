@@ -23,7 +23,7 @@ Proc.new{
 		PROMPT_I: _prompt("\e[m\e[38;5;2m", "\e[;1m\e[38;5;10m", ">"),
 		PROMPT_N: _prompt("\e[m\e[38;5;8m", "\e[;1m\e[38;5;10m", "·"),
 		PROMPT_S: _prompt("\e[m\e[38;5;8m", "\e[;0m\e[38;5;14m", "%l"),
-		PROMPT_C: _prompt("\e[m\e[38;5;2m", "\e[;1m\e[38;5;10m", "c"),
+		PROMPT_C: _prompt("\e[m\e[38;5;8m", "\e[;1m\e[38;5;10m", "·"),
 		RETURN: "\e[38;5;11m" + "=>" + "\e[m" + " %s\n",
 	}
 	IRB.conf[:PROMPT_MODE] = :my
