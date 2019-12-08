@@ -90,9 +90,7 @@ Host github.com
 Host ftp.ext.hpe.com
 	Port 2222
 	# 2019-03-21: Server includes umac-64@openssh.com at the end of
-	# proposal, but hangs after MSG_NEWKEYS if it is selected. (Which it is
-	# for some reason, despite the client *not* including the non-ETM
-	# version in its proposal...)
+	# its proposal, but hangs after MSG_NEWKEYS if it is selected.
 	MACs -umac-*
 	PreferredAuthentications password
 
@@ -122,6 +120,10 @@ Host *
 	# speed up git-annex batch tasks
 	ControlMaster auto
 	ControlPersist 60s
+
+#if [ -e ~/.config/ssh-use-keepalive.flag ]
+Host *
 	# close broken connections after (Interval:5) * (CountMax:3) = 15 seconds
 	# (the timeouts used by TCPKeepAlive are far too long, approx. 2h)
 	ServerAliveInterval 5
+#endif
