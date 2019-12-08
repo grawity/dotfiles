@@ -62,19 +62,6 @@ Version() {
 	return 0
 }
 
-SystemChassis() {
-	local regex="^($1)$"
-	local chassis
-	if have busctl; then
-		chassis=$(busctl get-property org.freedesktop.hostname1 \
-			/org/freedesktop/hostname1 org.freedesktop.hostname1 \
-			Chassis 2>/dev/null | sed 's/^s "//; s/"$//')
-	fi
-	chassis=${chassis:-unknown}
-	debug "comparing /$regex/ against '$chassis'"
-	[[ $chassis =~ $regex ]]
-}
-
 # generator
 
 generate() {
