@@ -60,12 +60,6 @@ Host *.nullroute.eu.org
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-Host panther
-	HostName %h.nathan7.eu
-
-Host *.nathan7.eu
-	ForwardAgent yes
-
 Host ofb.net
 	ForwardAgent yes
 
