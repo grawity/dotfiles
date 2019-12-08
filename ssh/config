@@ -121,7 +121,7 @@ Host *
 	ControlMaster auto
 	ControlPersist 60s
 
-#if [ -e ~/.config/ssh-use-keepalive.flag ]
+#if SystemChassis laptop
 Host *
 	# close broken connections after (Interval:5) * (CountMax:3) = 15 seconds
 	# (the timeouts used by TCPKeepAlive are far too long, approx. 2h)
