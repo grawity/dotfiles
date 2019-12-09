@@ -2,6 +2,8 @@
 
 . ~/lib/dotfiles/environ-rain
 
+ACCDB="$XDG_DATA_HOME/nullroute.eu.org/accdb/accounts.txt"
+
 BORG_REPO="/vol4/Backup/Homes/$HOSTNAME.borg"
 
 SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
