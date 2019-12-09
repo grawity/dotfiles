@@ -49,7 +49,7 @@ fi
 : ${FQDN:=$HOSTNAME}
 
 case $FQDN in
-    *.nullroute.eu.org)
+    !(vm-*).nullroute.eu.org)
 	if [[ -e ~/lib/dotfiles/bash/theme-$HOSTNAME.sh ]]; then
 		. ~/lib/dotfiles/bash/theme-$HOSTNAME.sh
 	else
