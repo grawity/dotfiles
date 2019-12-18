@@ -43,11 +43,6 @@ set delete
 # shortcut expansions and not as regexes. Put the regex in parens to avoid
 # this. (See also section 6.2 "Mailbox Matching in Hooks".)
 
-set imap_user="grawity"
-
-account-hook . \
-	'unset tunnel imap_pass; set imap_user="grawity"'
-
 account-hook "^imaps?://imap\.ietf\.org/$" \
 	'set imap_user="anonymous" imap_pass="anonymous"'
 
