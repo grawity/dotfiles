@@ -36,6 +36,7 @@ Already migrated to XDG in a release:
 ~/.putty/           <config>/putty/                 0.64 (9952b2d5bd5)
 ~/.quodlibet/       <config>/quodlibet/             3.10.0 (4e9545b2fa0eff6)
 ~/.tigrc            <config>/tig/config [note]      2.1.1 (1e6da9d)
+~/.tmux.conf        ~/.config/tmux/tmux.conf        3.1 (15d7e564dda)
 ~/.wireshark/       <config>/wireshark/             1.12
 
 -------------------------------------------------------------------------------
@@ -357,6 +358,10 @@ Already migrated to XDG in a release:
 ~/.tigrc -- XDG, other locations
   - Instead of a standalone tigrc, configuration can be embedded in the Git
     config file via [tig ...] sections.
+
+~/.tmux.conf -- XDGish, build-time
+  - As of 3.0a-152-g15d7e564, ~/.config/tmux/tmux.conf is used
+    ($XDG_CONFIG_HOME is not honored)
 
 ~/.ttytterrc – command line
   - "-rc=<path>" overrides
