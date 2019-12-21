@@ -182,6 +182,7 @@ alias '~~'='egrep -i'
 	done
 }
 alias open=,
+bind -m emacs -x '"\e,": ,'
 
 # dates
 
