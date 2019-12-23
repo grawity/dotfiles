@@ -9,10 +9,6 @@ have() { command -v "$1" >&/dev/null; }
 # - bash is built with #define SSH_SOURCE_BASHRC (e.g. Debian)
 # - systemd rejects envvars which contain \e (ESC)
 
-if [[ ${LINES@a} == *x* || ${COLUMNS@a} == *x* ]]; then
-	printf "\e[m\e[38;5;15m\e[48;5;196m%s\e[m\n" "\$LINES or \$COLUMNS in environ!"
-fi
-
 export -n LINES COLUMNS
 # Work around a race condition where the creation of LINES/COLUMNS may be
 # delayed until bash is in the middle of ~/.environ's "allexport" section.
