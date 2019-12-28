@@ -51,6 +51,7 @@ EXEC			38;5;118
 .txz	38;5;65
 .xz	38;5;65
 .zip	38;5;65
+.zst	38;5;65
 
 # still image formats
 .bmp	0;35
