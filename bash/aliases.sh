@@ -499,3 +499,16 @@ myssh()        { do: ssh -b "$routed6" "$@"; }
 mytraceroute() { do: traceroute -s "$routed6" "$@"; }
 mytracert()    { do: sudo tracert -s "$routed6" "$@"; }
 mytracert6()   { do: tracert6 -s "$routed6" "$@"; }
+
+if have broot; then
+	br() {
+		local tmp=$(mktemp) r=0 out
+		broot --outcmd "$tmp" "$@"
+		if ! (( r = $? )); then
+			echo "> $(<"$tmp")"
+			eval "$(<"$tmp")"
+		fi
+		rm -f "$tmp"
+		return $r
+	}
+fi
