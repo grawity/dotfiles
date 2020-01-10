@@ -503,8 +503,8 @@ mytracert6()   { do: tracert6 -s "$routed6" "$@"; }
 if have broot; then
 	br() {
 		local tmp=$(mktemp) r=0 out
-		broot --outcmd "$tmp" "$@"
-		if ! (( r = $? )); then
+		broot --outcmd "$tmp" "$@"; r=$?
+		if (( !r )) && [[ -s "$tmp" ]]; then
 			echo "> $(<"$tmp")"
 			eval "$(<"$tmp")"
 		fi
