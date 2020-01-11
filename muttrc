@@ -46,6 +46,9 @@ set delete
 account-hook "^imaps?://imap\.ietf\.org/$" \
 	'set imap_user="anonymous" imap_pass="anonymous"'
 
+account-hook "^imaps?://imap\.gmail\.com/" \
+	'set imap_user="grawity@gmail.com" imap_authenticators="OAUTHBEARER" imap_oauth_refresh_command="gmail-oauth"'
+
 folder-hook "(^imaps?://mail\.nullroute\.eu\.org/$)" \
 	'mailboxes =INBOX'
 
