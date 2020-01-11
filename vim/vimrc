@@ -233,26 +233,43 @@ if !has("nvim")
 endif
 
 " fix application-numpad mode in PuTTY
-" (neovim does not activate it by default)
-"if !has("nvim") && $TERM =~ "^xterm"
+if !has("nvim") && $TERM =~ "^xterm"
 "	set iminsert=1
 "
-"	map! <Esc>Ol +
-"	map! <Esc>On .
-"	map! <Esc>Op 0
-"	map! <Esc>Oq 1
-"	map! <Esc>Or 2
-"	map! <Esc>Os 3
-"	map! <Esc>Ot 4
-"	map! <Esc>Ou 5
-"	map! <Esc>Ov 6
-"	map! <Esc>Ow 7
-"	map! <Esc>Ox 8
-"	map! <Esc>Oy 9
-"	map! <Esc>OQ /
-"	map! <Esc>OR *
-"	map! <Esc>OS -
-"
+	map <Esc>Ol +
+	map <Esc>On .
+	map <Esc>Op 0
+	map <Esc>Oq 1
+	map <Esc>Or 2
+	map <Esc>Os 3
+	map <Esc>Ot 4
+	map <Esc>Ou 5
+	map <Esc>Ov 6
+	map <Esc>Ow 7
+	map <Esc>Ox 8
+	map <Esc>Oy 9
+	map <Esc>OQ /
+	map <Esc>OR *
+	map <Esc>OS -
+	map <Esc>Ol +
+	map <Esc>On .
+
+	map! <Esc>Op 0
+	map! <Esc>Oq 1
+	map! <Esc>Or 2
+	map! <Esc>Os 3
+	map! <Esc>Ot 4
+	map! <Esc>Ou 5
+	map! <Esc>Ov 6
+	map! <Esc>Ow 7
+	map! <Esc>Ox 8
+	map! <Esc>Oy 9
+	map! <Esc>OQ /
+	map! <Esc>OR *
+	map! <Esc>OS -
+	map! <Esc>Ol +
+	map! <Esc>On .
+
 "	lmap <Esc>Ol +
 "	lmap <Esc>On .
 "	lmap <Esc>Op 0
@@ -268,7 +285,7 @@ endif
 "	lmap <Esc>OQ /
 "	lmap <Esc>OR *
 "	lmap <Esc>OS -
-"endif
+endif
 
 set nottimeout		" disable timeout for key codes (enabled by defaults.vim)
 
