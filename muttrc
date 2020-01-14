@@ -49,6 +49,9 @@ account-hook "^imaps?://imap\.ietf\.org/$" \
 account-hook "^imaps?://mail\.nullroute\.eu\.org/" \
 	'set imap_user="grawity" imap_authenticators="GSSAPI"'
 
+account-hook "^imaps?://imap\.gmail\.com/" \
+	'set imap_user="grawity@gmail.com" imap_authenticators="OAUTHBEARER" imap_oauth_refresh_command="gmail-oauth"'
+
 folder-hook "(^imaps?://mail\.nullroute\.eu\.org/$)" \
 	'mailboxes =INBOX'
 
