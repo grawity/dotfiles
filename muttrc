@@ -23,7 +23,7 @@ lists ".*@lists\.freedesktop\.org$"
 
 ### Mail storage
 
-set folder="imap://mail.nullroute.eu.org/"
+set folder="imaps://mail.nullroute.eu.org/"
 set spoolfile="+INBOX"
 set postponed="+Drafts"
 set record="+Sent"
@@ -45,6 +45,9 @@ set delete
 
 account-hook "^imaps?://imap\.ietf\.org/$" \
 	'set imap_user="anonymous" imap_pass="anonymous"'
+
+account-hook "^imaps?://mail\.nullroute\.eu\.org/" \
+	'set imap_user="grawity" imap_authenticators="GSSAPI"'
 
 folder-hook "(^imaps?://mail\.nullroute\.eu\.org/$)" \
 	'mailboxes =INBOX'
