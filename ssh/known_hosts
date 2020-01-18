@@ -1,7 +1,7 @@
-@cert-authority *.nullroute.eu.org ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzODQAAABhBAjiC5bIBSWDhU9FogwbJE6CnyOJ/QXvzitk+XxAiBTpA24tJedib7o8y+fZD3hur056ae5KSZqEDMLD8if99XrB+j1cwGa2l9O3Xwq03S19lxGmgTbeHRVf20s4UtgLSw== nullroute.eu.org host CA (2012-04-09)
-@cert-authority *.nullroute.eu.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINi9073+XIwMND7qY5fFcz3tu2Oqp5ehgFAV0APFiyRq nullroute.eu.org host CA (2018-03-23)
-@cert-authority *.nullroute.lt ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzODQAAABhBAjiC5bIBSWDhU9FogwbJE6CnyOJ/QXvzitk+XxAiBTpA24tJedib7o8y+fZD3hur056ae5KSZqEDMLD8if99XrB+j1cwGa2l9O3Xwq03S19lxGmgTbeHRVf20s4UtgLSw== nullroute.eu.org host CA (2012-04-09)
-@cert-authority *.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINi9073+XIwMND7qY5fFcz3tu2Oqp5ehgFAV0APFiyRq nullroute.eu.org host CA (2018-03-23)
+@cert-authority *.nullroute.eu.org ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzODQAAABhBAjiC5bIBSWDhU9FogwbJE6CnyOJ/QXvzitk+XxAiBTpA24tJedib7o8y+fZD3hur056ae5KSZqEDMLD8if99XrB+j1cwGa2l9O3Xwq03S19lxGmgTbeHRVf20s4UtgLSw== Nullroute host CA r0 (2012-04-09)
+@cert-authority *.nullroute.eu.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINi9073+XIwMND7qY5fFcz3tu2Oqp5ehgFAV0APFiyRq Nullroute host CA r1 (2018-03-23)
+@cert-authority *.nullroute.lt ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzODQAAABhBAjiC5bIBSWDhU9FogwbJE6CnyOJ/QXvzitk+XxAiBTpA24tJedib7o8y+fZD3hur056ae5KSZqEDMLD8if99XrB+j1cwGa2l9O3Xwq03S19lxGmgTbeHRVf20s4UtgLSw== Nullroute host CA r0 (2012-04-09)
+@cert-authority *.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINi9073+XIwMND7qY5fFcz3tu2Oqp5ehgFAV0APFiyRq Nullroute host CA r1 (2018-03-23)
 # https://sdf.org/?tutorials/hostkeys
 tty.sdf.org,arpa.sdf.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJJk3a190w/1TZkzVKORvz/kwyKmFY144lVeDFm80p17
 tty.sdf.org,arpa.sdf.org ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1BBSaTBrKjpyDmIPt1t9oPvZpIxzm8D2kB/eLUoqXP9Eoicb3niMP8kWv1vhZQPGiQQ/q6sg+c92Bkk0ZiJTW9JdMJuaIfk+VDjGUV1US432mzq4581CFk/Q0HeHehrrAoqCKTcnp65/9UlnP3ljnyS1J0JE40YtjLIXfAeoJJKfKvrMhc1nOqn7NEMcmN8gY5ELr5R5ZUml0CsmurMDeIoeP9Ukf0PAc6uznv7JpL5GY+Eee8xXd8ehClZUY9kkvm6a6LIzPXtG5KXIYbGQkMrcDqWAdYOb2whfOICRbRLu16T8r30NjdHRjDq2kAH7upip4FqWGj96k+8ZmjA3f
