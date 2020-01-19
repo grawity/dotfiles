@@ -435,9 +435,11 @@ _awesome_prompt() {
 
 	_awesome_fill_items 'mid' 'prompt'
 
-	printf "%s\n%s" \
-		"${strs[left]} ${strs[mid]} ${strs[right]}" \
-		"${strs[prompt]}"
+	if [[ ${strs[left]}${strs[mid]}${strs[right]} ]]; then
+		printf "%s\n%s" "${strs[left]} ${strs[mid]} ${strs[right]}" "${strs[prompt]}"
+	else
+		printf "%s" "${strs[prompt]}"
+	fi
 }
 
 
