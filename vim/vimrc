@@ -55,7 +55,7 @@ if has("termguicolors")
 		let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 	endif
 	" Terminals known to support RGB
-	if &term =~ "^(tmux|putty|xterm)-256color"
+	if &term =~ "^\\(tmux\\|putty\\|xterm\\)-256color"
 		set termguicolors
 	endif
 endif
