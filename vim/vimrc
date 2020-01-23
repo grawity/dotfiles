@@ -40,7 +40,7 @@ endif
 
 if has("gui_running")
 	" configured in gvimrc
-elseif &t_Co == 256
+elseif &t_Co >= 256
 	silent! color desert
 	silent! color zenburn
 else
