@@ -345,6 +345,13 @@ man() {
 	fi
 }
 
+oldssh() {
+	ssh -o KexAlgorithms="+diffie-hellman-group1-sha1" \
+	    -o HostKeyAlgorithms="+ssh-dss" \
+	    -o Ciphers="+3des-cbc" \
+	    "$@";
+}
+
 alias tlsc='tlsg'
 
 tlsg() {
