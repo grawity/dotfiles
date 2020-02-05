@@ -40,7 +40,7 @@ endif
 
 if has("gui_running")
 	" configured in gvimrc
-elseif &t_Co == 256
+elseif &t_Co >= 256
 	silent! color desert
 	silent! color zenburn
 else
@@ -50,13 +50,16 @@ endif
 if has("termguicolors")
 	" Vim 8, Neovim: use RGB colors if possible
 	" <https://gist.github.com/XVilka/8346728>
-	if &term == "tmux-256color"
+	if &term =~ "^putty"
+		" PuTTY does not support : as separator yet
 		let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 		let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 	endif
-	if &term =~ "^(tmux|xterm)-256color"
-		set termguicolors
-	endif
+	" Terminals known to support RGB
+	" (disabled due to zenburn)
+	"if &term =~ "-direct$" || &term =~ "^\\(tmux\\|putty\\|xterm\\)-256color"
+	"	set termguicolors
+	"endif
 endif
 
 if has("nvim")
