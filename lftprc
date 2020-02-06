@@ -11,6 +11,10 @@ alias rput "mirror -R"
 #alias rputmove "mirror -R --Move"
 
 set cmd:prompt "\\[\\e[38;5;173m\\]lftp \\[\\e[38;5;216m\\]\\S\\? \\u\\@\\h:\\w>\\[\\e[m\\] "
+#set cmd:term-status/*rxvt* "\\e[11;0]\\e]2;\\T\\007\\e[11]"
+#set cmd:term-status/*screen* \\e_\\T\\e\\
+#set cmd:term-status/*xterm* "\\e[11;0]\\e]2;\\T\\007\\e[11]"
+#set cmd:default-title "lftp \\h:\\w"
 set cmd:set-term-status yes
 
 set dns:SRV-query yes
