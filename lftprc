@@ -11,6 +11,7 @@ alias rput "mirror -R"
 #alias rputmove "mirror -R --Move"
 
 set cmd:prompt "\\[\\e[38;5;173m\\]lftp \\[\\e[38;5;216m\\]\\S\\? \\u\\@\\h:\\w>\\[\\e[m\\] "
+set cmd:set-term-status yes
 
 set dns:SRV-query yes
 set ftp:anon-pass "anonymous@example.com"
