@@ -84,7 +84,7 @@ Host aur
 	User aur
 
 Host eisner
-	HostName eisner.decus.org
+	HostName eisner.encompasserve.org
 	User mikulenas
 
 Host github.com
