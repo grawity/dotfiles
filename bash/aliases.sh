@@ -510,7 +510,10 @@ mytracert6()   { do: tracert6 -s "$routed6" "$@"; }
 if have broot; then
 	br() {
 		local tmp=$(mktemp) r=0 out
-		broot --outcmd "$tmp" --gitignore no "$@"; r=$?
+		broot --outcmd "$tmp" \
+			--show-gitignored \
+			--no-trim-root \
+			"$@"; r=$?
 		if (( !r )) && [[ -s "$tmp" ]]; then
 			echo "> $(<"$tmp")"
 			eval "$(<"$tmp")"
