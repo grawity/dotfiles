@@ -83,6 +83,10 @@ Host aur
 	HostName aur.archlinux.org
 	User aur
 
+Host eisner
+	HostName eisner.decus.org
+	User mikulenas
+
 Host github.com
 	ControlMaster auto
 	ControlPersist 5m
