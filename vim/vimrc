@@ -33,6 +33,7 @@ let g:molokai_original=1
 "let g:Powerline_symbols="fancy"
 let g:zenburn_high_Contrast=1
 let g:zenburn_old_Visual=1
+let g:zenburn_italic_Comment=1
 
 if &term == "linux"
 	set bg=dark
