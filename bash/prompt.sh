@@ -497,15 +497,18 @@ _update_title() {
 		printf '\e]7;%s\e\\' "${items[pwd.url]}"
 	fi
 	if [[ ${TMUX-} ]]; then
-		local t_dir=
-		local t_par=
-		t_dir=${PWD##*/}
-		if (( ${#t_dir} > 5 )); then
-			t_dir=${t_dir::5}
+		local t_pwd= t_dir= t_par=
+		t_pwd=${PWD%/}/
+		t_pwd=${t_pwd/#"$HOME/"/"~/"}
+		if [[ "$t_pwd" == "~/" ]]; then
+			t_par=${t_pwd%/*}
+		else
+			t_pwd=${t_pwd%/}
+			t_par=${t_pwd%/*}
+			t_par=${t_par##*/}
+			t_dir=${t_pwd##*/}
 		fi
-		t_par=${PWD%/*}
-		t_par=${t_par##*/}
-		t_dir=${t_par::2}/$t_dir
+		t_dir=${t_par::2}/${t_dir::5}
 		setwname "$t_dir"
 	fi
 }
