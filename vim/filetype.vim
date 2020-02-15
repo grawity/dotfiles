@@ -42,7 +42,7 @@ augroup filetypedetect
 	au BufNewFile,BufRead MERGE_MSG setf gitcommit
 
 	" /etc/group
-	au BufNewFile,BufRead *.group,/etc/vigr.* setf group
+	au BufNewFile,BufRead *.group,/etc/vigr.*,/etc/.vigr.* setf group
 
 	" ini
 	au BufNewFile,BufRead *.pls setf dosini
@@ -74,7 +74,7 @@ augroup filetypedetect
 	au BufNewFile,BufRead */pam.d/* setf pamconf
 
 	" /etc/passwd
-	au BufNewFile,BufRead *.passwd,/etc/vipw.* setf passwd
+	au BufNewFile,BufRead *.passwd,/etc/vipw.*,/etc/.vipw.* setf passwd
 
 	" PHP
 	au BufNewFile,BufRead *.phps setf php
