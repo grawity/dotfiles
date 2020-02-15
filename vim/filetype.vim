@@ -83,6 +83,7 @@ augroup filetypedetect
 	au BufNewFile,BufRead PKGBUILD* setf sh
 
 	" Shell
+	au BufNewFile,BufRead ~/.environ,~/.environ-* setf sh
 	au BufNewFile,BufRead /etc/rc.conf setf sh
 	au BufNewFile,BufRead /tmp/bash-fc-* setl ft=sh
 	au BufNewFile,BufRead policy-rc.d setl ft=sh
