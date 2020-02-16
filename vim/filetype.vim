@@ -106,6 +106,7 @@ augroup filetypedetect
 	au BufNewFile,BufRead /etc/xinetd.d/* setf xinetd
 
 	" XML
+	au BufNewFile,BufRead *.cdf setf xml
 	au BufNewFile,BufRead *.doap setf xml
 
 	" YAML
