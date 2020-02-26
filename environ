@@ -94,6 +94,7 @@ LESS_TERMCAP_us='[3m'		# change underline to italic
 LESS_TERMCAP_ue='[23m'	# un-italic
 MAKEFLAGS="-j $(nproc)"
 MOZ_USE_XINPUT2="1"		# better scrolling
+S_COLORS="auto"			# sar/sysstat/iostat
 SUDO_PROMPT="sudo password for %p@[30;43m%h[m: "
 
 # local
