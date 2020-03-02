@@ -291,7 +291,7 @@
 
 # global annex config
 
-[url "radius:/mnt/vol5/"]
+[url "radius:/vol5/"]
 	insteadOf = vol5:
 
 # local config
