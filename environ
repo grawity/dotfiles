@@ -93,6 +93,7 @@ LESS="e M q R F X z -3"
 LESS_TERMCAP_us='[3m'		# change underline to italic
 LESS_TERMCAP_ue='[23m'	# un-italic
 MAKEFLAGS="-j $(nproc)"
+MANLESS="]0;\$MAN_PN ?ltline %lt?L/%L.:byte %bB?s/%s..?e (END):?pB %pB\\%.. "
 MOZ_USE_XINPUT2="1"		# better scrolling
 S_COLORS="auto"			# sar/sysstat/iostat
 SUDO_PROMPT="sudo password for %p@[30;43m%h[m: "

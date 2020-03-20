@@ -25,7 +25,6 @@ NOKOGIRI_USE_SYSTEM_LIBRARIES="1"	# nokogiri gem - use system libxml2
 ACCDB="$HOME/Private/accdb/accounts.txt"
 GEMRC="$XDG_CONFIG_HOME/gemrc"
 
-MANLESS="]0;\$MAN_PN ?ltline %lt?L/%L.:byte %bB?s/%s..?e (END):?pB %pB\\%.. "
 MPD_HOST="$(cat "$XDG_CONFIG_HOME/mpd/password")@$XDG_RUNTIME_DIR/mpd/socket"
 PERL_CPANM_OPT="$PERL_CPANM_OPT --mirror http://ftp.litnet.lt/pub/CPAN/"
 TAR_OPTIONS="--xattrs"
