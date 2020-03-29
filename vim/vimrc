@@ -149,11 +149,16 @@ set tabstop=8
 "set shiftwidth=8
 set smarttab copyindent preserveindent
 set autoindent
-" Note: si makes sense for code but not for plaintext, where it uselessly
-" indents 'for', 'done', etc. (see cinwords)
-set nosmartindent
-set nocindent
+set smartindent
+"set nocindent
 set cinkeys=0{,0},0),:,!,o,O,e
+
+" Don't smartindent after keywords like 'for', 'do' etc.
+" (This retains smartindent after '{'.)
+set cinwords=
+
+" Note: To determine what re-enabled these options, use:
+"       :verbose set sw? et? si? cin?
 
 " allow backspacing over everything
 set backspace=indent,eol,start
