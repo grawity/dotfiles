@@ -96,39 +96,40 @@ PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig"
 
 ## Library parameters:
 
+# Audio/video drivers
+LIBVA_DRIVER_NAME="vdpau"	# latest Mesa supports 'gallium'
 MESA_GL_VERSION_OVERRIDE="3.0"	# some apps choke on new core profiles
+MESA_LOADER_DRIVER_OVERRIDE="iris"
+SDL_AUDIODRIVER="pulse"		# autodetects correctly
+VDPAU_DRIVER="r600"		# autodetects correctly
+
+# Themes
 
 GTK_IM_MODULE="xim"		# no longer needed
-GTK_OVERLAY_SCROLLING="0"	# just in case
-LIBVA_DRIVER_NAME="vdpau"	# latest Mesa supports 'gallium'
-MESA_LOADER_DRIVER_OVERRIDE="iris"
+GTK_OVERLAY_SCROLLING="0"	# has a GSetting now
 QT_FONT_DPI="96"
 QT_IM_MODULE="xim"		# already the default
 QT_STYLE_OVERRIDE="fusion"	# Qt5 default
 QT_STYLE_OVERRIDE="oxygen"
 QT_QPA_PLATFORMTHEME="kde"
 QT_QPA_PLATFORMTHEME="qt5ct"
-SDL_AUDIODRIVER="pulse"		# autodetects correctly
-VDPAU_DRIVER="r600"		# autodetects correctly
+SAL_USE_VCLPLUGIN="gtk"		# LibreOffice (gen, gtk, gtk3, kde4)
 XCURSOR_THEME="adwaita"		# already set in Xresources and XSETTINGS
 XCURSOR_SIZE="16"		# already set in Xresources and XSETTINGS
 
 SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS="0"
 
-# LibreOffice
-SAL_USE_VCLPLUGIN="gtk"		# gen, gtk, gtk3, kde4
-
 # Freetype - upstream alternative to heftig's FT2_SUBPIXEL_HINTING=2
 # (v40 will become the default in 2.7 series, but there are more parameters)
 FREETYPE_PROPERTIES="truetype:interpreter-version=40"
+
+# Seems to be the default now, at least with Sun JRE
+_JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
 
 ## Miscellaneous:
 
 # I don't use this.
 ACK_PAGER="$PAGER"
-
-# Seems to be the default now, at least with Sun JRE
-_JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
 
 # gnome-desktop < 3.15.1 (093e0a549c2ab2e465494105126ea7046f26e047)
 LANG="${LANG%.utf8}.UTF-8"
