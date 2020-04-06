@@ -136,6 +136,9 @@ LANG="${LANG%.utf8}.UTF-8"
 # neovim
 NVIM_TUI_ENABLE_TRUE_COLOR="1"	# need to test first (juicessh, putty)
 
+# Use system libxml2 during `gem install nokogiri`
+NOKOGIRI_USE_SYSTEM_LIBRARIES="1"
+
 # for use with gpg-agent
 SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 
