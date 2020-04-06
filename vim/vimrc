@@ -150,8 +150,15 @@ set tabstop=8
 set smarttab copyindent preserveindent
 set autoindent
 set smartindent
-set nocindent
+"set nocindent
 set cinkeys=0{,0},0),:,!,o,O,e
+
+" Don't smartindent after keywords like 'for', 'do' etc.
+" (This retains smartindent after '{'.)
+set cinwords=
+
+" Note: To determine what re-enabled these options, use:
+"       :verbose set sw? et? si? cin?
 
 " allow backspacing over everything
 set backspace=indent,eol,start

@@ -56,6 +56,18 @@ Host blizzard frost rain virgule
 Host blizzard.nullroute.eu.org
 	User mantas
 
+#if Host star || Host ember || Host wind
+# 2020-04-04: Hack to improve star->{ember,wind} throughput
+#             (which is ~900 Mbps over IPv4, but only ~220 Mbps
+#             over IPv6 due to lack of peering between ISPs)
+Host ember ember.nullroute.eu.org
+	AddressFamily inet
+Host wind wind.nullroute.eu.org
+	AddressFamily inet
+Host star star.nullroute.eu.org
+	AddressFamily inet
+#endif
+
 Host *.nullroute.eu.org
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
