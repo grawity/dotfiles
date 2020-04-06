@@ -138,7 +138,7 @@ auto_view message/feedback-report
 
 unset beep
 set beep_new
-set menu_context=3
+set menu_context=10
 set menu_scroll
 # 'set xterm_set_titles' is neomutt-specific
 set xterm_set_titles
