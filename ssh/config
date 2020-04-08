@@ -71,13 +71,6 @@ Host *.nullroute.eu.org
 Host *.zt1
 	HostName %h.nullroute.eu.org
 
-# virtual machines on the laptop
-
-Host *.core
-	ForwardAgent yes
-	UserKnownHostsFile ~/.ssh/known_hosts.core
-	ControlMaster no
-
 Host *.home *.local 10.* 192.168.*
 	ForwardAgent yes
 	UserKnownHostsFile ~/.ssh/known_hosts.local
