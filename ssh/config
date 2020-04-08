@@ -50,7 +50,7 @@ Host *.kyriasis.com
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-Host blizzard frost rain virgule
+Host blizzard frost rain
 	HostName %h.nullroute.eu.org
 
 Host blizzard.nullroute.eu.org
