@@ -46,9 +46,6 @@ Host radius-bypass
 Host theos
 	HostName %h.kyriasis.com
 
-Host *.kyriasis.com
-	ForwardAgent yes
-
 Host blizzard frost rain
 	HostName %h.nullroute.eu.org
 
@@ -69,9 +66,6 @@ Host star star.nullroute.eu.org
 
 Host *.nullroute.eu.org
 	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
-Host ofb.net
 	ForwardAgent yes
 
 Host *.zt1
