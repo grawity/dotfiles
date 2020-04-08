@@ -47,7 +47,6 @@ Host theos
 	HostName %h.kyriasis.com
 
 Host *.kyriasis.com
-	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 Host blizzard frost rain
