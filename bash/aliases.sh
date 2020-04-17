@@ -139,7 +139,7 @@ alias run='spawn -c'
 alias rsync='rsync -s'
 sp() { printf '%s' "$@"; printf '\n'; }
 splitext() { split -dC "${2-32K}" "$1" "${1%.*}-" --additional-suffix=".${1##*.}"; }
-alias srs='rsync -vshzaHAX'
+alias srs='rsync -vshaHAX'
 ssh-addglobal() { ssh -t wolke 'ssh-add ~/.ssh/id_global_*'; }
 alias sudo='sudo ' # for alias expansion in sudo args
 alias telnets='telnet-ssl -z ssl'
