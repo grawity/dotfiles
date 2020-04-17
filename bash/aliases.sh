@@ -91,7 +91,8 @@ alias ldapvi='ldapvi --bind sasl'
 alias lp='sudo netstat -lptu --numeric-hosts'
 alias lpt='sudo netstat -lpt --numeric-hosts'
 alias lpu='sudo netstat -lpu --numeric-hosts'
-alias lsd='ls -d .*'
+alias lsd='ls -d */'
+alias lsh='ls -d .*'
 alias lsfonts="fc-list --format='%{family}\n' | sed 's/,.*//' | sort -u"
 lsftp() {
 	case $1 in
@@ -271,7 +272,8 @@ case $OSTYPE in
 		alias df='df -Th'
 		alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs -xafs'
 		alias ip='ip --color=auto'
-		alias lsd='ls -a --ignore="[^.]*"'
+		alias lsd='ls -d --indicator-style=none */'
+		alias lsh='ls -a --ignore="[^.]*"'
 		;;
 	freebsd*)
 		lsopt="$lsopt -G"
