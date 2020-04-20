@@ -508,7 +508,7 @@ mymtr()        { do: mtr -a "$routed6" "$@"; }
 myping()       { do: ping -I "$routed6" "$@"; }
 myssh()        { do: ssh -b "$routed6" "$@"; }
 mytraceroute() { do: traceroute -s "$routed6" "$@"; }
-mytracert()    { do: sudo traceroute --icmp -s "$routed6" "$@"; }
+mytracert()    { do: sudo traceroute --icmp -6 -s "$routed6" "$@"; }
 mytracert6()   { do: tracert6 -s "$routed6" "$@"; }
 
 if have broot; then
