@@ -91,7 +91,8 @@ alias ldapvi='ldapvi --bind sasl'
 alias lp='sudo netstat -lptu --numeric-hosts'
 alias lpt='sudo netstat -lpt --numeric-hosts'
 alias lpu='sudo netstat -lpu --numeric-hosts'
-alias lsd='ls -d .*'
+alias lsd='ls -d */'
+alias lsh='ls -d .*'
 alias lsfonts="fc-list --format='%{family}\n' | sed 's/,.*//' | sort -u"
 lsftp() {
 	case $1 in
@@ -138,7 +139,7 @@ alias run='spawn -c'
 alias rsync='rsync -s'
 sp() { printf '%s' "$@"; printf '\n'; }
 splitext() { split -dC "${2-32K}" "$1" "${1%.*}-" --additional-suffix=".${1##*.}"; }
-alias srs='rsync -vshzaHAX'
+alias srs='rsync -vshaHAX'
 ssh-addglobal() { ssh -t wolke 'ssh-add ~/.ssh/id_global_*'; }
 alias sudo='sudo ' # for alias expansion in sudo args
 alias telnets='telnet-ssl -z ssl'
@@ -271,7 +272,8 @@ case $OSTYPE in
 		alias df='df -Th'
 		alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs -xafs'
 		alias ip='ip --color=auto'
-		alias lsd='ls -a --ignore="[^.]*"'
+		alias lsd='ls -d --indicator-style=none */'
+		alias lsh='ls -a --ignore="[^.]*"'
 		;;
 	freebsd*)
 		lsopt="$lsopt -G"
@@ -506,7 +508,7 @@ mymtr()        { do: mtr -a "$routed6" "$@"; }
 myping()       { do: ping -I "$routed6" "$@"; }
 myssh()        { do: ssh -b "$routed6" "$@"; }
 mytraceroute() { do: traceroute -s "$routed6" "$@"; }
-mytracert()    { do: sudo tracert -s "$routed6" "$@"; }
+mytracert()    { do: sudo traceroute --icmp -6 -s "$routed6" "$@"; }
 mytracert6()   { do: tracert6 -s "$routed6" "$@"; }
 
 if have broot; then
