@@ -77,7 +77,6 @@ NSS_DEFAULT_DB_TYPE="sql"
 
 # appdefaults
 
-GNULIB_SRCDIR="$HOME/src/gnu/gnulib"
 PERL_CPANM_HOME="$XDG_CACHE_HOME/cpanminus"
 RLWRAP_HOME="$XDG_CACHE_HOME/rlwrap"
 TPM2_PKCS11_STORE="$XDG_DATA_HOME/tpm2_pkcs11"
