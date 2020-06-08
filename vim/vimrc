@@ -27,18 +27,6 @@ endif
 
 " Color scheme
 
-"let g:lucius_style="light"
-"let g:lucius_style="dark"
-let g:molokai_original=1
-"let g:Powerline_symbols="fancy"
-let g:zenburn_high_Contrast=1
-let g:zenburn_old_Visual=1
-let g:zenburn_italic_Comment=1
-
-if &term == "linux"
-	set bg=dark
-endif
-
 if has("termguicolors")
 	" Vim 8, Neovim: use RGB colors if possible
 	" <https://gist.github.com/XVilka/8346728>
@@ -53,6 +41,18 @@ if has("termguicolors")
 	"	set termguicolors
 	"endif
 endif
+
+if &term == "linux"
+	set bg=dark
+endif
+
+"let g:lucius_style="light"
+"let g:lucius_style="dark"
+let g:molokai_original=1
+"let g:Powerline_symbols="fancy"
+let g:zenburn_high_Contrast=1
+let g:zenburn_old_Visual=1
+let g:zenburn_italic_Comment=1
 
 if has("gui_running")
 	" configured in gvimrc
