@@ -2,8 +2,6 @@
 # vim: ft=sh
 
 if [ ! "$DESKTOP_SESSION" ]; then
-	compton &
-
 	case $(uname -s -m) in
 		'Linux i686') DARCH='i386-linux-gnu';;
 		'Linux x86_64') DARCH='x86_64-linux-gnu';;
@@ -16,8 +14,6 @@ if [ ! "$DESKTOP_SESSION" ]; then
 	  /usr/lib/$DARCH/polkit-mate/polkit-mate-authentication-agent-1 ||
 	  /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 ||
 	  /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1; } &
-
-	gnome-screensaver &
 
 	#ibus-daemon --xim --single --daemonize &
 	# without --single it breaks modifier keys
