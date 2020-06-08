@@ -40,9 +40,8 @@ rm() {
 		elif (( UID == 0 )); then
 			nuke+=("$arg")
 		elif case $(realpath -s "$arg") in
-		# skip filesystems
-		~/fs/*)			false;;
-		~/@*)			false;;
+		# skip remote filesystems
+		~/tmp/fs*)		false;;
 		# skip junk
 		~/.cache/pacaur/*)	false;;
 		~/.local/share/Trash/*)	false;;
@@ -52,7 +51,6 @@ rm() {
 		# include $HOME
 		~/*)			true;;
 		/pub/*)			true;;
-		/ssd.home/*)		true;;
 		# include removable drives
 		/media/*)		true;;
 		/mnt/*)			true;;

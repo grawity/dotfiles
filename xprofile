@@ -25,7 +25,8 @@ fi
 if [ "$DESKTOP_SESSION" != gnome ]; then
 	case $HOSTNAME in
 		rain)
-			touchpad="ETPS/2 Elantech Touchpad";;
+			# 2019-01-06 / 5.4.7-arch1 / 1.15.0 - very slow with 0.25
+			touchpad="ETPS/2 Elantech Touchpad" accel="0.7";;
 		frost)
 			touchpad="Synaptics s3203" accel="0.1";;
 		fujitsu)

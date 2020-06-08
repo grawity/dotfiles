@@ -4,9 +4,6 @@
 
 PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
 
-test -S "$SSH_AUTH_SOCK" || SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
-test -S "$SSH_AUTH_SOCK" || SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent"
-
 # libdefaults
 
 EDITOR="nvim"
@@ -18,8 +15,6 @@ XMODIFIERS="@im=ibus"
 
 QT_QPA_PLATFORM_THEME="kde"
 
-NOKOGIRI_USE_SYSTEM_LIBRARIES="1"	# nokogiri gem - use system libxml2
-
 # appdefaults
 
 ACCDB="$HOME/Private/accdb/accounts.txt"
@@ -28,3 +23,4 @@ GEMRC="$XDG_CONFIG_HOME/gemrc"
 MPD_HOST="$(cat "$XDG_CONFIG_HOME/mpd/password")@$XDG_RUNTIME_DIR/mpd/socket"
 PERL_CPANM_OPT="$PERL_CPANM_OPT --mirror http://ftp.litnet.lt/pub/CPAN/"
 TAR_OPTIONS="--xattrs"
+TR_AUTH="$(cat "$XDG_CONFIG_HOME/transmission/password")"

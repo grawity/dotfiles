@@ -46,11 +46,7 @@ Host radius-bypass
 Host theos
 	HostName %h.kyriasis.com
 
-Host *.kyriasis.com
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
-Host blizzard frost rain virgule
+Host blizzard frost rain
 	HostName %h.nullroute.eu.org
 
 Host blizzard.nullroute.eu.org
@@ -72,18 +68,8 @@ Host *.nullroute.eu.org
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-Host ofb.net
-	ForwardAgent yes
-
 Host *.zt1
 	HostName %h.nullroute.eu.org
-
-# virtual machines on the laptop
-
-Host *.core
-	ForwardAgent yes
-	UserKnownHostsFile ~/.ssh/known_hosts.core
-	ControlMaster no
 
 Host *.home *.local 10.* 192.168.*
 	ForwardAgent yes
