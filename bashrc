@@ -12,14 +12,8 @@ have() { command -v "$1" >&/dev/null; }
 export -n LINES COLUMNS
 # Work around a race condition where the creation of LINES/COLUMNS may be
 # delayed until bash is in the middle of ~/.environ's "allexport" section.
-#
 # It's a race condition most likely caused by bash using the "report window
 # size" sequence, and the terminal sometimes being slow to reply.
-#
-# Or it *may* be caused by https://gitlab.gnome.org/GNOME/vte/issues/188; my
-# traces show all ioctl(TIOCGWINSZ) returning correct results, but there *does*
-# seem to be a difference in how many SIGWINCHs the shell receives during
-# startup.
 
 if [[ $TERM == @(screen|tmux|xterm) ]]; then
 	OLD_TERM="$TERM"
