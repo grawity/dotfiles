@@ -12,7 +12,7 @@ color header		yellow default	"^X-Bogosity: Spam,"
 
 color index	yellow		default	~F # flagged
 color index	red		default	~U # unseen
-color index	brightcolor11	default	"~F ~U"
+color index	brightred	default	"~F ~U"
 color index	color251	default	~D # deleted
 color index 	color12		default	~T # tagged
 color index 	brightcolor12	default	"~T ~U"
