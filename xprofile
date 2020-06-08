@@ -56,4 +56,8 @@ else
 	echo "not importing environment on console session"
 fi
 
+if [ -e ~/.xprofile-$HOSTNAME ]; then
+	. ~/.xprofile-$HOSTNAME
+fi
+
 true
