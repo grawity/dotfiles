@@ -57,9 +57,16 @@ let g:zenburn_italic_Comment=1
 if has("gui_running")
 	" configured in gvimrc
 elseif &t_Co >= 256
-	silent! color desert
-	silent! color zenburn
+	" modern terminals
+	if hostname() == "fujitsu"
+		let g:lucius_style="light"
+		color lucius
+	else
+		silent! color desert
+		silent! color zenburn
+	endif
 else
+	" fallback for obsolete terminals
 	silent! color slate
 endif
 
