@@ -39,15 +39,6 @@ if &term == "linux"
 	set bg=dark
 endif
 
-if has("gui_running")
-	" configured in gvimrc
-elseif &t_Co >= 256
-	silent! color desert
-	silent! color zenburn
-else
-	silent! color slate
-endif
-
 if has("termguicolors")
 	" Vim 8, Neovim: use RGB colors if possible
 	" <https://gist.github.com/XVilka/8346728>
@@ -61,6 +52,15 @@ if has("termguicolors")
 	"if &term =~ "-direct$" || &term =~ "^\\(tmux\\|putty\\|xterm\\)-256color"
 	"	set termguicolors
 	"endif
+endif
+
+if has("gui_running")
+	" configured in gvimrc
+elseif &t_Co >= 256
+	silent! color desert
+	silent! color zenburn
+else
+	silent! color slate
 endif
 
 if has("nvim")
