@@ -62,8 +62,7 @@ elseif &t_Co >= 256
 		let g:lucius_style="light"
 		color lucius
 	else
-		silent! color desert
-		silent! color zenburn
+		color zenburn
 	endif
 else
 	" fallback for obsolete terminals
