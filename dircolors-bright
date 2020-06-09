@@ -24,6 +24,7 @@ RESET			0
 NORMAL			0
 
 DIR			;4
+OTHER_WRITABLE		;4
 STICKY			;4
 STICKY_OTHER_WRITABLE	;4
 
@@ -40,27 +41,7 @@ SOCK			;92;40
 BLK			;96;40
 CHR			;93;40
 
-# 30;103 - yellow highlighter pen
-
-##NORMAL			0
-##FILE			0
-#RESET			0
-##DIR			1;34
-#DIR			38;5;12
-##LINK			1;36
-##LINK			38;5;14
-##LINK			target	# not supported by bash 4.3 colored-stats
-##MULTIHARDLINK		0
-#FIFO			33;40
-#SOCK			1;35
+#FILE			0
+#MULTIHARDLINK		0
 #DOOR			1;35
-#BLK			1;33;40
-#CHR			1;33;40
-#ORPHAN			31;40
-#SETUID			37;41
-#SETGID			30;43
 #CAPABILITY		30;41
-#STICKY_OTHER_WRITABLE	30;44	# o+wt
-#OTHER_WRITABLE		32;40	# o+w
-#STICKY			37;44	# o+t
-#EXEC			38;5;118
