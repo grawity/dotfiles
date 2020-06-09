@@ -36,7 +36,7 @@ ORPHAN			;9;38;5;210
 
 # Special nodes that shouldn't occur in $HOME
 FIFO			;30;106
-SOCK			;30;48;5;85
+SOCK			;92;40
 BLK			;96;40
 CHR			;93;40
 
