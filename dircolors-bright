@@ -32,7 +32,7 @@ SETUID			;30;48;5;210
 SETGID			;30;48;5;214
 
 LINK			;4
-ORPHAN			;9;38;5;210
+ORPHAN			;9;31
 
 # Special nodes that shouldn't occur in $HOME
 FIFO			;96;40
