@@ -86,7 +86,6 @@ IRBRC="$HOME/lib/dotfiles/irbrc"
 PYTHONSTARTUP="$HOME/lib/dotfiles/pythonrc"
 
 ANSIBLE_NOCOWS="1"
-EXA_COLORS="ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0:uu=0:gu=0:da=38;5;8"
 FILTER_BRANCH_SQUELCH_WARNING="1"
 GCC_COLORS="1"
 GIT_MERGE_AUTOEDIT="no"
