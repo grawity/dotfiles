@@ -31,7 +31,7 @@ EXEC			;30;103
 SETUID			;30;48;5;210
 SETGID			;30;48;5;214
 
-LINK			;4
+LINK			target
 ORPHAN			;9;38;5;210
 
 # Special nodes that shouldn't occur in $HOME
