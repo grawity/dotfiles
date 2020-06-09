@@ -1,0 +1,66 @@
+# vim: ft=conf
+
+TERM rxvt-unicode-256color
+TERM screen-256color
+TERM tmux-256color
+TERM xterm-256color
+
+# 1=bold, 2=dim, 3=italic, 4=under, 5=blink, 7=reverse, 9=strike, 21=doubleunder
+
+# Red on gray		31;47
+# Cyan on gray		36;47
+#
+# Black on yellow	30;103
+# Black on cyan		30;106
+# Black on green	30;48;5;83
+#
+# Red on pink		31;48:5:217 (210, etc.)
+# White on red		97;48:5:167
+#
+# Red strikethrough	9;31
+# Gray strikethrough	9;38:5:248
+
+RESET			0
+NORMAL			0
+
+DIR			;4
+STICKY			;4
+STICKY_OTHER_WRITABLE	;4
+
+EXEC			;30;103
+SETUID			;30;48;5;210
+SETGID			;30;48;5;214
+
+LINK			;30;47
+ORPHAN			;9;38;5;210
+
+# Special nodes that shouldn't occur in $HOME
+FIFO			;30;106
+SOCK			;30;48;5;85
+BLK			;96;40
+CHR			;93;40
+
+# 30;103 - yellow highlighter pen
+
+##NORMAL			0
+##FILE			0
+#RESET			0
+##DIR			1;34
+#DIR			38;5;12
+##LINK			1;36
+##LINK			38;5;14
+##LINK			target	# not supported by bash 4.3 colored-stats
+##MULTIHARDLINK		0
+#FIFO			33;40
+#SOCK			1;35
+#DOOR			1;35
+#BLK			1;33;40
+#CHR			1;33;40
+#ORPHAN			31;40
+#SETUID			37;41
+#SETGID			30;43
+#CAPABILITY		30;41
+#STICKY_OTHER_WRITABLE	30;44	# o+wt
+#OTHER_WRITABLE		32;40	# o+w
+#STICKY			37;44	# o+t
+#EXEC			38;5;118

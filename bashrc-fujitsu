@@ -1,5 +1,7 @@
 # vim: ft=sh
 
+eval $(dircolors ~/lib/dotfiles/dircolors-bright)
+
 items[name:pfx]=''
 items[name:sfx]=''
 #items[pwd:pfx]='('
