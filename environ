@@ -23,7 +23,9 @@ PREFIX="$HOME/.local"
 
 GOPATH="$PREFIX/go"
 
-test "$_PATH_WAS_SET" || setpath PATH \
+case $PATH in
+*:"$HOME/bin":*) ;;
+*) setpath PATH \
 	"$PREFIX/bin"				\
 	"$HOME/bin"				\
 	"$HOME/lib/code/bin"			\
@@ -38,8 +40,7 @@ test "$_PATH_WAS_SET" || setpath PATH \
 	"/sbin"					\
 	"$HOME/lib/code/bin/fallback"		\
 	"$HOME/code/bin/fallback"		;
-
-_PATH_WAS_SET="yes"
+esac
 
 PERL5LIB="$PREFIX/lib/perl5:$HOME/code/lib/perl5"
 
