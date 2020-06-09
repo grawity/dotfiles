@@ -1,5 +1,9 @@
 # vim: ft=sh
 
+if [[ $SSH_CONNECTION ]]; then
+	return
+fi
+
 eval $(dircolors ~/lib/dotfiles/dircolors-bright)
 
 items[name:pfx]=''
