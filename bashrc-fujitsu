@@ -1,0 +1,13 @@
+# vim: ft=sh
+
+items[name:pfx]=''
+items[name:sfx]=''
+#items[pwd:pfx]='('
+#items[pwd:sfx]=')'
+
+fmts[name.self]='38;5;241|48;5;253'
+fmts[name.root]='38;5;239|48;5;214'
+fmts[pwd]='38;5;241'
+fmts[vcs]='38;5;247'
+
+fmts[pwd:tail]=@pwd
