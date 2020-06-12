@@ -52,7 +52,7 @@ declare -A parts=(
 
 declare -Ai _recursing=()
 
-_dbg() { if [[ ${PS1_DEBUG-} ]]; then echo "[${FUNCNAME[1]}] $*"; fi; }
+_dbg() { if [[ ${PS1_DEBUG-} ]]; then printf '\e[47m%s\e[m %s\n' "[${FUNCNAME[1]}]" "$*"; fi; }
 
 _awesome_upd_vcs() {
 	local tmp= git= br= re=
