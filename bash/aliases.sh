@@ -467,6 +467,24 @@ mytraceroute() { do: traceroute -s "$routed6" "$@"; }
 mytracert()    { do: sudo traceroute --icmp -6 -s "$routed6" "$@"; }
 mytracert6()   { do: tracert6 -s "$routed6" "$@"; }
 
+if [[ $HOSTNAME == @(wolke|sky|ember|star) ]]; then
+	_bgpath() {
+		local f=~/bin/bird-bgpath
+		if [[ -e $f ]]; then
+			perl $f
+		else
+			ssh wolke "perl $f"
+		fi
+	}
+	//() { sudo birdc "$@"; }
+	//path() { sudo birdc show route all "$@" | _bgpath; }
+	//proto() {
+		sudo birdc show protocols |
+		perl -nE 'say join "", split /\s+/, $_, 7' |
+		column -ts ''
+	}
+fi
+
 if have broot; then
 	br() {
 		local tmp=$(mktemp) r=0 out
