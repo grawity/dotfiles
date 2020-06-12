@@ -48,23 +48,25 @@ fi
 : ${FQDN:=$(fqdn)}
 : ${FQDN:=$HOSTNAME}
 
+dir=${BASH_SOURCE[0]%/*}
 case $FQDN in
     !(vm-*).nullroute.eu.org)
-	if [[ -e ~/lib/dotfiles/bash/theme-$HOSTNAME.sh ]]; then
-		. ~/lib/dotfiles/bash/theme-$HOSTNAME.sh
+	if [[ -e $dir/theme-$HOSTNAME.sh ]]; then
+		. $dir/theme-$HOSTNAME.sh
 	else
-		. ~/lib/dotfiles/bash/theme-nullroute.sh
+		. $dir/theme-nullroute.sh
 	fi
 	;;
 
     *.utenos-kolegija.lt)
-	. ~/lib/dotfiles/bash/theme-work.sh
+	. $dir/theme-work.sh
 	;;
 
     *)
-	#. ~/lib/dotfiles/bash/theme-old.sh
-	. ~/lib/dotfiles/bash/theme-default.sh
+	#. $dir/theme-old.sh
+	. $dir/theme-default.sh
 	;;
 esac
+unset dir
 
 # Host themes overridden in bashrc-$HOSTNAME
