@@ -75,6 +75,7 @@ $endif
 "\e9": ""
 
 # UTF-8 prefixes – insert Alt+characters literally instead of eating the first byte
+# (I would prefer if bash could discard the entire character, but it doesn't know how to do that.)
 
 # two-byte prefixes
 "\e\xc0": self-insert
