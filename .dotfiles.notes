@@ -75,8 +75,6 @@ Already migrated to XDG in a release:
   - you could use --init-file/--rcfile, but you'll generally need at least a
     wrapper script for that, since many programs invoke /bin/sh directly
 
-~/.bitcoin/ – hardcoded (TODO: check again)
-
 ~/.cabal/ – environment ++ configurable
   - $CABAL_CONFIG overrides path to ~/.cabal/config
   - various settings in $CABAL_CONFIG override other ~/.cabal/* paths
@@ -333,9 +331,6 @@ Already migrated to XDG in a release:
 
 ~/.ssh/ – hardcoded
 
-~/.Skype/ – command line
-  - "--dbpath=<path>" overrides
-
 ~/.sqldeveloper/ – hardcoded
   - launcher script ignores the java-hack
 
@@ -443,8 +438,6 @@ Already migrated to XDG in a release:
   (s-nail – environment)
     - $MBOX overrides
 
-~/jagex* – java-hack
-
 ~/FS-UAE/ - environment; configurable?
   - $FS_UAE_BASE_DIR
     deprecated
@@ -457,9 +450,6 @@ Already migrated to XDG in a release:
 ~/VirtualBox VMs/ – configurable
   - can be changed by `VBoxManage setproperty machinefolder <path>` or via GUI
   - see also ~/.VirtualBox/
-
-~/wuala/ – configurable
-  - edit ~/.config/Wuala.cfg
 
 ~/.*_history (rlwrap) – environment
   - $RLWRAP_HOME specifies an alternative directory
