@@ -78,10 +78,16 @@ _awesome_upd_vcs() {
 			br=$(<"$git/rebase-merge/head-name")
 			re='REBASE-m'
 		else
-			br=$(git symbolic-ref HEAD 2>/dev/null ||
-			     git rev-parse --short HEAD 2>/dev/null ||
-			     echo 'unknown')
-			br=${br#refs/heads/}
+			br=$(<"$git/HEAD")
+			if [[ $br == ref:* ]]; then
+				br=${br#ref: }
+				br=${br#refs/heads/}
+			else
+				br=$(git symbolic-ref HEAD 2>/dev/null ||
+				     git rev-parse --short HEAD 2>/dev/null ||
+				     echo 'unknown')
+				br=${br#refs/heads/}
+			fi
 
 			if [[ -f $git/rebase-apply/rebasing ]]; then
 				re='REBASE'
