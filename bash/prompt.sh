@@ -121,37 +121,12 @@ _awesome_upd_vcs() {
 }
 
 _awesome_upd_pwd() {
-	local git=${items[.gitdir]} HOME=${HOME%/}
+	local HOME=${HOME%/}
 
-	local wdrepo= wdbase= wdparent= wdhead= wdbody= wdtail=
+	local wdbase= wdparent= wdhead= wdbody= wdtail=
 	local -i collapsed=0 tilde=0
 
-	# find the working directory's root
-
-	if [[ ${fmts[pwd:body]-} ]]; then
-		if [[ $GIT_WORK_TREE ]]; then
-			_dbg "- wdbase <- GIT_WORK_TREE"
-			wdbase=$(readlink -f "$GIT_WORK_TREE")
-		elif [[ $git == .git ]]; then
-			_dbg "- wdbase <- PWD"
-			wdbase=$PWD
-		elif [[ $git == /*/.git ]]; then
-			_dbg "- wdbase <- \$git"
-			wdbase=${git%/.git}
-			if [[ $PWD != "$wdbase"/* ]]; then
-				_dbg "- wdbase <- nil (outside PWD)"
-				wdbase=
-			fi
-		elif [[ $git ]]; then
-			_dbg "- wdbase <- wdrepo"
-			wdrepo=$(git rev-parse --show-toplevel)
-			wdbase=${wdrepo:-$(readlink -f "$git")}
-		else
-			_dbg "- wdbase ! no \$git"
-		fi
-	else
-		wdbase=$PWD
-	fi
+	wdbase=$PWD
 
 	# find the parent of the working directory
 
@@ -160,13 +135,7 @@ _awesome_upd_pwd() {
 	# split into 'head' (normal text) and 'tail' (highlighted text)
 	# Now, if only I remembered why this logic is so complex...
 
-	# TODO: clearly handle the following
-	#   $PWD = $HOME
-	#   inside working tree
-	#   inside bare repository
-
 	_dbg "* fullpwd='${fullpwd-}'"
-	_dbg "   wdrepo='$wdrepo'"
 	_dbg "   wdbase='$wdbase'"
 	_dbg " wdparent='$wdparent'"
 
@@ -175,14 +144,6 @@ _awesome_upd_pwd() {
 		# show full home directory with no highlight
 		_dbg "head/tail case 1 (special case for ~)"
 		wdhead=$PWD wdtail=''
-	elif [[ $wdparent && $PWD != "$wdparent" ]]; then
-		# inside a subdirectory of working tree
-		_dbg "head/tail case 2 (under wdparent)"
-		wdhead=$wdparent/ wdtail=${PWD#"$wdparent"/}
-	elif [[ $git && $wdbase && ! $wdparent ]]; then
-		# inside working tree immediately below root (e.g. /etc)
-		_dbg "head/tail case 3 (empty wdpaernt)"
-		wdhead=/ wdtail=${PWD#/}
 	else
 		_dbg "head/tail case default"
 		wdhead=${PWD%/*}/ wdtail=${PWD##*/}
@@ -214,10 +175,6 @@ _awesome_upd_pwd() {
 		_dbg "tail case 3, wdhead + wdtail all fit"
 	fi
 
-	if [[ $wdtail == */* ]]; then
-		wdbody=${wdtail%/*}'/' wdtail=${wdtail##*/}
-	fi
-
 	if (( collapsed )); then
 		wdhead='…'$wdhead
 		if (( tilde )); then
@@ -226,9 +183,9 @@ _awesome_upd_pwd() {
 	fi
 
 	items[pwd:head]=$wdhead
-	items[pwd:body]=$wdbody
+	items[pwd:body]=""
 	items[pwd:tail]=$wdtail
-	items[pwd]=$wdhead$wdbody$wdtail
+	items[pwd]=$wdhead$wdtail
 }
 
 _awesome_add_item() {
