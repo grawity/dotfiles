@@ -134,17 +134,11 @@ _awesome_upd_pwd() {
 	# split into 'head' (normal text) and 'tail' (highlighted text)
 	# Now, if only I remembered why this logic is so complex...
 
-	_dbg "* fullpwd='${fullpwd-}'"
-	_dbg "   wdbase='$wdbase'"
-	_dbg " wdparent='$wdparent'"
-
 	if [[ ${fullpwd-} != [yh] && $PWD == "$HOME" ]]; then
 		# special case with fullpwd=n:
 		# show full home directory with no highlight
-		_dbg "head/tail case 1 (special case for ~)"
 		wdhead=$PWD wdtail=''
 	else
-		_dbg "head/tail case default"
 		wdhead=${PWD%/*}/ wdtail=${PWD##*/}
 	fi
 
@@ -157,21 +151,15 @@ _awesome_upd_pwd() {
 		fi
 	fi
 
-	_dbg "* wdhead='$wdhead' [${#wdhead}]"
-	_dbg "  wdtail='$wdtail' [${#wdtail}]"
-	_dbg "  head+tail=$(( ${#wdhead} + ${#wdtail} )), maxwidth=$maxwidth, tilde=$tilde"
-
 	if (( tilde + ${#wdtail} > maxwidth )); then
-		_dbg "tail case 1, tilde + wdtail > maxwidth"
 		wdhead=''
 		wdtail=${wdtail:${#wdtail}-(maxwidth-tilde-1)}
 		collapsed=1
 	elif (( ${#wdhead} + ${#wdtail} > maxwidth )); then
-		_dbg "tail case 2, wdhead + wdtail > maxwidth"
 		wdhead=${wdhead:${#wdhead}-(maxwidth-tilde-${#wdtail}-1)}
 		collapsed=1
 	else
-		_dbg "tail case 3, wdhead + wdtail all fit"
+		collapsed=0
 	fi
 
 	if (( collapsed )); then
@@ -382,11 +370,7 @@ _awesome_prompt() {
 
 	_awesome_fill_items 'left' 'right'
 
-	_dbg "* maxwidth before recalc = $maxwidth"
-	_dbg "    left = '${strs[left]}' (${lens[left]})"
-	_dbg "    right = '${strs[right]}' (${lens[right]})"
 	(( maxwidth -= lens[left] + !!lens[left] + !!lens[right] + lens[right] + 1 ))
-	_dbg "  maxwidth after recalc = $maxwidth"
 
 	_awesome_upd_pwd
 
