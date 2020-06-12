@@ -221,7 +221,7 @@ alias egrep='egrep $grepopt'
 alias fgrep='fgrep $grepopt'
 
 lsopt="-F -h"
-treeopt="--dirsfirst"
+treeopt="-F --dirsfirst"
 if (( UID == 0 )); then
 	lsopt="$lsopt -a"
 	treeopt="$treeopt -a"
