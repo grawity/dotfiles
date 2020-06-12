@@ -1,6 +1,9 @@
 #!bash
 # bashrc -- shell prompt, window title, command exit status in prompt
 #
+#     "The problem with programmers is that if you give them the chance, they
+#     will start programming."
+#
 # Features:
 #
 #   - Git branch and basic status (merge, rebase, etc.)
