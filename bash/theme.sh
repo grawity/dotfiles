@@ -79,9 +79,6 @@ case $FQDN in
 		fmts[name:pfx]='1;31'
 		fmts[name]='1'
 	fi
-	if [[ $LOGNAME == mantas ]]; then
-		unset items[user.self]
-	fi
 	fullpwd=y
 	;;
 
