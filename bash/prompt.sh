@@ -55,19 +55,30 @@ declare -Ai _recursing=()
 _dbg() { if [[ ${PS1_DEBUG-} ]]; then echo "[${FUNCNAME[1]}] $*"; fi; }
 
 _awesome_upd_vcs() {
-	local git= br= re=
+	local tmp= git= br= re=
 
 	if ! have git; then
 		git=
 	elif [[ $PWD == @(/afs|/n/uk)* ]]; then
-		# add an exception for slowish network mounts
+		# Don't do anything for slowish network mounts
 		git=
 	elif [[ ${GIT_DIR-} && -d $GIT_DIR ]]; then
 		git=$GIT_DIR
-	elif [[ ! ${GIT_DIR-} && -d .git ]]; then
-		git=.git
 	else
-		git=$(git rev-parse --git-dir 2>/dev/null)
+		# Try to directly check for .git, ../.git, and so on
+		tmp=.git
+		for (( i=0; i<5; i++ )); do
+			if [[ -d $tmp ]]; then
+				git=$tmp
+				break
+			else
+				tmp=../$tmp
+			fi
+		done
+		# Give up and fall back to spawning rev-parse
+		if [[ ! $git ]]; then
+			git=$(git rev-parse --git-dir 2>/dev/null)
+		fi
 	fi
 
 	if [[ $git ]]; then
