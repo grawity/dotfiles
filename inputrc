@@ -58,8 +58,8 @@ $endif
 "\en": ""
 
 # ignore "bracketed paste" markers
-"\e[200~": ""
-"\e[201~": ""
+#"\e[200~": ""
+#"\e[201~": ""
 
 # unbind the Alt+numbers
 "\e-": ""
