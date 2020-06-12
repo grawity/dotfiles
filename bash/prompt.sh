@@ -242,7 +242,7 @@ _awesome_add_item() {
 	# handle various item types
 	#   _		a space
 	#   >text	literal text
-	#   !part	sub-part with items
+	#   !part	nested part with items
 	#   :item	text from item
 
 	if [[ $item == _ ]]; then
@@ -279,39 +279,41 @@ _awesome_add_item() {
 			fmt=@$item
 			_dbg "-- item '$item' value '$out' fmt '$fmt' --"
 			while true; do
+				# Format '@foo' is a link to fmts[foo] -- restart
 				if [[ $fmt == @* ]]; then
 					subitem=${fmt#@}
 					fmt=${fmts[$subitem]-}
-					_dbg " had @ in fmt, recursed, got item '$subitem' fmt '$fmt'"
 				fi
+				# Format exists and isn't a link -- stop here
 				if [[ $fmt && $fmt != @* ]]; then
-					_dbg " got final fmt '$fmt'"
 					break
 				fi
+				# Missing format for :sfx -- try using the :pfx format
 				if [[ ! $fmt && $subitem == *:sfx ]]; then
 					subitem=${subitem/%:sfx/:pfx}
 					fmt=${fmts[$subitem]-}
-					_dbg " had empty fmt, stripped :sfx, got item '$subitem' fmt '$fmt'"
+					# If it's a link, then pretend it links to :sfx
 					if [[ $fmt == @*:pfx ]]; then
 						fmt=${fmt/%:pfx/:sfx}
 					fi
 				fi
+				# Missing format for other subitem -- try using main item's format
+				# e.g. pwd:head is formatted like pwd
 				if [[ ! $fmt && $subitem == *:* ]]; then
 					subitem=${subitem%:*}
 					fmt=${fmts[$subitem]-}
-					_dbg " had empty fmt, stripped :*, got item '$subitem' fmt '$fmt'"
 				fi
+				# Missing format for variant -- try using the main item's format
+				# e.g. user.root is formatted like user
 				if [[ ! $fmt && $subitem == *.* ]]; then
 					subitem=${subitem%.*}
 					fmt=${fmts[$subitem]-}
-					_dbg " had empty fmt, stripped .*, got item '$subitem' fmt '$fmt'"
 				fi
+				# Give up, nothing to retry with
 				if [[ ! $fmt ]]; then
-					_dbg " still have empty fmt, giving up"
 					break
-				fi
-				if (( loop++ >= 10 )); then
-					out="<bad fmt for '$item'>"
+				elif (( loop++ >= 10 )); then
+					out="<fmt cycle for '$item'>"
 					fmt=$errfmt
 					break
 				fi
