@@ -43,7 +43,6 @@ Each part consists of a series of individual items:
 Items can be prefixed with (in exactly this order):
 
   * `(foo)` – condition (multiple prefixes are ANDed)
-  * `[link]` – OSC 8 hyperlink marker (item text is the URL)
   * `[foo]` – ANSI format/color code (only works with literals)
   * `<` – insert a space only if needed
 
@@ -80,7 +79,7 @@ For example:
       [prompt]=':prompt _'
       [right]=':vcs (:nested?)<:parent (:lid:held?)<:lid'
       [left]=':name.pfx (root)(:user:root):user (!root)(:user:self):user :host :name.sfx'
-      [mid]='[link]:pwd.url :pwd.head :pwd.body :pwd.tail [link]>'
+      [mid]=':pwd.head :pwd.body :pwd.tail'
     )
 
     ┌ rain ~/lib/dotfiles master 

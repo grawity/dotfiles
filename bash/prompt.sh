@@ -1,3 +1,4 @@
+#!bash
 # bashrc -- shell prompt, window title, command exit status in prompt
 #
 # Features:
@@ -228,7 +229,6 @@ _awesome_add_item() {
 
 	local full_item=$item
 	local add_space=
-	local add_link=0
 	local add_prefix=
 	local add_suffix=
 	local errfmt=${fmts[error]:-"38;5;15|41"}
@@ -261,11 +261,6 @@ _awesome_add_item() {
 	done
 
 	# handle probably-useless [format] prefix
-
-	if [[ $item == \[link\]* ]]; then
-		add_link=1
-		item=${item#\[link\]}
-	fi
 
 	if [[ $item == \[*\]* ]]; then
 		fmt=${item%%\]*}
@@ -385,9 +380,6 @@ _awesome_add_item() {
 	fi
 
 	lens[$pos]+=${#out}
-	if (( add_link )); then
-		out=$'\001\e]8;;'${out# }$'\e\\\002'
-	fi
 	if [[ $fmt ]]; then
 		out=$'\001\e['${fmt//'|'/$'m\e['}$'m\002'$out$'\001\e[m\002'
 	fi
