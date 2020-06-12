@@ -79,10 +79,8 @@ _awesome_upd_vcs() {
 			re='REBASE-m'
 		else
 			br=$(git symbolic-ref HEAD 2>/dev/null ||
-			     #git describe --tags --exact-match HEAD 2>/dev/null ||
 			     git rev-parse --short HEAD 2>/dev/null ||
 			     echo 'unknown')
-
 			br=${br#refs/heads/}
 
 			if [[ -f $git/rebase-apply/rebasing ]]; then
@@ -106,11 +104,6 @@ _awesome_upd_vcs() {
 	items[vcs]=${br}${re:+" ($re)"}
 	items[vcs.br]=$br
 	items[vcs.re]=$re
-
-	if [[ $br = annex/direct/* ]]; then
-		items[vcs]="(annex)"
-		items[vcs.annex?]=y
-	fi
 }
 
 _awesome_upd_pwd() {
