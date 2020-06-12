@@ -430,10 +430,6 @@ _show_status() {
 	else
 		fmts[status]=@status:ok
 	fi
-	if [[ ${LINES@a} == *x* || ${COLUMNS@a} == *x* ]]; then
-		printf "\e[m\e[38;5;15m\e[48;5;196m%s\e[m\n" \
-			"\$LINES/\$COLUMNS found in environment!"
-	fi
 }
 
 _update_title() {
