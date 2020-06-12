@@ -10,9 +10,7 @@ pager() { command ${PAGER:-more} "$@"; }
 
 alias aa-reload='apparmor_parser -r -T -W'
 alias bat='acpi -i'
-alias cal='cal -m' # LC_TIME=en_DK.UTF-8
 catsexp() { cat "$@" | sexp-conv -w $((COLUMNS-1)); }
-alias cindex='env TMPDIR=/var/tmp cindex'
 alias cpans='PERL_MM_OPT= PERL_MB_OPT= cpanm --sudo'
 count() { sort "$@" | uniq -c | sort -n -r | pager; }
 alias demo='PS1="\\n\\$ "'
@@ -56,17 +54,6 @@ hostname.bind() {
 }
 alias hup='pkill -HUP -x'
 alias init='telinit' # for systemd
-iwstat() {
-	local dev=${1:-wlan0}
-	iw $dev info && echo &&
-	iw $dev link && echo &&
-	iw $dev station dump
-}
-kernels() {
-	cat https://www.kernel.org/finger_banner \
-	| sed -r 's/^The latest (.+) version.*:/\1/' \
-	| column -t
-}
 alias kssh='ssh \
 	-o PreferredAuthentications=gssapi-keyex,gssapi-with-mic \
 	-o GSSAPIAuthentication=yes \
@@ -87,7 +74,6 @@ ldapls() {
 }
 ldapshow() { ldapsearch -b "$1" -s base -LLL "${@:2}"; }
 ldapstat() { ldapsearch -b "" -s base -LLL "$@" \* +; }
-alias ldapvi='ldapvi --bind sasl'
 alias lp='sudo netstat -lptu --numeric-hosts'
 alias lpt='sudo netstat -lpt --numeric-hosts'
 alias lpu='sudo netstat -lpu --numeric-hosts'
@@ -102,8 +88,6 @@ lsftp() {
 	esac
 }
 alias lspart='lsblk -o name,partlabel,size,fstype,label,mountpoint'
-alias mkcert='mkcsr -x509 -days 3650'
-alias mkcsr='openssl req -new -sha256'
 mkmaildir() { mkdir -p "${@/%//cur}" "${@/%//new}" "${@/%//tmp}"; }
 mtr() { settitle "$HOSTNAME: mtr $*"; command mtr --show-ips "$@"; }
 alias mtrr='mtr --report-wide --report-cycles 3 --show-ips --aslookup --mpls'
@@ -203,16 +187,6 @@ alias isodate='date "+%Y-%m-%dT%H:%M:%S%z"' # ISO 8601
 alias good='git bisect good'
 alias bad='git bisect bad'
 
-# conditional aliases
-
-if ! have annex; then
-	alias annex='git annex'
-fi
-
-if have mpv; then
-	alias mplayer='mpv'
-fi
-
 # X11 clipboard
 
 if have xclip; then
@@ -236,16 +210,6 @@ clip() {
 		gclip
 	else
 		pclip
-	fi
-}
-
-sel() {
-	if (( $# )); then
-		echo -n "$*" | gsel
-	elif [[ ! -t 0 ]]; then
-		gsel
-	else
-		psel
 	fi
 }
 
@@ -327,14 +291,6 @@ imv() {
 		new=$old; read -p "rename to: " -e -i "$old" new
 		[[ "$old" == "$new" ]] || command mv -v "$old" "$new"
 	done
-}
-
-mksrcinfo() {
-	if have mksrcinfo; then
-		command mksrcinfo
-	else
-		makepkg --printsrcinfo > .SRCINFO || rm -f .SRCINFO
-	fi
 }
 
 man() {
