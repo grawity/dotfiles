@@ -60,16 +60,8 @@ Predefined items:
 
   * `:vcs` – Git branch
   * `:pwd` – collapsed path
-  * `:pwd.head` – path minus pwd, or minus Git repository root
-  * `:pwd.body` – subpath inside Git repository root
+  * `:pwd.head` – path minus pwd
   * `:pwd.tail` – final item of path
-
-For example:
-
-    ~/lib/dotfiles/vim/after/syntax
-                             ^^^^^^ -- pwd.tail
-                   ^^^^^^^^^^ -- pwd.body
-    ^^^^^^^^^^^^^^^ -- pwd.head
 
 ## example
 

@@ -5,7 +5,6 @@
 #
 #   - Git branch and basic status (merge, rebase, etc.)
 #   - Highlight current directory's basename
-#   - Highlight toplevel directory of a Git repo
 #   - Collapse long paths to fit in one line
 #     ("~/one/two/three" to "~/…o/three")
 #
