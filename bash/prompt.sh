@@ -66,13 +66,10 @@ _awesome_upd_vcs() {
 		git=$GIT_DIR
 	else
 		# Try to directly check for .git, ../.git, and so on
-		tmp=.git
-		for (( i=0; i<5; i++ )); do
+		for tmp in {,../{,../{,../{,../{,../}}}}}.git; do
 			if [[ -d $tmp ]]; then
 				git=$tmp
 				break
-			else
-				tmp=../$tmp
 			fi
 		done
 		# Give up and fall back to spawning rev-parse
