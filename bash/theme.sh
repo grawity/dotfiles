@@ -13,7 +13,7 @@
 unset fullpwd
 
 parts[left]=":name:pfx (root)(:user.root):user (!root)(:user.self):user :host :name:sfx"
-parts[mid]=":pwd:head :pwd:body :pwd:tail"
+parts[mid]=":pwd:head :pwd:tail"
 parts[right]=":vcs"
 
 items[host]="${HOSTNAME%%.*}"
