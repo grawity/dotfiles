@@ -70,9 +70,9 @@ generate() {
 	cat "${input[@]}" 2>/dev/null | filter_file match_eval
 }
 
-input=( ~/lib/dotfiles/ssh/config
-	~/lib/dotfiles/ssh/config-$HOSTNAME )
-
+srcdir=${BASH_SOURCE[0]%/*}
+input=( "$srcdir/config"
+	"$srcdir/config-$HOSTNAME" )
 output=".generated-config-$HOSTNAME"
 
 if [[ $1 == "--test" ]]; then
