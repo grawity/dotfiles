@@ -109,6 +109,3 @@ Host *
 	GSSAPIAuthentication yes
 	SendEnv LANG TZ
 	ControlPath ~/.ssh/S.%r@%h:%p
-	# speed up git-annex batch tasks
-	ControlMaster auto
-	ControlPersist 60s
