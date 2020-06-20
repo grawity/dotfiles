@@ -1,7 +1,6 @@
-# ~/.ssh/config: ssh_config(5)
 # vim: ft=sshconfig
 
-# note that the '#if' directives are not supported by any SSH client directly;
+# Note that the '#if' directives are not supported by any SSH client directly;
 # instead, they are processed by the ssh/generate script.
 
 #if OpenSSH && Version 6.3
