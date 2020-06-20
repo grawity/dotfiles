@@ -4,7 +4,7 @@
 # instead, they are processed by the ssh/generate script.
 
 #if OpenSSH && Version 6.3
-IgnoreUnknown CanonicalDomains,CanonicalizeHostname,PubkeyAcceptedKeyTypes
+IgnoreUnknown AddKeysToAgent,CanonicalDomains,CanonicalizeHostname,PubkeyAcceptedKeyTypes
 #endif
 
 # work
@@ -17,6 +17,7 @@ Host radius.utenos-kolegija.lt
 
 Host *.utenos-kolegija.lt *.ukolegija.lt 193.219.181.* !193.219.181.219 !193.219.181.229
 	IdentityFile ~/.ssh/work/id_ukolegija
+	AddKeysToAgent yes
 
 Host gw-b56-bypass
 	HostName 193.219.181.189
