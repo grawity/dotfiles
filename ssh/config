@@ -5,7 +5,7 @@
 # instead, they are processed by the ssh/generate script.
 
 #if OpenSSH && Version 6.3
-IgnoreUnknown CanonicalDomains,CanonicalizeHostname,GSSAPIKeyExchange,PubkeyAcceptedKeyTypes
+IgnoreUnknown CanonicalDomains,CanonicalizeHostname,PubkeyAcceptedKeyTypes
 #endif
 
 # work
@@ -110,7 +110,6 @@ Host *
 	HashKnownHosts no
 	VerifyHostKeyDNS yes
 	GSSAPIAuthentication yes
-	GSSAPIKeyExchange yes
 	SendEnv LANG TZ
 	ControlPath ~/.ssh/S.%r@%h:%p
 	# speed up git-annex batch tasks
