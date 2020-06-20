@@ -56,7 +56,6 @@ Host *.zt1
 	HostName %h.nullroute.eu.org
 
 Host *.home *.local 10.* 192.168.*
-	ForwardAgent yes
 	UserKnownHostsFile ~/.ssh/known_hosts.local
 
 # other hosts
