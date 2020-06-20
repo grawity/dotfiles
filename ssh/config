@@ -13,15 +13,6 @@ IgnoreUnknown CanonicalDomains,CanonicalizeHostname,GSSAPIKeyExchange,PubkeyAcce
 Host cacti cacti.utenos-kolegija.lt
 	HostName uk-cacti.utenos-kolegija.lt
 
-#if ! Host radius
-Host pf-*.utenos-kolegija.lt
-	User root
-	ProxyJump radius
-
-Host uk-vpn.utenos-kolegija.lt
-	ProxyJump radius
-#endif
-
 Host *.utenos-kolegija.lt *.ukolegija.lt 193.219.181.* !193.219.181.219 !193.219.181.229
 	IdentityFile ~/.ssh/work/id_ukolegija
 	ForwardAgent yes
