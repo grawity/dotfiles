@@ -22,7 +22,7 @@ Host uk-vpn.utenos-kolegija.lt
 	ProxyJump radius
 #endif
 
-Host *.utenos-kolegija.lt *.ukolegija.lt 2001:778:e27f:* 193.219.181.*
+Host *.utenos-kolegija.lt *.ukolegija.lt 193.219.181.* !193.219.181.219 !193.219.181.229
 	IdentityFile ~/.ssh/work/id_ukolegija
 	ForwardAgent yes
 
