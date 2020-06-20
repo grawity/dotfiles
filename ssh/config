@@ -34,9 +34,6 @@ Host radius-bypass
 Host theos
 	HostName %h.kyriasis.com
 
-Host blizzard frost rain
-	HostName %h.nullroute.eu.org
-
 Host blizzard.nullroute.eu.org
 	User mantas
 
