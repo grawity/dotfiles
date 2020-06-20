@@ -107,3 +107,5 @@ Host *
 	GSSAPIAuthentication yes
 	SendEnv LANG TZ
 	ControlPath ~/.ssh/S.%r@%h:%p
+	ControlMaster auto
+	ControlPersist 1s
