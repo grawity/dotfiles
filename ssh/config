@@ -108,4 +108,4 @@ Host *
 	SendEnv LANG TZ
 	ControlPath ~/.ssh/S.%r@%h:%p
 	ControlMaster auto
-	ControlPersist 1s
+	ControlPersist 15s
