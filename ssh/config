@@ -12,9 +12,11 @@ IgnoreUnknown CanonicalDomains,CanonicalizeHostname,PubkeyAcceptedKeyTypes
 Host cacti cacti.utenos-kolegija.lt
 	HostName uk-cacti.utenos-kolegija.lt
 
+Host radius.utenos-kolegija.lt
+	ForwardAgent yes
+
 Host *.utenos-kolegija.lt *.ukolegija.lt 193.219.181.* !193.219.181.219 !193.219.181.229
 	IdentityFile ~/.ssh/work/id_ukolegija
-	ForwardAgent yes
 
 Host gw-b56-bypass
 	HostName 193.219.181.189
