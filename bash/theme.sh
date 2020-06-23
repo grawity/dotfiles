@@ -13,7 +13,7 @@
 unset fullpwd
 
 parts[left]=":name:pfx (root)(:user.root):user (!root)(:user.self):user :host :name:sfx"
-parts[mid]=":pwd:head :pwd:body :pwd:tail"
+parts[mid]=":pwd:head :pwd:tail"
 parts[right]=":vcs"
 
 items[host]="${HOSTNAME%%.*}"
@@ -48,56 +48,25 @@ fi
 : ${FQDN:=$(fqdn)}
 : ${FQDN:=$HOSTNAME}
 
+dir=${BASH_SOURCE[0]%/*}
 case $FQDN in
     !(vm-*).nullroute.eu.org)
-	if [[ -e ~/lib/dotfiles/bash/theme-$HOSTNAME.sh ]]; then
-		. ~/lib/dotfiles/bash/theme-$HOSTNAME.sh
+	if [[ -e $dir/theme-$HOSTNAME.sh ]]; then
+		. $dir/theme-$HOSTNAME.sh
 	else
-		. ~/lib/dotfiles/bash/theme-nullroute.sh
+		. $dir/theme-nullroute.sh
 	fi
-	;;
-
-    *.cluenet.org|*.nathan7.eu)
-	items[user:sfx]=' @ '
-	if (( UID )); then
-		fmts[user:sfx]='38;5;252'
-	fi
-	fmts[name.self]='1|38;5;71'
-	fmts[pwd]='38;5;144'
-	fmts[vcs]='38;5;167'
 	;;
 
     *.utenos-kolegija.lt)
-	items[name:pfx]="["
-	items[name:sfx]="]"
-	fmts[name]=
-	if (( UID )); then
-		items[prompt]='$'
-		fmts[name:pfx]='1;32'
-	else
-		items[prompt]='#'
-		fmts[name:pfx]='1;31'
-		fmts[name]='1'
-	fi
-	if [[ $LOGNAME == mantas ]]; then
-		unset items[user.self]
-	fi
-	fullpwd=y
+	. $dir/theme-work.sh
 	;;
 
     *)
-	parts[left]+=" (:ostype)<:ostype"
-	items[name:pfx]="["
-	items[name:sfx]="]"
-	items[ostype]=$OSTYPE
-	fmts[name:pfx]='38;5;242'
-	fmts[name.self]='38;5;71'
-	fmts[name.root]='38;5;231|41'
-	fmts[ostype]=@name:sfx
-	fmts[pwd]='38;5;144'
-	fmts[vcs]='38;5;167'
-	fullpwd=y
+	#. $dir/theme-old.sh
+	. $dir/theme-default.sh
 	;;
 esac
+unset dir
 
 # Host themes overridden in bashrc-$HOSTNAME

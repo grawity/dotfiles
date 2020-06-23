@@ -1,7 +1,5 @@
 # vim: ft=sh
 
-ACCDB="$XDG_DATA_HOME/nullroute.eu.org/accdb/accounts.txt"
-
 BORG_REPO="/vol4/Backup/Homes/$HOSTNAME.borg"
 
 VDPAU_DRIVER="va_gl"

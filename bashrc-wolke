@@ -1,32 +1,3 @@
 # vim: ft=sh
 
-_bgpath() {
-	local f=~/bin/bird-bgpath
-	if [[ -e $f ]]; then
-		perl $f
-	else
-		ssh wolke "perl $f"
-	fi
-}
-
-//() { sudo birdc "$@"; }
-
-//path() { sudo birdc show route all "$@" | _bgpath; }
-
-//proto() {
-	sudo birdc show protocols |
-	perl -nE 'say join "", split /\s+/, $_, 7' |
-	column -ts '';
-}
-
-::() { sudo birdc "$@"; }
-
-::path() { sudo birdc show route all "$@" | _bgpath; }
-
-::proto() {
-	sudo birdc show protocols |
-	perl -nE 'say join "", split /\s+/, $_, 7' |
-	column -ts '';
-}
-
 routed6="2a06:e881:108:1::1"

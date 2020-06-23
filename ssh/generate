@@ -70,12 +70,14 @@ generate() {
 	cat "${input[@]}" 2>/dev/null | filter_file match_eval
 }
 
-input=( ~/lib/dotfiles/ssh/config
-	~/lib/dotfiles/ssh/config-$HOSTNAME )
-
+srcdir=${BASH_SOURCE[0]%/*}
+input=( "$srcdir/config"
+	"$srcdir/config-$HOSTNAME" )
 output=".generated-config-$HOSTNAME"
 
-if [[ $1 == "--test" ]]; then
+if [[ ! -e ${input[0]} ]]; then
+	die "input file '${input[0]}' does not exist"
+elif [[ $1 == "--test" ]]; then
 	generate
 else
 	if [[ ! -d ~/.ssh ]]; then

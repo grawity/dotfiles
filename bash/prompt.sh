@@ -1,10 +1,13 @@
+#!bash
 # bashrc -- shell prompt, window title, command exit status in prompt
+#
+#     "The problem with programmers is that if you give them the chance, they
+#     will start programming."
 #
 # Features:
 #
 #   - Git branch and basic status (merge, rebase, etc.)
 #   - Highlight current directory's basename
-#   - Highlight toplevel directory of a Git repo
 #   - Collapse long paths to fit in one line
 #     ("~/one/two/three" to "~/…o/three")
 #
@@ -51,22 +54,30 @@ declare -A parts=(
 
 declare -Ai _recursing=()
 
-_dbg() { if [[ ${PS1_DEBUG-} ]]; then echo "[${FUNCNAME[1]}] $*"; fi; }
+_dbg() { if [[ ${PS1_DEBUG-} ]]; then printf '\e[47m%s\e[m %s\n' "[${FUNCNAME[1]}]" "$*"; fi; }
 
 _awesome_upd_vcs() {
-	local git= br= re=
+	local tmp= git= br= re=
 
 	if ! have git; then
 		git=
 	elif [[ $PWD == @(/afs|/n/uk)* ]]; then
-		# add an exception for slowish network mounts
+		# Don't do anything for slowish network mounts
 		git=
 	elif [[ ${GIT_DIR-} && -d $GIT_DIR ]]; then
 		git=$GIT_DIR
-	elif [[ ! ${GIT_DIR-} && -d .git ]]; then
-		git=.git
 	else
-		git=$(git rev-parse --git-dir 2>/dev/null)
+		# Try to directly check for .git, ../.git, and so on
+		for tmp in {,../{,../{,../{,../{,../}}}}}.git; do
+			if [[ -d $tmp ]]; then
+				git=$tmp
+				break
+			fi
+		done
+		# Give up and fall back to spawning rev-parse
+		if [[ ! $git ]]; then
+			git=$(git rev-parse --git-dir 2>/dev/null)
+		fi
 	fi
 
 	if [[ $git ]]; then
@@ -77,12 +88,16 @@ _awesome_upd_vcs() {
 			br=$(<"$git/rebase-merge/head-name")
 			re='REBASE-m'
 		else
-			br=$(git symbolic-ref HEAD 2>/dev/null ||
-			     #git describe --tags --exact-match HEAD 2>/dev/null ||
-			     git rev-parse --short HEAD 2>/dev/null ||
-			     echo 'unknown')
-
-			br=${br#refs/heads/}
+			br=$(<"$git/HEAD")
+			if [[ $br == ref:* ]]; then
+				br=${br#ref: }
+				br=${br#refs/heads/}
+			else
+				br=$(git symbolic-ref HEAD 2>/dev/null ||
+				     git rev-parse --short HEAD 2>/dev/null ||
+				     echo 'unknown')
+				br=${br#refs/heads/}
+			fi
 
 			if [[ -f $git/rebase-apply/rebasing ]]; then
 				re='REBASE'
@@ -105,45 +120,15 @@ _awesome_upd_vcs() {
 	items[vcs]=${br}${re:+" ($re)"}
 	items[vcs.br]=$br
 	items[vcs.re]=$re
-
-	if [[ $br = annex/direct/* ]]; then
-		items[vcs]="(annex)"
-		items[vcs.annex?]=y
-	fi
 }
 
 _awesome_upd_pwd() {
-	local git=${items[.gitdir]} HOME=${HOME%/}
+	local HOME=${HOME%/}
 
-	local wdrepo= wdbase= wdparent= wdhead= wdbody= wdtail=
+	local wdbase= wdparent= wdhead= wdbody= wdtail=
 	local -i collapsed=0 tilde=0
 
-	# find the working directory's root
-
-	if [[ ${fmts[pwd:body]-} ]]; then
-		if [[ $GIT_WORK_TREE ]]; then
-			_dbg "- wdbase <- GIT_WORK_TREE"
-			wdbase=$(readlink -f "$GIT_WORK_TREE")
-		elif [[ $git == .git ]]; then
-			_dbg "- wdbase <- PWD"
-			wdbase=$PWD
-		elif [[ $git == /*/.git ]]; then
-			_dbg "- wdbase <- \$git"
-			wdbase=${git%/.git}
-			if [[ $PWD != "$wdbase"/* ]]; then
-				_dbg "- wdbase <- nil (outside PWD)"
-				wdbase=
-			fi
-		elif [[ $git ]]; then
-			_dbg "- wdbase <- wdrepo"
-			wdrepo=$(git rev-parse --show-toplevel)
-			wdbase=${wdrepo:-$(readlink -f "$git")}
-		else
-			_dbg "- wdbase ! no \$git"
-		fi
-	else
-		wdbase=$PWD
-	fi
+	wdbase=$PWD
 
 	# find the parent of the working directory
 
@@ -152,31 +137,11 @@ _awesome_upd_pwd() {
 	# split into 'head' (normal text) and 'tail' (highlighted text)
 	# Now, if only I remembered why this logic is so complex...
 
-	# TODO: clearly handle the following
-	#   $PWD = $HOME
-	#   inside working tree
-	#   inside bare repository
-
-	_dbg "* fullpwd='${fullpwd-}'"
-	_dbg "   wdrepo='$wdrepo'"
-	_dbg "   wdbase='$wdbase'"
-	_dbg " wdparent='$wdparent'"
-
 	if [[ ${fullpwd-} != [yh] && $PWD == "$HOME" ]]; then
 		# special case with fullpwd=n:
 		# show full home directory with no highlight
-		_dbg "head/tail case 1 (special case for ~)"
 		wdhead=$PWD wdtail=''
-	elif [[ $wdparent && $PWD != "$wdparent" ]]; then
-		# inside a subdirectory of working tree
-		_dbg "head/tail case 2 (under wdparent)"
-		wdhead=$wdparent/ wdtail=${PWD#"$wdparent"/}
-	elif [[ $git && $wdbase && ! $wdparent ]]; then
-		# inside working tree immediately below root (e.g. /etc)
-		_dbg "head/tail case 3 (empty wdpaernt)"
-		wdhead=/ wdtail=${PWD#/}
 	else
-		_dbg "head/tail case default"
 		wdhead=${PWD%/*}/ wdtail=${PWD##*/}
 	fi
 
@@ -189,25 +154,15 @@ _awesome_upd_pwd() {
 		fi
 	fi
 
-	_dbg "* wdhead='$wdhead' [${#wdhead}]"
-	_dbg "  wdtail='$wdtail' [${#wdtail}]"
-	_dbg "  head+tail=$(( ${#wdhead} + ${#wdtail} )), maxwidth=$maxwidth, tilde=$tilde"
-
 	if (( tilde + ${#wdtail} > maxwidth )); then
-		_dbg "tail case 1, tilde + wdtail > maxwidth"
 		wdhead=''
 		wdtail=${wdtail:${#wdtail}-(maxwidth-tilde-1)}
 		collapsed=1
 	elif (( ${#wdhead} + ${#wdtail} > maxwidth )); then
-		_dbg "tail case 2, wdhead + wdtail > maxwidth"
 		wdhead=${wdhead:${#wdhead}-(maxwidth-tilde-${#wdtail}-1)}
 		collapsed=1
 	else
-		_dbg "tail case 3, wdhead + wdtail all fit"
-	fi
-
-	if [[ $wdtail == */* ]]; then
-		wdbody=${wdtail%/*}'/' wdtail=${wdtail##*/}
+		collapsed=0
 	fi
 
 	if (( collapsed )); then
@@ -218,9 +173,9 @@ _awesome_upd_pwd() {
 	fi
 
 	items[pwd:head]=$wdhead
-	items[pwd:body]=$wdbody
+	items[pwd:body]=""
 	items[pwd:tail]=$wdtail
-	items[pwd]=$wdhead$wdbody$wdtail
+	items[pwd]=$wdhead$wdtail
 }
 
 _awesome_add_item() {
@@ -228,7 +183,6 @@ _awesome_add_item() {
 
 	local full_item=$item
 	local add_space=
-	local add_link=0
 	local add_prefix=
 	local add_suffix=
 	local errfmt=${fmts[error]:-"38;5;15|41"}
@@ -262,11 +216,6 @@ _awesome_add_item() {
 
 	# handle probably-useless [format] prefix
 
-	if [[ $item == \[link\]* ]]; then
-		add_link=1
-		item=${item#\[link\]}
-	fi
-
 	if [[ $item == \[*\]* ]]; then
 		fmt=${item%%\]*}
 		fmt=${fmt#\[}
@@ -283,7 +232,7 @@ _awesome_add_item() {
 	# handle various item types
 	#   _		a space
 	#   >text	literal text
-	#   !part	sub-part with items
+	#   !part	nested part with items
 	#   :item	text from item
 
 	if [[ $item == _ ]]; then
@@ -320,39 +269,41 @@ _awesome_add_item() {
 			fmt=@$item
 			_dbg "-- item '$item' value '$out' fmt '$fmt' --"
 			while true; do
+				# Format '@foo' is a link to fmts[foo] -- restart
 				if [[ $fmt == @* ]]; then
 					subitem=${fmt#@}
 					fmt=${fmts[$subitem]-}
-					_dbg " had @ in fmt, recursed, got item '$subitem' fmt '$fmt'"
 				fi
+				# Format exists and isn't a link -- stop here
 				if [[ $fmt && $fmt != @* ]]; then
-					_dbg " got final fmt '$fmt'"
 					break
 				fi
+				# Missing format for :sfx -- try using the :pfx format
 				if [[ ! $fmt && $subitem == *:sfx ]]; then
 					subitem=${subitem/%:sfx/:pfx}
 					fmt=${fmts[$subitem]-}
-					_dbg " had empty fmt, stripped :sfx, got item '$subitem' fmt '$fmt'"
+					# If it's a link, then pretend it links to :sfx
 					if [[ $fmt == @*:pfx ]]; then
 						fmt=${fmt/%:pfx/:sfx}
 					fi
 				fi
+				# Missing format for other subitem -- try using main item's format
+				# e.g. pwd:head is formatted like pwd
 				if [[ ! $fmt && $subitem == *:* ]]; then
 					subitem=${subitem%:*}
 					fmt=${fmts[$subitem]-}
-					_dbg " had empty fmt, stripped :*, got item '$subitem' fmt '$fmt'"
 				fi
+				# Missing format for variant -- try using the main item's format
+				# e.g. user.root is formatted like user
 				if [[ ! $fmt && $subitem == *.* ]]; then
 					subitem=${subitem%.*}
 					fmt=${fmts[$subitem]-}
-					_dbg " had empty fmt, stripped .*, got item '$subitem' fmt '$fmt'"
 				fi
+				# Give up, nothing to retry with
 				if [[ ! $fmt ]]; then
-					_dbg " still have empty fmt, giving up"
 					break
-				fi
-				if (( loop++ >= 10 )); then
-					out="<bad fmt for '$item'>"
+				elif (( loop++ >= 10 )); then
+					out="<fmt cycle for '$item'>"
 					fmt=$errfmt
 					break
 				fi
@@ -385,9 +336,6 @@ _awesome_add_item() {
 	fi
 
 	lens[$pos]+=${#out}
-	if (( add_link )); then
-		out=$'\001\e]8;;'${out# }$'\e\\\002'
-	fi
 	if [[ $fmt ]]; then
 		out=$'\001\e['${fmt//'|'/$'m\e['}$'m\002'$out$'\001\e[m\002'
 	fi
@@ -425,11 +373,7 @@ _awesome_prompt() {
 
 	_awesome_fill_items 'left' 'right'
 
-	_dbg "* maxwidth before recalc = $maxwidth"
-	_dbg "    left = '${strs[left]}' (${lens[left]})"
-	_dbg "    right = '${strs[right]}' (${lens[right]})"
 	(( maxwidth -= lens[left] + !!lens[left] + !!lens[right] + lens[right] + 1 ))
-	_dbg "  maxwidth after recalc = $maxwidth"
 
 	_awesome_upd_pwd
 
@@ -471,10 +415,6 @@ _show_status() {
 		printf "\e[m\e[38;5;172m%s\e[m\n" "(returned $status)"
 	else
 		fmts[status]=@status:ok
-	fi
-	if [[ ${LINES@a} == *x* || ${COLUMNS@a} == *x* ]]; then
-		printf "\e[m\e[38;5;15m\e[48;5;196m%s\e[m\n" \
-			"\$LINES/\$COLUMNS found in environment!"
 	fi
 }
 

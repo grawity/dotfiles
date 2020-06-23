@@ -1,11 +1,10 @@
-# ~/.ssh/config: ssh_config(5)
 # vim: ft=sshconfig
 
-# note that the '#if' directives are not supported by any SSH client directly;
+# Note that the '#if' directives are not supported by any SSH client directly;
 # instead, they are processed by the ssh/generate script.
 
 #if OpenSSH && Version 6.3
-IgnoreUnknown CanonicalDomains,CanonicalizeHostname,GSSAPIKeyExchange,PubkeyAcceptedKeyTypes
+IgnoreUnknown AddKeysToAgent,CanonicalDomains,CanonicalizeHostname,PubkeyAcceptedKeyTypes
 #endif
 
 # work
@@ -13,21 +12,12 @@ IgnoreUnknown CanonicalDomains,CanonicalizeHostname,GSSAPIKeyExchange,PubkeyAcce
 Host cacti cacti.utenos-kolegija.lt
 	HostName uk-cacti.utenos-kolegija.lt
 
-#if ! Host radius
-Host pf-*.utenos-kolegija.lt
-	User root
-	ProxyJump radius
-
-Host uk-vpn.utenos-kolegija.lt
-	ProxyJump radius
-#endif
-
-Host *.utenos-kolegija.lt *.ukolegija.lt 2001:778:e27f:* 193.219.181.*
-	IdentityFile ~/.ssh/work/id_ukolegija
-	IdentityFile ~/.ssh/id_ed25519
-	IdentityFile ~/.ssh/id_global_2015-05-15
-	IdentityFile ~/.ssh/id_global_2011-11-01
+Host radius.utenos-kolegija.lt
 	ForwardAgent yes
+
+Host *.utenos-kolegija.lt *.ukolegija.lt 193.219.181.* !193.219.181.219 !193.219.181.229
+	IdentityFile ~/.ssh/work/id_ukolegija
+	AddKeysToAgent yes
 
 Host gw-b56-bypass
 	HostName 193.219.181.189
@@ -45,9 +35,6 @@ Host radius-bypass
 
 Host theos
 	HostName %h.kyriasis.com
-
-Host blizzard frost rain
-	HostName %h.nullroute.eu.org
 
 Host blizzard.nullroute.eu.org
 	User mantas
@@ -72,7 +59,6 @@ Host *.zt1
 	HostName %h.nullroute.eu.org
 
 Host *.home *.local 10.* 192.168.*
-	ForwardAgent yes
 	UserKnownHostsFile ~/.ssh/known_hosts.local
 
 # other hosts
@@ -96,10 +82,7 @@ Host ftp.ext.hpe.com
 	MACs -umac-*
 	PreferredAuthentications password
 
-Host *.oraclecloud.com
-	ControlPath ~/.ssh/S.%C.oraclecloud.com:%p
-
-Host ocid*.instance.oc*.*.*
+Host *.oraclecloud.com ocid*.instance.oc*.*.*
 	ControlPath ~/.ssh/S.%C.oraclecloud.com:%p
 
 Host sdf sdf.org
@@ -122,9 +105,7 @@ Host *
 	HashKnownHosts no
 	VerifyHostKeyDNS yes
 	GSSAPIAuthentication yes
-	GSSAPIKeyExchange yes
 	SendEnv LANG TZ
 	ControlPath ~/.ssh/S.%r@%h:%p
-	# speed up git-annex batch tasks
 	ControlMaster auto
-	ControlPersist 60s
+	ControlPersist 15s
