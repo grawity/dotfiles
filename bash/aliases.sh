@@ -43,7 +43,7 @@ alias fiemap='xfs_io -r -c "fiemap -v"'
 alias fff='fanficfare -f html'
 gerp() { egrep $grepopt -r -I -D skip --exclude-dir={.bzr,.git,.hg,.svn} -H -n "$@"; }
 gpgfp() { gpg --with-colons --fingerprint "$1" | awk -F: '/^fpr:/ {print $10}'; }
-alias gmpv='gnome-mpv'
+alias gmpv='celluloid'
 alias hd='hexdump -C'
 alias hex='xxd -p'
 alias unhex='xxd -p -r'
