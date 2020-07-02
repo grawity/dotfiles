@@ -151,6 +151,17 @@ virdf() { vim -c "setf n3" <(rapper -q -o turtle "$@"); }
 visexp() { (echo "; vim: ft=sexp"; echo "; file: $1"; sexp-conv < "$1") \
 	| vipe | sexp-conv -s canonical | sponge "$1"; }
 alias w3m='w3m -title'
+wgdebug() {
+	case $1 in
+	1|y|on) echo "module wireguard +p" > /sys/kernel/debug/dynamic_debug/control;;
+	0|n|off) echo "module wireguard -p" > /sys/kernel/debug/dynamic_debug/control;;
+	esac
+	case $(awk '$2 ~ /\[wireguard\]/ {print $3}' /sys/kernel/debug/dynamic_debug/control | sort -u) in
+	=p) echo "is enabled";;
+	=_) echo "is disabled";;
+	*) echo "mixed state";;
+	esac
+}
 wim() { local file=$(which "$1") && [[ $file ]] && editor "$file" "${@:2}"; }
 alias unpickle='python -m pickletools'
 alias unwine='printf "\e[?1l \e>"'
