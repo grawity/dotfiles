@@ -43,7 +43,7 @@ alias fiemap='xfs_io -r -c "fiemap -v"'
 alias fff='fanficfare -f html'
 gerp() { egrep $grepopt -r -I -D skip --exclude-dir={.bzr,.git,.hg,.svn} -H -n "$@"; }
 gpgfp() { gpg --with-colons --fingerprint "$1" | awk -F: '/^fpr:/ {print $10}'; }
-alias gmpv='gnome-mpv'
+alias gmpv='celluloid'
 alias hd='hexdump -C'
 alias hex='xxd -p'
 alias unhex='xxd -p -r'
@@ -95,6 +95,7 @@ alias mutagen='mid3v2'
 mvln() { mv "$1" "$2" && sym -v "$2" "$1"; }
 alias nmap='nmap --reason'
 alias nm-con='nmcli -f name,type,autoconnect,state,device con'
+alias nwget='wget --no-use-server-timestamps'
 alias pamcan='pacman'
 alias plink='plink -no-antispoof'
 alias py='python3'
@@ -150,6 +151,17 @@ virdf() { vim -c "setf n3" <(rapper -q -o turtle "$@"); }
 visexp() { (echo "; vim: ft=sexp"; echo "; file: $1"; sexp-conv < "$1") \
 	| vipe | sexp-conv -s canonical | sponge "$1"; }
 alias w3m='w3m -title'
+wgdebug() {
+	case $1 in
+	1|y|on) echo "module wireguard +p" > /sys/kernel/debug/dynamic_debug/control;;
+	0|n|off) echo "module wireguard -p" > /sys/kernel/debug/dynamic_debug/control;;
+	esac
+	case $(awk '$2 ~ /\[wireguard\]/ {print $3}' /sys/kernel/debug/dynamic_debug/control | sort -u) in
+	=p) echo "is enabled";;
+	=_) echo "is disabled";;
+	*) echo "mixed state";;
+	esac
+}
 wim() { local file=$(which "$1") && [[ $file ]] && editor "$file" "${@:2}"; }
 alias unpickle='python -m pickletools'
 alias unwine='printf "\e[?1l \e>"'
