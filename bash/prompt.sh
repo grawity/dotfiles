@@ -80,7 +80,7 @@ _awesome_upd_vcs() {
 		fi
 	fi
 
-	if [[ $git ]]; then
+	if [[ $git && -r $git/HEAD ]]; then
 		if [[ -f $git/rebase-merge/interactive ]]; then
 			br=$(<"$git/rebase-merge/head-name")
 			re='REBASE-i'
