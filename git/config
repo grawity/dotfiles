@@ -160,6 +160,10 @@
 	#default = upstream
 	default = current
 
+[pull]
+	# Allow `git pull` to default to merge, as before.
+	rebase = false
+
 [rebase]
 	autosquash = true
 
