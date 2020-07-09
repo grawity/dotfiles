@@ -2,17 +2,25 @@
 
 set nocompatible
 
-""" Appearance
-
-" Window title
+" Terminal features
 
 set title
 set titlelen=0
 set titlestring=%t%(\ %m%)%(\ (%{hostname()}\ %{expand(\"%:p:~:h\")})%)%(\ %a%)
 
 if &term =~ "^screen"
-	" deal with screen's inability to recognize \e]; as \e]0;
+	" Deal with Screen's inability to recognize \e]; as \e]0;
 	set t_ts=]2; t_fs=
+endif
+
+set mouse=a
+
+if &term =~ "^xterm"
+	" The default 'xterm' mode is limited to 223 columns, and Windows Terminal oddly has a much lower 93-col limit.
+	" 'sgr' mode works in PuTTY and WT, and has no such limit.
+	" Vim tries to autodetect sgr-capable terminals, but WT does not (yet) respond to \e[>c version query.
+	" Neovim always uses sgr and does not have ttymouse= option.
+	set ttymouse=sgr
 endif
 
 " Syntax highlighting
@@ -93,7 +101,6 @@ silent! set listchars=eol:¬,tab:→.,extends:»,precedes:«,trail:•
 
 silent! set number
 silent! set numberwidth=4
-silent! set mouse=a
 set scrolloff=3			" scroll context lines
 set laststatus=2		" always display status line
 set splitbelow splitright
