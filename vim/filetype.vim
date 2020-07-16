@@ -34,6 +34,7 @@ augroup filetypedetect
 	au BufNewFile,BufRead php.ini* setf dosini
 	au BufNewFile,BufRead /etc/dconf/db/* setf dosini
 	au BufNewFile,BufRead /etc/pacman.d/hooks/*.hook setf dosini
+	au BufNewFile,BufRead /etc/php/php-fpm.d/*.conf setf dosini
 	au BufNewFile,BufRead /usr/share/libalpm/hooks/*.hook setf dosini
 
 	au BufNewFile,BufRead *.gv setf dot
