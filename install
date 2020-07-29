@@ -66,12 +66,7 @@ check_owner() {
 	done
 }
 
-for dir in ~/lib/code ~/etc/code ~/code; do
-	if [ -d "$dir/bin" ]; then
-		export PATH="$dir/bin:$PATH"
-		break
-	fi
-done
+export PATH="$HOME/bin:$HOME/code/bin:$PATH"
 
 . lib.bash || exit
 
