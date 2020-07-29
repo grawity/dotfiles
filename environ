@@ -28,9 +28,7 @@ case $PATH in
 *) setpath PATH \
 	"$PREFIX/bin"				\
 	"$HOME/bin"				\
-	"$HOME/lib/code/bin"			\
 	"$HOME/code/bin"			\
-	"$HOME/lib/code/obj/host.$HOSTNAME"	\
 	"$HOME/code/obj/host.$HOSTNAME"		\
 	"$GOPATH/bin"				\
 	"$HOME/.cabal/bin"			\
@@ -38,7 +36,6 @@ case $PATH in
 	"/usr/local/sbin" 			\
 	"/usr/sbin"				\
 	"/sbin"					\
-	"$HOME/lib/code/bin/fallback"		\
 	"$HOME/code/bin/fallback"		;
 esac
 
