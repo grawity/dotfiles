@@ -162,11 +162,6 @@ if [ "$DISPLAY" ]; then
 		link gui/fontconfig ~/.config/fontconfig
 	fi
 
-	if have openbox; then
-		link gui/openbox/autostart ~/.config/openbox/autostart
-		link gui/openbox/rc.xml    ~/.config/openbox/rc.xml
-	fi
-
 	# Compatibility symlinks
 
 	[ -d ~/.thumbnails ] || sym -f ~/.cache/thumbnails   ~/.thumbnails
