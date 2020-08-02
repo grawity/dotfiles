@@ -293,6 +293,21 @@
 	# temporary 2018-04-10
 	insteadOf = git://git.code.sf.net/
 
+[url "https://github.com/archlinux/svntogit-packages"]
+	# added 2020-07-22
+	insteadOf = git://git.archlinux.org/svntogit/packages.git
+	insteadOf = https://git.archlinux.org/svntogit/packages.git
+
+[url "https://github.com/archlinux/svntogit-community"]
+	# added 2020-07-22
+	insteadOf = git://git.archlinux.org/svntogit/community.git
+	insteadOf = https://git.archlinux.org/svntogit/community.git
+
+[url "https://github.com/archlinux/"]
+	# added 2020-07-22
+	insteadOf = git://git.archlinux.org/
+	insteadOf = https://git.archlinux.org/
+
 # global annex config
 
 [url "radius:/vol5/"]

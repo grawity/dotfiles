@@ -19,3 +19,23 @@ fmts[name.root]='38;5;255|48;5;124'
 
 items[name:pfx]='('
 items[name:sfx]=')'
+
+# Display Kerberos ticket status
+
+parts[right]+=' <:ticket'
+fmts[ticket.valid]='0'
+fmts[ticket.expired]='@.orange0'
+_ticketstatus() {
+	if klist -5 -s; then
+		items[ticket]=''
+		items[ticket:pfx]=''
+		items[ticket:sfx]=''
+		fmts[ticket]=@ticket.valid
+	else
+		items[ticket]='no tickets'
+		items[ticket:pfx]='*'
+		items[ticket:sfx]='*'
+		fmts[ticket]=@ticket.expired
+	fi
+}
+PROMPT_COMMAND="${PROMPT_COMMAND:-:}; _ticketstatus"
