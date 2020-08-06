@@ -390,6 +390,9 @@ Already migrated to XDG in a release:
   - probably can be stored in wgetrc?
 
 ~/.XCompose – environment/hardcoded/other locations
+  (libxkbcommon)
+    - $XDG_CONFIG_HOME/XCompose as of xkbcommon-0.10.0-56-g17ad0df
+    - $XCOMPOSEFILE overrides (see the Compose(5) manual page)
   (libX11 aka xim)
     - $XCOMPOSEFILE overrides (see the Compose(5) manual page)
   (GTK aka gtk-im-context-simple)
