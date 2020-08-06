@@ -312,9 +312,12 @@ Miscellaneous
   - "-p <path>" option exists
 
 ~/.pki/nssdb/
+  (Mozilla nss)
   - $XDG_DATA_HOME/pki/nssdb/ is used as of 3.42 (commit 7f21d4f49),
     hardcoded in older versions
     (unless the program specifies a custom path, e.g. certutil -d <path>)
+  (Google Chrome)
+  - v84 still uses a nss fork in which the path is hardcoded.
 
 ~/.rnd – environment
   - $RANDFILE overrides directory
