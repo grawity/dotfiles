@@ -1,0 +1,30 @@
+% vim: ft=slang
+
+set username "grawity"
+set hostname "nullroute.eu.org"
+set realname "Mantas M."
+set signature ".signature"
+
+%server "newszilla6.xs4all.nl" ".newsrc"
+%nnrpaccess "newszilla6.xs4all.nl" "use" "pass"
+
+% nntp, spool
+%set server_object "nntp"
+% nntp, slrnpull
+%set post_object "nntp"
+
+%set spool_root "/var/spool/news"
+
+charset display utf8
+charset outgoing utf8
+
+set sorting_method 11
+set wrap_flags 7
+%set hide_verbatim_marks 0
+%set hide_signature 0
+%set hide_pgpsignature 0
+
+set mouse 1
+set display_cursor_bar 0
+
+setkey article toggle_collapse_threads "\\"
