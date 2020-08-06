@@ -4,7 +4,8 @@ A better list is at <https://wiki.archlinux.org/index.php/XDG_Base_Directory>.
 
 Please also read <.environ.notes> if you find this file useful.
 
--------------------------------------------------------------------------------
+===============================================================================
+XDG BASEDIR-COMPLIANT
 
 Already migrated to XDG in a release:
 
@@ -15,7 +16,7 @@ Already migrated to XDG in a release:
 ~/.gconf.path       <config>/gconf.path             3.2.6 (fc28caa7be86)
 ~/.gimp-2.8/        <config>/GIMP/2.10/             2.10
 ~/.gitconfig        <config>/git/config             1.7.12 (0d94427ef844)
-~/.gitignore        <config>/git/ignore [note]      1.7.12 (0d94427ef844)
+~/.gitignore        <config>/git/ignore             1.7.12 (0d94427ef844)
 ~/.gitk             <config>/git/gitk               1.9-rc1 (8f86339858c1)
 ~/.gnucash/         <config>/gnucash/               3.0
 ~/.hgrc             <config>/hg/hgrc                4.2 (354020079723)
@@ -32,18 +33,115 @@ Already migrated to XDG in a release:
 ~/.pki/nssdb/       <data>/pki/nssdb/               nss 3.42 (7f21d4f49)
 ~/.pulse/           <config>/pulse/                 3.0 (9ab510a69216)
 ~/.pulse-cookie     <config>/pulse/cookie           3.0, 6.0 (59a8618dcd91)
-~/.purple/          <config>/purple/                3.0.0
 ~/.putty/           <config>/putty/                 0.64 (9952b2d5bd5)
 ~/.quodlibet/       <config>/quodlibet/             3.10.0 (4e9545b2fa0eff6)
 ~/.tigrc            <config>/tig/config [note]      2.1.1 (1e6da9d)
-~/.tmux.conf        ~/.config/tmux/tmux.conf        3.1 (15d7e564dda)
+~/.tmux.conf        ~/.config/tmux/tmux.conf        3.1 (3.0a-152-g15d7e564)
+~/.VirtualBox/      <data>/VirtualBox/
 ~/.wireshark/       <config>/wireshark/             1.12
 
--------------------------------------------------------------------------------
+Migrated to XDG in devel:
 
-~/.ApacheDirectoryStudio/ – java-hack
+~/.purple/          <config>/purple/                3.0.0
 
-~/.aMule/ – hardcoded
+Notes:
+
+~/.tigrc
+  - Instead of a standalone tigrc, configuration can be embedded in the Git
+    config file via [tig ...] sections.
+
+===============================================================================
+ENVIRONMENT
+
+These paths can be overridden using an environment variable.
+- Items marked '(XDG)' are already compliant in the current version, and
+  included only for reference.
+- CLI options might be included if available in addition to environment.
+
+~/.atom/            $ATOM_HOME
+~/.crawl/           $CRAWL_DIR (must end with "/")
+~/.crawlrc          $CRAWL_RC, or move to $CRAWL_DIR/init.txt
+~/.cvspass          $CVS_PASSFILE
+~/.dvdcss/          $DVDCSS_CACHE
+~/.e16/             $ECONFDIR, -P, --econfdir, see /usr/share/doc/e16/e16.html
+~/.elinks/          $ELINKS_CONFDIR
+~/.gale/            $GALE_DIR
+~/.gemrc            $GEMRC (colon-separated list, acts as additional rc)
+~/.gnupg/           $GNUPGHOME, --home
+~/.gramps/          $GRAMPSHOME
+~/.gtkrc            $GTK_RC_FILES (colon-separated list)
+~/.gtkrc-2.0        $GTK2_RC_FILES (colon-separated list)
+~/.httpie/          $HTTPIE_CONFIG_DIR
+~/.ICEauthority     $ICEAUTHORITY
+~/.irbrc            $IRBRC
+~/.ldaprc           $LDAPCONF, $LDAP<opt>, see ldap.conf(5)
+~/.lesshst          $LESSHISTFILE
+~/.mtoolsrc         $MTOOLSRC (acts as additional rc)
+~/.mysql_history    $MYSQL_HISTFILE
+~/.pip/pip.conf     $PIP_CONFIG_FILE, $PIP_<opt>
+~/.pip/pip.log      $PIP_LOG_FILE, [global] log_file =
+~/.screenrc         $SCREENRC
+~/.sqlite_history   $SQLITE_HISTORY
+~/.tkabber          $TKABBER_HOME
+~/.VirtualBox/      (XDG) $VBOX_USER_HOME
+~/.weechat/         $WEECHAT_HOME, -d, --dir
+~/.wgetrc           $WGETRC
+
+Overridden indirectly via config:
+
+~/.pip/pip.log
+  - $PIP_LOG_FILE, or indirect via ~/.pip/pip.conf
+  - [global] "log_file = <path>" (no expansion)
+  - http://pip.readthedocs.org/en/latest/user_guide.html#environment-variables
+
+~/VirtualBox VMs/
+  - indirect via ~/.VirtualBox/
+  - `VBoxManage setproperty machinefolder <path>` or via GUI
+
+===============================================================================
+COMMAND LINE
+
+These support neither XDG Basedir nor custom environment variables.
+
+~/.claws-mail/      --alternate-config-dir
+~/.gdbinit          gdb -nh -x <path>
+~/.irssi/           --home=
+~/.pinerc           -p
+~/.stalonetrayrc    -c, --config
+~/.ttytterrc        -rc=
+~/.vidalia/         -datadir
+~/.xbindkeysrc      -f, --file
+~/.xbindkeysrc.scm  -fg, --file-guile
+~/.xchat2/          -d, --cfgdir=
+~/.xsel.log         -l, --logfile
+
+===============================================================================
+HARDCODED
+
+Sad.
+
+~/.aMule/
+~/.balsa/
+~/.bash_logout
+~/.bash_profile     use ~/.profile
+~/.dc++/
+~/.esd_auth         obsolete, uninstall the PulseAudio module
+~/.fossil
+~/.gens/            hardcoded in both Gens and Gens-gs
+~/.gnome2/          obsolete, safe to erase
+~/.gnome2_private/  obsolete, safe to erase
+~/.hatari/
+~/.pine-debug[0-9]
+~/.renpy/
+
+Expected to be there as API:
+
+~/.profile          sh, bash, various display managers expect it there
+~/.xprofile         various display managers (Xsession scripts) expect it there
+
+===============================================================================
+MISCELLANEOUS
+
 
 ~/.aspell.conf – environment
   - the 'per-conf' statement in /etc/aspell.conf or $ASPELL_CONF overrides
@@ -61,16 +159,6 @@ Already migrated to XDG in a release:
   - in theory, literal "<lang>" should do the right substitution, but doesn't
     (which means you're limited to one language if you choose to override!)
 
-~/.atom/ – environment
-  - $ATOM_HOME can be used
-
-~/.balsa/ – hardcoded
-
-~/.bash_logout – hardcoded
-
-~/.bash_profile – hardcoded
-  - use ~/.profile instead
-
 ~/.bashrc – hardcoded / command-line
   - you could use --init-file/--rcfile, but you'll generally need at least a
     wrapper script for that, since many programs invoke /bin/sh directly
@@ -78,21 +166,6 @@ Already migrated to XDG in a release:
 ~/.cabal/ – environment ++ configurable
   - $CABAL_CONFIG overrides path to ~/.cabal/config
   - various settings in $CABAL_CONFIG override other ~/.cabal/* paths
-
-~/.claws-mail/ – command line
-  - "--alternate-config-dir <dir>" overrides
-
-~/.crawl/ – environment
-  - $CRAWL_DIR (must end with '/') overrides
-
-~/.crawlrc – other locations, environment
-  - default path also has ${CRAWL_DIR-~/.crawl}/init.txt
-  - $CRAWL_RC overrides
-
-~/.cvspass – environment
-  - $CVS_PASSFILE overrides
-
-~/.dc++/ – hardcoded
 
 ~/.dbus/ – fixed by spec, but avoidable
   - ~/.dbus/session-bus/$MACHINE_ID-$DISPLAY is part of the DBus spec
@@ -103,14 +176,6 @@ Already migrated to XDG in a release:
 ~/.digrc – hardcoded ++ command line
   - as alternative, just specify the same options in command line
 
-~/.dvdcss/ – environment
-  - $DVDCSS_CACHE overrides
-
-~/.e16/ – environment, command line
-  - $ECONFDIR overrides default
-  - option "-P <dir>" or "--econfdir <dir>" overrides both
-  - docs: /usr/share/doc/e16/e16.html
-
 ~/.eclipse/ – give up
   - option "-Dosgi.configuration.area=@user.home/.config/etc/etc" overrides,
     but must be added to "$ECLIPSE_HOME/eclipse.ini" rather than command line
@@ -118,14 +183,6 @@ Already migrated to XDG in a release:
     your own copy of Eclipse, and I couldn't really get it to work anyway
   - (Arch's /usr/bin/eclipse has a hardcoded $ECLIPSE_HOME)
   - docs: <http://wiki.eclipse.org/Eclipse.ini>
-
-~/.elinks/ – environment
-  - $ELINKS_CONFDIR overrides
-
-~/.esd_auth – hardcoded
-  - ESD hardcodes the path; PulseAudio modules accept an auth-cookie= argument,
-    but it doesn't always work... (I just removed the relevant PA modules
-    entirely)
 
 ~/.exodusviewer/ – environment
   - $EXODUSVIEWER_USER_DIR overrides, but see ~/.secondlife/
@@ -145,44 +202,13 @@ Already migrated to XDG in a release:
   (general – other options)
     - most MTAs have a system-wide 'aliases' file that works the same way
 
-~/.fossil – hardcoded
-
-~/.gale/ – environment
-  - $GALE_DIR overrides
-  - I'll get around to making it XDG someday
-
-~/.gdbinit – command line
-  - "gdb -nh -x <path>"
-
-~/.gemrc – environment
-  - $GEMRC is additionally used (colon-separated list)
-    (search path: all of /etc/gemrc, ~/.gemrc, $GEMRC)
-
-~/.gens/ – hardcoded
-  (Gens – hardcoded)
-  (Gens-gs – hardcoded)
-
 ~/.git-credentials – partly-XDG as of 2.3.8? 2.4? (17c7f4d8e4); command line
   - $XDG_CONFIG_HOME/git/credentials is used *if exists*
   - "--file=<path>" option exists
 
-~/.gitignore – XDG as of 1.7.12 (0d94427ef844); configurable
-  - $XDG_CONFIG_HOME/git/ignore is used now
-  - (note that there was no default previously; ~/.gitignore was merely the
-    most commonly used place, due to proximity to ~/.gitconfig)
-
 ~/.gnome-commander/ – hardcoded/command line?
   - "--config-dir <dir>" option exists in source code, but doesn't work
   - the program is unmaintained anyway, uses obsolete GnomeVFS
-
-~/.gnome2/, ~/.gnome2_private/ – hardcoded but obsolete
-  - seriously, time to upgrade
-
-~/.gnupg/ – environment
-  - $GNUPGHOME overrides
-
-~/.gramps/ – environment
-  - $GRAMPSHOME overrides
 
 ~/.gstreamer-0.10/ – partial (0.10), XDG (1.0)
   - the registry can use $GST_REGISTRY (which has to be overridden to its
@@ -190,31 +216,10 @@ Already migrated to XDG in a release:
     possible to move, so don't bother at all
   - $XDG_CACHE_HOME/gstreamer-1.0/ is the new location, anyway
 
-~/.gtkrc – environment
-  - $GTK_RC_FILES overrides (colon-separated list of rc's)
-
-~/.gtkrc-2.0 – environment
-  - $GTK2_RC_FILES overrides (colon-separated list of rc's)
-
 ~/.gvimrc – other locations, environment
   - recent Vim versions look in ~/.vim/gvimrc by default
   - $GVIMINIT can have an Ex command that sources an additional rc; e.g.
     - GVIMINIT=":so ~/.vim/gvimrc"
-
-~/.hatari/ – hardcoded
-
-~/.httpie/ – environment
-  - $HTTPIE_CONFIG_DIR overrides
-
-~/.ICEauthority – environment
-  - $ICEAUTHORITY overrides
-    (e.g. ICEAUTHORITY="$XDG_RUNTIME_DIR/ICE-authority")
-
-~/.irbrc – environment
-  - $IRBRC overrides
-
-~/.irssi/ – command line
-  - "--home=<dir>" option exists
 
 ~/.java/ – java-hack
 
@@ -229,15 +234,6 @@ Already migrated to XDG in a release:
 ~/.kvirc4.rc – hardcoded, build-time?
   - when built with KDE support, uses native KDE location (probably somewhere
     deep inside ~/.kde4)
-
-~/.ldaprc – environment
-  - $LDAPCONF is additionally used
-    (the full search path is large and weird, see docs)
-  - $LDAP<opt> can directly override individual settings
-  - docs: ldap.conf(5)
-
-~/.lesshst – environment
-  - $LESSHISTFILE overrides
 
 ~/.local (Python user_base) – configurable/environment
   - $PYTHONUSERBASE overrides
@@ -257,12 +253,6 @@ Already migrated to XDG in a release:
   (nail, heirloom-mailx, s-nail – environment)
     - $MAILRC overrides default
     - $NAILRC overrides both
-
-~/.mtoolsrc – environment
-  - $MTOOLSRC is additionally used
-
-~/.mysql_history – environment
-  - $MYSQL_HISTFILE overrides
 
 ~/.netrc – fixed [varies]
   - many apps expect it there
@@ -295,36 +285,17 @@ Already migrated to XDG in a release:
   - $OPERA_PERSONALDIR overrides
   - however, 1 file remains (~/.opera/OperaAutoupdateChecker.sqlite)
 
-~/.pine-debug[0-9] – hardcoded
-
 ~/.pinerc – command line
   - apparently Windows gets $PINERC and $PINECONF, and Unix gets neither
   - "-p <path>" option exists
-
-~/.pip/pip.conf – environment
-  - $PIP_CONFIG_FILE overrides
-  - $PIP_<opt> can override individual settings
-
-~/.pip/pip.log – configurable/environment
-  - $PIP_LOG_FILE overrides
-  - [global] "log_file = <path>" in ~/.pip/pip.conf overrides (no expansion)
-  - docs: http://pip.readthedocs.org/en/latest/user_guide.html#environment-variables
 
 ~/.pki/nssdb/
   - $XDG_DATA_HOME/pki/nssdb/ is used as of 3.42 (commit 7f21d4f49),
     hardcoded in older versions
     (unless the program specifies a custom path, e.g. certutil -d <path>)
 
-~/.profile – hardcoded/fixed
-  - sh, bash, various display managers expect it there
-
-~/.renpy/ – hardcoded
-
 ~/.rnd – environment
   - $RANDFILE overrides directory
-
-~/.screenrc – environment
-  - $SCREENRC overrides
 
 ~/.secondlife/ – environment
   - $SECONDLIFE_USER_DIR overrides, but need to manually set new chatlog path
@@ -333,12 +304,6 @@ Already migrated to XDG in a release:
 
 ~/.sqldeveloper/ – hardcoded
   - launcher script ignores the java-hack
-
-~/.sqlite_history -- environment, previously hardcoded
-  - $SQLITE_HISTORY overrides
-
-~/.stalonetrayrc – command line
-  - "-c/--config <path>" overrides
 
 ~/.swt/ – java-hack
 
@@ -350,40 +315,12 @@ Already migrated to XDG in a release:
   - $TERMINFO overrides (system path not searched)
   - docs: terminfo(5)
 
-~/.tigrc -- XDG, other locations
-  - Instead of a standalone tigrc, configuration can be embedded in the Git
-    config file via [tig ...] sections.
-
-~/.tmux.conf -- XDGish, build-time
-  - As of 3.0a-152-g15d7e564, ~/.config/tmux/tmux.conf is used
-    ($XDG_CONFIG_HOME is not honored)
-
-~/.ttytterrc – command line
-  - "-rc=<path>" overrides
-
-~/.tkabber/ – environment
-  - $TKABBER_HOME overrides
-
-~/.VirtualBox/ – XDG as of 4.3, environment
-  - as of 4.3, "$XDG_CONFIG_HOME/VirtualBox" is used
-  - $VBOX_USER_HOME overrides
-  - see also ~/VirtualBox VMs/
-
-~/.vidalia/ – command line
-  - "-datadir <path>" option is the only method
-
 ~/.vimrc – other locations, environment
   - recent Vim versions look in ~/.vim/vimrc by default
   - $VIMINIT can have an Ex command that sources an additional rc:
     - VIMINIT=":so ~/.vim/vimrc"
 
 ~/.w3m/ – hardcoded
-
-~/.weechat/ – environment || command-line
-  - $WEECHAT_HOME or "-d <path>" or "--dir <path>" overrides
-
-~/.wgetrc – environment
-  - $WGETRC overrides
 
 ~/.wget-hsts – command line
   - "--hsts-file <path>" overrides
@@ -414,24 +351,8 @@ Already migrated to XDG in a release:
   - hardcoded in Xsession scripts of many DMs
   - however, ~/.xprofile and ~/.xinitrc can use a custom path
 
-~/.xbindkeysrc – command-line
-  - "-f <path>" or "--file <path>" overrides
-
-~/.xbindkeysrc.scm – command-line
-  - "-fg <path>" or "--file-guile <path>" overrides
-
-~/.xchat2/ – command-line
-  - "-d <path>" or "--cfgdir=<path>" overrides
-  - recommended to migrate to Hexchat instead
-
 ~/.xinitrc – command-line
   - "startx <path>" overrides
-
-~/.xprofile – hardcoded
-  - hardcoded in Xsession scripts of many DMs
-
-~/.xsel.log – command-line
-  - "-l /dev/null" or "--logfile /dev/null" overrides
 
 ~/dead.letter
   (s-nail – environment)
@@ -450,10 +371,6 @@ Already migrated to XDG in a release:
 
 ~/Ubiquiti-Networks/ – java-hack
 
-~/VirtualBox VMs/ – configurable
-  - can be changed by `VBoxManage setproperty machinefolder <path>` or via GUI
-  - see also ~/.VirtualBox/
-
 ~/.*_history (rlwrap) – environment
   - $RLWRAP_HOME specifies an alternative directory
     (e.g. RLWRAP_HOME="$XDG_CACHE_HOME/rlwrap/")
@@ -466,22 +383,6 @@ the home directory". I have a wrapper script that basically runs:
     java -Duser.home="$XDG_DATA_HOME/Java"
 
 Don't forget to symlink ~/.java into the redirect directory.
-
--------------------------------------------------------------------------------
-
-"XDG as of..." – newer versions already use XDG paths
-"configurable" – can change a config option somewhere (usually another dotfile)
-"environment" – can set an environment variable
-"partial environment" – environment variable, but needs extra work
-"java-hack" – hardcoded, but can be tricked using 'java -Duser.home'
-"other locations" – non-XDG but still has better options than ~/.dotfile
-  (e.g. single ~/.dotdir instead of multiple ~/.dotfiles)
-"command line" – must use a command line option
-"partial" – cannot be moved completely
-  (e.g. some paths honor environment, others are hardcoded)
-"hardcoded" – source code uses a fixed path
-"fixed" – many programs and/or specs require the dotfile
-  (
 
 -------------------------------------------------------------------------------
 
