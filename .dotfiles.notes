@@ -23,6 +23,8 @@ Already migrated to XDG in a release:
 ~/.gnucash/         <config>/gnucash/               3.0
 ~/.hgrc             <config>/hg/hgrc                4.2 (354020079723)
 ~/.keybase/         [various]/keybase/              0.6.0 (99531f058b3b57)
+~/.lftp/            <config>/lftp/
+~/.lftprc           <config>/lftp/rc
 ~/.makepkg.conf     <config>/pacman/makepkg.conf    4.2.0
 ~/.mpdconf          <config>/mpd/mpd.conf           0.18
 ~/.mpoprc           <config>/mpop/config            1.2.7 (c70f9da)
