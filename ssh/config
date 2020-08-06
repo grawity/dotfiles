@@ -79,9 +79,6 @@ Host ftp.ext.hpe.com
 	MACs -umac-*
 	PreferredAuthentications password
 
-Host *.oraclecloud.com ocid*.instance.oc*.*.*
-	ControlPath ~/.ssh/S.%C.oraclecloud.com:%p
-
 Host sdf sdf.org
 	HostName tty.sdf.org
 
