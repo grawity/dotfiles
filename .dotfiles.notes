@@ -39,6 +39,7 @@ Already migrated to XDG in a release:
 ~/.pulse-cookie     <config>/pulse/cookie           3.0, 6.0 (59a8618dcd91)
 ~/.putty/           <config>/putty/                 0.64 (9952b2d5bd5)
 ~/.quodlibet/       <config>/quodlibet/             3.10.0 (4e9545b2fa0eff6)
+~/.rclone.conf      <config>/rclone/rclone.conf
 ~/.tigrc            <config>/tig/config [note]      2.1.1 (1e6da9d)
 ~/.tmux.conf        ~/.config/tmux/tmux.conf        3.1 (3.0a-152-g15d7e564)
 ~/.VirtualBox/      <data>/VirtualBox/
