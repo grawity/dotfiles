@@ -241,9 +241,6 @@ fi
 case $OSTYPE in
 	linux-gnu*|cygwin)
 		lsopt="$lsopt --color=auto"
-		# fix unnecessary filename quoting
-		# (coreutils 8.25 commit 109b9220cead6e979d22d16327c4d9f8350431cc)
-		lsopt="$lsopt -N"
 		eval $(dircolors ~/lib/dotfiles/dircolors 2>/dev/null)
 		alias df='df -Th'
 		alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs -xafs'
