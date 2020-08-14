@@ -156,7 +156,7 @@ fi
 if [ "$DISPLAY" ]; then
 	cp -n gui/user-dirs.dirs ~/.config/user-dirs.dirs
 
-	link gui/XCompose ~/.XCompose
+	link XCompose ~/.XCompose
 
 	if [ ! -d ~/.config/fontconfig ]; then
 		link gui/fontconfig ~/.config/fontconfig
