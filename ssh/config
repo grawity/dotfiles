@@ -55,9 +55,6 @@ Host *.nullroute.eu.org
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
-Host *.zt1
-	HostName %h.nullroute.eu.org
-
 Host *.home *.local 10.* 192.168.*
 	UserKnownHostsFile ~/.ssh/known_hosts.local
 
@@ -81,9 +78,6 @@ Host ftp.ext.hpe.com
 	# its proposal, but hangs after MSG_NEWKEYS if it is selected.
 	MACs -umac-*
 	PreferredAuthentications password
-
-Host *.oraclecloud.com ocid*.instance.oc*.*.*
-	ControlPath ~/.ssh/S.%C.oraclecloud.com:%p
 
 Host sdf sdf.org
 	HostName tty.sdf.org

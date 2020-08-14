@@ -66,12 +66,7 @@ check_owner() {
 	done
 }
 
-for dir in ~/lib/code ~/etc/code ~/code; do
-	if [ -d "$dir/bin" ]; then
-		export PATH="$dir/bin:$PATH"
-		break
-	fi
-done
+export PATH="$HOME/bin:$HOME/code/bin:$PATH"
 
 . lib.bash || exit
 
@@ -138,15 +133,11 @@ fi
 
 # Install conditional configs
 
-
 if have makepkg; then
 	link pacman/makepkg.conf ~/.config/pacman/makepkg.conf
 fi
 
 if have mutt || have neomutt; then
-	if echo "39089071962b19a4786d5d8ba21dd1a66d1295e8  $HOME/.config/mutt/muttrc" | sha1sum --check --status 2>/dev/null; then
-		rm -f ~/.config/mutt/muttrc
-	fi
 	if [ ! -e ~/.config/mutt/muttrc ]; then
 		(umask 077;
 		 mkdir -p ~/.config/mutt;
@@ -169,11 +160,6 @@ if [ "$DISPLAY" ]; then
 
 	if [ ! -d ~/.config/fontconfig ]; then
 		link gui/fontconfig ~/.config/fontconfig
-	fi
-
-	if have openbox; then
-		link gui/openbox/autostart ~/.config/openbox/autostart
-		link gui/openbox/rc.xml    ~/.config/openbox/rc.xml
 	fi
 
 	# Compatibility symlinks

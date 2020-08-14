@@ -71,6 +71,9 @@
 [am]
 	messageid = true
 
+[annex]
+	sshcaching = true
+
 [color]
 	ui = auto
 	branch = auto
