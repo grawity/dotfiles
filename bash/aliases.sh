@@ -380,7 +380,7 @@ lspkcs12() {
 
 x509fp() {
 	local file=${1:-/dev/stdin}
-	openssl x509 -in "$file" -noout -fingerprint -sha1 | sed 's/.*=//' | tr A-F a-f
+	openssl x509 -in "$file" -noout -fingerprint -sha256 | sed 's/.*=//' | tr A-F a-f
 }
 
 x509subj() {
