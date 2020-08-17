@@ -3,56 +3,50 @@
 
 have() { type "$1" > /dev/null 2>&1; }
 
-[ "$1" ] || set -- openbox
+bg_color='#222222'
+bg_image=~/lib/dotfiles/gui/noise.png
+default_session='openbox'
 
 cd ~
 
-# ensure ssh-agent, session bus
-
+# Run ssh-agent
 if [ ! "$SSH_AUTH_SOCK" ] && have ssh-agent; then
 	exec ssh-agent ~/.xinitrc "$@" || exit
 fi
 
-if [ ! "$XDG_RUNTIME_DIR" ] || [ ! -S "$XDG_RUNTIME_DIR/bus" ]; then
-	# As of systemd v240 (2b2b7228bf), $DBUS_SESSION_BUS_ADDRESS is no longer set.
-	# (I expect they'll revert this as soon as someone informs them that not all
-	#  DBus clients are based on libdbus or glib2.)
-
-	if [ ! "$DBUS_SESSION_BUS_ADDRESS" ] && have dbus-run-session; then
-		exec dbus-run-session ~/.xinitrc "$@" || exit
+# Prepare D-Bus
+if [ "$DBUS_SESSION_BUS_ADDRESS" ]; then
+	if have dbus-update-activation-environment; then
+		dbus-update-activation-environment --systemd DISPLAY XAUTHORITY
 	fi
-
-	if [ ! "$DBUS_SESSION_BUS_ADDRESS" ] && have dbus-launch; then
+else
+	if have dbus-run-session; then
+		exec dbus-run-session ~/.xinitrc "$@" || exit
+	elif have dbus-launch; then
 		exec dbus-launch --exit-with-session ~/.xinitrc "$@" || exit
 	fi
 fi
 
-if have dbus-update-activation-environment; then
-	dbus-update-activation-environment --systemd DISPLAY XAUTHORITY
-fi
-
-# load global profile
-
+# Load common profile
 [ -f /etc/profile ]	&& . /etc/profile
 [ -f ~/.profile ]	&& . ~/.profile
 
-# initial appearance
-
-bg_color='#222222'
-bg_image=~/lib/dotfiles/gui/noise.png
-
+# Set background color
 if have xsetroot; then
 	xsetroot -solid "$bg_color" -cursor_name 'left_ptr'
 fi
+
+# Set background image
 if have hsetroot; then
-	hsetroot -solid "$bg_color" -tile "$bg_image"
+	hsetroot -solid "$bg_color" -tile "$bg_image" &
 fi
 
-# expand aliases in command line
-
+# Decide on the session command
+[ "$1" ] || set -- $default_session
 case $1 in
 	cinnamon)	set -- cinnamon-session;;
-	e)		set -- enlightenment_start -i-really-know-what-i-am-doing-and-accept-full-responsibility-for-it;;
+	e)		set -- enlightenment_start \
+			-i-really-know-what-i-am-doing-and-accept-full-responsibility-for-it;;
 	gnome)		set -- gnome-session;;
 	kde)		set -- startkde;;
 	mate)		set -- mate-session;;
@@ -60,8 +54,7 @@ case $1 in
 	xfce)		set -- xfce4-session;;
 esac
 
-# inform .xprofile about session type
-
+# Tell ~/.xprofile about the session type
 case $1 in
 	cinnamon-session)	DESKTOP_SESSION=cinnamon;;
 	gnome-session)		DESKTOP_SESSION=gnome;;
@@ -71,16 +64,13 @@ case $1 in
 	xfce4-session)		DESKTOP_SESSION=xfce;;
 	xterm)			DESKTOP_SESSION=xterm;;
 esac
-
 export DESKTOP_SESSION
 
-# load X11-specific profile
-
+# Load X-specific profile
 [ -f /etc/xprofile ]	&& . /etc/xprofile
 [ -f ~/.xprofile ]	&& . ~/.xprofile
-[ -f ~/.Xresources ]	&& xrdb -merge ~/.Xresources
-[ -f ~/.Xkbmap ]	&& setxkbmap $(cat ~/.Xkbmap)
+[ -f ~/.Xresources ]	&& xrdb -merge ~/.Xresources &
+[ -f ~/.Xkbmap ]	&& setxkbmap $(cat ~/.Xkbmap) &
 
-# run the session
-
+# Run the command
 exec "$@"
