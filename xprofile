@@ -1,12 +1,13 @@
 # vim: ft=sh
 # ~/.xprofile - X11-specific login script (after ~/.profile)
-# This is shared between startx "sessions" and display manager (GDM) sessions
+#
+# This is shared between startx "sessions" and display manager (GDM) sessions.
 
 if [ "$DESKTOP_SESSION" != gnome ]; then
 	case $HOSTNAME in
 		rain)
-			# 2019-01-06 / 5.4.7-arch1 / 1.15.0 - very slow with 0.25
 			touchpad="ETPS/2 Elantech Touchpad" accel="0.7";;
+			# 2019-01-06 / 5.4.7-arch1 / 1.15.0 - very slow with 0.25
 		frost)
 			touchpad="Synaptics s3203" accel="0.1";;
 		fujitsu)
