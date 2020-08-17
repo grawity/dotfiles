@@ -1,5 +1,6 @@
-# ~/.xprofile - X11-specific login script (after ~/.profile)
 # vim: ft=sh
+# ~/.xprofile - X11-specific login script (after ~/.profile)
+# This is shared between startx "sessions" and display manager (GDM) sessions
 
 if [ ! "$DESKTOP_SESSION" ]; then
 	case $(uname -s -m) in
@@ -46,12 +47,12 @@ if [ "$DESKTOP_SESSION" != gnome ]; then
 	fi
 fi
 
-if [ "$XDG_SESSION_TYPE" = x11 ]; then
-	systemctl --user import-environment DISPLAY XAUTHORITY
-	systemctl --user --no-block start graphical.target
-else
-	echo "not importing environment on console session"
-fi
+#if [ "$XDG_SESSION_TYPE" = x11 ]; then
+#	systemctl --user import-environment DISPLAY XAUTHORITY
+#	systemctl --user --no-block start graphical.target
+#else
+#	echo "not importing environment on console session"
+#fi
 
 if [ -e ~/.xprofile-$HOSTNAME ]; then
 	. ~/.xprofile-$HOSTNAME
