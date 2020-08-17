@@ -11,11 +11,6 @@ if [ ! "$DESKTOP_SESSION" ]; then
 	{ /usr/lib/notify-osd/notify-osd ||
 	  /usr/lib/notification-daemon-1.0/notification-daemon; } &
 
-	{ /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 ||
-	  /usr/lib/$DARCH/polkit-mate/polkit-mate-authentication-agent-1 ||
-	  /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 ||
-	  /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1; } &
-
 	#ibus-daemon --xim --single --daemonize &
 	# without --single it breaks modifier keys
 	# ayekat says --daemonize works better than &
