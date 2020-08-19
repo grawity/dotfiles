@@ -1,12 +1,5 @@
 # vim: ft=sh
 
-if [ -d "$XDG_RUNTIME_DIR" ]; then
-	if [ "$XDG_RUNTIME_DIR" != "$XDG_CACHE_HOME" ]; then
-		ln -nsf "/run/media/$USER" "$XDG_RUNTIME_DIR/media"
-		ln -nsf "$XDG_RUNTIME_DIR" "$HOME/.run"
-	fi
-fi
-
 if [ -e ~/.ecryptfs/Private.mnt ] && ! mountpoint -q ~/Private; then
 	if [ "$DISPLAY" ]; then
 		spawn ecryptfs-mount-x11

@@ -1,32 +1,13 @@
-# ~/.xprofile - X11-specific login script (after ~/.profile)
 # vim: ft=sh
-
-if [ ! "$DESKTOP_SESSION" ]; then
-	case $(uname -s -m) in
-		'Linux i686') DARCH='i386-linux-gnu';;
-		'Linux x86_64') DARCH='x86_64-linux-gnu';;
-	esac
-
-	{ /usr/lib/notify-osd/notify-osd ||
-	  /usr/lib/notification-daemon-1.0/notification-daemon; } &
-
-	{ /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 ||
-	  /usr/lib/$DARCH/polkit-mate/polkit-mate-authentication-agent-1 ||
-	  /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 ||
-	  /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1; } &
-
-	#ibus-daemon --xim --single --daemonize &
-	# without --single it breaks modifier keys
-	# ayekat says --daemonize works better than &
-
-	xbindkeys &
-fi
+# ~/.xprofile - X11-specific login script (after ~/.profile)
+#
+# This is shared between startx "sessions" and display manager (GDM) sessions.
 
 if [ "$DESKTOP_SESSION" != gnome ]; then
 	case $HOSTNAME in
 		rain)
-			# 2019-01-06 / 5.4.7-arch1 / 1.15.0 - very slow with 0.25
 			touchpad="ETPS/2 Elantech Touchpad" accel="0.7";;
+			# 2019-01-06 / 5.4.7-arch1 / 1.15.0 - very slow with 0.25
 		frost)
 			touchpad="Synaptics s3203" accel="0.1";;
 		fujitsu)
@@ -36,22 +17,21 @@ if [ "$DESKTOP_SESSION" != gnome ]; then
 	if [ "$touchpad" ]; then
 		# org.gnome.desktop.peripherals.touchpad tap-to-click true
 		xinput set-prop "$touchpad" "libinput Tapping Enabled" 1
+
 		# org.gnome.desktop.peripherals.touchpad natural-scroll true
 		xinput set-prop "$touchpad" "libinput Natural Scrolling Enabled" 1
-	fi
 
-	if [ "$touchpad" ] && [ "$accel" ]; then
 		# org.gnome.desktop.peripherals.touchpad speed
-		xinput set-prop "$touchpad" "libinput Accel Speed" "$accel"
+		xinput set-prop "$touchpad" "libinput Accel Speed" "${accel:-'1.0'}"
 	fi
 fi
 
-if [ "$XDG_SESSION_TYPE" = x11 ]; then
-	systemctl --user import-environment DISPLAY XAUTHORITY
-	systemctl --user --no-block start graphical.target
-else
-	echo "not importing environment on console session"
-fi
+#if [ "$XDG_SESSION_TYPE" = x11 ]; then
+#	systemctl --user import-environment DISPLAY XAUTHORITY
+#	systemctl --user --no-block start graphical.target
+#else
+#	echo "not importing environment on console session"
+#fi
 
 if [ -e ~/.xprofile-$HOSTNAME ]; then
 	. ~/.xprofile-$HOSTNAME

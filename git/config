@@ -228,6 +228,8 @@
 	title-blur = black blue
 	title-focus = white blue
 
+# Repository URL rewrites
+
 [url "https://git.nullroute.eu.org/"]
 	insteadOf = nullroute:
 	insteadOf = git://nullroute.eu.org/
@@ -239,9 +241,6 @@
 	pushInsteadOf = git://nullroute.eu.org/
 	pushInsteadOf = git://git.nullroute.eu.org/
 	pushInsteadOf = https://git.nullroute.eu.org/
-
-[url "grawity@star.nullroute.eu.org:lib/annexgit/"]
-	insteadOf = annex:Attic/
 
 [url "https://github.com/"]
 	insteadOf = git://github.com/
@@ -257,12 +256,6 @@
 [url "git@gitlab.gnome.org:"]
 	pushInsteadOf = https://gitlab.gnome.org/
 
-[url "https://git.gnome.org/browse/"]
-	insteadOf = git://git.gnome.org/
-
-[url "git@heroku.com:"]
-	insteadOf = https://git.heroku.com/
-
 [url "https://git.kernel.org/"]
 	insteadOf = git://git.kernel.org/
 
@@ -272,6 +265,14 @@
 [url "aur:"]
 	pushInsteadOf = aur:
 	pushInsteadOf = https://aur.archlinux.org/
+
+[url "grawity@star.nullroute.eu.org:lib/annexgit/"]
+	# used by git-annex
+	insteadOf = annex:Attic/
+
+[url "radius:/vol5/"]
+	# used by git-annex
+	insteadOf = vol5:
 
 # rewrites of obsolete repos (to be removed eventually)
 
@@ -306,15 +307,8 @@
 	insteadOf = git://git.archlinux.org/svntogit/community.git
 	insteadOf = https://git.archlinux.org/svntogit/community.git
 
-[url "https://github.com/archlinux/"]
-	# added 2020-07-22
-	insteadOf = git://git.archlinux.org/
-	insteadOf = https://git.archlinux.org/
-
 # global annex config
 
-[url "radius:/vol5/"]
-	insteadOf = vol5:
 
 # local config
 

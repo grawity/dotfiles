@@ -156,7 +156,7 @@ fi
 if [ "$DISPLAY" ]; then
 	cp -n gui/user-dirs.dirs ~/.config/user-dirs.dirs
 
-	link gui/XCompose ~/.XCompose
+	link XCompose ~/.XCompose
 
 	if [ ! -d ~/.config/fontconfig ]; then
 		link gui/fontconfig ~/.config/fontconfig
@@ -164,9 +164,9 @@ if [ "$DISPLAY" ]; then
 
 	# Compatibility symlinks
 
-	[ -d ~/.thumbnails ] || sym -f ~/.cache/thumbnails   ~/.thumbnails
-	[ -d ~/.fonts ]      || sym -f ~/.local/share/fonts  ~/.fonts
-	[ -d ~/.themes ]     || sym -f ~/.local/share/themes ~/.themes
+	#[ -d ~/.thumbnails ] || sym -f ~/.cache/thumbnails   ~/.thumbnails
+	#[ -d ~/.fonts ]      || sym -f ~/.local/share/fonts  ~/.fonts
+	#[ -d ~/.themes ]     || sym -f ~/.local/share/themes ~/.themes
 fi
 
 # Check frequent root-ownership accidents
