@@ -11,6 +11,7 @@ XDG Basedir-compliant
 
 Already migrated to XDG in a release:
 
+~/.curlrc           <config>/.curlrc                7.73 (curl-7_72_0-14-g4be1f8dc0)
 ~/.d-feet/          <config>/d-feet/                0.1.15 (7f6104bbc5ab)
 ~/.darcs/           [various]/darcs/                2.10
 ~/.freerdp/         <config>/freerdp/               1.1.0 (edf6e7258d0e)
@@ -60,13 +61,14 @@ Environment variable
 --------------------
 
 These paths can be overridden using an environment variable.
-- Items marked '(XDG)' are already compliant in the current version, and
+- Items marked '(xdg)' are already compliant in the current version, and
   included only for reference.
 - CLI options might be included if available in addition to environment.
 
 ~/.atom/            $ATOM_HOME
 ~/.crawl/           $CRAWL_DIR (must end with "/")
 ~/.crawlrc          $CRAWL_RC, or move to $CRAWL_DIR/init.txt
+~/.curlrc           (xdg) $CURL_HOME
 ~/.cvspass          $CVS_PASSFILE
 ~/.dvdcss/          $DVDCSS_CACHE
 ~/.e16/             $ECONFDIR, -P, --econfdir, see /usr/share/doc/e16/e16.html
@@ -89,7 +91,7 @@ These paths can be overridden using an environment variable.
 ~/.screenrc         $SCREENRC
 ~/.sqlite_history   $SQLITE_HISTORY
 ~/.tkabber          $TKABBER_HOME
-~/.VirtualBox/      (XDG) $VBOX_USER_HOME
+~/.VirtualBox/      (xdg) $VBOX_USER_HOME
 ~/.weechat/         $WEECHAT_HOME, -d, --dir
 ~/.wgetrc           $WGETRC
 
