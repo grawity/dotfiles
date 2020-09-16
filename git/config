@@ -270,7 +270,7 @@
 	# used by git-annex
 	insteadOf = annex:Attic/
 
-[url "radius:/vol5/"]
+[url "vol5:/vol5/"]
 	# used by git-annex
 	insteadOf = vol5:
 

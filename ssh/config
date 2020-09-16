@@ -14,12 +14,6 @@ Host cacti cacti.utenos-kolegija.lt
 
 Host radius.utenos-kolegija.lt
 	ForwardAgent yes
-#if Host rain || Host midnight
-	# 2020-09-16 grawity: Temporary hack for bypassing Telia throttling non-HTTPS
-	#                     connections. Later will create a separate 'Host vol5'
-	#                     section for this.
-	ProxyCommand proxytunnel -p wind.nullroute.eu.org:443 -E -d %h:%p
-#endif
 
 Host *.utenos-kolegija.lt *.ukolegija.lt 193.219.181.* !193.219.181.219 !193.219.181.229
 	IdentityFile ~/.ssh/work/id_ukolegija
@@ -95,6 +89,17 @@ Host ubnt
 	GlobalKnownHostsFile /dev/null
 	StrictHostKeyChecking no
 	ControlPersist no
+
+Host vol5
+	# 'vol5:' alias used by git-annex
+	HostName radius.utenos-kolegija.lt
+	HostKeyAlias radius.utenos-kolegija.lt
+	User grawity
+	ControlPath ~/.ssh/S.%r@%n:%p
+#if Host rain || Host midnight
+	# 2020-09-16: Bypass Telia LTE throttling non-HTTPS connections to 15 Mbps.
+	ProxyCommand proxytunnel -p wind.nullroute.eu.org:443 -E -d %h:%p
+#endif
 
 # global options
 
