@@ -1,9 +1,69 @@
 # vim: ft=sshconfig
+# NOTE: The '#if' directives are processed by the 'ssh/generate' script
 
-# NOTE: The '#if' directives are not supported by any SSH client directly.
-#       Instead they are processed by the ssh/generate script.
+# -- Own hosts --
 
-# work
+Host blizzard blizzard.nullroute.eu.org
+	User mantas
+
+#if Host star || Host ember || Host wind
+# 2020-04-04: IV<->LITNET have an IPv4-only peering with ~900 Mbps throughput,
+#             whereas IPv6 takes a longer path at ~220 Mbps only.
+Host ember ember.nullroute.eu.org
+	AddressFamily inet
+Host wind wind.nullroute.eu.org
+	AddressFamily inet
+Host star star.nullroute.eu.org
+	AddressFamily inet
+#endif
+
+Host vol5 vol5.nullroute.eu.org
+	HostName radius.utenos-kolegija.lt
+	HostKeyAlias radius.utenos-kolegija.lt
+	User grawity
+	ControlPath ~/.ssh/S.%r@%n:%p
+#if Host rain || Host midnight
+	# 2020-09-16: Bypass Telia LTE throttling non-HTTPS connections to 15 Mbps.
+	ProxyCommand proxytunnel -p wind.nullroute.eu.org:443 -E -d %h:%p
+#elif Host star
+	# 2020-04-04: IPv4 has a direct peering with better throughput, IPv6 does not
+	AddressFamily inet
+#endif
+
+Host *.nullroute.eu.org
+	GSSAPIDelegateCredentials yes
+	ForwardAgent yes
+
+# -- Other hosts --
+
+Host eisner
+	HostName %h.encompasserve.org
+	User mikulenas
+
+Host sdf sdf.org
+	HostName tty.sdf.org
+
+Host theos
+	HostName %h.kyriasis.com
+
+# -- Services --
+
+Host aur
+	HostName aur.archlinux.org
+	User aur
+
+Host ftp.ext.hpe.com
+	Port 2222
+	# 2019-03-21: Server includes umac-64@openssh.com at the end of
+	# its proposal, but hangs after MSG_NEWKEYS if it is selected.
+	MACs -umac-*
+	PreferredAuthentications password
+
+Host github.com
+	ControlMaster auto
+	ControlPersist 5m
+
+# -- Work --
 
 Host cacti cacti.utenos-kolegija.lt
 	HostName uk-cacti.utenos-kolegija.lt
@@ -27,56 +87,7 @@ Host radius-bypass
 	HostName 193.219.181.253
 	ProxyJump gw-b56-bypass
 
-# domain-wide settings
-
-Host theos
-	HostName %h.kyriasis.com
-
-Host blizzard.nullroute.eu.org
-	User mantas
-
-#if Host star || Host ember || Host wind
-# 2020-04-04: Hack to improve star->{ember,wind} throughput
-#             (which is ~900 Mbps over IPv4, but only ~220 Mbps
-#             over IPv6 due to lack of peering between ISPs)
-Host ember ember.nullroute.eu.org
-	AddressFamily inet
-Host wind wind.nullroute.eu.org
-	AddressFamily inet
-Host star star.nullroute.eu.org
-	AddressFamily inet
-#endif
-
-Host *.nullroute.eu.org
-	GSSAPIDelegateCredentials yes
-	ForwardAgent yes
-
-Host *.home *.local 10.* 192.168.*
-	UserKnownHostsFile ~/.ssh/known_hosts.local
-
-# other hosts
-
-Host aur
-	HostName aur.archlinux.org
-	User aur
-
-Host eisner
-	HostName eisner.encompasserve.org
-	User mikulenas
-
-Host github.com
-	ControlMaster auto
-	ControlPersist 5m
-
-Host ftp.ext.hpe.com
-	Port 2222
-	# 2019-03-21: Server includes umac-64@openssh.com at the end of
-	# its proposal, but hangs after MSG_NEWKEYS if it is selected.
-	MACs -umac-*
-	PreferredAuthentications password
-
-Host sdf sdf.org
-	HostName tty.sdf.org
+# -- Global settings --
 
 Host ubnt
 	HostName 192.168.1.20
@@ -85,23 +96,6 @@ Host ubnt
 	GlobalKnownHostsFile /dev/null
 	StrictHostKeyChecking no
 	ControlPersist no
-
-Host vol5
-	# 'vol5:' alias used by git-annex
-	HostName radius.utenos-kolegija.lt
-	HostKeyAlias radius.utenos-kolegija.lt
-	User grawity
-	ControlPath ~/.ssh/S.%r@%n:%p
-#if Host rain || Host midnight
-	# 2020-09-16: Bypass Telia LTE throttling non-HTTPS connections to 15 Mbps.
-	ProxyCommand proxytunnel -p wind.nullroute.eu.org:443 -E -d %h:%p
-#endif
-#if Host star
-	# 2020-04-04: Improve throughput -- IPv4 has a direct peering, IPv6 does not
-	AddressFamily inet
-#endif
-
-# global options
 
 Host *
 	CanonicalizeHostname yes
