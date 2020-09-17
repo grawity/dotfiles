@@ -3,13 +3,6 @@
 # NOTE: The '#if' directives are not supported by any SSH client directly.
 #       Instead they are processed by the ssh/generate script.
 
-# new in v6.3: IgnoreUnknown
-# new in v6.5: CanonicalDomains,CanonicalizeHostname
-# new in v7.0: PubkeyAcceptedKeyTypes
-# new in v7.2: AddKeysToAgent
-# new in v7.3: ProxyJump
-IgnoreUnknown AddKeysToAgent,CanonicalDomains,CanonicalizeHostname,ProxyJump,PubkeyAcceptedKeyTypes
-
 # work
 
 Host cacti cacti.utenos-kolegija.lt
