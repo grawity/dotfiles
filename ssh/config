@@ -78,6 +78,10 @@ Host *.utenos-kolegija.lt *.ukolegija.lt 193.219.181.* !193.219.181.219 !193.219
 Host gw-b56-bypass
 	HostName 193.219.181.189
 	HostkeyAlias gw-b56.utenos-kolegija.lt
+#if ! Host star
+	# Allowed from star only
+	ProxyJump star
+#endif
 
 Host gw-m7-bypass
 	HostName 193.219.181.206
