@@ -7,7 +7,7 @@ Host blizzard blizzard.nullroute.eu.org
 	User mantas
 
 #if Host rain || Host midnight
-Host ember ember.nullroute.eu.org
+Host ember.nullroute.eu.org
 	# 2020-09-16: Bypass Telia LTE throttling non-HTTPS connections to 15 Mbps.
 	ProxyCommand proxytunnel -p wind.nullroute.eu.org:443 -E -d %h:%p
 #endif
