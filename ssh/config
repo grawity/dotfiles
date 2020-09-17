@@ -1,5 +1,5 @@
 # vim: ft=sshconfig
-# NOTE: The '#if' directives are processed by the 'ssh/generate' script
+# NOTE: The '#if' directives are processed by the 'ssh/generate' script, not OpenSSH.
 
 # -- Own hosts --
 
@@ -17,8 +17,10 @@ Host ember.nullroute.eu.org
 #             whereas IPv6 takes a longer path at ~220 Mbps only.
 Host ember.nullroute.eu.org
 	AddressFamily inet
+
 Host wind.nullroute.eu.org
 	AddressFamily inet
+
 Host star.nullroute.eu.org
 	AddressFamily inet
 #endif
