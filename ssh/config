@@ -3,9 +3,7 @@
 # NOTE: The '#if' directives are not supported by any SSH client directly.
 #       Instead they are processed by the ssh/generate script.
 
-#if OpenSSH && Version 6.3
 IgnoreUnknown AddKeysToAgent,CanonicalDomains,CanonicalizeHostname,PubkeyAcceptedKeyTypes
-#endif
 
 # work
 
