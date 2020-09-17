@@ -87,10 +87,6 @@ Host radius-console
 	HostName 10.34.1.14
 	User cons
 
-Host radius-bypass
-	HostName 193.219.181.253
-	ProxyJump gw-b56-bypass
-
 # -- Global settings --
 
 Host ubnt
