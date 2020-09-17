@@ -22,6 +22,3 @@ MPD_HOST="$(cat "$XDG_CONFIG_HOME/mpd/password")@$XDG_RUNTIME_DIR/mpd/socket"
 PERL_CPANM_OPT="$PERL_CPANM_OPT --mirror http://ftp.litnet.lt/pub/CPAN/"
 TAR_OPTIONS="--xattrs"
 TR_AUTH="$(cat "$XDG_CONFIG_HOME/transmission/password")"
-
-# For Battle.net
-#WINEDLLOVERRIDES="api-ms-win-crt-private-l1-1-0=n;ucrtbase=n"
