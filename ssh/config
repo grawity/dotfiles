@@ -3,7 +3,7 @@
 
 # -- Own hosts --
 
-Host blizzard blizzard.nullroute.eu.org
+Host blizzard.nullroute.eu.org
 	User mantas
 
 #if Host rain || Host midnight
@@ -15,11 +15,11 @@ Host ember.nullroute.eu.org
 #if Host star || Host ember || Host wind
 # 2020-04-04: IV<->LITNET have an IPv4-only peering with ~900 Mbps throughput,
 #             whereas IPv6 takes a longer path at ~220 Mbps only.
-Host ember ember.nullroute.eu.org
+Host ember.nullroute.eu.org
 	AddressFamily inet
-Host wind wind.nullroute.eu.org
+Host wind.nullroute.eu.org
 	AddressFamily inet
-Host star star.nullroute.eu.org
+Host star.nullroute.eu.org
 	AddressFamily inet
 #endif
 
