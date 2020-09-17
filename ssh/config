@@ -83,9 +83,9 @@ Host gw-b56-bypass
 	ProxyJump star
 #endif
 
-Host gw-m7-bypass
-	HostName 193.219.181.206
-	ProxyJump gw-b56-bypass
+Host radius-console
+	HostName 10.34.1.14
+	User cons
 
 Host radius-bypass
 	HostName 193.219.181.253
