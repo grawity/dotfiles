@@ -62,6 +62,7 @@ let g:zenburn_disable_bold_CursorBars=1
 let g:zenburn_high_Contrast=1
 let g:zenburn_old_Visual=1
 let g:zenburn_italic_Comment=1
+let g:zenburn_subdued_LineNr=1
 
 if has("gui_running")
 	" configured in gvimrc
