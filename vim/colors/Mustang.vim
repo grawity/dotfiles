@@ -14,7 +14,10 @@ let colors_name = "mustang"
 
 " Vim >= 7.0 specific colors
 if version >= 700
-  hi CursorLine guibg=#2d2d2d ctermbg=236
+  " 2020-09-28 grawity: Added 'cterm=none' to undo Vim's new default, which is
+  " to underline the CursorLine and CursorLineNr.
+  hi CursorLine guibg=#2d2d2d ctermbg=236 cterm=none
+  hi CursorLineNr cterm=none
   hi CursorColumn guibg=#2d2d2d ctermbg=236
   hi MatchParen guifg=#d0ffc0 guibg=#2f2f2f gui=bold ctermfg=157 ctermbg=237 cterm=bold
   hi Pmenu 		guifg=#ffffff guibg=#444444 ctermfg=255 ctermbg=238
