@@ -360,7 +360,7 @@ else
     hi Conceal       guifg=#8f8f8f guibg=#484848           ctermfg=246 ctermbg=238
     hi ColorColumn   guibg=#484848                         ctermbg=238
     hi CursorLine    guibg=#434443                         ctermbg=238 cterm=none
-    hi CursorLineNr  guifg=#d2d39b guibg=#262626           ctermfg=230 ctermbg=235
+    hi CursorLineNr  guifg=#d2d39b guibg=#262626           ctermfg=230 ctermbg=235 cterm=none
     if exists("g:zenburn_unified_CursorColumn") && g:zenburn_unified_CursorColumn
         hi CursorColumn  guibg=#434343                     ctermbg=238 cterm=none
     else
