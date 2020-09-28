@@ -58,6 +58,7 @@ let g:lucius_style="light"
 "let g:lucius_style="dark"
 let g:molokai_original=1
 "let g:Powerline_symbols="fancy"
+let g:zenburn_disable_bold_CursorBars=1
 let g:zenburn_high_Contrast=1
 let g:zenburn_old_Visual=1
 let g:zenburn_italic_Comment=1
