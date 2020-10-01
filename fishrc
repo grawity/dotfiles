@@ -1,0 +1,16 @@
+# ~/.config/fish/config.fish
+# vim: ft=fish
+
+# Make `cd` follow symlinks
+# https://github.com/fish-shell/fish-shell/issues/3350
+# https://github.com/fish-shell/fish-shell/issues/6191
+functions --copy cd _fish_cd
+function cd
+	if test (count $argv) -eq 0
+		_fish_cd
+	else if test "$argv" = "-"
+		_fish_cd $argv
+	else
+		_fish_cd (realpath $argv)
+	end
+end
