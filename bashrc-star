@@ -16,3 +16,8 @@ items[name:pfx]='*'
 #items[name:pfx]=$'✨\uFE0E'
 items[name:pfx]='[✨'
 items[name:sfx]=']'
+
+fmts[pwd]='@.gray1'
+fmts[pwd:tail]='@pwd'
+
+fmts[vcs]='@.orange0'
