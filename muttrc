@@ -259,5 +259,3 @@ unset pgp_auto_decode
 set pgp_use_gpg_agent
 set pgp_self_encrypt
 set smime_self_encrypt
-
-source "~/lib/dotfiles/mail/muttrc.sh|"
