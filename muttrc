@@ -261,5 +261,3 @@ set pgp_self_encrypt
 set smime_self_encrypt
 
 source "~/lib/dotfiles/mail/muttrc.sh|"
-
-#set ssl_starttls=no
