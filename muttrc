@@ -39,10 +39,6 @@ set delete
 # so it must be called only after the authentication-related options and hooks
 # have been set.
 
-# Note: If folder-hook patterns start with ^ or @, they will be treated as
-# shortcut expansions and not as regexes. Put the regex in parens to avoid
-# this. (See also section 6.2 "Mailbox Matching in Hooks".)
-
 account-hook "^imaps?://imap\.ietf\.org/$" \
 	'set imap_user="anonymous" imap_pass="anonymous"'
 
@@ -51,6 +47,10 @@ account-hook "^imaps?://mail\.nullroute\.eu\.org/" \
 
 account-hook "^imaps?://imap\.gmail\.com/" \
 	'set imap_user="grawity@gmail.com" imap_authenticators="OAUTHBEARER" imap_oauth_refresh_command="gmail-oauth"'
+
+# Note: If folder-hook patterns start with ^ or @, they will be treated as
+# shortcut expansions and not as regexes. Put the regex in parens to avoid
+# this. (See also section 6.2 "Mailbox Matching in Hooks".)
 
 folder-hook "(^imaps?://mail\.nullroute\.eu\.org/$)" \
 	'mailboxes =INBOX'
