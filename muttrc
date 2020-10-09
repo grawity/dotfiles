@@ -61,11 +61,16 @@ set timeout=20
 set imap_headers="X-BOGOSITY X-PRIORITY AUTHENTICATION-RESULTS"
 set imap_authenticators="GSSAPI:GS2-KRB5:PLAIN"
 set imap_idle
-#set imap_check_subscribed
-#unset imap_servernoise
 
 # http://dev.mutt.org/trac/ticket/3242 – bug with . → /
 set imap_delim_chars="/"
+
+# Fetch subscribed folders and add them to 'mailboxes'. (Necessary for sidebar,
+# which only lists those folders which are in 'mailboxes'.)
+set imap_check_subscribed
+
+# When browsing folders, only list subscribed folders by default.
+set imap_list_subscribed
 
 folder-hook . 'unset spoolfile'
 
