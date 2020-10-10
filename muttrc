@@ -73,10 +73,11 @@ set imap_check_subscribed
 set imap_list_subscribed
 
 # Use CONDSTORE (RFC 7162) for the initial message list
-set imap_condstore
+# 2020-10-10: Commented out as it's not yet available in Debian's ancient neomutt
+#set imap_condstore
 
 # Use QRESYNC (RFC 7162) for the initial message list
-set imap_qresync
+#set imap_qresync
 
 folder-hook . 'unset spoolfile'
 
