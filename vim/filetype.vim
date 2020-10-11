@@ -16,16 +16,16 @@ augroup filetypedetect
 	au BufNewFile,BufRead ~/.local/share/applications/*	setf desktop
 	au BufNewFile,BufRead ~/.config/*mimeapps.list		setf desktop
 
-	au BufNewFile,BufRead /etc/systemd/network/*		setf desktop
-	au BufNewFile,BufRead /etc/systemd/system/*		setf desktop
-	au BufNewFile,BufRead /etc/systemd/user/*		setf desktop
-	au BufNewFile,BufRead /lib/systemd/system/*		setf desktop
-	au BufNewFile,BufRead /lib/systemd/user/*		setf desktop
-	au BufNewFile,BufRead /run/systemd/system/*		setf desktop
-	au BufNewFile,BufRead /run/systemd/user/*		setf desktop
-	au BufNewFile,BufRead /usr/lib/systemd/system/*		setf desktop
-	au BufNewFile,BufRead /usr/lib/systemd/user/*		setf desktop
-	au BufNewFile,BufRead ~/.config/systemd/user/*		setf desktop
+	au BufNewFile,BufRead /etc/systemd/network/*		setf systemd
+	au BufNewFile,BufRead /etc/systemd/system/*		setf systemd
+	au BufNewFile,BufRead /etc/systemd/user/*		setf systemd
+	au BufNewFile,BufRead /lib/systemd/system/*		setf systemd
+	au BufNewFile,BufRead /lib/systemd/user/*		setf systemd
+	au BufNewFile,BufRead /run/systemd/system/*		setf systemd
+	au BufNewFile,BufRead /run/systemd/user/*		setf systemd
+	au BufNewFile,BufRead /usr/lib/systemd/system/*		setf systemd
+	au BufNewFile,BufRead /usr/lib/systemd/user/*		setf systemd
+	au BufNewFile,BufRead ~/.config/systemd/user/*		setf systemd
 
 	" INI-style
 	au BufNewFile,BufRead *.inf setf dosini
