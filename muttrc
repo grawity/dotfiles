@@ -155,6 +155,10 @@ set menu_scroll
 # 'set xterm_set_titles' is neomutt-specific
 set xterm_set_titles
 
+# Disable sleep(1) after certain messages, most importantly
+# after the "SSL/TLS connection using TLSv1" message on startup.
+set sleep_time=0
+
 set quote_regexp="^([ \t]*[|>:}#])+"	# default
 set quote_regexp="^[|>#]+|^ U>"
 #set quote_regexp="^[|>#](( [|>#])*|([|>#])*)"
