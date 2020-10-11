@@ -155,6 +155,9 @@ set menu_scroll
 # 'set xterm_set_titles' is neomutt-specific
 set xterm_set_titles
 
+# Enable this locally
+#set sidebar_visible
+
 # Disable sleep(1) after certain messages, most importantly
 # after the "SSL/TLS connection using TLSv1" message on startup.
 set sleep_time=0
@@ -245,6 +248,16 @@ bind pager \c? exit			# Backspace
 
 bind pager <Esc>n noop
 bind pager <Esc>p check-traditional-pgp
+
+# Sidebar
+bind index,pager <A-Up> sidebar-prev
+bind index,pager <A-Down> sidebar-next
+bind index,pager <A-Left> sidebar-toggle-visible
+bind index,pager <A-Right> sidebar-open
+#macro index,pager <A-Up> "<sidebar-prev><sidebar-open>"
+#macro index,pager <A-Down> "<sidebar-next><sidebar-open>"
+bind index,pager <A-Prev> sidebar-page-up
+bind index,pager <A-Next> sidebar-page-down
 
 # <Home> and <End> in some weird-ass terminals, perhaps.
 #bind index <Esc>[1~ first-entry
