@@ -70,6 +70,18 @@ export PATH="$HOME/bin:$HOME/code/bin:$PATH"
 
 . lib.bash || exit
 
+update=false
+foreign=false
+
+if [ "$1" = "-u" ]; then
+	update=true
+fi
+
+# TODO: In update mode, only adjust existing links, do not create new ones.
+if $update; then
+	exit 0
+fi
+
 if [ -t 0 ]; then
 	VERBOSE=1
 fi
