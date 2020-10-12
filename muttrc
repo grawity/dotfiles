@@ -73,10 +73,11 @@ set imap_check_subscribed
 set imap_list_subscribed
 
 # Use CONDSTORE (RFC 7162) for the initial message list
-set imap_condstore
+# 2020-10-10: Commented out as it's not yet available in Debian's ancient neomutt
+#set imap_condstore
 
 # Use QRESYNC (RFC 7162) for the initial message list
-set imap_qresync
+#set imap_qresync
 
 folder-hook . 'unset spoolfile'
 
@@ -153,6 +154,13 @@ set menu_context=10
 set menu_scroll
 # 'set xterm_set_titles' is neomutt-specific
 set xterm_set_titles
+
+# Enable this locally
+#set sidebar_visible
+
+# Disable sleep(1) after certain messages, most importantly
+# after the "SSL/TLS connection using TLSv1" message on startup.
+set sleep_time=0
 
 set quote_regexp="^([ \t]*[|>:}#])+"	# default
 set quote_regexp="^[|>#]+|^ U>"
@@ -240,6 +248,16 @@ bind pager \c? exit			# Backspace
 
 bind pager <Esc>n noop
 bind pager <Esc>p check-traditional-pgp
+
+# Sidebar
+bind index,pager <A-Up> sidebar-prev
+bind index,pager <A-Down> sidebar-next
+bind index,pager <A-Left> sidebar-toggle-visible
+bind index,pager <A-Right> sidebar-open
+#macro index,pager <A-Up> "<sidebar-prev><sidebar-open>"
+#macro index,pager <A-Down> "<sidebar-next><sidebar-open>"
+bind index,pager <A-Prev> sidebar-page-up
+bind index,pager <A-Next> sidebar-page-down
 
 # <Home> and <End> in some weird-ass terminals, perhaps.
 #bind index <Esc>[1~ first-entry
