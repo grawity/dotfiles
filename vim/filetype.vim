@@ -88,6 +88,9 @@ augroup filetypedetect
 	au BufNewFile,BufRead /etc/rc.conf setf sh
 	au BufNewFile,BufRead /tmp/bash-fc-* setl ft=sh
 	au BufNewFile,BufRead policy-rc.d setl ft=sh
+
+	" Syncthing ignore
+	au BufNewFile,BufRead .stignore setf stignore
 	
 	" tmux
 	au BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
