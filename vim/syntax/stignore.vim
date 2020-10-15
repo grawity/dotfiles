@@ -4,6 +4,8 @@ if exists("b:current_syntax")
 	finish
 endif
 
+setl commentstring=//\ %s
+
 syn match stignoreComment "^//.*"
 syn match stignoreNotComment "^#.*"
 syn match stignoreInclude "^#include"
