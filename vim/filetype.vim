@@ -26,6 +26,7 @@ augroup filetypedetect
 	au BufNewFile,BufRead /usr/lib/systemd/system/*		setf systemd
 	au BufNewFile,BufRead /usr/lib/systemd/user/*		setf systemd
 	au BufNewFile,BufRead ~/.config/systemd/user/*		setf systemd
+	au BufNewFile,BufRead *.nspawn				setf systemd
 
 	" INI-style
 	au BufNewFile,BufRead *.inf setf dosini
