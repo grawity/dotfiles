@@ -45,7 +45,7 @@ radius.utenos-kolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPs8crTxHOftrr1yvd
 #uk-linux1.utenos-kolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIreB55sMxnHNjZuNC7XSTPO9iOLW0xGpHXOMVztAfgH
 #uk-moodle.utenos-kolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDJcm9JqnvCP+vMnv7qSfHJMpoVJjbWYj5dMNO2iuKyR
 uk-radius.utenos-kolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPs8crTxHOftrr1yvdey31J5Izeo3Z/f4tXvEW1Ty+Tj
-uk-stud1.utenos-kolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDB7ZyE7bQmyRplg0F+9xveeOq5C3HvQXCnfcRUvKxr2
+#uk-stud1.utenos-kolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDB7ZyE7bQmyRplg0F+9xveeOq5C3HvQXCnfcRUvKxr2
 #uk-unifi.utenos-kolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEsxjjqIYbXKFqUdydrJuKk4Y7Lk+vGtALaYiicnCzLC
 #uk-vpn.utenos-kolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAk8WO3UTTANoJQh0+mwzGHbKYzjdKRFn4hPRIFWJT/3
 #uk-web0.utenos-kolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFvsVePQHlSWjzIpDXn2Q1o0rkJn+2ifz8SWCRmSPNGr
