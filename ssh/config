@@ -110,3 +110,5 @@ Host *
 	ControlPath ~/.ssh/S.%r@%h:%p
 	ControlMaster auto
 	ControlPersist 15s
+	# Test before 8.5
+	HostKeyAlgorithms -ssh-rsa
