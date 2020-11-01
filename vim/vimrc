@@ -4,6 +4,13 @@ set nocompatible
 
 " Terminal features
 
+if has("nvim")
+	" Neovim 0.2.1: disable cursor styling using DEC sequences,
+	" as it is not properly reset on exit. (Note that this must
+	" go before 'set title')
+	set guicursor=
+endif
+
 set title
 set titlelen=0
 set titlestring=%t%(\ %m%)%(\ (%{hostname()}\ %{expand(\"%:p:~:h\")})%)%(\ %a%)
@@ -77,12 +84,6 @@ elseif &t_Co >= 256
 else
 	" fallback for obsolete terminals
 	silent! color slate
-endif
-
-if has("nvim")
-	" Neovim 0.2.1: disable cursor styling using DEC sequences,
-	" as it is not properly reset on exit
-	silent! set guicursor=
 endif
 
 " UI elements
