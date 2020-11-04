@@ -4,7 +4,9 @@
 
 routed6='2a06:e881:108:36::9'
 
-. ~/.dotfiles/bashrc-rain
+dir=${BASH_SOURCE[0]%/*}
+. $dir/bashrc-rain
+unset dir
 
 fxdb() { (nssdb="$HOME/.mozilla/firefox/9y9rjsca.default"; "$@"); }
 thdb() { (nssdb="$HOME/.thunderbird/jms00rh7.default"; "$@"); }

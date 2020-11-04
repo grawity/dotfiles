@@ -2,7 +2,9 @@
 
 [[ $- != *i* ]] && return
 
-. ~/lib/dotfiles/bashrc-rain
+dir=${BASH_SOURCE[0]%/*}
+. $dir/bashrc-rain
+unset dir
 
 ## Aliases
 
