@@ -41,7 +41,7 @@ fc-file() { fc-query -f "%{file}: %{family} (%{fontversion}, %{fontformat})\n" "
 alias fanficfare='fanficfare -f html'
 alias fiemap='xfs_io -r -c "fiemap -v"'
 alias fff='fanficfare -f html'
-gerp() { egrep $grepopt -r -I -D skip --exclude-dir={.bzr,.git,.hg,.svn} -H -n "$@"; }
+gerp() { egrep $grepopt -r -I -D skip --exclude-dir={.bzr,.git,.hg,.svn,_undo} -H -n "$@"; }
 gpgfp() { gpg --with-colons --fingerprint "$1" | awk -F: '/^fpr:/ {print $10}'; }
 alias gmpv='celluloid'
 alias hd='hexdump -C'
