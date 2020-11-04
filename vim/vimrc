@@ -334,6 +334,12 @@ if has("autocmd")
 	endif
 endif
 
+" Override Arch's ftdetect/PKGBUILD.vim. (This doesn't work in after/ftdetect
+" nor anywhere else, so it has to be put here.)
+augroup filetypedetect
+	au! BufNewFile,BufRead PKGBUILD
+augroup END
+
 """ Plugins
 
 func! JoinPara()
