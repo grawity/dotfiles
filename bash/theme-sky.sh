@@ -8,3 +8,5 @@ fmts[name:pfx]="38;5;103"
 fmts[pwd]="38;5;218"
 fmts[pwd:tail]="@pwd"
 fmts[vcs]="38;5;216"
+
+fullpwd="h"
