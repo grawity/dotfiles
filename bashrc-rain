@@ -10,14 +10,10 @@ unset dir
 
 ## Aliases
 
-alias clock='tty-clock -c'
 alias eof='IGNOREEOF=3'
-alias eris='ssh wolke -t tmux attach -t eris'
-alias fumount='fusermount -u'
+alias eris='ssh -t land sudo -u emiya tmux attach'
 alias gdm='sudo systemctl start gdm'
 alias ip='ip -c'
-alias journalctl='journalctl --no-hostname'
-alias powerdown='udisksctl poweroff -b'
 alias RM='/bin/rm -I'
 alias sensors='sensors -A'
 alias unrm='trash --restore'
@@ -95,6 +91,28 @@ sudo:() {
 	fi
 }
 
+:pp() {
+	local var=$1 k=; local -n ref=$1
+	echo "$var=("
+	for k in ${!ref[@]}; do
+		echo "  [$k]=${ref[$k]@Q}"
+	done
+	echo ")"
+}
+
+## Smartcard hackery
+
+nssdb="sql:$HOME/.pki/nssdb"
+fxdb() { (nssdb="$HOME/.mozilla/firefox/ov6jazas.default"; "$@"); }
+thdb() { (nssdb="$HOME/.thunderbird/1xrzgg5b.default"; "$@"); }
+
+cu() { do: certutil -d "$nssdb" "$@"; }
+mu() { do: modutil  -dbdir "$nssdb" "$@"; }
+pu() { do: pk12util -d "$nssdb" "$@"; }
+st() { do: signtool -d "$nssdb" "$@"; }
+
+## Network hackery
+
 tzsp() {
 	tshark -f "udp port 37008" -i "${1:-wlan0}" "${@:2}"
 }
@@ -126,32 +144,3 @@ vnet() {
 	esac
 	sudo: systemctl $arg vm-network.target
 }
-
-:pp() {
-	local var=$1 k=; local -n ref=$1
-	echo "$var=("
-	for k in ${!ref[@]}; do
-		echo "  [$k]=${ref[$k]@Q}"
-	done
-	echo ")"
-}
-
-nssdb="sql:$HOME/.pki/nssdb"
-fxdb() { (nssdb="$HOME/.mozilla/firefox/ov6jazas.default"; "$@"); }
-thdb() { (nssdb="$HOME/.thunderbird/1xrzgg5b.default"; "$@"); }
-
-cu() { do: certutil -d "$nssdb" "$@"; }
-mu() { do: modutil  -dbdir "$nssdb" "$@"; }
-pu() { do: pk12util -d "$nssdb" "$@"; }
-st() { do: signtool -d "$nssdb" "$@"; }
-
-_update_cwd() {
-	# after `git mkbare`
-	local r=$?
-	if [[ ! -d "$PWD" ]] && [[ -d "$PWD.git" ]]; then
-		echo "* changing directory to $PWD.git"
-		cd "$PWD.git"
-	fi
-	return $r
-}
-PROMPT_COMMAND="_update_cwd; $PROMPT_COMMAND"

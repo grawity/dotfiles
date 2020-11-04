@@ -6,10 +6,6 @@ dir=${BASH_SOURCE[0]%/*}
 . $dir/bashrc-rain
 unset dir
 
-## Aliases
-
-unalias journalctl
-
 ## Smartcard hackery
 
 fxdb() { (nssdb="$HOME/.mozilla/firefox/r0fd79nc.default"; "$@"); }
