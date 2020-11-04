@@ -127,32 +127,6 @@ vnet() {
 	sudo: systemctl $arg vm-network.target
 }
 
-youtube-dl() {
-	local cmd=()
-	cmd+=(
-		systemd-inhibit
-		--who "youtube-dl"
-		--what "sleep"
-		--why "Downloading a video"
-	)
-	cmd+=(
-		gnome-inhibit -A
-		--who "youtube-dl"
-		--what "suspend"
-		--why "Downloading a video"
-	)
-	cmd+=(
-		youtube-dl
-		--add-metadata
-		--console-title
-		--continue
-		--format "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio/best"
-		--no-playlist
-		"$@"
-	)
-	"${cmd[@]}"
-}
-
 :pp() {
 	local var=$1 k=; local -n ref=$1
 	echo "$var=("
