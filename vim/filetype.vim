@@ -81,9 +81,6 @@ augroup filetypedetect
 	" PHP
 	au BufNewFile,BufRead *.phps setf php
 
-	" Arch PKGBUILD
-	au BufNewFile,BufRead PKGBUILD* setf sh
-
 	" Shell
 	au BufNewFile,BufRead ~/.environ,~/.environ-* setf sh
 	au BufNewFile,BufRead /etc/rc.conf setf sh
@@ -92,7 +89,7 @@ augroup filetypedetect
 
 	" Syncthing ignore
 	au BufNewFile,BufRead .stignore setf stignore
-	
+
 	" tmux
 	au BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
 
