@@ -1,5 +1,7 @@
 " ~/.vimrc - |vimrc| - Vim configuration
 
+execute pathogen#infect()
+
 set nocompatible
 
 " Terminal features
@@ -334,19 +336,17 @@ if has("autocmd")
 	endif
 endif
 
-" Override Arch's ftdetect/PKGBUILD.vim. (This doesn't work in after/ftdetect
-" nor anywhere else, so it has to be put here.)
-augroup filetypedetect
-	au! BufNewFile,BufRead PKGBUILD
-augroup END
-
 """ Plugins
 
 func! JoinPara()
 	:g/^\S/ .,/^$/-1 join
 endfunc
 
-execute pathogen#infect()
-
 filetype plugin on
 filetype indent off
+
+augroup filetypedetect
+	" Override Arch's ftdetect/PKGBUILD.vim. (This must be run after
+	" pathogen, which re-invokes filetype detection a second time.)
+	au! BufNewFile,BufRead PKGBUILD
+augroup END
