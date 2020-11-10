@@ -17,3 +17,5 @@ fmts[name.root]='38;5;255|48;5;124'
 
 items[name:pfx]='('
 items[name:sfx]=')'
+
+fullpwd='h'
