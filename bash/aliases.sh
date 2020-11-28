@@ -42,6 +42,11 @@ alias fanficfare='fanficfare -f html'
 alias fiemap='xfs_io -r -c "fiemap -v"'
 alias fff='fanficfare -f html'
 gerp() { egrep $grepopt -r -I -D skip --exclude-dir={.bzr,.git,.hg,.svn,_undo} -H -n "$@"; }
+getownip() {
+	curl -s http://whatismyip.akamai.com
+	#dig +short whoami.akamai.net. A @ns1-1.akamaitech.net.
+	#dig +short myip.opendns.com. A @resolver1.opendns.com.
+}
 gpgfp() { gpg --with-colons --fingerprint "$1" | awk -F: '/^fpr:/ {print $10}'; }
 alias gmpv='celluloid'
 alias hd='hexdump -C'
