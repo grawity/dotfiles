@@ -73,6 +73,9 @@
 
 [annex]
 	sshcaching = true
+	# 1 re-adjusts when the command exits,
+	# x>1 re-adjusts after every (x-1) files were processed
+	adjustedBranchRefresh = 1
 
 [color]
 	ui = auto
