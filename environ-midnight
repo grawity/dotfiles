@@ -5,3 +5,5 @@ WINEDLLOVERRIDES="mscoree,mshtml="
 
 # 2019-03-09: Use /dev/tpm0 for IBM TSS tools
 TPM_INTERFACE_TYPE="dev"
+
+# vim: ft=sh
