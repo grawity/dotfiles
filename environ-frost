@@ -1,5 +1,5 @@
-# vim: ft=sh
-
 BORG_REPO="/vol4/Backup/Homes/$HOSTNAME.borg"
 
 VDPAU_DRIVER="va_gl"
+
+# vim: ft=sh

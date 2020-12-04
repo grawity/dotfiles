@@ -1,24 +1,15 @@
-# vim: ft=sh
-
-# paths
+VDPAU_DRIVER="va_gl"
 
 PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
-
-# libdefaults
 
 EDITOR="nvim"
 VISUAL="$EDITOR"
 
-GTK_IM_MODULE="ibus"
-QT_IM_MODULE="ibus"
-XMODIFIERS="@im=ibus"
-
 QT_QPA_PLATFORM_THEME="kde"
 
-# appdefaults
-
-GEMRC="$XDG_CONFIG_HOME/gemrc"
 MPD_HOST="$(cat "$XDG_CONFIG_HOME/mpd/password")@$XDG_RUNTIME_DIR/mpd/socket"
 PERL_CPANM_OPT="$PERL_CPANM_OPT --mirror http://ftp.litnet.lt/pub/CPAN/"
 TAR_OPTIONS="--xattrs"
 TR_AUTH="$(cat "$XDG_CONFIG_HOME/transmission/password")"
+
+# vim: ft=sh
