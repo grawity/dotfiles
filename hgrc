@@ -13,13 +13,24 @@ git = True
 [extensions]
 convert =
 gpg =
+histedit =
 mq =
 pager =
 purge =
 rebase =
+shelve =
+
+#[commands]
+#push.require-revs = true
+
+#[paths]
+#default:pushrev = .
 
 [ui]
 username = $NAME <$EMAIL>
+#tweakdefaults = true
+#mergemarkers = detailed
+#merge = :merge3
 
 [web]
 cacerts = /etc/ssl/certs/ca-certificates.crt
