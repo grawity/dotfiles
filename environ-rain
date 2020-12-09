@@ -1,11 +1,19 @@
+# Disable annoying attempts at "GNOME integration" in KDE (Qt5) apps
+if [ -e /usr/lib/qt/plugins/platformthemes/KDEPlasmaPlatformTheme.so ]; then
+	# Use the module from 'plasma-integration' if possible
+	QT_QPA_PLATFORMTHEME="kde"
+else
+	# Qt5ct can force the use of Breeze theme but some parts remain
+	# missing, e.g. Dolphin's disk-space bar is ugly
+	QT_QPA_PLATFORMTHEME="qt5ct"
+fi
+
 VDPAU_DRIVER="va_gl"
 
 PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
 
 EDITOR="nvim"
 VISUAL="$EDITOR"
-
-QT_QPA_PLATFORM_THEME="kde"
 
 MPD_HOST="$(cat "$XDG_CONFIG_HOME/mpd/password")@$XDG_RUNTIME_DIR/mpd/socket"
 PERL_CPANM_OPT="$PERL_CPANM_OPT --mirror http://ftp.litnet.lt/pub/CPAN/"
