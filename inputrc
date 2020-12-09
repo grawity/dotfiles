@@ -1,10 +1,19 @@
-# ~/.inputrc
+# ~/.inputrc -- readline(3)
 
 $include /etc/inputrc
 
 set bell-style none
+
+# Bracketed paste is available in rl 8.0 but somewhat clumsy to use.
+# Enabled by default in rl 8.1, where it works much better (with "faces").
 set enable-bracketed-paste on
-# don't modify history
+
+# Still want to be able to paste multi-line commands into Python REPL.
+$if Python
+set enable-bracketed-paste off
+$endif
+
+# Don't modify history in-place, but remember as a new command
 set revert-all-at-newline on
 
 # Tab completion
