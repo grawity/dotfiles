@@ -350,3 +350,10 @@ augroup filetypedetect
 	" pathogen, which re-invokes filetype detection a second time.)
 	au! BufNewFile,BufRead PKGBUILD
 augroup END
+
+if hostname() == "rain"
+	" Speed up neovim startup (~0.3 s) by not loading Python scripting.
+	let g:loaded_python_provider = 0
+	let g:loaded_python3_provider = 0
+	let g:loaded_pythonx_provider = 0
+endif
