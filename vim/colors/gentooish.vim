@@ -115,7 +115,9 @@ else
     hi TabLineSel     term=bold cterm=bold
     hi TabLineFill    term=reverse ctermfg=234 ctermbg=252
     hi CursorColumn   term=reverse ctermbg=235
-    hi CursorLine     term=underline ctermbg=235
+    " 2020-12-13 grawity: Added cterm=none to disable underlining in color
+    " terminals.
+    hi CursorLine     term=underline cterm=none ctermbg=235
     hi Cursor         ctermfg=16 ctermbg=120
     hi lCursor        ctermfg=234 ctermbg=252
     hi Normal         ctermfg=252 ctermbg=234
