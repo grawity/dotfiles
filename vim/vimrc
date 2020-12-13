@@ -96,7 +96,6 @@ set showcmd
 
 set linebreak			" soft word-wrap
 set display+=lastline		" show partial line if it doesn't fit
-set display+=truncate		" like lastline but still show '@@@' once
 "set showbreak=↵\ 		" prefix wrapped lines
 set display+=uhex		" show unprintable chars as <hex>
 silent! set listchars=eol:¬,tab:→.,extends:»,precedes:«,trail:•
