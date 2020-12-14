@@ -19,19 +19,6 @@ Host star.nullroute.eu.org
 	AddressFamily inet
 #endif
 
-Host vol5 vol5.nullroute.eu.org
-	HostName radius.utenos-kolegija.lt
-	HostKeyAlias radius.utenos-kolegija.lt
-	User grawity
-	ControlPath ~/.ssh/S.%r@%n:%p
-#if Host rain || Host midnight
-	# 2020-09-16: Bypass Telia LTE throttling non-HTTPS connections to 15 Mbps.
-	ProxyCommand proxytunnel -p wind.nullroute.eu.org:443 -E -d %h:%p
-#elif Host star
-	# 2020-04-04: IPv4 has a direct peering with better throughput, IPv6 does not
-	AddressFamily inet
-#endif
-
 Host *.nullroute.eu.org
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes

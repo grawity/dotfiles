@@ -275,7 +275,7 @@
 	# used by git-annex
 	insteadOf = annex:Attic/
 
-[url "vol5:/vol5/"]
+[url "vm-vol5:/vol5/"]
 	# used by git-annex
 	insteadOf = vol5:
 
