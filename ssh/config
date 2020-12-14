@@ -19,7 +19,7 @@ Host star.nullroute.eu.org
 	AddressFamily inet
 #endif
 
-Host *.nullroute.eu.org
+Host *.nullroute.eu.org *.nullroute.lt
 	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
