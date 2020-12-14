@@ -20,6 +20,7 @@ Host star.nullroute.eu.org
 #endif
 
 Host *.nullroute.eu.org
+	GSSAPIAuthentication yes
 	GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
@@ -92,7 +93,6 @@ Host *
 	Protocol 2
 	HashKnownHosts no
 	VerifyHostKeyDNS yes
-	GSSAPIAuthentication yes
 	SendEnv LANG TZ
 	ControlPath ~/.ssh/S.%r@%h:%p
 	ControlMaster auto
