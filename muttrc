@@ -259,6 +259,14 @@ bind index,pager <A-Right> sidebar-open
 bind index,pager <A-Prev> sidebar-page-up
 bind index,pager <A-Next> sidebar-page-down
 
+# Sidebar, for Windows Terminal which doesn't do Alt+Arrows
+bind index,pager <C-Up> sidebar-prev
+bind index,pager <C-Down> sidebar-next
+bind index,pager <C-Left> sidebar-toggle-visible
+bind index,pager <C-Right> sidebar-open
+bind index,pager <C-Prev> sidebar-page-up
+bind index,pager <C-Next> sidebar-page-down
+
 # <Home> and <End> in some weird-ass terminals, perhaps.
 #bind index <Esc>[1~ first-entry
 #bind index <Esc>[4~ last-entry
