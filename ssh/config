@@ -87,6 +87,12 @@ Host ubnt
 	StrictHostKeyChecking no
 	ControlPersist no
 
+# Enable GSSAPI for single-label names, but not for FQDNs
+Match canonical host *.*
+	GSSAPIAuthentication no
+Match canonical host *
+	GSSAPIAuthentication yes
+
 Host *
 	CanonicalizeHostname yes
 	CanonicalDomains nullroute.eu.org nullroute.lt utenos-kolegija.lt ukolegija.lt
