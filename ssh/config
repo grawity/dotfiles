@@ -58,9 +58,6 @@ Host github.com
 Host cacti cacti.utenos-kolegija.lt
 	HostName uk-cacti.utenos-kolegija.lt
 
-Host radius.utenos-kolegija.lt
-	ForwardAgent yes
-
 Host *.utenos-kolegija.lt *.ukolegija.lt
 	IdentityFile ~/.ssh/work/id_ukolegija
 	AddKeysToAgent yes
