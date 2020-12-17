@@ -6,15 +6,15 @@
 Host blizzard.nullroute.eu.org
 	User mantas
 
-#if Host star || Host ember || Host wind
 # 2020-04-04: IV<->LITNET have an IPv4-only peering with ~900 Mbps throughput,
 #             whereas IPv6 takes a longer path at ~220 Mbps only.
+#if Host star
 Host ember.nullroute.eu.org
 	AddressFamily inet
-
 Host wind.nullroute.eu.org
 	AddressFamily inet
-
+#endif
+#if Host ember || Host wind
 Host star.nullroute.eu.org
 	AddressFamily inet
 #endif
