@@ -26,6 +26,10 @@ Host *.nullroute.eu.org *.nullroute.lt
 
 # -- Other hosts --
 
+Host aur
+	HostName aur.archlinux.org
+	User aur
+
 Host eisner
 	HostName %h.encompasserve.org
 	User mikulenas
@@ -35,23 +39,6 @@ Host sdf sdf.org
 
 Host theos
 	HostName %h.kyriasis.com
-
-# -- Services --
-
-Host aur
-	HostName aur.archlinux.org
-	User aur
-
-Host ftp.ext.hpe.com
-	Port 2222
-	# 2019-03-21: Server includes umac-64@openssh.com at the end of
-	# its proposal, but hangs after MSG_NEWKEYS if it is selected.
-	MACs -umac-*
-	PreferredAuthentications password
-
-Host github.com
-	ControlMaster auto
-	ControlPersist 5m
 
 # -- Work --
 
