@@ -59,7 +59,7 @@ Host cacti cacti.utenos-kolegija.lt
 	HostName uk-cacti.utenos-kolegija.lt
 
 Host *.utenos-kolegija.lt *.ukolegija.lt
-	IdentityFile ~/.ssh/work/id_ukolegija
+	IdentityFile ~/.ssh/id_ukolegija
 	AddKeysToAgent yes
 
 Host gw-b56-bypass
