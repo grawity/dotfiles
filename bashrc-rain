@@ -134,13 +134,3 @@ ukvpn() {
 		esac
 	done
 }
-
-vnet() {
-	local arg=${1:-show}
-	case $arg in
-		up) arg="start";;
-		down) arg="stop";;
-		show) arg="list-dependencies";;
-	esac
-	sudo: systemctl $arg vm-network.target
-}
