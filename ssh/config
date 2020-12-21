@@ -77,6 +77,12 @@ Match canonical host *.*
 Match canonical host *
 	GSSAPIAuthentication yes
 
+#if Host rain || Host midnight
+# Deal with Telia CGNAT timeouts
+Host *
+	ServerAliveInterval 10s
+#endif
+
 Host *
 	CanonicalizeHostname yes
 	CanonicalDomains nullroute.eu.org nullroute.lt utenos-kolegija.lt ukolegija.lt
