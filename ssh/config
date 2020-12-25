@@ -21,7 +21,7 @@ Host star.nullroute.eu.org
 
 Host *.nullroute.eu.org *.nullroute.lt
 	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials yes
+	#GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 # -- Other hosts --
