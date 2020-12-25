@@ -16,11 +16,9 @@
 	br = branch
 	bra = branch -vv
 	ci = commit
-	ci-m = commit -m
 	clone-svnsync = svn clone --use-svnsync-props
 	co = checkout
 	di = diff
-	emerge = merge --edit --no-ff
 	export = "!touch \"$(git rev-parse --git-dir)/git-daemon-export-ok\""
 	fa = fetch --all
 	follow = log --oneline --follow --stat --summary --
@@ -32,8 +30,7 @@
 	lg = log --oneline --decorate
 	lgs = log --format=\"%C(yellow)%h%C(reset)%C(cyan)% GK%C(reset) %s\"
 	logs = log --show-signature
-	lost = "!git fsck | awk '/dangling commit/ {print $3 \"^!\"}' | xargs git log"
-	ls = ls-files
+	lost = "!git fsck | awk '/dangling commit/ {print $3 \"^!\"}' | xargs -r git log"
 	lsf = ls-files
 	lsr = "!_() { [ \"$1\" ] || set -- HEAD; git ls-tree -r \"$@\"; }; _"
 	mend = commit --amend --reuse-message HEAD
@@ -44,8 +41,6 @@
 	re = rebase
 	rec = rebase --continue
 	refs = for-each-ref
-	repack-to-alternate = repack -dal
-	repack-to-local = repack -da
 	sg = diff --cached
 	st = status
 	staged = diff --cached
@@ -60,7 +55,6 @@
 	unexport = "!rm -v \"$(git rev-parse --git-dir)/git-daemon-export-ok\""
 	wdiff = diff --word-diff
 	wshow = show --word-diff
-	ic = commit
 	tig = !tig
 
 [advice]
