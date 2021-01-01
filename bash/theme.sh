@@ -14,6 +14,7 @@ unset fullpwd
 parts[left]=":name:pfx (root)(:user.root):user (!root)(:user.self):user :host :name:sfx"
 parts[mid]=":pwd:head :pwd:tail"
 parts[right]=":vcs"
+parts[prompt]=":prompt _"
 
 items[host]="${HOSTNAME%%.*}"
 items[name:pfx]=''
@@ -23,6 +24,7 @@ items[user:sfx]='@'
 items[user.root]=y
 items[user.self]=
 
+fmts=()
 fmts[host:pfx]=@name:pfx
 fmts[host]=@name
 fmts[name.root]='1;37;41'
