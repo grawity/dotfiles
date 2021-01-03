@@ -57,7 +57,14 @@ Host gw-b56-bypass
 	HostName 193.219.181.189
 	HostkeyAlias gw-b56.utenos-kolegija.lt
 #if ! Host star
-	# Allowed from star only
+	ProxyJump star
+#endif
+
+Host ember-bypass
+	HostName 193.219.181.219
+	HostkeyAlias ember.nullroute.eu.org
+	ControlPath none
+#if ! Host star
 	ProxyJump star
 #endif
 
