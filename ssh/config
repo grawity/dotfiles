@@ -38,6 +38,9 @@ Host eisner
 Host sdf sdf.org
 	HostName tty.sdf.org
 
+Host sdf-eu sdf.eu
+	HostName sdf-eu.org
+
 Host theos
 	HostName %h.kyriasis.com
 
