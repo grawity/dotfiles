@@ -241,6 +241,9 @@
 	pushInsteadOf = git://git.nullroute.eu.org/
 	pushInsteadOf = https://git.nullroute.eu.org/
 
+[url "git@git.dn42.dev:"]
+	insteadOf = https://git.dn42.dev/
+
 [url "https://github.com/"]
 	insteadOf = git://github.com/
 
