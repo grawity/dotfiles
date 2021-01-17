@@ -20,6 +20,13 @@ Host star.nullroute.eu.org
 	AddressFamily inet
 #endif
 
+#if @(rain|midnight)
+Host vm-vol5 vm-vol5.nullroute.eu.org
+	HostkeyAlias vm-vol5.nullroute.eu.org
+	HostName 193.219.181.193
+	Port 56378
+#endif
+
 Host *.nullroute.eu.org *.nullroute.lt
 	GSSAPIAuthentication yes
 	#GSSAPIDelegateCredentials yes
