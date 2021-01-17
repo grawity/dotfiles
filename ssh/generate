@@ -4,25 +4,19 @@
 set -e
 
 PATH="$HOME/code/bin:$PATH"
+FQDN=${FQDN:-$(fqdn)}
 
 . lib.bash || exit
 . libfilterfile.bash || exit
 
 progname='ssh/generate'
 
-# match_eval helper functions
-
-Host() {
-	: ${FQDN:=$(fqdn)}
-	match_hostname "$1"
-}
-
 # generator
 
 generate() {
 	echo "# GENERATED FILE, DO NOT BOTHER EDITING"
 	echo "# Updated on $(date) by $USER@$HOSTNAME"
-	cat "${input[@]}" 2>/dev/null | filter_file match_eval
+	cat "${input[@]}" 2>/dev/null | filter_file match_hostname
 }
 
 srcdir=${BASH_SOURCE[0]%/*}

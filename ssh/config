@@ -6,7 +6,7 @@
 Host blizzard.nullroute.eu.org
 	User mantas
 
-#if Host star
+#if star
 # Use direct IPv4 peering with better throughput (~900 Mbps IPv4 vs ~220 Mbps IPv6)
 Host ember.nullroute.eu.org
 	AddressFamily inet
@@ -14,7 +14,7 @@ Host wind.nullroute.eu.org
 	AddressFamily inet
 #endif
 
-#if Host ember || Host wind
+#if @(ember|wind)
 # Use direct IPv4 peering with better throughput (~900 Mbps IPv4 vs ~220 Mbps IPv6)
 Host star.nullroute.eu.org
 	AddressFamily inet
@@ -49,7 +49,7 @@ Host theos
 Host gw-b56-bypass
 	HostName 193.219.181.189
 	HostkeyAlias gw-b56.utenos-kolegija.lt
-#if ! Host star
+#if !star
 	ProxyJump star
 #endif
 
@@ -57,7 +57,7 @@ Host ember-bypass
 	HostName 193.219.181.219
 	HostkeyAlias ember.nullroute.eu.org
 	ControlPath none
-#if ! Host star
+#if !star
 	ProxyJump star
 #endif
 
@@ -81,7 +81,7 @@ Match canonical host *.*
 Match canonical host *
 	GSSAPIAuthentication yes
 
-#if Host rain || Host midnight
+#if @(rain|midnight)
 # Deal with Telia CGNAT timeouts
 Host *
 	ServerAliveInterval 10s
