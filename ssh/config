@@ -97,3 +97,5 @@ Host *
 	ControlPath ~/.ssh/S.%r@%h:%p
 	ControlMaster auto
 	ControlPersist 15s
+	# 2020-01-08: This just got disabled upstream
+	CheckHostIP no
