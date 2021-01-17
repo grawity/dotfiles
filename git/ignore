@@ -30,6 +30,8 @@ __pycache__
 Thumbs.db
 # KDE Dolphin
 .directory
+# macOS
+.DS_Store
 
 core
 core.*.*
