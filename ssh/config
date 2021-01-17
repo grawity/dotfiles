@@ -46,13 +46,6 @@ Host theos
 
 # -- Work --
 
-Host cacti cacti.utenos-kolegija.lt
-	HostName uk-cacti.utenos-kolegija.lt
-
-Host *.utenos-kolegija.lt *.ukolegija.lt
-	IdentityFile ~/.ssh/id_ukolegija
-	AddKeysToAgent yes
-
 Host gw-b56-bypass
 	HostName 193.219.181.189
 	HostkeyAlias gw-b56.utenos-kolegija.lt
