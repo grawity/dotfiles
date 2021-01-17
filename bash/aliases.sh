@@ -85,6 +85,7 @@ alias lsh='ls -d .*'
 alias lsfonts="fc-list --format='%{family}\n' | sed 's/,.*//' | sort -u"
 lsftp() {
 	case $1 in
+	*:)	lftp "sftp://${1/:/}$PWD";;
 	*:/*)	lftp "sftp://${1/:/}";;
 	*:*)	lftp "sftp://${1/:/'/~/'}";;
 	*)	lftp "sftp://$1";;
