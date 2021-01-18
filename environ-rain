@@ -8,7 +8,8 @@ else
 	QT_QPA_PLATFORMTHEME="qt5ct"
 fi
 
-VDPAU_DRIVER="va_gl"
+# Radeon video decoding
+VDPAU_DRIVER="r600"
 
 PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
 
