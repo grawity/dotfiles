@@ -11,6 +11,11 @@ fi
 # Radeon video decoding
 VDPAU_DRIVER="r600"
 
+# Always use GNOME keyring due to key passwords
+if [ "$TMUX" ]; then
+	SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/keyring/ssh"
+fi
+
 PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
 
 EDITOR="nvim"
@@ -18,7 +23,7 @@ VISUAL="$EDITOR"
 
 MPD_HOST="$(cat "$XDG_CONFIG_HOME/mpd/password")@$XDG_RUNTIME_DIR/mpd/socket"
 PERL_CPANM_OPT="$PERL_CPANM_OPT --mirror http://ftp.litnet.lt/pub/CPAN/"
-TAR_OPTIONS="--xattrs"
+#TAR_OPTIONS="--xattrs"
 TR_AUTH="$(cat "$XDG_CONFIG_HOME/transmission/password")"
 
 # vim: ft=sh
