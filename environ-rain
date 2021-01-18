@@ -1,3 +1,5 @@
+BORG_REPO="/vol3/Backup/Homes/$HOSTNAME.borg"
+
 # Disable annoying attempts at "GNOME integration" in KDE (Qt5) apps
 if [ -e /usr/lib/qt/plugins/platformthemes/KDEPlasmaPlatformTheme.so ]; then
 	# Use the module from 'plasma-integration' if possible
