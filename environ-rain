@@ -14,7 +14,7 @@ fi
 VDPAU_DRIVER="r600"
 
 # Always use GNOME keyring due to key passwords
-if [ "$TMUX" ]; then
+if [ "$TMUX" ] || [ ! "$SSH_AUTH_SOCK" ]; then
 	SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/keyring/ssh"
 fi
 
