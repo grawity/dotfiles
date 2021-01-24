@@ -27,6 +27,11 @@ Host vm-vol5 vm-vol5.nullroute.eu.org
 	Port 56378
 #endif
 
+Host bmc.*.nullroute.eu.org
+	KexAlgorithms +diffie-hellman-group14-sha1
+	HostkeyAlgorithms +ssh-rsa
+	User Administrator
+
 Host *.nullroute.eu.org *.nullroute.lt
 	GSSAPIAuthentication yes
 	#GSSAPIDelegateCredentials yes
