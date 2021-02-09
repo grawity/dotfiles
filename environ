@@ -41,7 +41,7 @@ esac
 
 PERL5LIB="$PREFIX/lib/perl5:$HOME/code/lib/perl5"
 
-PYTHONPATH="$PREFIX/lib/python:$HOME/code/lib/python"
+PYTHONPATH="$HOME/code/lib/python"
 
 # http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
 
