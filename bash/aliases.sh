@@ -94,6 +94,7 @@ lsftp() {
 	esac
 }
 alias lspart='lsblk -o name,partlabel,size,fstype,label,mountpoint'
+alias mariadb-local='mariadb --skip-ssl --skip-ssl-verify-server-cert'
 mkmaildir() { mkdir -p "${@/%//cur}" "${@/%//new}" "${@/%//tmp}"; }
 mtr() { settitle "$HOSTNAME: mtr $*"; command mtr --show-ips "$@"; }
 alias mtrr='mtr --report-wide --report-cycles 3 --show-ips --aslookup --mpls'
