@@ -1,34 +1,40 @@
 ! ~/.Xresources
 
+! Use a larger font on high-DPI hosts
+#ifdef CLNT_midnight
+XTerm*vt100.font:		-*-fixed-medium-r-*-*-20-*-*-*-*-*-iso10646-*
+XTerm*vt100.faceName:		Monospace
+XTerm*vt100.faceSize:		12
+#endif
+
+! Set a more useful $TERM
+XTerm.termName:			xterm-256color
+
 ! Define copy/paste keyboard shortcuts
 XTerm*vt100.translations:	#override			\n\
 	Shift Ctrl <Key>C:	copy-selection(CLIPBOARD)	\n\
 	Shift Ctrl <Key>V:	insert-selection(CLIPBOARD)	\n\
 	Shift Ctrl <Key>N:	spawn-new-terminal()		\n
 
-! Set a more useful $TERM
-XTerm.termName:			xterm-256color
+! Use ^? as the Backspace key, as other new terminals do
+XTerm.backarrowKeyIsErase:	true
+XTerm.ptyInitialErase:		true
 
-!XTerm.backarrowKeyIsErase:	true
-!XTerm.ptyInitialErase:		true
+! Alt+keys generate ESC instead of special characters
+XTerm*vt100.metaSendsEscape:	true
+
+!XTerm.toolBar:			false
 !XTerm*vt100.allowTcapOps:	false
 !XTerm*vt100.bellIsUrgent:	true
 !XTerm*vt100.bellOnReset:	false
-!XTerm*vt100.metaSendsEscape:	true
 !XTerm*vt100.scrollKey:		true
-
-!XTerm.toolBar:			false
 !XTerm*vt100.cursorBlink:	true
-!XTerm*vt100.font:		-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
-!XTerm*vt100.faceName:		Source Code Pro
-!XTerm*vt100.faceSize:		10
 !XTerm*vt100.geometry:		100x35
 !XTerm*vt100.showMissingGlyphs:	true
 !XTerm*vt100.renderFont:		true
 !XTerm*vt100.utf8Fonts:		always
 !XTerm*vt100.utf8Title:		true
 !XTerm*vt100.vt100Graphics:	false
-
 !XTerm*boldColors:		true
 !XTerm*boldMode:			true
 
