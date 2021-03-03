@@ -5,10 +5,13 @@ augroup filetypedetect
 
 	au BufNewFile,BufRead *.axfr,*.dns,*.zone setf bindzone
 
-	" config
-	au BufNewFile,BufRead */pkcs11/modules/* setf conf
-	au BufNewFile,BufRead ~/.irssi/config setf c-conf
-	au BufNewFile,BufRead *.hcl setf c-conf
+	" Basic config
+	au BufNewFile,BufRead */pkcs11/modules/*		setf conf
+
+	" C-style config{}
+	au BufNewFile,BufRead ~/.irssi/config			setf c-conf
+	au BufNewFile,BufRead /etc/rspamd/*			setf c-conf
+	au BufNewFile,BufRead *.hcl				setf c-conf
 
 	" XDG Desktop Entry
 	au BufNewFile,BufRead *.ontology setf desktop
