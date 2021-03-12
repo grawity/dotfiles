@@ -1,3 +1,5 @@
+LIBVA_DRIVER_NAME="iHD"
+
 VDPAU_DRIVER="va_gl"
 
 # 2019-01-05: Get rid of wine-mono/wine-gecko alerts
