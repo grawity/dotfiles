@@ -81,7 +81,6 @@ IRBRC="$HOME/lib/dotfiles/irbrc"
 PYTHONSTARTUP="$HOME/lib/dotfiles/pythonrc"
 
 FILTER_BRANCH_SQUELCH_WARNING="1"
-GCC_COLORS="1"
 GIT_MERGE_AUTOEDIT="no"
 LESS="e M q R F X z -3"
 LESS_TERMCAP_us='[3m'		# change underline to italic
