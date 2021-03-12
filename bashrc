@@ -3,7 +3,7 @@
 
 have() { command -v "$1" >&/dev/null; }
 
-. ~/lib/dotfiles/environ
+. ~/.dotfiles/environ
 # Reload environ for every terminal because:
 # - `sudo -s` preserves $HOME but cleans other envvars
 # - bash is built with #define SSH_SOURCE_BASHRC (e.g. Debian)
@@ -54,13 +54,13 @@ HISTTIMEFORMAT="(%F %T) "
 
 complete -A directory cd
 
-. ~/lib/dotfiles/bash/prompt.sh
-. ~/lib/dotfiles/bash/aliases.sh
+. ~/.dotfiles/bash/prompt.sh
+. ~/.dotfiles/bash/aliases.sh
 
 have kc.sh && . kc.sh
 
-if [[ -f ~/lib/dotfiles/bashrc-$HOSTNAME ]]; then
-	. ~/lib/dotfiles/bashrc-$HOSTNAME
+if [[ -f ~/.dotfiles/bashrc-$HOSTNAME ]]; then
+	. ~/.dotfiles/bashrc-$HOSTNAME
 elif [[ -f ~/.bashrc-$HOSTNAME ]]; then
 	. ~/.bashrc-$HOSTNAME
 fi

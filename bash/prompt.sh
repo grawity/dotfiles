@@ -394,7 +394,7 @@ PS1="${PS1}\$(_awesome_prompt)"
 PS2="\[\e[0;1;30m\]...\[\e[m\] "
 PS4="+\e[34m\${BASH_SOURCE:--}:\e[1m\$LINENO\e[m:\${FUNCNAME:+\e[33m\$FUNCNAME\e[m} "
 
-. ~/lib/dotfiles/bash/theme.sh
+. ~/.dotfiles/bash/theme.sh
 
 export -n PS1 PS2
 export PS4

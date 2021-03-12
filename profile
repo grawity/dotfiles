@@ -1,7 +1,7 @@
 # ~/.profile - sh/bash login script
 # vim: ft=sh
 
-. ~/lib/dotfiles/environ
+. ~/.dotfiles/environ
 
 have() { type "$1" >/dev/null 2>&1; }
 
@@ -13,8 +13,8 @@ case $0:$TMUX:$SILENT in -*::)
 	echo `uptime`
 esac
 
-if [ -f ~/lib/dotfiles/profile-$HOSTNAME ]; then
-	. ~/lib/dotfiles/profile-$HOSTNAME
+if [ -f ~/.dotfiles/profile-$HOSTNAME ]; then
+	. ~/.dotfiles/profile-$HOSTNAME
 elif [ -f ~/.profile-$HOSTNAME ]; then
 	. ~/.profile-$HOSTNAME
 fi

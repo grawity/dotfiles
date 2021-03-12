@@ -4,7 +4,7 @@
 have() { type "$1" > /dev/null 2>&1; }
 
 bg_color='#222222'
-bg_image=~/lib/dotfiles/gui/noise.png
+bg_image=~/.dotfiles/gui/noise.png
 default_session='openbox'
 
 cd ~
