@@ -52,7 +52,7 @@ test "$XDG_RUNTIME_DIR" || XDG_RUNTIME_DIR="$XDG_CACHE_HOME"
 
 # identity, locale
 
-NAME='Mantas Mikulėnas'
+NAME="Mantas Mikulėnas"
 EMAIL="grawity@gmail.com"
 TZ="Europe/Vilnius"
 
