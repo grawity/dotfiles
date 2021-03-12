@@ -1,11 +1,10 @@
+# Environment specific to Midnight
+# Loaded via both .profile and systemd (~/.config/environment.d/)
+# vim: ft=sh
+
 LIBVA_DRIVER_NAME="iHD"
 
 VDPAU_DRIVER="va_gl"
 
-# 2019-01-05: Get rid of wine-mono/wine-gecko alerts
-WINEDLLOVERRIDES="mscoree,mshtml="
-
 # 2019-03-09: Use /dev/tpm0 for IBM TSS tools
 TPM_INTERFACE_TYPE="dev"
-
-# vim: ft=sh

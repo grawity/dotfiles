@@ -1,0 +1,9 @@
+# Environment relevant to desktop apps (common to all graphical hosts)
+# Loaded via both .profile and systemd (~/.config/environment.d/)
+# vim: ft=sh
+
+# Firefox - enable XInput2 for pixel-level scrolling
+MOZ_USE_XINPUT2="1"
+
+# Wine - get rid of wine-mono & wine-gecko prompts
+WINEDLLOVERRIDES="mscoree,mshtml="
