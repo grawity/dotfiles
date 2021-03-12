@@ -80,9 +80,7 @@ LESS_TERMCAP_ue="[23m"
 MANLESS="]0;\$MAN_PN ?ltline %lt?L/%L.:byte %bB?s/%s..?e (END):?pB %pB\\%.. "
 
 # Misc
-DXVK_STATE_CACHE_PATH="$XDG_CACHE_HOME/dxvk"
 #GIT_MERGE_AUTOEDIT="no"
-#IBUS_ENABLE_CTRL_SHIFT_U="1"
 LESS="e M q R F X z -3"
 MAKEFLAGS="-j $(nproc)"
 NCURSES_NO_UTF8_ACS="1"

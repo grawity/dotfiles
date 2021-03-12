@@ -5,5 +5,11 @@
 # Firefox - enable XInput2 for pixel-level scrolling
 MOZ_USE_XINPUT2="1"
 
+# IBus - activate Ctrl+Shift+U (not just Ctrl+Shift+E)
+#IBUS_ENABLE_CTRL_SHIFT_U="1"
+
 # Wine - get rid of wine-mono & wine-gecko prompts
 WINEDLLOVERRIDES="mscoree,mshtml="
+
+# Wine DXVK - avoid littering cwd with cache files
+DXVK_STATE_CACHE_PATH="$HOME/.cache/dxvk"
