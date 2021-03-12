@@ -92,10 +92,11 @@ TPM2_PKCS11_STORE="$XDG_DATA_HOME/tpm2_pkcs11"
 
 . ~/.dotfiles/environ-desktop
 
-# Local settings
 if [ -f ~/.dotfiles/environ-$HOSTNAME ]; then
 	. ~/.dotfiles/environ-$HOSTNAME
-elif [ -f ~/.environ-$HOSTNAME ]; then
+fi
+
+if [ -f ~/.environ-$HOSTNAME ]; then
 	. ~/.environ-$HOSTNAME
 fi
 
