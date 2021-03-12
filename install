@@ -175,6 +175,12 @@ if [ "$DISPLAY" ]; then
 		link gui/fontconfig ~/.config/fontconfig
 	fi
 
+	# Systemd --user environment.d(5) generator
+	# (/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
+	for file in environ-{desktop,$HOSTNAME}; do
+		link $file ~/.config/environment.d/$file.conf
+	done
+
 	# Compatibility symlinks
 
 	#[ -d ~/.thumbnails ] || sym -f ~/.cache/thumbnails   ~/.thumbnails
