@@ -90,7 +90,15 @@ SUDO_PROMPT="sudo password for %p@[30;43m%h[m: "
 S_COLORS="auto" # sar/sysstat/iostat
 TPM2_PKCS11_STORE="$XDG_DATA_HOME/tpm2_pkcs11"
 
-. ~/.dotfiles/environ-desktop
+if [ "$DISPLAY" ]; then
+	. ~/.dotfiles/environ-desktop
+	_DEBUG_LOADED_DESKTOP_ENV="yes (because DISPLAY=$DISPLAY)"
+elif [ "$WAYLAND_DISPLAY" ]; then
+	. ~/.dotfiles/environ-desktop
+	_DEBUG_LOADED_DESKTOP_ENV="yes (because WAYLAND_DISPLAY=$WAYLAND_DISPLAY)"
+else
+	_DEBUG_LOADED_DESKTOP_ENV="no"
+fi
 
 if [ -f ~/.dotfiles/environ-$HOSTNAME ]; then
 	. ~/.dotfiles/environ-$HOSTNAME
