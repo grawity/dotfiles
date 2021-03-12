@@ -7,13 +7,14 @@ setpath() {
 	IFS=$xIFS; unset var xIFS;
 }
 
-# basic
-
-umask 022
-
+# Local variables that might be used in the rest of .environ
 test "$UID"      || UID=$(id -u)
 test "$USER"     || USER=$(id -un)
 test "$HOSTNAME" || HOSTNAME=$(hostname)
+
+# basic
+
+umask 022
 
 set -a
 
@@ -39,10 +40,6 @@ case $PATH in
 	"$HOME/code/bin/fallback"		;
 esac
 
-PERL5LIB="$PREFIX/lib/perl5:$HOME/code/lib/perl5"
-
-PYTHONPATH="$HOME/code/lib/python"
-
 # http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
 
 test "$XDG_CACHE_HOME"  || XDG_CACHE_HOME="$HOME/.cache"
@@ -50,49 +47,55 @@ test "$XDG_CONFIG_HOME" || XDG_CONFIG_HOME="$HOME/.config"
 test "$XDG_DATA_HOME"   || XDG_DATA_HOME="$HOME/.local/share"
 test "$XDG_RUNTIME_DIR" || XDG_RUNTIME_DIR="$XDG_CACHE_HOME"
 
-# identity, locale
-
+# Locale
 NAME="Mantas Mikulėnas"
 EMAIL="grawity@gmail.com"
 TZ="Europe/Vilnius"
 
-# preferred programs
-
+# Preferred programs
 BROWSER="web-browser"
 EDITOR="vim"
 PAGER="less"
 unset VISUAL
 
-# libdefaults
-
-DXVK_STATE_CACHE_PATH="$XDG_CACHE_HOME/dxvk"
-IBUS_ENABLE_CTRL_SHIFT_U="1"
-# 2018-08-16 grawity: this can be removed once PuTTY 0.71 is out
-NCURSES_NO_UTF8_ACS="1"
-NSS_DEFAULT_DB_TYPE="sql"
-
-# appdefaults
-
-PERL_CPANM_HOME="$XDG_CACHE_HOME/cpanminus"
-RLWRAP_HOME="$XDG_CACHE_HOME/rlwrap"
-TPM2_PKCS11_STORE="$XDG_DATA_HOME/tpm2_pkcs11"
+# Interpreters
+PERL5LIB="$PREFIX/lib/perl5:$HOME/code/lib/perl5"
+PYTHONPATH="$HOME/code/lib/python"
 
 IRBRC="$HOME/lib/dotfiles/irbrc"
 PYTHONSTARTUP="$HOME/lib/dotfiles/pythonrc"
 
+PERL_CPANM_HOME="$XDG_CACHE_HOME/cpanminus"
+PERL_MM_OPT="INSTALL_BASE=$PREFIX"
+PERL_MB_OPT="--install_base '$PREFIX'"
+
+# Firefox - enable XInput2 for pixel-level scrolling
+MOZ_USE_XINPUT2="1"
+
+# Git - don't warn about `git filter-branch` deprecation
 FILTER_BRANCH_SQUELCH_WARNING="1"
-GIT_MERGE_AUTOEDIT="no"
-LESS="e M q R F X z -3"
-LESS_TERMCAP_us='[3m'		# change underline to italic
-LESS_TERMCAP_ue='[23m'	# un-italic
-MAKEFLAGS="-j $(nproc)"
+
+# Less/man - render "underline" in manual pages as italics
+LESS_TERMCAP_us="[3m"
+LESS_TERMCAP_ue="[23m"
+
+# Less/man - set terminal title to "manpage(section)"
 MANLESS="]0;\$MAN_PN ?ltline %lt?L/%L.:byte %bB?s/%s..?e (END):?pB %pB\\%.. "
-MOZ_USE_XINPUT2="1"		# better scrolling
-S_COLORS="auto"			# sar/sysstat/iostat
+
+# Misc
+DXVK_STATE_CACHE_PATH="$XDG_CACHE_HOME/dxvk"
+#GIT_MERGE_AUTOEDIT="no"
+#IBUS_ENABLE_CTRL_SHIFT_U="1"
+LESS="e M q R F X z -3"
+MAKEFLAGS="-j $(nproc)"
+NCURSES_NO_UTF8_ACS="1"
+NSS_DEFAULT_DB_TYPE="sql"
+RLWRAP_HOME="$XDG_CACHE_HOME/rlwrap"
 SUDO_PROMPT="sudo password for %p@[30;43m%h[m: "
+S_COLORS="auto" # sar/sysstat/iostat
+TPM2_PKCS11_STORE="$XDG_DATA_HOME/tpm2_pkcs11"
 
-# local
-
+# Local settings
 if [ -f ~/lib/dotfiles/environ-$HOSTNAME ]; then
 	. ~/lib/dotfiles/environ-$HOSTNAME
 elif [ -f ~/.environ-$HOSTNAME ]; then
@@ -101,11 +104,5 @@ fi
 
 test "$FQDN" || FQDN=$(LC_ALL="C" fqdn)
 
-# appdefaults - local
-
-PERL_MM_OPT="INSTALL_BASE=$PREFIX"
-PERL_MB_OPT="--install_base '$PREFIX'"
-
-# disable allexport
-
+# Disable allexport again
 set +a
