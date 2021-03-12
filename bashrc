@@ -61,7 +61,9 @@ have kc.sh && . kc.sh
 
 if [[ -f ~/.dotfiles/bashrc-$HOSTNAME ]]; then
 	. ~/.dotfiles/bashrc-$HOSTNAME
-elif [[ -f ~/.bashrc-$HOSTNAME ]]; then
+fi
+
+if [[ -f ~/.bashrc-$HOSTNAME ]]; then
 	. ~/.bashrc-$HOSTNAME
 fi
 

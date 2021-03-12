@@ -15,7 +15,9 @@ esac
 
 if [ -f ~/.dotfiles/profile-$HOSTNAME ]; then
 	. ~/.dotfiles/profile-$HOSTNAME
-elif [ -f ~/.profile-$HOSTNAME ]; then
+fi
+
+if [ -f ~/.profile-$HOSTNAME ]; then
 	. ~/.profile-$HOSTNAME
 fi
 
