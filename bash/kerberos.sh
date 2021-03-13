@@ -1,7 +1,7 @@
 # Prompt to re-acquire Kerberos tickets
 # Loaded by .bashrc on NFS client machines
 
-if [[ -t 0 && -t 1 && -t 2 ]]; then
+if [[ $USER == grawity && -t 0 && -t 1 && -t 2 ]]; then
 	_krb_init() {(
 		local path="$XDG_RUNTIME_DIR/krenew.lock"
 		local fd
