@@ -59,6 +59,10 @@ complete -A directory cd
 
 have kc.sh && . kc.sh
 
+if [[ -d /n && -e /etc/dist/hostids ]]; then
+	. ~/.dotfiles/bash/kerberos.sh
+fi
+
 if [[ -f ~/.dotfiles/bashrc-$HOSTNAME ]]; then
 	. ~/.dotfiles/bashrc-$HOSTNAME
 fi
