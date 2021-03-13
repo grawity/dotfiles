@@ -22,6 +22,7 @@ if [[ -t 0 && -t 1 && -t 2 ]]; then
 			expires=$(pklist | awk '$1 == "ticket" && $7 ~ /I/ {print $5}')
 			renews=$(pklist | awk '$1 == "ticket" && $7 ~ /I/ {print $6}')
 		fi
+		declare -p now expires renews
 		if (( renews < now )); then
 			echo "[91mKerberos tickets expired[m"
 			_krb_init
