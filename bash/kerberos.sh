@@ -19,10 +19,9 @@ if [[ -t 0 && -t 1 && -t 2 ]]; then
 		unset KRB5CCNAME
 		local now=$(date +%s) expires=0 renews=0
 		if klist -s; then
-			expires=$(pklist | awk '$1 == "ticket" && $7 ~ /I/ {print $5}')
-			renews=$(pklist | awk '$1 == "ticket" && $7 ~ /I/ {print $6}')
+			expires=$(pklist | awk '$1 == "ticket" && $8 ~ /I/ {print $6}')
+			renews=$(pklist | awk '$1 == "ticket" && $8 ~ /I/ {print $7}')
 		fi
-		declare -p now expires renews
 		if (( renews < now )); then
 			echo "[91mKerberos tickets expired[m"
 			_krb_init
