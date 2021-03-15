@@ -77,7 +77,7 @@ if has("gui_running")
 	" configured in gvimrc
 elseif &t_Co >= 256
 	" modern terminals
-	if hostname() == "fujitsu"
+	if hostname() == "fujitsu" || $BRIGHT == "1"
 		let g:lucius_style="light"
 		color lucius
 	else
