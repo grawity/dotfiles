@@ -1,13 +1,16 @@
-# vim: ft=sh
 # ~/.xprofile - X11-specific login script (after ~/.profile)
+# vim: ft=sh
 #
 # This is shared between startx "sessions" and display manager (GDM) sessions.
 
-case $DESKTOP_SESSION in gnome|gnome-*) ;; *)
+case $DESKTOP_SESSION in
+gnome|gnome-*)
+	# Don't do anything -- GNOME Shell will handle this.
+	;;
+*)
 	case $HOSTNAME in
 		rain)
 			touchpad="ETPS/2 Elantech Touchpad" accel="0.7";;
-			# 2019-01-06 / 5.4.7-arch1 / 1.15.0 - very slow with 0.25
 		frost)
 			touchpad="Synaptics s3203" accel="0.1";;
 		fujitsu)
@@ -27,13 +30,6 @@ case $DESKTOP_SESSION in gnome|gnome-*) ;; *)
 		xinput set-prop "$touchpad" "libinput Accel Speed" "${accel:-'1.0'}"
 	fi
 esac
-
-#if [ "$XDG_SESSION_TYPE" = x11 ]; then
-#	systemctl --user import-environment DISPLAY XAUTHORITY
-#	systemctl --user --no-block start graphical.target
-#else
-#	echo "not importing environment on console session"
-#fi
 
 if [ -e ~/.xprofile-$HOSTNAME ]; then
 	. ~/.xprofile-$HOSTNAME
