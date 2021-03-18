@@ -247,7 +247,7 @@ fi
 case $OSTYPE in
 	linux-gnu*|cygwin)
 		lsopt="$lsopt --color=auto"
-		eval $(dircolors ~/lib/dotfiles/dircolors 2>/dev/null)
+		eval $(dircolors ~/.dotfiles/dircolors 2>/dev/null)
 		alias df='df -Th'
 		alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs -xafs'
 		alias ip='ip --color=auto'
@@ -260,7 +260,7 @@ case $OSTYPE in
 		;;
 	gnu)
 		lsopt="$lsopt --color=auto"
-		eval $(dircolors ~/lib/dotfiles/dircolors 2>/dev/null)
+		eval $(dircolors ~/.dotfiles/dircolors 2>/dev/null)
 		alias lsd='ls -a --ignore="[^.]*"'
 		;;
 	netbsd|openbsd*)

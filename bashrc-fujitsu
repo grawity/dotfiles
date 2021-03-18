@@ -4,7 +4,9 @@ if [[ $SSH_CONNECTION ]]; then
 	return
 fi
 
-eval $(dircolors ~/lib/dotfiles/dircolors-bright)
+export BRIGHT=1
+
+eval $(dircolors ~/.dotfiles/dircolors-bright)
 
 items[name:pfx]=''
 items[name:sfx]=''
