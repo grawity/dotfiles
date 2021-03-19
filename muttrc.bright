@@ -10,9 +10,18 @@ color header		blue default	"^Subject:"
 color header		yellow default	"^X-Bogosity: Unsure,"
 color header		yellow default	"^X-Bogosity: Spam,"
 
-color index	yellow		default	~F # flagged
-color index	red		default	~U # unseen
-color index	brightred	default	"~F ~U"
-color index	color251	default	~D # deleted
-color index 	color12		default	~T # tagged
-color index 	brightcolor12	default	"~T ~U"
+color index		yellow		default	~F # flagged
+color index		red		default	~U # unseen
+color index		brightred	default	"~F ~U"
+color index		color251	default	~D # deleted
+color index 		color12		default	~T # tagged
+color index 		brightcolor12	default	"~T ~U"
+
+color quoted		color168	default
+color quoted1		color172	default
+color quoted2		color70		default
+color quoted3		color73		default
+color quoted4		color148	default
+color quoted5		color48		default
+#color signature		blue		default
+#color tilde		blue		default
