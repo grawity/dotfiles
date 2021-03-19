@@ -257,6 +257,9 @@ bind index,pager C change-folder
 macro index,pager <Esc>i "<enter-command>unset wait_key\n<pipe-message>gpg --import |& tig\n<enter-command>set wait_key\n"
 bind index,pager S copy-message
 
+# Edit the IMAP flags (default is to edit X-Label)
+bind index,pager Y modify-tags
+
 bind index ! flag-message
 bind index G last-entry
 macro index * "<tag-pattern>.\n"
