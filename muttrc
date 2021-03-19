@@ -107,13 +107,6 @@ set auto_tag # auto-add tag prefix
 unset help
 set status_on_top
 
-spam "^X-Bogosity: Spam,.* spamicity=([0-9.]+)" "bogus"
-spam "^X-Bogosity: Unsure,.* spamicity=([0-9.]+)" "unsure"
-spam "^Authentication-Results: [^;]+; spf=softfail" "spf?"
-spam "^Authentication-Results: [^;]+; spf=fail" "spf!"
-spam "^Authentication-Results: [^;]+; dkim=fail" "dkim!"
-spam "^Authentication-Results: [^;]+; dmarc=fail" "dmarc!"
-
 set status_format="─── Folder %f (%?M?%M/?%m messages%?n?, %n new/unseen?%?o?, %o old/unread?%?d?, %d deleted?) %*─ %P ───"
 set ts_enabled=yes
 set ts_status_format="Mutt %f (%?M?%M/?%m messages%?n?, %n new/unseen?%?o?, %o old/unread?)"
@@ -212,6 +205,13 @@ color index	color240	default	~D # deleted
 color index 	color12		default	~T # tagged
 color index 	brightcolor12	default	"~T ~U"
 # last rule takes priority!
+
+spam "^X-Bogosity: Spam,.* spamicity=([0-9.]+)"		"bogus"
+spam "^X-Bogosity: Unsure,.* spamicity=([0-9.]+)"	"unsure"
+spam "^Authentication-Results: [^;]+; spf=softfail"	"spf?"
+spam "^Authentication-Results: [^;]+; spf=fail"		"spf!"
+spam "^Authentication-Results: [^;]+; dkim=fail"	"dkim!"
+spam "^Authentication-Results: [^;]+; dmarc=fail"	"dmarc!"
 
 # See 3.169 index_format
 #   %?fmt?ifnonzero&ifzero?
