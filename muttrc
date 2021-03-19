@@ -229,15 +229,15 @@ set my_index_right="$my_index_r1$my_index_r2$my_index_r3"
 #   %g - IMAP labels
 #   %H - spam flags
 #   %M - number of messages in collapsed thread
-set my_d1="│ %[     %H:%M]"	# today
-set my_d2="│ %[%a, %H:%M]"	# this month
-set my_d3="│ %[    %b %d]"	# this year
-set my_d4="│ %[  %Y %b]"	# older
+set my_d1="%[     %H:%M]"	# today
+set my_d2="%[%a, %H:%M]"	# this month
+set my_d3="%[    %b %d]"	# this year
+set my_d4="%[  %Y %b]"		# older
 set my_index_date="%<[y?%<[m?%<[d?$my_d1&$my_d2>&$my_d3>&$my_d4>"
 #   %@foo@ - index_format_hook
 #   %{fmt} - strftime in sender's time zone
 #   %[fmt] - strftime in local time zone
-set index_format="$my_index_left│$my_index_mid%* $my_index_right $my_index_date "
+set index_format="$my_index_left│$my_index_mid%* $my_index_right │ $my_index_date "
 #   %*␣ - expand pad with spaces
 
 ### Keybindings
