@@ -69,9 +69,6 @@ PERL_CPANM_HOME="$HOME/.cache/cpanminus"
 PERL_MM_OPT="INSTALL_BASE=$PREFIX"
 PERL_MB_OPT="--install_base '$PREFIX'"
 
-# Git - don't warn about `git filter-branch` deprecation
-FILTER_BRANCH_SQUELCH_WARNING="1"
-
 # Less/man - render "underline" in manual pages as italics
 LESS_TERMCAP_us="[3m"
 LESS_TERMCAP_ue="[23m"
