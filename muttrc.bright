@@ -6,7 +6,7 @@ color normal		default default
 color message		default default
 color indicator		default white		# List cursor
 color status		brightwhite blue	# Pane headings
-color message		black color253		# Regular popup messages
+color message		color239 color253	# Regular popup messages
 color error		brightwhite red		# Error popup messages
 
 color hdrdefault	color247 default
