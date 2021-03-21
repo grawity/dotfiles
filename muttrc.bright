@@ -1,7 +1,13 @@
+# Mutt theme for black-on-white profile
+#
+# In gnome-terminal, 'white' bg results in a warm sand/gray background
+
 color normal		default default
 color message		default default
-color indicator		default white
-color status		brightwhite blue
+color indicator		default white		# List cursor
+color status		brightwhite blue	# Pane headings
+color message		black color252		# Regular popup messages
+color error		brightwhite red		# Error popup messages
 
 color hdrdefault	color247 default
 color header		blue default	"^Date:"
