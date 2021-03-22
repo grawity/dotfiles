@@ -210,7 +210,7 @@ spam "^X-Bogosity: Spam,.* spamicity=([0-9.]+)"		"bogus"
 spam "^X-Bogosity: Unsure,.* spamicity=([0-9.]+)"	"unsure"
 spam "^Authentication-Results: [^;]+; spf=softfail"	"spf?"
 spam "^Authentication-Results: [^;]+; spf=fail"		"spf!"
-spam "^Authentication-Results: [^;]+; dkim=fail"	"dkim!"
+#spam "^Authentication-Results: [^;]+; dkim=fail"	"dkim!"
 spam "^Authentication-Results: [^;]+; dmarc=fail"	"dmarc!"
 
 # See 3.169 index_format
