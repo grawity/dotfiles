@@ -16,6 +16,10 @@ if [[ -f ~/.mailcap ]]; then
 		text/{html,x-vcard} ;
 fi
 
+if [[ $BRIGHT ]]; then
+	echo "source \"~/.dotfiles/muttrc.bright\""
+fi
+
 if [[ -f ~/.config/mutt/muttrc-"$HOSTNAME" ]]; then
 	echo "source \"~/.config/mutt/muttrc-$HOSTNAME\""
 elif [[ -f ~/.muttrc-"$HOSTNAME" ]]; then
