@@ -27,11 +27,9 @@ set folder="imaps://mail.nullroute.eu.org/"
 set spoolfile="+INBOX"
 set postponed="+Drafts"
 set record="+Sent"
-#mailboxes =INBOX
 
 unset confirmappend
 set confirmcreate
-set delete
 
 # Remote mail
 
@@ -79,6 +77,9 @@ set imap_condstore
 # Use QRESYNC (RFC 7162) for the initial message list
 # (Note: Requires header caching.)
 set imap_qresync
+
+# Automatically expunge when leaving mailbox or calling '$' (default is to ask)
+#set delete
 
 folder-hook . 'unset spoolfile'
 
