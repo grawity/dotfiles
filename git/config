@@ -241,6 +241,16 @@
 	pushInsteadOf = git://git.nullroute.eu.org/
 	pushInsteadOf = https://git.nullroute.eu.org/
 
+[url "grawity@star.nullroute.eu.org:lib/annexgit/"]
+	# used by git-annex
+	insteadOf = annex:Attic/
+
+[url "vm-vol5:/vol5/"]
+	# used by git-annex
+	insteadOf = vol5:
+
+# Other rewrites
+
 [url "git@git.dn42.dev:"]
 	insteadOf = https://git.dn42.dev/
 
@@ -267,14 +277,6 @@
 [url "aur@aur.archlinux.org:"]
 	pushInsteadOf = aur:
 	pushInsteadOf = https://aur.archlinux.org/
-
-[url "grawity@star.nullroute.eu.org:lib/annexgit/"]
-	# used by git-annex
-	insteadOf = annex:Attic/
-
-[url "vm-vol5:/vol5/"]
-	# used by git-annex
-	insteadOf = vol5:
 
 # rewrites of obsolete repos (to be removed eventually)
 
