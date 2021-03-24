@@ -233,7 +233,7 @@
 	insteadOf = git://nullroute.eu.org/
 	insteadOf = git://git.nullroute.eu.org/
 
-[url "star:pub/git/"]
+[url "star:/srv/git/"]
 	insteadOf = nullroute+ssh:
 	pushInsteadOf = :
 	pushInsteadOf = nullroute:
