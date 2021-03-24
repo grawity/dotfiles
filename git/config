@@ -299,6 +299,10 @@
 	# temporary 2018-04-10
 	insteadOf = git://git.code.sf.net/
 
+[url "https://sourceware.org/git/"]
+	# added 2021-03-24
+	insteadOf = git://sourceware.org/git/
+
 [url "https://github.com/archlinux/svntogit-packages"]
 	# added 2020-07-22
 	insteadOf = git://git.archlinux.org/svntogit/packages.git
