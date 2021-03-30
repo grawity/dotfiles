@@ -1,3 +1,4 @@
+syn keyword apacheDeclaration AllowMethods
 syn keyword apacheDeclaration AuthnCacheContext
 syn keyword apacheDeclaration AuthnCacheProvideFor
 syn keyword apacheDeclaration AuthnCacheTimeout
