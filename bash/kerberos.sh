@@ -23,7 +23,7 @@ if [[ $USER == grawity && -t 0 && -t 1 && -t 2 ]]; then
 			renews=$(pklist | awk '$1 == "ticket" && $8 ~ /I/ {print $7}')
 			flags=$(pklist | awk '$1 == "ticket" && $8 ~ /I/ {print $8}')
 		fi
-		if (( expires < now && renews < now )); then
+		if (( expires < now )); then
 			echo "[1;31mKerberos tickets expired[m"
 			_krb_init
 		elif (( expires > now )) && [[ $flags != *R* ]]; then
