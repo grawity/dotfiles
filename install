@@ -183,6 +183,11 @@ if [ "$DISPLAY" ]; then
 
 	# Compatibility symlinks
 
+	if [ ! -d ~/.themes ]; then
+		# For GTK 2
+		sym -f ~/.local/share/themes ~/.themes
+	fi
+
 	#[ -d ~/.thumbnails ] || sym -f ~/.cache/thumbnails   ~/.thumbnails
 	#[ -d ~/.fonts ]      || sym -f ~/.local/share/fonts  ~/.fonts
 	#[ -d ~/.themes ]     || sym -f ~/.local/share/themes ~/.themes
