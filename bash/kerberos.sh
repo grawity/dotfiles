@@ -26,9 +26,9 @@ if [[ $USER == grawity && -t 0 && -t 1 && -t 2 ]]; then
 		if (( expires < now )); then
 			echo "[1;31mKerberos tickets expired[m"
 			_krb_init
-		elif (( expires > now )) && [[ $flags != *R* ]]; then
+		elif [[ $flags != *R* ]]; then
 			echo "[1;35mKerberos tickets are non-renewable[m"
-		elif (( expires > now && renews < now + 86400 )); then
+		elif (( renews < now + 86400 )); then
 			echo "[1;33mKerberos tickets are near renewal lifetime[m"
 			_krb_init
 		fi
