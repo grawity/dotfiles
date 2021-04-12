@@ -139,8 +139,8 @@ set autoread
 set hidden			" do not unload abandoned buffers
 
 if has("nvim")
-	" Treat NFS paths as 'removable' and don't store them in shada
-	set shada+=r/net/,r/n/
+	" Treat AFS/NFS paths as 'removable' and don't store them in shada
+	set shada+=r/afs/,r/n/,r/net/
 endif
 
 if !has("nvim")
