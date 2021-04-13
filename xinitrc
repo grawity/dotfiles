@@ -44,7 +44,6 @@ fi
 # Decide on the session command
 [ "$1" ] || set -- $default_session
 case $1 in
-	cinnamon)	set -- cinnamon-session;;
 	e)		set -- enlightenment_start \
 			-i-really-know-what-i-am-doing-and-accept-full-responsibility-for-it;;
 	gnome)		set -- gnome-session;;
@@ -57,7 +56,6 @@ esac
 
 # Tell ~/.xprofile about the session type
 case $1 in
-	cinnamon-session)	DESKTOP_SESSION=cinnamon;;
 	gnome-session)		DESKTOP_SESSION=gnome;;
 	enlightenment_start)	DESKTOP_SESSION=enlightenment;;
 	mate-session)		DESKTOP_SESSION=mate;;
