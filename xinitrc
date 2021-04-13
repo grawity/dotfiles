@@ -52,6 +52,7 @@ case $1 in
 	mate)		set -- mate-session;;
 	openbox)	set -- openbox --startup ~/.config/openbox/autostart;;
 	xfce)		set -- xfce4-session;;
+	custom)		set -- ~/.xsession;;
 esac
 
 # Tell ~/.xprofile about the session type
