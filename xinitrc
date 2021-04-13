@@ -11,16 +11,16 @@ cd ~
 
 # Run ssh-agent
 if [ ! "$SSH_AUTH_SOCK" ] && have ssh-agent; then
-	exec ssh-agent ~/.xinitrc "$@" || exit
+	exec ssh-agent "$0" "$@" || exit
 fi
 
 # Prepare D-Bus
 if [ "$DBUS_SESSION_BUS_ADDRESS" ]; then
 	dbus-update-activation-environment --systemd DISPLAY XAUTHORITY
 elif have dbus-run-session; then
-	exec dbus-run-session ~/.xinitrc "$@" || exit
+	exec dbus-run-session "$0" "$@" || exit
 elif have dbus-launch; then
-	exec dbus-launch --exit-with-session ~/.xinitrc "$@" || exit
+	exec dbus-launch --exit-with-session "$0" "$@" || exit
 fi
 
 # Load common profile
