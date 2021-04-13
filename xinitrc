@@ -16,15 +16,11 @@ fi
 
 # Prepare D-Bus
 if [ "$DBUS_SESSION_BUS_ADDRESS" ]; then
-	if have dbus-update-activation-environment; then
-		dbus-update-activation-environment --systemd DISPLAY XAUTHORITY
-	fi
-else
-	if have dbus-run-session; then
-		exec dbus-run-session ~/.xinitrc "$@" || exit
-	elif have dbus-launch; then
-		exec dbus-launch --exit-with-session ~/.xinitrc "$@" || exit
-	fi
+	dbus-update-activation-environment --systemd DISPLAY XAUTHORITY
+elif have dbus-run-session; then
+	exec dbus-run-session ~/.xinitrc "$@" || exit
+elif have dbus-launch; then
+	exec dbus-launch --exit-with-session ~/.xinitrc "$@" || exit
 fi
 
 # Load common profile
