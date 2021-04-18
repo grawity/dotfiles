@@ -5,8 +5,8 @@ if [[ -f ~/.config/msmtp/config || -f ~/.msmtprc ]]; then
 fi
 
 if [[ -d ~/.cache/mutt ]]; then
-	echo 'set header_cache="~/.cache/mutt/headers"'
-	echo 'set message_cachedir="~/.cache/mutt/messages"'
+	echo 'set header_cache="~/.cache/mutt/headers/"'
+	echo 'set message_cachedir="~/.cache/mutt/messages/"'
 fi
 
 if [[ -f ~/.mailcap ]]; then
