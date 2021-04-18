@@ -72,11 +72,13 @@ set imap_list_subscribed
 
 # Use CONDSTORE (RFC 7162) for the initial message list
 # 2020-10-10: Commented out as it's not yet available in Debian's ancient neomutt
-set imap_condstore
+#set imap_condstore
 
 # Use QRESYNC (RFC 7162) for the initial message list
 # (Note: Requires header caching.)
-set imap_qresync
+# 2021-04-18: Commented out both CONDSTORE and QRESYNC as they seem to result in
+#             neomutt showing duplicate messages when external updates occur.
+#set imap_qresync
 
 # Automatically expunge when leaving mailbox or calling '$' (default is to ask)
 #set delete
