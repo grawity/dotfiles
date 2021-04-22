@@ -17,11 +17,18 @@ if [[ $USER == grawity && -t 0 && -t 1 && -t 2 ]]; then
 
 	_krb_check() {(
 		unset KRB5CCNAME
-		local now=$(date +%s) expires=0 renews=0
+		local now=$(date +%s) ticket= krbtgt= expires=0 renews=0 flags=
 		if klist -s; then
-			expires=$(pklist | awk '$1 == "ticket" && $8 ~ /I/ {print $6}')
-			renews=$(pklist | awk '$1 == "ticket" && $8 ~ /I/ {print $7}')
-			flags=$(pklist | awk '$1 == "ticket" && $8 ~ /I/ {print $8}')
+			# First look for an initial ticket (acquired via kinit)
+			ticket=$(pklist | awk '$1 == "ticket" && $8 ~ /I/')
+			if [[ ! $ticket ]]; then
+				# Look for a forwarded ticket
+				krbtgt=$(pklist -P | sed 's/.*@\(.*\)/krbtgt\/\1@\1/')
+				ticket=$(pklist | awk -v t="$krbtgt" '$1 == "ticket" && $3 == t')
+			fi
+			expires=$(echo "$ticket" | awk '{print $6}')
+			renews=$(echo "$ticket" | awk '{print $7}')
+			flags=$(echo "$ticket" | awk '{print $8}')
 		fi
 		if (( expires < now )); then
 			echo "[1;31mKerberos tickets expired[m"
