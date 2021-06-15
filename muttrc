@@ -89,10 +89,10 @@ folder-hook . 'unset spoolfile'
 
 set edit_headers
 
-set alias_file="~/lib/mutt-aliases"
-source "silentcat ~/lib/mutt-aliases|"
-set reverse_alias
-set query_command="muttquery '%s'"
+#set alias_file="~/lib/mutt-aliases"
+#source "silentcat ~/lib/mutt-aliases|"
+#set reverse_alias
+#set query_command="muttquery '%s'"
 
 set compose_format="─── Composing (%l in %a parts) %*──"
 
