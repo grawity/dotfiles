@@ -167,8 +167,6 @@ fi
 # Install GUI configs
 
 if [ "$DISPLAY" ]; then
-	cp -n gui/user-dirs.dirs ~/.config/user-dirs.dirs
-
 	link XCompose ~/.XCompose
 
 	if [ ! -d ~/.config/fontconfig ]; then
@@ -181,10 +179,8 @@ if [ "$DISPLAY" ]; then
 		link $file ~/.config/environment.d/$file.conf
 	done
 
-	# Compatibility symlinks
-
+	# Compatibility symlinks for GTK 2
 	if [ ! -d ~/.themes ]; then
-		# For GTK 2
 		sym -f ~/.local/share/themes ~/.themes
 	fi
 
