@@ -11,7 +11,6 @@ pager() { command ${PAGER:-more} "$@"; }
 alias aa-reload='apparmor_parser -r -T -W'
 alias bat='acpi -i'
 catsexp() { cat "$@" | sexp-conv -w $((COLUMNS-1)); }
-alias cpans='PERL_MM_OPT= PERL_MB_OPT= cpanm --sudo'
 count() { sort "$@" | uniq -c | sort -n -r | pager; }
 alias demo='PS1="\\n\\$ "'
 dist/pull() { ~/code/dist/pull "$@" && SILENT=1 . ~/.profile; }
