@@ -6,10 +6,12 @@ require 'irb/ext/save-history'
 require 'pp'
 
 Proc.new{
-	cache_dir = ENV["XDG_CACHE_HOME"] || ENV["HOME"] + "/.cache"
-
+	# By default irb saves history alongside the irbrc -- so if $IRBRC is
+	# set, then we get ~/.dotfiles/irbrc_history and we don't want that.
+	# (Meanwhile if $IRBRC is *not* set, irb will create ~/.config/irb.)
+	xdg_cache_home = ENV["XDG_CACHE_HOME"] || ENV["HOME"] + "/.cache"
+	IRB.conf[:HISTORY_FILE] = "#{xdg_cache_home}/irb.history"
 	IRB.conf[:SAVE_HISTORY] = 5000
-	IRB.conf[:HISTORY_FILE] = "#{cache_dir}/irb.history"
 
 	def _rl_fmt(fmt, text)
 		"\001#{fmt}\002#{text}\001\e[m\002"

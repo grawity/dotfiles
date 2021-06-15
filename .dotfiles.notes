@@ -23,6 +23,7 @@ Already migrated to XDG in a release:
 ~/.gitk             <config>/git/gitk               1.9-rc1 (8f86339858c1)
 ~/.gnucash/         <config>/gnucash/               3.0
 ~/.hgrc             <config>/hg/hgrc                4.2 (354020079723)
+~/.irbrc            <config>/irb/irbrc
 ~/.keybase/         [various]/keybase/              0.6.0 (99531f058b3b57)
 ~/.lftp/            <config>/lftp/
 ~/.lftprc           <config>/lftp/rc
