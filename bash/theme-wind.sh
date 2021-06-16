@@ -13,6 +13,6 @@ fmts[vcs]='38;5;242'
 fmts[name:pfx]="@name"
 fmts[pwd:tail]="@pwd"
 
-fmts[prompt]="38;5;240"
+fmts[prompt]="38;5;242"
 
 fullpwd="h"

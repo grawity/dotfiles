@@ -11,5 +11,6 @@ fmts[name:pfx]='38;5;59'
 fmts[pwd:tail]='@pwd'
 
 #fmts[name.root]='38;5;255|48;5;124'
+fmts[prompt]="38;5;242"
 
 fullpwd='h'
