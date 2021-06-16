@@ -99,6 +99,9 @@ _awesome_upd_vcs() {
 				br=${br#refs/heads/}
 			fi
 
+			# Shorten git-annex adjusted branches
+			br=${br/#'adjusted/master('/'('}
+
 			if [[ -f $git/rebase-apply/rebasing ]]; then
 				re='REBASE'
 			elif [[ -f $git/rebase-apply/applying ]]; then
