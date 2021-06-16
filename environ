@@ -22,8 +22,6 @@ set -a
 
 PREFIX="$HOME/.local"
 
-GOPATH="$PREFIX/go"
-
 case $PATH in
 *:"$HOME/bin":*) ;;
 *) setpath PATH \
@@ -31,7 +29,6 @@ case $PATH in
 	"$HOME/bin"				\
 	"$HOME/code/bin"			\
 	"$HOME/code/obj/host.$HOSTNAME"		\
-	"$GOPATH/bin"				\
 	"$HOME/.cabal/bin"			\
 	"$PATH"					\
 	"/usr/local/sbin" 			\
