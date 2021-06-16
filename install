@@ -176,21 +176,16 @@ if [ "$DISPLAY" ]; then
 	fi
 
 	# Systemd --user environment.d(5) generator
-	# (/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
-	for file in environ-{desktop,$HOSTNAME}; do
-		link $file ~/.config/environment.d/$file.conf
-	done
-
-	# Compatibility symlinks
-
-	if [ ! -d ~/.themes ]; then
-		# For GTK 2
-		sym -f ~/.local/share/themes ~/.themes
+	# (see also systemd-environment-d-generator(8))
+	link environ-desktop ~/.config/environment.d/20-desktop.conf
+	if [ -e environ-$HOSTNAME ]; then
+		link environ-$HOSTNAME ~/.config/environment.d/80-host.conf
 	fi
 
-	#[ -d ~/.thumbnails ] || sym -f ~/.cache/thumbnails   ~/.thumbnails
-	#[ -d ~/.fonts ]      || sym -f ~/.local/share/fonts  ~/.fonts
-	#[ -d ~/.themes ]     || sym -f ~/.local/share/themes ~/.themes
+	# Compatibility symlink for GTK 2
+	if [ ! -d ~/.themes ]; then
+		sym -f ~/.local/share/themes ~/.themes
+	fi
 fi
 
 # Check frequent root-ownership accidents
