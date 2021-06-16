@@ -3,17 +3,17 @@
 
 have() { command -v "$1" >&/dev/null; }
 
-. ~/.dotfiles/environ
 # Reload environ for every terminal because:
 # - `sudo -s` preserves $HOME but cleans other envvars
 # - bash is built with #define SSH_SOURCE_BASHRC (e.g. Debian)
 # - systemd rejects envvars which contain \e (ESC)
+. ~/.dotfiles/environ
 
-export -n LINES COLUMNS
 # Work around a race condition where the creation of LINES/COLUMNS may be
 # delayed until bash is in the middle of ~/.environ's "allexport" section.
 # It's a race condition most likely caused by bash using the "report window
 # size" sequence, and the terminal sometimes being slow to reply.
+export -n LINES COLUMNS
 
 if [[ $TERM == @(screen|tmux|xterm) ]]; then
 	OLD_TERM="$TERM"
