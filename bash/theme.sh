@@ -59,10 +59,6 @@ case $FQDN in
 	fi
 	;;
 
-    *.utenos-kolegija.lt)
-	. $dir/theme-work.sh
-	;;
-
     *)
 	#. $dir/theme-old.sh
 	. $dir/theme-default.sh
