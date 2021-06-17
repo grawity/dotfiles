@@ -1,12 +1,19 @@
 # vim: ft=sh
 
-items[name:pfx]="<"
-items[name:sfx]=">"
+items[name:pfx]="{"
+items[name:sfx]="}"
 
-fmts[name.self]="38;5;153"
-fmts[name:pfx]="38;5;74"
-fmts[pwd]="38;5;74"
+#fmts[name.self]="38;5;109"
+#fmts[pwd]="38;5;144"
+#fmts[vcs]="38;5;108"
+# Grays:
+fmts[name.self]="38;5;111"
+fmts[pwd]='38;5;250'
+fmts[vcs]='38;5;242'
+
+fmts[name:pfx]="@name"
 fmts[pwd:tail]="@pwd"
-fmts[vcs]="38;5;31"
+
+fmts[prompt]="38;5;242"
 
 fullpwd="h"

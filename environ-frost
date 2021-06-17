@@ -1,5 +1,4 @@
-BORG_REPO="/vol4/Backup/Homes/$HOSTNAME.borg"
-
-VDPAU_DRIVER="va_gl"
-
+# Environment always loaded on frost:
 # vim: ft=sh
+
+BORG_REPO="/vol4/Backup/Homes/$HOSTNAME.borg"
