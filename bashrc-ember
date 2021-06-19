@@ -6,7 +6,7 @@ routed6='2a06:e881:108:1::4'
 
 parts[right]+=' <:ticket'
 fmts[ticket.valid]='0'
-fmts[ticket.expired]='@.orange0'
+fmts[ticket.expired]='38;5;166'
 _ticketstatus() {
 	if klist -5 -s; then
 		items[ticket]=''
