@@ -37,10 +37,17 @@ endif
 let perl_no_extended_vars=1
 let python_no_builtin_highlight=1
 
-if has("syntax")
-	syntax on
-	syntax sync minlines=200
-endif
+filetype plugin on
+filetype indent off
+
+augroup filetypedetect
+	" Override Arch's ftdetect/PKGBUILD.vim. (This must be run after
+	" pathogen, and before 'syntax on'.)
+	au! BufNewFile,BufRead PKGBUILD
+augroup END
+
+syntax on
+syntax sync minlines=200
 
 " Color scheme
 
@@ -345,15 +352,6 @@ endif
 func! JoinPara()
 	:g/^\S/ .,/^$/-1 join
 endfunc
-
-filetype plugin on
-filetype indent off
-
-augroup filetypedetect
-	" Override Arch's ftdetect/PKGBUILD.vim. (This must be run after
-	" pathogen, which re-invokes filetype detection a second time.)
-	au! BufNewFile,BufRead PKGBUILD
-augroup END
 
 if hostname() == "rain"
 	" Speed up neovim startup (~0.3 s) by not loading Python scripting.
