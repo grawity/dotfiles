@@ -3,6 +3,7 @@
 
 if [[ $USER == grawity && -t 0 && -t 1 && -t 2 ]]; then
 	_krb_init() {(
+		[[ $HOSTNAME == star ]] || return
 		local path="$XDG_RUNTIME_DIR/krenew.lock"
 		local fd
 		if [[ -s $path ]]; then
