@@ -2,19 +2,6 @@
 # Loaded by .bashrc on NFS client machines
 
 if [[ $USER == grawity && -t 0 && -t 1 && -t 2 ]]; then
-	_krb_init() {(
-		local path="$XDG_RUNTIME_DIR/krenew.lock"
-		local fd
-		if [[ -s $path ]]; then
-			echo "Waiting for kinit on $(<"$path")..."
-		fi
-		exec {fd}>"$path"
-		flock $fd
-		tty >&$fd
-		klist -s || kinit
-		rm -f "$path"
-	)}
-
 	_krb_check() {(
 		unset KRB5CCNAME
 		local now=$(date +%s) ticket= krbtgt= expires=0 renews=0 flags=
@@ -32,12 +19,10 @@ if [[ $USER == grawity && -t 0 && -t 1 && -t 2 ]]; then
 		fi
 		if (( expires < now )); then
 			echo "[1;31mKerberos tickets expired[m"
-			_krb_init
 		elif [[ $flags != *R* ]]; then
 			echo "[1;35mKerberos tickets are non-renewable[m"
 		elif (( renews < now + 86400 )); then
 			echo "[1;33mKerberos tickets are near renewal lifetime[m"
-			_krb_init
 		fi
 	)}
 

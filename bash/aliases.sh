@@ -9,7 +9,7 @@ browser() { command ${BROWSER:-lynx} "$@"; }
 pager() { command ${PAGER:-more} "$@"; }
 
 alias aa-reload='apparmor_parser -r -T -W'
-alias bat='acpi -i'
+bat() { if (( $# )); then command bat "$@"; else acpi -i; fi; }
 catsexp() { cat "$@" | sexp-conv -w $((COLUMNS-1)); }
 count() { sort "$@" | uniq -c | sort -n -r | pager; }
 alias demo='PS1="\\n\\$ "'
