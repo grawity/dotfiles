@@ -185,6 +185,7 @@ alias '~~'='egrep -i'
 		fi
 	done
 }
+,,() { show-file "$@"; }
 alias open=,
 bind -m emacs -x '"\e,": ,'
 
