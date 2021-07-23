@@ -34,7 +34,6 @@ Host bmc.*.nullroute.eu.org
 
 Host *.nullroute.eu.org *.nullroute.lt
 	GSSAPIAuthentication yes
-	#GSSAPIDelegateCredentials yes
 	ForwardAgent yes
 
 # -- Other hosts --
@@ -77,11 +76,12 @@ Host radius-console
 	HostName 10.34.1.14
 	User cons
 
-Host *.utenos-kolegija.lt
 #if ember
-	PKCS11Provider /usr/lib/pkcs11/libopencryptoki.so
+Host *.utenos-kolegija.lt
+	PKCS11Provider libopencryptoki.so
 #else
-	PKCS11Provider /usr/lib/p11-kit-proxy.so
+Host *.utenos-kolegija.lt
+	PKCS11Provider p11-kit-proxy.so
 #endif
 
 # -- Global settings --
@@ -111,6 +111,11 @@ Host *
 	ControlPersist 1h
 #endif
 
+#if frost
+Host *
+	PKCS11Provider p11-kit-proxy.so
+#endif
+
 Host *
 	CanonicalizeHostname yes
 	CanonicalDomains nullroute.eu.org nullroute.lt utenos-kolegija.lt ukolegija.lt
@@ -121,5 +126,3 @@ Host *
 	ControlPath ~/.ssh/S.%r@%h:%p
 	ControlMaster auto
 	ControlPersist 15s
-	# 2020-01-08: This just got disabled upstream
-	CheckHostIP no
