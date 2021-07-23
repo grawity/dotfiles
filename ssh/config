@@ -112,7 +112,7 @@ Host *
 #endif
 
 #if frost
-Host !*.nullroute.eu.org
+Host * !ember !*.nullroute.eu.org !*.nullroute.lt
 	PKCS11Provider p11-kit-proxy.so
 #endif
 
