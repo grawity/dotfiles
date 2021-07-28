@@ -32,6 +32,10 @@ Host bmc.*.nullroute.eu.org
 	HostkeyAlgorithms +ssh-rsa
 	User Administrator
 
+Host ember-bypass
+	HostkeyAlias ember.nullroute.eu.org
+	HostName alt.ember.nullroute.eu.org
+
 Host *.nullroute.eu.org *.nullroute.lt
 	GSSAPIAuthentication yes
 	ForwardAgent yes
@@ -59,21 +63,6 @@ Host theos
 	HostName %h.kyriasis.com
 
 # -- Work --
-
-Host gw-b56-bypass
-	HostName 193.219.181.189
-	HostkeyAlias gw-b56.utenos-kolegija.lt
-#if !star
-	ProxyJump star
-#endif
-
-Host ember-bypass
-	HostName 193.219.181.219
-	HostkeyAlias ember.nullroute.eu.org
-	ControlPath none
-#if !star
-	ProxyJump star
-#endif
 
 Host radius-console
 	HostName 10.34.1.14
