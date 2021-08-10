@@ -32,9 +32,10 @@ Host bmc.*.nullroute.eu.org
 	HostkeyAlgorithms +ssh-rsa
 	User Administrator
 
-Host ember-bypass
+Host ember-alt ember-bypass
 	HostkeyAlias ember.nullroute.eu.org
 	HostName alt.ember.nullroute.eu.org
+	PKCS11Provider none
 
 Host *.nullroute.eu.org *.nullroute.lt
 	GSSAPIAuthentication yes
