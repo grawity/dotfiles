@@ -1,6 +1,9 @@
 *.ldif		diff=ldif
 *.policy.in	diff=polkit
 
-# don't diffstat translations by default
+# Don't diffstat translations by default
 *.po		-diff
 *.pot		-diff
+
+# Don't clutter commitdiffs with generated files
+go.sum		-diff
