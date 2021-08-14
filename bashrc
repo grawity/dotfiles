@@ -57,7 +57,9 @@ complete -A directory cd
 . ~/.dotfiles/bash/prompt.sh
 . ~/.dotfiles/bash/aliases.sh
 
-have kc.sh && . kc.sh
+if have kc.sh; then
+	. kc.sh
+fi
 
 if [[ -d /n && -e /etc/dist/hostids ]]; then
 	. ~/.dotfiles/bash/kerberos.sh
