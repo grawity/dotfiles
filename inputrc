@@ -2,7 +2,7 @@
 
 $include /etc/inputrc
 
-set bell-style none
+#set bell-style none
 
 # Bracketed paste is available in rl 8.0 but somewhat clumsy to use.
 # Enabled by default in rl 8.1, where it works much better (with "faces").
@@ -16,23 +16,29 @@ $endif
 # Don't modify history in-place, but remember as a new command
 set revert-all-at-newline on
 
-# Tab completion
-
+# Show tab-completion offers immediately, instead of beeping on the 1st Tab press
 set show-all-if-ambiguous on
+
+# Don't duplicate text when completing e.g. "Dr|opbox"
+set skip-completed-text on
+
+# Case-insensitive completion
+set completion-ignore-case on
+
+# Completion treats - and _ as equal
+set completion-map-case on
+
+# Ask for confirmation before listing too many options
+set completion-query-items 200
+
 set visible-stats on
 set colored-stats on
 set colored-completion-prefix on
-set skip-completed-text on
-set completion-ignore-case on
-# treat - and _ as equal when tab-completing
-set completion-map-case on
-set completion-query-items 500
 
 # reduce timeout for `
 $if Bash
 set keyseq-timeout 200
 $endif
-
 # typos
 $if Bash
 "`/": "~/"
@@ -59,16 +65,9 @@ $endif
 "\e[Z": complete-into-braces
 #"\e[Z": dynamic-complete-history
 
-# Alt-Enter
-#"\e\n": "foo"
-
-# unbind accidental Alt-P, Alt-N
+# unbind accidental Alt-P, Alt-N, Alt-numbers
 "\ep": ""
 "\en": ""
-
-# unbind the Alt+numbers
-"\e-": ""
-"\e0": ""
 "\e1": ""
 "\e2": ""
 "\e3": ""
@@ -78,6 +77,8 @@ $endif
 "\e7": ""
 "\e8": ""
 "\e9": ""
+"\e0": ""
+"\e-": ""
 
 # UTF-8 prefixes – insert Alt+characters literally instead of eating the first byte
 # (I would prefer if bash could discard the entire character, but it doesn't know how to do that.)
