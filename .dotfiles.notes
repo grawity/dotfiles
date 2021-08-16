@@ -83,6 +83,7 @@ These paths can be overridden using an environment variable.
 ~/.httpie/          $HTTPIE_CONFIG_DIR
 ~/.ICEauthority     $ICEAUTHORITY
 ~/.irbrc            $IRBRC
+~/.ipfs/            $IPFS_PATH
 ~/.ldaprc           $LDAPCONF, $LDAP<opt>, see ldap.conf(5)
 ~/.lesshst          $LESSHISTFILE
 ~/.mtoolsrc         $MTOOLSRC (acts as additional rc)
