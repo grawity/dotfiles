@@ -99,7 +99,7 @@ Host *
 	ServerAliveInterval 10s
 #endif
 
-#if ember
+#if @(ember|frost|wind)
 Host *
 	ControlPersist 1h
 #endif
