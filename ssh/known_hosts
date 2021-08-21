@@ -9,7 +9,7 @@ sky,sky.nullroute.eu.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBBncKhB30r4dMDtvb9
 star,star.nullroute.eu.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHJ1CBZGIOTCzYIbGbfUrA8VviPCbjOntfgD7538H+vY
 wind,wind.nullroute.eu.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC3R1aAJuIBIpNvK+8xCkWqplmHEqghTTFPcI4DPE8Qe
 wolke,wolke.nullroute.eu.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDxeD56V+IW/7jqozEOtXfaN/+RO+OldNRCe7KBYW6kM
-vm-litnet1,vm-litnet1.nullroute.eu.org,83.171.41.1,2001:778:1:1::c7 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBJ4IA1ea6+8pwTFvuxWxsI2MTC3KKbYEnhqkNyfZFJe
+vm-litnet1,vm-litnet1.nullroute.eu.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBJ4IA1ea6+8pwTFvuxWxsI2MTC3KKbYEnhqkNyfZFJe
 vm-vol5,vm-vol5.nullroute.eu.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGlkMqWX/ofP4kzX0urd6kuFQ1ZIgK/dVAzAxpv5r+nn
 # Nullroute - other
 aether.nullroute.eu.org,aether.*.nullroute.eu.org ssh-rsa AAAAB3NzaC1yc2EAAAABAwAAAQEAmb78pz99HOPNJXWH3h0mU95fWS/iJewjTB2QLvBW32Wgc7lwQC3DyhaqmvyeAnY2NvaU+ebkVeUErDb/nTzMmwQINyqBDH5ejJN32Hlacen11epCFIBNpaN5iTTwZRg7mfubZxxF9XoWCa6DJ1e+zs2Q4b+t2jO1G6Kf5WNYo4z23o0WnSXgDPt6QN8PQeLxaHDidfZY6ZUHB4GABq7uWrnzP8xNiEO7KMKcwyqXJYMUKYgZdRo03dEHW3UlQ8TD5fmLOq1GWBb9oRUi5i66xE59IEZwbXf12wkrVwqDN5RorlJGv4mWhLQCaCn7eS4JXu6RuxG4xpAG2ohgOFXsFQ==
