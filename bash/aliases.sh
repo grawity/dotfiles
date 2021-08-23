@@ -62,8 +62,12 @@ alias kssh='ssh \
 	-o GSSAPIDelegateCredentials=yes'
 alias l='~/code/thirdparty/l'
 alias ll='ls -l'
-# note: plocate doesn't have -A, but always behaves as if it was set
-alias loc='locate -A -b -i'
+if have plocate; then
+	# plocate doesn't have -A (match all instead of any) but always behaves that way
+	alias loc='plocate -b -i'
+else
+	alias loc='locate -A -b -i'
+fi
 alias logoff='logout'
 if [[ $DESKTOP_SESSION ]]; then
 	alias logout='env logout'
