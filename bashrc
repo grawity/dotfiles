@@ -64,10 +64,10 @@ if [[ $TERM == *-256color ]]; then
 	. ~/.dotfiles/bash/prompt.sh
 	# Don't load fancy prompt when SSH-ing from old terminals, e.g.
 	# 'xterm-color' (old OS X 10.6 where everything blinks)
-fi
 
-if [[ -d /n && -e /etc/dist/hostids ]]; then
-	. ~/.dotfiles/bash/kerberos.sh
+	if [[ -d /n && -e /etc/dist/hostids ]]; then
+		. ~/.dotfiles/bash/kerberos.sh
+	fi
 fi
 
 if [[ -f ~/.dotfiles/bashrc-$HOSTNAME ]]; then
