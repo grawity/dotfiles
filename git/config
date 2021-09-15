@@ -324,7 +324,6 @@
 
 [include]
 	path = ~/.config/git/config.local
-	path = ~/.gitconfig-local
 
 [includeIf "gitdir:~/src/work/"]
 	path = ~/.config/git/config.work
