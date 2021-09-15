@@ -1,0 +1,6 @@
+# vim: ft=gitconfig:nowrap
+
+[user]
+	name = Mantas Mikulėnas
+	email = mantas@utenos-kolegija.lt
+	signingKey = "8A4A3CABA6465550DC658700626EC71E00758E5F"
