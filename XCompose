@@ -53,6 +53,7 @@ include "%L"
 
 <Multi_key> <l> <q>			: "“"	U201c # LEFT DOUBLE QUOT. MARK <"
 <Multi_key> <r> <q>			: "”"	U201d # RIGHT DOUBLE QUOT. MARK >"
+<Multi_key> <b> <q>			: "„"	U201e # DOUBLE LOW-9 QUOT. MARK ,"
 
 <Multi_key> <apostrophe> <period>	: "’"	U2019 # RIGHT SINGLE QUOT. MARK >'
 <Multi_key> <period> <apostrophe>	: "’"	U2019 # -same-
