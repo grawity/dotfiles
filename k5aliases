@@ -1,4 +1,5 @@
+@	grawity@NULLROUTE.EU.ORG -k -t ~/.config/default.keytab -r -l 7d
 adm	grawity/admin@NULLROUTE.EU.ORG
 fedora	grawity@FEDORAPROJECT.ORG
-n	grawity@NULLROUTE.EU.ORG
+n	grawity@NULLROUTE.EU.ORG -k -t ~/.config/default.keytab -r -l 7d
 ukad	mantas@AD.UTENOS-KOLEGIJA.LT -k -t ~/.config/uk.keytab
