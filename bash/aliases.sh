@@ -508,3 +508,7 @@ if have broot; then
 		return $r
 	}
 fi
+
+if have chafa; then
+	alias imgrgb='chafa --symbols=vhalf,sextant'
+fi
