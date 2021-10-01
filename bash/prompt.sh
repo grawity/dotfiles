@@ -97,8 +97,7 @@ _awesome_upd_vcs() {
 				br=${br#ref: }
 				br=${br#refs/heads/}
 			else
-				br=$(git symbolic-ref HEAD 2>/dev/null ||
-				     git rev-parse --short HEAD 2>/dev/null ||
+				br=$(git rev-parse --short HEAD 2>/dev/null ||
 				     echo 'unknown')
 				br=${br#refs/heads/}
 			fi
