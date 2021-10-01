@@ -97,9 +97,7 @@ _awesome_upd_vcs() {
 				br=${br#ref: }
 				br=${br#refs/heads/}
 			else
-				br=$(git rev-parse --short HEAD 2>/dev/null ||
-				     echo 'unknown')
-				br=${br#refs/heads/}
+				br=${br:0:10}
 			fi
 
 			# Shorten git-annex adjusted branches
