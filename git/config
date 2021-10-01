@@ -11,7 +11,6 @@
 [alias]
 	a = add --all
 	a-p = add --all --patch
-	ainit = "!git init && git add --all && git commit -m 'initial commit'"
 	amend = commit --amend
 	br = branch
 	bra = branch -vv
@@ -19,14 +18,14 @@
 	clone-svnsync = svn clone --use-svnsync-props
 	co = checkout
 	di = diff
-	export = "!touch \"$(git rev-parse --git-dir)/git-daemon-export-ok\""
+	export = "!set -x && touch \"$(git rev-parse --git-dir)/git-daemon-export-ok\""
 	fa = fetch --all
 	follow = log --oneline --follow --stat --summary --
 	fpush = push --force-with-lease
 	ftime = "!date +'--date=%s' -r"
-	fetch-notes = "!git config --add remote.origin.fetch \"+refs/notes/*:refs/notes/*\" && git fetch origin"
-	fetch-pr = "!git config --add remote.origin.fetch \"+refs/pull/*/head:refs/remotes/pr/*\" && git fetch origin"
-	fix-main = "!git br -m master main && git br -u origin/main main && git remote set-head origin -a"
+	fetch-notes = "!set -x && git config --add remote.origin.fetch \"+refs/notes/*:refs/notes/*\" && git fetch origin"
+	fetch-pr = "!set -x && git config --add remote.origin.fetch \"+refs/pull/*/head:refs/remotes/pr/*\" && git fetch origin"
+	fix-main = "!set -x && git br -m master main && git br -u origin/main main && git remote set-head origin -a"
 	in = log --oneline --decorate ..@{upstream}
 	lg = log --oneline --decorate
 	lgs = log --format=\"%C(yellow)%h%C(reset)%C(cyan)% GK%C(reset) %s\"
@@ -53,7 +52,7 @@
 	tip = !git --no-pager log -1 --decorate --abbrev-commit --date=relative
 	uncommit = reset HEAD^
 	undo = reset --soft HEAD^
-	unexport = "!rm -v \"$(git rev-parse --git-dir)/git-daemon-export-ok\""
+	unexport = "!set -x && rm -v \"$(git rev-parse --git-dir)/git-daemon-export-ok\""
 	wdiff = diff --word-diff
 	wshow = show --word-diff
 	tig = !tig
