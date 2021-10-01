@@ -17,6 +17,11 @@
 #     "y" = full path of working directory is always shown
 #     "h" = full unhighlighted path is shown if ~ is cwd
 #     unset = cwd is collapsed ("/home/grawity/foo" → "~/foo")
+#
+# Note to self (2021-10-01):
+#
+#   If the prompt seems slow, that's because the C version of `urlencode`
+#   hasn't been built so the Perl fallback is being invoked instead.
 
 case $TERM in
 	[xkE]term*|rxvt*|cygwin|dtterm|termite)
