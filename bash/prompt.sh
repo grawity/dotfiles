@@ -374,17 +374,17 @@ _awesome_prompt() {
 	# handle left & right parts first,
 	# to determine available space for middle
 
-	_awesome_upd_vcs
+	time _awesome_upd_vcs
 
 	items[pwd]=$PWD
 
-	_awesome_fill_items 'left' 'right'
+	time _awesome_fill_items 'left' 'right'
 
 	(( maxwidth -= lens[left] + !!lens[left] + !!lens[right] + lens[right] + 1 ))
 
-	_awesome_upd_pwd
+	time _awesome_upd_pwd
 
-	_awesome_fill_items 'mid' 'prompt'
+	time _awesome_fill_items 'mid' 'prompt'
 
 	if [[ ${strs[left]}${strs[mid]}${strs[right]} ]]; then
 		printf "%s\n%s" "${strs[left]} ${strs[mid]} ${strs[right]}" "${strs[prompt]}"
