@@ -3,41 +3,41 @@
 
 # -- Own hosts --
 
-Host blizzard.nullroute.eu.org
+Host blizzard.nullroute.lt
 	User mantas
 
 #if star
 # Use direct IPv4 peering with better throughput (~900 Mbps IPv4 vs ~220 Mbps IPv6)
-Host ember.nullroute.eu.org
+Host ember.nullroute.lt
 	AddressFamily inet
-Host wind.nullroute.eu.org
+Host wind.nullroute.lt
 	AddressFamily inet
 #endif
 
 #if @(ember|wind)
 # Use direct IPv4 peering with better throughput (~900 Mbps IPv4 vs ~220 Mbps IPv6)
-Host star.nullroute.eu.org
+Host star.nullroute.lt
 	AddressFamily inet
 #endif
 
 #if @(rain|midnight)
-Host vm-vol5 vm-vol5.nullroute.eu.org
-	HostkeyAlias vm-vol5.nullroute.eu.org
+Host vm-vol5 vm-vol5.nullroute.lt
+	HostkeyAlias vm-vol5.nullroute.lt
 	HostName 193.219.181.193
 	Port 56378
 #endif
 
-Host bmc.*.nullroute.eu.org
+Host bmc.*.nullroute.lt
 	KexAlgorithms +diffie-hellman-group14-sha1
 	HostkeyAlgorithms +ssh-rsa
 	User Administrator
 
 Host ember-alt ember-bypass
-	HostkeyAlias ember.nullroute.eu.org
-	HostName alt.ember.nullroute.eu.org
+	HostkeyAlias ember.nullroute.lt
+	HostName alt.ember.nullroute.lt
 	PKCS11Provider none
 
-Host *.nullroute.eu.org *.nullroute.lt
+Host *.nullroute.lt
 	GSSAPIAuthentication yes
 	ForwardAgent yes
 
@@ -110,13 +110,14 @@ Host *
 #endif
 
 #if frost
+# TODO:
 Host * !ember !*.nullroute.eu.org !*.nullroute.lt
 	PKCS11Provider p11-kit-proxy.so
 #endif
 
 Host *
 	CanonicalizeHostname yes
-	CanonicalDomains nullroute.eu.org nullroute.lt utenos-kolegija.lt ukolegija.lt
+	CanonicalDomains nullroute.lt utenos-kolegija.lt ukolegija.lt
 	Protocol 2
 	HashKnownHosts no
 	VerifyHostKeyDNS yes

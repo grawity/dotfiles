@@ -51,7 +51,7 @@ fi
 
 dir=${BASH_SOURCE[0]%/*}
 case $FQDN in
-    !(vm-*).nullroute.eu.org)
+    !(vm-*).nullroute.lt)
 	if [[ -e $dir/theme-$HOSTNAME.sh ]]; then
 		. $dir/theme-$HOSTNAME.sh
 	else

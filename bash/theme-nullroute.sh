@@ -1,4 +1,4 @@
-# fallback theme for those *.nullroute.eu.org hosts which DO NOT have their own theme
+# fallback theme for those *.nullroute.lt hosts which DO NOT have their own theme
 items[name:pfx]='['
 items[name:sfx]=']'
 fmts[name:pfx]='38;5;66'

@@ -4,7 +4,7 @@
 ### User identity
 
 set realname="Mantas Mikulėnas"
-#set from="grawity@nullroute.eu.org"
+#set from="grawity@nullroute.lt"
 set from="grawity@gmail.com"
 set reverse_name
 reply-hook ~l 'set from="grawity@gmail.com"'
@@ -23,7 +23,7 @@ lists ".*@lists\.freedesktop\.org$"
 
 ### Mail storage
 
-set folder="imaps://mail.nullroute.eu.org/"
+set folder="imaps://mail.nullroute.lt/"
 set spoolfile="+INBOX"
 set postponed="+Drafts"
 set record="+Sent"
@@ -100,7 +100,7 @@ set compose_format="─── Composing (%l in %a parts) %*──"
 
 set use_envelope_from # pass '-f $from' to sendmail; useful for msmtp
 
-#set hostname="nullroute.eu.org"
+#set hostname="nullroute.lt"
 #set use_8bitmime
 
 ### List view
