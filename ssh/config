@@ -37,6 +37,10 @@ Host ember-alt ember-bypass
 	HostName alt.ember.nullroute.lt
 	PKCS11Provider none
 
+# RouterOS
+Host erebus
+	PubkeyAcceptedAlgorithms +ssh-rsa
+
 Host *.nullroute.lt
 	GSSAPIAuthentication yes
 	ForwardAgent yes
