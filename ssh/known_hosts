@@ -1,7 +1,6 @@
-@cert-authority *.nullroute.eu.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINi9073+XIwMND7qY5fFcz3tu2Oqp5ehgFAV0APFiyRq Nullroute host CA r1 (2018-03-23)
 @cert-authority *.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINi9073+XIwMND7qY5fFcz3tu2Oqp5ehgFAV0APFiyRq Nullroute host CA r1 (2018-03-23)
-@cert-authority *.utenos-kolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPYO6xBHkUDn6qrOWiywrA89Pd4u31sfyP43XIZZ0EF/ Utenos kolegija host CA r1 (2018-05-10)
 @cert-authority *.ukolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPYO6xBHkUDn6qrOWiywrA89Pd4u31sfyP43XIZZ0EF/ Utenos kolegija host CA r1 (2018-05-10)
+@cert-authority *.utenos-kolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPYO6xBHkUDn6qrOWiywrA89Pd4u31sfyP43XIZZ0EF/ Utenos kolegija host CA r1 (2018-05-10)
 # Nullroute - servers
 ember,ember.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILIURvamehmT7arjohbpIZPVrSlSl4svIXYY6cSAhkci
 land,land.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMGQdF/KFEggFXoJRV0ulAOpVYqtb/AA9+n7lnrC/e2T
