@@ -229,19 +229,14 @@
 
 # Repository URL rewrites
 
-[url "https://git.nullroute.eu.org/"]
+[url "https://git.nullroute.lt/"]
 	insteadOf = :
 	insteadOf = nullroute:
-	insteadOf = git://nullroute.eu.org/
-	insteadOf = git://git.nullroute.eu.org/
 
 [url "star:/srv/git/"]
 	insteadOf = nullroute+ssh:
 	pushInsteadOf = :
 	pushInsteadOf = nullroute:
-	pushInsteadOf = git://nullroute.eu.org/
-	pushInsteadOf = git://git.nullroute.eu.org/
-	pushInsteadOf = https://git.nullroute.eu.org/
 
 [url "star:lib/annexgit/"]
 	# used by git-annex
