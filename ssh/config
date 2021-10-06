@@ -37,6 +37,11 @@ Host ember-alt ember-bypass
 	HostName alt.ember.nullroute.lt
 	PKCS11Provider none
 
+Host wind-alt
+	HostkeyAlias wind.nullroute.lt
+	HostName alt.wind.nullroute.lt
+	PKCS11Provider none
+
 # RouterOS
 Host erebus
 	PubkeyAcceptedAlgorithms +ssh-rsa
