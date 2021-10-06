@@ -56,6 +56,8 @@ Host shell.*.burble.dn42
 
 Host eisner
 	HostName %h.encompasserve.org
+	HostkeyAlgorithms +ssh-rsa
+	PubkeyAcceptedAlgorithms +ssh-rsa
 	User mikulenas
 
 Host sdf sdf.org
