@@ -9,7 +9,7 @@ set from="grawity@gmail.com"
 set reverse_name
 reply-hook ~l 'set from="grawity@gmail.com"'
 
-alternates "^(grawity|mantas)(\\+.+)?@nullroute\.eu\.org$"
+alternates "^(grawity|mantas)(\\+.+)?@nullroute\.lt$"
 alternates "^grawity(\\+.+)?@gmail\.com$"
 alternates "^mantas(:.+)?@u(tenos-)?kolegija\.lt$"
 
@@ -40,7 +40,7 @@ set confirmcreate
 account-hook "^imaps?://imap\.ietf\.org/$" \
 	'set imap_user="anonymous" imap_pass="anonymous"'
 
-account-hook "^imaps?://mail\.nullroute\.eu\.org/" \
+account-hook "^imaps?://mail\.nullroute\.lt/" \
 	'set imap_user="grawity" imap_authenticators="GSSAPI"'
 
 account-hook "^imaps?://imap\.gmail\.com/" \
