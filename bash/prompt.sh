@@ -71,22 +71,8 @@ _awesome_upd_vcs() {
 		git=
 	elif [[ ${GIT_DIR-} && -d $GIT_DIR ]]; then
 		git=$GIT_DIR
-	elif [[ $PWD == */vim/bundle/* ]]; then
-		# Directly spawn rev-parse for submodules.
-		# Kind of a hack :(
-		git=$(git rev-parse --git-dir 2>/dev/null)
 	else
-		# Try to directly check for .git, ../.git, and so on.
-		for tmp in {,../{,../{,../{,../{,../}}}}}.git; do
-			if [[ -d $tmp ]]; then
-				git=$tmp
-				break
-			fi
-		done
-		# Give up and fall back to spawning rev-parse
-		if [[ ! $git ]]; then
-			git=$(git rev-parse --git-dir 2>/dev/null)
-		fi
+		git=$(git rev-parse --git-dir 2>/dev/null)
 	fi
 
 	if [[ $git && -r $git/HEAD ]]; then
