@@ -29,16 +29,16 @@ Host vm-vol5 vm-vol5.nullroute.lt
 
 Host bmc.*.nullroute.lt
 	KexAlgorithms +diffie-hellman-group14-sha1
-	HostkeyAlgorithms +ssh-rsa
+	HostKeyAlgorithms +ssh-rsa
 	User Administrator
 
 Host ember-alt ember-bypass
-	HostkeyAlias ember.nullroute.lt
+	HostKeyAlias ember.nullroute.lt
 	HostName alt.ember.nullroute.lt
 	PKCS11Provider none
 
 Host wind-alt
-	HostkeyAlias wind.nullroute.lt
+	HostKeyAlias wind.nullroute.lt
 	HostName alt.wind.nullroute.lt
 	PKCS11Provider none
 
@@ -61,7 +61,7 @@ Host shell.*.burble.dn42
 
 Host eisner
 	HostName %h.encompasserve.org
-	HostkeyAlgorithms +ssh-rsa
+	HostKeyAlgorithms +ssh-rsa
 	PubkeyAcceptedAlgorithms +ssh-rsa
 	User mikulenas
 
