@@ -408,8 +408,10 @@ _show_status() {
 			fi
 		fi
 		printf "\e[m\e[38;5;172m%s\e[m\n" "(returned $status)"
+		IGNOREEOF=3
 	else
 		fmts[status]=@status:ok
+		unset IGNOREEOF
 	fi
 }
 
