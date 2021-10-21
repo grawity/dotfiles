@@ -105,7 +105,14 @@ set use_envelope_from # pass '-f $from' to sendmail; useful for msmtp
 
 ### List view
 
-set sort=threads
+# Old-style Mutt configuration
+#set sort=threads
+# NeoMutt 20211015 or later (https://neomutt.org/feature/use-threads)
+#set use_threads=yes sort=date
+# NeoMutt - sort threads by last activity, not by start date, so that
+# old threads with new activity don't drown.
+set use_threads=yes sort=last-date
+
 set auto_tag # auto-add tag prefix
 
 unset help
