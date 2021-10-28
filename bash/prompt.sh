@@ -399,10 +399,6 @@ export PS4
 _show_status() {
 	local status=$?
 	items[status]=$status
-	unset IGNOREEOF
-	if (( status > 0 && status != 130 )); then
-		IGNOREEOF=2
-	fi
 	if (( status > 0 )); then
 		fmts[status]=@status:err
 		if (( status > 128 && status <= 192 )); then
