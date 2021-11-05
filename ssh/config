@@ -59,6 +59,15 @@ Host aur
 Host shell.*.burble.dn42
 	User nullroute
 
+Host burble-ca
+	HostName shell.ca-bhs2.burble.dn42
+
+Host burble-fr
+	HostName shell.fr-rbx1.burble.dn42
+
+Host burble-us
+	HostName shell.us-nyc1.burble.dn42
+
 Host eisner
 	HostName %h.encompasserve.org
 	HostKeyAlgorithms +ssh-rsa
