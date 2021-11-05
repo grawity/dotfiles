@@ -22,8 +22,7 @@ generate() {
 srcdir=${BASH_SOURCE[0]%/*}
 input=( "$srcdir/config"
 	"$srcdir/config-$HOSTNAME" )
-outbase=".generated-config-$HOSTNAME"
-output="$HOME/.ssh/$outbase"
+output="$HOME/.ssh/.generated-config-$HOSTNAME"
 
 if [[ ! -e ${input[0]} ]]; then
 	die "input file '${input[0]}' does not exist"
@@ -31,21 +30,17 @@ elif [[ $1 == "--test" ]]; then
 	generate
 else
 	if [[ ! -d ~/.ssh ]]; then
-		debug "ok, ~/.ssh doesn't exist yet - creating"
-		mkdir -p -m 0700 ~/.ssh
-		true
+		debug "~/.ssh doesn't exist yet -- creating"
+		mkdir -p -m 0700 ~/.ssh || exit
 	elif [[ ! -e ~/.ssh/config ]]; then
-		debug "ok, config doesn't exist yet - creating"
-		true
+		debug "~/.ssh/config doesn't exist yet -- creating"
 	elif [[ ~/.ssh/config -ef ~/.ssh/$output ]]; then
-		debug "ok, generated config found - updating"
-		true
+		debug "generated config found -- updating"
 	elif [[ -L ~/.ssh/config ]]; then
 		if [[ $(readlink ~/.ssh/config) == .generated-config-* ]]; then
-			debug "ok, generated config found - updating"
-			true
+			debug "generated config found -- updating"
 		else
-			debug "symlinked config found - exiting"
+			debug "exiting, as ~/.ssh/config is symlinked elsewhere"
 			exit 0
 		fi
 	else
@@ -60,5 +55,5 @@ else
 	fi
 	generate > "$output"
 	chmod u-w "$output"
-	ln -sf "$outbase" ~/.ssh/config
+	ln -sf "${output##*/}" ~/.ssh/config
 fi
