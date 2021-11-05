@@ -1,8 +1,6 @@
 # vim: ft=sshconfig
 # NOTE: The '#if' directives are processed by the 'ssh/generate' script, not OpenSSH.
 
-# -- Own hosts --
-
 Host blizzard.nullroute.lt
 	User mantas
 
@@ -20,28 +18,32 @@ Host star.nullroute.lt
 
 #if @(rain|midnight)
 Host vm-vol5 vm-vol5.nullroute.lt
+	# Use native IPv4 (even if it involves NAT) instead of tunneling, for throughput
 	HostkeyAlias vm-vol5.nullroute.lt
 	HostName 193.219.181.193
 	Port 56378
 #endif
 
-Host bmc.*.nullroute.lt
-	KexAlgorithms +diffie-hellman-group14-sha1
-	HostKeyAlgorithms +ssh-rsa
-	User Administrator
-
 Host ember-alt ember-bypass
+	# Direct uplink to sw-b56-edge that bypasses gw-core
 	HostKeyAlias ember.nullroute.lt
 	HostName alt.ember.nullroute.lt
 	PKCS11Provider none
 
 Host wind-alt
+	# Alternative path to core via PTP-U2
 	HostKeyAlias wind.nullroute.lt
 	HostName alt.wind.nullroute.lt
 	PKCS11Provider none
 
-# RouterOS
+Host bmc.*.nullroute.lt
+	# iLO
+	KexAlgorithms +diffie-hellman-group14-sha1
+	HostKeyAlgorithms +ssh-rsa
+	User Administrator
+
 Host erebus
+	# RouterOS
 	PubkeyAcceptedAlgorithms +ssh-rsa
 
 Host *.nullroute.lt
@@ -84,6 +86,7 @@ Host theos
 # -- Work --
 
 Host radius-console
+	# Serial port through AP-M7-14
 	HostName 10.34.1.14
 	User cons
 
@@ -110,25 +113,34 @@ Host ubnt
 	StrictHostKeyChecking no
 	ControlPersist no
 
-# Enable GSSAPI for single-label names, but not for FQDNs
 Match canonical host *.*
+	# Disable GSSAPI for FQDNs that aren't our own
 	GSSAPIAuthentication no
+
 Match canonical host *
+	# ...but enable it for single-label names
 	GSSAPIAuthentication yes
 
 #if @(rain|midnight)
-# Deal with Telia CGNAT timeouts
 Host *
+	# Telia's LTE CGNAT has an aggressive idle timeout (several minutes)
+	# XXX: Was this for the old Omnitel "mobile" CGNAT or the new Telia one?
 	ServerAliveInterval 10s
 #endif
 
 #if @(ember|frost|wind)
 Host *
+	# On hosts where NAT timeouts are not an issue, persist authenticated
+	# connections for longer.
 	ControlPersist 1h
+#else
+Host *
+	ControlPersist 15s
 #endif
 
 #if frost
 Host * !ember !*.nullroute.lt
+	# Access the 'main' SSH key on ember's TPM via p11-kit
 	IdentityFile ~/.dotfiles/ssh/id_tpm.pub
 	PKCS11Provider p11-kit-proxy.so
 #endif
@@ -142,4 +154,3 @@ Host *
 	SendEnv LANG TZ
 	ControlPath ~/.ssh/S.%r@%h:%p
 	ControlMaster auto
-	ControlPersist 15s
