@@ -12,9 +12,7 @@ Host ember.nullroute.lt
 	AddressFamily inet
 Host wind.nullroute.lt
 	AddressFamily inet
-#endif
-
-#if @(ember|wind)
+#elif @(ember|wind)
 # Use direct IPv4 peering with better throughput (~900 Mbps IPv4 vs ~220 Mbps IPv6)
 Host star.nullroute.lt
 	AddressFamily inet
