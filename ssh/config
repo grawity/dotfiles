@@ -85,9 +85,10 @@ Host theos
 
 # -- Work --
 
-Host radius-console
+Host uk-lnx1-console
 	# Serial port through AP-M7-14
 	HostName 10.34.1.14
+	HostKeyAlias ap-m7-14.utenos-kolegija.lt
 	User cons
 
 #if ember
@@ -98,9 +99,9 @@ Host *.utenos-kolegija.lt
 	PKCS11Provider p11-kit-proxy.so
 #endif
 
-# RouterOS 6.48.3 seems to support RSA-SHA2 for host keys, but still doesn't
-# accept such signatures for user keys.
 Host gw-b56.utenos-kolegija.lt gw-m18.utenos-kolegija.lt
+	# RouterOS 6.48.3 seems to support RSA-SHA2 for host keys, but still doesn't
+	# accept such signatures for user keys.
 	PubkeyAcceptedAlgorithms +ssh-rsa
 
 # -- Global settings --
