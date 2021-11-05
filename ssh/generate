@@ -22,7 +22,8 @@ generate() {
 srcdir=${BASH_SOURCE[0]%/*}
 input=( "$srcdir/config"
 	"$srcdir/config-$HOSTNAME" )
-output=".generated-config-$HOSTNAME"
+outbase=".generated-config-$HOSTNAME"
+output="$HOME/.ssh/$outbase"
 
 if [[ ! -e ${input[0]} ]]; then
 	die "input file '${input[0]}' does not exist"
@@ -50,6 +51,14 @@ else
 	else
 		die "refusing to overwrite local ~/.ssh/config"
 	fi
-	generate > ~/.ssh/$output
-	ln -sf $output ~/.ssh/config
+
+	# We keep the file without +w as a hint to text editors that this is a
+	# generated file and shouldn't be directly updated, as I keep losing my
+	# local changes after forgetting this.
+	if [[ -e "$output" && ! -w "$output" ]]; then
+		chmod u+w "$output"
+	fi
+	generate > "$output"
+	chmod u-w "$output"
+	ln -sf "$outbase" ~/.ssh/config
 fi
