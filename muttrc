@@ -161,7 +161,8 @@ set xterm_set_titles
 
 # Enable this locally
 #set sidebar_visible
-#set sidebar_sort_method = "path"
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set sidebar_sort_method = "path"
 
 # Disable sleep(1) after certain messages, most importantly
 # after the "SSL/TLS connection using TLSv1" message on startup.
