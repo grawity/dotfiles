@@ -1,6 +1,7 @@
 # vim: ft=sshconfig
 # NOTE: The '#if' directives are processed by the 'ssh/generate' script, not OpenSSH.
 
+# Doesn't yet exist in Debian bullseye (OpenSSH 8.4)
 IgnoreUnknown PubkeyAcceptedAlgorithms
 
 Host blizzard.nullroute.lt
