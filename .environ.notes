@@ -44,7 +44,6 @@ GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
 ICEWM_PRIVCFG="$XDG_CONFIG_HOME/IceWM"
 LDAPRC="$XDG_CONFIG_HOME/ldaprc"
 MTOOLSRC="$XDG_CONFIG_HOME/mtoolsrc"
-QUODLIBET_USERDIR="$XDG_DATA_HOME/QuodLibet"
 SCREENRC="$XDG_CONFIG_HOME/screenrc"
 TKABBER_HOME="$XDG_CONFIG_HOME/Tkabber"
 WGETRC="$XDG_CONFIG_HOME/wgetrc"
@@ -77,7 +76,6 @@ TMUX_TMPDIR="$XDG_RUNTIME_DIR/tmux"
 CRAWL_DIR="$XDG_DATA_HOME/crawl/" # trailing slash required
 EXODUSVIEWER_USER_DIR="$XDG_DATA_HOME/ExodusViewer"
 FIRESTORM_USER_DIR="$XDG_DATA_HOME/Firestorm"
-GIMP2_DIRECTORY="$XDG_DATA_HOME/Gimp"
 GNUSTEP_USER_ROOT="$XDG_DATA_HOME/GNUstep"
 SECONDLIFE_USER_DIR="$XDG_DATA_HOME/SecondLife"
 
@@ -85,8 +83,6 @@ SECONDLIFE_USER_DIR="$XDG_DATA_HOME/SecondLife"
 
 # Treated as "system" config (user-only options ignored); use LDAPRC
 LDAPCONF="$XDG_CONFIG_HOME/ldap.conf"
-# Not needed anymore (already the default)
-LFTP_HOME="$XDG_CONFIG_HOME/lftp"
 # Does not work 100% (see notes)
 OPERA_PERSONALDIR="$XDG_DATA_HOME/opera"
 
