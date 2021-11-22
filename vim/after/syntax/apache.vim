@@ -22,6 +22,7 @@ syn keyword apacheDeclaration GssapiLocalName
 syn keyword apacheDeclaration GssapiNameAttributes
 syn keyword apacheDeclaration GssapiNegotiateOnce
 syn keyword apacheDeclaration GssapiPublishErrors
+syn keyword apacheDeclaration GssapiPublishMech
 syn keyword apacheDeclaration GssapiRequiredNameAttributes
 syn keyword apacheDeclaration GssapiSSLonly
 syn keyword apacheDeclaration GssapiSessionKey
