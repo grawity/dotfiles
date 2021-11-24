@@ -19,7 +19,7 @@ alias easy-rsa='easyrsa'
 alias ed='ed -p:'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
 alias ccard-tool='pkcs11-tool --module libccpkip11.so'
-alias etoken-tool='pkcs11-tool --module /usr/lib/pkcs11/libeTPkcs11.so'
+alias etoken-tool='pkcs11-tool --module /usr/lib/sac-10.0/libeToken.so'
 alias efips-tool='pkcs11-tool --module /usr/lib/pkcs11/libeToken.so'
 alias gemalto-tool='pkcs11-tool --module /usr/lib/pkcs11/libgclib.so'
 alias ykcs11-tool='pkcs11-tool --module libykcs11.so'
