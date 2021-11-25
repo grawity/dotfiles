@@ -96,7 +96,7 @@ Host uk-lnx1-console
 
 #if ember
 Host *.utenos-kolegija.lt
-	PKCS11Provider libopencryptoki.so
+	PKCS11Provider /usr/lib/sac-10.0/libeToken.so
 #else
 Host *.utenos-kolegija.lt
 	PKCS11Provider p11-kit-proxy.so
