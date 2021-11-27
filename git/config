@@ -105,11 +105,17 @@
 	autocrlf = false
 	excludesfile = ~/.config/git/ignore
 	logAllRefUpdates = true
+	#pager = delta
+	#pager = delta --light
 	whitespace = trailing-space, space-before-tab, blank-at-eof
 
 [credential]
 	#helper = libsecret
 	useHttpPath = false
+
+[delta]
+	features = decorations navigate
+	line-numbers = true
 
 [diff]
 	renames = copies
