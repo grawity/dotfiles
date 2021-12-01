@@ -155,7 +155,10 @@ set modeline
 
 set backupcopy=yes		" fixes issues with vipw
 set autoread
-set hidden			" do not unload abandoned buffers
+
+" When buffers become abandoned, hide them instead of unloading completely.
+" (Enabled by default as of Neovim 0.3)
+set hidden
 
 if has("nvim")
 	" Treat AFS/NFS paths as 'removable' and don't store them in shada
@@ -191,6 +194,10 @@ set smartindent
 "set nocindent
 set cinkeys=0{,0},0),:,!,o,O,e
 
+" When joining lines, don't add two spaces between sentences.
+" (This is now disabled by default as of Neovim 0.3)
+set nojoinspaces
+
 " Don't smartindent after keywords like 'for', 'do' etc.
 " (This retains smartindent after '{'.)
 set cinwords=
@@ -198,8 +205,10 @@ set cinwords=
 " Note: To determine what re-enabled these options, use:
 "       :verbose set sw? et? si? cin?
 
-" allow backspacing over everything
+" Allow backspacing over autoindents; across line breaks; and deleting text
+" before the insert point. (Enabled by default in Neovim 0.2)
 set backspace=indent,eol,start
+
 " t,c: auto-wrap text, comments according to textwidth
 " r,o: insert comment leader after Return, o/O
 " q: allow gq to format comments
