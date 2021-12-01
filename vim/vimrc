@@ -109,7 +109,7 @@ set ruler
 set showmode
 set showcmd
 
-" Neovim 0.3 defaults to 'inccommand=split' to show a live preview of s///,
+" Neovim 0.6 defaults to 'inccommand=split' to show a live preview of s///,
 " disable it for now.
 set inccommand=
 
@@ -157,7 +157,7 @@ set backupcopy=yes		" fixes issues with vipw
 set autoread
 
 " When buffers become abandoned, hide them instead of unloading completely.
-" (Enabled by default as of Neovim 0.3)
+" (Enabled by default as of Neovim 0.6)
 set hidden
 
 if has("nvim")
@@ -195,7 +195,7 @@ set smartindent
 set cinkeys=0{,0},0),:,!,o,O,e
 
 " When joining lines, don't add two spaces between sentences.
-" (This is now disabled by default as of Neovim 0.3)
+" (This is now disabled by default as of Neovim 0.6)
 set nojoinspaces
 
 " Don't smartindent after keywords like 'for', 'do' etc.
@@ -206,7 +206,8 @@ set cinwords=
 "       :verbose set sw? et? si? cin?
 
 " Allow backspacing over autoindents; across line breaks; and deleting text
-" before the insert point. (Enabled by default in Neovim 0.2)
+" before the insert point. (Enabled by default in Neovim 0.5, probably, or
+" even earlier)
 set backspace=indent,eol,start
 
 " t,c: auto-wrap text, comments according to textwidth
