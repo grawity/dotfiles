@@ -109,6 +109,10 @@ set ruler
 set showmode
 set showcmd
 
+" Neovim 0.3 defaults to 'inccommand=split' to show a live preview of s///,
+" disable it for now.
+set inccommand=
+
 set linebreak			" soft word-wrap
 set display+=lastline		" show partial line if it doesn't fit
 "set showbreak=↵\ 		" prefix wrapped lines
