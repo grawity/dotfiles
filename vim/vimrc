@@ -25,10 +25,17 @@ endif
 set mouse=a
 
 if &term =~ "^xterm"
-	" The default 'xterm' mode is limited to 223 columns, and Windows Terminal oddly has a much lower 93-col limit.
-	" 'sgr' mode works in PuTTY and WT, and has no such limit.
-	" Vim tries to autodetect sgr-capable terminals, but WT does not (yet) respond to \e[>c version query.
+	" The default 'xterm' mode is limited to 223 columns, and Windows
+	" Terminal oddly has a much lower 93-col limit for it.
+	"
+	" 'sgr' seems to be the explicitly recommended mode; it works in PuTTY
+	" and Windows Terminal, and has no such limit.
+	"
+	" Vim tries to autodetect sgr-capable terminals, but WT does not (yet)
+	" respond to \e[>c version query.
+	"
 	" Neovim always uses sgr and does not have ttymouse= option.
+	" (todo: why is this not in a !nvim guard, then?)
 	set ttymouse=sgr
 endif
 
@@ -52,15 +59,16 @@ syntax sync minlines=200
 " Color scheme
 
 if has("termguicolors")
-	" Vim 8, Neovim: use RGB colors if possible
+	" Vim 8, Neovim: Use RGB colors if possible.
 	" <https://gist.github.com/XVilka/8346728>
 	if &term =~ "^putty"
 		" PuTTY does not support : as separator yet
 		let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 		let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 	endif
+
 	" Terminals known to support RGB
-	" (disabled due to zenburn)
+	" (disabled because Zenburn truecolor feels a bit off)
 	"if &term =~ "-direct$" || &term =~ "^\\(tmux\\|putty\\|xterm\\)-256color"
 	"	set termguicolors
 	"endif
@@ -91,7 +99,7 @@ elseif &t_Co >= 256
 		color zenburn
 	endif
 else
-	" fallback for obsolete terminals
+	" Fallback for obsolete terminals
 	silent! color slate
 endif
 
