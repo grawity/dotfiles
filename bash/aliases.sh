@@ -514,7 +514,7 @@ if have fzf; then
 	_fzfyank() {
 		local pre=${READLINE_LINE:0:READLINE_POINT}
 		local suf=${READLINE_LINE:READLINE_POINT}
-		local str; str=$(fzf --height=10 --border) && str="${str@Q} "
+		local str; str=$(fzf --height=10 --info=inline --reverse) && str="${str@Q} "
 		local len=${#str}
 		READLINE_LINE=${pre}${str}${suf}
 		READLINE_POINT=$((READLINE_POINT + len))
