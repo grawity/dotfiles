@@ -79,7 +79,3 @@ ukip() {
 uredboot() {
 	do: telnet 192.168.1.20 9000
 }
-
-u2() {
-	dot -Tx11 < ~/Dropbox/Work/Net/Ute2.gv
-}
