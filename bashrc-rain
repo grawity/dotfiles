@@ -2,12 +2,6 @@
 
 [[ $- != *i* ]] && return
 
-dir=${BASH_SOURCE[0]%/*}
-if [[ $DISPLAY ]]; then
-	. $dir/bash/yank.sh
-fi
-unset dir
-
 ## Aliases
 
 alias eof='IGNOREEOF=3'
