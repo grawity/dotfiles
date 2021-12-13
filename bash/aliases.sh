@@ -522,7 +522,7 @@ if have fzf; then
 		READLINE_LINE=${pre}${str}${suf}
 		READLINE_POINT=$((READLINE_POINT + len))
 	}
-	bind -m emacs -x '"\ed": _fzfyank "compgen -d -f"'
+	bind -m emacs -x '"\ed": _fzfyank "compgen -f"'
 	bind -m emacs -x '"\ef": _fzfyank'
 fi
 
