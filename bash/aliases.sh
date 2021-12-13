@@ -516,7 +516,7 @@ if have fzf; then
 		local suf=${READLINE_LINE:READLINE_POINT}
 		local str; str=$(
 			if [ "$1" ]; then export FZF_DEFAULT_COMMAND="$1"; fi
-			fzf --height=10 --info=inline --reverse
+			fzf --height=10 --info=inline --reverse --color=bw
 		) && str="${str@Q} "
 		local len=${#str}
 		READLINE_LINE=${pre}${str}${suf}
