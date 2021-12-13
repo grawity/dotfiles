@@ -514,10 +514,12 @@ if have fzf; then
 	_fzfyank() {
 		local pre=${READLINE_LINE:0:READLINE_POINT}
 		local suf=${READLINE_LINE:READLINE_POINT}
+		local qry=${pre##*[ /=]}
 		local str; str=$(
 			if [[ $1 ]]; then export FZF_DEFAULT_COMMAND="$1"; fi
-			fzf --height=10 --info=inline --reverse --color=bw
+			fzf --height=10 --info=inline --reverse --color=bw -q "$qry"
 		) && str="${str@Q} "
+		if [[ $str ]]; then pre=${pre%"$qry"}; fi
 		local len=${#str}
 		READLINE_LINE=${pre}${str}${suf}
 		READLINE_POINT=$((READLINE_POINT + len))
