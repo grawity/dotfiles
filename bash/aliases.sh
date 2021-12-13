@@ -514,11 +514,15 @@ if have fzf; then
 	_fzfyank() {
 		local pre=${READLINE_LINE:0:READLINE_POINT}
 		local suf=${READLINE_LINE:READLINE_POINT}
-		local str; str=$(fzf --height=10 --info=inline --reverse) && str="${str@Q} "
+		local str; str=$(
+			if [ "$1" ]; then export FZF_DEFAULT_COMMAND="$1"; fi
+			fzf --height=10 --info=inline --reverse
+		) && str="${str@Q} "
 		local len=${#str}
 		READLINE_LINE=${pre}${str}${suf}
 		READLINE_POINT=$((READLINE_POINT + len))
 	}
+	bind -m emacs -x '"\ed": _fzfyank "compgen -d -f"'
 	bind -m emacs -x '"\ef": _fzfyank'
 fi
 
