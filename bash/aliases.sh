@@ -516,11 +516,10 @@ if have fzf; then
 	export FZF_DEFAULT_OPTS="--height=30% --info=inline --color=bw"
 
 	_fzfyank() {
-		local cmd=${1:-'compgen -f'}
 		local pre=${READLINE_LINE:0:READLINE_POINT}
 		local suf=${READLINE_LINE:READLINE_POINT}
 		local qry=${pre##*[ /=]}
-		local str=$(FZF_DEFAULT_COMMAND="$cmd" fzf --reverse -q "$qry")
+		local str=$(FZF_DEFAULT_COMMAND=$1 fzf --reverse -q "$qry")
 		if [[ $str ]]; then
 			pre="${pre%"$qry"}"
 			str="${str@Q} "
