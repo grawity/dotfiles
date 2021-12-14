@@ -513,7 +513,7 @@ fi
 if have fzf; then
 	. /usr/share/fzf/completion.bash
 
-	export FZF_DEFAULT_OPTS="--height=30% --info=inline --color=bw"
+	export FZF_DEFAULT_OPTS="--height=30% --info=inline"
 
 	_fzfyank() {
 		local pre=${READLINE_LINE:0:READLINE_POINT}
