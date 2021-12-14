@@ -528,8 +528,8 @@ if have fzf; then
 		fi
 	}
 	# Alt+[df] - local dir/all selection
-	bind -m emacs -x '"\ed": _fzfyank "compgen -d"'
-	bind -m emacs -x '"\ef": _fzfyank "compgen -f"'
+	bind -m emacs -x '"\ed": _fzfyank "compgen -d | sort"'
+	bind -m emacs -x '"\ef": _fzfyank "compgen -f | sort"'
 	# Alt+Shift+[DF] - recursive dir/all selection
 	bind -m emacs -x '"\eD": _fzfyank "find . -xdev -mindepth 1 -name .\?\* -prune -o -type d -printf %P\\\n"'
 	bind -m emacs -x '"\eF": _fzfyank "find . -xdev -mindepth 1 -name .\?\* -prune -o -printf %P\\\n"'
