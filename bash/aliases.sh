@@ -521,8 +521,8 @@ if have fzf; then
 		local qry=${pre##*[ /=]}
 		local str=$(FZF_DEFAULT_COMMAND=$1 fzf --reverse -q "$qry")
 		if [[ $str ]]; then
-			pre="${pre%"$qry"}"
-			str="${str@Q} "
+			pre=${pre%"$qry"}
+			str=${str@Q}" "
 			READLINE_LINE=${pre}${str}${suf}
 			READLINE_POINT=$((READLINE_POINT - ${#qry} + ${#str}))
 		fi
