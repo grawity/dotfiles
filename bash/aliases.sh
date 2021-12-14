@@ -513,18 +513,20 @@ fi
 if have fzf; then
 	. /usr/share/fzf/completion.bash
 
+	export FZF_DEFAULT_OPTS="--height=30% --info=inline --color=bw"
+
 	_fzfyank() {
+		local cmd=${1:-'compgen -f'}
 		local pre=${READLINE_LINE:0:READLINE_POINT}
 		local suf=${READLINE_LINE:READLINE_POINT}
 		local qry=${pre##*[ /=]}
-		local str; str=$(
-			if [[ $1 ]]; then export FZF_DEFAULT_COMMAND="$1"; fi
-			fzf --height=10 --info=inline --reverse --color=bw -q "$qry"
-		) && [[ $str ]] || return
-		pre="${pre%"$qry"}"
-		str="${str@Q} "
-		READLINE_LINE=${pre}${str}${suf}
-		READLINE_POINT=$((READLINE_POINT - ${#qry} + ${#str}))
+		local str=$(FZF_DEFAULT_COMMAND="$cmd" fzf --reverse -q "$qry")
+		if [[ $str ]]; then
+			pre="${pre%"$qry"}"
+			str="${str@Q} "
+			READLINE_LINE=${pre}${str}${suf}
+			READLINE_POINT=$((READLINE_POINT - ${#qry} + ${#str}))
+		fi
 	}
 	# Alt+[df] - local dir/all selection
 	bind -m emacs -x '"\ed": _fzfyank "compgen -d"'
