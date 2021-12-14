@@ -533,6 +533,10 @@ if have fzf; then
 	# Alt+Shift+[DF] - recursive dir/all selection
 	bind -m emacs -x '"\eD": _fzfyank "find . -xdev -mindepth 1 -name .\?\* -prune -o -type d -printf %P\\\n"'
 	bind -m emacs -x '"\eF": _fzfyank "find . -xdev -mindepth 1 -name .\?\* -prune -o -printf %P\\\n"'
+	#bind -m emacs -x '"\ed": _fzfyank "fd --strip-cwd-prefix --max-depth=1 --type=d"'
+	#bind -m emacs -x '"\ef": _fzfyank "fd --strip-cwd-prefix --max-depth=1"'
+	#bind -m emacs -x '"\eD": _fzfyank "fd --strip-cwd-prefix --type=d"'
+	#bind -m emacs -x '"\eF": _fzfyank "fd --strip-cwd-prefix"'
 fi
 
 if have chafa; then
