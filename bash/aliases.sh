@@ -526,6 +526,9 @@ if have fzf; then
 	}
 	bind -m emacs -x '"\ed": _fzfyank "compgen -f"'
 	bind -m emacs -x '"\ef": _fzfyank'
+	# Alt+Shift+[DF] - recursive dir/file selection
+	bind -m emacs -x '"\eD": _fzfyank "find . -xdev -mindepth 1 -name .\?\* -prune -o -type d -printf %P\\\n"'
+	bind -m emacs -x '"\eF": _fzfyank "find . -xdev -mindepth 1 -name .\?\* -prune -o -printf %P\\\n"'
 fi
 
 if have chafa; then
