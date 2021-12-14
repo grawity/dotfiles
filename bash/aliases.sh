@@ -511,6 +511,8 @@ if have broot; then
 fi
 
 if have fzf; then
+	. /usr/share/fzf/completion.bash
+
 	_fzfyank() {
 		local pre=${READLINE_LINE:0:READLINE_POINT}
 		local suf=${READLINE_LINE:READLINE_POINT}
