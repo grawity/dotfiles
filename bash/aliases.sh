@@ -517,17 +517,12 @@ if have fzf; then
 		local pre=${READLINE_LINE:0:READLINE_POINT}
 		local suf=${READLINE_LINE:READLINE_POINT}
 		local qry=${pre##*[ /=]}
-		local str=$(
+		local str; str=$(
 			if [[ $1 ]]; then export FZF_DEFAULT_COMMAND="$1"; fi
 			fzf --height=10 --info=inline --reverse --color=bw -q "$qry"
-		)
-		if [[ $str ]]; then
-			pre=${pre%"$qry"}
-			str="${str@Q} "
-		fi
-		local len=${#str}
-		READLINE_LINE=${pre}${str}${suf}
-		READLINE_POINT=$((READLINE_POINT + len))
+		) && [[ $str ]] || return
+		READLINE_LINE="${pre%"$qry"}${str@Q} ${suf}"
+		READLINE_POINT=$((READLINE_POINT + ${#str}))
 	}
 	# Alt+[df] - local dir/all selection
 	bind -m emacs -x '"\ed": _fzfyank "compgen -d"'
