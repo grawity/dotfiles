@@ -76,13 +76,10 @@ fi
 f() { find . \( -name .git -prune \) , \( -iname "*$1*" "${@:2}" \) | natsort; }
 ff() { f "$@" | sed 's,^\./,,' | treeify --fake-root "$PWD"; }
 alias lchown='chown -h'
-vildap() { ldapvi -s base -b "$@" '(objectclass=*)' '*' '+'; }
 ldapls() {
 	ldapsearch -LLL -o ldif-wrap=no "$@" 1.1 | grep ^dn: \
 	| perl -MMIME::Base64 -pe 's/^(.+?):: (.+)$/"$1: ".decode_base64($2)/e'
 }
-ldapshow() { ldapsearch -b "$1" -s base -LLL "${@:2}"; }
-ldapstat() { ldapsearch -b "" -s base -LLL "$@" \* +; }
 alias lp='sudo netstat -lptu --numeric-hosts'
 alias lpt='sudo netstat -lpt --numeric-hosts'
 alias lpu='sudo netstat -lpu --numeric-hosts'
@@ -106,7 +103,6 @@ alias mutagen='mid3v2'
 mvln() { mv "$1" "$2" && sym -v "$2" "$1"; }
 alias nmap='nmap --reason'
 alias nm-con='nmcli -f name,type,autoconnect,state,device con'
-alias pamcan='pacman'
 alias plink='plink -no-antispoof'
 alias py='python3'
 alias py2='python2'
@@ -134,12 +130,9 @@ alias run='spawn -c'
 alias rsync='rsync -s'
 sp() { printf '%s' "$@"; printf '\n'; }
 splitext() { split -dC "${2-32K}" "$1" "${1%.*}-" --additional-suffix=".${1##*.}"; }
-alias srs='rsync -vshaHAX'
-ssh-addglobal() { ssh -t wolke 'ssh-add ~/.ssh/id_global_*'; }
 alias sudo='sudo ' # for alias expansion in sudo args
 alias telnets='telnet-ssl -z ssl'
 _thiscommand() { history 1 | sed "s/^\s*[0-9]\+\s\+([^)]\+)\s\+$1\s\+//"; }
-alias tidiff='infocmp -Ld'
 tigdiff() { diff -u "$@" | tig; }
 alias todo:='todo "$(_thiscommand todo:)" #'
 alias traceroute='traceroute --extensions'
@@ -156,7 +149,6 @@ vercmp() {
 	esac
 }
 vimpaste() { vim <(getpaste "$1"); }
-alias vinft='sudo -E sh -c "vim /etc/nftables.conf && nft -f /etc/nftables.conf"'
 virdf() { vim -c "setf n3" <(rapper -q -o turtle "$@"); }
 visexp() { (echo "; vim: ft=sexp"; echo "; file: $1"; sexp-conv < "$1") \
 	| vipe | sexp-conv -s canonical | sponge "$1"; }
@@ -167,7 +159,6 @@ alias unwine='printf "\e[?1l \e>"'
 xar() { xargs -r -d '\n' "$@"; }
 alias xf='ps xf -O ppid'
 alias xx='chmod a+rx'
-alias zt1='zerotier-cli'
 alias '~'='egrep'
 alias '~~'='egrep -i'
 -() { cd -; }
