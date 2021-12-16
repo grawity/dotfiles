@@ -454,10 +454,12 @@ if have fzf; then
 	export FZF_DEFAULT_OPTS="--height=30% --info=inline"
 
 	_fzfyank() {
+		#local cmd=$1
+		local cmd="$1 | xargs -d '\n' ls -dh --color=always"
 		local pre=${READLINE_LINE:0:READLINE_POINT}
 		local suf=${READLINE_LINE:READLINE_POINT}
 		local qry=${pre##*[ /=]}
-		local str=$(FZF_DEFAULT_COMMAND=$1 fzf -q "$qry" --reverse \
+		local str=$(FZF_DEFAULT_COMMAND=$cmd fzf -q "$qry" --reverse --ansi \
 				--preview='ls -ldh --color=always {}' \
 				--preview-window=down,1,border-none)
 		if [[ $str ]]; then
