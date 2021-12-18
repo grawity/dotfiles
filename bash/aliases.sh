@@ -454,8 +454,10 @@ if have fzf; then
 	export FZF_DEFAULT_OPTS="--height=30% --info=inline"
 
 	_fzfyank() {
-		#local cmd=$1
-		local cmd="$1 | xargs -d '\n' ls -dh --color=always"
+		local cmd=$1
+		if [[ $cmd != "fd "* ]]; then
+			local cmd="$cmd | xargs -d '\n' ls -dh --color=always"
+		fi
 		local pre=${READLINE_LINE:0:READLINE_POINT}
 		local suf=${READLINE_LINE:READLINE_POINT}
 		local qry=${pre##*[ /=]}
@@ -469,16 +471,21 @@ if have fzf; then
 			READLINE_POINT=$((READLINE_POINT - ${#qry} + ${#str}))
 		fi
 	}
-	# Alt+[df] - local dir/all selection
-	bind -m emacs -x '"\ed": _fzfyank "compgen -d | sort"'
-	bind -m emacs -x '"\ef": _fzfyank "compgen -f | sort"'
-	# Alt+Shift+[DF] - recursive dir/all selection
-	bind -m emacs -x '"\eD": _fzfyank "find . -xdev -mindepth 1 -name .\?\* -prune -o -type d -printf %P\\\n"'
-	bind -m emacs -x '"\eF": _fzfyank "find . -xdev -mindepth 1 -name .\?\* -prune -o -printf %P\\\n"'
-	#bind -m emacs -x '"\ed": _fzfyank "fd --strip-cwd-prefix --max-depth=1 --type=d"'
-	#bind -m emacs -x '"\ef": _fzfyank "fd --strip-cwd-prefix --max-depth=1"'
-	#bind -m emacs -x '"\eD": _fzfyank "fd --strip-cwd-prefix --type=d"'
-	#bind -m emacs -x '"\eF": _fzfyank "fd --strip-cwd-prefix"'
+	if have fd; then
+		# Alt+[df] - local dir/all selection
+		bind -m emacs -x '"\ed": _fzfyank "fd --strip-cwd-prefix --color=always --exact-depth=1 --type=d"'
+		bind -m emacs -x '"\ef": _fzfyank "fd --strip-cwd-prefix --color=always --exact-depth=1"'
+		# Alt+Shift+[DF] - recursive dir/all selection
+		bind -m emacs -x '"\eD": _fzfyank "fd --strip-cwd-prefix --color=always --type=d"'
+		bind -m emacs -x '"\eF": _fzfyank "fd --strip-cwd-prefix --color=always"'
+	else
+		# Alt+[df] - local dir/all selection
+		bind -m emacs -x '"\ed": _fzfyank "compgen -d | sort"'
+		bind -m emacs -x '"\ef": _fzfyank "compgen -f | sort"'
+		# Alt+Shift+[DF] - recursive dir/all selection
+		bind -m emacs -x '"\eD": _fzfyank "find . -xdev -mindepth 1 -name .\?\* -prune -o -type d -printf %P\\\n"'
+		bind -m emacs -x '"\eF": _fzfyank "find . -xdev -mindepth 1 -name .\?\* -prune -o -printf %P\\\n"'
+	fi
 fi
 
 if have chafa; then
