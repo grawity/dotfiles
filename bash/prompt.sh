@@ -427,9 +427,9 @@ _update_title() {
 		title="${t_user}${t_host} ${t_path}${t_display}"
 	fi
 	settitle "$title"
-	if [[ ${DISPLAY-} && ${VTE_VERSION-}${TILIX_ID-} ]]; then
-		items[pwd.url]="file://${HOSTNAME}$(urlencode -n -p -a "$PWD")"
-		printf '\e]7;%s\e\\' "${items[pwd.url]}"
+	if [[ ${VTE_VERSION-}${TILIX_ID-}${TMUX-} || $TERM == *-@(256color|direct) ]]; then
+		local t_url="file://${HOSTNAME}$(urlencode -n -p -a "$PWD")"
+		printf '\e]7;%s\e\\' "$t_url"
 	fi
 	if [[ ${TMUX-} ]]; then
 		local t_pwd= t_dir= t_par=
