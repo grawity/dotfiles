@@ -153,3 +153,6 @@ Host *
 	SendEnv LANG TZ
 	ControlPath ~/.ssh/S.%r@%h:%p
 	ControlMaster auto
+
+	# This defaults to 'no' on new versions, but still 'yes' on Debian's 8.4
+	CheckHostIP no
