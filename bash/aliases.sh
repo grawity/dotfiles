@@ -449,7 +449,9 @@ if have broot; then
 fi
 
 if have fzf; then
-	. /usr/share/fzf/completion.bash
+	if [[ -e /usr/share/fzf/completion.bash ]]; then
+		. /usr/share/fzf/completion.bash
+	fi
 
 	export FZF_DEFAULT_OPTS="--height=30% --info=inline"
 
