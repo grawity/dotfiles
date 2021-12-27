@@ -1,6 +1,8 @@
 augroup filetypedetect
 	au BufNewFile,BufRead accounts.db.txt setf accdb
 
+	au BufNewFile,BufRead /etc/apparmor.d/* setf apparmor
+
 	au BufNewFile,BufRead /etc/motd setf motd
 
 	au BufNewFile,BufRead *.axfr,*.dns,*.zone setf bindzone
