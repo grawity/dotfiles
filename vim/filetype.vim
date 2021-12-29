@@ -6,6 +6,7 @@ augroup filetypedetect
 	au BufNewFile,BufRead /etc/motd setf motd
 
 	au BufNewFile,BufRead *.axfr,*.dns,*.zone setf bindzone
+	au BufNewFile,BufRead /etc/dnssec-trust-anchors.d/*.positive setf bindzone
 
 	" Basic config
 	au BufNewFile,BufRead */pkcs11/modules/*		setf conf
