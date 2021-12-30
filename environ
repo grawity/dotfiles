@@ -11,7 +11,7 @@ set -a
 # Exec path
 case $PATH in *:"$HOME/bin":*) ;; *)
 	# Prepend ~/code bins
-	PATH="$HOME/code/bin:$HOME/code/obj/host.$HOSTNAME:$PATH"
+	PATH="$HOME/code/obj/host.$HOSTNAME:$HOME/code/bin:$PATH"
 	# Prepend personal bin paths
 	PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
