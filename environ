@@ -1,12 +1,6 @@
 # ~/.environ - sh/bash global environment
 # vim: ft=sh
 
-setpath() {
-	xIFS=$IFS; IFS=":"; var=$1;
-	shift; eval "$var=\$*";
-	IFS=$xIFS; unset var xIFS;
-}
-
 # Local variables that might be used in the rest of .environ
 test "$UID"      || UID=$(id -u)
 test "$USER"     || USER=$(id -un)
@@ -22,18 +16,16 @@ set -a
 
 PREFIX="$HOME/.local"
 
-case $PATH in
-*:"$HOME/bin":*) ;;
-*) setpath PATH \
-	"$PREFIX/bin"				\
-	"$HOME/bin"				\
-	"$HOME/code/bin"			\
-	"$HOME/code/obj/host.$HOSTNAME"		\
-	"$PATH"					\
-	"/usr/local/sbin" 			\
-	"/usr/sbin"				\
-	"/sbin"					\
-	"$HOME/code/bin/fallback"		;
+case $PATH in *:"$HOME/bin":*) ;; *)
+	# Prepend ~/code bins
+	PATH="$HOME/code/bin:$HOME/code/obj/host.$HOSTNAME:$PATH"
+	# Prepend personal bin paths
+	PATH="$PREFIX/bin:$HOME/bin:$PATH"
+
+	# Append sbin
+	PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
+	# Append personal fallback
+	PATH="$PATH:$HOME/code/bin/fallback"
 esac
 
 # http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
