@@ -71,7 +71,6 @@ S_COLORS="auto"
 LESS="e M q R F X z -3"
 MAKEFLAGS="-j $(nproc)"
 NSS_DEFAULT_DB_TYPE="sql"
-RLWRAP_HOME="$HOME/.cache/rlwrap"
 SUDO_PROMPT="sudo password for %p@[30;43m%h[m: "
 #TPM2_PKCS11_STORE="$HOME/.local/share/tpm2_pkcs11"
 
