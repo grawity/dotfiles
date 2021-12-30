@@ -103,6 +103,12 @@ set use_envelope_from # pass '-f $from' to sendmail; useful for msmtp
 #set hostname="nullroute.lt"
 #set use_8bitmime
 
+### Reading
+
+# Decode RFC2047-encoded "=?foo?Q?bar?=" attachment filenames (which are
+# produced by MS Outlook, contrary to the spec).
+set rfc2047_parameters=yes
+
 ### List view
 
 # Old-style Mutt configuration
