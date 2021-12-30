@@ -8,9 +8,6 @@ test "$HOSTNAME" || HOSTNAME=$(hostname)
 
 set -a
 
-# Default install base for npm and some other stuff
-PREFIX="$HOME/.local"
-
 # Exec path
 case $PATH in *:"$HOME/bin":*) ;; *)
 	# Prepend ~/code bins
@@ -30,9 +27,11 @@ test "$XDG_CONFIG_HOME" || XDG_CONFIG_HOME="$HOME/.config"
 test "$XDG_DATA_HOME"   || XDG_DATA_HOME="$HOME/.local/share"
 test "$XDG_RUNTIME_DIR" || XDG_RUNTIME_DIR="$XDG_CACHE_HOME"
 
-# Locale
+# Defaults for makepkg, git commit, etc.
 NAME="Mantas Mikulėnas"
 EMAIL="grawity@gmail.com"
+
+# Locale
 TZ="Europe/Vilnius"
 
 # Preferred programs
@@ -47,6 +46,9 @@ PYTHONPATH="$HOME/code/lib/python"
 
 IRBRC="$HOME/.dotfiles/irbrc"
 PYTHONSTARTUP="$HOME/.dotfiles/pythonrc"
+
+# Default install base for npm and some other stuff
+PREFIX="$HOME/.local"
 
 PERL_CPANM_HOME="$HOME/.cache/cpanminus"
 PERL_MM_OPT="INSTALL_BASE=$PREFIX"
