@@ -6,10 +6,6 @@ test "$UID"      || UID=$(id -u)
 test "$USER"     || USER=$(id -un)
 test "$HOSTNAME" || HOSTNAME=$(hostname)
 
-# basic
-
-umask 022
-
 set -a
 
 # Default install base for npm and some other stuff
