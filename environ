@@ -37,7 +37,6 @@ case $PATH in
 esac
 
 # http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
-
 test "$XDG_CACHE_HOME"  || XDG_CACHE_HOME="$HOME/.cache"
 test "$XDG_CONFIG_HOME" || XDG_CONFIG_HOME="$HOME/.config"
 test "$XDG_DATA_HOME"   || XDG_DATA_HOME="$HOME/.local/share"
@@ -72,6 +71,9 @@ LESS_TERMCAP_ue="[23m"
 # Less/man - set terminal title to "manpage(section)"
 MANLESS="]0;\$MAN_PN ?ltline %lt?L/%L.:byte %bB?s/%s..?e (END):?pB %pB\\%.. "
 
+# Sysstat/iostat - enable colors (probably on by default, now)
+S_COLORS="auto"
+
 # Misc
 #GIT_MERGE_AUTOEDIT="no"
 LESS="e M q R F X z -3"
@@ -79,17 +81,10 @@ MAKEFLAGS="-j $(nproc)"
 NSS_DEFAULT_DB_TYPE="sql"
 RLWRAP_HOME="$HOME/.cache/rlwrap"
 SUDO_PROMPT="sudo password for %p@[30;43m%h[m: "
-S_COLORS="auto" # sar/sysstat/iostat
 #TPM2_PKCS11_STORE="$HOME/.local/share/tpm2_pkcs11"
 
 if [ "$DISPLAY" ]; then
 	. ~/.dotfiles/environ-desktop
-	_DEBUG_LOADED_DESKTOP_ENV="yes (because DISPLAY=$DISPLAY)"
-elif [ "$WAYLAND_DISPLAY" ]; then
-	. ~/.dotfiles/environ-desktop
-	_DEBUG_LOADED_DESKTOP_ENV="yes (because WAYLAND_DISPLAY=$WAYLAND_DISPLAY)"
-else
-	_DEBUG_LOADED_DESKTOP_ENV="no"
 fi
 
 if [ -f ~/.dotfiles/environ-$HOSTNAME ]; then
