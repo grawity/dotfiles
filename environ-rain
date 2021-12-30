@@ -1,3 +1,6 @@
+# Environment always loaded on rain:
+# vim: ft=sh
+
 BORG_REPO="/vol3/Backup/Homes/$HOSTNAME.borg"
 
 # Disable annoying attempts at "GNOME integration" in KDE (Qt5) apps
@@ -19,13 +22,3 @@ if [ "$TMUX" ] || [ ! "$SSH_AUTH_SOCK" ]; then
 fi
 
 PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
-
-EDITOR="nvim"
-VISUAL="$EDITOR"
-
-MPD_HOST="$(cat "$XDG_CONFIG_HOME/mpd/password")@$XDG_RUNTIME_DIR/mpd/socket"
-PERL_CPANM_OPT="$PERL_CPANM_OPT --mirror http://ftp.litnet.lt/pub/CPAN/"
-#TAR_OPTIONS="--xattrs"
-TR_AUTH="$(cat "$XDG_CONFIG_HOME/transmission/password")"
-
-# vim: ft=sh

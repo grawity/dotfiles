@@ -14,7 +14,9 @@ MOZ_WEBRENDER="1"
 #IBUS_ENABLE_CTRL_SHIFT_U="1"
 
 # Wine - get rid of wine-mono & wine-gecko prompts
-WINEDLLOVERRIDES="mscoree,mshtml="
+# Wine - use native .NET mscoree.dll
+#WINEDLLOVERRIDES="mscoree,mshtml="
+WINEDLLOVERRIDES="mshtml="
 
 # Wine DXVK - avoid littering cwd with cache files
 DXVK_STATE_CACHE_PATH="$HOME/.cache/dxvk"

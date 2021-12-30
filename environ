@@ -12,15 +12,15 @@ umask 022
 
 set -a
 
-# paths
-
+# Default install base for npm and some other stuff
 PREFIX="$HOME/.local"
 
+# Exec path
 case $PATH in *:"$HOME/bin":*) ;; *)
 	# Prepend ~/code bins
 	PATH="$HOME/code/bin:$HOME/code/obj/host.$HOSTNAME:$PATH"
 	# Prepend personal bin paths
-	PATH="$PREFIX/bin:$HOME/bin:$PATH"
+	PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
 	# Append sbin
 	PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
