@@ -29,7 +29,6 @@ case $PATH in
 	"$HOME/bin"				\
 	"$HOME/code/bin"			\
 	"$HOME/code/obj/host.$HOSTNAME"		\
-	"$HOME/.cabal/bin"			\
 	"$PATH"					\
 	"/usr/local/sbin" 			\
 	"/usr/sbin"				\
