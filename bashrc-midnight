@@ -8,6 +8,8 @@ dir=${BASH_SOURCE[0]%/*}
 . $dir/bashrc-rain
 unset dir
 
+bat() { if (( $# )); then command bat "$@"; else upower-info; fi; }
+
 fxdb() { (nssdb="$HOME/.mozilla/firefox/9y9rjsca.default"; "$@"); }
 thdb() { (nssdb="$HOME/.thunderbird/jms00rh7.default"; "$@"); }
 
