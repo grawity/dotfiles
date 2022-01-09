@@ -138,7 +138,7 @@ Host *
 #endif
 
 #if @(frost|midnight)
-Host * !ember !*.nullroute.lt
+Host *.* !ember !*.nullroute.lt
 	# Access the 'main' SSH key on ember's TPM via p11-kit
 	IdentityFile ~/.dotfiles/ssh/id_tpm.pub
 	PKCS11Provider p11-kit-proxy.so
