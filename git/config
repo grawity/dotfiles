@@ -24,8 +24,8 @@
 	fpush = push --force-with-lease
 	ftime = "!date +'--date=%s' -r"
 	fetch-notes = "!set -x && git config --add remote.origin.fetch \"+refs/notes/*:refs/notes/*\" && git fetch origin"
-	fetch-pr = "!set -x && git config --add remote.origin.fetch \"+refs/pull/*/head:refs/remotes/pr/*\" && git fetch origin"
-	fix-main = "!set -x && git br -m master main && git br -u origin/main main && git remote set-head origin -a"
+	fetch-pr = "!set -x; git config --add remote.origin.fetch \"+refs/pull/*/head:refs/remotes/pr/*\" && git fetch origin"
+	fix-main = "!set -x; git br -m master main; git br -u origin/main main; git remote set-head origin -a"
 	in = log --oneline --decorate ..@{upstream}
 	lg = log --oneline --decorate
 	lgs = log --format=\"%C(yellow)%h%C(reset)%C(cyan)% GK%C(reset) %s\"
