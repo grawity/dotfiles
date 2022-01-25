@@ -36,7 +36,7 @@ The reason for the above is that `:pwd`, the working directory item, is trimmed 
 Each part consists of a series of individual items:
 
   * `_` – a space
-  * `>foo` – a literal string
+  * `=foo` – a literal string
   * `:foo` – a variable from the items[] array
   * `!foo` – recursively insert a sub-part
 
@@ -44,7 +44,7 @@ Items can be prefixed with (in exactly this order):
 
   * `(foo)` – condition (multiple prefixes are ANDed)
   * `[foo]` – ANSI format/color code (only works with literals)
-  * `<` – insert a space only if needed
+  * `<` – prefix the item with a space if non-empty
 
 The conditions are:
 

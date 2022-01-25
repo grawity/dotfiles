@@ -226,15 +226,15 @@ _awesome_add_item() {
 
 	# handle various item types
 	#   _		a space
-	#   >text	literal text
+	#   =text	literal text
 	#   !part	nested part with items
 	#   :item	text from item
 
 	if [[ $item == _ ]]; then
 		out=" "
-	elif [[ $item == \>* ]]; then
-		out=${item#\>}
-	elif [[ $item == !* ]]; then
+	elif [[ $item == '='* ]]; then
+		out=${item#=}
+	elif [[ $item == '!'* ]]; then
 		if [[ ${_recursing[$item]} == 1 ]]; then
 			out="<looped '$item'>"
 			fmt=$errfmt
@@ -256,7 +256,7 @@ _awesome_add_item() {
 			out="<no part '$item'>"
 			fmt=$errfmt
 		fi
-	elif [[ $item == :* ]]; then
+	elif [[ $item == ':'* ]]; then
 		item=${item#:}
 		if [[ ${items[$item]+yes} ]]; then
 			local -i loop=0
