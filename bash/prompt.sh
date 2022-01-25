@@ -212,17 +212,17 @@ _awesome_add_item() {
 
 	# handle probably-useless [format] prefix
 
-	if [[ $item == \[*\]* ]]; then
+	if [[ $item == '['*']'* ]]; then
 		fmt=${item%%\]*}
 		fmt=${fmt#\[}
 		item=${item#*\]}
 	fi
 
-	if [[ $item == \<* ]]; then
+	if [[ $item == '<'* ]]; then
 		add_pspace=" "
 		item=${item#\<}
 	fi
-	if [[ $item == \>* ]]; then
+	if [[ $item == '>'* ]]; then
 		add_sspace=" "
 		item=${item#\>}
 	fi
@@ -235,7 +235,7 @@ _awesome_add_item() {
 	#   !part	nested part with items
 	#   :item	text from item
 
-	if [[ $item == _ ]]; then
+	if [[ $item == '_' ]]; then
 		out=" "
 	elif [[ $item == '='* ]]; then
 		out=${item#=}
@@ -275,7 +275,7 @@ _awesome_add_item() {
 					fmt=${fmts[$subitem]-}
 				fi
 				# Format exists and isn't a link -- stop here
-				if [[ $fmt && $fmt != @* ]]; then
+				if [[ $fmt && $fmt != '@'* ]]; then
 					break
 				fi
 				# Missing format for :sfx -- try using the :pfx format
