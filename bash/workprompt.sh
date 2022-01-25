@@ -1,7 +1,7 @@
 # Indicate whether I'm switched to the work Kerberos cache.
 
 _uk_kerberos_prompt() {
-	if [[ $KRB5CCNAME == *_ukad ]]; then
+	if [[ $KRB5CCNAME == *_@(uk|ukad) ]]; then
 		items[uk.show]=y
 		if klist -s; then
 			fmts[uk]=@uk.good
