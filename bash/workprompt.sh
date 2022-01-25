@@ -26,4 +26,7 @@ case $HOSTNAME in
 	frost)
 		# Insert before user@host
 		parts[left]=${parts[left]/ /' (:uk.show)>:uk '};;
+	*)
+		# Insert after host, before path
+		parts[left]+=' (:uk.show)<:uk';;
 esac
