@@ -14,13 +14,11 @@ _uk_kerberos_prompt() {
 }
 
 items[uk]=' UK '
-items[uk:sfx]=' '
 
 fmts[uk.good]='1|38;2;255;203;0|48;2;21;44;112'
 #fmts[uk.bad]='9;91'
 fmts[uk.bad]='1;9|38;2;255;203;0'
-fmts[uk:sfx]='0'
 
-parts[left]=${parts[left]/ /' (:uk.show):uk '}
+parts[left]=${parts[left]/ /' (:uk.show):uk (:uk.show)_ '}
 
 PROMPT_COMMAND+=(_uk_kerberos_prompt)
