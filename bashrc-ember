@@ -21,3 +21,5 @@ _ticketstatus() {
 	fi
 }
 PROMPT_COMMAND="${PROMPT_COMMAND:-:}; _ticketstatus"
+
+. ~/.dotfiles/bash/workprompt.sh
