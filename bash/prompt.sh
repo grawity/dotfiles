@@ -333,7 +333,7 @@ _awesome_add_item() {
 	fi
 
 	# If we already have a trailing space, don't prefix with one
-	if [[ ${strs[$pos]:(-1)} == ' ' ]]; then
+	if [[ ${strs[$pos]} == *' ' ]]; then
 		add_pspace=
 	fi
 
