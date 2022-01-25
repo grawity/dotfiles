@@ -469,4 +469,4 @@ _update_title() {
 	fi
 }
 
-PROMPT_COMMAND="_show_status; _update_title"
+PROMPT_COMMAND=(_show_status _update_title)

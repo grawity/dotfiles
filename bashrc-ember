@@ -20,6 +20,6 @@ _ticketstatus() {
 		fmts[ticket]=@ticket.expired
 	fi
 }
-PROMPT_COMMAND="${PROMPT_COMMAND:-:}; _ticketstatus"
+PROMPT_COMMAND+=(_ticketstatus)
 
 . ~/.dotfiles/bash/workprompt.sh
