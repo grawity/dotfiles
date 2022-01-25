@@ -182,13 +182,11 @@ _awesome_add_item() {
 	local add_prefix=
 	local add_suffix=
 	local errfmt=${fmts[error]:-"38;5;15|41"}
+	local out=
+	local fmt=
 
-	local out=""
-	local fmt=""
-
-	# handle (condition) prefixes
-
-	while [[ $item == \(*\)* ]]; do
+	# Handle '(condition)' prefixes
+	while [[ $item == '('*')'* ]]; do
 		local cond= cval=
 		cond=${item%%\)*}
 		cond=${cond#\(}
@@ -210,14 +208,14 @@ _awesome_add_item() {
 		fi
 	done
 
-	# handle probably-useless [format] prefix
-
+	# Handle probably-useless '[raw format]' prefix, e.g. [1;35]=Hello
 	if [[ $item == '['*']'* ]]; then
 		fmt=${item%%\]*}
 		fmt=${fmt#\[}
 		item=${item#*\]}
 	fi
 
+	# Handle the "add space" prefixes
 	if [[ $item == '<'* ]]; then
 		add_pspace=" "
 		item=${item#\<}
@@ -227,19 +225,15 @@ _awesome_add_item() {
 		item=${item#\>}
 	fi
 
-	baseitem=$item
-
-	# handle various item types
-	#   _		a space
-	#   =text	literal text
-	#   !part	nested part with items
-	#   :item	text from item
-
+	# Handle the actual item types
 	if [[ $item == '_' ]]; then
+		# Literal space
 		out=" "
 	elif [[ $item == '='* ]]; then
+		# Literal text (can't have spaces, hence the _ item)
 		out=${item#=}
 	elif [[ $item == '!'* ]]; then
+		# Another nested part (probably useless)
 		if [[ ${_recursing[$item]} == 1 ]]; then
 			out="<looped '$item'>"
 			fmt=$errfmt
@@ -262,6 +256,7 @@ _awesome_add_item() {
 			fmt=$errfmt
 		fi
 	elif [[ $item == ':'* ]]; then
+		# A regular item from the items[] dict
 		item=${item#:}
 		if [[ ${items[$item]+yes} ]]; then
 			local -i loop=0
@@ -319,9 +314,11 @@ _awesome_add_item() {
 			fmt=$errfmt
 		fi
 	elif [[ $item ]]; then
+		# Item had an unknown prefix
 		out="<unknown '$item'>"
 		fmt=$errfmt
 	else
+		# We had modifiers but not the actual item
 		out="<null '$full_item'>"
 		fmt=$errfmt
 	fi
@@ -381,23 +378,22 @@ _awesome_fill_items() {
 
 _awesome_prompt() {
 	local maxwidth=$COLUMNS
-
 	local -A strs=()
 	local -Ai lens=()
 
-	# handle left & right parts first,
-	# to determine available space for middle
-
+	# Fill dynamic items
 	_awesome_upd_vcs
-
 	items[pwd]=$PWD
 
+	# Handle left & right first, to determine available space for middle
 	_awesome_fill_items 'left' 'right'
 
 	(( maxwidth -= lens[left] + !!lens[left] + !!lens[right] + lens[right] + 1 ))
 
+	# Fill the shrunken pwd:{head,body,tail}
 	_awesome_upd_pwd
 
+	# Handle remaining parts
 	_awesome_fill_items 'mid' 'prompt'
 
 	if [[ ${strs[left]}${strs[mid]}${strs[right]} ]]; then
