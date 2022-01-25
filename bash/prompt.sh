@@ -177,7 +177,8 @@ _awesome_add_item() {
 	local pos=$1 item=$2
 
 	local full_item=$item
-	local add_space=
+	local add_pspace=
+	local add_sspace=
 	local add_prefix=
 	local add_suffix=
 	local errfmt=${fmts[error]:-"38;5;15|41"}
@@ -218,8 +219,12 @@ _awesome_add_item() {
 	fi
 
 	if [[ $item == \<* ]]; then
-		add_space=" "
+		add_pspace=" "
 		item=${item#\<}
+	fi
+	if [[ $item == \>* ]]; then
+		add_sspace=" "
+		item=${item#\>}
 	fi
 
 	baseitem=$item
@@ -321,23 +326,44 @@ _awesome_add_item() {
 		fmt=$errfmt
 	fi
 
-	if [[ $add_space ]] && (( ${lens[$pos]} )); then
-		lens[$pos]+=${#add_space}
-		strs[$pos]+=$add_space
+	# If item is empty, don't add any surrounding space
+	if (( ! ${lens[$pos]:-0} )); then
+		add_pspace=
+		add_sspace=
 	fi
 
+	# If we already have a trailing space, don't prefix with one
+	if [[ ${strs[$pos]:(-1)} == ' ' ]]; then
+		add_pspace=
+	fi
+
+	# Add initial space
+	if [[ $add_pspace ]]; then
+		lens[$pos]+=${#add_pspace}
+		strs[$pos]+=$add_pspace
+	fi
+
+	# Add item:pfx
 	if [[ $add_prefix ]]; then
 		_awesome_add_item $pos $add_prefix
 	fi
 
+	# Add the item
 	lens[$pos]+=${#out}
 	if [[ $fmt ]]; then
 		out=$'\001\e['${fmt//'|'/$'m\e['}$'m\002'$out$'\001\e[m\002'
 	fi
 	strs[$pos]+=$out
 
+	# Add item:sfx
 	if [[ $add_suffix ]]; then
 		_awesome_add_item $pos $add_suffix
+	fi
+
+	# Add final space
+	if [[ $add_sspace ]]; then
+		lens[$pos]+=${#add_sspace}
+		strs[$pos]+=$add_sspace
 	fi
 }
 

@@ -45,6 +45,7 @@ Items can be prefixed with (in exactly this order):
   * `(foo)` – condition (multiple prefixes are ANDed)
   * `[foo]` – ANSI format/color code (only works with literals)
   * `<` – prefix the item with a space if non-empty
+  * `>` – suffix the item with a space if non-empty
 
 The conditions are:
 
