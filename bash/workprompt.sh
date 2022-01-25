@@ -13,12 +13,17 @@ _uk_kerberos_prompt() {
 	fi
 }
 
-items[uk]=' UK '
+PROMPT_COMMAND+=(_uk_kerberos_prompt)
 
+items[uk]=' UK '
 fmts[uk.good]='1|38;2;255;203;0|48;2;21;44;112'
 #fmts[uk.bad]='9;91'
 fmts[uk.bad]='1;9|38;2;255;203;0'
-
-parts[left]=${parts[left]/ /' (:uk.show):uk (:uk.show)_ '}
-
-PROMPT_COMMAND+=(_uk_kerberos_prompt)
+case $HOSTNAME in
+	ember)
+		# Insert after host, before path
+		parts[left]+=' (:uk.show)<:uk';;
+	frost)
+		# Insert before user@host
+		parts[left]=${parts[left]/ /' (:uk.show)>:uk '};;
+esac
