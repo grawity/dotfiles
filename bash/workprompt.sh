@@ -1,5 +1,9 @@
 # Indicate whether I'm switched to the work Kerberos cache.
 
+if [[ ${items@a} != *A* ]]; then
+	return
+fi
+
 _uk_kerberos_prompt() {
 	if [[ $KRB5CCNAME == *_@(uk|ukad) ]]; then
 		items[uk.show]=y
