@@ -10,6 +10,7 @@ pager() { command ${PAGER:-more} "$@"; }
 
 alias aa-reload='apparmor_parser -r -T -W'
 bat() { if (( $# )); then command bat "$@"; else acpi -i; fi; }
+alias bridge='bridge --color=auto'
 catsexp() { cat "$@" | sexp-conv -w $((COLUMNS-1)); }
 count() { sort "$@" | uniq -c | sort -n -r | pager; }
 alias demo='PS1="\\n\\$ "'
