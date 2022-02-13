@@ -113,6 +113,8 @@ set rfc2047_parameters=yes
 
 # Old-style Mutt configuration
 #set sort=threads
+# Mutt 2.2 or later (http://www.mutt.org/relnotes/2.2/)
+#set sort=threads sort_thread_groups=last-date
 # NeoMutt 20211015 or later (https://neomutt.org/feature/use-threads)
 #set use_threads=yes sort=date
 # NeoMutt - sort threads by last activity, not by start date, so that
