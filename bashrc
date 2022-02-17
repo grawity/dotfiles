@@ -66,7 +66,7 @@ if [[ $TERM == *-256color ]]; then
 	# 'xterm-color' (old OS X 10.6 where everything blinks)
 
 	if [[ -d /n && -e /etc/dist/hostids ]]; then
-		. ~/.dotfiles/bash/kerberos.sh
+		. ~/.dotfiles/bash/krbprompt.sh
 	fi
 fi
 

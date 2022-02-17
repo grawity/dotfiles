@@ -29,4 +29,22 @@ if [[ $USER == grawity && -t 0 && -t 1 && -t 2 ]]; then
 	if have pklist; then
 		_krb_check
 	fi
+
+	parts[right]+=' <:ticket'
+	fmts[ticket.valid]='0'
+	fmts[ticket.expired]='38;5;166'
+	_ticketstatus() {
+		if klist -5 -s; then
+			items[ticket]=''
+			items[ticket:pfx]=''
+			items[ticket:sfx]=''
+			fmts[ticket]=@ticket.valid
+		else
+			items[ticket]='no tickets'
+			items[ticket:pfx]='*'
+			items[ticket:sfx]='*'
+			fmts[ticket]=@ticket.expired
+		fi
+	}
+	PROMPT_COMMAND+=(_ticketstatus)
 fi
