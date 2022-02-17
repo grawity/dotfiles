@@ -73,12 +73,16 @@ export PATH="$HOME/bin:$HOME/code/bin:$PATH"
 update=false
 foreign=false
 
+while getopts ":uv" OPT; do
+	case $OPT in
+	u) update=true;;
+	v) VERBOSE=1;;
+	*) lib::die_getopts;;
+	esac
+done; shift $((OPTIND-1))
+
 if [[ -t 0 ]]; then
 	VERBOSE=1
-fi
-
-if [[ $1 == "-u" ]]; then
-	update=true
 fi
 
 dotdir="$(dirname "$(sym -R "$0")")"
