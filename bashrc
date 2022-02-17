@@ -60,7 +60,7 @@ if have kc.sh; then
 	. kc.sh
 fi
 
-if [[ $TERM == *-256color ]]; then
+if [[ $TERM == *-256color && $HOSTNAME != vm-* ]]; then
 	. ~/.dotfiles/bash/prompt.sh
 	# Don't load fancy prompt when SSH-ing from old terminals, e.g.
 	# 'xterm-color' (old OS X 10.6 where everything blinks)
@@ -68,6 +68,8 @@ if [[ $TERM == *-256color ]]; then
 	if [[ -d /n && -e /etc/dist/hostids ]]; then
 		. ~/.dotfiles/bash/krbprompt.sh
 	fi
+elif [[ $HOSTNAME == vm-* ]]; then
+	. ~/.dotfiles/bash/basicprompt.sh
 fi
 
 if [[ -f ~/.dotfiles/bashrc-$HOSTNAME ]]; then
