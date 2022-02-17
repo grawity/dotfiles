@@ -122,15 +122,8 @@ link msmtprc ~/.config/msmtp/config
 ssh/generate
 link ssh/known_hosts
 
-if [[ "$(tmux -V 2>/dev/null)" == tmux\ @([012].*|3.0*) ]]; then
-	link tmux.conf
-else
-	# Use XDG path for tmux 3.1 or later
-	link tmux.conf ~/.config/tmux/tmux.conf
-	if [ -L ~/.tmux.conf ]; then
-		rm ~/.tmux.conf
-	fi
-fi
+# XDG paths are supported starting with tmux 3.1
+link tmux.conf ~/.config/tmux/tmux.conf
 
 link vim ~/.vim
 link vim ~/.config/nvim
