@@ -93,20 +93,17 @@ if $update; then
 fi
 
 # Remove undesired files
-
 trash ~/.{login,logout}
 trash ~/.bash_{login,profile,logout}
 trash ~/.{sh,csh}rc
 rm -f ~/.viminfo
 
 # Install shell profiles
-
 link bashrc
 link inputrc
 link profile
 
 # Install CLI program configs (unconditional)
-
 link git ~/.config/git
 (umask 077
  touch ~/.config/git/credentials
@@ -127,18 +124,18 @@ link tmux.conf ~/.config/tmux/tmux.conf
 
 link vim ~/.vim
 link vim ~/.config/nvim
+
+# Pre-create NeoVim state directories so that they won't end up being root-owned.
 mkdir -p ~/.local/share/nvim/{backup,shada,swap,undo}
 
 # Copy certain settings insted of symlinking
 # (common base parameters, but remains host-specific)
-
 if ! grep -qs "^#" ~/.config/htop/htoprc; then
 	mkdir -p ~/.config/htop
 	cp htoprc ~/.config/htop/htoprc
 fi
 
 # Install conditional configs
-
 if have makepkg; then
 	link pacman/makepkg.conf ~/.config/pacman/makepkg.conf
 fi
@@ -158,7 +155,6 @@ if have mutt || have neomutt; then
 fi
 
 # Install GUI configs
-
 if [ "$DISPLAY" ]; then
 	link XCompose ~/.XCompose
 
@@ -180,7 +176,6 @@ if [ "$DISPLAY" ]; then
 fi
 
 # Check frequent root-ownership accidents
-
 check_owner ~/.*_history ~/.lesshst ~/.rnd ~/.cache ~/.config ~/.gnupg ~/.local/share
 
 exit 0
