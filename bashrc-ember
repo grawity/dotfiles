@@ -2,6 +2,4 @@
 
 routed6='2a06:e881:108:1::4'
 
-. ~/.dotfiles/bash/krbprompt.sh
-
 . ~/.dotfiles/bash/workprompt.sh
