@@ -109,9 +109,11 @@ set ruler
 set showmode
 set showcmd
 
-" Neovim 0.6 defaults to 'inccommand=split' to show a live preview of s///,
-" disable it for now.
-set inccommand=
+if has("nvim")
+	" Neovim 0.6 defaults to 'inccommand=split' to show a live preview of
+	" s///, disable it for now.
+	set inccommand=
+endif
 
 set linebreak			" soft word-wrap
 set display+=lastline		" show partial line if it doesn't fit
