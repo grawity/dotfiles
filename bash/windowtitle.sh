@@ -2,22 +2,29 @@
 
 case $TERM in
 	[xkE]term*|rxvt*|cygwin|dtterm|termite)
-		titlestring='\e]0;%s\a';
-		wnamestring=;;
+		titlestring='\e]0;%s\a'
+		wnamestring=
+		;;
 	screen*|tmux*)
-		titlestring='\e]0;%s\a';
-		wnamestring='\ek%s\e\\';;
+		titlestring='\e]0;%s\a'
+		wnamestring='\ek%s\e\\'
+		;;
 	*)
-		titlestring=;
-		wnamestring=;;
+		titlestring=
+		wnamestring=
+		;;
 esac
 
 # Whether to export the "current working directory" as /net/$HOST/$PWD
 nfspwd=0
+# This could potentially default to 1, via:
+#if [[ -d /net && -d /n ]]; then
+#	nfspwd=1
+#fi
 
-settitle() { [[ $titlestring ]] && printf "$titlestring" "$*"; }
+settitle() { if [[ $titlestring ]]; then printf "$titlestring" "$*"; fi; }
 
-setwname() { [[ $wnamestring ]] && printf "$wnamestring" "$*"; }
+setwname() { if [[ $wnamestring ]]; then printf "$wnamestring" "$*"; fi; }
 
 _show_status() {
 	local status=$?
