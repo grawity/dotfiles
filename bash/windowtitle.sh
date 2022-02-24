@@ -12,6 +12,9 @@ case $TERM in
 		wnamestring=;;
 esac
 
+# Whether to export the "current working directory" as /net/$HOST/$PWD
+nfspwd=0
+
 settitle() { [[ $titlestring ]] && printf "$titlestring" "$*"; }
 
 setwname() { [[ $wnamestring ]] && printf "$wnamestring" "$*"; }
@@ -34,6 +37,7 @@ _show_status() {
 }
 
 _update_title() {
+	# Set window title to "user@host ~/path"
 	if [[ ! ${title-} ]]; then
 		local title= t_user= t_host= t_display= t_path=
 		if [[ $USER != 'grawity' ]]; then
@@ -47,10 +51,8 @@ _update_title() {
 		title="${t_user}${t_host} ${t_path}${t_display}"
 	fi
 	settitle "$title"
-	if [[ ${VTE_VERSION-}${TILIX_ID-}${TMUX-} || $TERM == *-@(256color|direct) ]]; then
-		local t_url="file://${HOSTNAME}$(urlencode -n -p -a "$PWD")"
-		printf '\e]7;%s\e\\' "$t_url"
-	fi
+
+	# Set tmux window name to shortened tail of working directory
 	if [[ ${TMUX-} ]]; then
 		local t_pwd= t_dir= t_par=
 		t_pwd=${PWD%/}/
@@ -65,6 +67,16 @@ _update_title() {
 		fi
 		t_dir=${t_par::2}/${t_dir::5}
 		setwname "$t_dir"
+	fi
+
+	# Set current path
+	if [[ ${VTE_VERSION-}${TILIX_ID-}${TMUX-} || $TERM == *-@(256color|direct) ]]; then
+		local p_path=$PWD
+		if (( nfspwd )); then
+			p_path="/net/${HOSTNAME}${p_path}"
+		fi
+		local p_url="file://${HOSTNAME}$(urlencode -n -p -a "$p_path")"
+		printf '\e]7;%s\e\\' "$p_url"
 	fi
 }
 
