@@ -82,7 +82,7 @@ _update_termcwd() {
 	# Set current path
 	if [[ ${VTE_VERSION-}${TILIX_ID-}${TMUX-} || $TERM == *-@(256color|direct) ]]; then
 		local p_path=$PWD
-		if (( nfspwd )); then
+		if (( nfspwd )) && [[ $p_path != /net/* ]]; then
 			p_path="/net/${HOSTNAME}${p_path}"
 		fi
 		local p_url="file://${HOSTNAME}$(urlencode -n -p -a "$p_path")"
