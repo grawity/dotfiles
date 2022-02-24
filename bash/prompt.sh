@@ -386,6 +386,14 @@ _awesome_prompt() {
 	printf "%s" "${strs[prompt]}"
 }
 
+:pp() {
+	local var=$1 k=; local -n ref=$1
+	echo "$var=("
+	for k in ${!ref[@]}; do
+		echo "  [$k]=${ref[$k]@Q}"
+	done
+	echo ")"
+}
 
 # Set prompts (PS1, PS2, &c.)
 
