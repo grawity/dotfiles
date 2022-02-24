@@ -398,15 +398,3 @@ PS4="+\e[34m\${BASH_SOURCE:--}:\e[1m\$LINENO\e[m:\${FUNCNAME:+\e[33m\$FUNCNAME\e
 
 export -n PS1 PS2
 export PS4
-
-_awp_update_status() {
-	local status=$?
-	items[status]=$status
-	if (( status > 0 )); then
-		fmts[status]=@status:err
-	else
-		fmts[status]=@status:ok
-	fi
-}
-
-PROMPT_COMMAND+=(_awp_update_status)
