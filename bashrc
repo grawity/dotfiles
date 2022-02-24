@@ -52,6 +52,8 @@ HISTCONTROL=ignoreboth
 HISTIGNORE="../*/"
 HISTTIMEFORMAT="(%F %T) "
 
+PROMPT_COMMAND=()		# prevent commands accumulating across reloads
+
 complete -A directory cd
 
 . ~/.dotfiles/bash/aliases.sh
