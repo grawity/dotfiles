@@ -1,4 +1,5 @@
 # Environment always loaded on frost:
 # vim: ft=sh
 
-BORG_REPO="/vol4/Backup/Homes/$HOSTNAME.borg"
+#BORG_REPO="/vol4/Backup/Homes/$HOSTNAME.borg"
+BORG_REPO="vol5:/vol5/Backup/Homes/$HOSTNAME.borg"
