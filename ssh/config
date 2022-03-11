@@ -45,7 +45,7 @@ Host bmc.*.nullroute.lt
 	HostKeyAlgorithms +ssh-rsa
 	User Administrator
 
-Host erebus
+Host erebus homegw home-gw
 	# RouterOS
 	PubkeyAcceptedAlgorithms +ssh-rsa
 
