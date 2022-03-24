@@ -1,5 +1,5 @@
 items[name:pfx]='┌ '
-fmts[name:pfx]='38;5;242'
+fmts[name:pfx]='38;5;240'
 fmts[name.root]='38;5;231|41'
 fmts[name.self]='38;5;109|1'
 fmts[pwd]='38;5;109'
