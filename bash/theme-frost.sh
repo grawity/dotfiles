@@ -7,3 +7,9 @@ fmts[pwd:tail]='38;5;152'
 fmts[vcs]='38;5;174'
 items[prompt]='└'
 fmts[prompt]=@name:pfx
+
+# Show username even for non-root
+items[user.self]=y
+items[user:sfx]=' on '
+fmts[user:sfx]=@prompt
+fmts[host]=@name.self
