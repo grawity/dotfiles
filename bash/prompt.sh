@@ -39,6 +39,9 @@ declare -A parts=(
 	[mid]=":pwd"
 	[right]=":vcs"
 	[prompt]=":prompt _"
+	# Internal item to help width calculation. (All :pwd modifiers should
+	# be included, but for now only do the ones in use.)
+	[.midextra]="?:pwd:head:pfx ?:pwd:tail:sfx"
 )
 
 declare -Ai _recursing=()
@@ -378,9 +381,10 @@ _awesome_prompt() {
 	items[pwd]=$PWD
 
 	# Handle left & right first, to determine available space for middle
-	_awesome_fill_items 'left' 'right'
+	_awesome_fill_items 'left' 'right' '.midextra'
 
 	(( maxwidth -= lens[left] + !!lens[left] + !!lens[right] + lens[right] + 1 ))
+	(( maxwidth -= lens[.midextra] ))
 
 	# Fill the shrunken pwd:{head,body,tail}
 	_awesome_upd_pwd
