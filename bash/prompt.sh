@@ -165,6 +165,7 @@ _awesome_add_item() {
 	local add_sspace=
 	local add_prefix=
 	local add_suffix=
+	local quietmissing=0
 	local errfmt=${fmts[error]:-"38;5;15|41"}
 	local out=
 	local fmt=
@@ -207,6 +208,11 @@ _awesome_add_item() {
 	if [[ $item == '>'* ]]; then
 		add_sspace=" "
 		item=${item#\>}
+	fi
+
+	if [[ $item == '?'* ]]; then
+		quietmissing=1
+		item=${item#\?}
 	fi
 
 	# Handle the actual item types
@@ -293,7 +299,7 @@ _awesome_add_item() {
 			if [[ ${items[$item:sfx]+yes} ]]; then
 				add_suffix=:$item:sfx
 			fi
-		else
+		elif (( !quietmissing )); then
 			out="<no item '$item'>"
 			fmt=$errfmt
 		fi
