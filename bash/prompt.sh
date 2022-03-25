@@ -307,13 +307,16 @@ _awesome_add_item() {
 		fmt=$errfmt
 	fi
 
-	# If item is empty, don't prefix with space
-	if (( ! ${lens[$pos]:-0} )); then
-		add_pspace=
+	# If this item is empty, surrounding spaces should merge
+	# (XXX: This doesn't correctly consider :pfx and :sfx)
+	if [[ ! $out ]]; then
+		add_pspace=${add_pspace:-$add_sspace}
+		add_sspace=
 	fi
 
-	# If we already have a trailing space, don't prefix with one
-	if [[ ${strs[$pos]} == *' ' ]]; then
+	# Suppress initial space if there's no previous output yet, or if it
+	# already ends with trailing space (XXX: This should consider :pfx)
+	if (( ! ${lens[$pos]:-0} )) || [[ ${strs[$pos]} == *' ' ]]; then
 		add_pspace=
 	fi
 
