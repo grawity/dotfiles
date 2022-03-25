@@ -307,10 +307,9 @@ _awesome_add_item() {
 		fmt=$errfmt
 	fi
 
-	# If item is empty, don't add any surrounding space
+	# If item is empty, don't prefix with space
 	if (( ! ${lens[$pos]:-0} )); then
 		add_pspace=
-		add_sspace=
 	fi
 
 	# If we already have a trailing space, don't prefix with one
