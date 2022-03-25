@@ -39,9 +39,6 @@ declare -A parts=(
 	[mid]=":pwd"
 	[right]=":vcs"
 	[prompt]=":prompt _"
-	# Internal item to help width calculation. (All :pwd modifiers should
-	# be included, but for now only do the ones in use.)
-	[.midextra]="?:pwd:head:pfx ?:pwd:tail:sfx"
 )
 
 declare -Ai _recursing=()
@@ -378,19 +375,27 @@ _awesome_prompt() {
 
 	# Fill dynamic items
 	_awesome_upd_vcs
-	items[pwd]=$PWD
 
 	# Handle left & right first, to determine available space for middle
-	_awesome_fill_items 'left' 'right' '.midextra'
-
+	_awesome_fill_items 'left' 'right'
 	(( maxwidth -= lens[left] + !!lens[left] + !!lens[right] + lens[right] + 1 ))
-	(( maxwidth -= lens[.midextra] ))
 
-	# Fill the shrunken pwd:{head,body,tail}
+	# Determine the width of :pwd decorations (:pwd:head:pfx) if any
+	items[pwd]=""
+	items[pwd:head]=""
+	items[pwd:tail]=""
+	_awesome_fill_items 'mid'
+	(( maxwidth -= lens[mid] ))
+	unset lens[mid]
+	unset strs[mid]
+
+	# Now fill the shrunken pwd:{head,body,tail}
+	items[pwd]=$PWD
 	_awesome_upd_pwd
+	_awesome_fill_items 'mid'
 
 	# Handle remaining parts
-	_awesome_fill_items 'mid' 'prompt'
+	_awesome_fill_items 'prompt'
 
 	if [[ ${strs[left]}${strs[mid]}${strs[right]} ]]; then
 		printf "%s\n" "${strs[left]} ${strs[mid]} ${strs[right]}"
