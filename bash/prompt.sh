@@ -89,22 +89,25 @@ _awp_update_pwd() {
 	local -i collapsed=0
 	local -i tildewidth=0
 
-	# Compress deeper paths
-	if [[ ${fullpwd-} == @(h|n|"") ]]; then
-		head=${head/#"$home/"/"~/"}
-	fi
-
-	# Exactly at $HOME
-	if [[ $pwd == "$home" && ${fullpwd-} == n ]]; then
-		head="$pwd"
-		tail=""
-	elif [[ $pwd == "$home" && ${fullpwd-} == "" ]]; then
-		head="~"
-		tail=""
-	fi
-
-	if [[ $head == "~/"* ]]; then
-		tildewidth=2
+	if [[ $pwd == "$home"/* ]]; then
+		# With fullpwd=y, never compress paths
+		if [[ ${fullpwd-} != y ]]; then
+			head=${head/#"$home/"/"~/"}
+			tildewidth=2
+		fi
+	elif [[ $pwd == "$home" ]]; then
+		if [[ ${fullpwd-} == "" ]]; then
+			# With fullpwd=unset, compress to ~ when exactly at home
+			head="~"
+			tail=""
+		elif [[ ${fullpwd-} == n ]]; then
+			# With fullpwd=n, don't compress but still prevent highlighting
+			head="$pwd"
+			tail=""
+		else
+			# Other values (e.g. fullpwd=h) don't compress, but do highlight
+			true
+		fi
 	fi
 
 	if (( tildewidth + ${#tail} > maxwidth )); then
