@@ -97,47 +97,56 @@ _awp_update_vcs() {
 
 _awp_update_pwd() {
 	local pwd=$1
-	local HOME=${HOME%/}
-	local wdhead=
-	local wdtail=
+	local HOME="${HOME%/}"
+	local wdhead="${pwd%/*}/"
+	local wdtail="${pwd##*/}"
 	local -i collapsed=0
 	local -i tilde=0
 
-	# split into 'head' (normal text) and 'tail' (highlighted text)
-	# Now, if only I remembered why this logic is so complex...
-
-	if [[ ${fullpwd-} != [yh] && $pwd == "$HOME" ]]; then
-		# special case with fullpwd=n:
-		# show full home directory with no highlight
-		wdhead=$pwd wdtail=''
-	else
-		wdhead=${pwd%/*}/ wdtail=${pwd##*/}
-	fi
-
-	if [[ ! ${fullpwd-} && $pwd == "$HOME" ]]; then
-		wdhead='~'
-	elif [[ ${fullpwd-} != 'y' ]]; then
+	case ${fullpwd-} in
+	y)
+		# Full path is always shown.
+		;;
+	h)
+		# Full path for $HOME, compressed for deeper paths.
 		wdhead=${wdhead/#"$HOME/"/"~/"}
-		if [[ ${wdhead:0:2} == '~/' ]]; then
-			tilde=2
+		;;
+	n)
+		# Full path for $HOME (no highlight), compressed for deeper paths.
+		wdhead=${wdhead/#"$HOME/"/"~/"}
+		if [[ $pwd == "$HOME" ]]; then
+			wdhead="$pwd"
+			wdtail=""
 		fi
+		;;
+	'')
+		# Path is always compressed.
+		if [[ $pwd == "$HOME" ]]; then
+			wdhead="~"
+			wdtail=""
+		fi
+		;;
+	esac
+
+	if [[ ${wdhead:0:2} == '~/' ]]; then
+		tilde=2
 	fi
 
 	if (( tilde + ${#wdtail} > maxwidth )); then
-		wdhead=''
-		wdtail=${wdtail:${#wdtail}-(maxwidth-tilde-1)}
+		wdhead=""
+		wdtail="${wdtail:${#wdtail}-(maxwidth-tilde-1)}"
 		collapsed=1
 	elif (( ${#wdhead} + ${#wdtail} > maxwidth )); then
-		wdhead=${wdhead:${#wdhead}-(maxwidth-tilde-${#wdtail}-1)}
+		wdhead="${wdhead:${#wdhead}-(maxwidth-tilde-${#wdtail}-1)}"
 		collapsed=1
 	else
 		collapsed=0
 	fi
 
 	if (( collapsed )); then
-		wdhead='…'$wdhead
+		wdhead="…$wdhead"
 		if (( tilde )); then
-			wdhead='~/'$wdhead
+			wdhead="~/$wdhead"
 		fi
 	fi
 
