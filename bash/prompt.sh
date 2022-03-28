@@ -405,10 +405,15 @@ _awp_prompt() {
 	# Handle remaining parts
 	_awp_fill_items 'prompt'
 
+	# Output the prompt
 	if [[ ${strs[left]}${strs[mid]}${strs[right]} ]]; then
 		printf "%s\n" "${strs[left]} ${strs[mid]} ${strs[right]}"
 	fi
 	printf "%s" "${strs[prompt]}"
+	# Note that if parts[prompt] was empty, the $() in PS1 will chop away
+	# the trailing newline, so the end result is as if left+mid+right was
+	# empty instead... except with possibly some weirdness involving pwd
+	# recalculation.
 }
 
 :pp() {
