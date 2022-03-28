@@ -107,6 +107,7 @@ _awp_update_pwd() {
 		;;
 	'')
 		# Path is always compressed.
+		head=${head/#"$home/"/"~/"}
 		if [[ $pwd == "$home" ]]; then
 			head="~"
 			tail=""
