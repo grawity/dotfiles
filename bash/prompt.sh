@@ -98,17 +98,10 @@ _awp_update_vcs() {
 _awp_update_pwd() {
 	local pwd=$1
 	local HOME=${HOME%/}
-	local wdbase=$pwd
-	local wdparent=
 	local wdhead=
-	local wdbody=
 	local wdtail=
 	local -i collapsed=0
 	local -i tilde=0
-
-	# find the parent of the working directory
-
-	wdparent=${wdbase%/*}
 
 	# split into 'head' (normal text) and 'tail' (highlighted text)
 	# Now, if only I remembered why this logic is so complex...
@@ -149,7 +142,6 @@ _awp_update_pwd() {
 	fi
 
 	items[pwd:head]=$wdhead
-	items[pwd:body]=""
 	items[pwd:tail]=$wdtail
 	items[pwd]=$wdhead$wdtail
 }
@@ -397,7 +389,7 @@ _awp_prompt() {
 	unset lens[mid]
 	unset strs[mid]
 
-	# Now fill the shrunken pwd:{head,body,tail}
+	# Now fill the shrunken pwd:{head,tail}
 	items[pwd]=$PWD
 	if [[ ${items[pwd]} =~ ^/net/([^/]+)/home/([^/]+)(/.*)?$ ]]; then
 		if [[ "${BASH_REMATCH[2]}" == "$USER" ]]; then
