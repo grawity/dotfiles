@@ -377,7 +377,7 @@ _awp_fill_items() {
 }
 
 _awp_prompt() {
-	local maxwidth=$COLUMNS
+	local -i maxwidth=$COLUMNS
 	local -A strs=()
 	local -Ai lens=()
 
