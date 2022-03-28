@@ -12,10 +12,9 @@ fmts[pwd]="$normal"
 fmts[pwd:tail]="$bright"
 fmts[vcs]="38;5;174"
 
-items[pwd:head:pfx]='['
-items[pwd:tail:sfx]=']'
-fmts[pwd:head:pfx]=@name:pfx
-fmts[pwd:tail:sfx]=@pwd:head:pfx
+items[pwd:pfx]='['
+items[pwd:sfx]=']'
+fmts[pwd:pfx]=@name:pfx
 #fullpwd=y
 
 # Show username even for non-root
