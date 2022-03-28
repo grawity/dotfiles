@@ -167,50 +167,56 @@ _awp_add_item() {
 	local out=
 	local fmt=
 
-	# Handle '(condition)' prefixes
-	while [[ $item == '('*')'* ]]; do
-		local cond= cval=
-		cond=${item%%\)*}
-		cond=${cond#\(}
-		item=${item#*\)}
-		cval=${cond#!}
-		# I'm not proud of this
-		if if case ${cval} in
-			root)	(( UID == 0 )) ;;
-			host=*)	[[ $HOSTNAME == ${cond#*=} ]] ;;
-			user=*)	[[ $USER == ${cond#*=} ]] ;;
-			remote)	[[ ${SSH_TTY-} || ${LOGIN-} || ${REMOTEHOST-} ]] ;;
-			:*)	[[ ${items[${cval#:}]-} ]] ;;
-		esac; then
-			[[ $cond == !* ]]
-		else
-			[[ $cond != !* ]]
-		fi; then
-			return
-		fi
+	# Handle modifier prefixes
+	while true; do
+		case $item in
+		\(*\)*)
+			# '(condition)' prefix
+			local cond= cval=
+			cond=${item%%\)*}
+			cond=${cond#\(}
+			item=${item#\(*\)}
+			cval=${cond#!}
+			# I'm not proud of this
+			if if case ${cval} in
+				root)	(( UID == 0 )) ;;
+				host=*)	[[ $HOSTNAME == ${cond#*=} ]] ;;
+				user=*)	[[ $USER == ${cond#*=} ]] ;;
+				remote)	[[ ${SSH_TTY-} || ${LOGIN-} || ${REMOTEHOST-} ]] ;;
+				:*)	[[ ${items[${cval#:}]-} ]] ;;
+			esac; then
+				[[ $cond == !* ]]
+			else
+				[[ $cond != !* ]]
+			fi; then
+				return
+			fi
+			;;
+		\[*\]*)
+			# Probably useless '[raw format]' prefix, e.g. [1;35]=Hello
+			fmt=${item%%\]*}
+			fmt=${fmt#\[}
+			item=${item#\[*\]}
+			;;
+		\<*)
+			# Add space before
+			add_pspace=" "
+			item=${item#\<}
+			;;
+		\>*)
+			# Add space after
+			add_sspace=" "
+			item=${item#\>}
+			;;
+		\?*)
+			# Ignore if missing
+			quietmissing=1
+			item=${item#\?}
+			;;
+		*)
+			break
+		esac
 	done
-
-	# Handle probably-useless '[raw format]' prefix, e.g. [1;35]=Hello
-	if [[ $item == '['*']'* ]]; then
-		fmt=${item%%\]*}
-		fmt=${fmt#\[}
-		item=${item#*\]}
-	fi
-
-	# Handle the "add space" prefixes
-	if [[ $item == '<'* ]]; then
-		add_pspace=" "
-		item=${item#\<}
-	fi
-	if [[ $item == '>'* ]]; then
-		add_sspace=" "
-		item=${item#\>}
-	fi
-
-	if [[ $item == '?'* ]]; then
-		quietmissing=1
-		item=${item#\?}
-	fi
 
 	# Handle the actual item types
 	case $item in
