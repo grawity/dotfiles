@@ -97,11 +97,11 @@ _awp_update_vcs() {
 
 _awp_update_pwd() {
 	local pwd=$1
-	local HOME="${HOME%/}"
-	local wdhead="${pwd%/*}/"
-	local wdtail="${pwd##*/}"
+	local home="${HOME%/}"
+	local head="${pwd%/*}/"
+	local tail="${pwd##*/}"
 	local -i collapsed=0
-	local -i tilde=0
+	local -i tildewidth=0
 
 	case ${fullpwd-} in
 	y)
@@ -109,50 +109,50 @@ _awp_update_pwd() {
 		;;
 	h)
 		# Full path for $HOME, compressed for deeper paths.
-		wdhead=${wdhead/#"$HOME/"/"~/"}
+		head=${head/#"$home/"/"~/"}
 		;;
 	n)
 		# Full path for $HOME (no highlight), compressed for deeper paths.
-		wdhead=${wdhead/#"$HOME/"/"~/"}
-		if [[ $pwd == "$HOME" ]]; then
-			wdhead="$pwd"
-			wdtail=""
+		head=${head/#"$home/"/"~/"}
+		if [[ $pwd == "$home" ]]; then
+			head="$pwd"
+			tail=""
 		fi
 		;;
 	'')
 		# Path is always compressed.
-		if [[ $pwd == "$HOME" ]]; then
-			wdhead="~"
-			wdtail=""
+		if [[ $pwd == "$home" ]]; then
+			head="~"
+			tail=""
 		fi
 		;;
 	esac
 
-	if [[ ${wdhead:0:2} == '~/' ]]; then
-		tilde=2
+	if [[ $head == "~/"* ]]; then
+		tildewidth=2
 	fi
 
-	if (( tilde + ${#wdtail} > maxwidth )); then
-		wdhead=""
-		wdtail="${wdtail:${#wdtail}-(maxwidth-tilde-1)}"
+	if (( tildewidth + ${#tail} > maxwidth )); then
+		head=""
+		tail="${tail:${#tail}-(maxwidth-tildewidth-1)}"
 		collapsed=1
-	elif (( ${#wdhead} + ${#wdtail} > maxwidth )); then
-		wdhead="${wdhead:${#wdhead}-(maxwidth-tilde-${#wdtail}-1)}"
+	elif (( ${#head} + ${#tail} > maxwidth )); then
+		head="${head:${#head}-(maxwidth-tildewidth-${#tail}-1)}"
 		collapsed=1
 	else
 		collapsed=0
 	fi
 
 	if (( collapsed )); then
-		wdhead="…$wdhead"
-		if (( tilde )); then
-			wdhead="~/$wdhead"
+		head="…$head"
+		if (( tildewidth )); then
+			head="~/$head"
 		fi
 	fi
 
-	items[pwd:head]=$wdhead
-	items[pwd:tail]=$wdtail
-	items[pwd]=$wdhead$wdtail
+	items[pwd:head]=$head
+	items[pwd:tail]=$tail
+	items[pwd]=$head$tail
 }
 
 _awp_add_item() {
