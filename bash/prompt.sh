@@ -1,27 +1,13 @@
 #!bash
-# bashrc -- shell prompt, window title, command exit status in prompt
+# bashrc/prompt -- shell prompt, window title, command exit status in prompt
 #
 #     "The problem with programmers is that if you give them the chance, they
 #     will start programming."
 #
-# Features:
-#
-#   - Git branch and basic status (merge, rebase, etc.)
-#   - Highlight current directory's basename
-#   - Collapse long paths to fit in one line
-#     ("~/one/two/three" to "~/…o/three")
-#
-# Configuration:
-#
-#   fullpwd = "y" | "h" | unset
-#     "y" = full path of working directory is always shown
-#     "h" = full unhighlighted path is shown if ~ is cwd
-#     unset = cwd is collapsed ("/home/grawity/foo" → "~/foo")
-#
 # Note to self (2021-10-01):
 #
-#   If the prompt seems slow, that's because the C version of `urlencode`
-#   hasn't been built so the Perl fallback is being invoked instead.
+#     If the prompt seems slow, that's because the C version of `urlencode`
+#     hasn't been built so the Perl fallback is being invoked instead.
 
 declare -A items=(
 	[user]=$USER
