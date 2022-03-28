@@ -422,16 +422,22 @@ _awp_prompt() {
 }
 
 :pp() {
-	local var=$1 k=; local -n ref=$1
-	echo "$var=("
-	for k in ${!ref[@]}; do
-		echo "  [$k]=${ref[$k]@Q}"
+	local var k
+	for var; do
+		local -n ref=$var
+		if [[ ${ref@a} == *[aA]* ]]; then
+			echo "$var=("
+			for k in "${!ref[@]}"; do
+				echo "    [$k]=${ref[$k]@Q}"
+			done
+			echo ")"
+		else
+			echo "$var=${ref@Q}"
+		fi
 	done
-	echo ")"
 }
 
-PS1="\n"
-PS1="${PS1}\$(_awp_prompt)"
+PS1="\n\$(_awp_prompt)"
 PS2="\[\e[0;1;30m\]...\[\e[m\] "
 PS4="+\e[34m\${BASH_SOURCE:--}:\e[1m\$LINENO\e[m:\${FUNCNAME:+\e[33m\$FUNCNAME\e[m} "
 
