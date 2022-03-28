@@ -45,7 +45,7 @@ declare -Ai _recursing=()
 
 _dbg() { if [[ ${PS1_DEBUG-} ]]; then printf '\e[47m%s\e[m %s\n' "[${FUNCNAME[1]}]" "$*"; fi; }
 
-_awesome_upd_vcs() {
+_awp_update_vcs() {
 	local tmp= git= br= re=
 
 	if ! have git; then
@@ -101,7 +101,7 @@ _awesome_upd_vcs() {
 	items[vcs.re]=$re
 }
 
-_awesome_upd_pwd() {
+_awp_update_pwd() {
 	local pwd=$1
 	local HOME=${HOME%/}
 	local wdbase=$pwd
@@ -160,7 +160,7 @@ _awesome_upd_pwd() {
 	items[pwd]=$wdhead$wdtail
 }
 
-_awesome_add_item() {
+_awp_add_item() {
 	local pos=$1 item=$2
 
 	local full_item=$item
@@ -234,13 +234,13 @@ _awesome_add_item() {
 			local subitem=
 			_recursing[$item]=1
 			if [[ ${items[$item:pfx]+yes} ]]; then
-				_awesome_add_item $pos :$item:pfx
+				_awp_add_item $pos :$item:pfx
 			fi
 			for subitem in ${parts[$item]}; do
-				_awesome_add_item $pos $subitem
+				_awp_add_item $pos $subitem
 			done
 			if [[ ${items[$item:sfx]+yes} ]]; then
-				_awesome_add_item $pos :$item:sfx
+				_awp_add_item $pos :$item:sfx
 			fi
 			_recursing[$item]=0
 			return
@@ -337,7 +337,7 @@ _awesome_add_item() {
 
 	# Add item:pfx
 	if [[ $add_prefix ]]; then
-		_awesome_add_item $pos $add_prefix
+		_awp_add_item $pos $add_prefix
 	fi
 
 	# Add the item
@@ -349,7 +349,7 @@ _awesome_add_item() {
 
 	# Add item:sfx
 	if [[ $add_suffix ]]; then
-		_awesome_add_item $pos $add_suffix
+		_awp_add_item $pos $add_suffix
 	fi
 
 	# Add final space
@@ -359,46 +359,46 @@ _awesome_add_item() {
 	fi
 }
 
-_awesome_fill_items() {
+_awp_fill_items() {
 	local pos
 
 	for pos in "$@"; do
 		set -o noglob
 		for item in ${parts[$pos]}; do
-			_awesome_add_item $pos $item
+			_awp_add_item $pos $item
 		done
 		set +o noglob
 	done
 }
 
-_awesome_prompt() {
+_awp_prompt() {
 	local maxwidth=$COLUMNS
 	local -A strs=()
 	local -Ai lens=()
 
 	# Fill dynamic items
-	_awesome_upd_vcs
+	_awp_update_vcs
 
 	# Handle left & right first, to determine available space for middle
-	_awesome_fill_items 'left' 'right'
+	_awp_fill_items 'left' 'right'
 	(( maxwidth -= lens[left] + !!lens[left] + !!lens[right] + lens[right] + 1 ))
 
 	# Determine the width of :pwd decorations (:pwd:head:pfx) if any
 	items[pwd]=""
 	items[pwd:head]=""
 	items[pwd:tail]=""
-	_awesome_fill_items 'mid'
+	_awp_fill_items 'mid'
 	(( maxwidth -= lens[mid] ))
 	unset lens[mid]
 	unset strs[mid]
 
 	# Now fill the shrunken pwd:{head,body,tail}
 	items[pwd]=$PWD
-	_awesome_upd_pwd "$PWD"
-	_awesome_fill_items 'mid'
+	_awp_update_pwd "$PWD"
+	_awp_fill_items 'mid'
 
 	# Handle remaining parts
-	_awesome_fill_items 'prompt'
+	_awp_fill_items 'prompt'
 
 	if [[ ${strs[left]}${strs[mid]}${strs[right]} ]]; then
 		printf "%s\n" "${strs[left]} ${strs[mid]} ${strs[right]}"
@@ -418,7 +418,7 @@ _awesome_prompt() {
 # Set prompts (PS1, PS2, &c.)
 
 PS1="\n"
-PS1="${PS1}\$(_awesome_prompt)"
+PS1="${PS1}\$(_awp_prompt)"
 PS2="\[\e[0;1;30m\]...\[\e[m\] "
 PS4="+\e[34m\${BASH_SOURCE:--}:\e[1m\$LINENO\e[m:\${FUNCNAME:+\e[33m\$FUNCNAME\e[m} "
 
