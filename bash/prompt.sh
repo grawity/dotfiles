@@ -102,13 +102,15 @@ _awesome_upd_vcs() {
 }
 
 _awesome_upd_pwd() {
+	local pwd=$1
 	local HOME=${HOME%/}
-
-	local pwd= wdbase= wdparent= wdhead= wdbody= wdtail=
-	local -i collapsed=0 tilde=0
-
-	pwd=$PWD
-	wdbase=$pwd
+	local wdbase=$pwd
+	local wdparent=
+	local wdhead=
+	local wdbody=
+	local wdtail=
+	local -i collapsed=0
+	local -i tilde=0
 
 	# find the parent of the working directory
 
@@ -392,7 +394,7 @@ _awesome_prompt() {
 
 	# Now fill the shrunken pwd:{head,body,tail}
 	items[pwd]=$PWD
-	_awesome_upd_pwd
+	_awesome_upd_pwd "$PWD"
 	_awesome_fill_items 'mid'
 
 	# Handle remaining parts
