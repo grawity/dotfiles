@@ -229,6 +229,8 @@ fi
 case $OSTYPE in
 	linux-gnu*|cygwin)
 		lsopt="$lsopt --color=auto"
+		# Disable filename quoting in new Coreutils
+		lsopt="$lsopt -N"
 		eval $(dircolors ~/.dotfiles/dircolors 2>/dev/null)
 		alias df='df -Th'
 		alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs -xafs'
