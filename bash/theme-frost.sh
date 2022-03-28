@@ -1,8 +1,8 @@
 bright="38;5;153"
 normal="38;5;110"
 
-items[name:pfx]='┌ '
-items[prompt]='└'
+items[name:pfx]='╭ '
+items[prompt]='╰'
 fmts[name:pfx]='38;5;240'
 fmts[prompt]=@name:pfx
 
