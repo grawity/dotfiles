@@ -89,31 +89,19 @@ _awp_update_pwd() {
 	local -i collapsed=0
 	local -i tildewidth=0
 
-	case ${fullpwd-} in
-	y)
-		# Full path is always shown.
-		;;
-	h)
-		# Full path for $HOME, compressed for deeper paths.
+	# Compress deeper paths
+	if [[ ${fullpwd-} == @(h|n|"") ]]; then
 		head=${head/#"$home/"/"~/"}
-		;;
-	n)
-		# Full path for $HOME (no highlight), compressed for deeper paths.
-		head=${head/#"$home/"/"~/"}
-		if [[ $pwd == "$home" ]]; then
-			head="$pwd"
-			tail=""
-		fi
-		;;
-	'')
-		# Path is always compressed.
-		head=${head/#"$home/"/"~/"}
-		if [[ $pwd == "$home" ]]; then
-			head="~"
-			tail=""
-		fi
-		;;
-	esac
+	fi
+
+	# Exactly at $HOME
+	if [[ $pwd == "$home" && ${fullpwd-} == n ]]; then
+		head="$pwd"
+		tail=""
+	elif [[ $pwd == "$home" && ${fullpwd-} == "" ]]; then
+		head="~"
+		tail=""
+	fi
 
 	if [[ $head == "~/"* ]]; then
 		tildewidth=2
