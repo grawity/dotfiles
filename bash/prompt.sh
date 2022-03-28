@@ -426,13 +426,13 @@ _awp_prompt() {
 	for var; do
 		local -n ref=$var
 		if [[ ${ref@a} == *[aA]* ]]; then
-			echo "$var=("
+			printf '%s=(\n' "$var"
 			for k in "${!ref[@]}"; do
-				echo "    [$k]=${ref[$k]@Q}"
+				printf '\t[%s]=%s\n' "$k" "${ref[$k]@Q}"
 			done
-			echo ")"
+			printf ')\n'
 		else
-			echo "$var=${ref@Q}"
+			printf '%s=%s\n' "$var" "${ref@Q}"
 		fi
 	done
 }
