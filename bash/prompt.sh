@@ -23,9 +23,6 @@
 #   If the prompt seems slow, that's because the C version of `urlencode`
 #   hasn't been built so the Perl fallback is being invoked instead.
 
-# This function automatically collapses long paths to fit on screen.
-# It is invoked from within $PS1 below.
-
 declare -A items=(
 	[user]=$USER
 	[host]=${HOSTNAME%%.*}
@@ -43,15 +40,12 @@ declare -A parts=(
 
 declare -Ai _recursing=()
 
-_dbg() { if [[ ${PS1_DEBUG-} ]]; then printf '\e[47m%s\e[m %s\n' "[${FUNCNAME[1]}]" "$*"; fi; }
-
 _awp_update_vcs() {
 	local tmp= git= br= re=
 
 	if ! have git; then
 		git=
 	elif [[ $PWD == @(/afs|/n/uk)* ]]; then
-		# Don't do anything for slowish network mounts
 		git=
 	elif [[ ${GIT_DIR-} && -d $GIT_DIR ]]; then
 		git=$GIT_DIR
@@ -255,7 +249,6 @@ _awp_add_item() {
 			local -i loop=0
 			out=${items[$item]}
 			fmt=@$item
-			_dbg "-- item '$item' value '$out' fmt '$fmt' --"
 			while true; do
 				# Format '@foo' is a link to fmts[foo] -- restart
 				if [[ $fmt == @* ]]; then
@@ -424,8 +417,6 @@ _awp_prompt() {
 	done
 	echo ")"
 }
-
-# Set prompts (PS1, PS2, &c.)
 
 PS1="\n"
 PS1="${PS1}\$(_awp_prompt)"
