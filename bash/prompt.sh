@@ -347,7 +347,8 @@ _awp_add_item() {
 	# Add the item
 	lens[$pos]+=${#out}
 	if [[ $fmt ]]; then
-		out=$'\001\e['${fmt//'|'/$'m\e['}$'m\002'$out$'\001\e[m\002'
+		fmt=${fmt//'|'/$'m\e['}
+		out=$'\001\e['$fmt$'m\002'$out$'\001\e[m\002'
 	fi
 	strs[$pos]+=$out
 
