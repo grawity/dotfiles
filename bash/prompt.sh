@@ -213,13 +213,16 @@ _awp_add_item() {
 	fi
 
 	# Handle the actual item types
-	if [[ $item == '_' ]]; then
+	case $item in
+	_)
 		# Literal space
 		out=" "
-	elif [[ $item == '='* ]]; then
+		;;
+	=*)
 		# Literal text (can't have spaces, hence the _ item)
 		out=${item#=}
-	elif [[ $item == '!'* ]]; then
+		;;
+	!*)
 		# Another nested part (probably useless)
 		if [[ ${_recursing[$item]} == 1 ]]; then
 			out="<looped '$item'>"
@@ -242,7 +245,8 @@ _awp_add_item() {
 			out="<no part '$item'>"
 			fmt=$errfmt
 		fi
-	elif [[ $item == ':'* ]]; then
+		;;
+	:*)
 		# A regular item from the items[] dict
 		item=${item#:}
 		if [[ ${items[$item]+yes} ]]; then
@@ -299,15 +303,17 @@ _awp_add_item() {
 			out="<no item '$item'>"
 			fmt=$errfmt
 		fi
-	elif [[ $item ]]; then
+		;;
+	?*)
 		# Item had an unknown prefix
 		out="<unknown '$item'>"
 		fmt=$errfmt
-	else
+		;;
+	"")
 		# We had modifiers but not the actual item
 		out="<null '$full_item'>"
 		fmt=$errfmt
-	fi
+	esac
 
 	# If this item is empty, surrounding spaces should merge
 	# (XXX: This doesn't correctly consider :pfx and :sfx)
