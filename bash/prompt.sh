@@ -139,8 +139,6 @@ _awp_update_pwd() {
 	elif (( ${#head} + ${#tail} > maxwidth )); then
 		head="${head:${#head}-(maxwidth-tildewidth-${#tail}-1)}"
 		collapsed=1
-	else
-		collapsed=0
 	fi
 
 	if (( collapsed )); then
