@@ -394,7 +394,12 @@ _awp_prompt() {
 
 	# Now fill the shrunken pwd:{head,body,tail}
 	items[pwd]=$PWD
-	_awp_update_pwd "$PWD"
+	if [[ ${items[pwd]} =~ ^/net/([^/]+)/home/([^/]+)(/.*)?$ ]]; then
+		if [[ "${BASH_REMATCH[2]}" == "$USER" ]]; then
+			items[pwd]="/n/${BASH_REMATCH[1]}${BASH_REMATCH[3]}"
+		fi
+	fi
+	_awp_update_pwd "${items[pwd]}"
 	_awp_fill_items 'mid'
 
 	# Handle remaining parts
