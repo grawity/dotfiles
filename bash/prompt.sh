@@ -104,10 +104,11 @@ _awesome_upd_vcs() {
 _awesome_upd_pwd() {
 	local HOME=${HOME%/}
 
-	local wdbase= wdparent= wdhead= wdbody= wdtail=
+	local pwd= wdbase= wdparent= wdhead= wdbody= wdtail=
 	local -i collapsed=0 tilde=0
 
-	wdbase=$PWD
+	pwd=$PWD
+	wdbase=$pwd
 
 	# find the parent of the working directory
 
@@ -116,15 +117,15 @@ _awesome_upd_pwd() {
 	# split into 'head' (normal text) and 'tail' (highlighted text)
 	# Now, if only I remembered why this logic is so complex...
 
-	if [[ ${fullpwd-} != [yh] && $PWD == "$HOME" ]]; then
+	if [[ ${fullpwd-} != [yh] && $pwd == "$HOME" ]]; then
 		# special case with fullpwd=n:
 		# show full home directory with no highlight
-		wdhead=$PWD wdtail=''
+		wdhead=$pwd wdtail=''
 	else
-		wdhead=${PWD%/*}/ wdtail=${PWD##*/}
+		wdhead=${pwd%/*}/ wdtail=${pwd##*/}
 	fi
 
-	if [[ ! ${fullpwd-} && $PWD == "$HOME" ]]; then
+	if [[ ! ${fullpwd-} && $pwd == "$HOME" ]]; then
 		wdhead='~'
 	elif [[ ${fullpwd-} != 'y' ]]; then
 		wdhead=${wdhead/#"$HOME/"/"~/"}
