@@ -81,8 +81,16 @@ _awp_update_vcs() {
 	items[vcs.re]=$re
 }
 
-_awp_update_pwd() {
-	local pwd=$1
+_awp_update_pwd_slashn() {
+	if [[ ${items[pwd]} =~ ^/net/([^/]+)/home/([^/]+)(/.*)?$ ]]; then
+		if [[ ${BASH_REMATCH[2]} == "$USER" ]]; then
+			items[pwd]="/n/${BASH_REMATCH[1]}${BASH_REMATCH[3]}"
+		fi
+	fi
+}
+
+_awp_update_pwd_collapse() {
+	local pwd=${items[pwd]}
 	local home="${HOME%/}"
 	local head="${pwd%/*}/"
 	local tail="${pwd##*/}"
@@ -126,9 +134,9 @@ _awp_update_pwd() {
 		fi
 	fi
 
+	items[pwd]=$head$tail
 	items[pwd:head]=$head
 	items[pwd:tail]=$tail
-	items[pwd]=$head$tail
 }
 
 _awp_add_item() {
@@ -154,7 +162,7 @@ _awp_add_item() {
 			cond=${cond#\(}
 			item=${item#\(*\)}
 			cval=${cond#!}
-			# I'm not proud of this
+			# I'm not not proud of this
 			if if case ${cval} in
 				root)	(( UID == 0 )) ;;
 				host=*)	[[ $HOSTNAME == ${cond#*=} ]] ;;
@@ -367,9 +375,9 @@ _awp_prompt() {
 	(( maxwidth -= lens[left] + !!lens[left] + !!lens[right] + lens[right] + 1 ))
 
 	# Determine the width of :pwd decorations (:pwd:head:pfx) if any
-	items[pwd]=""
-	items[pwd:head]=""
-	items[pwd:tail]=""
+	items[pwd]=
+	items[pwd:head]=
+	items[pwd:tail]=
 	_awp_fill_items 'mid'
 	(( maxwidth -= lens[mid] ))
 	unset lens[mid]
@@ -377,12 +385,8 @@ _awp_prompt() {
 
 	# Now fill the shrunken pwd:{head,tail}
 	items[pwd]=$PWD
-	if [[ ${items[pwd]} =~ ^/net/([^/]+)/home/([^/]+)(/.*)?$ ]]; then
-		if [[ "${BASH_REMATCH[2]}" == "$USER" ]]; then
-			items[pwd]="/n/${BASH_REMATCH[1]}${BASH_REMATCH[3]}"
-		fi
-	fi
-	_awp_update_pwd "${items[pwd]}"
+	_awp_update_pwd_slashn
+	_awp_update_pwd_collapse
 	_awp_fill_items 'mid'
 
 	# Handle remaining parts
