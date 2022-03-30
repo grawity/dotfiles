@@ -158,7 +158,7 @@ if [ "$DISPLAY" ]; then
 	link environ-desktop ~/.config/environment.d/20-desktop.conf
 
 	if [ ! -d ~/.config/fontconfig ]; then
-		link gui/fontconfig ~/.config/fontconfig
+		link fontconfig ~/.config/fontconfig
 	fi
 
 	link XCompose ~/.XCompose
