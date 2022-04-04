@@ -35,7 +35,6 @@ EMAIL="grawity@gmail.com"
 TZ="Europe/Vilnius"
 
 # Preferred programs
-BROWSER="web-browser"
 EDITOR="vim"
 PAGER="less"
 unset VISUAL
