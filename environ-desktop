@@ -3,6 +3,7 @@
 # vim: ft=sh
 
 # Firefox - enable XInput2 for pixel-level scrolling
+# (Still needed for Firefox 98 -- unless Wayland is used.)
 MOZ_USE_XINPUT2="1"
 
 # Wine - get rid of wine-mono & wine-gecko prompts
