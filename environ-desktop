@@ -10,9 +10,6 @@ MOZ_USE_XINPUT2="1"
 MOZ_X11_EGL="1"
 MOZ_WEBRENDER="1"
 
-# IBus - activate Ctrl+Shift+U (not just Ctrl+Shift+E)
-#IBUS_ENABLE_CTRL_SHIFT_U="1"
-
 # Wine - get rid of wine-mono & wine-gecko prompts
 # Wine - use native .NET mscoree.dll
 #WINEDLLOVERRIDES="mscoree,mshtml="
