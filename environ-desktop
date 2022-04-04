@@ -7,7 +7,6 @@ MOZ_USE_XINPUT2="1"
 
 # Firefox - EGL (on X11) and WebRender are mandatory for VA-API on X11
 # https://wiki.archlinux.org/index.php/Firefox#Hardware_video_acceleration
-MOZ_X11_EGL="1"
 MOZ_WEBRENDER="1"
 
 # Wine - get rid of wine-mono & wine-gecko prompts
