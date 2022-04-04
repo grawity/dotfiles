@@ -36,7 +36,6 @@ TZ="Europe/Vilnius"
 
 # Preferred programs
 EDITOR="vim"
-PAGER="less"
 unset VISUAL
 
 # Interpreters
