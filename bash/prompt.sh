@@ -82,7 +82,7 @@ _awp_update_vcs() {
 }
 
 _awp_update_pwd_slashn() {
-	if [[ ${fullpwd-} != y ]]; then
+	if [[ ${fullpwd-} != y && ${fullnfspwd-} != y ]]; then
 		if [[ ${items[pwd]} =~ ^/net/([^/]+)/home/([^/]+)(/.*)?$ ]]; then
 			if [[ ${BASH_REMATCH[2]} == "$USER" ]]; then
 				items[pwd]="/n/${BASH_REMATCH[1]}${BASH_REMATCH[3]}"
