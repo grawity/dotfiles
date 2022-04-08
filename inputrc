@@ -36,16 +36,17 @@ set visible-stats on
 set colored-stats on
 set colored-completion-prefix on
 
-# reduce timeout for `
-$if Bash
-set keyseq-timeout 200
-$endif
-# typos
+# Correct typos
 $if Bash
 "`/": "~/"
 $endif
 
-# arrows
+# Reduce timeout for the above ` macro
+$if Bash
+set keyseq-timeout 200
+$endif
+
+# Arrows
 "\e[A": history-search-backward
 "\e[B": history-search-forward
 
@@ -81,8 +82,9 @@ $endif
 "\e0": ""
 "\e-": ""
 
-# UTF-8 prefixes – insert Alt+characters literally instead of eating the first byte
-# (I would prefer if bash could discard the entire character, but it doesn't know how to do that.)
+# UTF-8 prefixes – insert Alt+characters (e.g. Alt+ą) literally, instead of
+# eating the first byte and inserting the rest as garbage. (I would prefer if
+# bash could discard the entire character, but it doesn't know how to do that.)
 
 # two-byte prefixes
 "\e\xc0": self-insert
