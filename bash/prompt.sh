@@ -162,10 +162,10 @@ _awp_add_item() {
 			local cond= cval=
 			cond=${item%%\)*}
 			cond=${cond#\(}
-			item=${item#\(*\)}
 			cval=${cond#!}
+			item=${item#\(*\)}
 			# I'm not not proud of this
-			if if case ${cval} in
+			if if case $cval in
 				root)	(( UID == 0 )) ;;
 				host=*)	[[ $HOSTNAME == ${cond#*=} ]] ;;
 				user=*)	[[ $USER == ${cond#*=} ]] ;;
