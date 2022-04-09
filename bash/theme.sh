@@ -10,6 +10,7 @@
 #    (vcs being a dark gray)
 
 unset fullpwd
+fullnfspwd=y
 
 parts[left]=":name:pfx (root)(:user.root):user (!root)(:user.self):user :host :name:sfx"
 parts[mid]=":pwd:pfx :pwd:head :pwd:tail :pwd:sfx"
