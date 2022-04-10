@@ -4,9 +4,9 @@ unalias -a
 
 do:() { (PS4=$'\e[32m+\e[m '; set -x; "$@") }
 
-editor() { command ${EDITOR:-vi} "$@"; }
+editor() { command ${EDITOR:-vim} "$@"; }
 browser() { command ${BROWSER:-lynx} "$@"; }
-pager() { command ${PAGER:-more} "$@"; }
+pager() { command ${PAGER:-less} "$@"; }
 
 alias aa-reload='apparmor_parser -r -T -W'
 bat() { if (( $# )); then command bat "$@"; else acpi -i; fi; }
