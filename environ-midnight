@@ -2,8 +2,6 @@
 # Loaded via both .profile and systemd (~/.config/environment.d/)
 # vim: ft=sh
 
-LIBVA_DRIVER_NAME="iHD"
-
 VDPAU_DRIVER="va_gl"
 
 # 2019-03-09: Use /dev/tpm0 for IBM TSS tools
