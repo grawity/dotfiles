@@ -86,6 +86,10 @@ Host sdf-eu sdf.eu
 Host theos
 	HostName %h.kyriasis.com
 
+Host vsiftp.vmssoftware.com
+	User VSIPUBLIC
+	HostKeyAlgorithms +ssh-rsa
+
 # -- Work --
 
 Host uk-lnx1-console
