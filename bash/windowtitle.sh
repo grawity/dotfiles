@@ -16,8 +16,8 @@ case $TERM in
 esac
 
 # Whether to export the "current working directory" as /net/$HOST/$PWD
-#nfspwd=0
-if [[ -d /net && -d /n && -e /proc/fs/nfsd/threads ]]; then
+#: ${nfspwd:=0}
+if [[ $SSH_CLIENT && -d /net && -d /n && -e /proc/fs/nfsd/threads ]]; then
 	: ${nfspwd:=1}
 else
 	: ${nfspwd:=0}
