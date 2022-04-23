@@ -16,11 +16,12 @@ case $TERM in
 esac
 
 # Whether to export the "current working directory" as /net/$HOST/$PWD
-nfspwd=0
-# This could potentially default to 1, via:
-#if [[ -d /net && -d /n ]]; then
-#	nfspwd=1
-#fi
+#nfspwd=0
+if [[ -d /net && -d /n && -e /proc/fs/nfsd/threads ]]; then
+	: ${nfspwd:=1}
+else
+	: ${nfspwd:=0}
+fi
 
 settitle() { if [[ $titlestring ]]; then printf "$titlestring" "$*"; fi; }
 
