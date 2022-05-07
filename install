@@ -102,6 +102,10 @@ trash ~/.{login,logout}
 trash ~/.bash_{login,profile,logout}
 trash ~/.{sh,csh}rc
 
+# Ensure permissions for config directories
+mkdir -p ~/.{config,cache,local/share}
+chmod go= ~/.{config,cache,local,local/share}
+
 # Check frequent root-ownership accidents
 check_owner ~/.*_history ~/.lesshst ~/.rnd ~/.cache ~/.config ~/.gnupg ~/.local/share
 
@@ -135,8 +139,11 @@ link tmux.conf ~/.config/tmux/tmux.conf
 # vim & NeoVim
 link vim ~/.vim
 link vim ~/.config/nvim
+link micro ~/.config/micro
 rm -f ~/.viminfo
 mkdir -p ~/.local/share/nvim/{backup,shada,swap,undo}
+chmod go= ~/.local/share/nvim
+chmod go= ~/.config/micro
 
 # Mutt & NeoMutt
 if have mutt || have neomutt; then
