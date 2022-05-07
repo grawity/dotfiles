@@ -170,6 +170,7 @@ alias '~~'='egrep -i'
 ,,() { show-file "$@"; }
 alias open=,
 bind -m emacs -x '"\e,": ,'
+@cd() { cd "${1:+/net/$1}/${PWD#/net/*/}"; }
 
 # dates
 
