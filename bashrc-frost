@@ -42,7 +42,7 @@ run-dhcpcd() {
 }
 
 ecap() {
-	sudo: tcpdump -Unei "${dev:-eth0}" "${1:-not (port 5353)}"
+	sudo: tcpdump -Unei "${dev:-eth0}" "${1:-not (port 5353 or 5355)}"
 }
 
 earp() {

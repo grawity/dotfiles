@@ -102,6 +102,7 @@ mvln() { mv "$1" "$2" && sym -v "$2" "$1"; }
 alias nmap='nmap --reason'
 alias nm-con='nmcli -f name,type,autoconnect,state,device con'
 alias plink='plink -no-antispoof'
+alias pring='prettyping'
 alias py='python3'
 alias py2='python2'
 alias py3='python3'
@@ -125,7 +126,6 @@ rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | case $1 in
 		*) head -c "$1";;
 	esac; echo; }
 alias run='spawn -c'
-alias rsync='rsync -s'
 sp() { printf '%s' "$@"; printf '\n'; }
 splitext() { split -dC "${2-32K}" "$1" "${1%.*}-" --additional-suffix=".${1##*.}"; }
 alias sudo='sudo ' # for alias expansion in sudo args
@@ -135,7 +135,6 @@ tigdiff() { diff -u "$@" | tig; }
 alias todo:='todo "$(_thiscommand todo:)" #'
 alias traceroute='traceroute --extensions'
 alias tracert='traceroute --icmp'
-alias treedu='tree --du -h'
 alias try-openconnect='openconnect --verbose --authenticate'
 alias try-openvpn='openvpn --verb 3 --dev null --{ifconfig,route}-noexec --client'
 up() { local p i=${1-1}; while ((i--)); do p+=../; done; cd "$p$2" && pwd; }
