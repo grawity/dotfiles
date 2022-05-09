@@ -8,7 +8,6 @@
     "colorscheme": "gotham-darksb",
     "infobar": false,
     "parsecursor": true,
-    "scrollbar": true,
     "softwrap": true,
     "statusformatl": "$(filename) $(modified)($(line),$(col)) $(status.paste)",
     "statusformatr": "type: $(opt:filetype) ($(opt:fileformat), $(opt:encoding))",
