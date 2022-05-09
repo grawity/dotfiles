@@ -1,8 +1,14 @@
 local micro = import("micro")
 
+-- Mapping from Vim filetypes to Micro filetypes
+local fileTypes = {
+	["dosini"] = "ini",
+	["sh"] = "shell",
+}
+
 local function setFileType(buf, ft)
-	if ft == "sh" then
-		buf:SetOption("filetype", "shell")
+	if fileTypes[v] ~= nil then
+		buf:SetOption("filetype", fileTypes[v])
 	else
 		micro.Log("Unsupported Vim filetype '"..ft.."'")
 	end

@@ -1,4 +1,5 @@
 # ~/.hgrc - hgrc(5) - Mercurial configuration
+# vim: ft=dosini
 
 [alias]
 lg = log --template "{rev}:{node|short} {desc|firstline}\n"
