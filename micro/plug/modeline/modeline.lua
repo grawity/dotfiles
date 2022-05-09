@@ -26,13 +26,17 @@ local function handleModeline(buf, line)
 		else
 			micro.Log("Modeline option <"..t.."> bool")
 			if t == "et" then
-				buf:SetOption("tabstospaces", "on")
+				buf:SetOption("tabstospaces", "true")
 			elseif t == "noet" then
-				buf:SetOption("tabstospaces", "off")
+				buf:SetOption("tabstospaces", "false")
 			elseif t == "wrap" then
-				buf:SetOption("softwrap", "on")
+				buf:SetOption("softwrap", "true")
 			elseif t == "nowrap" then
-				buf:SetOption("softwrap", "off")
+				buf:SetOption("softwrap", "false")
+			elseif t == "lbr" then
+				buf:SetOption("wordwrap", "false")
+			elseif t == "nolbr" then
+				buf:SetOption("wordwrap", "true")
 			else
 				micro.Log("Unknown Vim modeline option '"..t.."'")
 			end
