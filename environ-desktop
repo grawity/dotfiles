@@ -2,6 +2,11 @@
 # Loaded via both .profile and systemd (~/.config/environment.d/)
 # vim: ft=sh
 
+# Minecraft-Java - avoid the default JACK output driver
+# 1) Reddit says it's not good https://redd.it/d8mxpi
+# 2) PipeWire won't show JACK clients in pavucontrol
+ALSOFT_DRIVERS="pulse"
+
 # Firefox - enable XInput2 for pixel-level scrolling
 # (Still needed for Firefox 98 -- unless Wayland is used.)
 MOZ_USE_XINPUT2="1"
