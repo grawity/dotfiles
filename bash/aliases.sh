@@ -492,5 +492,6 @@ if have fzf; then
 fi
 
 if have chafa; then
-	alias imgrgb='chafa --symbols=vhalf,sextant'
+	# Leave space for orig. command (1 line) + new prompt (3 lines)
+	alias imgrgb='chafa --symbols=vhalf,sextant --size=$[COLUMNS]x$[LINES-1-3]'
 fi
