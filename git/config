@@ -179,6 +179,10 @@
 [receive]
 	denyCurrentBranch = refuse
 
+[safe]
+	# Allow repositories owned by other UIDs
+	directory = /srv/http/default
+
 [sendemail]
 	from = Mantas Mikulėnas <grawity@gmail.com>
 	confirm = auto
