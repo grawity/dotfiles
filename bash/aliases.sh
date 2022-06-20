@@ -437,7 +437,7 @@ if have broot; then
 	br() {
 		local tmp=$(mktemp) r=0 out
 		broot --outcmd "$tmp" \
-			--show-gitignored \
+			--git-ignored \
 			--no-trim-root \
 			"$@"; r=$?
 		if (( !r )) && [[ -s "$tmp" ]]; then
