@@ -14,11 +14,22 @@ alternates "^grawity(\\+.+)?@gmail\.com$"
 alternates "^mantas(:.+)?@u(tenos-)?kolegija\.lt$"
 
 ### Mailing lists
+#
+# The 'L' flag will be shown for messages sent to a "subscribed" list (but not
+# for other known lists).
+#
+# <list-reply> will work for all known lists.
+#
+# If $followup_to is set, messages to a known list will have Mail-Followup-To:
+# added -- only the list's own address for "subscribed" lists; the list *and*
+# the sender for other (unsubscribed) lists.
 
+subscribe ".*@computer\.rip$"
 subscribe "^flos-freeware@freelists\.org$"
 subscribe "^systemd-devel@lists\.freedesktop\.org$"
 
 lists ".*@freelists\.org$"
+lists ".*@lists\.archlinux\.org$"
 lists ".*@lists\.freedesktop\.org$"
 
 ### Mail storage
