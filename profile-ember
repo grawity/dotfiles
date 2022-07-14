@@ -1,0 +1,8 @@
+default_xsession="xfce4-session"
+
+# Are we connecting from fujitsu
+fp='SHA256:FTJDZhSNlpvpt5fAL/Ojbd6XZXxkQfTwPqCM4cmQZLM'
+if [ "$SSH_AUTH_SOCK" ] && ssh-add -l 2>/dev/null | grep -qs "$fp"; then
+	export BRIGHT=1
+fi
+unset fp

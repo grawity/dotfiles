@@ -3,3 +3,8 @@
 routed6='2a06:e881:108:1::4'
 
 . ~/.dotfiles/bash/workprompt.sh
+
+# For SSH from fujitsu
+if [[ $BRIGHT ]]; then
+	eval $(dircolors ~/.dotfiles/dircolors-bright)
+fi
