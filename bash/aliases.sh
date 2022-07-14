@@ -489,6 +489,22 @@ if have fzf; then
 		bind -m emacs -x '"\eD": _fzfyank "find . -xdev -mindepth 1 -name .\?\* -prune -o -type d -printf %P\\\n"'
 		bind -m emacs -x '"\eF": _fzfyank "find . -xdev -mindepth 1 -name .\?\* -prune -o -printf %P\\\n"'
 	fi
+
+	_fzfyank_git_branch() {
+		local cmd='git branch -a --sort=committerdate | tac | sed "s/^..//; s!^remotes/!!"'
+		local pre=${READLINE_LINE:0:READLINE_POINT}
+		local suf=${READLINE_LINE:READLINE_POINT}
+		local qry=${pre##*[ .:]}
+		local str=$(FZF_DEFAULT_COMMAND=$cmd fzf -q "$qry" --reverse --ansi)
+		if [[ $str ]]; then
+			str=${str%% *}
+			pre=${pre%"$qry"}
+			str=${str@Q}" "
+			READLINE_LINE=${pre}${str}${suf}
+			READLINE_POINT=$((READLINE_POINT - ${#qry} + ${#str}))
+		fi
+	}
+	bind -m emacs -x '"\eb": _fzfyank_git_branch'
 fi
 
 if have chafa; then
