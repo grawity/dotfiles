@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+verbose() { if (( VERBOSE )); then echo "dotinstall: $*"; fi; }
+
 have() { command -v "$1" >&/dev/null; }
 
 trash() {
@@ -93,7 +95,7 @@ cd "$dotdir" || exit
 
 # TODO: In update mode, only adjust existing links, do not create new ones.
 if $update; then
-	echo "dotinstall: Updating ~/.ssh/config"
+	verbose "Updating ~/.ssh/config"
 	ssh/generate
 	exit 0
 fi
