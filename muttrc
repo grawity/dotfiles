@@ -188,9 +188,10 @@ set sidebar_sort_method = "path"
 set sleep_time=0
 
 set quote_regexp="^([ \t]*[|>:}#])+"	# default
-set quote_regexp="^[|>#]+|^[A-Z][a-z]+>"
-# "> > >" or "Foo>" will probably get the wrong level, but that's unavoidable.
-# Docs:
+set quote_regexp="^([|>#] ?)+|^[A-Z][a-z]+>"
+# It seems to be impossible to accept both ">>>" and "> > >" without the former
+# skipping through levels. (Also, "Foo>" will randomly skip levels depending on
+# name width.)
 # "Higher levels of quoting may be colored differently ("color quoted1", "color
 #  quoted2", etc.). The quoting level is determined by removing the last
 #  character from the matched text and recursively reapplying the regular
