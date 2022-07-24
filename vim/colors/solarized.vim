@@ -130,33 +130,6 @@
 " http://www.frexx.de/xterm-256-notes/"
 "
 " }}}
-" Environment Specific Overrides "{{{
-" Allow or disallow certain features based on current terminal emulator or
-" environment.
-
-" Terminals that support italics
-let s:terms_italic=[
-            \"rxvt",
-            \"gnome-terminal"
-            \]
-" For reference only, terminals are known to be incomptible.
-" Terminals that are in neither list need to be tested.
-let s:terms_noitalic=[
-            \"iTerm.app",
-            \"Apple_Terminal"
-            \]
-if has("gui_running")
-    let s:terminal_italic=1 " TODO: could refactor to not require this at all
-else
-    let s:terminal_italic=0 " terminals will be guilty until proven compatible
-    for term in s:terms_italic
-        if $TERM_PROGRAM =~ term
-            let s:terminal_italic=1
-        endif
-    endfor
-endif
-
-" }}}
 " Default option values"{{{
 " ---------------------------------------------------------------------
 if !exists("g:solarized_termtrans")
@@ -173,7 +146,7 @@ if !exists("g:solarized_underline")
     let g:solarized_underline = 1
 endif
 if !exists("g:solarized_italic")
-    let g:solarized_italic = 1 " note that we need to override this later if the terminal doesn't support
+    let g:solarized_italic = 1
 endif
 if !exists("g:solarized_contrast")
     let g:solarized_contrast = "normal"
@@ -352,7 +325,7 @@ else
     let s:u           = ",underline"
 endif
 
-if g:solarized_italic == 0 || s:terminal_italic == 0
+if g:solarized_italic == 0
     let s:i           = ""
 else
     let s:i           = ",italic"
