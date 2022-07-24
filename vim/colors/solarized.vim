@@ -102,8 +102,6 @@ let s:n			= "NONE"
 let s:c			= ",undercurl"
 let s:r			= ",reverse"
 let s:s			= ",standout"
-let s:ou		= ""
-let s:ob		= ""
 
 if (g:solarized_bold == 0 || &t_Co == 8 )
 	let s:b			= ""
@@ -172,11 +170,6 @@ if g:solarized_contrast == "high"
 	let s:c16_base2		= s:c16_base3
 	let s:c16_back		= s:c16_back
 endif
-if g:solarized_contrast == "low"
-	let s:gui_back		= s:gui_base02
-	let s:c16_back		= s:c16_base02
-	let s:ou		= ",underline"
-endif
 
 " Highlighting primitives
 exe "let s:bg_none	= ' guibg=".s:gui_none   ." ctermbg=".s:c16_none   ."'"
@@ -223,7 +216,6 @@ exe "let s:fmt_bldi	= ' gui=NONE".s:b.    " cterm=NONE".s:b.    " term=NONE".s:b
 exe "let s:fmt_undr	= ' gui=NONE".s:u.    " cterm=NONE".s:u.    " term=NONE".s:u.    "'"
 exe "let s:fmt_undb	= ' gui=NONE".s:u.s:b." cterm=NONE".s:u.s:b." term=NONE".s:u.s:b."'"
 exe "let s:fmt_undi	= ' gui=NONE".s:u.    " cterm=NONE".s:u.    " term=NONE".s:u.    "'"
-exe "let s:fmt_uopt	= ' gui=NONE".s:ou.   " cterm=NONE".s:ou.   " term=NONE".s:ou.   "'"
 exe "let s:fmt_curl	= ' gui=NONE".s:c.    " cterm=NONE".s:c.    " term=NONE".s:c.    "'"
 exe "let s:fmt_ital	= ' gui=NONE".s:i.    " cterm=NONE".s:i.    " term=NONE".s:i.    "'"
 exe "let s:fmt_stnd	= ' gui=NONE".s:s.    " cterm=NONE".s:s.    " term=NONE".s:s.    "'"
@@ -385,7 +377,7 @@ exe "hi! TabLine"	.s:fmt_undr	.s:fg_base0	.s:bg_base02	.s:sp_base0
 exe "hi! TabLineFill"	.s:fmt_undr	.s:fg_base0	.s:bg_base02	.s:sp_base0
 exe "hi! TabLineSel"	.s:fmt_undr	.s:fg_base01	.s:bg_base2	.s:sp_base0	.s:fmt_revbbu
 exe "hi! CursorColumn"	.s:fmt_none	.s:fg_none	.s:bg_base02
-exe "hi! CursorLine"	.s:fmt_uopt	.s:fg_none	.s:bg_base02	.s:sp_base1
+exe "hi! CursorLine"	.s:fmt_none	.s:fg_none	.s:bg_base02	.s:sp_base1
 exe "hi! ColorColumn"	.s:fmt_none	.s:fg_none	.s:bg_base02
 exe "hi! Cursor"	.s:fmt_none	.s:fg_base03	.s:bg_base0
 hi! link lCursor Cursor
