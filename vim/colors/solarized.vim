@@ -211,11 +211,9 @@ else
     let s:solarized_termtrans_default = 0
 endif
 call s:SetOption("termtrans",s:solarized_termtrans_default)
-call s:SetOption("degrade",0)
 call s:SetOption("bold",1)
 call s:SetOption("underline",1)
 call s:SetOption("italic",1) " note that we need to override this later if the terminal doesn't support
-call s:SetOption("termcolors",16)
 call s:SetOption("contrast","normal")
 call s:SetOption("visibility","normal")
 call s:SetOption("diffmode","normal")
@@ -259,28 +257,7 @@ if has("gui_running") || &termguicolors
     let s:cyan        = "#2aa198"
     "let s:green       = "#859900" "original
     let s:green       = "#719e07" "experimental
-elseif (has("gui_running") && g:solarized_degrade == 1)
-    " These colors are identical to the 256 color mode. They may be viewed
-    " while in gui mode via "let g:solarized_degrade=1", though this is not
-    " recommened and is for testing only.
-    let s:vmode       = "gui"
-    let s:base03      = "#1c1c1c"
-    let s:base02      = "#262626"
-    let s:base01      = "#4e4e4e"
-    let s:base00      = "#585858"
-    let s:base0       = "#808080"
-    let s:base1       = "#8a8a8a"
-    let s:base2       = "#d7d7af"
-    let s:base3       = "#ffffd7"
-    let s:yellow      = "#af8700"
-    let s:orange      = "#d75f00"
-    let s:red         = "#af0000"
-    let s:magenta     = "#af005f"
-    let s:violet      = "#5f5faf"
-    let s:blue        = "#0087ff"
-    let s:cyan        = "#00afaf"
-    let s:green       = "#5f8700"
-elseif g:solarized_termcolors != 256 && &t_Co >= 16
+elseif &t_Co >= 16
     let s:vmode       = "cterm"
     let s:base03      = "8"
     let s:base02      = "0"
@@ -298,24 +275,6 @@ elseif g:solarized_termcolors != 256 && &t_Co >= 16
     let s:blue        = "4"
     let s:cyan        = "6"
     let s:green       = "2"
-elseif g:solarized_termcolors == 256
-    let s:vmode       = "cterm"
-    let s:base03      = "234"
-    let s:base02      = "235"
-    let s:base01      = "239"
-    let s:base00      = "240"
-    let s:base0       = "244"
-    let s:base1       = "245"
-    let s:base2       = "187"
-    let s:base3       = "230"
-    let s:yellow      = "136"
-    let s:orange      = "166"
-    let s:red         = "124"
-    let s:magenta     = "125"
-    let s:violet      = "61"
-    let s:blue        = "33"
-    let s:cyan        = "37"
-    let s:green       = "64"
 else
     let s:vmode       = "cterm"
     let s:bright      = "* term=bold cterm=bold"
