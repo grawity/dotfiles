@@ -1,4 +1,5 @@
 # vim: ft=sshconfig
+# Target version: 8.4 (Debian buster-backports)
 # NOTE: The '#if' directives are processed by the 'ssh/generate' script, not OpenSSH.
 
 # Doesn't yet exist in Debian bullseye (OpenSSH 8.4)
