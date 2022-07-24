@@ -66,6 +66,7 @@ if has('gui_running')
     hi VisualNOS      gui=NONE   guifg=#cccccc   guibg=#000000
 
     hi CursorLine     gui=NONE   guifg=NONE      guibg=#222222
+    hi CursorLineNr   gui=NONE   guifg=NONE      guibg=#222222
     hi CursorColumn   gui=NONE   guifg=NONE      guibg=#222222
 
     hi lispList       gui=NONE   guifg=#555555
@@ -118,6 +119,7 @@ else
     " 2020-12-13 grawity: Added cterm=none to disable underlining in color
     " terminals.
     hi CursorLine     term=underline cterm=none ctermbg=235
+    hi CursorLineNr   term=underline cterm=none ctermbg=235
     hi Cursor         ctermfg=16 ctermbg=120
     hi lCursor        ctermfg=234 ctermbg=252
     hi Normal         ctermfg=252 ctermbg=234
