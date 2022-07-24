@@ -253,7 +253,6 @@ let s:c8_cyan         = "DarkCyan"      " 6
 let s:c8_green        = "DarkGreen"     " 2
 
 if has("gui_running") || &termguicolors
-    let s:vmode       = "gui"
     let s:base03      = s:gui_base03
     let s:base02      = s:gui_base02
     let s:base01      = s:gui_base01
@@ -271,7 +270,6 @@ if has("gui_running") || &termguicolors
     let s:cyan        = s:gui_cyan
     let s:green       = s:gui_green
 elseif &t_Co >= 16
-    let s:vmode       = "cterm"
     let s:base03      = s:c16_base03
     let s:base02      = s:c16_base02
     let s:base01      = s:c16_base01
@@ -290,7 +288,6 @@ elseif &t_Co >= 16
     let s:green       = s:c16_green
 else
     echo "Ugh, 8-color terminal."
-    let s:vmode       = "cterm"
     let s:base03      = s:c8_base03
     let s:base02      = s:c8_base02
     let s:base01      = s:c8_base01
@@ -390,101 +387,80 @@ endif
 " Highlighting primitives"{{{
 " ---------------------------------------------------------------------
 
-exe "let s:bg_none      = ' ".s:vmode."bg=".s:none   ."'"
-exe "let s:bg_back      = ' ".s:vmode."bg=".s:back   ."'"
-exe "let s:bg_base03    = ' ".s:vmode."bg=".s:base03 ."'"
-exe "let s:bg_base02    = ' ".s:vmode."bg=".s:base02 ."'"
-exe "let s:bg_base01    = ' ".s:vmode."bg=".s:base01 ."'"
-exe "let s:bg_base00    = ' ".s:vmode."bg=".s:base00 ."'"
-exe "let s:bg_base0     = ' ".s:vmode."bg=".s:base0  ."'"
-exe "let s:bg_base1     = ' ".s:vmode."bg=".s:base1  ."'"
-exe "let s:bg_base2     = ' ".s:vmode."bg=".s:base2  ."'"
-exe "let s:bg_base3     = ' ".s:vmode."bg=".s:base3  ."'"
-exe "let s:bg_green     = ' ".s:vmode."bg=".s:green  ."'"
-exe "let s:bg_yellow    = ' ".s:vmode."bg=".s:yellow ."'"
-exe "let s:bg_orange    = ' ".s:vmode."bg=".s:orange ."'"
-exe "let s:bg_red       = ' ".s:vmode."bg=".s:red    ."'"
-exe "let s:bg_magenta   = ' ".s:vmode."bg=".s:magenta."'"
-exe "let s:bg_violet    = ' ".s:vmode."bg=".s:violet ."'"
-exe "let s:bg_blue      = ' ".s:vmode."bg=".s:blue   ."'"
-exe "let s:bg_cyan      = ' ".s:vmode."bg=".s:cyan   ."'"
+exe "let s:bg_none      = ' guibg=".s:none   ." ctermbg=".s:none   ."'"
+exe "let s:bg_back      = ' guibg=".s:back   ." ctermbg=".s:back   ."'"
+exe "let s:bg_base03    = ' guibg=".s:base03 ." ctermbg=".s:base03 ."'"
+exe "let s:bg_base02    = ' guibg=".s:base02 ." ctermbg=".s:base02 ."'"
+exe "let s:bg_base01    = ' guibg=".s:base01 ." ctermbg=".s:base01 ."'"
+exe "let s:bg_base00    = ' guibg=".s:base00 ." ctermbg=".s:base00 ."'"
+exe "let s:bg_base0     = ' guibg=".s:base0  ." ctermbg=".s:base0  ."'"
+exe "let s:bg_base1     = ' guibg=".s:base1  ." ctermbg=".s:base1  ."'"
+exe "let s:bg_base2     = ' guibg=".s:base2  ." ctermbg=".s:base2  ."'"
+exe "let s:bg_base3     = ' guibg=".s:base3  ." ctermbg=".s:base3  ."'"
+exe "let s:bg_green     = ' guibg=".s:green  ." ctermbg=".s:green  ."'"
+exe "let s:bg_yellow    = ' guibg=".s:yellow ." ctermbg=".s:yellow ."'"
+exe "let s:bg_orange    = ' guibg=".s:orange ." ctermbg=".s:orange ."'"
+exe "let s:bg_red       = ' guibg=".s:red    ." ctermbg=".s:red    ."'"
+exe "let s:bg_magenta   = ' guibg=".s:magenta." ctermbg=".s:magenta."'"
+exe "let s:bg_violet    = ' guibg=".s:violet ." ctermbg=".s:violet ."'"
+exe "let s:bg_blue      = ' guibg=".s:blue   ." ctermbg=".s:blue   ."'"
+exe "let s:bg_cyan      = ' guibg=".s:cyan   ." ctermbg=".s:cyan   ."'"
 
-exe "let s:fg_none      = ' ".s:vmode."fg=".s:none   ."'"
-exe "let s:fg_back      = ' ".s:vmode."fg=".s:back   ."'"
-exe "let s:fg_base03    = ' ".s:vmode."fg=".s:base03 ."'"
-exe "let s:fg_base02    = ' ".s:vmode."fg=".s:base02 ."'"
-exe "let s:fg_base01    = ' ".s:vmode."fg=".s:base01 ."'"
-exe "let s:fg_base00    = ' ".s:vmode."fg=".s:base00 ."'"
-exe "let s:fg_base0     = ' ".s:vmode."fg=".s:base0  ."'"
-exe "let s:fg_base1     = ' ".s:vmode."fg=".s:base1  ."'"
-exe "let s:fg_base2     = ' ".s:vmode."fg=".s:base2  ."'"
-exe "let s:fg_base3     = ' ".s:vmode."fg=".s:base3  ."'"
-exe "let s:fg_green     = ' ".s:vmode."fg=".s:green  ."'"
-exe "let s:fg_yellow    = ' ".s:vmode."fg=".s:yellow ."'"
-exe "let s:fg_orange    = ' ".s:vmode."fg=".s:orange ."'"
-exe "let s:fg_red       = ' ".s:vmode."fg=".s:red    ."'"
-exe "let s:fg_magenta   = ' ".s:vmode."fg=".s:magenta."'"
-exe "let s:fg_violet    = ' ".s:vmode."fg=".s:violet ."'"
-exe "let s:fg_blue      = ' ".s:vmode."fg=".s:blue   ."'"
-exe "let s:fg_cyan      = ' ".s:vmode."fg=".s:cyan   ."'"
+exe "let s:fg_none      = ' guifg=".s:none   ." ctermfg=".s:none   ."'"
+exe "let s:fg_back      = ' guifg=".s:back   ." ctermfg=".s:back   ."'"
+exe "let s:fg_base03    = ' guifg=".s:base03 ." ctermfg=".s:base03 ."'"
+exe "let s:fg_base02    = ' guifg=".s:base02 ." ctermfg=".s:base02 ."'"
+exe "let s:fg_base01    = ' guifg=".s:base01 ." ctermfg=".s:base01 ."'"
+exe "let s:fg_base00    = ' guifg=".s:base00 ." ctermfg=".s:base00 ."'"
+exe "let s:fg_base0     = ' guifg=".s:base0  ." ctermfg=".s:base0  ."'"
+exe "let s:fg_base1     = ' guifg=".s:base1  ." ctermfg=".s:base1  ."'"
+exe "let s:fg_base2     = ' guifg=".s:base2  ." ctermfg=".s:base2  ."'"
+exe "let s:fg_base3     = ' guifg=".s:base3  ." ctermfg=".s:base3  ."'"
+exe "let s:fg_green     = ' guifg=".s:green  ." ctermfg=".s:green  ."'"
+exe "let s:fg_yellow    = ' guifg=".s:yellow ." ctermfg=".s:yellow ."'"
+exe "let s:fg_orange    = ' guifg=".s:orange ." ctermfg=".s:orange ."'"
+exe "let s:fg_red       = ' guifg=".s:red    ." ctermfg=".s:red    ."'"
+exe "let s:fg_magenta   = ' guifg=".s:magenta." ctermfg=".s:magenta."'"
+exe "let s:fg_violet    = ' guifg=".s:violet ." ctermfg=".s:violet ."'"
+exe "let s:fg_blue      = ' guifg=".s:blue   ." ctermfg=".s:blue   ."'"
+exe "let s:fg_cyan      = ' guifg=".s:cyan   ." ctermfg=".s:cyan   ."'"
 
-exe "let s:fmt_none     = ' ".s:vmode."=NONE".          " term=NONE".    "'"
-exe "let s:fmt_bold     = ' ".s:vmode."=NONE".s:b.      " term=NONE".s:b."'"
-exe "let s:fmt_bldi     = ' ".s:vmode."=NONE".s:b.      " term=NONE".s:b."'"
-exe "let s:fmt_undr     = ' ".s:vmode."=NONE".s:u.      " term=NONE".s:u."'"
-exe "let s:fmt_undb     = ' ".s:vmode."=NONE".s:u.s:b.  " term=NONE".s:u.s:b."'"
-exe "let s:fmt_undi     = ' ".s:vmode."=NONE".s:u.      " term=NONE".s:u."'"
-exe "let s:fmt_uopt     = ' ".s:vmode."=NONE".s:ou.     " term=NONE".s:ou."'"
-exe "let s:fmt_curl     = ' ".s:vmode."=NONE".s:c.      " term=NONE".s:c."'"
-exe "let s:fmt_ital     = ' ".s:vmode."=NONE".s:i.      " term=NONE".s:i."'"
-exe "let s:fmt_stnd     = ' ".s:vmode."=NONE".s:s.      " term=NONE".s:s."'"
-exe "let s:fmt_revr     = ' ".s:vmode."=NONE".s:r.      " term=NONE".s:r."'"
-exe "let s:fmt_revb     = ' ".s:vmode."=NONE".s:r.s:b.  " term=NONE".s:r.s:b."'"
+exe "let s:fmt_none     = ' gui=NONE".          " cterm=NONE".          " term=NONE".    "'"
+exe "let s:fmt_bold     = ' gui=NONE".s:b.      " cterm=NONE".s:b.      " term=NONE".s:b."'"
+exe "let s:fmt_bldi     = ' gui=NONE".s:b.      " cterm=NONE".s:b.      " term=NONE".s:b."'"
+exe "let s:fmt_undr     = ' gui=NONE".s:u.      " cterm=NONE".s:u.      " term=NONE".s:u."'"
+exe "let s:fmt_undb     = ' gui=NONE".s:u.s:b.  " cterm=NONE".s:u.s:b.  " term=NONE".s:u.s:b."'"
+exe "let s:fmt_undi     = ' gui=NONE".s:u.      " cterm=NONE".s:u.      " term=NONE".s:u."'"
+exe "let s:fmt_uopt     = ' gui=NONE".s:ou.     " cterm=NONE".s:ou.     " term=NONE".s:ou."'"
+exe "let s:fmt_curl     = ' gui=NONE".s:c.      " cterm=NONE".s:c.      " term=NONE".s:c."'"
+exe "let s:fmt_ital     = ' gui=NONE".s:i.      " cterm=NONE".s:i.      " term=NONE".s:i."'"
+exe "let s:fmt_stnd     = ' gui=NONE".s:s.      " cterm=NONE".s:s.      " term=NONE".s:s."'"
+exe "let s:fmt_revr     = ' gui=NONE".s:r.      " cterm=NONE".s:r.      " term=NONE".s:r."'"
+exe "let s:fmt_revb     = ' gui=NONE".s:r.s:b.  " cterm=NONE".s:r.s:b.  " term=NONE".s:r.s:b."'"
 " revbb (reverse bold for bright colors) is only set to actual bold in low
 " color terminals (t_co=8, such as OS X Terminal.app) and should only be used
 " with colors 8-15.
-exe "let s:fmt_revbb    = ' ".s:vmode."=NONE".s:r.s:bb.   " term=NONE".s:r.s:bb."'"
-exe "let s:fmt_revbbu   = ' ".s:vmode."=NONE".s:r.s:bb.s:u." term=NONE".s:r.s:bb.s:u."'"
+exe "let s:fmt_revbb    = ' gui=NONE".s:r.s:bb.    " cterm=NONE".s:r.s:bb.    " term=NONE".s:r.s:bb."'"
+exe "let s:fmt_revbbu   = ' gui=NONE".s:r.s:bb.s:u." cterm=NONE".s:r.s:bb.s:u." term=NONE".s:r.s:bb.s:u."'"
 
-if has("gui_running")
-    exe "let s:sp_none      = ' guisp=".s:none   ."'"
-    exe "let s:sp_back      = ' guisp=".s:back   ."'"
-    exe "let s:sp_base03    = ' guisp=".s:base03 ."'"
-    exe "let s:sp_base02    = ' guisp=".s:base02 ."'"
-    exe "let s:sp_base01    = ' guisp=".s:base01 ."'"
-    exe "let s:sp_base00    = ' guisp=".s:base00 ."'"
-    exe "let s:sp_base0     = ' guisp=".s:base0  ."'"
-    exe "let s:sp_base1     = ' guisp=".s:base1  ."'"
-    exe "let s:sp_base2     = ' guisp=".s:base2  ."'"
-    exe "let s:sp_base3     = ' guisp=".s:base3  ."'"
-    exe "let s:sp_green     = ' guisp=".s:green  ."'"
-    exe "let s:sp_yellow    = ' guisp=".s:yellow ."'"
-    exe "let s:sp_orange    = ' guisp=".s:orange ."'"
-    exe "let s:sp_red       = ' guisp=".s:red    ."'"
-    exe "let s:sp_magenta   = ' guisp=".s:magenta."'"
-    exe "let s:sp_violet    = ' guisp=".s:violet ."'"
-    exe "let s:sp_blue      = ' guisp=".s:blue   ."'"
-    exe "let s:sp_cyan      = ' guisp=".s:cyan   ."'"
-else
-    let s:sp_none      = ""
-    let s:sp_back      = ""
-    let s:sp_base03    = ""
-    let s:sp_base02    = ""
-    let s:sp_base01    = ""
-    let s:sp_base00    = ""
-    let s:sp_base0     = ""
-    let s:sp_base1     = ""
-    let s:sp_base2     = ""
-    let s:sp_base3     = ""
-    let s:sp_green     = ""
-    let s:sp_yellow    = ""
-    let s:sp_orange    = ""
-    let s:sp_red       = ""
-    let s:sp_magenta   = ""
-    let s:sp_violet    = ""
-    let s:sp_blue      = ""
-    let s:sp_cyan      = ""
-endif
+exe "let s:sp_none      = ' guisp=".s:none   ."'"
+exe "let s:sp_back      = ' guisp=".s:back   ."'"
+exe "let s:sp_base03    = ' guisp=".s:base03 ."'"
+exe "let s:sp_base02    = ' guisp=".s:base02 ."'"
+exe "let s:sp_base01    = ' guisp=".s:base01 ."'"
+exe "let s:sp_base00    = ' guisp=".s:base00 ."'"
+exe "let s:sp_base0     = ' guisp=".s:base0  ."'"
+exe "let s:sp_base1     = ' guisp=".s:base1  ."'"
+exe "let s:sp_base2     = ' guisp=".s:base2  ."'"
+exe "let s:sp_base3     = ' guisp=".s:base3  ."'"
+exe "let s:sp_green     = ' guisp=".s:green  ."'"
+exe "let s:sp_yellow    = ' guisp=".s:yellow ."'"
+exe "let s:sp_orange    = ' guisp=".s:orange ."'"
+exe "let s:sp_red       = ' guisp=".s:red    ."'"
+exe "let s:sp_magenta   = ' guisp=".s:magenta."'"
+exe "let s:sp_violet    = ' guisp=".s:violet ."'"
+exe "let s:sp_blue      = ' guisp=".s:blue   ."'"
+exe "let s:sp_cyan      = ' guisp=".s:cyan   ."'"
 
 "}}}
 " Basic highlighting"{{{
@@ -925,25 +901,6 @@ exe "hi! pandocMetadataKey"              .s:fg_blue   .s:bg_none   .s:fmt_none
 exe "hi! pandocMetadata"                 .s:fg_blue   .s:bg_none   .s:fmt_bold
 hi! link pandocMetadataTitle             pandocMetadata
 
-"}}}
-" Utility autocommand "{{{
-" ---------------------------------------------------------------------
-" In cases where Solarized is initialized inside a terminal vim session and
-" then transferred to a gui session via the command `:gui`, the gui vim process
-" does not re-read the colorscheme (or .vimrc for that matter) so any `has_gui`
-" related code that sets gui specific values isn't executed.
-"
-" Currently, Solarized sets only the cterm or gui values for the colorscheme
-" depending on gui or terminal mode. It's possible that, if the following
-" autocommand method is deemed excessively poor form, that approach will be
-" used again and the autocommand below will be dropped.
-"
-" However it seems relatively benign in this case to include the autocommand
-" here. It fires only in cases where vim is transferring from terminal to gui
-" mode (detected with the script scope s:vmode variable). It also allows for
-" other potential terminal customizations that might make gui mode suboptimal.
-"
-autocmd GUIEnter * if (s:vmode != "gui") | exe "colorscheme " . g:colors_name | endif
 "}}}
 " Highlight Trailing Space {{{
 " Experimental: Different highlight when on cursorline
