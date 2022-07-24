@@ -1,10 +1,10 @@
 " Originally based on:
-" Name:		Solarized vim colorscheme
-" Author:	Ethan Schoonover <es@ethanschoonover.com>
-" URL:		http://ethanschoonover.com/solarized
-"			(see this url for latest release & screenshots)
-" License:	OSI approved MIT license (see end of this file)
-" Created:	In the middle of the night
+" Name:     Solarized vim colorscheme
+" Author:   Ethan Schoonover <es@ethanschoonover.com>
+" URL:      http://ethanschoonover.com/solarized
+"           (see this url for latest release & screenshots)
+" License:  OSI approved MIT license (see end of this file)
+" Created:  In the middle of the night
 " Modified: 2011 May 05
 
 " Default option values
@@ -92,38 +92,6 @@ if &t_Co < 16
 	let s:c16_green		= "DarkGreen"		" 2
 endif
 
-" Formatting options
-let s:gui_none		= "NONE"
-let s:c16_none		= "NONE"
-let s:gui_back		= s:gui_base03
-let s:c16_back		= s:c16_base03
-let s:t_none		= "NONE"
-let s:n			= "NONE"
-let s:c			= ",undercurl"
-let s:r			= ",reverse"
-let s:s			= ",standout"
-
-if (g:solarized_bold == 0 || &t_Co == 8 )
-	let s:b			= ""
-	let s:bb		= ",bold"
-else
-	let s:b			= ",bold"
-	let s:bb		= ""
-endif
-
-if g:solarized_underline == 0
-	let s:u			= ""
-else
-	let s:u			= ",underline"
-endif
-
-if g:solarized_italic == 0
-	let s:i			= ""
-else
-	let s:i			= ",italic"
-endif
-
-" Alternate light scheme
 if &background == "light"
 	let s:gui_temp03	= s:gui_base03
 	let s:gui_temp02	= s:gui_base02
@@ -137,7 +105,6 @@ if &background == "light"
 	let s:gui_base1		= s:gui_temp01
 	let s:gui_base2		= s:gui_temp02
 	let s:gui_base3		= s:gui_temp03
-	let s:gui_back		= s:gui_base03
 
 	let s:c16_temp03	= s:c16_base03
 	let s:c16_temp02	= s:c16_base02
@@ -151,25 +118,26 @@ if &background == "light"
 	let s:c16_base1		= s:c16_temp01
 	let s:c16_base2		= s:c16_temp02
 	let s:c16_base3		= s:c16_temp03
-	let s:c16_back		= s:c16_base03
 endif
 
-" Optional contrast schemes
 if g:solarized_contrast == "high"
 	let s:gui_base01	= s:gui_base00
 	let s:gui_base00	= s:gui_base0
 	let s:gui_base0		= s:gui_base1
 	let s:gui_base1		= s:gui_base2
 	let s:gui_base2		= s:gui_base3
-	let s:gui_back		= s:gui_back
 
 	let s:c16_base01	= s:c16_base00
 	let s:c16_base00	= s:c16_base0
 	let s:c16_base0		= s:c16_base1
 	let s:c16_base1		= s:c16_base2
 	let s:c16_base2		= s:c16_base3
-	let s:c16_back		= s:c16_back
 endif
+
+let s:gui_none		= "NONE"
+let s:c16_none		= "NONE"
+let s:gui_back		= s:gui_base03
+let s:c16_back		= s:c16_base03
 
 " Highlighting primitives
 exe "let s:bg_none	= ' guibg=".s:gui_none   ." ctermbg=".s:c16_none   ."'"
@@ -209,6 +177,26 @@ exe "let s:fg_magenta	= ' guifg=".s:gui_magenta." ctermfg=".s:c16_magenta."'"
 exe "let s:fg_violet	= ' guifg=".s:gui_violet ." ctermfg=".s:c16_violet ."'"
 exe "let s:fg_blue	= ' guifg=".s:gui_blue   ." ctermfg=".s:c16_blue   ."'"
 exe "let s:fg_cyan	= ' guifg=".s:gui_cyan   ." ctermfg=".s:c16_cyan   ."'"
+
+" Formatting options
+let s:b			= ",bold"
+let s:bb		= ""
+let s:i			= ",italic"
+let s:u			= ",underline"
+let s:c			= ",undercurl"
+let s:r			= ",reverse"
+let s:s			= ",standout"
+
+if g:solarized_bold == 0 || &t_Co == 8
+	let s:b			= ""
+	let s:bb		= ",bold"
+endif
+if g:solarized_underline == 0
+	let s:u			= ""
+endif
+if g:solarized_italic == 0
+	let s:i			= ""
+endif
 
 exe "let s:fmt_none	= ' gui=NONE".        " cterm=NONE".        " term=NONE".        "'"
 exe "let s:fmt_bold	= ' gui=NONE".s:b.    " cterm=NONE".s:b.    " term=NONE".s:b.    "'"
@@ -314,15 +302,15 @@ exe "hi! Todo"		.s:fmt_bold	.s:fg_magenta	.s:bg_none
 "}}}
 " Extended highlighting "{{{
 " ---------------------------------------------------------------------
-if (g:solarized_visibility=="high")
+if g:solarized_visibility == "high"
 	exe "hi! SpecialKey"	.s:fmt_revr	.s:fg_red	.s:bg_none
 	exe "hi! NonText"	.s:fmt_bold	.s:fg_red	.s:bg_none
-elseif (g:solarized_visibility=="low")
+elseif g:solarized_visibility == "low"
 	exe "hi! SpecialKey"	.s:fmt_bold	.s:fg_base02	.s:bg_none
 	exe "hi! NonText"	.s:fmt_bold	.s:fg_base02	.s:bg_none
 else
 	exe "hi! SpecialKey"	.s:fmt_bold	.s:fg_base00	.s:bg_base02
-	exe "hi! NonText"	.s:fmt_bold	.s:fg_base00	.s:bg_none
+	exe "hi! NonText"	.s:fmt_bold	.s:fg_base01	.s:bg_none
 endif
 exe "hi! StatusLine"	.s:fmt_none	.s:fg_base1	.s:bg_base02	.s:fmt_revbb
 exe "hi! StatusLineNC"	.s:fmt_none	.s:fg_base00	.s:bg_base02	.s:fmt_revbb
@@ -342,12 +330,12 @@ exe "hi! WarningMsg"	.s:fmt_bold	.s:fg_red	.s:bg_none
 exe "hi! WildMenu"	.s:fmt_none	.s:fg_base2	.s:bg_base02	.s:fmt_revbb
 exe "hi! Folded"	.s:fmt_undb	.s:fg_base0	.s:bg_base02	.s:sp_base03
 exe "hi! FoldColumn"	.s:fmt_none	.s:fg_base0	.s:bg_base02
-if (g:solarized_diffmode=="high")
+if g:solarized_diffmode == "high"
 	exe "hi! DiffAdd"	.s:fmt_revr	.s:fg_green	.s:bg_none
 	exe "hi! DiffChange"	.s:fmt_revr	.s:fg_yellow	.s:bg_none
 	exe "hi! DiffDelete"	.s:fmt_revr	.s:fg_red	.s:bg_none
 	exe "hi! DiffText"	.s:fmt_revr	.s:fg_blue	.s:bg_none
-elseif	(g:solarized_diffmode=="low")
+elseif	g:solarized_diffmode == "low"
 	exe "hi! DiffAdd"	.s:fmt_undr	.s:fg_green	.s:bg_none	.s:sp_green
 	exe "hi! DiffChange"	.s:fmt_undr	.s:fg_yellow	.s:bg_none	.s:sp_yellow
 	exe "hi! DiffDelete"	.s:fmt_bold	.s:fg_red	.s:bg_none
