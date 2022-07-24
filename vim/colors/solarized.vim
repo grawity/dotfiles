@@ -179,80 +179,136 @@ let colors_name = "solarized"
 " leave the hex values out entirely in that case and include only cterm colors)
 " We also check to see if user has set solarized (force use of the
 " neutral gray monotone palette component)
+
+" Direct truecolor mode (for GUI and 'tgc')
+let s:gui_base03      = "#002b36"
+let s:gui_base02      = "#073642"
+let s:gui_base01      = "#586e75"
+let s:gui_base00      = "#657b83"
+let s:gui_base0       = "#839496"
+let s:gui_base1       = "#93a1a1"
+let s:gui_base2       = "#eee8d5"
+let s:gui_base3       = "#fdf6e3"
+let s:gui_yellow      = "#b58900"
+let s:gui_orange      = "#cb4b16"
+let s:gui_red         = "#dc322f"
+let s:gui_magenta     = "#d33682"
+let s:gui_violet      = "#6c71c4"
+let s:gui_blue        = "#268bd2"
+let s:gui_cyan        = "#2aa198"
+"let s:gui_green       = "#859900" "original
+let s:gui_green       = "#719e07" "experimental
+
+" Indirect 16-color palette (configured at terminal level)
+let s:c16_base03      = "8"
+let s:c16_base02      = "0"
+let s:c16_base01      = "10"
+let s:c16_base00      = "11"
+let s:c16_base0       = "12"
+let s:c16_base1       = "14"
+let s:c16_base2       = "7"
+let s:c16_base3       = "15"
+let s:c16_yellow      = "3"
+let s:c16_orange      = "9"
+let s:c16_red         = "1"
+let s:c16_magenta     = "5"
+let s:c16_violet      = "13"
+let s:c16_blue        = "4"
+let s:c16_cyan        = "6"
+let s:c16_green       = "2"
+
+" Indirect, for terminals limited to 8+bold only
+"let s:bright          = "* term=bold cterm=bold"
+"let s:c8_base03       = "0".s:bright
+"let s:c8_base02       = "0"
+"let s:c8_base01       = "2".s:bright
+"let s:c8_base00       = "3".s:bright
+"let s:c8_base0        = "4".s:bright
+"let s:c8_base1        = "6".s:bright
+"let s:c8_base2        = "7"
+"let s:c8_base3        = "7".s:bright
+"let s:c8_yellow       = "3"
+"let s:c8_orange       = "1".s:bright
+"let s:c8_red          = "1"
+"let s:c8_magenta      = "5"
+"let s:c8_violet       = "5".s:bright
+"let s:c8_blue         = "4"
+"let s:c8_cyan         = "6"
+"let s:c8_green        = "2"
+let s:c8_base03       = "DarkGray"      " 0*
+let s:c8_base02       = "Black"         " 0
+let s:c8_base01       = "LightGreen"    " 2*
+let s:c8_base00       = "LightYellow"   " 3*
+let s:c8_base0        = "LightBlue"     " 4*
+let s:c8_base1        = "LightCyan"     " 6*
+let s:c8_base2        = "LightGray"     " 7
+let s:c8_base3        = "White"         " 7*
+let s:c8_yellow       = "DarkYellow"    " 3
+let s:c8_orange       = "LightRed"      " 1*
+let s:c8_red          = "DarkRed"       " 1
+let s:c8_magenta      = "DarkMagenta"   " 5
+let s:c8_violet       = "LightMagenta"  " 5*
+let s:c8_blue         = "DarkBlue"      " 4
+let s:c8_cyan         = "DarkCyan"      " 6
+let s:c8_green        = "DarkGreen"     " 2
+
 if has("gui_running") || &termguicolors
     let s:vmode       = "gui"
-    let s:base03      = "#002b36"
-    let s:base02      = "#073642"
-    let s:base01      = "#586e75"
-    let s:base00      = "#657b83"
-    let s:base0       = "#839496"
-    let s:base1       = "#93a1a1"
-    let s:base2       = "#eee8d5"
-    let s:base3       = "#fdf6e3"
-    let s:yellow      = "#b58900"
-    let s:orange      = "#cb4b16"
-    let s:red         = "#dc322f"
-    let s:magenta     = "#d33682"
-    let s:violet      = "#6c71c4"
-    let s:blue        = "#268bd2"
-    let s:cyan        = "#2aa198"
-    "let s:green       = "#859900" "original
-    let s:green       = "#719e07" "experimental
+    let s:base03      = s:gui_base03
+    let s:base02      = s:gui_base02
+    let s:base01      = s:gui_base01
+    let s:base00      = s:gui_base00
+    let s:base0       = s:gui_base0
+    let s:base1       = s:gui_base1
+    let s:base2       = s:gui_base2
+    let s:base3       = s:gui_base3
+    let s:yellow      = s:gui_yellow
+    let s:orange      = s:gui_orange
+    let s:red         = s:gui_red
+    let s:magenta     = s:gui_magenta
+    let s:violet      = s:gui_violet
+    let s:blue        = s:gui_blue
+    let s:cyan        = s:gui_cyan
+    let s:green       = s:gui_green
 elseif &t_Co >= 16
     let s:vmode       = "cterm"
-    let s:base03      = "8"
-    let s:base02      = "0"
-    let s:base01      = "10"
-    let s:base00      = "11"
-    let s:base0       = "12"
-    let s:base1       = "14"
-    let s:base2       = "7"
-    let s:base3       = "15"
-    let s:yellow      = "3"
-    let s:orange      = "9"
-    let s:red         = "1"
-    let s:magenta     = "5"
-    let s:violet      = "13"
-    let s:blue        = "4"
-    let s:cyan        = "6"
-    let s:green       = "2"
+    let s:base03      = s:c16_base03
+    let s:base02      = s:c16_base02
+    let s:base01      = s:c16_base01
+    let s:base00      = s:c16_base00
+    let s:base0       = s:c16_base0
+    let s:base1       = s:c16_base1
+    let s:base2       = s:c16_base2
+    let s:base3       = s:c16_base3
+    let s:yellow      = s:c16_yellow
+    let s:orange      = s:c16_orange
+    let s:red         = s:c16_red
+    let s:magenta     = s:c16_magenta
+    let s:violet      = s:c16_violet
+    let s:blue        = s:c16_blue
+    let s:cyan        = s:c16_cyan
+    let s:green       = s:c16_green
 else
+    echo "Ugh, 8-color terminal."
     let s:vmode       = "cterm"
-    let s:bright      = "* term=bold cterm=bold"
-"   let s:base03      = "0".s:bright
-"   let s:base02      = "0"
-"   let s:base01      = "2".s:bright
-"   let s:base00      = "3".s:bright
-"   let s:base0       = "4".s:bright
-"   let s:base1       = "6".s:bright
-"   let s:base2       = "7"
-"   let s:base3       = "7".s:bright
-"   let s:yellow      = "3"
-"   let s:orange      = "1".s:bright
-"   let s:red         = "1"
-"   let s:magenta     = "5"
-"   let s:violet      = "5".s:bright
-"   let s:blue        = "4"
-"   let s:cyan        = "6"
-"   let s:green       = "2"
-    let s:base03      = "DarkGray"      " 0*
-    let s:base02      = "Black"         " 0
-    let s:base01      = "LightGreen"    " 2*
-    let s:base00      = "LightYellow"   " 3*
-    let s:base0       = "LightBlue"     " 4*
-    let s:base1       = "LightCyan"     " 6*
-    let s:base2       = "LightGray"     " 7
-    let s:base3       = "White"         " 7*
-    let s:yellow      = "DarkYellow"    " 3
-    let s:orange      = "LightRed"      " 1*
-    let s:red         = "DarkRed"       " 1
-    let s:magenta     = "DarkMagenta"   " 5
-    let s:violet      = "LightMagenta"  " 5*
-    let s:blue        = "DarkBlue"      " 4
-    let s:cyan        = "DarkCyan"      " 6
-    let s:green       = "DarkGreen"     " 2
-
+    let s:base03      = s:c8_base03
+    let s:base02      = s:c8_base02
+    let s:base01      = s:c8_base01
+    let s:base00      = s:c8_base00
+    let s:base0       = s:c8_base0
+    let s:base1       = s:c8_base1
+    let s:base2       = s:c8_base2
+    let s:base3       = s:c8_base3
+    let s:yellow      = s:c8_yellow
+    let s:orange      = s:c8_orange
+    let s:red         = s:c8_red
+    let s:magenta     = s:c8_magenta
+    let s:violet      = s:c8_violet
+    let s:blue        = s:c8_blue
+    let s:cyan        = s:c8_cyan
+    let s:green       = s:c8_green
 endif
+
 "}}}
 " Formatting options and null values for passthrough effect "{{{
 " ---------------------------------------------------------------------
