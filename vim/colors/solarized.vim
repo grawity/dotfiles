@@ -150,9 +150,6 @@ endif
 if !exists("g:solarized_diffmode")
     let g:solarized_diffmode = "normal"
 endif
-if !exists("g:solarized_hitrail")
-    let g:solarized_hitrail = 0
-endif
 
 "}}}
 " Colorscheme initialization "{{{
@@ -858,24 +855,6 @@ exe "hi! pandocMetadata"                 .s:fg_blue   .s:bg_none   .s:fmt_bold
 hi! link pandocMetadataTitle             pandocMetadata
 
 "}}}
-" Highlight Trailing Space {{{
-" Experimental: Different highlight when on cursorline
-function! s:SolarizedHiTrail()
-    if g:solarized_hitrail==0
-        hi! clear solarizedTrailingSpace
-    else
-        syn match solarizedTrailingSpace "\s*$"
-        exe "hi! solarizedTrailingSpace " .s:fmt_undr .s:fg_red .s:bg_none .s:sp_red
-    endif
-endfunction
-augroup SolarizedHiTrail
-    autocmd!
-    if g:solarized_hitrail==1
-        autocmd! Syntax * call s:SolarizedHiTrail()
-        autocmd! ColorScheme * if g:colors_name == "solarized" | call s:SolarizedHiTrail() | else | augroup! s:SolarizedHiTrail | endif
-    endif
-augroup END
-" }}}
 " License "{{{
 " ---------------------------------------------------------------------
 "
