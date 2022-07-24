@@ -132,13 +132,6 @@
 " }}}
 " Default option values"{{{
 " ---------------------------------------------------------------------
-if !exists("g:solarized_termtrans")
-    if ($TERM_PROGRAM ==? "apple_terminal" && &t_Co < 256)
-        let g:solarized_termtrans = 1
-    else
-        let g:solarized_termtrans = 0
-    endif
-endif
 if !exists("g:solarized_bold")
     let g:solarized_bold = 1
 endif
@@ -311,6 +304,7 @@ endif
 " ---------------------------------------------------------------------
     let s:none            = "NONE"
     let s:none            = "NONE"
+    let s:back            = s:base03
     let s:t_none          = "NONE"
     let s:n               = "NONE"
     let s:c               = ",undercurl"
@@ -321,11 +315,6 @@ endif
 "}}}
 " Background value based on termtrans setting "{{{
 " ---------------------------------------------------------------------
-if (has("gui_running") || g:solarized_termtrans == 0)
-    let s:back        = s:base03
-else
-    let s:back        = "NONE"
-endif
 "}}}
 " Alternate light scheme "{{{
 " ---------------------------------------------------------------------
@@ -342,9 +331,7 @@ if &background == "light"
     let s:base1       = s:temp01
     let s:base2       = s:temp02
     let s:base3       = s:temp03
-    if (s:back != "NONE")
-        let s:back    = s:base03
-    endif
+    let s:back        = s:base03
 endif
 "}}}
 " Optional contrast schemes "{{{
