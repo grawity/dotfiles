@@ -92,7 +92,7 @@ if &t_Co < 16
 	let s:c16_green		= "DarkGreen"		" 2
 endif
 
-" Formatting options and null values for passthrough effect
+" Formatting options
 let s:gui_none		= "NONE"
 let s:c16_none		= "NONE"
 let s:gui_back		= s:gui_base03
@@ -104,6 +104,26 @@ let s:r			= ",reverse"
 let s:s			= ",standout"
 let s:ou		= ""
 let s:ob		= ""
+
+if (g:solarized_bold == 0 || &t_Co == 8 )
+	let s:b			= ""
+	let s:bb		= ",bold"
+else
+	let s:b			= ",bold"
+	let s:bb		= ""
+endif
+
+if g:solarized_underline == 0
+	let s:u			= ""
+else
+	let s:u			= ",underline"
+endif
+
+if g:solarized_italic == 0
+	let s:i			= ""
+else
+	let s:i			= ",italic"
+endif
 
 " Alternate light scheme
 if &background == "light"
@@ -156,27 +176,6 @@ if g:solarized_contrast == "low"
 	let s:gui_back		= s:gui_base02
 	let s:c16_back		= s:c16_base02
 	let s:ou		= ",underline"
-endif
-
-" Overrides dependent on user specified values and environment
-if (g:solarized_bold == 0 || &t_Co == 8 )
-	let s:b			= ""
-	let s:bb		= ",bold"
-else
-	let s:b			= ",bold"
-	let s:bb		= ""
-endif
-
-if g:solarized_underline == 0
-	let s:u			= ""
-else
-	let s:u			= ",underline"
-endif
-
-if g:solarized_italic == 0
-	let s:i			= ""
-else
-	let s:i			= ",italic"
 endif
 
 " Highlighting primitives
