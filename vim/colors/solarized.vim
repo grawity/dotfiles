@@ -1,3 +1,4 @@
+" Originally based on:
 " Name:     Solarized vim colorscheme
 " Author:   Ethan Schoonover <es@ethanschoonover.com>
 " URL:      http://ethanschoonover.com/solarized
@@ -5,133 +6,8 @@
 " License:  OSI approved MIT license (see end of this file)
 " Created:  In the middle of the night
 " Modified: 2011 May 05
-"
-" Usage "{{{
-"
-" ---------------------------------------------------------------------
-" ABOUT:
-" ---------------------------------------------------------------------
-" Solarized is a carefully designed selective contrast colorscheme with dual
-" light and dark modes that runs in both GUI, 256 and 16 color modes.
-"
-" See the homepage above for screenshots and details.
-"
-" ---------------------------------------------------------------------
-" OPTIONS:
-" ---------------------------------------------------------------------
-" See the "solarized.txt" help file included with this colorscheme (in the
-" "doc" subdirectory) for information on options, usage, the Toggle Background
-" function and more. If you have already installed Solarized, this is available
-" from the Solarized menu and command line as ":help solarized"
-"
-" ---------------------------------------------------------------------
-" INSTALLATION:
-" ---------------------------------------------------------------------
-" Two options for installation: manual or pathogen
-"
-" MANUAL INSTALLATION OPTION:
-" ---------------------------------------------------------------------
-"
-" 1.  Download the solarized distribution (available on the homepage above)
-"     and unarchive the file.
-" 2.  Move `solarized.vim` to your `.vim/colors` directory.
-" 3.  Move each of the files in each subdirectories to the corresponding .vim
-"     subdirectory (e.g. autoload/togglebg.vim goes into your .vim/autoload
-"     directory as .vim/autoload/togglebg.vim).
-"
-" RECOMMENDED PATHOGEN INSTALLATION OPTION:
-" ---------------------------------------------------------------------
-"
-" 1.  Download and install Tim Pope's Pathogen from:
-"     https://github.com/tpope/vim-pathogen
-"
-" 2.  Next, move or clone the `vim-colors-solarized` directory so that it is
-"     a subdirectory of the `.vim/bundle` directory.
-"
-"     a. **clone with git:**
-"
-"       $ cd ~/.vim/bundle
-"       $ git clone git://github.com/altercation/vim-colors-solarized.git
-"
-"     b. **or move manually into the pathogen bundle directory:**
-"         In the parent directory of vim-colors-solarized:
-"
-"         $ mv vim-colors-solarized ~/.vim/bundle/
-"
-" MODIFY VIMRC:
-"
-" After either Option 1 or Option 2 above, put the following two lines in your
-" .vimrc:
-"
-"     syntax enable
-"     set background=dark
-"     colorscheme solarized
-"
-" or, for the light background mode of Solarized:
-"
-"     syntax enable
-"     set background=light
-"     colorscheme solarized
-"
-" I like to have a different background in GUI and terminal modes, so I can use
-" the following if-then. However, I find vim's background autodetection to be
-" pretty good and, at least with MacVim, I can leave this background value
-" assignment out entirely and get the same results.
-"
-"     if has('gui_running')
-"       set background=light
-"     else
-"       set background=dark
-"     endif
-"
-" See the Solarized homepage at http://ethanschoonover.com/solarized for
-" screenshots which will help you select either the light or dark background.
-"
-" ---------------------------------------------------------------------
-" COLOR VALUES
-" ---------------------------------------------------------------------
-" Download palettes and files from: http://ethanschoonover.com/solarized
-"
-" L\*a\*b values are canonical (White D65, Reference D50), other values are
-" matched in sRGB space.
-"
-" SOLARIZED HEX     16/8 TERMCOL  XTERM/HEX   L*A*B      sRGB        HSB
-" --------- ------- ---- -------  ----------- ---------- ----------- -----------
-" base03    #002b36  8/4 brblack  234 #1c1c1c 15 -12 -12   0  43  54 193 100  21
-" base02    #073642  0/4 black    235 #262626 20 -12 -12   7  54  66 192  90  26
-" base01    #586e75 10/7 brgreen  240 #4e4e4e 45 -07 -07  88 110 117 194  25  46
-" base00    #657b83 11/7 bryellow 241 #585858 50 -07 -07 101 123 131 195  23  51
-" base0     #839496 12/6 brblue   244 #808080 60 -06 -03 131 148 150 186  13  59
-" base1     #93a1a1 14/4 brcyan   245 #8a8a8a 65 -05 -02 147 161 161 180   9  63
-" base2     #eee8d5  7/7 white    254 #d7d7af 92 -00  10 238 232 213  44  11  93
-" base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 246 227  44  10  99
-" yellow    #b58900  3/3 yellow   136 #af8700 60  10  65 181 137   0  45 100  71
-" orange    #cb4b16  9/3 brred    166 #d75f00 50  50  55 203  75  22  18  89  80
-" red       #dc322f  1/1 red      160 #d70000 50  65  45 220  50  47   1  79  86
-" magenta   #d33682  5/5 magenta  125 #af005f 50  65 -05 211  54 130 331  74  83
-" violet    #6c71c4 13/5 brmagenta 61 #5f5faf 50  15 -45 108 113 196 237  45  77
-" blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 139 210 205  82  82
-" cyan      #2aa198  6/6 cyan      37 #00afaf 60 -35 -05  42 161 152 175  74  63
-" green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
-"
-" ---------------------------------------------------------------------
-" COLORSCHEME HACKING
-" ---------------------------------------------------------------------
-"
-" Useful commands for testing colorschemes:
-" :source $VIMRUNTIME/syntax/hitest.vim
-" :help highlight-groups
-" :help cterm-colors
-" :help group-name
-"
-" Useful links for developing colorschemes:
-" http://www.vim.org/scripts/script.php?script_id=2937
-" http://vimcasts.org/episodes/creating-colorschemes-for-vim/
-" http://www.frexx.de/xterm-256-notes/"
-"
-" }}}
-" Default option values"{{{
-" ---------------------------------------------------------------------
+
+" Default option values
 if !exists("g:solarized_bold")
     let g:solarized_bold = 1
 endif
@@ -151,24 +27,12 @@ if !exists("g:solarized_diffmode")
     let g:solarized_diffmode = "normal"
 endif
 
-"}}}
-" Colorscheme initialization "{{{
-" ---------------------------------------------------------------------
+" Colorscheme initialization
 hi clear
 if exists("syntax_on")
     syntax reset
 endif
 let colors_name = "solarized"
-
-"}}}
-" GUI & CSApprox hexadecimal palettes"{{{
-" ---------------------------------------------------------------------
-"
-" Set both gui and terminal color values in separate conditional statements
-" Due to possibility that CSApprox is running (though I suppose we could just
-" leave the hex values out entirely in that case and include only cterm colors)
-" We also check to see if user has set solarized (force use of the
-" neutral gray monotone palette component)
 
 " Direct truecolor mode (for GUI and 'tgc')
 let s:gui_base03      = "#002b36"
@@ -208,60 +72,57 @@ let s:c16_cyan        = "6"
 let s:c16_green       = "2"
 
 " Indirect, for terminals limited to 8+bold only
-"let s:bright          = "* term=bold cterm=bold"
-"let s:c8_base03       = "0".s:bright
-"let s:c8_base02       = "0"
-"let s:c8_base01       = "2".s:bright
-"let s:c8_base00       = "3".s:bright
-"let s:c8_base0        = "4".s:bright
-"let s:c8_base1        = "6".s:bright
-"let s:c8_base2        = "7"
-"let s:c8_base3        = "7".s:bright
-"let s:c8_yellow       = "3"
-"let s:c8_orange       = "1".s:bright
-"let s:c8_red          = "1"
-"let s:c8_magenta      = "5"
-"let s:c8_violet       = "5".s:bright
-"let s:c8_blue         = "4"
-"let s:c8_cyan         = "6"
-"let s:c8_green        = "2"
-let s:c8_base03       = "DarkGray"      " 0*
-let s:c8_base02       = "Black"         " 0
-let s:c8_base01       = "LightGreen"    " 2*
-let s:c8_base00       = "LightYellow"   " 3*
-let s:c8_base0        = "LightBlue"     " 4*
-let s:c8_base1        = "LightCyan"     " 6*
-let s:c8_base2        = "LightGray"     " 7
-let s:c8_base3        = "White"         " 7*
-let s:c8_yellow       = "DarkYellow"    " 3
-let s:c8_orange       = "LightRed"      " 1*
-let s:c8_red          = "DarkRed"       " 1
-let s:c8_magenta      = "DarkMagenta"   " 5
-let s:c8_violet       = "LightMagenta"  " 5*
-let s:c8_blue         = "DarkBlue"      " 4
-let s:c8_cyan         = "DarkCyan"      " 6
-let s:c8_green        = "DarkGreen"     " 2
+if &t_Co < 16
+    echo "Ugh"
+    "let s:bright          = "* term=bold cterm=bold"
+    "let s:c16_base03       = "0".s:bright
+    "let s:c16_base02       = "0"
+    "let s:c16_base01       = "2".s:bright
+    "let s:c16_base00       = "3".s:bright
+    "let s:c16_base0        = "4".s:bright
+    "let s:c16_base1        = "6".s:bright
+    "let s:c16_base2        = "7"
+    "let s:c16_base3        = "7".s:bright
+    "let s:c16_yellow       = "3"
+    "let s:c16_orange       = "1".s:bright
+    "let s:c16_red          = "1"
+    "let s:c16_magenta      = "5"
+    "let s:c16_violet       = "5".s:bright
+    "let s:c16_blue         = "4"
+    "let s:c16_cyan         = "6"
+    "let s:c16_green        = "2"
+    let s:c16_base03       = "DarkGray"      " 0*
+    let s:c16_base02       = "Black"         " 0
+    let s:c16_base01       = "LightGreen"    " 2*
+    let s:c16_base00       = "LightYellow"   " 3*
+    let s:c16_base0        = "LightBlue"     " 4*
+    let s:c16_base1        = "LightCyan"     " 6*
+    let s:c16_base2        = "LightGray"     " 7
+    let s:c16_base3        = "White"         " 7*
+    let s:c16_yellow       = "DarkYellow"    " 3
+    let s:c16_orange       = "LightRed"      " 1*
+    let s:c16_red          = "DarkRed"       " 1
+    let s:c16_magenta      = "DarkMagenta"   " 5
+    let s:c16_violet       = "LightMagenta"  " 5*
+    let s:c16_blue         = "DarkBlue"      " 4
+    let s:c16_cyan         = "DarkCyan"      " 6
+    let s:c16_green        = "DarkGreen"     " 2
+endif
 
-"}}}
-" Formatting options and null values for passthrough effect "{{{
-" ---------------------------------------------------------------------
-    let s:gui_none        = "NONE"
-    let s:c16_none        = "NONE"
-    let s:gui_back        = s:gui_base03
-    let s:c16_back        = s:c16_base03
-    let s:t_none          = "NONE"
-    let s:n               = "NONE"
-    let s:c               = ",undercurl"
-    let s:r               = ",reverse"
-    let s:s               = ",standout"
-    let s:ou              = ""
-    let s:ob              = ""
-"}}}
-" Background value based on termtrans setting "{{{
-" ---------------------------------------------------------------------
-"}}}
-" Alternate light scheme "{{{
-" ---------------------------------------------------------------------
+" Formatting options and null values for passthrough effect
+let s:gui_none        = "NONE"
+let s:c16_none        = "NONE"
+let s:gui_back        = s:gui_base03
+let s:c16_back        = s:c16_base03
+let s:t_none          = "NONE"
+let s:n               = "NONE"
+let s:c               = ",undercurl"
+let s:r               = ",reverse"
+let s:s               = ",standout"
+let s:ou              = ""
+let s:ob              = ""
+
+" Alternate light scheme
 if &background == "light"
     let s:gui_temp03      = s:gui_base03
     let s:gui_temp02      = s:gui_base02
@@ -291,9 +152,8 @@ if &background == "light"
     let s:c16_base3       = s:c16_temp03
     let s:c16_back        = s:c16_base03
 endif
-"}}}
-" Optional contrast schemes "{{{
-" ---------------------------------------------------------------------
+
+" Optional contrast schemes
 if g:solarized_contrast == "high"
     let s:gui_base01      = s:gui_base00
     let s:gui_base00      = s:gui_base0
@@ -314,9 +174,8 @@ if g:solarized_contrast == "low"
     let s:c16_back        = s:c16_base02
     let s:ou              = ",underline"
 endif
-"}}}
-" Overrides dependent on user specified values and environment "{{{
-" ---------------------------------------------------------------------
+
+" Overrides dependent on user specified values and environment
 if (g:solarized_bold == 0 || &t_Co == 8 )
     let s:b           = ""
     let s:bb          = ",bold"
@@ -336,10 +195,8 @@ if g:solarized_italic == 0
 else
     let s:i           = ",italic"
 endif
-"}}}
-" Highlighting primitives"{{{
-" ---------------------------------------------------------------------
 
+" Highlighting primitives
 exe "let s:bg_none      = ' guibg=".s:gui_none   ." ctermbg=".s:c16_none   ."'"
 exe "let s:bg_back      = ' guibg=".s:gui_back   ." ctermbg=".s:c16_back   ."'"
 exe "let s:bg_base03    = ' guibg=".s:gui_base03 ." ctermbg=".s:c16_base03 ."'"
@@ -415,7 +272,6 @@ exe "let s:sp_violet    = ' guisp=".s:gui_violet ."'"
 exe "let s:sp_blue      = ' guisp=".s:gui_blue   ."'"
 exe "let s:sp_cyan      = ' guisp=".s:gui_cyan   ."'"
 
-"}}}
 " Basic highlighting"{{{
 " ---------------------------------------------------------------------
 " note that link syntax to avoid duplicate configuration doesn't work with the
