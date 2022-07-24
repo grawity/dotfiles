@@ -159,39 +159,41 @@ endif
 " }}}
 " Default option values"{{{
 " ---------------------------------------------------------------------
-function! s:SetOption(name,default)
-    if type(a:default) == type(0)
-        let l:wrap=''
-        let l:ewrap=''
+if !exists("g:solarized_termtrans")
+    if ($TERM_PROGRAM ==? "apple_terminal" && &t_Co < 256)
+        let g:solarized_termtrans = 1
     else
-        let l:wrap='"'
-        let l:ewrap='\"'
+        let g:solarized_termtrans = 0
     endif
-    if !exists("g:solarized_".a:name) || g:solarized_{a:name}==a:default
-        exe 'let g:solarized_'.a:name.'='.l:wrap.a:default.l:wrap.'"'
-    endif
-endfunction
-
-if ($TERM_PROGRAM ==? "apple_terminal" && &t_Co < 256)
-    let s:solarized_termtrans_default = 1
-else
-    let s:solarized_termtrans_default = 0
 endif
-call s:SetOption("termtrans",s:solarized_termtrans_default)
-call s:SetOption("bold",1)
-call s:SetOption("underline",1)
-call s:SetOption("italic",1) " note that we need to override this later if the terminal doesn't support
-call s:SetOption("contrast","normal")
-call s:SetOption("visibility","normal")
-call s:SetOption("diffmode","normal")
-call s:SetOption("hitrail",0)
+if !exists("g:solarized_bold")
+    let g:solarized_bold = 1
+endif
+if !exists("g:solarized_underline")
+    let g:solarized_underline = 1
+endif
+if !exists("g:solarized_italic")
+    let g:solarized_italic = 1 " note that we need to override this later if the terminal doesn't support
+endif
+if !exists("g:solarized_contrast")
+    let g:solarized_contrast = "normal"
+endif
+if !exists("g:solarized_visibility")
+    let g:solarized_visibility = "normal"
+endif
+if !exists("g:solarized_diffmode")
+    let g:solarized_diffmode = "normal"
+endif
+if !exists("g:solarized_hitrail")
+    let g:solarized_hitrail = 0
+endif
 
 "}}}
 " Colorscheme initialization "{{{
 " ---------------------------------------------------------------------
 hi clear
 if exists("syntax_on")
-  syntax reset
+    syntax reset
 endif
 let colors_name = "solarized"
 
