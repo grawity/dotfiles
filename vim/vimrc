@@ -105,7 +105,10 @@ endif
 
 " UI elements
 
+" Show current line,column in status bar
+" (Neovim 0.??: default enabled)
 set ruler
+
 set showmode
 set showcmd
 
@@ -348,7 +351,13 @@ if !has("nvim") && $TERM =~ "^xterm"
 "	lmap <Esc>OS -
 endif
 
-set nottimeout		" disable timeout for key codes (enabled by defaults.vim)
+" Don't use a timeout for key codes (expect the entire key code to be
+" contained within a single `read()` result); enabled by defaults.vim
+"
+" 2022-07-26: This turns out to cause problems with Windows Terminal (or its
+" interaction with OpenSSH), which sometimes splits the \e[201~ "End bracketed
+" paste" sequence preventing Neovim from recognizing it correctly.
+"set nottimeout
 
 """ File-specific behavior
 
