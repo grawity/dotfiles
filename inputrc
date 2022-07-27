@@ -9,8 +9,11 @@ set bell-style none
 # Enabled by default in rl 8.1, where it works much better (with "faces").
 #set enable-bracketed-paste on
 
-# Still want to be able to paste multi-line commands into Python REPL.
+# Regain ability to paste multiple commands into some programs.
 $if Python
+set enable-bracketed-paste off
+$endif
+$if kadmin
 set enable-bracketed-paste off
 $endif
 
