@@ -51,6 +51,7 @@ getownip() {
 }
 gpgfp() { gpg --with-colons --fingerprint "$1" | awk -F: '/^fpr:/ {print $10}'; }
 alias gmpv='celluloid'
+alias gte='gnome-text-editor'
 alias hd='hexdump -C'
 hostname.bind() {
 	for _s in id.server hostname.bind version.bind; do
