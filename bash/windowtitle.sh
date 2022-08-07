@@ -39,7 +39,7 @@ _show_status() {
 		printf "\e[m\e[38;5;172m%s\e[m\n" "(returned $status)"
 	fi
 }
-PROMPT_COMMAND+=(_show_status)
+PROMPT_COMMAND+="; _show_status"
 
 _update_title() {
 	# Set window title to "user@host ~/path"
@@ -57,7 +57,7 @@ _update_title() {
 	fi
 	settitle "$title"
 }
-PROMPT_COMMAND+=(_update_title)
+PROMPT_COMMAND+="; _update_title"
 
 _update_wname() {
 	# Set tmux window name to shortened tail of working directory
@@ -77,7 +77,7 @@ _update_wname() {
 		setwname "$t_dir"
 	fi
 }
-PROMPT_COMMAND+=(_update_wname)
+PROMPT_COMMAND+="; _update_wname"
 
 _update_termcwd() {
 	# Set current path
@@ -90,4 +90,4 @@ _update_termcwd() {
 		printf '\e]7;%s\e\\' "$p_url"
 	fi
 }
-PROMPT_COMMAND+=(_update_termcwd)
+PROMPT_COMMAND+="; _update_termcwd"

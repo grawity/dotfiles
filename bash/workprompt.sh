@@ -17,7 +17,7 @@ _uk_kerberos_prompt() {
 	fi
 }
 
-PROMPT_COMMAND+=(_uk_kerberos_prompt)
+PROMPT_COMMAND+="; _uk_kerberos_prompt"
 
 items[uk]=' UK '
 fmts[uk.good]='1|38;2;255;203;0|48;2;21;44;112'

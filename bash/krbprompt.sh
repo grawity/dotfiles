@@ -46,5 +46,5 @@ if [[ $USER == grawity && -t 0 && -t 1 && -t 2 ]]; then
 			fmts[ticket]=@ticket.expired
 		fi
 	}
-	PROMPT_COMMAND+=(_ticketstatus)
+	PROMPT_COMMAND+="; _ticketstatus"
 fi
