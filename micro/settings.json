@@ -6,7 +6,6 @@
     },
     "autoclose": false,
     "colorscheme": "gotham-darksb",
-    "infobar": false,
     "parsecursor": true,
     "softwrap": true,
     "statusformatl": "$(filename) $(modified)($(line),$(col)) $(status.paste)",
