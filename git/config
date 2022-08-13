@@ -221,9 +221,11 @@
 	generic = <Backspace> view-close
 	generic = \\ scroll-line-up
 	generic = E !git format-patch -1 %(commit)
-	generic = w :toggle wrap-lines
+	generic = <Esc>w :toggle wrap-lines
 	generic = ~ none
-	main = g :toggle commit-title-graph
+	main = <Esc>a :toggle author
+	main = <Esc>d :toggle date
+	main = <Esc>g :toggle commit-title-graph
 	main = G move-last-line
 	diff = G move-last-line
 	# fix Home/End in PuTTY
