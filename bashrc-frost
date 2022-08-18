@@ -105,7 +105,7 @@ _frost_lid_check() {
 	fi
 }
 
-PROMPT_COMMAND+="; _frost_lid_check"
+PROMPT_COMMAND+="${PROMPT_COMMAND+; }_frost_lid_check"
 
 items[rdp?]=
 items[rdp.active]='[RDP]'

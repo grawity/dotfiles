@@ -52,7 +52,7 @@ HISTCONTROL=ignoreboth
 HISTIGNORE="../*/"
 HISTTIMEFORMAT="(%F %T) "
 
-PROMPT_COMMAND="true"		# prevent commands accumulating across reloads
+unset PROMPT_COMMAND		# prevent commands accumulating across reloads
 				# Note: OFB (Ubu18.04) still has bash 4.4 where
 				# PROMPT_COMMAND is a scalar, not an array.
 
