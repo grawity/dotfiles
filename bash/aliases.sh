@@ -112,11 +112,7 @@ alias rd='rmdir'
 rdu() { (( $# )) || set -- */; du -hsc "$@" | awk '$1 !~ /K/ || $2 == "total"' | sort -h; }
 alias re='hash -r && SILENT=1 . ~/.bashrc && echo reloaded .bashrc && :'
 alias ere='set -a && . ~/.profile && set +a && echo reloaded .profile && :'
-ressh() { ssh -v \
-	-o ControlPersist=no \
-	-o ControlMaster=no \
-	-o ControlPath=none \
-	"$@" ":"; }
+ressh() { ssh -v -S none "$@" "true"; }
 alias bgpmon='do: whois -h whois.bgpmon.net --'
 alias rawhois='do: whois -h whois.ra.net --'
 alias riswhois='do: whois -h riswhois.ripe.net --'
@@ -512,4 +508,9 @@ fi
 if have chafa; then
 	# Leave space for orig. command (1 line) + new prompt (3 lines)
 	alias imgrgb='chafa --symbols=vhalf,sextant --size=$[COLUMNS]x$[LINES-1-3]'
+fi
+
+if have step-cli; then
+	# Arch's unusual packaging
+	alias step='step-cli'
 fi
