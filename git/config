@@ -129,6 +129,12 @@
 [diff "ldif"]
 	xfuncname = "^(dn: .+)$"
 
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+
 [filter "merge-known-hosts"]
 	clean = ssh-duphosts -m -
 	smudge = cat
