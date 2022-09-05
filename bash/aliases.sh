@@ -43,7 +43,7 @@ alias fanficfare='fanficfare -f html'
 alias fff='fanficfare -f html'
 alias fiemap='xfs_io -r -c "fiemap -v"'
 alias foreach='while IFS= read -r'
-gerp() { egrep $grepopt -r -I -D skip --exclude-dir={.bzr,.git,.hg,.svn,_undo} -H -n "$@"; }
+gerp() { grep $grepopt -E -r -I -D skip --exclude-dir={.bzr,.git,.hg,.svn,_undo} -H -n "$@"; }
 getownip() {
 	curl -s http://whatismyip.akamai.com
 	#dig +short whoami.akamai.net. A @ns1-1.akamaitech.net.
@@ -153,8 +153,8 @@ alias unwine='printf "\e[?1l \e>"'
 xar() { xargs -r -d '\n' "$@"; }
 alias xf='ps xf -O ppid'
 alias xx='chmod a+rx'
-alias '~'='egrep'
-alias '~~'='egrep -i'
+alias '~'='grep -E'
+alias '~~'='grep -E -i'
 -() { cd -; }
 ,() {
 	for _a in "${@:-.}"; do
@@ -216,8 +216,8 @@ clip() {
 
 grepopt="--color=auto"
 alias grep='grep $grepopt'
-alias egrep='egrep $grepopt'
-alias fgrep='fgrep $grepopt'
+alias egrep='grep -E $grepopt'
+alias fgrep='grep -F $grepopt'
 
 lsopt="-F -h"
 treeopt="-F --dirsfirst"
