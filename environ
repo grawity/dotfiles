@@ -57,7 +57,8 @@ LESS_TERMCAP_us="[3m"
 LESS_TERMCAP_ue="[23m"
 
 # Less/man - set terminal title to "manpage(section)"
-MANLESS="]0;\$MAN_PN ?ltline %lt?L/%L.:byte %bB?s/%s..?e (END):?pB %pB\\%.. "
+#MANLESS="]0;\$MAN_PN ?ltline %lt?L/%L.:byte %bB?s/%s..?e (END):?pB %pB\\%.. "
+# (2022-08-05: Broken, part of the title string goes into Less status)
 
 # Sysstat/iostat - enable colors (probably on by default, now)
 S_COLORS="auto"
