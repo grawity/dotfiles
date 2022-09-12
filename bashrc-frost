@@ -82,6 +82,10 @@ uredboot() {
 
 . ~/.dotfiles/bash/workprompt.sh
 
+if [[ ${items@a} != *A* ]]; then
+	return
+fi
+
 _gnome_remote_session_active() {
 	busctl --user --list tree org.gnome.Shell |
 		grep -q '^/org/gnome/Mutter/RemoteDesktop/Session/'
