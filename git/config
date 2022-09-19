@@ -188,6 +188,12 @@
 [safe]
 	# Allow repositories owned by other UIDs
 	directory = /srv/http/default
+	directory = /net/wolke/srv/http/default
+	directory = /net/sky/srv/http/default
+	directory = /net/star/srv/http/default
+	directory = /net/ember/srv/http/default
+	directory = /net/wind/srv/http/default
+	directory = /net/land/srv/http/default
 
 [sendemail]
 	from = Mantas Mikulėnas <grawity@gmail.com>
