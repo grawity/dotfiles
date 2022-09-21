@@ -149,7 +149,7 @@ visexp() { (echo "; vim: ft=sexp"; echo "; file: $1"; sexp-conv < "$1") \
 alias w3m='w3m -title'
 wim() { local file=$(which "$1") && [[ $file ]] && editor "$file" "${@:2}"; }
 alias unpickle='python -m pickletools'
-alias unwine='printf "\e[?1l \e>"'
+alias unwine='tput rmkx' # Disable application keypad mode DECCKM+DECPNM
 xar() { xargs -r -d '\n' "$@"; }
 alias xf='ps xf -O ppid'
 alias xx='chmod a+rx'
