@@ -43,7 +43,7 @@ alias fanficfare='fanficfare -f html'
 alias fff='fanficfare -f html'
 alias fiemap='xfs_io -r -c "fiemap -v"'
 alias foreach='while IFS= read -r'
-gerp() { grep $grepopt -E -r -I -D skip --exclude-dir={.bzr,.git,.hg,.svn,_undo} -H -n "$@"; }
+gerp() { grep $grepopt -ErIHn -Dskip --exclude-dir={.bzr,.git,.hg,.svn,_undo} "$@"; }
 getownip() {
 	curl -s http://whatismyip.akamai.com
 	#dig +short whoami.akamai.net. A @ns1-1.akamaitech.net.
