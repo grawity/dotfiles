@@ -24,7 +24,7 @@ declare -A parts=(
 	[prompt]=":prompt _"
 )
 
-declare -Ai _recursing=()
+declare -Ai _awp_recursing=()
 
 _awp_update_vcs() {
 	local tmp= git= br= re=
@@ -217,12 +217,12 @@ _awp_add_item() {
 		;;
 	!*)
 		# Another nested part (probably useless)
-		if [[ ${_recursing[$item]} == 1 ]]; then
+		if [[ ${_awp_recursing[$item]} == 1 ]]; then
 			out="<looped '$item'>"
 			fmt=$errfmt
 		elif [[ ${parts[$item]+yes} ]]; then
 			local subitem=
-			_recursing[$item]=1
+			_awp_recursing[$item]=1
 			if [[ ${items[$item:pfx]+yes} ]]; then
 				_awp_add_item $pos :$item:pfx
 			fi
@@ -232,7 +232,7 @@ _awp_add_item() {
 			if [[ ${items[$item:sfx]+yes} ]]; then
 				_awp_add_item $pos :$item:sfx
 			fi
-			_recursing[$item]=0
+			_awp_recursing[$item]=0
 			return
 		else
 			out="<no part '$item'>"
