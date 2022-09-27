@@ -10,7 +10,7 @@
 
 # Purple
 fmts[a]="38;5;171"
-fmts[b]="38;5;177"
+fmts[b]="38;5;177|1"
 fmts[c]="38;5;176"
 fmts[d]="38;5;133|2"
 
@@ -18,7 +18,7 @@ fmts[name.self]=@b
 fmts[name:pfx]=@d
 fmts[prompt]=@d
 
-fmts[pwd]=@a
+fmts[pwd]=@c
 fmts[pwd:pfx]=@d
 # Orange-ish
 #fmts[pwd]='38;5;180'
@@ -28,11 +28,3 @@ items[pwd:sfx]=']'
 
 # Neutral gray
 fmts[vcs]='38;5;59'
-
-if (( UID )); then
-	items[user:sfx]=' on '
-	items[host:pfx]='</'
-	items[host:sfx]='/>'
-	#fmts[host:pfx]=@name
-	#fmts[host:sfx]=@name
-fi
