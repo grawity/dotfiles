@@ -28,5 +28,12 @@ fmts[pwd:pfx]=@d
 items[pwd:pfx]='['
 items[pwd:sfx]=']'
 
+fmts[vcs]=@d
+
 # Neutral gray
-fmts[vcs]='38;5;59'
+#fmts[vcs]='38;5;59'
+
+# Rearrange things a bit
+parts[left]=''
+parts[prompt]=':host _'
+items[host:sfx]='>'
