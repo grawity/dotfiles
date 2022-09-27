@@ -396,7 +396,7 @@ _awp_prompt() {
 
 	# Output the prompt
 	if [[ ${strs[left]}${strs[mid]}${strs[right]} ]]; then
-		printf "%s\n" "${strs[left]} ${strs[mid]} ${strs[right]}"
+		printf "%s\n" "${strs[left]}${strs[left]:+ }${strs[mid]}${strs[mid]:+ }${strs[right]}"
 	fi
 	printf "%s" "${strs[prompt]}"
 	# Note that if parts[prompt] was empty, the $() in PS1 will chop away
