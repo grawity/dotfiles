@@ -35,5 +35,6 @@ fmts[vcs]=@d
 
 # Rearrange things a bit
 parts[left]=''
-parts[prompt]=':host _'
-items[host:sfx]='>'
+parts[prompt]=':host :prompt _'
+items[prompt]='>'
+if (( UID == 0 )); then fmts[prompt]=@host; fi
