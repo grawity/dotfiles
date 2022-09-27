@@ -8,10 +8,11 @@ fmts[.gray1]='38;5;109'
 
 fmts[name:pfx]='@.gray1'
 fmts[name.self]='@.orange3'
+fmts[host:pfx]='@name'
 
 items[name:pfx]='*'
-items[name:pfx]='(✨'
-#items[name:pfx]+=$'\uFE0E'
+items[name:pfx]='('
+items[host:pfx]='✨'
 items[name:sfx]=')'
 
 fmts[pwd]='@.gray1'
