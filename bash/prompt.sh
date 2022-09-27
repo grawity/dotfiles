@@ -395,6 +395,7 @@ _awp_prompt() {
 	_awp_fill_items 'prompt'
 
 	# Output the prompt
+	printf "\n"
 	if [[ ${strs[left]}${strs[mid]}${strs[right]} ]]; then
 		printf "%s\n" "${strs[left]}${strs[left]:+ }${strs[mid]}${strs[mid]:+ }${strs[right]}"
 	fi
@@ -421,7 +422,7 @@ _awp_prompt() {
 	done
 }
 
-PS1="\n\$(_awp_prompt)"
+PS1="\$(_awp_prompt)"
 PS2="\[\e[0;1;30m\]...\[\e[m\] "
 PS4="+\e[34m\${BASH_SOURCE:--}:\e[1m\$LINENO\e[m:\${FUNCNAME:+\e[33m\$FUNCNAME\e[m} "
 
