@@ -364,6 +364,14 @@ _awp_fill_items() {
 	done
 }
 
+_awp_pre() {
+	# Print a separating blank line after the previous command's output
+	if [[ $_awp_blank_line || $SSH_TTY || $SHLVL -gt 1 ]]; then
+		printf "\n"
+	fi
+	_awp_blank_line=1
+}
+
 _awp_prompt() {
 	local -i maxwidth=$COLUMNS
 	local -A strs=()
@@ -395,7 +403,6 @@ _awp_prompt() {
 	_awp_fill_items 'prompt'
 
 	# Output the prompt
-	printf "\n"
 	if [[ ${strs[left]}${strs[mid]}${strs[right]} ]]; then
 		printf "%s\n" "${strs[left]}${strs[left]:+ }${strs[mid]}${strs[mid]:+ }${strs[right]}"
 	fi
@@ -422,6 +429,7 @@ _awp_prompt() {
 	done
 }
 
+PROMPT_COMMAND+="${PROMPT_COMMAND+; }_awp_pre"
 PS1="\$(_awp_prompt)"
 PS2="\[\e[0;1;30m\]...\[\e[m\] "
 PS4="+\e[34m\${BASH_SOURCE:--}:\e[1m\$LINENO\e[m:\${FUNCNAME:+\e[33m\$FUNCNAME\e[m} "
