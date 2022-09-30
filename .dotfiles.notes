@@ -25,6 +25,9 @@ Already migrated to XDG in a release:
 ~/.hgrc             <config>/hg/hgrc                4.2 (354020079723)
 ~/.irbrc            <config>/irb/irbrc
 ~/.keybase/         [various]/keybase/              0.6.0 (99531f058b3b57)
+~/.lesshst          <state>/lesshst                 608
+~/.lesshst          <data>/lesshst [note]           582
+~/.lesskey          <config>/lesskey                582
 ~/.lftp/            <config>/lftp/
 ~/.lftprc           <config>/lftp/rc
 ~/.makepkg.conf     <config>/pacman/makepkg.conf    4.2.0
@@ -53,10 +56,18 @@ Migrated to XDG in devel:
 
 Notes:
 
+~/.lesshst
+  - If XDG_DATA_HOME isn't explicitly set, there is no fallback to the default
+    ~/.local/share/, but only to the legacy ~/.lesshst path. (However, fallback
+    *is* implemented for XDG_STATE_HOME to ~/.local/state/.)
+
+~/.lesskey
+  - Unlike ~/.lesshst, this path does fallback to ~/.config/ if XDG_CONFIG_HOME
+    was not found in environment.
+
 ~/.tigrc
   - Instead of a standalone tigrc, configuration can be embedded in the Git
     config file via [tig ...] sections.
-
 
 Environment variable
 --------------------
