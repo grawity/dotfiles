@@ -53,8 +53,6 @@ check_owner() {
 			case $f in
 			*/.mysql_history)
 				continue ;;
-			*/.lesshst)
-				rm -f "$f" ;;
 			*)
 				notice "file '$f' not owned by me, replacing"
 				trash "$f" ;;
@@ -106,11 +104,13 @@ trash ~/.bash_{login,profile,logout}
 trash ~/.{sh,csh}rc
 
 # Ensure permissions for config directories
-mkdir -p ~/.{config,cache,local/{share,state}}
-chmod go= ~/.{config,cache,local,local/{share,state}}
+check_owner ~/.{cache,config,local,local/{share,state}}
+mkdir -p ~/.{cache,config,local,local/{share,state}}
+chmod go= ~/.{cache,config,local,local/{share,state}}
 
 # Check frequent root-ownership accidents
-check_owner ~/.*_history ~/.lesshst ~/.rnd ~/.cache ~/.config ~/.gnupg ~/.local/share
+check_owner ~/.*_history ~/.gnupg ~/.rnd
+rm -f ~/.lesshst
 
 # Install shell profiles
 link bashrc
