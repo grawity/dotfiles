@@ -48,6 +48,7 @@ Already migrated to XDG in a release:
 ~/.tigrc            <config>/tig/config [note]      2.1.1 (1e6da9d)
 ~/.tmux.conf        ~/.config/tmux/tmux.conf        3.1 (3.0a-152-g15d7e564)
 ~/.VirtualBox/      <data>/VirtualBox/
+~/.weechat/         [various]/weechat/              3.2
 ~/.wireshark/       <config>/wireshark/             1.12
 
 Migrated to XDG in devel:
@@ -96,7 +97,7 @@ These paths can be overridden using an environment variable.
 ~/.irbrc            $IRBRC
 ~/.ipfs/            $IPFS_PATH
 ~/.ldaprc           $LDAPCONF, $LDAP<opt>, see ldap.conf(5)
-~/.lesshst          $LESSHISTFILE
+~/.lesshst          (xdg) $LESSHISTFILE
 ~/.mtoolsrc         $MTOOLSRC (acts as additional rc)
 ~/.mysql_history    $MYSQL_HISTFILE
 ~/.pip/pip.conf     $PIP_CONFIG_FILE, $PIP_<opt>
@@ -105,7 +106,7 @@ These paths can be overridden using an environment variable.
 ~/.sqlite_history   $SQLITE_HISTORY
 ~/.tkabber          $TKABBER_HOME
 ~/.VirtualBox/      (xdg) $VBOX_USER_HOME
-~/.weechat/         $WEECHAT_HOME, -d, --dir
+~/.weechat/         (xdg) $WEECHAT_HOME, -d, --dir
 ~/.wgetrc           $WGETRC
 
 Overridden indirectly via config:
