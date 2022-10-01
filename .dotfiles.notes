@@ -110,6 +110,7 @@ only for reference.
 ~/.pip/pip.log          $PIP_LOG_FILE, [global] log_file =
 ~/.screenrc             $SCREENRC
 ~/.sqlite_history       $SQLITE_HISTORY
+~/.tpm2_pkcs11/		$TPM2_PKCS11_STORE
 ~/.tkabber              $TKABBER_HOME
 ~/.VirtualBox/          (xdg) $VBOX_USER_HOME
 ~/.weechat/             (xdg) $WEECHAT_HOME, -d, --dir
