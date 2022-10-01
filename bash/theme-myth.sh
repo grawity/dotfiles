@@ -9,19 +9,17 @@
 #fmts[f]="38;5;23"
 
 # Purple
-fmts[a]="38;5;171"
-fmts[b]="38;5;177|1"
-fmts[c]="38;5;176"
-fmts[d]="38;5;133"
-# XXX: 133|2 is fine on frost, but too dim on Blizzard WT.
-# Replace it with an RGB code?
+fmts[a]="38;5;225"
+fmts[b]="38;5;182|1"
+fmts[c]="38;5;139"
+fmts[d]="38;5;96"
 
-fmts[name.self]=@c
+fmts[name.self]=@a
 fmts[prompt]=@name
 items[name:pfx]='</'
 items[name:sfx]='/>'
 
-fmts[pwd]=@d
+fmts[pwd]=@c
 # Orange-ish
 #fmts[pwd]='38;5;180'
 #fmts[pwd:pfx]='38;5;137|2'
