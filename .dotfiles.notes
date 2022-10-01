@@ -11,49 +11,49 @@ XDG Basedir-compliant
 
 Already migrated to XDG in a release:
 
-~/.curlrc           <config>/.curlrc                7.73 (curl-7_72_0-14-g4be1f8dc0)
-~/.d-feet/          <config>/d-feet/                0.1.15 (7f6104bbc5ab)
+~/.curlrc           ~/.config/.curlrc               7.73 (curl-7_72_0-14-g4be1f8dc0)
+~/.d-feet/          ~/.config/d-feet/               0.1.15 (7f6104bbc5ab)
 ~/.darcs/           [various]/darcs/                2.10
-~/.freerdp/         <config>/freerdp/               1.1.0 (edf6e7258d0e)
-~/.gconf/           <config>/gconf/                 3.2.6 (fc28caa7be86)
-~/.gconf.path       <config>/gconf.path             3.2.6 (fc28caa7be86)
-~/.gimp-2.8/        <config>/GIMP/2.10/             2.10
-~/.gitconfig        <config>/git/config             1.7.12 (0d94427ef844)
-~/.gitignore        <config>/git/ignore             1.7.12 (0d94427ef844)
-~/.gitk             <config>/git/gitk               1.9-rc1 (8f86339858c1)
-~/.gnucash/         <config>/gnucash/               3.0
-~/.hgrc             <config>/hg/hgrc                4.2 (354020079723)
-~/.irbrc            <config>/irb/irbrc
+~/.freerdp/         ~/.config/freerdp/              1.1.0 (edf6e7258d0e)
+~/.gconf/           ~/.config/gconf/                3.2.6 (fc28caa7be86)
+~/.gconf.path       ~/.config/gconf.path            3.2.6 (fc28caa7be86)
+~/.gimp-2.8/        ~/.config/GIMP/2.10/            2.10
+~/.gitconfig        ~/.config/git/config            1.7.12 (0d94427ef844)
+~/.gitignore        ~/.config/git/ignore            1.7.12 (0d94427ef844)
+~/.gitk             ~/.config/git/gitk              1.9-rc1 (8f86339858c1)
+~/.gnucash/         ~/.config/gnucash/              3.0
+~/.hgrc             ~/.config/hg/hgrc               4.2 (354020079723)
+~/.irbrc            ~/.config/irb/irbrc
 ~/.keybase/         [various]/keybase/              0.6.0 (99531f058b3b57)
-~/.lesshst          <state>/lesshst                 608
-~/.lesshst          <data>/lesshst [note]           582
-~/.lesskey          <config>/lesskey                582
-~/.lftp/            <config>/lftp/
-~/.lftprc           <config>/lftp/rc
-~/.makepkg.conf     <config>/pacman/makepkg.conf    4.2.0
-~/.mpdconf          <config>/mpd/mpd.conf           0.18
-~/.mpoprc           <config>/mpop/config            1.2.7 (c70f9da)
-~/.mpv/             <config>/mpv/                   ??? (cb250d)
-~/.muttrc           <config>/mutt/muttrc            mutt 1.8? (b17cd6731291)
-~/.muttrc           <config>/neomutt/config         neomutt ??? (239c0e93f8be)
-~/.msmtprc          <config>/msmtp/config           1.6.3 (af2f409)
-~/.offlineimaprc    <config>/offlineimap/config     6.5.6 (5150de5514d1)
-~/.oidentd.conf     <config>/oidentd.conf           post-2.3.2 (8a6e9654889)
-~/.pki/nssdb/       <data>/pki/nssdb/               nss 3.42 (7f21d4f49)
-~/.pulse/           <config>/pulse/                 3.0 (9ab510a69216)
-~/.pulse-cookie     <config>/pulse/cookie           3.0, 6.0 (59a8618dcd91)
-~/.putty/           <config>/putty/                 0.64 (9952b2d5bd5)
-~/.quodlibet/       <config>/quodlibet/             3.10.0 (4e9545b2fa0eff6)
-~/.rclone.conf      <config>/rclone/rclone.conf
-~/.tigrc            <config>/tig/config [note]      2.1.1 (1e6da9d)
+~/.lesshst          ~/.local/state/lesshst          608
+~/.lesshst          ~/.local/share/lesshst [note]   582
+~/.lesskey          ~/.config/lesskey               582
+~/.lftp/            ~/.config/lftp/
+~/.lftprc           ~/.config/lftp/rc
+~/.makepkg.conf     ~/.config/pacman/makepkg.conf   4.2.0
+~/.mpdconf          ~/.config/mpd/mpd.conf          0.18
+~/.mpoprc           ~/.config/mpop/config           1.2.7 (c70f9da)
+~/.mpv/             ~/.config/mpv/                  ??? (cb250d)
+~/.muttrc           ~/.config/mutt/muttrc           mutt 1.8? (b17cd6731291)
+~/.muttrc           ~/.config/neomutt/config        neomutt ??? (239c0e93f8be)
+~/.msmtprc          ~/.config/msmtp/config          1.6.3 (af2f409)
+~/.offlineimaprc    ~/.config/offlineimap/config    6.5.6 (5150de5514d1)
+~/.oidentd.conf     ~/.config/oidentd.conf          post-2.3.2 (8a6e9654889)
+~/.pki/nssdb/       ~/.local/share/pki/nssdb/       nss 3.42 (7f21d4f49)
+~/.pulse/           ~/.config/pulse/                3.0 (9ab510a69216)
+~/.pulse-cookie     ~/.config/pulse/cookie          3.0, 6.0 (59a8618dcd91)
+~/.putty/           ~/.config/putty/                0.64 (9952b2d5bd5)
+~/.quodlibet/       ~/.config/quodlibet/            3.10.0 (4e9545b2fa0eff6)
+~/.rclone.conf      ~/.config/rclone/rclone.conf
+~/.tigrc            ~/.config/tig/config[note]      2.1.1 (1e6da9d)
 ~/.tmux.conf        ~/.config/tmux/tmux.conf        3.1 (3.0a-152-g15d7e564)
-~/.VirtualBox/      <data>/VirtualBox/
+~/.VirtualBox/      ~/.local/share/VirtualBox/
 ~/.weechat/         [various]/weechat/              3.2
-~/.wireshark/       <config>/wireshark/             1.12
+~/.wireshark/       ~/.config/wireshark/            1.12
 
 Migrated to XDG in devel:
 
-~/.purple/          <config>/purple/                3.0.0
+~/.purple/          ~/.config/purple/               3.0.0
 
 Notes:
 
