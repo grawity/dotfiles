@@ -51,32 +51,37 @@ Already migrated to XDG in a release:
 ~/.weechat/             [various]/weechat/              3.2
 ~/.wireshark/           ~/.config/wireshark/            1.12
 
+
 Migrated to XDG in devel:
 
 ~/.purple/              ~/.config/purple/               3.0
 
+
 Notes:
 
 ~/.lesshst
-  - If XDG_DATA_HOME isn't explicitly set, there is no fallback to the default
-    ~/.local/share/, but only to the legacy ~/.lesshst path. (However, fallback
-    *is* implemented for XDG_STATE_HOME to ~/.local/state/.)
+        If XDG_DATA_HOME isn't explicitly set, there is no fallback to the
+        default ~/.local/share/, but only to the legacy ~/.lesshst path.
+        (However, fallback *is* implemented for XDG_STATE_HOME to
+        ~/.local/state/.)
 
 ~/.lesskey
-  - Unlike ~/.lesshst, this path does fallback to ~/.config/ if XDG_CONFIG_HOME
-    was not found in environment.
+        Unlike ~/.lesshst, this path does fallback to ~/.config/ if
+        XDG_CONFIG_HOME was not found in environment.
 
 ~/.tigrc
-  - Instead of a standalone tigrc, configuration can be embedded in the Git
-    config file via [tig ...] sections.
+        Instead of a standalone tigrc, configuration can be embedded in the Git
+        config file via [tig ...] sections.
+
 
 Environment variable
 --------------------
 
-These paths can be overridden using an environment variable.
-- Items marked '(xdg)' are already compliant in the current version, and
-  included only for reference.
-- CLI options might be included if available in addition to environment.
+These paths can be overridden using an environment variable. (CLI options might
+be included if available in addition to environment.)
+
+Items marked "(xdg)" are already compliant in the current version, and included
+only for reference.
 
 ~/.atom/                $ATOM_HOME
 ~/.crawl/               $CRAWL_DIR (must end with "/")
@@ -109,22 +114,31 @@ These paths can be overridden using an environment variable.
 ~/.weechat/             (xdg) $WEECHAT_HOME, -d, --dir
 ~/.wgetrc               $WGETRC
 
-Overridden indirectly via config:
+
+Can be overridden indirectly via config:
+
+~/.lynx_cookies
+        Defined via 'cookie_file' in ~/.lynxrc
 
 ~/.pip/pip.log
-  - $PIP_LOG_FILE, or indirect via ~/.pip/pip.conf
-  - [global] "log_file = <path>" (no expansion)
-  - http://pip.readthedocs.org/en/latest/user_guide.html#environment-variables
+        Location can be defined via pip.conf (see ~/.pip/pip.conf), but this
+        does not support tilde expansion for $HOME:
+
+        [global]
+        log_file = /home/foo/bar
+
+        http://pip.readthedocs.org/en/latest/user_guide.html#environment-variables
 
 ~/VirtualBox VMs/
-  - indirect via ~/.VirtualBox/
-  - `VBoxManage setproperty machinefolder <path>` or via GUI
+        Location defined by main VirtualBox configuration (see ~/.VirtualBox/),
+        can be set via GUI or `VBoxManage setproperty machinefolder <path>`
 
 
 Command-line override
 ---------------------
 
-These support neither XDG Basedir nor custom environment variables.
+These support neither XDG Basedir nor custom environment variables, but can be
+run through an alias or wrapper script with a specific command line option.
 
 ~/.claws-mail/          --alternate-config-dir
 ~/.gdbinit              gdb -nh -x <path>
@@ -133,11 +147,15 @@ These support neither XDG Basedir nor custom environment variables.
 ~/.stalonetrayrc        -c, --config
 ~/.ttytterrc            -rc=
 ~/.vidalia/             -datadir
+~/.wget-hsts            --hsts-file=
 ~/.xbindkeysrc          -f, --file
 ~/.xbindkeysrc.scm      -fg, --file-guile
 ~/.xchat2/              -d, --cfgdir=
 ~/.xsel.log             -l, --logfile
 
+~/.digrc
+        No option to load a different config, but everything that can be put in
+        .digrc can be directly specified via command-line options anyway.
 
 The Java hack
 -------------
@@ -145,7 +163,7 @@ The Java hack
 For various Java programs that litter the home directory, the answer is "change
 the home directory". I have a wrapper script that basically runs:
 
-    java -Duser.home="$XDG_DATA_HOME/Java"
+        java -Duser.home="$XDG_DATA_HOME/Java"
 
 Don't forget to symlink ~/.java into the redirect directory.
 
@@ -163,22 +181,40 @@ Sad.
 ~/.aMule/
 ~/.balsa/
 ~/.bash_logout
-~/.bash_profile         use ~/.profile
+~/.bash_profile         Use ~/.profile
 ~/.dc++/
-~/.esd_auth             obsolete, uninstall the PulseAudio module
+~/.esd_auth             Obsolete, uninstall the PulseAudio module
 ~/.fossil
-~/.gens/                hardcoded in both Gens and Gens-gs
-~/.gnome2/              obsolete, safe to erase
-~/.gnome2_private/      obsolete, safe to erase
+~/.gens/                Hardcoded in both Gens and Gens-gs
+~/.gnome-commander/     Command-line option doesn't work
+~/.gnome2/              Obsolete, safe to rm
+~/.gnome2_private/      Obsolete, safe to rm
+~/.gstreamer-0.10/      Obsolete, safe to rm (Gst1.0 is XDG)
 ~/.hatari/
 ~/.pine-debug[0-9]
 ~/.renpy/
+~/.subversion/
+~/.w3m/
 
-Expected to be there as API:
 
-~/.profile              sh, bash, various display managers expect it there
-~/.xprofile             various display managers (Xsession scripts) expect it there
+Some paths have become API and are expected to be there by various programs:
 
+~/.dbus/                part of D-Bus spec, but optional - see note
+~/.netrc                curl, many other apps, Perl/Python modules expect it here
+~/.profile              sh, bash, various display managers expect it here
+~/.xprofile             various display managers (Xsession scripts) expect it here
+~/.ssh/                 libssh2, other programs will parse config & known_hosts
+
+
+Notes:
+
+~/.dbus/
+        The path ~/.dbus/session-bus/$MACHINE_ID-$DISPLAY is part of the D-Bus
+        spec, however, it is only needed when "autolaunch" is being used.
+
+        On systems which always pre-start a session bus and export its path to
+        DBUS_SESSION_BUS_SOCKET (whether via systemd or via dbus-run-session),
+        the ~/.dbus/ directory doesn't need to exist at all.
 
 Miscellaneous
 -------------
@@ -206,15 +242,6 @@ Miscellaneous
 ~/.cabal/ – environment ++ configurable
   - $CABAL_CONFIG overrides path to ~/.cabal/config
   - various settings in $CABAL_CONFIG override other ~/.cabal/* paths
-
-~/.dbus/ – fixed by spec, but avoidable
-  - ~/.dbus/session-bus/$MACHINE_ID-$DISPLAY is part of the DBus spec
-  - although technically it doesn't have to exist in the first place
-    (autolaunch is unneeded as long as $DBUS_SESSION_BUS_SOCKET is set)
-  - in modern Arch systems, you won't have this at all
-
-~/.digrc – hardcoded ++ command line
-  - as alternative, just specify the same options in command line
 
 ~/.eclipse/ – give up
   - option "-Dosgi.configuration.area=@user.home/.config/etc/etc" overrides,
@@ -246,16 +273,6 @@ Miscellaneous
   - $XDG_CONFIG_HOME/git/credentials is used *if exists*
   - "--file=<path>" option exists
 
-~/.gnome-commander/ – hardcoded/command line?
-  - "--config-dir <dir>" option exists in source code, but doesn't work
-  - the program is unmaintained anyway, uses obsolete GnomeVFS
-
-~/.gstreamer-0.10/ – partial (0.10), XDG (1.0)
-  - the registry can use $GST_REGISTRY (which has to be overridden to its
-    original value for 1.0 with $GST_REGISTRY_1_0), but presets are not
-    possible to move, so don't bother at all
-  - $XDG_CACHE_HOME/gstreamer-1.0/ is the new location, anyway
-
 ~/.gvimrc – other locations, environment
   - recent Vim versions look in ~/.vim/gvimrc by default
   - $GVIMINIT can have an Ex command that sources an additional rc; e.g.
@@ -276,9 +293,6 @@ Miscellaneous
 ~/.local (Python user_base) – configurable/environment
   - $PYTHONUSERBASE overrides
   - note that user_base is independent of XDG ~/.local/share
-
-~/.lynx_cookies – configurable
-  - 'cookie_file' in ~/.lynxrc
 
 ~/.lynxrc – hardcoded
   - userdefs.h:/FNAME_LYNXRC/
@@ -341,12 +355,8 @@ Miscellaneous
 ~/.secondlife/ – environment
   - $SECONDLIFE_USER_DIR overrides, but need to manually set new chatlog path
 
-~/.ssh/ – hardcoded
-
 ~/.sqldeveloper/ – hardcoded
   - launcher script ignores the java-hack
-
-~/.subversion/ – hardcoded
 
 ~/.terminfo/ (ncurses) – environment
   - $TERMINFO_DIRS overrides (colon-separated list):
@@ -358,12 +368,6 @@ Miscellaneous
   - recent Vim versions look in ~/.vim/vimrc by default
   - $VIMINIT can have an Ex command that sources an additional rc:
     - VIMINIT=":so ~/.vim/vimrc"
-
-~/.w3m/ – hardcoded
-
-~/.wget-hsts – command line
-  - "--hsts-file <path>" overrides
-  - probably can be stored in wgetrc?
 
 ~/.XCompose – environment/hardcoded/other locations
   (libxkbcommon)
