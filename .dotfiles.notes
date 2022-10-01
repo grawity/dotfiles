@@ -84,6 +84,7 @@ Items marked "(xdg)" are already compliant in the current version, and included
 only for reference.
 
 ~/.atom/                $ATOM_HOME
+~/.cabal/config         $CABAL_CONFIG
 ~/.crawl/               $CRAWL_DIR (must end with "/")
 ~/.crawlrc              $CRAWL_RC, or move to $CRAWL_DIR/init.txt
 ~/.curlrc               (xdg) $CURL_HOME
@@ -116,6 +117,9 @@ only for reference.
 
 
 Can be overridden indirectly via config:
+
+~/.cabal/*
+        Defined via various settings in $CABAL_CONFIG
 
 ~/.lynx_cookies
         Defined via 'cookie_file' in ~/.lynxrc
@@ -150,12 +154,19 @@ run through an alias or wrapper script with a specific command line option.
 ~/.wget-hsts            --hsts-file=
 ~/.xbindkeysrc          -f, --file
 ~/.xbindkeysrc.scm      -fg, --file-guile
+~/.xinitrc              startx <path>
 ~/.xchat2/              -d, --cfgdir=
 ~/.xsel.log             -l, --logfile
+
+
+Notes:
 
 ~/.digrc
         No option to load a different config, but everything that can be put in
         .digrc can be directly specified via command-line options anyway.
+
+~/.pinerc
+        Windows gets both $PINERC and $PINECONF, but Unix gets neither.
 
 The Java hack
 -------------
@@ -216,6 +227,19 @@ Notes:
         DBUS_SESSION_BUS_SOCKET (whether via systemd or via dbus-run-session),
         the ~/.dbus/ directory doesn't need to exist at all.
 
+~/.kvirc4.rc
+        Hardcoded, but will use native KDE location if compiled with "KDE
+        support" enabled.
+
+~/.pki/nssdb/
+        Although upstream NSS is XDG-compliant as of 3.42 (commit 7f21d4f49)
+        and uses ~/.local/share/pki/nssdb/, this doesn't yet apply to Google
+        Chrome (v84) as it uses an older vendor fork of NSS in which the path
+        is still hardcoded.
+
+        (It also doesn't apply to Firefox/Thunderbird/Seamonkey which use per-
+        profile databases as they always have done.)
+
 Miscellaneous
 -------------
 
@@ -239,23 +263,23 @@ Miscellaneous
   - you could use --init-file/--rcfile, but you'll generally need at least a
     wrapper script for that, since many programs invoke /bin/sh directly
 
-~/.cabal/ – environment ++ configurable
-  - $CABAL_CONFIG overrides path to ~/.cabal/config
-  - various settings in $CABAL_CONFIG override other ~/.cabal/* paths
+~/.eclipse/
+        Just give up.
 
-~/.eclipse/ – give up
-  - option "-Dosgi.configuration.area=@user.home/.config/etc/etc" overrides,
-    but must be added to "$ECLIPSE_HOME/eclipse.ini" rather than command line
-  - which means you must have write access to $ECLIPSE_HOME, that is, carry
-    your own copy of Eclipse, and I couldn't really get it to work anyway
-  - (Arch's /usr/bin/eclipse has a hardcoded $ECLIPSE_HOME)
-  - docs: <http://wiki.eclipse.org/Eclipse.ini>
+        Option "-Dosgi.configuration.area=@user.home/.config/etc/etc" overrides
+        the location, but must be added to "$ECLIPSE_HOME/eclipse.ini" rather
+        than command line -- which means you must have write access to
+        $ECLIPSE_HOME, that is, carry your own copy of Eclipse, and I couldn't
+        really get it to work anyway (Arch's /usr/bin/eclipse has a hardcoded
+        $ECLIPSE_HOME).
 
-~/.exodusviewer/ – environment
-  - $EXODUSVIEWER_USER_DIR overrides, but see ~/.secondlife/
+        docs: <http://wiki.eclipse.org/Eclipse.ini>
 
-~/.firestorm/ – environment
-  - $FIRESTORM_USER_DIR overrides, but see ~/.secondlife/
+~/.exodusviewer/
+        $EXODUSVIEWER_USER_DIR overrides, but see ~/.secondlife/
+
+~/.firestorm/
+        $FIRESTORM_USER_DIR overrides, but see ~/.secondlife/
 
 ~/.forward – varies
   - most MTAs expect this path, and it's not like they can read .profile
@@ -273,22 +297,14 @@ Miscellaneous
   - $XDG_CONFIG_HOME/git/credentials is used *if exists*
   - "--file=<path>" option exists
 
-~/.gvimrc – other locations, environment
-  - recent Vim versions look in ~/.vim/gvimrc by default
-  - $GVIMINIT can have an Ex command that sources an additional rc; e.g.
-    - GVIMINIT=":so ~/.vim/gvimrc"
+~/.gvimrc
+        Same as ~/.vimrc, but with GVIMINIT.
 
-~/.kde/ – environment
+~/.kde/, ~/.kde4/
   - $KDEHOME overrides the default
   - optionally $KDEDIRS can point to additional read-only paths
   - <http://techbase.kde.org/KDE_System_Administration/KDE_Filesystem_Hierarchy>
   - <http://techbase.kde.org/KDE_System_Administration/Configuration_Files>
-
-~/.kde4/ – see ~/.kde/
-
-~/.kvirc4.rc – hardcoded, build-time?
-  - when built with KDE support, uses native KDE location (probably somewhere
-    deep inside ~/.kde4)
 
 ~/.local (Python user_base) – configurable/environment
   - $PYTHONUSERBASE overrides
@@ -306,22 +322,23 @@ Miscellaneous
     - $MAILRC overrides default
     - $NAILRC overrides both
 
-~/.netrc – fixed [varies]
-  - many apps expect it there
-  (curl – environment)
-    - $CURLOPT_NETRC_FILE overrides
-      - should work with libcurl programs too; not tested
-    - "--netrc-file <path>" overrides
-  (GNU inetutils `ftp` – environment)
-    - $NETRC overrides as of 1.9.3 (commit 38246ac903db)
-  (lftp – hardcoded)
-  (Perl 'CPAN::FTP::netrc' – hardcoded)
-  (Perl 'Net::Netrc' – hardcoded)
-  (s-nail – environment)
-    - $NETRC overrides
-  (w3m – hardcoded)
-  (wget – hardcoded)
-    - can use .wgetrc instead
+~/.netrc
+        Mostly API, though some apps can be told to use a different path.
+
+        (curl – environment)
+        - $CURLOPT_NETRC_FILE overrides
+        - should work with libcurl programs too; not tested
+        - "--netrc-file <path>" overrides
+        (GNU inetutils `ftp` – environment)
+        - $NETRC overrides as of 1.9.3 (commit 38246ac903db)
+        (lftp – hardcoded)
+        (Perl 'CPAN::FTP::netrc' – hardcoded)
+        (Perl 'Net::Netrc' – hardcoded)
+        (s-nail – environment)
+        - $NETRC overrides
+        (w3m – hardcoded)
+        (wget – hardcoded)
+        - can use .wgetrc instead
 
 ~/.npm/ – configurable
   - "cache = <dir>" in ~/.npmrc or $PREFIX/etc/npmrc overrides
@@ -337,26 +354,16 @@ Miscellaneous
   - $OPERA_PERSONALDIR overrides
   - however, 1 file remains (~/.opera/OperaAutoupdateChecker.sqlite)
 
-~/.pinerc – command line
-  - apparently Windows gets $PINERC and $PINECONF, and Unix gets neither
-  - "-p <path>" option exists
+~/.rnd
+        Not sure what exactly creates this, but at least for OpenSSL (??),
+        $RANDFILE can be used to move it into a different *directory*.
 
-~/.pki/nssdb/
-  (Mozilla nss)
-  - $XDG_DATA_HOME/pki/nssdb/ is used as of 3.42 (commit 7f21d4f49),
-    hardcoded in older versions
-    (unless the program specifies a custom path, e.g. certutil -d <path>)
-  (Google Chrome)
-  - v84 still uses a nss fork in which the path is hardcoded.
+~/.secondlife/
+        $SECONDLIFE_USER_DIR overrides this in general, but you will need to
+        manually adjust the "chat log location" option.
 
-~/.rnd – environment
-  - $RANDFILE overrides directory
-
-~/.secondlife/ – environment
-  - $SECONDLIFE_USER_DIR overrides, but need to manually set new chatlog path
-
-~/.sqldeveloper/ – hardcoded
-  - launcher script ignores the java-hack
+~/.sqldeveloper/
+        Hardcoded -- the launcher script ignores java-hack as well.
 
 ~/.terminfo/ (ncurses) – environment
   - $TERMINFO_DIRS overrides (colon-separated list):
@@ -364,10 +371,14 @@ Miscellaneous
   - $TERMINFO overrides (system path not searched)
   - docs: terminfo(5)
 
-~/.vimrc – other locations, environment
-  - recent Vim versions look in ~/.vim/vimrc by default
-  - $VIMINIT can have an Ex command that sources an additional rc:
-    - VIMINIT=":so ~/.vim/vimrc"
+~/.vimrc
+        Recent Vim versions use ~/.vim/vimrc by default. For older versions,
+        $VIMINIT can have an Ex command that sources an additional rc:
+
+                export VIMINIT=":so ~/.vim/vimrc"
+
+        (Note: This only applies to original Vim -- the Neovim fork is already
+        XDG-compliant and uses ~/.config/nvim/init.vim instead.)
 
 ~/.XCompose – environment/hardcoded/other locations
   (libxkbcommon)
@@ -394,16 +405,11 @@ Miscellaneous
   - hardcoded in Xsession scripts of many DMs
   - however, ~/.xprofile and ~/.xinitrc can use a custom path
 
-~/.xinitrc – command-line
-  - "startx <path>" overrides
-
-~/dead.letter
-  (s-nail – environment)
-    - $DEAD overrides
-
 ~/mbox
-  (s-nail – environment)
-    - $MBOX overrides
+        Various mail apps move "seen" messages here from /var/spool/mail.
+
+        Can usually be disabled or relocated through the mail program's
+        configuration (e.g. via ~/.mailrc or $MBOX).
 
 ~/FS-UAE/ - environment; configurable?
   - $FS_UAE_BASE_DIR
