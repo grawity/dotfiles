@@ -14,7 +14,7 @@ fmts[b]="38;5;182|1"
 fmts[c]="38;5;139"
 fmts[d]="38;5;96"
 
-fmts[name.self]=@a
+fmts[name.self]=@b
 fmts[prompt]=@name
 items[name:pfx]='</'
 items[name:sfx]='/>'
