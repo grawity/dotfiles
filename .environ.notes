@@ -59,8 +59,8 @@ MAILCAPS="$MAILCAP"			# Mutt, pine
 ## To relocate cache/history:
 
 CCACHE_DIR="$XDG_CACHE_HOME/ccache"
-LESSHISTFILE="$XDG_CACHE_HOME/less.history"
-MYSQL_HISTFILE="$XDG_CACHE_HOME/mysql.history"
+LESSHISTFILE="$XDG_STATE_HOME/lesshst"	# is the default now
+MYSQL_HISTFILE="$XDG_STATE_HOME/mysql_history"
 
 ## To relocate runtime data & IPC sockets:
 

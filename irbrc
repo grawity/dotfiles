@@ -9,8 +9,8 @@ Proc.new{
 	# By default irb saves history alongside the irbrc -- so if $IRBRC is
 	# set, then we get ~/.dotfiles/irbrc_history and we don't want that.
 	# (Meanwhile if $IRBRC is *not* set, irb will create ~/.config/irb.)
-	xdg_cache_home = ENV["XDG_CACHE_HOME"] || ENV["HOME"] + "/.cache"
-	IRB.conf[:HISTORY_FILE] = "#{xdg_cache_home}/irb.history"
+	xdg_state_home = ENV["XDG_STATE_HOME"] || ENV["HOME"] + "/.local/state"
+	IRB.conf[:HISTORY_FILE] = "#{xdg_state_home}/irb_history"
 	IRB.conf[:SAVE_HISTORY] = 5000
 
 	def _rl_fmt(fmt, text)
