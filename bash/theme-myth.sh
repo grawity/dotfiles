@@ -9,12 +9,12 @@
 #fmts[f]="38;5;23"
 
 # Purple
-fmts[a]="38;5;225"
-fmts[b]="38;5;182|1"
-fmts[c]="38;5;139"
-fmts[d]="38;5;96"
+fmts[a]="38;5;219|1"
+fmts[b]="38;5;176|1"
+fmts[c]="38;5;176"
+fmts[d]="38;5;133"
 
-fmts[name.self]=@b
+fmts[name.self]=@a
 fmts[prompt]=@name
 items[name:pfx]='</'
 items[name:sfx]='/>'
