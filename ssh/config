@@ -20,11 +20,11 @@ Host star.nullroute.lt
 	AddressFamily inet
 #endif
 
-#if @(rain|midnight)
+#if @(rain|midnight|myth)
 Host vm-vol5 vm-vol5.nullroute.lt
 	# Use native IPv4 (even if it involves NAT) instead of tunneling, for throughput
 	HostkeyAlias vm-vol5.nullroute.lt
-	HostName 193.219.181.193
+	HostName ext.vm-vol5.nullroute.lt
 	Port 56378
 #endif
 
