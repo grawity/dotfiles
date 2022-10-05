@@ -134,15 +134,15 @@ Match canonical host *
 
 #if @(rain|midnight)
 Host *
-	# Telia's LTE CGNAT has an aggressive idle timeout (several minutes)
-	# XXX: Was this for the old Omnitel "mobile" CGNAT or the new Telia one?
+	# Telia's LTE CGNAT has an aggressive idle timeout (several minutes),
+	# so make sure to expire old connections when resuming from sleep.
 	ServerAliveInterval 10s
 #endif
 
 #if @(ember|frost|wind)
+# On hosts where NAT timeouts are not an issue, persist authenticated
+# connections for longer.
 Host *
-	# On hosts where NAT timeouts are not an issue, persist authenticated
-	# connections for longer.
 	ControlPersist 1h
 #else
 Host *
@@ -150,9 +150,8 @@ Host *
 #endif
 
 #if @(ember|frost|midnight)
-Host *.* homegw home-gw !ember !*.nullroute.lt
-	# Access the 'main' SSH key on ember's TPM via p11-kit
-	IdentityFile ~/.dotfiles/ssh/id_tpm.pub
+Host *.* homegw !ember !*.nullroute.lt
+	#IdentityFile ~/.dotfiles/ssh/id_tpm.pub
 	PKCS11Provider p11-kit-proxy.so
 #endif
 
