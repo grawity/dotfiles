@@ -2,4 +2,5 @@
 adm	grawity/admin@NULLROUTE.LT
 fedora	grawity@FEDORAPROJECT.ORG
 n	grawity@NULLROUTE.LT -k -t ~/.config/default.keytab -r 7d
+uk	mantas@AD.UTENOS-KOLEGIJA.LT -k -t ~/.config/uk.keytab
 ukad	mantas@AD.UTENOS-KOLEGIJA.LT -k -t ~/.config/uk.keytab
