@@ -22,7 +22,7 @@ PROMPT_COMMAND+="${PROMPT_COMMAND+; }_uk_kerberos_prompt"
 items[uk]=' UK '
 fmts[uk.good]='1|38;2;255;203;0|48;2;21;44;112'
 #fmts[uk.bad]='9;91'
-fmts[uk.bad]='1;9|38;2;255;203;0'
+fmts[uk.bad]='1|38;5;250|48;5;236'
 case $HOSTNAME in
 	ember)
 		# Insert after host, before path
