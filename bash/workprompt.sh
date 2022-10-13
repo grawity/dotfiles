@@ -5,7 +5,7 @@ if [[ ${items@a} != *A* ]]; then
 fi
 
 _uk_kerberos_prompt() {
-	if [[ $KRB5CCNAME == *_@(uk|ukad) ]]; then
+	if [[ $KRB5CCNAME == *_uk ]]; then
 		items[uk.show]=y
 		if klist -s; then
 			fmts[uk]=@uk.good
