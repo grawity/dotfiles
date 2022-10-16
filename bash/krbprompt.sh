@@ -18,11 +18,11 @@ if [[ $USER == grawity && -t 0 && -t 1 && -t 2 ]]; then
 			flags=$(echo "$ticket" | awk '{print $8}')
 		fi
 		if (( expires < now )); then
-			echo "[1;31mKerberos tickets expired[m"
+			echo "[1;31mKerberos tickets expired `interval $[now-expires]` ago[m"
 		elif [[ $flags != *R* ]]; then
-			echo "[1;35mKerberos tickets are non-renewable[m"
+			echo "[1;35mNon-renewable tickets expire in `interval $[expires-now]`[m"
 		elif (( renews < now + 86400 )); then
-			echo "[1;33mKerberos tickets are near renewal lifetime[m"
+			echo "[1;33mTicket renewal expires in `interval $[renews-now]`[m"
 		fi
 	)}
 

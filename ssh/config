@@ -88,6 +88,14 @@ Host eisner
 	PubkeyAcceptedAlgorithms +ssh-rsa
 	User mikulenas
 
+Host grex grex.org
+	HostName grex.org
+	ServerAliveInterval 20s
+
+Host m-net m-net.arbornet.org
+	HostName m-net.arbornet.org
+	ServerAliveInterval 20s
+
 Host sdf sdf.org
 	HostName tty.sdf.org
 
