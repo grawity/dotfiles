@@ -380,8 +380,6 @@ if has("autocmd")
 	endif
 endif
 
-syn keyword Todo TODO XXX
-
 """ Plugins
 
 func! JoinPara()
