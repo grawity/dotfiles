@@ -390,8 +390,8 @@ _awp_prompt() {
 	items[pwd:tail]=
 	_awp_fill_items 'mid'
 	(( maxwidth -= lens[mid] ))
-	unset lens[mid]
-	unset strs[mid]
+	unset 'lens[mid]'
+	unset 'strs[mid]'
 
 	# Now fill the shrunken pwd:{head,tail}
 	items[pwd]=$PWD
