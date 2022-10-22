@@ -195,6 +195,7 @@ syn keyword tmuxOptsSet
 	\ mouse
 	\ mouse-utf8
 	\ pane-active-border-style
+	\ pane-border-status
 	\ pane-border-style
 	\ prefix
 	\ prefix2
@@ -215,13 +216,15 @@ syn keyword tmuxOptsSet
 	\ status-position
 	\ status-right
 	\ status-right-length
+	\ status-right-style
+	\ status-style
 	\ status-utf8
-	\ staus-right-style
 	\ terminal-overrides
 	\ update-environment
 	\ visual-activity
 	\ visual-bell
 	\ visual-silence
+	\ window-size
 	\ word-separators
 
 syn keyword tmuxOptsSetw
