@@ -187,6 +187,7 @@
 
 [safe]
 	# Allow repositories owned by other UIDs
+	directory = /srv/dns
 	directory = /srv/http/default
 	directory = /net/wolke/srv/http/default
 	directory = /net/sky/srv/http/default
