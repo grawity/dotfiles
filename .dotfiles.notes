@@ -11,6 +11,8 @@ XDG Basedir-compliant
 
 Already migrated to XDG in a release:
 
+~/.AndroidStudio4.0	~/.config/Google/AndroidStudio2021.3/
+~/.audacity-data/	[various]/audacity/		3.2.0?
 ~/.curlrc               ~/.config/.curlrc               7.73 (4be1f8dc0)
 ~/.d-feet/              ~/.config/d-feet/               0.1.15 (7f6104bbc5ab)
 ~/.darcs/               [various]/darcs/                2.10
@@ -112,6 +114,7 @@ only for reference.
 ~/.sqlite_history       $SQLITE_HISTORY
 ~/.tpm2_pkcs11/		$TPM2_PKCS11_STORE
 ~/.tkabber              $TKABBER_HOME
+~/.unison/		$UNISON
 ~/.VirtualBox/          (xdg) $VBOX_USER_HOME
 ~/.weechat/             (xdg) $WEECHAT_HOME, -d, --dir
 ~/.wgetrc               $WGETRC
@@ -194,6 +197,8 @@ Sad.
 ~/.balsa/
 ~/.bash_logout
 ~/.bash_profile         Use ~/.profile
+~/.cargo/
+~/.cmake/		Supports Windows and Haiku paths but not XDG
 ~/.dc++/
 ~/.esd_auth             Obsolete, uninstall the PulseAudio module
 ~/.fossil
