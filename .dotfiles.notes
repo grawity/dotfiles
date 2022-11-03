@@ -403,7 +403,9 @@ Miscellaneous
 
 	[1]: https://bugzilla.gnome.org/show_bug.cgi?id=721120#c30
 
-	TODO: Document IBus
+	uim (1.8.8) uses $XCOMPOSEFILE like libX11.
+
+	IBus (1.5.27) loads *both* ~/.XCompose and $XCOMPOSEFILE in that order.
 
 ~/.Xkbmap – hardcoded/configurable
   - hardcoded in /etc/gdm/Xsession (although GNOME uses dconf)
