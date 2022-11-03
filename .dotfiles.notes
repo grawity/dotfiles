@@ -20,6 +20,7 @@ Already migrated to XDG in a release:
 ~/.gconf/               ~/.config/gconf/                3.2.6 (fc28caa7be86)
 ~/.gconf.path           ~/.config/gconf.path            3.2.6 (fc28caa7be86)
 ~/.gimp-2.8/            ~/.config/GIMP/2.10/            2.10
+~/.git-credentials	~/.config/git/credentials	2.5.0 (17c7f4d8e4)
 ~/.gitconfig            ~/.config/git/config            1.7.12 (0d94427ef844)
 ~/.gitignore            ~/.config/git/ignore            1.7.12 (0d94427ef844)
 ~/.gitk                 ~/.config/git/gitk              1.9-rc1 (8f86339858c1)
@@ -125,6 +126,15 @@ Can be overridden indirectly via config:
 ~/.cabal/*
         Defined via various settings in $CABAL_CONFIG
 
+~/.exodusviewer/
+        $EXODUSVIEWER_USER_DIR overrides, but see ~/.secondlife/
+
+~/.firestorm/
+        $FIRESTORM_USER_DIR overrides, but see ~/.secondlife/
+
+~/.gvimrc
+        Same as ~/.vimrc, but with $GVIMINIT.
+
 ~/.lynx_cookies
         Defined via 'cookie_file' in ~/.lynxrc
 
@@ -136,6 +146,19 @@ Can be overridden indirectly via config:
         log_file = /home/foo/bar
 
         http://pip.readthedocs.org/en/latest/user_guide.html#environment-variables
+
+~/.secondlife/
+        $SECONDLIFE_USER_DIR overrides this in general, but you will need to
+        manually adjust the "chat log location" option.
+
+~/.vimrc
+        Recent Vim versions use ~/.vim/vimrc by default. For older versions,
+        $VIMINIT can have an Ex command that sources an additional rc:
+
+                export VIMINIT=":so ~/.vim/vimrc"
+
+        (Note: This only applies to original Vim -- the Neovim fork is already
+        XDG-compliant and uses ~/.config/nvim/init.vim instead.)
 
 ~/VirtualBox VMs/
         Location defined by main VirtualBox configuration (see ~/.VirtualBox/),
@@ -195,6 +218,7 @@ Sad.
 
 ~/.aMule/
 ~/.balsa/
+~/.bashrc		Passing options to shells is difficult
 ~/.bash_logout
 ~/.bash_profile         Use ~/.profile
 ~/.cargo/
@@ -210,6 +234,7 @@ Sad.
 ~/.hatari/
 ~/.pine-debug[0-9]
 ~/.renpy/
+~/.sqldeveloper/	Launcher ignores even the java-hack.
 ~/.subversion/
 ~/.w3m/
 
@@ -237,6 +262,23 @@ Notes:
         Hardcoded, but will use native KDE location if compiled with "KDE
         support" enabled.
 
+~/mbox
+        "Well-known" -- various mail apps move "seen" messages here from
+        /var/spool/mail.
+
+        Can usually be disabled or relocated through the mail program's
+        configuration (e.g. via ~/.mailrc or $MBOX).
+
+~/.netrc
+        "Well-known" -- mostly hardcoded, though some apps can be told to use a
+        different path.
+
+	curl: $CURLOPT_NETRC_FILE or --netrc-file can override.
+        inetutils-ftp: $NETRC or --netrc can override (as of 1.9.3).
+        s-nail: $NETRC can override.
+	Python (aiohttp): $NETRC can override.
+        lftp, netkit-ftp, w3m, wget: Hardcoded.
+
 ~/.pki/nssdb/
         Although upstream NSS is XDG-compliant as of 3.42 (commit 7f21d4f49)
         and uses ~/.local/share/pki/nssdb/, this doesn't yet apply to Google
@@ -245,6 +287,27 @@ Notes:
 
         (It also doesn't apply to Firefox/Thunderbird/Seamonkey which use per-
         profile databases as they always have done.)
+
+~/.XCompose
+	The standard libX11 input method (XIM) supports $XCOMPOSEFILE (see the
+	Compose(5) manual page).
+
+	libxkbcommon (used by some Wayland software) supports $XCOMPOSEFILE as
+	well as $XDG_CONFIG_HOME/XCompose (as of v1.0.0).
+
+	GTK 2 uses its own input method "gtk-im-context-simple" which does not
+	support Compose at all (but can be switched to use libX11's XIM using
+	GTK_IM_MODULE="xim"). This also applies to GTK 3 (<= 3.18).
+
+	GTK 3 (>= 3.20) and GTK 4 read ~/.XCompose and ignore $XCOMPOSEFILE
+	[1], but support $XDG_CONFIG_HOME/gtk-3.0/Compose as an alternative
+	path (likewise $XDG_CONFIG_HOME/gtk-4.0/Compose for GTK 4).
+
+	[1]: https://bugzilla.gnome.org/show_bug.cgi?id=721120#c30
+
+	uim (1.8.8) uses $XCOMPOSEFILE like libX11.
+
+	IBus (1.5.27) loads *both* ~/.XCompose and $XCOMPOSEFILE in that order.
 
 Miscellaneous
 -------------
@@ -265,10 +328,6 @@ Miscellaneous
   - in theory, literal "<lang>" should do the right substitution, but doesn't
     (which means you're limited to one language if you choose to override!)
 
-~/.bashrc – hardcoded / command-line
-  - you could use --init-file/--rcfile, but you'll generally need at least a
-    wrapper script for that, since many programs invoke /bin/sh directly
-
 ~/.eclipse/
         Just give up.
 
@@ -281,12 +340,6 @@ Miscellaneous
 
         docs: <http://wiki.eclipse.org/Eclipse.ini>
 
-~/.exodusviewer/
-        $EXODUSVIEWER_USER_DIR overrides, but see ~/.secondlife/
-
-~/.firestorm/
-        $FIRESTORM_USER_DIR overrides, but see ~/.secondlife/
-
 ~/.forward – varies
   - most MTAs expect this path, and it's not like they can read .profile
   - some can be reconfigured system-wide (if you have root access)
@@ -298,13 +351,6 @@ Miscellaneous
     - can use a custom redirect rule instead
   (general – other options)
     - most MTAs have a system-wide 'aliases' file that works the same way
-
-~/.git-credentials – partly-XDG as of 2.3.8? 2.4? (17c7f4d8e4); command line
-  - $XDG_CONFIG_HOME/git/credentials is used *if exists*
-  - "--file=<path>" option exists
-
-~/.gvimrc
-        Same as ~/.vimrc, but with GVIMINIT.
 
 ~/.kde/, ~/.kde4/
   - $KDEHOME overrides the default
@@ -328,22 +374,6 @@ Miscellaneous
     - $MAILRC overrides default
     - $NAILRC overrides both
 
-~/.netrc
-        Mostly API and hardcoded, though some apps can be told to use a
-        different path.
-
-	curl: $CURLOPT_NETRC_FILE or --netrc-file can override.
-        inetutils-ftp: $NETRC or --netrc can override (as of 1.9.3).
-        s-nail: $NETRC can override.
-	Python (aiohttp): $NETRC can override.
-
-        lftp: Hardcoded.
-        netkit-ftp: Hardcoded.
-        w3m: Hardcoded.
-        wget: Hardcoded.
-        Perl (CPAN::FTP::netrc): Hardcoded.
-        Perl (Net::Netrc): Hardcoded.
-
 ~/.npm/ – configurable
   - "cache = <dir>" in ~/.npmrc or $PREFIX/etc/npmrc overrides
   - doc: npm-config(7), npm-cache(1)
@@ -362,48 +392,11 @@ Miscellaneous
         Not sure what exactly creates this, but at least for OpenSSL (??),
         $RANDFILE can be used to move it into a different *directory*.
 
-~/.secondlife/
-        $SECONDLIFE_USER_DIR overrides this in general, but you will need to
-        manually adjust the "chat log location" option.
-
-~/.sqldeveloper/
-        Hardcoded -- the launcher script ignores java-hack as well.
-
 ~/.terminfo/ (ncurses) – environment
   - $TERMINFO_DIRS overrides (colon-separated list):
     - TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
   - $TERMINFO overrides (system path not searched)
   - docs: terminfo(5)
-
-~/.vimrc
-        Recent Vim versions use ~/.vim/vimrc by default. For older versions,
-        $VIMINIT can have an Ex command that sources an additional rc:
-
-                export VIMINIT=":so ~/.vim/vimrc"
-
-        (Note: This only applies to original Vim -- the Neovim fork is already
-        XDG-compliant and uses ~/.config/nvim/init.vim instead.)
-
-~/.XCompose
-	The standard libX11 input method (XIM) supports $XCOMPOSEFILE (see the
-	Compose(5) manual page).
-
-	libxkbcommon (used by some Wayland software) supports $XCOMPOSEFILE as
-	well as $XDG_CONFIG_HOME/XCompose (as of v1.0.0).
-
-	GTK 2 uses its own input method "gtk-im-context-simple" which does not
-	support Compose at all (but can be switched to use libX11's XIM using
-	GTK_IM_MODULE="xim"). This also applies to GTK 3 (<= 3.18).
-
-	GTK 3 (>= 3.20) and GTK 4 read ~/.XCompose and ignore $XCOMPOSEFILE
-	[1], but support $XDG_CONFIG_HOME/gtk-3.0/Compose as an alternative
-	path (likewise $XDG_CONFIG_HOME/gtk-4.0/Compose for GTK 4).
-
-	[1]: https://bugzilla.gnome.org/show_bug.cgi?id=721120#c30
-
-	uim (1.8.8) uses $XCOMPOSEFILE like libX11.
-
-	IBus (1.5.27) loads *both* ~/.XCompose and $XCOMPOSEFILE in that order.
 
 ~/.Xkbmap – hardcoded/configurable
   - hardcoded in /etc/gdm/Xsession (although GNOME uses dconf)
@@ -414,12 +407,6 @@ Miscellaneous
 ~/.Xresources – hardcoded/configurable
   - hardcoded in Xsession scripts of many DMs
   - however, ~/.xprofile and ~/.xinitrc can use a custom path
-
-~/mbox
-        Various mail apps move "seen" messages here from /var/spool/mail.
-
-        Can usually be disabled or relocated through the mail program's
-        configuration (e.g. via ~/.mailrc or $MBOX).
 
 ~/FS-UAE/ - environment; configurable?
   - $FS_UAE_BASE_DIR
