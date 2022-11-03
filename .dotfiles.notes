@@ -329,22 +329,20 @@ Miscellaneous
     - $NAILRC overrides both
 
 ~/.netrc
-        Mostly API, though some apps can be told to use a different path.
+        Mostly API and hardcoded, though some apps can be told to use a
+        different path.
 
-        (curl – environment)
-        - $CURLOPT_NETRC_FILE overrides
-        - should work with libcurl programs too; not tested
-        - "--netrc-file <path>" overrides
-        (GNU inetutils `ftp` – environment)
-        - $NETRC overrides as of 1.9.3 (commit 38246ac903db)
-        (lftp – hardcoded)
-        (Perl 'CPAN::FTP::netrc' – hardcoded)
-        (Perl 'Net::Netrc' – hardcoded)
-        (s-nail – environment)
-        - $NETRC overrides
-        (w3m – hardcoded)
-        (wget – hardcoded)
-        - can use .wgetrc instead
+	curl: $CURLOPT_NETRC_FILE or --netrc-file can override.
+        inetutils-ftp: $NETRC or --netrc can override (as of 1.9.3).
+        s-nail: $NETRC can override.
+	Python (aiohttp): $NETRC can override.
+
+        lftp: Hardcoded.
+        netkit-ftp: Hardcoded.
+        w3m: Hardcoded.
+        wget: Hardcoded.
+        Perl (CPAN::FTP::netrc): Hardcoded.
+        Perl (Net::Netrc): Hardcoded.
 
 ~/.npm/ – configurable
   - "cache = <dir>" in ~/.npmrc or $PREFIX/etc/npmrc overrides
