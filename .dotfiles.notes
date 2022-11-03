@@ -386,20 +386,24 @@ Miscellaneous
         (Note: This only applies to original Vim -- the Neovim fork is already
         XDG-compliant and uses ~/.config/nvim/init.vim instead.)
 
-~/.XCompose – environment/hardcoded/other locations
-  (libxkbcommon)
-    - $XDG_CONFIG_HOME/XCompose as of xkbcommon-0.10.0-56-g17ad0df
-    - $XCOMPOSEFILE overrides (see the Compose(5) manual page)
-  (libX11 aka xim)
-    - $XCOMPOSEFILE overrides (see the Compose(5) manual page)
-  (GTK aka gtk-im-context-simple)
-    - hardcoded ~/.XCompose
-       - intentional: https://bugzilla.gnome.org/show_bug.cgi?id=721120#c30
-    - but, $XDG_CONFIG_HOME/gtk-3.0/Compose is also supported
-    - NOTE: only as of commit a41f02f9b1843e0f0085f801430e55f413a9bf9c
-            (previous versions did not use the file at all)
-  (ibus)
-    - not sure
+~/.XCompose
+	The standard libX11 input method (XIM) supports $XCOMPOSEFILE (see the
+	Compose(5) manual page).
+
+	libxkbcommon (used by some Wayland software) supports $XCOMPOSEFILE as
+	well as $XDG_CONFIG_HOME/XCompose (as of v1.0.0).
+
+	GTK 2 uses its own input method "gtk-im-context-simple" which does not
+	support Compose at all (but can be switched to use libX11's XIM using
+	GTK_IM_MODULE="xim"). This also applies to GTK 3 (<= 3.18).
+
+	GTK 3 (>= 3.20) and GTK 4 read ~/.XCompose and ignore $XCOMPOSEFILE
+	[1], but support $XDG_CONFIG_HOME/gtk-3.0/Compose as an alternative
+	path (likewise $XDG_CONFIG_HOME/gtk-4.0/Compose for GTK 4).
+
+	[1]: https://bugzilla.gnome.org/show_bug.cgi?id=721120#c30
+
+	TODO: Document IBus
 
 ~/.Xkbmap – hardcoded/configurable
   - hardcoded in /etc/gdm/Xsession (although GNOME uses dconf)
