@@ -9,6 +9,7 @@ sky,sky.sym,sky.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBBncKhB30r4dMD
 star,star.sym,star.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHJ1CBZGIOTCzYIbGbfUrA8VviPCbjOntfgD7538H+vY
 wind,wind.sym,wind.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC3R1aAJuIBIpNvK+8xCkWqplmHEqghTTFPcI4DPE8Qe
 wolke,wolke.sym,wolke.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDxeD56V+IW/7jqozEOtXfaN/+RO+OldNRCe7KBYW6kM
+vm-ampere,vm-ampere.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINsrwf2br3SEvqwLFENt3iGIjanIEGmqoEuXgN3webYW
 vm-litnet,vm-litnet.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBJ4IA1ea6+8pwTFvuxWxsI2MTC3KKbYEnhqkNyfZFJe
 vm-vol5,vm-vol5.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGlkMqWX/ofP4kzX0urd6kuFQ1ZIgK/dVAzAxpv5r+nn
 # Nullroute - other
