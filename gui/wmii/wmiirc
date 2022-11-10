@@ -51,7 +51,7 @@ spawn() {
 
 log() {
 	echo -e "wmiirc[$$]: $*"
-	echo -e "\033[34m($$)\033[m $*" >>"$WMII_CONFDIR/debug.log"
+	echo -e "\033[34m($$)\033[m $*" >> "$XDG_RUNTIME_DIR/wmii.log"
 }
 
 bar() {
@@ -672,7 +672,7 @@ event_Debug() {
 		*)
 			echo -e "\e[1;33mUnknown debug command '$cmd'. Try 'help'\e[m";;
 	esac
-} >>"$WMII_CONFDIR/debug.log" 2>&1
+} >> "$XDG_RUNTIME_DIR/wmii.log" 2>&1
 
 ## Loops for statusbar updating. Called from startup()
 # statusloop()			updates clock and load average

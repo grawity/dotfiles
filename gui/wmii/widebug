@@ -6,7 +6,7 @@ if [ "$1" ]; then
 	exit
 fi
 
-tail -fn0 ~/.wmii/debug.log & tailpid=$!
+tail -fn0 "$XDG_RUNTIME_DIR/wmii.log" & tailpid=$!
 trap "kill $tailpid; exit" INT TERM QUIT HUP EXIT
 
 # No prompt as it would show up before async output
