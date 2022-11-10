@@ -61,9 +61,6 @@ account-hook "^imaps?://imap\.gmail\.com/" \
 # shortcut expansions and not as regexes. Put the regex in parens to avoid
 # this. (See also section 6.2 "Mailbox Matching in Hooks".)
 
-folder-hook "(^imaps?://mail\.nullroute\.eu\.org/$)" \
-	'mailboxes =INBOX'
-
 set connect_timeout=10
 set mail_check=10
 set timeout=20
