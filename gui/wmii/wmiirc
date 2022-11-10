@@ -803,12 +803,12 @@ status_battery() {
 	{
 		if (( level >= 80 )); then
 			echo colors "$FG $BG"
-		elif (( level >= 60 )); then
+		elif (( level >= 65 )); then
 			echo colors "#bbbbbb $BG"
 		elif (( level >= 50 )); then
-			echo colors "#ddbb44 $BG"
-		elif (( level >= 40 )); then
 			echo colors "#ffffff $BG"
+		elif (( level >= 35 )); then
+			echo colors "#ddbb44 $BG"
 		elif (( level >= 20 )); then
 			echo colors "#ffdd88 $BG"
 		else
