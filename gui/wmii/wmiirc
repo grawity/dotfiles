@@ -687,7 +687,10 @@ statusloop() {
 			read a b c _ </proc/loadavg
 			echo colors "$WMII_NORMCOLORS"
 			echo label "$a $b $c"
-		} | wmiir create '/rbar/zy_load'
+		} | wmiir create '/rbar/zl_load'
+		{
+			status_battery
+		} | wmiir create '/rbar/zx_battery'
 		{
 			echo colors "$WMII_NORMCOLORS"
 			echo label "$(date '+%a, %b %d %H:%M')"
@@ -780,6 +783,35 @@ status_volume() {
 		fi
 		echo label "$text [$bar]"
 	} | wmiir create "/rbar/mpc-volume"
+}
+
+status_battery() {
+	local FG=${WMII_NORMCOLORS%% *}
+	local BG=${WMII_NORMCOLORS#* }
+
+	local level=$(< /sys/class/power_supply/CMB1/capacity)
+	local text="battery $level%"
+	local cur=$((level / 10))
+	local bar=$(bar $cur 10)
+
+	{
+		if (( level >= 80 )); then
+			echo colors "$FG $BG"
+		elif (( level >= 60 )); then
+			echo colors "#bbbbbb $BG"
+		elif (( level >= 50 )); then
+			echo colors "#ddbb44 $BG"
+		elif (( level >= 40 )); then
+			echo colors "#ffffff $BG"
+		elif (( level >= 20 )); then
+			echo colors "#ffdd88 $BG"
+		else
+			echo colors "#ff3333 $BG"
+		fi
+		echo label "$text [$bar]"
+	}
+	# XXX: make other status_* output to stdout and let the parent
+	# do wmiir_create
 }
 
 ## wmiirc control functions
