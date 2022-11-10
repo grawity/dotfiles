@@ -703,7 +703,7 @@ statusloop() {
 statusloop_mpd() {
 	(( StatusMpd )) || return
 
-	printf "StatusLoop" > /proc/self/comm
+	printf "StatusMpd" > /proc/self/comm
 	while true; do
 		status_mpd
 		mpc idle >&/dev/null || sleep 5
@@ -711,7 +711,7 @@ statusloop_mpd() {
 }
 
 statusloop_vol() {
-	printf "StatusLoop" > /proc/self/comm
+	printf "StatusPulse" > /proc/self/comm
 	status_volume
 	stdbuf -o0 pactl subscribe | while read -r line; do
 		if [[ $line == *change*on*sink* ]]; then
