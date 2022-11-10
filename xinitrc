@@ -37,9 +37,9 @@ if have hsetroot; then
 	hsetroot -solid "$bg_color" -tile "$bg_image" &
 fi
 
-# Decide on the session command
-[ "$1" ] || set -- $default_session
-case $1 in
+# Aliases for common session commands
+[ "$*" ] || set -- $default_session
+case $* in
 	e)		set -- enlightenment_start \
 			-i-really-know-what-i-am-doing-and-accept-full-responsibility-for-it;;
 	gnome)		set -- gnome-session;;
@@ -48,6 +48,7 @@ case $1 in
 	openbox)	set -- openbox --startup ~/.config/openbox/autostart;;
 	xfce)		set -- xfce4-session;;
 	custom)		set -- ~/.xsession;;
+	*)		;; # Pass-through everything else
 esac
 
 # Tell ~/.xprofile about the session type
