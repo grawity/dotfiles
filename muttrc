@@ -85,6 +85,10 @@ lists ".*@freelists\.org$"
 lists ".*@lists\.archlinux\.org$"
 lists ".*@lists\.freedesktop\.org$"
 
+# Assume it's a subscribed message if it has "List-Post:" headers (requires
+# fetching them from IMAP server)
+set auto_subscribe
+
 ### Composing
 
 set realname="Mantas Mikulėnas"
