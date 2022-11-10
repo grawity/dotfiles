@@ -18,6 +18,7 @@ WMII_FONT="xft:Monaco:size=9"
 WMII_TERM="roxterm"
 
 Mod="Mod4"
+Battery=""
 
 [[ -f "$WMII_CONFDIR/config" ]] &&
 	. "$WMII_CONFDIR/config"
@@ -683,14 +684,14 @@ statusloop() {
 	printf "StatusLoop" > /proc/self/comm
 
 	while true; do
+		if [[ $Battery ]]; then
+			status_battery | wmiir create '/rbar/zx_battery'
+		fi
 		{
 			read a b c _ </proc/loadavg
 			echo colors "$WMII_NORMCOLORS"
 			echo label "$a $b $c"
 		} | wmiir create '/rbar/zl_load'
-		{
-			status_battery
-		} | wmiir create '/rbar/zx_battery'
 		{
 			echo colors "$WMII_NORMCOLORS"
 			echo label "$(date '+%a, %b %d %H:%M')"
@@ -789,8 +790,15 @@ status_battery() {
 	local FG=${WMII_NORMCOLORS%% *}
 	local BG=${WMII_NORMCOLORS#* }
 
-	local level=$(< /sys/class/power_supply/CMB1/capacity)
-	local text="battery $level%"
+	local level=$(</sys/class/power_supply/$Battery/capacity)
+	local status=$(</sys/class/power_supply/$Battery/status)
+
+	case $status in
+		Discharging)	local text="battery $level%";;
+		Charging)	local text="charging $level%";;
+		*)		local text="${status,,} $level%";;
+	esac
+
 	local cur=$((level / 10))
 	local bar=$(bar $cur 10)
 
