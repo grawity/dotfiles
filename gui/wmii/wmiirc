@@ -865,8 +865,11 @@ wmiir write /ctl <<-!
 
 xsetroot -solid "$WMII_BACKGROUND"
 
+# Set group=0 to make new gnome-terminal windows open in the active tag, rather
+# than sticking to the client's previous tag.
 wmiir write '/rules' <<!
 	/^sonata:/ floating=on
+	/^gnome-terminal-server:/ group=0
 !
 
 wmiir write '/colrules' <<-!
