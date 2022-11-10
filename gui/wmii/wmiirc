@@ -407,7 +407,7 @@ event_Key() {
 		wmiir xwrite /tag/sel/ctl "select right";;
 	$Mod-space)
 		wmiir xwrite /tag/sel/ctl "select toggle";;
-	
+
 	$Mod-Control-j)
 		wmiir xwrite /tag/sel/ctl "select down stack";;
 	$Mod-Control-k)
@@ -452,7 +452,7 @@ event_Key() {
 		wmiir xwrite /tag/sel/ctl "send sel right";;
 	$Mod-Shift-space)
 		wmiir xwrite /tag/sel/ctl "send sel toggle";;
-	
+
 	# window tag movement
 
 	$Mod-Shift-[0-9])
@@ -465,7 +465,7 @@ event_Key() {
 		if [[ $input ]]; then
 			wmiir xwrite /client/$client/tags "$input"
 		fi;;
-	
+
 	# window manipulation
 
 	$Mod-f)
@@ -620,8 +620,8 @@ event_Debug() {
 	printf "\033[34m($$)\033[m Debug: \033[1m%s\033[m\n" "$*"
 	local cmd=$1; shift
 	case $cmd in
-		".")
-			;;
+		"."|"poke")
+			echo "Hello!";;
 		"addrule")
 			{ wmiir read /rules; echo "$*"; } | wmiir write /rules;;
 		"ctl")
@@ -661,7 +661,7 @@ event_Debug() {
 				qr  quit wmiirc
 				qw  quit wmii
 				r   read <path>
-				re  restart
+				re  restart only rc
 				rw  restart wmii
 				w   write <path> <data>
 				x   ixpc (wmiir)

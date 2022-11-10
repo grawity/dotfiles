@@ -9,8 +9,9 @@ fi
 tail -fn0 ~/.wmii/debug.log & tailpid=$!
 trap "kill $tailpid; exit" INT TERM QUIT HUP EXIT
 
+# No prompt as it would show up before async output
 wmiir xwrite /event "Debug poke"
-while read -er cmd; do
+while read -e -r -p "" cmd; do
 	[ "$cmd" ] || continue
 	wmiir xwrite /event "Debug $cmd"
 done
