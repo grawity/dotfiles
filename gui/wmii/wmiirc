@@ -638,7 +638,7 @@ event_Debug() {
 				unset "${env%=}"
 			fi;;
 		"ps")
-			wmiir setsid ps -f -o pgid,pid,comm,command -$MY_PGROUP;;
+			wmiir setsid ps -f -o pgid,pid,comm,command -$pgrp;;
 		"r"|"read")
 			wmiir read "$@";;
 		"qr")
@@ -848,7 +848,9 @@ unset SHLVL
 
 trap 'suicide' SIGINT SIGQUIT SIGTERM EXIT
 
-log "\e[1;32mstarted:\e[m $0 (pgid=$MY_PGROUP)"
+pgrp=$(proctool getpgid)
+
+log "\e[1;32mstarted:\e[m $0 (pgid=$pgrp)"
 
 wmiir xwrite /event "Start $0"
 
