@@ -58,6 +58,7 @@
 	tig = !tig
 	ff = merge --ff-only
 	ch = cherry-pick
+	sparse = sparse-checkout
 
 [advice]
 	detachedHead = false
