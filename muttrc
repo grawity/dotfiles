@@ -378,12 +378,3 @@ bind index,pager \cD delete-thread'
 #bind index,pager \cD delete-thread'
 
 account-hook '^imaps?://' 'macro index . "<imap-fetch-mail><refresh>"'
-
-### Crypto
-
-set crypt_use_gpgme
-set crypt_use_pka
-unset pgp_auto_decode
-set pgp_use_gpg_agent
-set pgp_self_encrypt
-set smime_self_encrypt
