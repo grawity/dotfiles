@@ -19,6 +19,7 @@ WMII_TERM="roxterm"
 
 Mod="Mod4"
 Battery=""
+StatusMpd=0
 
 [[ -f "$WMII_CONFDIR/config" ]] &&
 	. "$WMII_CONFDIR/config"
@@ -701,6 +702,8 @@ statusloop() {
 }
 
 statusloop_mpd() {
+	(( StatusMpd )) || return
+
 	printf "StatusLoop" > /proc/self/comm
 
 	while true; do
