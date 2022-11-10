@@ -38,8 +38,14 @@ startup() {
 	statusloop_mpd &		echo "++ statusloop_mpd[$!]"
 	statusloop_vol &		echo "++ statusloop_vol[$!]"
 
-	[[ -f "$WMII_CONFDIR/startup" ]] &&
-		. "$WMII_CONFDIR/startup"
+	if xprop -root WMII_STARTUP_DONE | grep -qs "no such atom"; then
+		log "running startup script"
+		[[ -f "$WMII_CONFDIR/startup" ]] &&
+			. "$WMII_CONFDIR/startup"
+		xprop -root -format WMII_STARTUP_DONE 8s -set WMII_STARTUP_DONE 1
+	else
+		log "startup script was already ran"
+	fi
 }
 
 spawn() {
