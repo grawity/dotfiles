@@ -6,7 +6,7 @@ if [ "$1" ]; then
 	exit
 fi
 
-tail -fn0 ~/.wmii-hg/debug.log & tailpid=$!
+tail -fn0 ~/.wmii/debug.log & tailpid=$!
 trap "kill $tailpid; exit" INT TERM QUIT HUP EXIT
 
 wmiir xwrite /event "Debug poke"
