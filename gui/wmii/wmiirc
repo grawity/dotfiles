@@ -683,10 +683,9 @@ event_Debug() {
 
 statusloop() {
 	printf "StatusLoop" > /proc/self/comm
-
 	while true; do
 		if [[ $Battery ]]; then
-			status_battery | wmiir create '/rbar/zx_battery'
+			status_battery
 		fi
 		{
 			read a b c _ </proc/loadavg
@@ -705,7 +704,6 @@ statusloop_mpd() {
 	(( StatusMpd )) || return
 
 	printf "StatusLoop" > /proc/self/comm
-
 	while true; do
 		status_mpd
 		mpc idle >&/dev/null || sleep 5
@@ -714,11 +712,8 @@ statusloop_mpd() {
 
 statusloop_vol() {
 	printf "StatusLoop" > /proc/self/comm
-
 	status_volume
-
-	stdbuf -o0 pactl subscribe |
-	while read -r line; do
+	stdbuf -o0 pactl subscribe | while read -r line; do
 		if [[ $line == *change*on*sink* ]]; then
 			status_volume
 		fi
@@ -820,9 +815,7 @@ status_battery() {
 			echo colors "#ff3333 $BG"
 		fi
 		echo label "$text [$bar]"
-	}
-	# XXX: make other status_* output to stdout and let the parent
-	# do wmiir_create
+	} | wmiir create "/rbar/zx_battery"
 }
 
 ## wmiirc control functions
