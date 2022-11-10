@@ -34,11 +34,17 @@ lists ".*@lists\.freedesktop\.org$"
 
 ### Mail storage
 
+# Default expansion of + or = prefixes
 set folder="imaps://mail.nullroute.lt/"
+# Folder to open on startup (shortcut "!")
 set spoolfile="+INBOX"
-set postponed="+Drafts"
+# Folder to copy sent messages to (shortcut "<")
+# Can be set to "^" to use the current folder
 set record="+Sent"
+# Folder to save drafts to
+set postponed="+Drafts"
 
+# Prompt when saving to a nonexistent mailbox only
 unset confirmappend
 set confirmcreate
 
@@ -56,6 +62,11 @@ account-hook "^imaps?://mail\.nullroute\.lt/" \
 
 account-hook "^imaps?://imap\.gmail\.com/" \
 	'set imap_user="grawity@gmail.com" imap_authenticators="OAUTHBEARER" imap_oauth_refresh_command="gmail-oauth"'
+
+# When "mutt -e 'set folder=...'" is used to access other accounts, we need to
+# re-evaluate the expansions in $record and $postponed.
+account-hook "^imaps?://mail\.utenos-kolegija\.lt/" \
+	'set record="+Sent" postponed="+Drafts"'
 
 # Note: If folder-hook patterns start with ^ or @, they will be treated as
 # shortcut expansions and not as regexes. Put the regex in parens to avoid

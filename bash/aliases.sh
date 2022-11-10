@@ -99,6 +99,8 @@ mkmaildir() { mkdir -p "${@/%//cur}" "${@/%//new}" "${@/%//tmp}"; }
 mtr() { settitle "$HOSTNAME: mtr $*"; command mtr --show-ips "$@"; }
 alias mtrr='mtr --report-wide --report-cycles 3 --show-ips --aslookup --mpls'
 alias mutagen='mid3v2'
+alias muttgmail='mutt -e "set folder=imaps://imap.gmail.com spoolfile=+"' gmail='muttgmail'
+alias muttwork='mutt -e "set folder=imaps://mail.utenos-kolegija.lt spoolfile=+"'
 mvln() { mv "$1" "$2" && sym -v "$2" "$1"; }
 alias nmap='nmap --reason'
 alias nm-con='nmcli -f name,type,autoconnect,state,device con'
