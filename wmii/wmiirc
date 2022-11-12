@@ -2,8 +2,8 @@
 # ~/.wmii/wmiirc -- wmii configuration
 
 NAMESPACE=$(wmiir namespace) || exit 1
-
 CONFDIR="$HOME/.wmii"
+WMIIRC="$CONFDIR/wmiirc"
 
 ### Configuration
 
@@ -26,8 +26,6 @@ StatusLoad=1
 declare -A Keys=(
 	["$Mod-Return"]='spawn $Terminal'
 	["$Mod-KP_Enter"]='spawn $Terminal'
-	["$Mod-p"]='program_input &'
-	["$Mod-a"]='action_input &'
 	["$Mod-h"]='wmiir xwrite /tag/sel/ctl "select left"'
 	["$Mod-j"]='wmiir xwrite /tag/sel/ctl "select down"'
 	["$Mod-k"]='wmiir xwrite /tag/sel/ctl "select up"'
@@ -70,9 +68,11 @@ declare -A Keys=(
 
 declare -A Events=(
 	["LeftBarMouseDown 1"]='wmiir xwrite /ctl "view $tag"'
-	["LeftBarMouseDown 4"]='wmiir xwrite /ctl "view $(prev_tag)"'
-	["LeftBarMouseDown 5"]='wmiir xwrite /ctl "view $(next_tag)"'
-	["ClientMouseDown 3"]='wi_9menu ClientAction "$client"'
+	["LeftBarClick 2"]='remove_tag "$tag"'
+	["LeftBarClick 4"]='wmiir xwrite /ctl "view $(prev_tag)"'
+	["LeftBarClick 5"]='wmiir xwrite /ctl "view $(next_tag)"'
+	["ClientMouseDown 2"]='wmiir xwrite /tag/sel/ctl "send $client toggle"'
+	["ClientMouseDown 3"]='show_9menu ClientAction "$client"'
 )
 
 declare -a StartupJobs=()
@@ -132,11 +132,11 @@ event_SystemAction() {
 		"reboot")
 			systemctl reboot;;
 		"reload wmiirc")
-			restart_rc;;
+			wmiir xwrite /ctl "spawn \"$WMIIRC\"";;
 	esac
 }
 
-Events["RightBarMouseDown zz_clock 3"]='wi_9menu SystemAction'
+Events["RightBarMouseDown zz_clock 3"]='show_9menu SystemAction'
 
 . "$CONFDIR/wmiirc.battery"
 . "$CONFDIR/wmiirc.pulse"
@@ -151,6 +151,7 @@ program_input() {
 		eval spawn "$input"
 	fi
 }
+Keys["$Mod-p"]='program_input &'
 
 program_cache() {
 	local IFS=':'
@@ -174,6 +175,7 @@ action_input() {
 		| sed 's/^/Action /' \
 		| wmiir write /event
 }
+Keys["$Mod-a"]='action_input &'
 
 event_Action() {
 	# Handler for synthetic events from Mod-a
@@ -187,19 +189,6 @@ event_Action() {
 		shutdown)	systemctl poweroff;;
 		*)		log "Unhandled Mod-a input '$action $*'";;
 	esac
-}
-
-wi_9menu() {
-	local name=$1 args=${*:2}
-	local vmenu="menu_$name[@]"
-	local vlast="last_$name"
-	local vdefault="default_$name"
-	local choice=$( "menu_$name" "${@:2}" &&
-			wmii9menu -i "${!vlast:-${!vdefault}}" -- "${!vmenu}")
-	if [[ $choice ]]; then
-		declare -g "$vlast=$choice"
-		wmiir xwrite /event $name $args $choice
-	fi
 }
 
 ### Event handling
@@ -286,9 +275,8 @@ zenity_unresponsive() {
 
 # Synthetic events
 
-event_WmiircStart() {
-	log "quitting: replaced by another wmiirc"
-	exit_wmiirc
+client_pid() {
+	wmiir read /client/$1/ctl | awk '$1 == "pid" {print $2; exit} END {exit 1}'
 }
 
 zenity_client_info() {
@@ -314,7 +302,7 @@ zenity_client_info() {
 
 zenity_kill_client() {
 	local client=$1
-	local label=$(wmiir read "/client/$client/label" | zenityescape)
+	local label=$(wmiir read /client/$client/label | zenityescape)
 	local pid=$(client_pid "$client")
 	local process= msg=
 	if [[ $pid ]]
@@ -359,42 +347,33 @@ event_ClientAction() {
 }
 
 event_Debug() {
-	printf "\033[34m($$)\033[m Debug: \033[1m%s\033[m\n" "$*"
+	dlog ">> $*"
 	local cmd=$1; shift
 	case $cmd in
-		.|poke)	echo "Hello!";;
+		.)	echo "Hello!";;
 		e|eval)	eval "$@";;
 		p)	declare -p "$@";;
-		ps)	wmiir setsid ps -f -o pgid,pid,comm,command -$MyPgrp;;
-		re)	restart_rc;;
+		ps)	wmiir setsid ps -f -o pgid,pid,comm,command -$(proctool getpgid);;
+		re)	wmiir xwrite /ctl "spawn \"$WMIIRC\"";;
 		rw)	wmiir xwrite /ctl "exec wmii";;
-		*)	echo -e "\e[1;33mUnknown debug command '$cmd'. Try 'help'\e[m";;
+		*)	echo "Unknown command '$cmd'";;
 	esac
 } >> "$XDG_RUNTIME_DIR/wmii.log" 2>&1
 
 ### Start wmiirc
-
-exit_wmiirc() {
-	log "\e[1;31mexiting:\e[m killing pgroup"
-	trap - EXIT
-	trap 'exit' SIGINT SIGQUIT SIGTERM
-	kill 0
-	kill -9 0
-}
-
-restart_rc() {
-	log "Starting new wmiirc"
-	wmiir xwrite /ctl "spawn \"$CONFDIR/wmiirc\""
-}
 
 spawn() {
 	log "Spawning '$*'"
 	(cd && exec wmiir setsid -f "$@" </dev/null >&/dev/null)
 }
 
+dlog() {
+	echo -e "\033[34m($$)\033[m $*" >> "$XDG_RUNTIME_DIR/wmii.log"
+}
+
 log() {
 	echo -e "wmiirc[$$]: $*"
-	echo -e "\033[34m($$)\033[m $*" >> "$XDG_RUNTIME_DIR/wmii.log"
+	dlog "$*"
 }
 
 gauge() {
@@ -429,7 +408,7 @@ prev_tag() {
 	tags | strtool prevw "$(this_tag)"
 }
 
-kill_tag() {
+remove_tag() {
 	local tag=$1
 	wmiir read "/tag/$tag/index" |
 	awk '!/^#/ {print $2}' | while read client; do
@@ -444,12 +423,49 @@ kill_tag() {
 	fi
 }
 
-this_client() {
-	wmiir read /client/sel/ctl | sed '1q'
+show_9menu() {
+	local name=$1 args=${*:2}
+	local vmenu="menu_$name[@]"
+	local vlast="last_$name"
+	local vdefault="default_$name"
+	local choice=$("menu_$name" "${@:2}" &&
+			wmii9menu -i "${!vlast:-${!vdefault}}" -- "${!vmenu}")
+	if [[ $choice ]]; then
+		declare -g "$vlast=$choice"
+		wmiir xwrite /event "$name $args $choice"
+	fi
 }
 
-client_pid() {
-	wmiir read "/client/$1/ctl" | awk '$1 == "pid" {print $2; exit} END {exit 1}'
+InitConfig() {
+	wmiir write /ctl <<-!
+		bar on $BarPosition
+		border 3
+		font $Font
+		fontpad ${FontPadding:-0 0 0 0}
+		focuscolors $FocusColors
+		normcolors $NormalColors
+		grabmod $Mod
+	!
+
+	if [[ -f "$CONFDIR/rules" ]]; then
+		wmiir write /rules < "$CONFDIR/rules"
+	else
+		# Set group=0 to make new gnome-terminal windows open in the active
+		# tag, rather than sticking to the client's previous tag.
+		wmiir write /rules <<-!
+			/^gnome-terminal-server:/ group=0
+			/^sonata:/ floating=on
+			/^xev:/ floating=on
+		!
+	fi
+
+	if [[ -f "$CONFDIR/colrules" ]]; then
+		wmiir write /colrules < "$CONFDIR/colrules"
+	else
+		wmiir write /colrules <<-!
+			/.*/ -> 62+38 # Golden Ratio
+		!
+	fi
 }
 
 InitBars() {
@@ -472,76 +488,62 @@ InitBars() {
 
 	# Add an empty "separator" item
 	wmiir create /rbar/! </dev/null
+
+	printf '%s\n' "${!Keys[@]}" | wmiir write /keys
 }
 
+RunStartupJobs() {
+	for job in "${StartupJobs[@]}"; do
+		log "Running '$job &'"
+		$job &
+	done
+}
+
+RunStartupScript() {
+	if [[ "$NAMESPACE/startup.done" -nt "$NAMESPACE/wmii" ]]; then
+		log "Startup script was already ran"
+	else
+		log "Running startup script"
+		if [[ -f "$CONFDIR/startup" ]]; then
+			. "$CONFDIR/startup"
+		fi
+		touch "$NAMESPACE/startup.done"
+	fi &
+}
+
+ExitRc() {
+	trap - EXIT
+	trap "exit" SIGINT SIGQUIT SIGTERM
+	# Kill our own pgroup (background jobs)
+	kill 0
+	kill -9 0
+}
+
+event_WmiircStart() {
+	log "Replaced by another wmiirc (pid=$1)"
+	kill $$
+}
+
+EventLoop() {
+	printf 'EventLoop' > /proc/self/comm
+	while read event; do
+		event $event
+	done < <(exec wmiir read /event)
+	log "EventLoop finished"
+}
+
+log "Started ($0)"
+
 unset SHLVL
+trap "ExitRc" SIGINT SIGQUIT SIGTERM EXIT
+wmiir xwrite /event "WmiircStart $$"
 
-trap 'exit_wmiirc' SIGINT SIGQUIT SIGTERM EXIT
-
-wmiir xwrite /event "WmiircStart $0"
-
-wmiir write /ctl <<-!
-	bar on $BarPosition
-	border 3
-	font $Font
-	fontpad ${WMII_FONTPAD:-0 0 0 0}
-	focuscolors $FocusColors
-	normcolors $NormalColors
-	grabmod $Mod
-!
+InitConfig
+InitBars
 
 xsetroot -solid "$BackgroundColor"
 
-if [[ -f "$CONFDIR/rules" ]]; then
-	wmiir write /rules < "$CONFDIR/rules"
-else
-	# Set group=0 to make new gnome-terminal windows open in the active
-	# tag, rather than sticking to the client's previous tag.
-	wmiir write /rules <<-!
-		/^gnome-terminal-server:/ group=0
-		/^sonata:/ floating=on
-		/^xev:/ floating=on
-	!
-fi
+RunStartupJobs
+RunStartupScript
 
-if [[ -f "$CONFDIR/colrules" ]]; then
-	wmiir write /colrules < "$CONFDIR/colrules"
-else
-	wmiir write /colrules <<-!
-		/.*/ -> 62+38 # Golden Ratio
-	!
-fi
-
-# Bind keys
-printf '%s\n' "${!Keys[@]}" | wmiir write /keys
-
-InitBars
-
-MyPgrp=$(proctool getpgid)
-log "\e[1;32mstarted:\e[m $0 (pgid=$MyPgrp)"
-
-# Bar item update functions
-for job in "${StartupJobs[@]}"; do
-	log "Running '$job &'"
-	$job &
-done
-
-if [[ "$NAMESPACE/startup.done" -nt "$NAMESPACE/wmii" ]]; then
-	log "startup script was already ran"
-else
-	log "running startup script"
-	if [[ -f "$CONFDIR/startup" ]]; then
-		. "$CONFDIR/startup"
-	fi
-	touch "$NAMESPACE/startup.done"
-fi &
-
-printf 'EventLoop' > /proc/self/comm
-
-while read event; do
-	event $event
-done < <(exec wmiir read /event)
-
-log "EventLoop finished"
-
-# cleanup of child processes done by EXIT trap
+EventLoop
