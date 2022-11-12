@@ -332,120 +332,61 @@ event_ClientClick() {
 
 # key events
 
-bind_Key=(
-	$Mod-{Return,KP_Enter,p,a}
-	Mod1-F2
-	$Mod-{h,j,k,l,space}
-	$Mod-Control-{j,k}
-	$Mod-{1..9}
-	$Mod-{t,Tab,grave}
-	$Mod-{d,Shift-d,s,m}
-	$Mod-Shift-{h,j,k,l,space,t}
-	$Mod-Shift-{1..9}
-	$Mod-{f,q}
-	)
-
-declare -A keys=(
+declare -A Keys=(
 	["$Mod-Return"]='spawn $WMII_TERM'
 	["$Mod-KP_Enter"]='spawn $WMII_TERM'
 	["$Mod-p"]='program_input'
 	["$Mod-a"]='action_input'
+	["$Mod-h"]='wmiir xwrite /tag/sel/ctl "select left"'
+	["$Mod-j"]='wmiir xwrite /tag/sel/ctl "select down"'
+	["$Mod-k"]='wmiir xwrite /tag/sel/ctl "select up"'
+	["$Mod-l"]='wmiir xwrite /tag/sel/ctl "select right"'
+	["$Mod-space"]='wmiir xwrite /tag/sel/ctl "select toggle"'
+	["$Mod-Control-j"]='wmiir xwrite /tag/sel/ctl "select down stack"'
+	["$Mod-Control-k"]='wmiir xwrite /tag/sel/ctl "select up stack"'
+	["$Mod-1"]='wmiir xwrite /ctl "view $key"'
+	["$Mod-2"]='wmiir xwrite /ctl "view $key"'
+	["$Mod-3"]='wmiir xwrite /ctl "view $key"'
+	["$Mod-4"]='wmiir xwrite /ctl "view $key"'
+	["$Mod-5"]='wmiir xwrite /ctl "view $key"'
+	["$Mod-6"]='wmiir xwrite /ctl "view $key"'
+	["$Mod-7"]='wmiir xwrite /ctl "view $key"'
+	["$Mod-8"]='wmiir xwrite /ctl "view $key"'
+	["$Mod-9"]='wmiir xwrite /ctl "view $key"'
+	["$Mod-Tab"]='wmiir xwrite /ctl "view $(next_tag)"'
+	["$Mod-grave"]='wmiir xwrite /ctl "view $(prev_tag)"'
+	["$Mod-d"]='wmiir xwrite /tag/sel/ctl "colmode sel default-max"'
+	["$Mod-Shift-d"]='wmiir xwrite /tag/sel/ctl "colmode sel default+max"'
+	["$Mod-s"]='wmiir xwrite /tag/sel/ctl "colmode sel stack-max"'
+	["$Mod-m"]='wmiir xwrite /tag/sel/ctl "colmode sel stack+max"'
+	["$Mod-Shift-h"]='wmiir xwrite /tag/sel/ctl "send sel left"'
+	["$Mod-Shift-j"]='wmiir xwrite /tag/sel/ctl "send sel down"'
+	["$Mod-Shift-k"]='wmiir xwrite /tag/sel/ctl "send sel up"'
+	["$Mod-Shift-l"]='wmiir xwrite /tag/sel/ctl "send sel right"'
+	["$Mod-Shift-space"]='wmiir xwrite /tag/sel/ctl "send sel toggle"'
+	["$Mod-Shift-1"]='wmiir xwrite /client/sel/tags "$key"; wmiir xwrite /ctl "view $key"'
+	["$Mod-Shift-2"]='wmiir xwrite /client/sel/tags "$key"; wmiir xwrite /ctl "view $key"'
+	["$Mod-Shift-3"]='wmiir xwrite /client/sel/tags "$key"; wmiir xwrite /ctl "view $key"'
+	["$Mod-Shift-4"]='wmiir xwrite /client/sel/tags "$key"; wmiir xwrite /ctl "view $key"'
+	["$Mod-Shift-5"]='wmiir xwrite /client/sel/tags "$key"; wmiir xwrite /ctl "view $key"'
+	["$Mod-Shift-6"]='wmiir xwrite /client/sel/tags "$key"; wmiir xwrite /ctl "view $key"'
+	["$Mod-Shift-7"]='wmiir xwrite /client/sel/tags "$key"; wmiir xwrite /ctl "view $key"'
+	["$Mod-Shift-8"]='wmiir xwrite /client/sel/tags "$key"; wmiir xwrite /ctl "view $key"'
+	["$Mod-Shift-9"]='wmiir xwrite /client/sel/tags "$key"; wmiir xwrite /ctl "view $key"'
+	["$Mod-f"]='wmiir xwrite /client/sel/ctl "fullscreen toggle"'
+	["$Mod-Shift-q"]='wmiir xwrite /client/sel/ctl "kill"'
 )
-
-bind_Key+=("${!keys[@]}")
 
 event_Key() {
 	local keystroke=$1
 	local key=${keystroke##*-}
-
-	local bind=${keys["$keystroke"]}
+	local bind=${Keys["$keystroke"]}
 	if [[ $bind ]]; then
-		log "key $keystroke was bound to: '$bind'"
 		eval "$bind"
-		return
+	else
+		log "key $keystroke has no handler"
 	fi
-
-	case $keystroke in
-	# focus movement
-	$Mod-h)
-		wmiir xwrite /tag/sel/ctl "select left";;
-	$Mod-j)
-		wmiir xwrite /tag/sel/ctl "select down";;
-	$Mod-k)
-		wmiir xwrite /tag/sel/ctl "select up";;
-	$Mod-l)
-		wmiir xwrite /tag/sel/ctl "select right";;
-	$Mod-space)
-		wmiir xwrite /tag/sel/ctl "select toggle";;
-
-	$Mod-Control-j)
-		wmiir xwrite /tag/sel/ctl "select down stack";;
-	$Mod-Control-k)
-		wmiir xwrite /tag/sel/ctl "select up stack";;
-
-	# tag navigation
-
-	$Mod-[1-9])
-		local tag=$key
-		wmiir xwrite /ctl "view $tag";;
-	$Mod-t)
-		local input=$(tag_menu)
-		if [[ $input ]]; then
-			wmiir xwrite /ctl "view $input"
-		fi;;
-
-	$Mod-Tab)
-		wmiir xwrite /ctl "view $(next_tag)";;
-	$Mod-grave)
-		wmiir xwrite /ctl "view $(prev_tag)";;
-
-	# column modes
-
-	$Mod-d)
-		wmiir xwrite /tag/sel/ctl "colmode sel default-max";;
-	$Mod-Shift-d)
-		wmiir xwrite /tag/sel/ctl "colmode sel default+max";;
-	$Mod-s)
-		wmiir xwrite /tag/sel/ctl "colmode sel stack-max";;
-	$Mod-m)
-		wmiir xwrite /tag/sel/ctl "colmode sel stack+max";;
-
-	# window movement
-
-	$Mod-Shift-h)
-		wmiir xwrite /tag/sel/ctl "send sel left";;
-	$Mod-Shift-j)
-		wmiir xwrite /tag/sel/ctl "send sel down";;
-	$Mod-Shift-k)
-		wmiir xwrite /tag/sel/ctl "send sel up";;
-	$Mod-Shift-l)
-		wmiir xwrite /tag/sel/ctl "send sel right";;
-	$Mod-Shift-space)
-		wmiir xwrite /tag/sel/ctl "send sel toggle";;
-
-	# window tag movement
-
-	$Mod-Shift-[1-9])
-		local tag=$key
-		wmiir xwrite /client/sel/tags "$tag"
-		wmiir xwrite /ctl "view $tag";;
-	$Mod-Shift-t)
-		local client=$(this_client)
-		local input=$(tag_menu "retag client")
-		if [[ $input ]]; then
-			wmiir xwrite /client/$client/tags "$input"
-		fi;;
-
-	# window manipulation
-
-	$Mod-f)
-		wmiir xwrite /client/sel/ctl "fullscreen toggle";;
-	$Mod-q)
-		wmiir xwrite /client/sel/ctl "kill";;
-	esac
 }
-
-# misc window events
 
 event_Unresponsive() {
 	local client=$1
@@ -883,7 +824,7 @@ wmiir write '/colrules' <<-!
 		wmiir write /colrules < "$WMII_CONFDIR/colrules" &
 	fi
 
-	printf '%s\n' "${bind_Key[@]}" | wmiir write /keys
+	printf '%s\n' "${!Keys[@]}" | wmiir write /keys
 
 	wmiir ls -p /lbar /rbar | xargs -r wmiir rm
 
