@@ -68,34 +68,42 @@ declare -A Keys=(
 	["$Mod-Shift-q"]='wmiir xwrite /client/sel/ctl "kill"'
 )
 
+declare -A Events=()
+
 declare -a StartupJobs=()
 
 if [[ -f "$CONFDIR/config" ]]; then
 	. "$CONFDIR/config"
 fi
 
-### Functions
+### Rbar status items
 
-startup() {
-	program_cache &
-	statusloop &
-	statusloop_vol &
-
-	for job in "${StartupJobs[@]}"; do
-		log "Running '$job &'"
-		$job &
-	done
-
-	if [[ "$NAMESPACE/startup.done" -nt "$NAMESPACE/wmii" ]]; then
-		log "startup script was already ran"
-	else
-		log "running startup script"
-		if [[ -f "$CONFDIR/startup" ]]; then
-			. "$CONFDIR/startup"
+status_loop() {
+	printf "StatusLoop" > /proc/self/comm
+	while true; do
+		if [[ $Battery ]]; then
+			status_battery
 		fi
-		touch "$NAMESPACE/startup.done"
-	fi
+		if (( StatusLoad )); then
+			{
+				read a b c _ </proc/loadavg
+				echo colors "$NormalColors"
+				echo label "$a $b $c"
+			} | wmiir create '/rbar/zl_load'
+		fi
+		{
+			echo colors "$NormalColors"
+			echo label "$(date '+%a, %b %d %H:%M')"
+		} | wmiir create '/rbar/zz_clock'
+		sleep 2
+	done
 }
+StartupJobs+=(status_loop)
+
+. "$CONFDIR/wmiirc.pulse"
+. "$CONFDIR/wmiirc.mpd"
+
+### Functions
 
 spawn() {
 	log "launching: $*"
@@ -174,6 +182,7 @@ program_cache() {
 	local IFS=':'
 	wmiir proglist -- $PATH | sort -u > "$NAMESPACE/programs.cache"
 }
+StartupJobs+=(program_cache)
 
 action_input() {
 	# Handler for Mod-a (display wmii internal action menu)
@@ -311,17 +320,6 @@ event_RightBarMouseDown_zz_clock() {
 	case $button in
 		3) wi_9menu SystemAction;;
 	esac
-}
-
-event_RightBarClick_mpc-volume() {
-	local button=$1 item=$2
-	case $button in
-		1) mpc -q toggle || spawn mpd;;
-		2) ;;
-		3) ;;
-		4) ponymix increase 5;;
-		5) ponymix decrease 5;;
-	esac > /dev/null
 }
 
 event_ClientMouseDown() {
@@ -517,70 +515,6 @@ event_Debug() {
 	esac
 } >> "$XDG_RUNTIME_DIR/wmii.log" 2>&1
 
-statusloop() {
-	printf "StatusLoop" > /proc/self/comm
-	while true; do
-		if [[ $Battery ]]; then
-			status_battery
-		fi
-		if (( StatusLoad )); then
-			{
-				read a b c _ </proc/loadavg
-				echo colors "$NormalColors"
-				echo label "$a $b $c"
-			} | wmiir create '/rbar/zl_load'
-		fi
-		{
-			echo colors "$NormalColors"
-			echo label "$(date '+%a, %b %d %H:%M')"
-		} | wmiir create '/rbar/zz_clock'
-		sleep 2
-	done
-}
-
-statusloop_vol() {
-	(( StatusPulse )) || return
-	printf "StatusPulse" > /proc/self/comm
-	status_volume
-	stdbuf -o0 pactl subscribe | while read -r line; do
-		if [[ $line == *change*on*sink* ]]; then
-			status_volume
-		fi
-	done
-}
-
-status_volume() {
-	local FG=${NormalColors%% *}
-	local BG=${NormalColors#* }
-
-	local volume=$(ponymix get-volume)
-	local text='volume'
-	local max=11
-	local cur=$((volume * max / 100))
-	local bar=$(gauge $cur $max)
-
-	if ponymix is-muted; then
-		bar=${bar//[! ]/·}
-	fi
-
-	{
-		if (( cur >= 9 )); then
-			echo colors "#ff3333 $BG"
-		elif (( cur >= 8 )); then
-			echo colors "#ddbb44 $BG"
-		elif (( cur >= 7 )); then
-			echo colors "#ffdd88 $BG"
-		elif (( cur >= 6 )); then
-			echo colors "#ffffff $BG"
-		elif (( cur >= 5 )); then
-			echo colors "#bbbbbb $BG"
-		else
-			echo colors "$FG $BG"
-		fi
-		echo label "$text [$bar]"
-	} | wmiir create "/rbar/mpc-volume"
-}
-
 status_battery() {
 	local FG=${NormalColors%% *}
 	local BG=${NormalColors#* }
@@ -627,11 +561,6 @@ status_battery() {
 	} | wmiir create "/rbar/zx_battery"
 }
 
-## wmiirc control functions
-# exit_wmiirc()			kill own pgroup; handler for SIGINT/TERM/QUIT
-# restart_rc()			tell wmii to spawn a new wmiirc
-# restart_wmii()		tell wmii to re-exec self
-
 exit_wmiirc() {
 	log "\e[1;31mexiting:\e[m killing pgroup"
 	trap - EXIT
@@ -651,6 +580,28 @@ restart_wmii() {
 }
 
 ### Start wmiirc
+
+InitBars() {
+	local current=$(this_tag)
+	local tag=
+
+	wmiir ls -p /lbar /rbar | xargs -r wmiir rm
+
+	# Add lbar items for all tags
+	current=$(this_tag)
+	for tag in $(tags); do
+		if [[ "$tag" = "$current" ]]; then
+			echo colors "$FocusColors"
+			echo label "$tag"
+		else
+			echo colors "$NormalColors"
+			echo label "$tag"
+		fi | wmiir create "/lbar/$tag"
+	done
+
+	# Add an empty "separator" item
+	wmiir create /rbar/! </dev/null
+}
 
 unset SHLVL
 
@@ -690,32 +641,29 @@ else
 	!
 fi
 
-{
-	printf '%s\n' "${!Keys[@]}" | wmiir write /keys
+# Bind keys
+printf '%s\n' "${!Keys[@]}" | wmiir write /keys
 
-	wmiir ls -p /lbar /rbar | xargs -r wmiir rm
-
-	current=$(this_tag)
-	tags | while read -r tag; do
-		if [[ "$tag" = "$current" ]]; then
-			echo colors "$FocusColors"
-			echo label "$tag"
-		else
-			echo colors "$NormalColors"
-			echo label "$tag"
-		fi | wmiir create "/lbar/$tag"
-	done
-
-	# Add an empty "separator" item
-	wmiir create '/rbar/!' </dev/null
-} &
-
-. "$CONFDIR/wmiirc.mpd"
+InitBars
 
 MyPgrp=$(proctool getpgid)
 log "\e[1;32mstarted:\e[m $0 (pgid=$MyPgrp)"
 
-startup &
+# Bar item update functions
+for job in "${StartupJobs[@]}"; do
+	log "Running '$job &'"
+	$job &
+done
+
+if [[ "$NAMESPACE/startup.done" -nt "$NAMESPACE/wmii" ]]; then
+	log "startup script was already ran"
+else
+	log "running startup script"
+	if [[ -f "$CONFDIR/startup" ]]; then
+		. "$CONFDIR/startup"
+	fi
+	touch "$NAMESPACE/startup.done"
+fi &
 
 printf 'EventLoop' > /proc/self/comm
 
