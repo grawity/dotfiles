@@ -83,28 +83,36 @@ fi
 
 ### Rbar status items
 
+declare -a StatusFuncs=()
+
 status_loop() {
 	printf "StatusLoop" > /proc/self/comm
 	while true; do
-		if [[ $Battery ]]; then
-			status_battery
-		fi
-		if (( StatusLoad )); then
-			{
-				read a b c _ </proc/loadavg
-				echo colors "$NormalColors"
-				echo label "$a $b $c"
-			} | wmiir create '/rbar/zl_load'
-		fi
-		{
-			echo colors "$NormalColors"
-			echo label "$(date '+%a, %b %d %H:%M')"
-		} | wmiir create '/rbar/zz_clock'
+		for func in "${StatusFuncs[@]}"; do
+			$func
+		done
 		sleep 2
 	done
 }
-
 StartupJobs+=(status_loop)
+
+update_clock() {
+	{
+		echo colors "$NormalColors"
+		echo label "$(date '+%a, %b %d %H:%M')"
+	} | wmiir create /rbar/zz_clock
+}
+StatusFuncs+=(update_clock)
+
+update_load() {
+	(( StatusLoad )) || return 0
+	{
+		read a b c _ </proc/loadavg
+		echo colors "$NormalColors"
+		echo label "$a $b $c"
+	} | wmiir create /rbar/zl_load
+}
+StatusFuncs+=(update_load)
 
 menu_SystemAction() {
 	menu_SystemAction=(
@@ -130,6 +138,7 @@ event_SystemAction() {
 
 Events["RightBarMouseDown zz_clock 3"]='wi_9menu SystemAction'
 
+. "$CONFDIR/wmiirc.battery"
 . "$CONFDIR/wmiirc.pulse"
 . "$CONFDIR/wmiirc.mpd"
 
@@ -363,6 +372,7 @@ event_Debug() {
 	case $cmd in
 		.|poke)		echo "Hello!";;
 		e|eval)		eval "$@";;
+		p)		declare -p "$@";;
 		ps)		wmiir setsid ps -f -o pgid,pid,comm,command -$MyPgrp;;
 		qr)		wmiir xwrite /event "WmiircExitRequest";;
 		qw)		wmiir xwrite /ctl "quit";;
@@ -395,52 +405,6 @@ event_Debug() {
 			echo -e "\e[1;33mUnknown debug command '$cmd'. Try 'help'\e[m";;
 	esac
 } >> "$XDG_RUNTIME_DIR/wmii.log" 2>&1
-
-status_battery() {
-	local FG=${NormalColors%% *}
-	local BG=${NormalColors#* }
-	local UFG=${UrgentColors%% *}
-	local UBG=${UrgentColors#* }
-
-	local level=$(</sys/class/power_supply/$Battery/capacity)
-	local status=$(</sys/class/power_supply/$Battery/status)
-
-	if [[ ${status,,} == "not charging" ]]; then
-		if (( level < 100 )); then
-			FG=$UFG BG=$UBG
-		else
-			status="charged"
-		fi
-	fi
-
-	case ${status,,} in
-		discharging)	local text="battery $level%";;
-		charging)	local text="charging $level%";;
-		*)		local text="${status,,} $level%";;
-	esac
-
-	local cur=$((level / 10))
-	local bar=$(gauge $cur 10)
-
-	{
-		if (( level >= 80 )); then
-			echo colors "$FG $BG"
-		elif (( level >= 65 )); then
-			echo colors "#bbbbbb $BG"
-		elif (( level >= 50 )); then
-			echo colors "#ffffff $BG"
-		elif (( level >= 35 )); then
-			echo colors "#ddbb44 $BG"
-		elif (( level >= 20 )); then
-			echo colors "#ffdd88 $BG"
-		elif (( level >= 10 )); then
-			echo colors "#ff3333 $BG"
-		else
-			echo colors "$UFG $UBG"
-		fi
-		echo label "$text [$bar]"
-	} | wmiir create "/rbar/zx_battery"
-}
 
 ### Start wmiirc
 
