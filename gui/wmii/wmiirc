@@ -177,12 +177,9 @@ event_Action() {
 	# Handler for events from Mod-a (wmii internal action menu)
 	local action="$1"; shift
 	case "$action" in
-		eval)
-			eval "$*";;
 		exec)
 			wmiir xwrite /ctl "exec $*";;
 		quit)
-			wmiir xwrite /event "Suicide"
 			wmiir xwrite /ctl "quit";;
 		rehash)
 			program_cache &;;
@@ -217,24 +214,9 @@ event() {
 	fi
 }
 
-event_WmiircStart() {
-	log "quitting: replaced by another wmiirc"
-	suicide
-}
-
-event_WmiircExitRequest() {
-	log "quitting: requested"
-	suicide
-}
-
-# tag events
-
 event_CreateTag() {
 	local tag=$1
-	printf "%s\n" \
-		"colors $WMII_NORMCOLORS" \
-		"label $tag" \
-	| wmiir create "/lbar/$tag"
+	printf "%s\n" "colors $WMII_NORMCOLORS" "label $tag" | wmiir create "/lbar/$tag"
 }
 
 event_DestroyTag() {
@@ -265,8 +247,6 @@ event_NotUrgentTag() {
 		event_UnfocusTag "$tag"
 	fi
 }
-
-# mouse events
 
 event_LeftBarMouseDown() {
 	local button=$1 tag=$2
@@ -475,7 +455,17 @@ event_Unresponsive() {
 	fi &
 }
 
-# synthetic action events
+# Synthetic events
+
+event_WmiircStart() {
+	log "quitting: replaced by another wmiirc"
+	exit_wmiirc
+}
+
+event_WmiircExitRequest() {
+	log "quitting: requested"
+	exit_wmiirc
+}
 
 menu_ClientAction() {
 	local client=$1
@@ -821,11 +811,11 @@ status_battery() {
 }
 
 ## wmiirc control functions
-# suicide()			kill own pgroup; handler for SIGINT/TERM/QUIT
+# exit_wmiirc()			kill own pgroup; handler for SIGINT/TERM/QUIT
 # restart_rc()			tell wmii to spawn a new wmiirc
 # restart_wmii()		tell wmii to re-exec self
 
-suicide() {
+exit_wmiirc() {
 	local pgrp=$(proctool getpgid)
 	log "\e[1;31mexiting:\e[m killing pgroup $pgrp"
 	trap - EXIT
@@ -848,7 +838,7 @@ restart_wmii() {
 
 unset SHLVL
 
-trap 'suicide' SIGINT SIGQUIT SIGTERM EXIT
+trap 'exit_wmiirc' SIGINT SIGQUIT SIGTERM EXIT
 
 pgrp=$(proctool getpgid)
 
