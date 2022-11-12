@@ -206,7 +206,6 @@ wi_9menu() {
 
 event() {
 	local event=$1; shift
-
 	case $event in
 		Key)
 			local keystroke=$1 key=${1##*-}
@@ -247,7 +246,7 @@ event() {
 			;;
 		Unresponsive)
 			local client=$1
-			event_Unresponsive "$@"
+			zenity_unresponsive "$@"
 			;;
 		# Bar events
 		LeftBarMouseDown | LeftBarClick)
@@ -275,13 +274,11 @@ event() {
 	esac
 }
 
-event_Unresponsive() {
+zenity_unresponsive() {
 	local client=$1
-
 	local label=$(wmiir read /client/$client/label)
 	local msg=$(printf "The following client is not responding:\n\n%s\n\nWhat would you like to do?" "$label")
 	local zenity=(zenity --question --text="$msg" --ok-label="Wait" --cancel-label="Kill")
-
 	if ! wihack -transient "$client" "${zenity[@]}"; then
 		wmiir xwrite "/client/$client/ctl" "slay"
 	fi &
@@ -291,11 +288,6 @@ event_Unresponsive() {
 
 event_WmiircStart() {
 	log "quitting: replaced by another wmiirc"
-	exit_wmiirc
-}
-
-event_WmiircExitRequest() {
-	log "quitting: requested"
 	exit_wmiirc
 }
 
@@ -370,39 +362,13 @@ event_Debug() {
 	printf "\033[34m($$)\033[m Debug: \033[1m%s\033[m\n" "$*"
 	local cmd=$1; shift
 	case $cmd in
-		.|poke)		echo "Hello!";;
-		e|eval)		eval "$@";;
-		p)		declare -p "$@";;
-		ps)		wmiir setsid ps -f -o pgid,pid,comm,command -$MyPgrp;;
-		qr)		wmiir xwrite /event "WmiircExitRequest";;
-		qw)		wmiir xwrite /ctl "quit";;
-		re)		restart_rc;;
-		rw)		wmiir xwrite /ctl "exec wmii";;
-		export|setenv)
-			local env=$*
-			if [[ $env == ?*=?* ]]; then
-				export "$env"
-			else
-				unset "${env%=}"
-			fi;;
-		?|help)
-			cat <<-!
-				Commands:
-				.   poke
-				c   ctl <ctl command>
-				e   eval <shell code>
-				p   ps
-				qr  quit wmiirc
-				qw  quit wmii
-				r   read <path>
-				re  restart only rc
-				rw  restart wmii
-				w   write <path> <data>
-				x   ixpc (wmiir)
-			!
-			;;
-		*)
-			echo -e "\e[1;33mUnknown debug command '$cmd'. Try 'help'\e[m";;
+		.|poke)	echo "Hello!";;
+		e|eval)	eval "$@";;
+		p)	declare -p "$@";;
+		ps)	wmiir setsid ps -f -o pgid,pid,comm,command -$MyPgrp;;
+		re)	restart_rc;;
+		rw)	wmiir xwrite /ctl "exec wmii";;
+		*)	echo -e "\e[1;33mUnknown debug command '$cmd'. Try 'help'\e[m";;
 	esac
 } >> "$XDG_RUNTIME_DIR/wmii.log" 2>&1
 
