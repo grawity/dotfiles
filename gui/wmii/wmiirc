@@ -345,24 +345,28 @@ bind_Key=(
 	$Mod-{f,q}
 	)
 
+declare -A keys=(
+	["$Mod-Return"]='spawn $WMII_TERM'
+	["$Mod-KP_Enter"]='spawn $WMII_TERM'
+	["$Mod-p"]='program_input'
+	["$Mod-a"]='action_input'
+)
+
+bind_Key+=("${!keys[@]}")
+
 event_Key() {
 	local keystroke=$1
 	local key=${keystroke##*-}
 
+	local bind=${keys["$keystroke"]}
+	if [[ $bind ]]; then
+		log "key $keystroke was bound to: '$bind'"
+		eval "$bind"
+		return
+	fi
+
 	case $keystroke in
-	$Mod-Return)
-		spawn $WMII_TERM;;
-	$Mod-KP_Enter)
-		spawn $WMII_TERM;;
-	$Mod-p)
-		program_input;;
-	$Mod-a)
-		action_input;;
-	Mod1-F2)
-		program_input;;
-
 	# focus movement
-
 	$Mod-h)
 		wmiir xwrite /tag/sel/ctl "select left";;
 	$Mod-j)
