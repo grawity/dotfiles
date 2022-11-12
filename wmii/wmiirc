@@ -420,7 +420,6 @@ menu_ClientAction() {
 		"info"
 		"$float"
 		"fullscreen"
-		"retag"
 	)
 }
 
@@ -468,18 +467,6 @@ event_ClientAction() {
 				--text="$msg" \
 				--ok-label="Cancel" --cancel-label="Disconnect" \
 				|| wmiir xwrite "/client/$client/ctl" "slay") &
-		;;
-	retag)
-		local label tags input
-		label="$(wmiir read "/client/$client/label")"
-		tags="$(wmiir read "/client/$client/tags")"
-		(input=$(wihack -transient "$client" \
-			zenity --entry --title="Retag" \
-			--text="Enter new tags for window:\n$client_label" \
-			--entry-text="$tags")
-		if [[ "$input" ]]; then
-			wmiir xwrite "/client/$client/tags" "${input// /+}"
-		fi) &
 		;;
 	esac
 }
