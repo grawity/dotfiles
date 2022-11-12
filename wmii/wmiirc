@@ -1,29 +1,31 @@
 #!/usr/bin/env bash
+# ~/.wmii/wmiirc -- wmii configuration
 
 NAMESPACE=$(wmiir namespace) || exit 1
 
-RC_PATH=$(readlink -f "$0")
-
-: ${WMII_CONFPATH:=${0%/*}}
-WMII_CONFDIR=${WMII_CONFPATH%%:*}
+CONFDIR="$HOME/.wmii"
 
 ### Configuration
 
 # Bar/border colors (text, background, border)
-WMII_NORMCOLORS="#888888 #222222 #333333"
-WMII_FOCUSCOLORS="#ffffff #285577 #4c7899"
-WMII_URGENTCOLORS="#ffffff #772828 #99784c"
-WMII_BACKGROUND="#333333"
-WMII_BAR="top"
-WMII_FONT="xft:Monaco:size=10"
-WMII_TERM="roxterm"
-
-declare -A Keys=()
+NormalColors="#888888 #222222 #333333"
+FocusColors="#ffffff #285577 #4c7899"
+UrgentColors="#ffffff #772828 #99784c"
+BackgroundColor="#333333"
 
 Mod="Mod4"
-Keys=(
-	["$Mod-Return"]='spawn $WMII_TERM'
-	["$Mod-KP_Enter"]='spawn $WMII_TERM'
+Font="xft:Monaco:size=10"
+BarPosition="top"
+Terminal="xterm"
+
+Battery=""
+StatusMpd=0
+StatusPulse=1
+StatusLoad=1
+
+declare -A Keys=(
+	["$Mod-Return"]='spawn $Terminal'
+	["$Mod-KP_Enter"]='spawn $Terminal'
 	["$Mod-p"]='program_input'
 	["$Mod-a"]='action_input'
 	["$Mod-h"]='wmiir xwrite /tag/sel/ctl "select left"'
@@ -66,13 +68,8 @@ Keys=(
 	["$Mod-Shift-q"]='wmiir xwrite /client/sel/ctl "kill"'
 )
 
-Battery=""
-StatusMpd=0
-StatusPulse=1
-StatusLoad=1
-
-if [[ -f "$WMII_CONFDIR/config" ]]; then
-	. "$WMII_CONFDIR/config"
+if [[ -f "$CONFDIR/config" ]]; then
+	. "$CONFDIR/config"
 fi
 
 ### Functions
@@ -92,8 +89,8 @@ startup() {
 		log "startup script was already ran"
 	else
 		log "running startup script"
-		if [[ -f "$WMII_CONFDIR/startup" ]]; then
-			. "$WMII_CONFDIR/startup"
+		if [[ -f "$CONFDIR/startup" ]]; then
+			. "$CONFDIR/startup"
 		fi
 		touch "$NAMESPACE/startup.done"
 	fi
@@ -186,7 +183,7 @@ client_pid() {
 
 program_input() {
 	{
-	local input=$(wimenu -h "$WMII_CONFDIR/history" -n 20 < "$NAMESPACE/programs.cache")
+	local input=$(wimenu -h "$CONFDIR/history" -n 20 < "$NAMESPACE/programs.cache")
 	if [[ $input ]]; then
 		eval spawn "$input"
 	fi
@@ -258,7 +255,7 @@ event() {
 
 event_CreateTag() {
 	local tag=$1
-	printf "%s\n" "colors $WMII_NORMCOLORS" "label $tag" | wmiir create "/lbar/$tag"
+	printf "%s\n" "colors $NormalColors" "label $tag" | wmiir create "/lbar/$tag"
 }
 
 event_DestroyTag() {
@@ -268,17 +265,17 @@ event_DestroyTag() {
 
 event_FocusTag() {
 	local tag=$1
-	echo "colors $WMII_FOCUSCOLORS" | wmiir write "/lbar/$tag"
+	echo "colors $FocusColors" | wmiir write "/lbar/$tag"
 }
 
 event_UnfocusTag() {
 	local tag=$1
-	echo "colors $WMII_NORMCOLORS" | wmiir write "/lbar/$tag"
+	echo "colors $NormalColors" | wmiir write "/lbar/$tag"
 }
 
 event_UrgentTag() {
 	local from=$1 tag=$2
-	echo "colors $WMII_URGENTCOLORS" | wmiir write "/lbar/$tag"
+	echo "colors $UrgentColors" | wmiir write "/lbar/$tag"
 }
 
 event_NotUrgentTag() {
@@ -595,12 +592,12 @@ statusloop() {
 		if (( StatusLoad )); then
 			{
 				read a b c _ </proc/loadavg
-				echo colors "$WMII_NORMCOLORS"
+				echo colors "$NormalColors"
 				echo label "$a $b $c"
 			} | wmiir create '/rbar/zl_load'
 		fi
 		{
-			echo colors "$WMII_NORMCOLORS"
+			echo colors "$NormalColors"
 			echo label "$(date '+%a, %b %d %H:%M')"
 		} | wmiir create '/rbar/zz_clock'
 		sleep 2
@@ -638,9 +635,9 @@ PAUSED=''
 
 status_mpd() {
 	local FG_PLAYING='#bbbbbb'
-	local FG_PAUSED=${WMII_NORMCOLORS%% *}
+	local FG_PAUSED=${NormalColors%% *}
 	local FG_STOPPED='#666666'
-	local BG=${WMII_NORMCOLORS#* }
+	local BG=${NormalColors#* }
 
 	{
 		if ! mpc >&/dev/null; then
@@ -660,8 +657,8 @@ status_mpd() {
 }
 
 status_volume() {
-	local FG=${WMII_NORMCOLORS%% *}
-	local BG=${WMII_NORMCOLORS#* }
+	local FG=${NormalColors%% *}
+	local BG=${NormalColors#* }
 
 	local volume=$(ponymix get-volume)
 	local text='volume'
@@ -692,10 +689,10 @@ status_volume() {
 }
 
 status_battery() {
-	local FG=${WMII_NORMCOLORS%% *}
-	local BG=${WMII_NORMCOLORS#* }
-	local UFG=${WMII_URGENTCOLORS%% *}
-	local UBG=${WMII_URGENTCOLORS#* }
+	local FG=${NormalColors%% *}
+	local BG=${NormalColors#* }
+	local UFG=${UrgentColors%% *}
+	local UBG=${UrgentColors#* }
 
 	local level=$(</sys/class/power_supply/$Battery/capacity)
 	local status=$(</sys/class/power_supply/$Battery/status)
@@ -752,8 +749,8 @@ exit_wmiirc() {
 }
 
 restart_rc() {
-	log "\e[33mrestarting wmiirc\e[m ($RC_PATH)"
-	wmiir xwrite /ctl "spawn \"$RC_PATH\""
+	log "\e[33mrestarting wmiirc\e[m"
+	wmiir xwrite /ctl "spawn \"$CONFDIR/wmiirc\""
 }
 
 restart_wmii() {
@@ -767,45 +764,41 @@ unset SHLVL
 
 trap 'exit_wmiirc' SIGINT SIGQUIT SIGTERM EXIT
 
-pgrp=$(proctool getpgid)
-
-log "\e[1;32mstarted:\e[m $0 (pgid=$pgrp)"
-
 wmiir xwrite /event "WmiircStart $0"
 
 wmiir write /ctl <<-!
-	bar on $WMII_BAR
+	bar on $BarPosition
 	border 3
-	font $WMII_FONT
+	font $Font
 	fontpad ${WMII_FONTPAD:-0 0 0 0}
-	focuscolors $WMII_FOCUSCOLORS
-	normcolors $WMII_NORMCOLORS
+	focuscolors $FocusColors
+	normcolors $NormalColors
 	grabmod $Mod
 !
 
-xsetroot -solid "$WMII_BACKGROUND"
+xsetroot -solid "$BackgroundColor"
 
-# Set group=0 to make new gnome-terminal windows open in the active tag, rather
-# than sticking to the client's previous tag.
-wmiir write '/rules' <<!
-	/^gnome-terminal-server:/ group=0
-	/^sonata:/ floating=on
-	/^xev:/ floating=on
-!
+if [[ -f "$CONFDIR/rules" ]]; then
+	wmiir write /rules < "$CONFDIR/rules"
+else
+	# Set group=0 to make new gnome-terminal windows open in the active
+	# tag, rather than sticking to the client's previous tag.
+	wmiir write /rules <<-!
+		/^gnome-terminal-server:/ group=0
+		/^sonata:/ floating=on
+		/^xev:/ floating=on
+	!
+fi
 
-wmiir write '/colrules' <<-!
-	/.*/ -> 62+38 # Golden Ratio
-!
+if [[ -f "$CONFDIR/colrules" ]]; then
+	wmiir write /colrules < "$CONFDIR/colrules"
+else
+	wmiir write /colrules <<-!
+		/.*/ -> 62+38 # Golden Ratio
+	!
+fi
 
 {
-	if [[ -f "$WMII_CONFDIR/rules" ]]; then
-		wmiir write /rules < "$WMII_CONFDIR/rules" &
-	fi
-
-	if [[ -f "$WMII_CONFDIR/colrules" ]]; then
-		wmiir write /colrules < "$WMII_CONFDIR/colrules" &
-	fi
-
 	printf '%s\n' "${!Keys[@]}" | wmiir write /keys
 
 	wmiir ls -p /lbar /rbar | xargs -r wmiir rm
@@ -813,21 +806,25 @@ wmiir write '/colrules' <<-!
 	current=$(this_tag)
 	tags | while read -r tag; do
 		if [[ "$tag" = "$current" ]]; then
-			echo colors "$WMII_FOCUSCOLORS"
+			echo colors "$FocusColors"
 			echo label "$tag"
 		else
-			echo colors "$WMII_NORMCOLORS"
+			echo colors "$NormalColors"
 			echo label "$tag"
 		fi | wmiir create "/lbar/$tag"
 	done
 
 	# Add an empty "separator" item
 	wmiir create '/rbar/!' </dev/null
-
-	program_cache &
-
-	startup
 } &
+
+pgrp=$(proctool getpgid)
+
+log "\e[1;32mstarted:\e[m $0 (pgid=$pgrp)"
+
+program_cache &
+
+startup &
 
 printf 'EventLoop' > /proc/self/comm
 
