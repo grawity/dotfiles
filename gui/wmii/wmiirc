@@ -794,13 +794,23 @@ status_volume() {
 status_battery() {
 	local FG=${WMII_NORMCOLORS%% *}
 	local BG=${WMII_NORMCOLORS#* }
+	local UFG=${WMII_URGENTCOLORS%% *}
+	local UBG=${WMII_URGENTCOLORS#* }
 
 	local level=$(</sys/class/power_supply/$Battery/capacity)
 	local status=$(</sys/class/power_supply/$Battery/status)
 
-	case $status in
-		Discharging)	local text="battery $level%";;
-		Charging)	local text="charging $level%";;
+	if [[ ${status,,} == "not charging" ]]; then
+		if (( level < 100 )); then
+			FG=$UFG BG=$UBG
+		else
+			status="charged"
+		fi
+	fi
+
+	case ${status,,} in
+		discharging)	local text="battery $level%";;
+		charging)	local text="charging $level%";;
 		*)		local text="${status,,} $level%";;
 	esac
 
@@ -818,8 +828,10 @@ status_battery() {
 			echo colors "#ddbb44 $BG"
 		elif (( level >= 20 )); then
 			echo colors "#ffdd88 $BG"
-		else
+		elif (( level >= 10 )); then
 			echo colors "#ff3333 $BG"
+		else
+			echo colors "$UFG $UBG"
 		fi
 		echo label "$text [$bar]"
 	} | wmiir create "/rbar/zx_battery"
