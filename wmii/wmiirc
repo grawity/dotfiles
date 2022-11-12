@@ -68,6 +68,8 @@ declare -A Keys=(
 	["$Mod-Shift-q"]='wmiir xwrite /client/sel/ctl "kill"'
 )
 
+declare -a StartupJobs=()
+
 if [[ -f "$CONFDIR/config" ]]; then
 	. "$CONFDIR/config"
 fi
@@ -77,8 +79,12 @@ fi
 startup() {
 	program_cache &
 	statusloop &
-	statusloop_mpd &
 	statusloop_vol &
+
+	for job in "${StartupJobs[@]}"; do
+		log "Running '$job &'"
+		$job &
+	done
 
 	if [[ "$NAMESPACE/startup.done" -nt "$NAMESPACE/wmii" ]]; then
 		log "startup script was already ran"
@@ -289,47 +295,33 @@ event_LeftBarDND() {
 
 event_RightBarMouseDown() {
 	local button=$1 item=$2
-	case $item in
-		mpc)
-			case $button in
-				3) wi_9menu MediaAction;;
-			esac
-			;;
-		zz_clock)
-			case $button in
-				3) wi_9menu SystemAction;;
-			esac
-			;;
-	esac
+	event RightBarMouseDown_$item "$@"
 }
 
 event_RightBarClick() {
 	local button=$1 item=$2
-	case $item in
-		mpc)
-			case $button in
-				1) mpc -q toggle || spawn mpd;;
-				2) ;;
-				3) ;;
-				4) mpc -q next;;
-				5) mpc -q prev;;
-			esac
-			;;
-		mpc-volume)
-			case $button in
-				1) mpc -q toggle || spawn mpd;;
-				2) ;;
-				3) ;;
-				4) ponymix increase 5;;
-				5) ponymix decrease 5;;
-			esac > /dev/null
-			;;
-		*)
-			case $button in
-				2) spawn lock-screen;;
-			esac
-			;;
+	case $button in
+		2) spawn lock-screen;;
+		*) event RightBarClick_$item "$@";;
 	esac
+}
+
+event_RightBarMouseDown_zz_clock() {
+	local button=$1 item=$2
+	case $button in
+		3) wi_9menu SystemAction;;
+	esac
+}
+
+event_RightBarClick_mpc-volume() {
+	local button=$1 item=$2
+	case $button in
+		1) mpc -q toggle || spawn mpd;;
+		2) ;;
+		3) ;;
+		4) ponymix increase 5;;
+		5) ponymix decrease 5;;
+	esac > /dev/null
 }
 
 event_ClientMouseDown() {
@@ -445,34 +437,6 @@ event_ClientAction() {
 	esac
 }
 
-menu_MediaAction() {
-	local play=$(mpc | sed -rn 's/^\[([[:alpha:]]+)\].*/\1/p')
-
-	if [[ $play == "playing" ]]; then
-		play='pause'
-	else
-		play='play'
-	fi
-
-	menu_MediaAction=(
-		"sonata"
-		"prev"
-		"next"
-		"$play"
-	)
-	default_MediaAction="$play"
-}
-
-event_MediaAction() {
-	local action=$1
-	case $action in
-		"play"|"pause"|"next"|"prev")
-			mpc -q $action;;
-		"sonata")
-			spawn sonata;;
-	esac
-}
-
 menu_SystemAction() {
 	menu_SystemAction=(
 		"noop"
@@ -574,15 +538,6 @@ statusloop() {
 	done
 }
 
-statusloop_mpd() {
-	(( StatusMpd )) || return
-	printf "StatusMpd" > /proc/self/comm
-	while true; do
-		status_mpd
-		mpc idle >&/dev/null || sleep 5
-	done
-}
-
 statusloop_vol() {
 	(( StatusPulse )) || return
 	printf "StatusPulse" > /proc/self/comm
@@ -592,38 +547,6 @@ statusloop_vol() {
 			status_volume
 		fi
 	done
-}
-
-#LAYING=''
-PLAYING='♫'
-#LAYING='▸'
-
-#AUSED='(paused)'
-#AUSED='▷'
-#AUSED='▹'
-PAUSED=''
-
-status_mpd() {
-	local FG_PLAYING='#bbbbbb'
-	local FG_PAUSED=${NormalColors%% *}
-	local FG_STOPPED='#666666'
-	local BG=${NormalColors#* }
-
-	{
-		if ! mpc >&/dev/null; then
-			echo colors "$FG_STOPPED $BG"
-			echo label "(mpd not running)"
-		elif mpc | grep -qs '^\[playing\]'; then
-			echo colors "$FG_PLAYING $BG"
-			echo label $PLAYING "$(mpc current)"
-		elif mpc | grep -qs '^\[paused\]'; then
-			echo colors "$FG_PAUSED $BG"
-			echo label $PAUSED "$(mpc current)"
-		else
-			echo colors "$FG_STOPPED $BG"
-			echo label "(stopped)"
-		fi
-	} | wmiir create "/rbar/mpc"
 }
 
 status_volume() {
