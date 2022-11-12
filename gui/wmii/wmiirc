@@ -21,6 +21,8 @@ WMII_TERM="roxterm"
 Mod="Mod4"
 Battery=""
 StatusMpd=0
+StatusPulse=1
+StatusLoad=1
 
 if [[ -f "$WMII_CONFDIR/config" ]]; then
 	. "$WMII_CONFDIR/config"
@@ -679,11 +681,13 @@ statusloop() {
 		if [[ $Battery ]]; then
 			status_battery
 		fi
-		{
-			read a b c _ </proc/loadavg
-			echo colors "$WMII_NORMCOLORS"
-			echo label "$a $b $c"
-		} | wmiir create '/rbar/zl_load'
+		if (( StatusLoad )); then
+			{
+				read a b c _ </proc/loadavg
+				echo colors "$WMII_NORMCOLORS"
+				echo label "$a $b $c"
+			} | wmiir create '/rbar/zl_load'
+		fi
 		{
 			echo colors "$WMII_NORMCOLORS"
 			echo label "$(date '+%a, %b %d %H:%M')"
@@ -694,7 +698,6 @@ statusloop() {
 
 statusloop_mpd() {
 	(( StatusMpd )) || return
-
 	printf "StatusMpd" > /proc/self/comm
 	while true; do
 		status_mpd
@@ -703,6 +706,7 @@ statusloop_mpd() {
 }
 
 statusloop_vol() {
+	(( StatusPulse )) || return
 	printf "StatusPulse" > /proc/self/comm
 	status_volume
 	stdbuf -o0 pactl subscribe | while read -r line; do
