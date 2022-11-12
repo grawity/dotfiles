@@ -35,7 +35,6 @@ fi
 # |htmlescape()		convert special HTML characters to HTML entities
 
 startup() {
-	#witray -s 24 &			echo "++ witray[$!]"
 	statusloop &			echo "++ statusloop[$!]"
 	statusloop_mpd &		echo "++ statusloop_mpd[$!]"
 	statusloop_vol &		echo "++ statusloop_vol[$!]"
@@ -53,10 +52,8 @@ startup() {
 
 spawn() {
 	log "launching: $*"
-	(cd ~
-	exec wmiir setsid -f "$@" </dev/null >&/dev/null)
+	(cd && exec wmiir setsid -f "$@" </dev/null >&/dev/null)
 }
-
 
 log() {
 	echo -e "wmiirc[$$]: $*"
@@ -238,10 +235,10 @@ event_Shutdown() {
 
 event_CreateTag() {
 	local tag=$1
-	{
-	echo colors "$WMII_NORMCOLORS"
-	echo label "$tag"
-	} | wmiir create "/lbar/$tag"
+	printf "%s\n" \
+		"colors $WMII_NORMCOLORS" \
+		"label $tag" \
+	| wmiir create "/lbar/$tag"
 }
 
 event_DestroyTag() {
@@ -251,26 +248,17 @@ event_DestroyTag() {
 
 event_FocusTag() {
 	local tag=$1
-	{
-	echo colors $WMII_FOCUSCOLORS
-	echo label $tag
-	} | wmiir write "/lbar/$tag"
+	echo "colors $WMII_FOCUSCOLORS" | wmiir write "/lbar/$tag"
 }
 
 event_UnfocusTag() {
 	local tag=$1
-	{
-	echo colors $WMII_NORMCOLORS
-	echo label $tag
-	} | wmiir write "/lbar/$tag"
+	echo "colors $WMII_NORMCOLORS" | wmiir write "/lbar/$tag"
 }
 
 event_UrgentTag() {
 	local from=$1 tag=$2
-	{
-	echo colors $WMII_URGENTCOLORS
-	echo label $tag
-	} | wmiir write "/lbar/$tag"
+	echo "colors $WMII_URGENTCOLORS" | wmiir write "/lbar/$tag"
 }
 
 event_NotUrgentTag() {
@@ -298,7 +286,6 @@ event_LeftBarMouseDown() {
 event_LeftBarClick() {
 	local button=$1 tag=$2
 	case $button in
-		#1) wmiir xwrite /ctl "view $tag";;
 		2) kill_tag "$tag";;
 	esac
 }
@@ -601,20 +588,23 @@ event_MediaAction() {
 
 menu_SystemAction() {
 	menu_SystemAction=(
+		"noop"
+		"reload wmiirc"
 		"shutdown"
 		"reboot"
-		"noop"
 	)
 	default_SystemAction="noop"
 }
 
 event_SystemAction() {
-	local action=$1
+	local action=$*
 	case $action in
 		"shutdown")
 			systemctl poweroff;;
 		"reboot")
 			systemctl reboot;;
+		"reload wmiirc")
+			restart_rc;;
 	esac
 }
 
@@ -624,38 +614,38 @@ event_Debug() {
 	printf "\033[34m($$)\033[m Debug: \033[1m%s\033[m\n" "$*"
 	local cmd=$1; shift
 	case $cmd in
-		"."|"poke")
+		.|poke)
 			echo "Hello!";;
-		"addrule")
+		addrule)
 			{ wmiir read /rules; echo "$*"; } | wmiir write /rules;;
-		"ctl")
+		ctl)
 			wmiir xwrite /ctl "$@";;
-		"eval")
+		e|eval)
 			eval "$@";;
-		"env"|"export"|"setenv")
+		env|export|setenv)
 			local env=$*
 			if [[ $env == ?*=?* ]]; then
 				export "$env"
 			else
 				unset "${env%=}"
 			fi;;
-		"ps")
+		ps)
 			wmiir setsid ps -f -o pgid,pid,comm,command -$pgrp;;
-		"r"|"read")
+		r|read)
 			wmiir read "$@";;
-		"qr")
+		qr)
 			wmiir xwrite /event "Shutdown";;
-		"qw")
+		qw)
 			wmiir xwrite /ctl "quit";;
-		"re"|"restart")
+		re|restart)
 			restart_rc;;
-		"rw")
+		rw)
 			restart_wmii;;
-		"x"|"ixp"|"wmiir")
+		x|ixp|wmiir)
 			wmiir "$@";;
-		"w"|"write")
+		w|write)
 			wmiir xwrite "$@";;
-		"?"|"help")
+		?|help)
 			cat <<-!
 				Commands:
 				.   poke
