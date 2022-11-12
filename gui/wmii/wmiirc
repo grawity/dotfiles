@@ -37,9 +37,9 @@ fi
 # |htmlescape()		convert special HTML characters to HTML entities
 
 startup() {
-	statusloop &			echo "++ statusloop[$!]"
-	statusloop_mpd &		echo "++ statusloop_mpd[$!]"
-	statusloop_vol &		echo "++ statusloop_vol[$!]"
+	statusloop &
+	statusloop_mpd &
+	statusloop_vol &
 
 	if [[ "$NAMESPACE/startup.done" -nt "$NAMESPACE/wmii" ]]; then
 		log "startup script was already ran"
@@ -157,43 +157,41 @@ program_cache() {
 }
 
 action_input() {
+	# Handler for Mod-a (display wmii internal action menu)
 	local actions=(
+		"wmiirc"
 		"quit"
-		"rc"
-		"exec wmii"
 		"exec"
+		"exec wmii"
 		"rehash"
 		"shutdown"
 		"reboot"
-		)
-
-	{
-	printf '%s\n' "${actions[@]}" | wimenu -p "action:" \
-		| sed 's/^/Action /' | wmiir write /event
-	} &
+	)
+	printf '%s\n' "${actions[@]}" \
+		| wimenu -p "action:" \
+		| sed 's/^/Action /' \
+		| wmiir write /event &
 }
 
 event_Action() {
+	# Handler for events from Mod-a (wmii internal action menu)
 	local action="$1"; shift
 	case "$action" in
-	ctl)
-		wmiir xwrite /ctl "$*";;
-	eval)
-		eval "$*";;
-	exec)
-		wmiir xwrite /ctl "exec $*";;
-	quit)
-		wmiir xwrite /event "Suicide"
-		wmiir xwrite /ctl "quit"
-		;;
-	rehash)
-		program_cache &;;
-	rc)
-		restart_rc;;
-	reboot)
-		systemctl reboot;;
-	shutdown)
-		systemctl poweroff;;
+		eval)
+			eval "$*";;
+		exec)
+			wmiir xwrite /ctl "exec $*";;
+		quit)
+			wmiir xwrite /event "Suicide"
+			wmiir xwrite /ctl "quit";;
+		rehash)
+			program_cache &;;
+		wmiirc)
+			restart_rc;;
+		reboot)
+			systemctl reboot;;
+		shutdown)
+			systemctl poweroff;;
 	esac
 }
 
@@ -214,21 +212,17 @@ wi_9menu() {
 
 event() {
 	local event=$1; shift
-
 	if [[ $(type -t "event_$event") == function ]]; then
 		"event_$event" "$@"
-		return
 	fi
 }
 
-# mainloop events
-
-event_Start() {
+event_WmiircStart() {
 	log "quitting: replaced by another wmiirc"
 	suicide
 }
 
-event_Shutdown() {
+event_WmiircExitRequest() {
 	log "quitting: requested"
 	suicide
 }
@@ -636,7 +630,7 @@ event_Debug() {
 		r|read)
 			wmiir read "$@";;
 		qr)
-			wmiir xwrite /event "Shutdown";;
+			wmiir xwrite /event "WmiircExitRequest";;
 		qw)
 			wmiir xwrite /ctl "quit";;
 		re|restart)
@@ -860,7 +854,7 @@ pgrp=$(proctool getpgid)
 
 log "\e[1;32mstarted:\e[m $0 (pgid=$pgrp)"
 
-wmiir xwrite /event "Start $0"
+wmiir xwrite /event "WmiircStart $0"
 
 wmiir write /ctl <<-!
 	bar on $WMII_BAR
@@ -887,11 +881,13 @@ wmiir write '/colrules' <<-!
 !
 
 {
-	[[ -f "$WMII_CONFDIR/rules" ]] &&
-		wmiir write /rules <"$WMII_CONFDIR/rules"
+	if [[ -f "$WMII_CONFDIR/rules" ]]; then
+		wmiir write /rules < "$WMII_CONFDIR/rules" &
+	fi
 
-	[[ -f "$WMII_CONFDIR/colrules" ]] &&
-		wmiir write /colrules <"$WMII_CONFDIR/colrules"
+	if [[ -f "$WMII_CONFDIR/colrules" ]]; then
+		wmiir write /colrules < "$WMII_CONFDIR/colrules" &
+	fi
 
 	printf '%s\n' "${bind_Key[@]}" | wmiir write /keys
 
@@ -908,6 +904,7 @@ wmiir write '/colrules' <<-!
 		fi | wmiir create "/lbar/$tag"
 	done
 
+	# Add an empty "separator" item
 	wmiir create '/rbar/!' </dev/null
 
 	program_cache &
