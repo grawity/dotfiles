@@ -46,23 +46,10 @@ StartupJobs+=(mpd_status_loop)
 
 # Handle mouse events
 
-event_RightBarMouseDown_mpd_status() {
-	local button=$1 item=$2
-	case $button in
-		3) wi_9menu MediaAction;;
-	esac
-}
-
-event_RightBarClick_mpd_status() {
-	local button=$1 item=$2
-	case $button in
-		1) mpc -q toggle || spawn mpd;;
-		2) ;;
-		3) ;;
-		4) mpc -q next;;
-		5) mpc -q prev;;
-	esac
-}
+Events["RightBarClick mpd_status 1"]='mpc -q toggle || spawn mpd'
+Events["RightBarMouseDown mpd_status 3"]='wi_9menu MediaAction'
+Events["RightBarClick mpd_status 4"]='mpc -q next'
+Events["RightBarClick mpd_status 5"]='mpc -q prev'
 
 menu_MediaAction() {
 	local play=$(mpc | sed -rn 's/^\[([[:alpha:]]+)\].*/\1/p')

@@ -68,7 +68,12 @@ declare -A Keys=(
 	["$Mod-Shift-q"]='wmiir xwrite /client/sel/ctl "kill"'
 )
 
-declare -A Events=()
+declare -A Events=(
+	["LeftBarMouseDown 1"]='wmiir xwrite /ctl "view $tag"'
+	["LeftBarMouseDown 4"]='wmiir xwrite /ctl "view $(prev_tag)"'
+	["LeftBarMouseDown 5"]='wmiir xwrite /ctl "view $(next_tag)"'
+	["ClientMouseDown 3"]='wi_9menu ClientAction "$client"'
+)
 
 declare -a StartupJobs=()
 
@@ -98,77 +103,37 @@ status_loop() {
 		sleep 2
 	done
 }
+
 StartupJobs+=(status_loop)
+
+menu_SystemAction() {
+	menu_SystemAction=(
+		"noop"
+		"reload wmiirc"
+		"shutdown"
+		"reboot"
+	)
+	default_SystemAction="noop"
+}
+
+event_SystemAction() {
+	local action=$*
+	case $action in
+		"shutdown")
+			systemctl poweroff;;
+		"reboot")
+			systemctl reboot;;
+		"reload wmiirc")
+			restart_rc;;
+	esac
+}
+
+Events["RightBarMouseDown zz_clock 3"]='wi_9menu SystemAction'
 
 . "$CONFDIR/wmiirc.pulse"
 . "$CONFDIR/wmiirc.mpd"
 
 ### Functions
-
-spawn() {
-	log "launching: $*"
-	(cd && exec wmiir setsid -f "$@" </dev/null >&/dev/null)
-}
-
-log() {
-	echo -e "wmiirc[$$]: $*"
-	echo -e "\033[34m($$)\033[m $*" >> "$XDG_RUNTIME_DIR/wmii.log"
-}
-
-gauge() {
-	local chars='# '
-	local value=$1 max=$2 str="" len=0
-	while (( len++ < value )); do
-		str+=${chars:0:1}
-	done
-	while (( len++ <= max )); do
-		str+=${chars:1:1}
-	done
-	echo "$str"
-}
-
-zenityescape() {
-	sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g'
-}
-
-tags() {
-	wmiir ls /tag | sed 's|/$||; /^sel$/d'
-}
-
-this_tag() {
-	wmiir read /tag/sel/ctl | sed '1q'
-}
-
-next_tag() {
-	tags | strtool nextw "$(this_tag)"
-}
-
-prev_tag() {
-	tags | strtool prevw "$(this_tag)"
-}
-
-kill_tag() {
-	local tag=$1
-	wmiir read "/tag/$tag/index" |
-	awk '!/^#/ {print $2}' | while read client; do
-		local tags=$(wmiir read "/client/$client/tags")
-		if [[ "$tags" == "$tag" ]]
-			then wmiir xwrite "/client/$client/ctl" "kill"
-			else wmiir xwrite "/client/$client/ctl" "tags -$tag"
-		fi
-	done
-	if [[ $tag == "$(this_tag)" ]]; then
-		wmiir xwrite "/ctl" "view $(next_tag)"
-	fi
-}
-
-this_client() {
-	wmiir read /client/sel/ctl | sed '1q'
-}
-
-client_pid() {
-	wmiir read "/client/$1/ctl" | awk '$1 == "pid" {print $2; exit} END {exit 1}'
-}
 
 program_input() {
 	# Handler for Mod-p (display program list)
@@ -205,20 +170,13 @@ event_Action() {
 	# Handler for synthetic events from Mod-a
 	local action=$1; shift
 	case $action in
-		exec)
-			wmiir xwrite /ctl "exec $*";;
-		quit)
-			wmiir xwrite /ctl "quit";;
-		rehash)
-			program_cache &;;
-		wmiirc)
-			restart_rc;;
-		reboot)
-			systemctl reboot;;
-		shutdown)
-			systemctl poweroff;;
-		*)
-			log "Unhandled Mod-a input '$action $*'";;
+		exec)		wmiir xwrite /ctl "exec $*";;
+		quit)		wmiir xwrite /ctl "quit";;
+		rehash)		program_cache &;;
+		wmiirc)		restart_rc;;
+		reboot)		systemctl reboot;;
+		shutdown)	systemctl poweroff;;
+		*)		log "Unhandled Mod-a input '$action $*'";;
 	esac
 }
 
@@ -239,122 +197,83 @@ wi_9menu() {
 
 event() {
 	local event=$1; shift
-	local handler="event_$event"
-	if [[ $(type -t $handler) == function ]]; then
-		$handler "$@"
-	fi
-}
 
-event_CreateTag() {
-	local tag=$1
-	printf "%s\n" "colors $NormalColors" "label $tag" | wmiir create "/lbar/$tag"
-}
-
-event_DestroyTag() {
-	local tag=$1
-	wmiir remove "/lbar/$tag"
-}
-
-event_FocusTag() {
-	local tag=$1
-	echo "colors $FocusColors" | wmiir write "/lbar/$tag"
-}
-
-event_UnfocusTag() {
-	local tag=$1
-	echo "colors $NormalColors" | wmiir write "/lbar/$tag"
-}
-
-event_UrgentTag() {
-	local from=$1 tag=$2
-	echo "colors $UrgentColors" | wmiir write "/lbar/$tag"
-}
-
-event_NotUrgentTag() {
-	local from=$1 tag=$2
-	if [[ $tag = "$(this_tag)" ]]; then
-		event_FocusTag "$tag"
-	else
-		event_UnfocusTag "$tag"
-	fi
-}
-
-event_LeftBarMouseDown() {
-	local button=$1 tag=$2
-	case $button in
-		1) wmiir xwrite /ctl "view $tag";;
-		2) ;;
-		3) ;;
-		4) wmiir xwrite /ctl "view $(prev_tag)";;
-		5) wmiir xwrite /ctl "view $(next_tag)";;
+	case $event in
+		Key)
+			local keystroke=$1 key=${1##*-}
+			eval "${Keys["$keystroke"]}"
+			;;
+		# Tag events
+		CreateTag)
+			local tag=$1
+			printf "%s\n" "colors $NormalColors" "label $tag" | wmiir create /lbar/"$tag"
+			;;
+		DestroyTag)
+			local tag=$1
+			wmiir remove /lbar/"$tag"
+			;;
+		FocusTag)
+			local tag=$1
+			echo "colors $FocusColors" | wmiir write /lbar/"$tag"
+			;;
+		UnfocusTag)
+			local tag=$1
+			echo "colors $NormalColors" | wmiir write /lbar/"$tag"
+			;;
+		UrgentTag)
+			local from=$1 tag=$2
+			echo "colors $UrgentColors" | wmiir write /lbar/"$tag"
+			;;
+		NotUrgentTag)
+			local from=$1 tag=$2
+			if [[ $tag == "$(this_tag)" ]]; then
+				event FocusTag "$tag"
+			else
+				event UnfocusTag "$tag"
+			fi
+			;;
+		# Client events
+		Urgent)
+			local client=$1 from=$2
+			;;
+		Unresponsive)
+			local client=$1
+			event_Unresponsive "$@"
+			;;
+		# Bar events
+		LeftBarMouseDown | LeftBarClick)
+			local button=$1 tag=$2
+			eval "${Events["$event $button"]}"
+			;;
+		LeftBarDND)
+			local button=$1 tag=$2
+			wmiir xwrite /ctl "view $tag"
+			;;
+		RightBarMouseDown | RightBarClick)
+			local button=$1 item=$2
+			eval "${Events["$event $item $button"]}"
+			;;
+		ClientMouseDown | ClientClick)
+			local client=$1 button=$2
+			eval "${Events["$event $button"]}"
+			;;
+		# Custom/synthetic events
+		*)
+			local handler="event_$event"
+			if [[ $(type -t $handler) == function ]]; then
+				$handler "$@"
+			fi
 	esac
-}
-
-event_LeftBarClick() {
-	local button=$1 tag=$2
-	case $button in
-		2) kill_tag "$tag";;
-	esac
-}
-
-event_LeftBarDND() {
-	local button=$1 tag=$2
-	wmiir xwrite /ctl "view $tag"
-}
-
-event_RightBarMouseDown() {
-	local button=$1 item=$2
-	event RightBarMouseDown_$item "$@"
-}
-
-event_RightBarClick() {
-	local button=$1 item=$2
-	case $button in
-		2) spawn lock-screen;;
-		*) event RightBarClick_$item "$@";;
-	esac
-}
-
-event_RightBarMouseDown_zz_clock() {
-	local button=$1 item=$2
-	case $button in
-		3) wi_9menu SystemAction;;
-	esac
-}
-
-event_ClientMouseDown() {
-	local client=$1 button=$2
-	case $button in
-		3) wi_9menu ClientAction "$client";;
-	esac
-}
-
-event_ClientClick() {
-	local client=$1 button=$2
-	case $button in
-		2) wmiir xwrite "/client/$client/ctl" "kill";;
-	esac
-}
-
-event_Key() {
-	local keystroke=$1
-	local key=${keystroke##*-}
-	local bind=${Keys["$keystroke"]}
-	if [[ $bind ]]; then
-		eval "$bind"
-	else
-		log "key $keystroke has no handler"
-	fi
 }
 
 event_Unresponsive() {
 	local client=$1
-	local msg=$(printf "The following client is not responding:\n\n%s\n\nWhat would you like to do?" \
-				"$(wmiir read "/client/$client/label")")
 
-	if ! wihack -transient "$client" zenity --question --text="$msg" \
-		--ok-label="Wait" --cancel-label="Kill"
-	then
+	local label=$(wmiir read /client/$client/label)
+	local msg=$(printf "The following client is not responding:\n\n%s\n\nWhat would you like to do?" "$label")
+	local zenity=(zenity --question --text="$msg" --ok-label="Wait" --cancel-label="Kill")
+
+	if ! wihack -transient "$client" "${zenity[@]}"; then
 		wmiir xwrite "/client/$client/ctl" "slay"
 	fi &
 }
@@ -369,6 +288,46 @@ event_WmiircStart() {
 event_WmiircExitRequest() {
 	log "quitting: requested"
 	exit_wmiirc
+}
+
+zenity_client_info() {
+	local client=$1
+	{
+		local props=$(wmiir read /client/$client/props)
+		IFS=":" read winst wclass wlabel <<< "$props"
+		echo -e "Instance:\t$winst"
+		echo -e "Class:\t$wclass"
+		echo -e "Label:\t$wlabel"
+		local pid=$(client_pid $client)
+		if [[ $pid ]]
+			then echo -e "Process:\t($pid) $(ps -o 'cmd=' $pid)"
+			else echo -e "Process:\tunknown"
+		fi
+		echo "Control:"
+		wmiir read /client/$client/ctl | sed 's/^/\t/'
+		echo "Properties:"
+		wmiir read /client/$client/props | sed 's/^/\t/'
+	} | wmiir setsid -f wihack -transient "$client" \
+		zenity --text-info --title="Client $client"
+}
+
+zenity_kill_client() {
+	local client=$1
+	local label=$(wmiir read "/client/$client/label" | zenityescape)
+	local pid=$(client_pid "$client")
+	local process= msg=
+	if [[ $pid ]]
+		then process="<b>$(ps -o 'cmd=' $pid | zenityescape)</b> (PID $pid)"
+		else process="<i>unknown</i>"
+	fi
+	msg="Do you really want to disconnect the process that this window belongs to?"
+	msg+="\n\nWindow:\t${client_label}\nProcess:\t${process}"
+	(wihack -transient "$client" \
+			zenity --question \
+			--title="Disconnect process" \
+			--text="$msg" \
+			--ok-label="Cancel" --cancel-label="Disconnect" \
+			|| wmiir xwrite "/client/$client/ctl" "slay") &
 }
 
 menu_ClientAction() {
@@ -390,110 +349,32 @@ menu_ClientAction() {
 event_ClientAction() {
 	local client=$1 action=$2
 	case $action in
-	close)
-		wmiir xwrite "/client/$client/ctl" "kill";;
-	float|unfloat)
-		wmiir xwrite "/tag/sel/ctl" "send $client toggle";;
-	fullscreen)
-		wmiir xwrite "/client/$client/ctl" "fullscreen on";;
-	info)
-		local pid=$(client_pid "$client")
-		wmiir read "/client/$client/props" |
-		{
-			IFS=':' read winst wclass wlabel
-			echo -e "Instance:\t$winst"
-			echo -e "Class:\t$wclass"
-			echo -e "Label:\t$wlabel"
-			if [[ $pid ]]
-				then echo -e "Process:\t($pid) $(ps -o 'cmd=' $pid)"
-				else echo -e "Process:\tunknown"
-			fi
-			echo "Control:"
-			wmiir read "/client/$client/ctl" | sed 's/^/\t/'
-			echo "Properties:"
-			wmiir read "/client/$client/props" | sed 's/^/\t/'
-		} | wmiir setsid -f wihack -transient "$client" \
-			zenity --text-info --title="Client $client"
-		;;
-	kill)
-		local label=$(wmiir read "/client/$client/label" | zenityescape)
-		local pid=$(client_pid "$client")
-		local process= msg=
-		if [[ $pid ]]
-			then process="<b>$(ps -o 'cmd=' $pid | zenityescape)</b> (PID $pid)"
-			else process="<i>unknown</i>"
-		fi
-		msg="Do you really want to disconnect the process that this window belongs to?"
-		msg+="\n\nWindow:\t${client_label}\nProcess:\t${process}"
-		(wihack -transient "$client" \
-				zenity --question \
-				--title="Disconnect process" \
-				--text="$msg" \
-				--ok-label="Cancel" --cancel-label="Disconnect" \
-				|| wmiir xwrite "/client/$client/ctl" "slay") &
-		;;
+		close)		wmiir xwrite /client/$client/ctl "kill";;
+		fullscreen)	wmiir xwrite /client/$client/ctl "fullscreen on";;
+		float|unfloat)	wmiir xwrite /tag/sel/ctl "send $client toggle";;
+		info)		zenity_client_info "$client";;
+		kill)		zenity_kill_client "$client";;
 	esac
 }
-
-menu_SystemAction() {
-	menu_SystemAction=(
-		"noop"
-		"reload wmiirc"
-		"shutdown"
-		"reboot"
-	)
-	default_SystemAction="noop"
-}
-
-event_SystemAction() {
-	local action=$*
-	case $action in
-		"shutdown")
-			systemctl poweroff;;
-		"reboot")
-			systemctl reboot;;
-		"reload wmiirc")
-			restart_rc;;
-	esac
-}
-
-# debug thing
 
 event_Debug() {
 	printf "\033[34m($$)\033[m Debug: \033[1m%s\033[m\n" "$*"
 	local cmd=$1; shift
 	case $cmd in
-		.|poke)
-			echo "Hello!";;
-		addrule)
-			{ wmiir read /rules; echo "$*"; } | wmiir write /rules;;
-		ctl)
-			wmiir xwrite /ctl "$@";;
-		e|eval)
-			eval "$@";;
-		env|export|setenv)
+		.|poke)		echo "Hello!";;
+		e|eval)		eval "$@";;
+		ps)		wmiir setsid ps -f -o pgid,pid,comm,command -$MyPgrp;;
+		qr)		wmiir xwrite /event "WmiircExitRequest";;
+		qw)		wmiir xwrite /ctl "quit";;
+		re)		restart_rc;;
+		rw)		wmiir xwrite /ctl "exec wmii";;
+		export|setenv)
 			local env=$*
 			if [[ $env == ?*=?* ]]; then
 				export "$env"
 			else
 				unset "${env%=}"
 			fi;;
-		ps)
-			wmiir setsid ps -f -o pgid,pid,comm,command -$MyPgrp;;
-		r|read)
-			wmiir read "$@";;
-		qr)
-			wmiir xwrite /event "WmiircExitRequest";;
-		qw)
-			wmiir xwrite /ctl "quit";;
-		re|restart)
-			restart_rc;;
-		rw)
-			restart_wmii;;
-		x|ixp|wmiir)
-			wmiir "$@";;
-		w|write)
-			wmiir xwrite "$@";;
 		?|help)
 			cat <<-!
 				Commands:
@@ -561,6 +442,8 @@ status_battery() {
 	} | wmiir create "/rbar/zx_battery"
 }
 
+### Start wmiirc
+
 exit_wmiirc() {
 	log "\e[1;31mexiting:\e[m killing pgroup"
 	trap - EXIT
@@ -570,16 +453,74 @@ exit_wmiirc() {
 }
 
 restart_rc() {
-	log "\e[33mrestarting wmiirc\e[m"
+	log "Starting new wmiirc"
 	wmiir xwrite /ctl "spawn \"$CONFDIR/wmiirc\""
 }
 
-restart_wmii() {
-	log "\e[33mrestarting wmii\e[m"
-	wmiir xwrite /ctl "exec wmii"
+spawn() {
+	log "Spawning '$*'"
+	(cd && exec wmiir setsid -f "$@" </dev/null >&/dev/null)
 }
 
-### Start wmiirc
+log() {
+	echo -e "wmiirc[$$]: $*"
+	echo -e "\033[34m($$)\033[m $*" >> "$XDG_RUNTIME_DIR/wmii.log"
+}
+
+gauge() {
+	local chars='# '
+	local value=$1 max=$2 str="" len=0
+	while (( len++ < value )); do
+		str+=${chars:0:1}
+	done
+	while (( len++ <= max )); do
+		str+=${chars:1:1}
+	done
+	echo "$str"
+}
+
+zenityescape() {
+	sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g'
+}
+
+tags() {
+	wmiir ls /tag | sed 's|/$||; /^sel$/d'
+}
+
+this_tag() {
+	wmiir read /tag/sel/ctl | sed '1q'
+}
+
+next_tag() {
+	tags | strtool nextw "$(this_tag)"
+}
+
+prev_tag() {
+	tags | strtool prevw "$(this_tag)"
+}
+
+kill_tag() {
+	local tag=$1
+	wmiir read "/tag/$tag/index" |
+	awk '!/^#/ {print $2}' | while read client; do
+		local tags=$(wmiir read "/client/$client/tags")
+		if [[ "$tags" == "$tag" ]]
+			then wmiir xwrite "/client/$client/ctl" "kill"
+			else wmiir xwrite "/client/$client/ctl" "tags -$tag"
+		fi
+	done
+	if [[ $tag == "$(this_tag)" ]]; then
+		wmiir xwrite "/ctl" "view $(next_tag)"
+	fi
+}
+
+this_client() {
+	wmiir read /client/sel/ctl | sed '1q'
+}
+
+client_pid() {
+	wmiir read "/client/$1/ctl" | awk '$1 == "pid" {print $2; exit} END {exit 1}'
+}
 
 InitBars() {
 	local current=$(this_tag)

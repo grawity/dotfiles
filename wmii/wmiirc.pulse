@@ -44,15 +44,8 @@ pulse_status_loop() {
 	done
 }
 
-event_RightBarClick_pa_volume() {
-	local button=$1 item=$2
-	case $button in
-		1) mpc -q toggle || spawn mpd;;
-		2) ;;
-		3) ;;
-		4) ponymix increase 5;;
-		5) ponymix decrease 5;;
-	esac > /dev/null
-}
+Events["RightBarClick pa_volume 1"]='mpc -q toggle'
+Events["RightBarClick pa_volume 4"]='ponymix increase 5'
+Events["RightBarClick pa_volume 5"]='ponymix decrease 5'
 
 StartupJobs+=(pulse_status_loop)
