@@ -874,12 +874,13 @@ log "\e[1;32mstarted:\e[m $0 (pgid=$pgrp)"
 wmiir xwrite /event "Start $0"
 
 wmiir write /ctl <<-!
+	bar on top
+	border 3
 	font $WMII_FONT
 	fontpad ${WMII_FONTPAD:-0 0 0 0}
 	focuscolors $WMII_FOCUSCOLORS
 	normcolors $WMII_NORMCOLORS
 	grabmod $Mod
-	border 3
 !
 
 xsetroot -solid "$WMII_BACKGROUND"
