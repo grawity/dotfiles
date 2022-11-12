@@ -181,13 +181,8 @@ client_pid() {
 
 # program_input()	display wimenu with programs
 # action_input()		display wimenu with given actions
-# tag_menu()		display wimenu with current tags
 #
 # program_cache()	rebuild program cache used by program_input()
-
-tag_menu() {
-	tags | wimenu -p "${1:-view tag}:"
-}
 
 program_input() {
 	{
