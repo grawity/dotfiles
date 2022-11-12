@@ -14,6 +14,7 @@ WMII_NORMCOLORS="#888888 #222222 #333333"
 WMII_FOCUSCOLORS="#ffffff #285577 #4c7899"
 WMII_URGENTCOLORS="#ffffff #772828 #99784c"
 WMII_BACKGROUND="#333333"
+WMII_BAR="top"
 WMII_FONT="xft:Monaco:size=10"
 WMII_TERM="roxterm"
 
@@ -21,8 +22,9 @@ Mod="Mod4"
 Battery=""
 StatusMpd=0
 
-[[ -f "$WMII_CONFDIR/config" ]] &&
+if [[ -f "$WMII_CONFDIR/config" ]]; then
 	. "$WMII_CONFDIR/config"
+fi
 
 ### Functions
 
@@ -209,14 +211,6 @@ wi_9menu() {
 	fi
 }
 
-wi_client_menu() {
-	wi_9menu ClientAction $*
-}
-
-wi_system_menu() {
-	wi_9menu SystemAction
-}
-
 ### Event handling
 
 event() {
@@ -324,7 +318,7 @@ event_RightBarMouseDown() {
 			;;
 		zz_clock)
 			case $button in
-				3) wi_system_menu;;
+				3) wi_9menu SystemAction;;
 			esac
 			;;
 	esac
@@ -362,7 +356,7 @@ event_RightBarClick() {
 event_ClientMouseDown() {
 	local client=$1 button=$2
 	case $button in
-		3) wi_client_menu "$client";;
+		3) wi_9menu ClientAction "$client";;
 	esac
 }
 
@@ -513,7 +507,8 @@ menu_ClientAction() {
 		"info"
 		"$float"
 		"fullscreen"
-		"retag")
+		"retag"
+	)
 }
 
 event_ClientAction() {
@@ -874,7 +869,7 @@ log "\e[1;32mstarted:\e[m $0 (pgid=$pgrp)"
 wmiir xwrite /event "Start $0"
 
 wmiir write /ctl <<-!
-	bar on top
+	bar on $WMII_BAR
 	border 3
 	font $WMII_FONT
 	fontpad ${WMII_FONTPAD:-0 0 0 0}
@@ -888,8 +883,9 @@ xsetroot -solid "$WMII_BACKGROUND"
 # Set group=0 to make new gnome-terminal windows open in the active tag, rather
 # than sticking to the client's previous tag.
 wmiir write '/rules' <<!
-	/^sonata:/ floating=on
 	/^gnome-terminal-server:/ group=0
+	/^sonata:/ floating=on
+	/^xev:/ floating=on
 !
 
 wmiir write '/colrules' <<-!
