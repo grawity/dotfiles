@@ -361,11 +361,11 @@ bind_Key=(
 	Mod1-F2
 	$Mod-{h,j,k,l,space}
 	$Mod-Control-{j,k}
-	$Mod-{0..9}
+	$Mod-{1..9}
 	$Mod-{t,Tab,grave}
 	$Mod-{d,Shift-d,s,m}
 	$Mod-Shift-{h,j,k,l,space,t}
-	$Mod-Shift-{0..9}
+	$Mod-Shift-{1..9}
 	$Mod-{f,q}
 	)
 
@@ -405,7 +405,7 @@ event_Key() {
 
 	# tag navigation
 
-	$Mod-[0-9])
+	$Mod-[1-9])
 		local tag=$key
 		wmiir xwrite /ctl "view $tag";;
 	$Mod-t)
@@ -445,7 +445,7 @@ event_Key() {
 
 	# window tag movement
 
-	$Mod-Shift-[0-9])
+	$Mod-Shift-[1-9])
 		local tag=$key
 		wmiir xwrite /client/sel/tags "$tag"
 		wmiir xwrite /ctl "view $tag";;
