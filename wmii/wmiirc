@@ -26,8 +26,8 @@ StatusLoad=1
 declare -A Keys=(
 	["$Mod-Return"]='spawn $Terminal'
 	["$Mod-KP_Enter"]='spawn $Terminal'
-	["$Mod-p"]='program_input'
-	["$Mod-a"]='action_input'
+	["$Mod-p"]='program_input &'
+	["$Mod-a"]='action_input &'
 	["$Mod-h"]='wmiir xwrite /tag/sel/ctl "select left"'
 	["$Mod-j"]='wmiir xwrite /tag/sel/ctl "select down"'
 	["$Mod-k"]='wmiir xwrite /tag/sel/ctl "select up"'
@@ -74,13 +74,8 @@ fi
 
 ### Functions
 
-# startup()		run startup/autorun programs (terminals and such)
-# spawn(args)		launch a program in its own session
-# log(str)		write line to stdout and debug.log
-# bar(n, m)		display a gauge
-# |htmlescape()		convert special HTML characters to HTML entities
-
 startup() {
+	program_cache &
 	statusloop &
 	statusloop_mpd &
 	statusloop_vol &
@@ -106,33 +101,21 @@ log() {
 	echo -e "\033[34m($$)\033[m $*" >> "$XDG_RUNTIME_DIR/wmii.log"
 }
 
-bar() {
-	#ar_chars=▮▯
-	#ar_chars=▰▱
-	#ar_chars=■□
-	#ar_chars=◾◽
-	bar_chars='# '
-
-	local value=$1 max=$2
-	local bar='' len=0
-	while (( i++ < value )); do
-		bar+=${bar_chars:0:1}
+gauge() {
+	local chars='# '
+	local value=$1 max=$2 str="" len=0
+	while (( len++ < value )); do
+		str+=${chars:0:1}
 	done
-	while (( i++ <= max )); do
-		bar+=${bar_chars:1:1}
+	while (( len++ <= max )); do
+		str+=${chars:1:1}
 	done
-	echo "$bar"
+	echo "$str"
 }
 
-htmlescape() {
+zenityescape() {
 	sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g'
 }
-
-# tags()		list all tags
-# this_tag()		return current tag
-# next_tag()		return next tag (wrap around to first)
-# prev_tag()		return previous tag (wrap around)
-# kill_tag(tag)	kill all clients in a tag
 
 tags() {
 	wmiir ls /tag | sed 's|/$||; /^sel$/d'
@@ -165,9 +148,6 @@ kill_tag() {
 	fi
 }
 
-# this_client()		return currently selected client ID
-# client_pid(client)	return PID of client (if known; exit 1 otherwise)
-
 this_client() {
 	wmiir read /client/sel/ctl | sed '1q'
 }
@@ -176,18 +156,12 @@ client_pid() {
 	wmiir read "/client/$1/ctl" | awk '$1 == "pid" {print $2; exit} END {exit 1}'
 }
 
-# program_input()	display wimenu with programs
-# action_input()		display wimenu with given actions
-#
-# program_cache()	rebuild program cache used by program_input()
-
 program_input() {
-	{
+	# Handler for Mod-p (display program list)
 	local input=$(wimenu -h "$CONFDIR/history" -n 20 < "$NAMESPACE/programs.cache")
 	if [[ $input ]]; then
 		eval spawn "$input"
 	fi
-	} &
 }
 
 program_cache() {
@@ -209,13 +183,13 @@ action_input() {
 	printf '%s\n' "${actions[@]}" \
 		| wimenu -p "action:" \
 		| sed 's/^/Action /' \
-		| wmiir write /event &
+		| wmiir write /event
 }
 
 event_Action() {
-	# Handler for events from Mod-a (wmii internal action menu)
-	local action="$1"; shift
-	case "$action" in
+	# Handler for synthetic events from Mod-a
+	local action=$1; shift
+	case $action in
 		exec)
 			wmiir xwrite /ctl "exec $*";;
 		quit)
@@ -228,6 +202,8 @@ event_Action() {
 			systemctl reboot;;
 		shutdown)
 			systemctl poweroff;;
+		*)
+			log "Unhandled Mod-a input '$action $*'";;
 	esac
 }
 
@@ -248,8 +224,9 @@ wi_9menu() {
 
 event() {
 	local event=$1; shift
-	if [[ $(type -t "event_$event") == function ]]; then
-		"event_$event" "$@"
+	local handler="event_$event"
+	if [[ $(type -t $handler) == function ]]; then
+		$handler "$@"
 	fi
 }
 
@@ -449,11 +426,11 @@ event_ClientAction() {
 			zenity --text-info --title="Client $client"
 		;;
 	kill)
-		local label=$(wmiir read "/client/$client/label" | htmlescape)
+		local label=$(wmiir read "/client/$client/label" | zenityescape)
 		local pid=$(client_pid "$client")
 		local process= msg=
 		if [[ $pid ]]
-			then process="<b>$(ps -o 'cmd=' $pid | htmlescape)</b> (PID $pid)"
+			then process="<b>$(ps -o 'cmd=' $pid | zenityescape)</b> (PID $pid)"
 			else process="<i>unknown</i>"
 		fi
 		msg="Do you really want to disconnect the process that this window belongs to?"
@@ -540,7 +517,7 @@ event_Debug() {
 				unset "${env%=}"
 			fi;;
 		ps)
-			wmiir setsid ps -f -o pgid,pid,comm,command -$pgrp;;
+			wmiir setsid ps -f -o pgid,pid,comm,command -$MyPgrp;;
 		r|read)
 			wmiir read "$@";;
 		qr)
@@ -575,13 +552,6 @@ event_Debug() {
 			echo -e "\e[1;33mUnknown debug command '$cmd'. Try 'help'\e[m";;
 	esac
 } >> "$XDG_RUNTIME_DIR/wmii.log" 2>&1
-
-## Loops for statusbar updating. Called from startup()
-# statusloop()			updates clock and load average
-# statusloop_mpd()		updates mpd playback status
-# status_load()			prints load average from /proc/loadavg
-# status_clock()		prints date/time
-# status_mpd()			prints mpd status
 
 statusloop() {
 	printf "StatusLoop" > /proc/self/comm
@@ -664,7 +634,7 @@ status_volume() {
 	local text='volume'
 	local max=11
 	local cur=$((volume * max / 100))
-	local bar=$(bar $cur $max)
+	local bar=$(gauge $cur $max)
 
 	if ponymix is-muted; then
 		bar=${bar//[! ]/·}
@@ -712,7 +682,7 @@ status_battery() {
 	esac
 
 	local cur=$((level / 10))
-	local bar=$(bar $cur 10)
+	local bar=$(gauge $cur 10)
 
 	{
 		if (( level >= 80 )); then
@@ -740,8 +710,7 @@ status_battery() {
 # restart_wmii()		tell wmii to re-exec self
 
 exit_wmiirc() {
-	local pgrp=$(proctool getpgid)
-	log "\e[1;31mexiting:\e[m killing pgroup $pgrp"
+	log "\e[1;31mexiting:\e[m killing pgroup"
 	trap - EXIT
 	trap 'exit' SIGINT SIGQUIT SIGTERM
 	kill 0
@@ -818,11 +787,10 @@ fi
 	wmiir create '/rbar/!' </dev/null
 } &
 
-pgrp=$(proctool getpgid)
+. "$CONFDIR/wmiirc.mpd"
 
-log "\e[1;32mstarted:\e[m $0 (pgid=$pgrp)"
-
-program_cache &
+MyPgrp=$(proctool getpgid)
+log "\e[1;32mstarted:\e[m $0 (pgid=$MyPgrp)"
 
 startup &
 
