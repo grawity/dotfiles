@@ -14,7 +14,7 @@ log() {
 # Run a detached program (agent or app)
 spawn() {
 	log "Spawning '$*'"
-	(cd && exec wmiir setsid -f "$@" </dev/null >&/dev/null)
+	(cd && exec wmiir setsid -f "$@" </dev/null)
 }
 
 # List all/current/next/previous tag
