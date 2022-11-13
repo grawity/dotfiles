@@ -445,7 +445,4 @@ InitBars
 RunStartupJobs
 RunStartupScript
 
-# Event loop
-while read event; do
-	event $event
-done < <(exec wmiir read /event)
+wi_eventloop

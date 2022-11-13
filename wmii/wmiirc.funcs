@@ -56,3 +56,10 @@ show_9menu() {
 		wmiir xwrite /event "$name $arg $choice"
 	fi
 }
+
+# Main event loop
+wi_eventloop() {
+	while read event; do
+		event $event
+	done < <(exec wmiir read /event)
+}
