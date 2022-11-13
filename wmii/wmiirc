@@ -11,7 +11,6 @@ WMIIRC="$CONFDIR/wmiirc"
 NormalColors="#888888 #222222 #333333"
 FocusColors="#ffffff #285577 #4c7899"
 UrgentColors="#ffffff #772828 #99784c"
-BackgroundColor="#333333"
 
 Mod="Mod4"
 Font="xft:Monaco:size=10"
@@ -333,8 +332,8 @@ event_ClientAction() {
 		close)		wmiir xwrite /client/$client/ctl "kill";;
 		fullscreen)	wmiir xwrite /client/$client/ctl "fullscreen on";;
 		float)		wmiir xwrite /tag/sel/ctl "send $client toggle";;
-		info)		zenity_client_info "$client";;
-		kill)		zenity_kill_client "$client";;
+		info)		zenity_client_info $client;;
+		kill)		zenity_kill_client $client;;
 	esac
 }
 Events["ClientMouseDown 3"]='show_client_menu "$client"'
@@ -442,8 +441,6 @@ wmiir xwrite /event "Start $$"
 
 InitConfig
 InitBars
-
-xsetroot -solid "$BackgroundColor"
 
 RunStartupJobs
 RunStartupScript
