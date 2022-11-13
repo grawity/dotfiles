@@ -362,19 +362,7 @@ event_Debug() {
 
 ### Start wmiirc
 
-spawn() {
-	log "Spawning '$*'"
-	(cd && exec wmiir setsid -f "$@" </dev/null >&/dev/null)
-}
-
-dlog() {
-	echo -e "\033[34m($$)\033[m $*" >> "$XDG_RUNTIME_DIR/wmii.log"
-}
-
-log() {
-	echo -e "wmiirc[$$]: $*"
-	dlog "$*"
-}
+. "$CONFDIR/wmiirc.funcs" || exit
 
 gauge() {
 	local chars='# '
@@ -390,22 +378,6 @@ gauge() {
 
 zenityescape() {
 	sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g'
-}
-
-tags() {
-	wmiir ls /tag | sed 's|/$||; /^sel$/d'
-}
-
-this_tag() {
-	wmiir read /tag/sel/ctl | sed '1q'
-}
-
-next_tag() {
-	tags | strtool nextw "$(this_tag)"
-}
-
-prev_tag() {
-	tags | strtool prevw "$(this_tag)"
 }
 
 remove_tag() {
@@ -476,7 +448,7 @@ InitBars() {
 
 	# Add lbar items for all tags
 	current=$(this_tag)
-	for tag in $(tags); do
+	for tag in $(all_tags); do
 		if [[ "$tag" = "$current" ]]; then
 			echo colors "$FocusColors"
 			echo label "$tag"
