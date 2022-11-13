@@ -68,7 +68,6 @@ declare -A Keys=(
 
 declare -A Events=(
 	["LeftBarMouseDown 1"]='wmiir xwrite /ctl "view $tag"'
-	["LeftBarClick 2"]='remove_tag "$tag"'
 	["LeftBarClick 4"]='wmiir xwrite /ctl "view $(prev_tag)"'
 	["LeftBarClick 5"]='wmiir xwrite /ctl "view $(next_tag)"'
 	["ClientMouseDown 2"]='wmiir xwrite /tag/sel/ctl "send $client toggle"'
@@ -378,21 +377,6 @@ gauge() {
 
 zenityescape() {
 	sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g'
-}
-
-remove_tag() {
-	local tag=$1
-	wmiir read "/tag/$tag/index" |
-	awk '!/^#/ {print $2}' | while read client; do
-		local tags=$(wmiir read "/client/$client/tags")
-		if [[ "$tags" == "$tag" ]]
-			then wmiir xwrite "/client/$client/ctl" "kill"
-			else wmiir xwrite "/client/$client/ctl" "tags -$tag"
-		fi
-	done
-	if [[ $tag == "$(this_tag)" ]]; then
-		wmiir xwrite "/ctl" "view $(next_tag)"
-	fi
 }
 
 show_9menu() {
