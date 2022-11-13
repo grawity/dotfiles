@@ -4,31 +4,31 @@
 # This is shared between startx "sessions" and display manager (GDM) sessions.
 
 case $DESKTOP_SESSION in
-gnome|gnome-*)
-	# Don't do anything -- GNOME Shell will handle this.
-	;;
-*)
-	case $HOSTNAME in
-		rain)
-			touchpad="ETPS/2 Elantech Touchpad" accel="0.7";;
-		frost)
-			touchpad="Synaptics s3203" accel="0.1";;
-		fujitsu)
-			touchpad="AlpsPS/2 ALPS GlidePoint" accel="0.0";;
-		*)
-			unset touchpad;;
-	esac
+	gnome|gnome-*)
+		# GNOME Shell will handle this via GSettings.
+		;;
+	*)
+		case $HOSTNAME in
+			rain)
+				touchpad="ETPS/2 Elantech Touchpad" accel="0.7";;
+			frost)
+				touchpad="Synaptics s3203" accel="0.1";;
+			fujitsu)
+				touchpad="AlpsPS/2 ALPS GlidePoint" accel="0.0";;
+			*)
+				unset touchpad;;
+		esac
 
-	if [ "$touchpad" ]; then
-		# org.gnome.desktop.peripherals.touchpad tap-to-click true
-		xinput set-prop "$touchpad" "libinput Tapping Enabled" 1
+		if [ "$touchpad" ]; then
+			# org.gnome.desktop.peripherals.touchpad tap-to-click true
+			xinput set-prop "$touchpad" "libinput Tapping Enabled" 1
 
-		# org.gnome.desktop.peripherals.touchpad natural-scroll true
-		xinput set-prop "$touchpad" "libinput Natural Scrolling Enabled" 1
+			# org.gnome.desktop.peripherals.touchpad natural-scroll true
+			xinput set-prop "$touchpad" "libinput Natural Scrolling Enabled" 1
 
-		# org.gnome.desktop.peripherals.touchpad speed
-		xinput set-prop "$touchpad" "libinput Accel Speed" $accel
-	fi
+			# org.gnome.desktop.peripherals.touchpad speed $accel
+			xinput set-prop "$touchpad" "libinput Accel Speed" $accel
+		fi
 esac
 
 if [ -e ~/.xprofile-$HOSTNAME ]; then
