@@ -33,3 +33,16 @@ prev_tag() {
 next_tag() {
 	all_tags | strtool nextw "$(this_tag)"
 }
+
+# Load/progress/volume bars
+gauge() {
+	local chars='# '
+	local value=$1 max=$2 str="" len=0
+	while (( len++ < value )); do
+		str+=${chars:0:1}
+	done
+	while (( len++ <= max )); do
+		str+=${chars:1:1}
+	done
+	echo "$str"
+}

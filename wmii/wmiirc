@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # ~/.wmii/wmiirc -- wmii configuration
 
-NAMESPACE=$(wmiir namespace) || exit 1
+. "$CONFDIR/wmiirc.funcs" || exit
+
+NAMESPACE=$(wmiir namespace) || exit
 CONFDIR="$HOME/.wmii"
 WMIIRC="$CONFDIR/wmiirc"
-
-### Configuration
 
 # Bar/border colors (text, background, border)
 NormalColors="#888888 #222222 #333333"
@@ -74,18 +74,17 @@ declare -A Events=(
 	["ClientMouseDown 3"]='show_9menu ClientAction "$client"'
 )
 
-declare -a StartupJobs=()
-
 if [[ -f "$CONFDIR/config" ]]; then
 	. "$CONFDIR/config"
 fi
 
-### Rbar status items
+# Background jobs to run before the event loop
+declare -a StartupJobs=()
 
+# rbar update functions to invoke every 2s
 declare -a StatusFuncs=()
 
-status_loop() {
-	printf "StatusLoop" > /proc/self/comm
+wi_status_loop() {
 	while true; do
 		for func in "${StatusFuncs[@]}"; do
 			$func
@@ -93,26 +92,31 @@ status_loop() {
 		sleep 2
 	done
 }
-StartupJobs+=(status_loop)
 
+StartupJobs+=(wi_status_loop)
+
+# Built-in rbar items (clock and load)
 update_clock() {
-	{
-		echo colors "$NormalColors"
-		echo label "$(date '+%a, %b %d %H:%M')"
-	} | wmiir create /rbar/zz_clock
+	printf '%s\n' \
+		"colors $NormalColors" \
+		"label $(date '+%a, %b %d %H:%M')" \
+		| wmiir create /rbar/zz_clock
 }
+
 StatusFuncs+=(update_clock)
 
 update_load() {
-	(( StatusLoad )) || return 0
-	{
-		read a b c _ </proc/loadavg
-		echo colors "$NormalColors"
-		echo label "$a $b $c"
-	} | wmiir create /rbar/zl_load
+	local load1 load5 load15
+	read -r load1 load5 load15 _ < /proc/loadavg
+	printf '%s\n' \
+		"colors $NormalColors" \
+		"label $load1 $load5 $load15" \
+		| wmiir create /rbar/zl_load
 }
-StatusFuncs+=(update_load)
 
+(( StatusLoad )) && StatusFuncs+=(update_load)
+
+# rbar right-click menu
 menu_SystemAction() {
 	menu_SystemAction=(
 		"noop"
@@ -122,29 +126,29 @@ menu_SystemAction() {
 	)
 	default_SystemAction="noop"
 }
-
 event_SystemAction() {
 	local action=$*
 	case $action in
-		"shutdown")
-			systemctl poweroff;;
-		"reboot")
-			systemctl reboot;;
-		"reload wmiirc")
-			wmiir xwrite /ctl "spawn \"$WMIIRC\"";;
+		"shutdown")		systemctl poweroff;;
+		"reboot")		systemctl reboot;;
+		"reload wmiirc")	wmiir xwrite /ctl "spawn \"$WMIIRC\"";;
 	esac
 }
-
 Events["RightBarMouseDown zz_clock 3"]='show_9menu SystemAction'
 
+# Additional rbar items
 . "$CONFDIR/wmiirc.battery"
 . "$CONFDIR/wmiirc.pulse"
 . "$CONFDIR/wmiirc.mpd"
 
-### Functions
+# Handler for Mod-p (display program list)
+program_cache() {
+	local IFS=':'
+	wmiir proglist -- $PATH | sort -u > "$NAMESPACE/programs.cache"
+}
+StartupJobs+=(program_cache)
 
 program_input() {
-	# Handler for Mod-p (display program list)
 	local input=$(wimenu -h "$CONFDIR/history" -n 20 < "$NAMESPACE/programs.cache")
 	if [[ $input ]]; then
 		eval spawn "$input"
@@ -152,14 +156,8 @@ program_input() {
 }
 Keys["$Mod-p"]='program_input &'
 
-program_cache() {
-	local IFS=':'
-	wmiir proglist -- $PATH | sort -u > "$NAMESPACE/programs.cache"
-}
-StartupJobs+=(program_cache)
-
+# Handler for Mod-a (display wmii internal action menu)
 action_input() {
-	# Handler for Mod-a (display wmii internal action menu)
 	local actions=(
 		"wmiirc"
 		"quit"
@@ -174,10 +172,7 @@ action_input() {
 		| sed 's/^/Action /' \
 		| wmiir write /event
 }
-Keys["$Mod-a"]='action_input &'
-
 event_Action() {
-	# Handler for synthetic events from Mod-a
 	local action=$1; shift
 	case $action in
 		exec)		wmiir xwrite /ctl "exec $*";;
@@ -189,9 +184,9 @@ event_Action() {
 		*)		log "Unhandled Mod-a input '$action $*'";;
 	esac
 }
+Keys["$Mod-a"]='action_input &'
 
-### Event handling
-
+# Mainloop event handling
 event() {
 	local event=$1; shift
 	case $event in
@@ -268,12 +263,11 @@ zenity_unresponsive() {
 	local msg=$(printf "The following client is not responding:\n\n%s\n\nWhat would you like to do?" "$label")
 	local zenity=(zenity --question --text="$msg" --ok-label="Wait" --cancel-label="Kill")
 	if ! wihack -transient "$client" "${zenity[@]}"; then
-		wmiir xwrite "/client/$client/ctl" "slay"
+		wmiir xwrite /client/$client/ctl "slay"
 	fi &
 }
 
 # Synthetic events
-
 client_pid() {
 	wmiir read /client/$1/ctl | awk '$1 == "pid" {print $2; exit} END {exit 1}'
 }
@@ -301,26 +295,26 @@ zenity_client_info() {
 
 zenity_kill_client() {
 	local client=$1
-	local label=$(wmiir read /client/$client/label | zenityescape)
+	local label=$(wmiir read /client/$client/label | wi_zenity_escape)
 	local pid=$(client_pid "$client")
 	local process= msg=
 	if [[ $pid ]]
-		then process="<b>$(ps -o 'cmd=' $pid | zenityescape)</b> (PID $pid)"
+		then process="<b>$(ps -o 'cmd=' $pid | wi_zenity_escape)</b> (PID $pid)"
 		else process="<i>unknown</i>"
 	fi
 	msg="Do you really want to disconnect the process that this window belongs to?"
-	msg+="\n\nWindow:\t${client_label}\nProcess:\t${process}"
+	msg+="\n\nWindow:\t$label\nProcess:\t$process"
 	(wihack -transient "$client" \
 			zenity --question \
 			--title="Disconnect process" \
 			--text="$msg" \
 			--ok-label="Cancel" --cancel-label="Disconnect" \
-			|| wmiir xwrite "/client/$client/ctl" "slay") &
+			|| wmiir xwrite /client/$client/ctl "slay") &
 }
 
 menu_ClientAction() {
 	local client=$1
-	local float=$(wmiir read "/client/$client/ctl" | awk '$1 == "floating" {print $2; exit}')
+	local float=$(wmiir read /client/$client/ctl | awk '$1 == "floating" {print $2; exit}')
 	if [[ $float == 'on' ]]
 		then float='unfloat'
 		else float='float'
@@ -361,21 +355,7 @@ event_Debug() {
 
 ### Start wmiirc
 
-. "$CONFDIR/wmiirc.funcs" || exit
-
-gauge() {
-	local chars='# '
-	local value=$1 max=$2 str="" len=0
-	while (( len++ < value )); do
-		str+=${chars:0:1}
-	done
-	while (( len++ <= max )); do
-		str+=${chars:1:1}
-	done
-	echo "$str"
-}
-
-zenityescape() {
+wi_zenity_escape() {
 	sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g'
 }
 
@@ -434,12 +414,12 @@ InitBars() {
 	current=$(this_tag)
 	for tag in $(all_tags); do
 		if [[ "$tag" = "$current" ]]; then
-			echo colors "$FocusColors"
-			echo label "$tag"
+			echo "colors $FocusColors"
+			echo "label $tag"
 		else
-			echo colors "$NormalColors"
-			echo label "$tag"
-		fi | wmiir create "/lbar/$tag"
+			echo "colors $NormalColors"
+			echo "label $tag"
+		fi | wmiir create /lbar/"$tag"
 	done
 
 	# Add an empty "separator" item
@@ -480,14 +460,6 @@ event_WmiircStart() {
 	kill $$
 }
 
-EventLoop() {
-	printf 'EventLoop' > /proc/self/comm
-	while read event; do
-		event $event
-	done < <(exec wmiir read /event)
-	log "EventLoop finished"
-}
-
 log "Started ($0)"
 
 unset SHLVL
@@ -502,4 +474,7 @@ xsetroot -solid "$BackgroundColor"
 RunStartupJobs
 RunStartupScript
 
-EventLoop
+# Event loop
+while read event; do
+	event $event
+done < <(exec wmiir read /event)
