@@ -438,7 +438,7 @@ ExitRc() {
 	kill -9 0
 }
 
-event_WmiircStart() {
+event_Start() {
 	log "Replaced by another wmiirc (pid=$1)"
 	kill $$
 }
@@ -447,7 +447,7 @@ log "Started ($0)"
 
 unset SHLVL
 trap "ExitRc" SIGINT SIGQUIT SIGTERM EXIT
-wmiir xwrite /event "WmiircStart $$"
+wmiir xwrite /event "Start $$"
 
 InitConfig
 InitBars
