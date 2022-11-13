@@ -46,3 +46,13 @@ gauge() {
 	done
 	echo "$str"
 }
+
+show_9menu() {
+	local name=$1 arg=$2 items=("${@:3}")
+	local vlast="last_$name"
+	local choice=$(wmii9menu -i "${!vlast:-${items[0]}}" -- "${items[@]}")
+	if [[ $choice ]]; then
+		declare -g "$vlast=$choice"
+		wmiir xwrite /event "$name $arg $choice"
+	fi
+}

@@ -52,28 +52,23 @@ Events["RightBarClick mpd_status 4"]='mpc -q next'
 Events["RightBarClick mpd_status 5"]='mpc -q prev'
 
 menu_MediaAction() {
-	local play=$(mpc | sed -rn 's/^\[([[:alpha:]]+)\].*/\1/p')
-	if [[ $play == "playing" ]]; then
-		play='pause'
-	else
-		play='play'
-	fi
-	menu_MediaAction=(
-		"sonata"
-		"prev"
-		"next"
-		"$play"
+	local items=(
+		play/pause
+		prev
+		next
+		sonata
 	)
-	default_MediaAction="$play"
-	show_9menu MediaAction
+	show_9menu MediaAction - "${items[@]}"
 }
 
 event_MediaAction() {
 	local action=$1
 	case $action in
-		"play"|"pause"|"next"|"prev")
+		play/pause)
+			mpc -q toggle;;
+		play|pause|prev|next)
 			mpc -q $action;;
-		"sonata")
+		sonata)
 			spawn sonata;;
 	esac
 }

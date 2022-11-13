@@ -314,26 +314,21 @@ zenity_kill_client() {
 
 show_client_menu() {
 	local client=$1
-	local float=$(wmiir read /client/$client/ctl | awk '$1 == "floating" {print $2; exit}')
-	if [[ $float == 'on' ]]
-		then float='unfloat'
-		else float='float'
-	fi
-	menu_ClientAction=(
-		"close"
-		"kill"
-		"info"
-		"$float"
-		"fullscreen"
+	local items=(
+		float
+		fullscreen
+		close
+		kill
+		info
 	)
-	show_9menu ClientAction $client
+	show_9menu ClientAction $client "${items[@]}"
 }
 event_ClientAction() {
 	local client=$1 action=$2
 	case $action in
 		close)		wmiir xwrite /client/$client/ctl "kill";;
 		fullscreen)	wmiir xwrite /client/$client/ctl "fullscreen on";;
-		float|unfloat)	wmiir xwrite /tag/sel/ctl "send $client toggle";;
+		float)		wmiir xwrite /tag/sel/ctl "send $client toggle";;
 		info)		zenity_client_info "$client";;
 		kill)		zenity_kill_client "$client";;
 	esac
@@ -358,18 +353,6 @@ event_DebugAction() {
 
 wi_zenity_escape() {
 	sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g'
-}
-
-show_9menu() {
-	local name=$1 args=${*:2}
-	local vmenu="menu_$name[@]"
-	local vlast="last_$name"
-	local vdefault="default_$name"
-	local choice=$(wmii9menu -i "${!vlast:-${!vdefault}}" -- "${!vmenu}")
-	if [[ $choice ]]; then
-		declare -g "$vlast=$choice"
-		wmiir xwrite /event "$name $args $choice"
-	fi
 }
 
 InitConfig() {
