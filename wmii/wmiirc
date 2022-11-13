@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # ~/.wmii/wmiirc -- wmii configuration
 
-. "$CONFDIR/wmiirc.funcs" || exit
-
 NAMESPACE=$(wmiir namespace) || exit
 CONFDIR="$HOME/.wmii"
 WMIIRC="$CONFDIR/wmiirc"
+
+. "$CONFDIR/wmiirc.funcs" || exit
 
 # Bar/border colors (text, background, border)
 NormalColors="#888888 #222222 #333333"
@@ -71,7 +71,6 @@ declare -A Events=(
 	["LeftBarClick 4"]='wmiir xwrite /ctl "view $(prev_tag)"'
 	["LeftBarClick 5"]='wmiir xwrite /ctl "view $(next_tag)"'
 	["ClientMouseDown 2"]='wmiir xwrite /tag/sel/ctl "send $client toggle"'
-	["ClientMouseDown 3"]='show_9menu ClientAction "$client"'
 )
 
 if [[ -f "$CONFDIR/config" ]]; then
@@ -117,7 +116,7 @@ update_load() {
 (( StatusLoad )) && StatusFuncs+=(update_load)
 
 # rbar right-click menu
-menu_SystemAction() {
+show_system_action_menu() {
 	menu_SystemAction=(
 		"noop"
 		"reload wmiirc"
@@ -125,6 +124,7 @@ menu_SystemAction() {
 		"reboot"
 	)
 	default_SystemAction="noop"
+	show_9menu SystemAction
 }
 event_SystemAction() {
 	local action=$*
@@ -134,7 +134,7 @@ event_SystemAction() {
 		"reload wmiirc")	wmiir xwrite /ctl "spawn \"$WMIIRC\"";;
 	esac
 }
-Events["RightBarMouseDown zz_clock 3"]='show_9menu SystemAction'
+Events["RightBarMouseDown zz_clock 3"]='show_system_action_menu'
 
 # Additional rbar items
 . "$CONFDIR/wmiirc.battery"
@@ -312,7 +312,7 @@ zenity_kill_client() {
 			|| wmiir xwrite /client/$client/ctl "slay") &
 }
 
-menu_ClientAction() {
+show_client_menu() {
 	local client=$1
 	local float=$(wmiir read /client/$client/ctl | awk '$1 == "floating" {print $2; exit}')
 	if [[ $float == 'on' ]]
@@ -326,8 +326,8 @@ menu_ClientAction() {
 		"$float"
 		"fullscreen"
 	)
+	show_9menu ClientAction $client
 }
-
 event_ClientAction() {
 	local client=$1 action=$2
 	case $action in
@@ -338,8 +338,9 @@ event_ClientAction() {
 		kill)		zenity_kill_client "$client";;
 	esac
 }
+Events["ClientMouseDown 3"]='show_client_menu "$client"'
 
-event_Debug() {
+event_DebugAction() {
 	dlog ">> $*"
 	local cmd=$1; shift
 	case $cmd in
@@ -364,8 +365,7 @@ show_9menu() {
 	local vmenu="menu_$name[@]"
 	local vlast="last_$name"
 	local vdefault="default_$name"
-	local choice=$("menu_$name" "${@:2}" &&
-			wmii9menu -i "${!vlast:-${!vdefault}}" -- "${!vmenu}")
+	local choice=$(wmii9menu -i "${!vlast:-${!vdefault}}" -- "${!vmenu}")
 	if [[ $choice ]]; then
 		declare -g "$vlast=$choice"
 		wmiir xwrite /event "$name $args $choice"

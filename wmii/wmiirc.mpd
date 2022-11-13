@@ -47,7 +47,7 @@ StartupJobs+=(mpd_status_loop)
 # Handle mouse events
 
 Events["RightBarClick mpd_status 1"]='mpc -q toggle || spawn mpd'
-Events["RightBarMouseDown mpd_status 3"]='wi_9menu MediaAction'
+Events["RightBarMouseDown mpd_status 3"]='menu_MediaAction'
 Events["RightBarClick mpd_status 4"]='mpc -q next'
 Events["RightBarClick mpd_status 5"]='mpc -q prev'
 
@@ -65,6 +65,7 @@ menu_MediaAction() {
 		"$play"
 	)
 	default_MediaAction="$play"
+	show_9menu MediaAction
 }
 
 event_MediaAction() {
