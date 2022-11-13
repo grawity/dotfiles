@@ -31,6 +31,10 @@ case $DESKTOP_SESSION in
 		fi
 esac
 
+if [ -e ~/.dotfiles/xprofile-$HOSTNAME ]; then
+	. ~/.dotfiles/xprofile-$HOSTNAME
+fi
+
 if [ -e ~/.xprofile-$HOSTNAME ]; then
 	. ~/.xprofile-$HOSTNAME
 fi
