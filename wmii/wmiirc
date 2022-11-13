@@ -190,6 +190,10 @@ Keys["$Mod-a"]='action_input &'
 event() {
 	local event=$1; shift
 	case $event in
+		Start)
+			log "Replaced by another wmiirc (pid=$1)"
+			kill $$
+			;;
 		Key)
 			local keystroke=$1 key=${1##*-}
 			eval "${Keys["$keystroke"]}"
@@ -430,23 +434,10 @@ RunStartupScript() {
 	fi &
 }
 
-ExitRc() {
-	trap - EXIT
-	trap "exit" SIGINT SIGQUIT SIGTERM
-	# Kill our own pgroup (background jobs)
-	kill 0
-	kill -9 0
-}
-
-event_Start() {
-	log "Replaced by another wmiirc (pid=$1)"
-	kill $$
-}
-
 log "Started ($0)"
 
 unset SHLVL
-trap "ExitRc" SIGINT SIGQUIT SIGTERM EXIT
+trap "kill -9 0" SIGINT SIGQUIT SIGTERM EXIT
 wmiir xwrite /event "Start $$"
 
 InitConfig
