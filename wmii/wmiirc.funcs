@@ -1,0 +1,65 @@
+#!bash
+
+# Write to 'widebug' output
+dlog() {
+	echo -e "\033[34m($$)\033[m $*" >> "$XDG_RUNTIME_DIR/wmii.log"
+}
+
+# Write to stdout and 'widebug'
+log() {
+	echo -e "wmiirc[$$]: $*"
+	dlog "$*"
+}
+
+# Run a detached program (agent or app)
+spawn() {
+	log "Spawning '$*'"
+	(cd && exec wmiir setsid -f "$@" </dev/null)
+}
+
+# List all/current/next/previous tag
+all_tags() {
+	wmiir ls /tag | sed 's|/$||; /^sel$/d'
+}
+
+this_tag() {
+	wmiir read /tag/sel/ctl | sed '1q'
+}
+
+prev_tag() {
+	all_tags | strtool prevw "$(this_tag)"
+}
+
+next_tag() {
+	all_tags | strtool nextw "$(this_tag)"
+}
+
+# Load/progress/volume bars
+gauge() {
+	local chars='# '
+	local value=$1 max=$2 str="" len=0
+	while (( len++ < value )); do
+		str+=${chars:0:1}
+	done
+	while (( len++ <= max )); do
+		str+=${chars:1:1}
+	done
+	echo "$str"
+}
+
+show_9menu() {
+	local name=$1 arg=$2 items=("${@:3}")
+	local vlast="last_$name"
+	local choice=$(wmii9menu -i "${!vlast:-${items[0]}}" -- "${items[@]}")
+	if [[ $choice ]]; then
+		declare -g "$vlast=$choice"
+		wmiir xwrite /event "$name $arg $choice"
+	fi
+}
+
+# Main event loop
+wi_eventloop() {
+	while read event; do
+		event $event
+	done < <(exec wmiir read /event)
+}

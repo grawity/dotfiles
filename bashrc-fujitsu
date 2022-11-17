@@ -8,15 +8,17 @@ export BRIGHT=1
 
 eval $(dircolors ~/.dotfiles/dircolors-bright)
 
-items[name:pfx]=''
-items[name:sfx]=''
+if [[ ${items@a} == *A* ]]; then
+	items[name:pfx]=''
+	items[name:sfx]=''
 
-#fmts[name.self]='38;5;241|48;5;253'
-#fmts[name.root]='38;5;239|48;5;214'
-#fmts[pwd]='38;5;241'
-#fmts[vcs]='38;5;247'
-fmts[name.self]='0'
-fmts[pwd]='0'
-fmts[vcs]='38;5;249'
+	#fmts[name.self]='38;5;241|48;5;253'
+	#fmts[name.root]='38;5;239|48;5;214'
+	#fmts[pwd]='38;5;241'
+	#fmts[vcs]='38;5;247'
+	fmts[name.self]='0'
+	fmts[pwd]='0'
+	fmts[vcs]='38;5;249'
 
-fmts[pwd:tail]=@pwd
+	fmts[pwd:tail]=@pwd
+fi

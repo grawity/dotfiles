@@ -1,0 +1,74 @@
+#!bash
+
+(( StatusMpd )) || return 0
+
+# Create an 'mpd' rbar item
+
+mpd_status_update() {
+	local FG_PLAYING='#bbbbbb'
+	local FG_PAUSED=${NormalColors%% *}
+	local FG_STOPPED='#666666'
+	local BG=${NormalColors#* }
+	#local ICON_PLAYING=''
+	local ICON_PLAYING='♫'
+	#local ICON_PLAYING='▸'
+	#local ICON_PAUSED='(paused)'
+	#local ICON_PAUSED='▷'
+	#local ICON_PAUSED='▹'
+	local ICON_PAUSED=''
+
+	{
+		if ! mpc >&/dev/null; then
+			echo colors "$FG_STOPPED $BG"
+			echo label "(mpd not running)"
+		elif mpc | grep -qs '^\[playing\]'; then
+			echo colors "$FG_PLAYING $BG"
+			echo label "$ICON_PLAYING $(mpc current)"
+		elif mpc | grep -qs '^\[paused\]'; then
+			echo colors "$FG_PAUSED $BG"
+			echo label "$PAUSED $(mpc current)"
+		else
+			echo colors "$FG_STOPPED $BG"
+			echo label "(stopped)"
+		fi
+	} | wmiir create "/rbar/mpd_status"
+}
+
+mpd_status_loop() {
+	printf "StatusMpd" > /proc/self/comm
+	while true; do
+		mpd_status_update
+		mpc idle >&/dev/null || sleep 5
+	done
+}
+
+StartupJobs+=(mpd_status_loop)
+
+# Handle mouse events
+
+Events["RightBarClick mpd_status 1"]='mpc -q toggle || spawn mpd'
+Events["RightBarMouseDown mpd_status 3"]='menu_MediaAction'
+Events["RightBarClick mpd_status 4"]='mpc -q next'
+Events["RightBarClick mpd_status 5"]='mpc -q prev'
+
+menu_MediaAction() {
+	local items=(
+		play/pause
+		prev
+		next
+		sonata
+	)
+	show_9menu MediaAction - "${items[@]}"
+}
+
+event_MediaAction() {
+	local action=$1
+	case $action in
+		play/pause)
+			mpc -q toggle;;
+		play|pause|prev|next)
+			mpc -q $action;;
+		sonata)
+			spawn sonata;;
+	esac
+}

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+wmiir read /ctl > /dev/null || exit 1
+
+if [ "$1" ]; then
+	wmiir xwrite /event "DebugAction $*"
+	exit
+fi
+
+tail -fn0 "$XDG_RUNTIME_DIR/wmii.log" & tailpid=$!
+trap "kill $tailpid; exit" INT TERM QUIT HUP EXIT
+
+# No prompt as it would show up before async output
+wmiir xwrite /event "DebugAction poke"
+while read -e -r -p "" cmd; do
+	[ "$cmd" ] || continue
+	wmiir xwrite /event "DebugAction $cmd"
+done
+kill $tailpid
