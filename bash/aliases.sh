@@ -279,18 +279,6 @@ cat() {
 	fi
 }
 
-imv() {
-	local old new
-	if (( ! $# )); then
-		echo "imv: no files" >&2
-		return 1
-	fi
-	for old; do
-		new=$old; read -p "rename to: " -e -i "$old" new
-		[[ "$old" == "$new" ]] || command mv -v "$old" "$new"
-	done
-}
-
 man() {
 	if [[ $1 == *://* ]]; then
 		curl -LsfS "$1" | command man /dev/stdin
