@@ -32,6 +32,7 @@ fmts[vcs]=@d
 #fmts[vcs]='38;5;59'
 
 # Rearrange things a bit
+fullpwd=h
 parts[left]=''
 parts[prompt]=':host :prompt _'
 items[prompt]='>'
