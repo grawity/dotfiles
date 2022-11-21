@@ -7,9 +7,9 @@ TERM screen*
 TERM tmux*
 TERM xterm*
 
+RESET			0
 #NORMAL			0
 #FILE			0
-RESET			0
 #DIR			1;34
 DIR			94
 
@@ -20,20 +20,22 @@ ORPHAN			9;31;40
 #MULTIHARDLINK		0
 
 # Special files
-FIFO			33;40
-SOCK			1;35
-DOOR			1;35
+FIFO			1;93;40
+SOCK			1;95;40
+DOOR			1;95;40
 BLK			1;33;40
 CHR			1;33;40
 
+EXEC			93
 SETUID			37;41
 SETGID			30;43
 #CAPABILITY		30;41	# default disabled upstream to avoid expensive getxattr calls
 CAPABILITY		0	# disable in older coreutils, too
-STICKY_OTHER_WRITABLE	30;44	# o+wt
-OTHER_WRITABLE		32;40	# o+w
+
+# Special directories
 STICKY			37;44	# o+t
-EXEC			93
+OTHER_WRITABLE		32;40	# o+w
+STICKY_OTHER_WRITABLE	30;44	# o+wt
 
 # archives or compressed
 .7z	33
@@ -88,13 +90,10 @@ EXEC			93
 .avi	95
 .flv	95
 .m2ts	95
-.m2v	95
 .m4v	95
 .mkv	95
-.mng	95
 .mov	95
 .mp4	95
-.mp4v	95
 .mpeg	95
 .mpg	95
 .ogm	95
@@ -105,7 +104,7 @@ EXEC			93
 .wmv	95
 .webm	95
 
-# audio formats
+# Audio formats
 .aac	36
 .aif	36
 .aiff	36
@@ -124,19 +123,13 @@ EXEC			93
 .wav	36
 .wma	36
 
-# document formats
+# Document formats
 .doc	92
 .docx	92
 .odt	92
-#.pdf	92
-# spreadsheets
 .xls	92
 .xlsx	92
 #.ods	92
-# presentations
-.ppt	92
-.pptx	92
-#.odp	92
 
 # Backup files
 *~	90
