@@ -55,26 +55,26 @@ EXEC			38;5;118
 .zst	38;5;65
 
 # still image formats
-.bmp	0;35
-.emf	0;35
-.gif	0;35
-.jpeg	0;35
-.jpg	0;35
-.pbm	0;35
-.pcx	0;35
-.pgm	0;35
-.png	0;35
-.ppm	0;35
-.svg	0;35
-.svgz	0;35
-.tga	0;35
-.tif	0;35
-.tiff	0;35
-.webp	0;35
-.xbm	0;35
-.xcf	0;35
-.xpm	0;35
-.xwd	0;35
+.bmp	35
+.emf	35
+.gif	35
+.jpeg	35
+.jpg	35
+.pbm	35
+.pcx	35
+.pgm	35
+.png	35
+.ppm	35
+.svg	35
+.svgz	35
+.tga	35
+.tif	35
+.tiff	35
+.webp	35
+.xbm	35
+.xcf	35
+.xpm	35
+.xwd	35
 
 # video formats
 .avi	95
@@ -98,23 +98,23 @@ EXEC			38;5;118
 .webm	95
 
 # audio formats
-.aac	0;36
-.aif	0;36
-.aiff	0;36
-.ape	0;36
-.au	0;36
-.flac	0;36
-.m4a	0;36
-.mid	0;36
-.midi	0;36
-.mka	0;36
-.mp3	0;36
-.oga	0;36
-.ogg	0;36
-.opus	0;36
-.ra	0;36
-.wav	0;36
-.wma	0;36
+.aac	36
+.aif	36
+.aiff	36
+.ape	36
+.au	36
+.flac	36
+.m4a	36
+.mid	36
+.midi	36
+.mka	36
+.mp3	36
+.oga	36
+.ogg	36
+.opus	36
+.ra	36
+.wav	36
+.wma	36
 
 # document formats
 .doc	92
