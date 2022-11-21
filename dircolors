@@ -123,14 +123,6 @@ STICKY_OTHER_WRITABLE	30;44	# o+wt
 .wav	36
 .wma	36
 
-# Document formats
-.doc	92
-.docx	92
-.odt	92
-.xls	92
-.xlsx	92
-#.ods	92
-
 # Backup files
 *~	90
 *#	90
