@@ -10,14 +10,28 @@ TERM xterm*
 RESET			0
 #NORMAL			0
 #FILE			0
-#DIR			1;34
-DIR			94
 
 # Symlinks
 LINK			3;96
 #LINK			target
 ORPHAN			9;31;40
 #MULTIHARDLINK		0
+
+# Directories
+#DIR			1;34
+DIR			94
+STICKY			37;44	# o+t
+OTHER_WRITABLE		32;40	# o+w
+STICKY_OTHER_WRITABLE	30;44	# o+wt
+
+# Executable files
+EXEC			93
+SETUID			37;41
+SETGID			30;43
+#CAPABILITY		30;41
+CAPABILITY		0
+# Note: Capability lookup is disabled by default as of coreutils 9.0, "to avoid
+# expensive getxattr() calls". So just disable it here as well.
 
 # Special files
 FIFO			1;93;40
@@ -26,28 +40,14 @@ DOOR			1;95;40
 BLK			1;33;40
 CHR			1;33;40
 
-EXEC			93
-SETUID			37;41
-SETGID			30;43
-#CAPABILITY		30;41	# default disabled upstream to avoid expensive getxattr calls
-CAPABILITY		0	# disable in older coreutils, too
-
-# Special directories
-STICKY			37;44	# o+t
-OTHER_WRITABLE		32;40	# o+w
-STICKY_OTHER_WRITABLE	30;44	# o+wt
-
 # archives or compressed
 .7z	33
 .Z	33
 .ace	33
 .arj	33
 .bz2	33
-.cpio	33
 .deb	33
-.ear	33
 .gz	33
-.jar	33
 .lz4	33
 .lzh	33
 .lzma	33
