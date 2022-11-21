@@ -14,9 +14,8 @@ RESET			0
 DIR			94
 
 # Symlinks
-#LINK			1;36
-LINK			96
-#LINK			target	# not supported by bash 4.3 colored-stats
+LINK			3;96
+#LINK			target
 ORPHAN			9;31;40
 #MULTIHARDLINK		0
 
