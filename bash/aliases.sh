@@ -232,7 +232,7 @@ case $OSTYPE in
 		lsopt="$lsopt --color=auto"
 		# Disable filename quoting in new Coreutils
 		lsopt="$lsopt -N"
-		eval $(dircolors ~/.dotfiles/dircolors 2>/dev/null)
+		eval $(dircolors ~/.dotfiles/dircolors)
 		alias df='df -Th'
 		alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs -xafs'
 		alias ip='ip --color=auto'
@@ -245,7 +245,7 @@ case $OSTYPE in
 		;;
 	gnu)
 		lsopt="$lsopt --color=auto"
-		eval $(dircolors ~/.dotfiles/dircolors 2>/dev/null)
+		eval $(dircolors ~/.dotfiles/dircolors)
 		alias lsd='ls -a --ignore="[^.]*"'
 		;;
 	netbsd|openbsd*)
