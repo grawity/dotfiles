@@ -8,16 +8,21 @@ TERM *-direct
 RESET			0
 #DIR			1;34
 DIR			94
+
+# Symlinks
 #LINK			1;36
 LINK			96
 #LINK			target	# not supported by bash 4.3 colored-stats
+ORPHAN			9;31;40
 #MULTIHARDLINK		0
+
+# Special files
 FIFO			33;40
 SOCK			1;35
 DOOR			1;35
 BLK			1;33;40
 CHR			1;33;40
-ORPHAN			31;40
+
 SETUID			37;41
 SETGID			30;43
 #CAPABILITY		30;41	# default disabled upstream to avoid expensive getxattr calls
