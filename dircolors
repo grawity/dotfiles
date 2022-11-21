@@ -34,7 +34,7 @@ CAPABILITY		0	# disable in older coreutils, too
 STICKY_OTHER_WRITABLE	30;44	# o+wt
 OTHER_WRITABLE		32;40	# o+w
 STICKY			37;44	# o+t
-EXEC			38;5;118
+EXEC			93
 
 # archives or compressed
 .7z	33
