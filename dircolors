@@ -3,6 +3,10 @@
 TERM *-256color
 TERM *-direct
 
+TERM screen*
+TERM tmux*
+TERM xterm*
+
 #NORMAL			0
 #FILE			0
 RESET			0
