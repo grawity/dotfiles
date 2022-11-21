@@ -28,31 +28,31 @@ STICKY			37;44	# o+t
 EXEC			38;5;118
 
 # archives or compressed
-.7z	38;5;65
-.Z	38;5;65
-.ace	38;5;65
-.arj	38;5;65
-.bz2	38;5;65
-.cpio	38;5;65
-.deb	38;5;65
-.ear	38;5;65
-.gz	38;5;65
-.jar	38;5;65
-.lz4	38;5;65
-.lzh	38;5;65
-.lzma	38;5;65
-.rar	38;5;65
-.rpm	38;5;65
-.tar	38;5;65
-.taz	38;5;65
-.tbz	38;5;65
-.tbz2	38;5;65
-.tgz	38;5;65
-.tlz	38;5;65
-.txz	38;5;65
-.xz	38;5;65
-.zip	38;5;65
-.zst	38;5;65
+.7z	33
+.Z	33
+.ace	33
+.arj	33
+.bz2	33
+.cpio	33
+.deb	33
+.ear	33
+.gz	33
+.jar	33
+.lz4	33
+.lzh	33
+.lzma	33
+.rar	33
+.rpm	33
+.tar	33
+.taz	33
+.tbz	33
+.tbz2	33
+.tgz	33
+.tlz	33
+.txz	33
+.xz	33
+.zip	33
+.zst	33
 
 # still image formats
 .bmp	35
