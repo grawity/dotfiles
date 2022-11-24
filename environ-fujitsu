@@ -1,0 +1,8 @@
+# Environment for fujitsu
+# vim: ft=sh
+
+#BAT_THEME="ansi-light"
+BAT_THEME="OneHalfLight"
+#BAT_THEME="GitHub"
+
+GTK_OVERLAY_SCROLLING="0"
