@@ -46,3 +46,8 @@ CHR			93;40
 #MULTIHARDLINK		0
 #DOOR			1;35
 #CAPABILITY		30;41
+
+*~			38;5;250
+.bak			38;5;250
+.old			38;5;250
+.swp			38;5;250
