@@ -135,17 +135,19 @@ update_load() {
 show_system_action_menu() {
 	local items=(
 		Reload
+		Exit
 		Shutdown
 		Reboot
 	)
 	show_9menu SystemAction - "${items[@]}"
 }
 event_SystemAction() {
-	local action=$*
+	local unused=$1 action=$2
 	case $action in
+		Reload)		wmiir xwrite /ctl "spawn \"$WMIIRC\"";;
+		Exit)		wmiir xwrite /ctl "quit";;
 		Shutdown)	systemctl poweroff;;
 		Reboot)		systemctl reboot;;
-		Reload)		wmiir xwrite /ctl "spawn \"$WMIIRC\"";;
 	esac
 }
 Events["RightBarMouseDown zz_clock 3"]='show_system_action_menu'
