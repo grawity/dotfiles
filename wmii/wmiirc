@@ -320,22 +320,22 @@ zenity_kill_client() {
 show_client_menu() {
 	local client=$1
 	local items=(
-		float
-		fullscreen
-		delete
-		kill
-		info
+		Float
+		Fullscreen
+		Delete
+		Kill
+		Info
 	)
 	show_9menu ClientAction $client "${items[@]}"
 }
 event_ClientAction() {
 	local client=$1 action=$2
 	case $action in
-		close|delete)	wmiir xwrite /client/$client/ctl "kill";;
-		fullscreen)	wmiir xwrite /client/$client/ctl "fullscreen on";;
-		float)		wmiir xwrite /tag/sel/ctl "send $client toggle";;
-		info)		zenity_client_info $client;;
-		kill)		zenity_kill_client $client;;
+		Close|Delete)	wmiir xwrite /client/$client/ctl "kill";;
+		Fullscreen)	wmiir xwrite /client/$client/ctl "fullscreen on";;
+		Float)		wmiir xwrite /tag/sel/ctl "send $client toggle";;
+		Info)		zenity_client_info $client;;
+		Kill)		zenity_kill_client $client;;
 	esac
 }
 Events["ClientMouseDown 3"]='show_client_menu "$client"'
