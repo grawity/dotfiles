@@ -112,10 +112,10 @@ StartupJobs+=(wi_status_loop)
 
 # Built-in rbar items (clock and load)
 update_clock() {
-	printf '%s\n' \
-		"colors $NormalColors" \
-		"label $(date '+%a, %b %d %H:%M')" \
-		| wmiir create /rbar/zz_clock
+	wmiir create /rbar/zz_clock <<-!
+		colors $NormalColors
+		label $(date '+%a, %b %d %H:%M')
+	!
 }
 
 StatusFuncs+=(update_clock)
@@ -123,10 +123,10 @@ StatusFuncs+=(update_clock)
 update_load() {
 	local load1 load5 load15
 	read -r load1 load5 load15 _ < /proc/loadavg
-	printf '%s\n' \
-		"colors $NormalColors" \
-		"label $load1 $load5 $load15" \
-		| wmiir create /rbar/zl_load
+	wmiir create /rbar/zl_load <<-!
+		colors $NormalColors
+		label $load1 $load5 $load15
+	!
 }
 
 (( StatusLoad )) && StatusFuncs+=(update_load)
@@ -217,7 +217,10 @@ event() {
 		# Tag events
 		CreateTag)
 			local tag=$1
-			printf "%s\n" "colors $NormalColors" "label $tag" | wmiir create /lbar/"$tag"
+			wmiir create /lbar/"$tag" <<-!
+				colors $NormalColors
+				label $tag
+			!
 			;;
 		DestroyTag)
 			local tag=$1
