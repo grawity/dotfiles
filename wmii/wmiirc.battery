@@ -1,6 +1,6 @@
 #!bash
 
-[[ $Battery ]] || exit 0
+[[ $Battery ]] || return 0
 
 update_battery_status() {
 	local level status
