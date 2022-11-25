@@ -4,3 +4,5 @@
 /^x11:mpv:/			floating=on
 /^sonata:/			floating=on
 /^xev:/				floating=on
+# xev again
+/^<nil>:<nil>:Event Tester$/	floating=on

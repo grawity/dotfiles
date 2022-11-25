@@ -43,6 +43,8 @@ declare -A Keys=(
 	["$Mod-9"]='wmiir xwrite /ctl "view $key"'
 	["$Mod-Tab"]='wmiir xwrite /ctl "view $(next_tag)"'
 	["$Mod-grave"]='wmiir xwrite /ctl "view $(prev_tag)"'
+	["$Mod-Next"]='wmiir xwrite /ctl "view $(next_tag)"'
+	["$Mod-Prior"]='wmiir xwrite /ctl "view $(prev_tag)"'
 	["$Mod-d"]='wmiir xwrite /tag/sel/ctl "colmode sel default-max"'
 	["$Mod-Shift-d"]='wmiir xwrite /tag/sel/ctl "colmode sel default+max"'
 	["$Mod-s"]='wmiir xwrite /tag/sel/ctl "colmode sel stack-max"'
@@ -61,6 +63,8 @@ declare -A Keys=(
 	["$Mod-Shift-7"]='wmiir xwrite /client/sel/tags "$key"; wmiir xwrite /ctl "view $key"'
 	["$Mod-Shift-8"]='wmiir xwrite /client/sel/tags "$key"; wmiir xwrite /ctl "view $key"'
 	["$Mod-Shift-9"]='wmiir xwrite /client/sel/tags "$key"; wmiir xwrite /ctl "view $key"'
+	["$Mod-Shift-Next"]='wmiir xwrite /client/sel/tags "$(next_tag)"; wmiir xwrite /ctl "view $(next_tag)"'
+	["$Mod-Shift-Prior"]='wmiir xwrite /client/sel/tags "$(prev_tag)"; wmiir xwrite /ctl "view $(prev_tag)"'
 	["$Mod-f"]='wmiir xwrite /client/sel/ctl "fullscreen toggle"'
 	["$Mod-Shift-q"]='wmiir xwrite /client/sel/ctl "kill"'
 	# TODO: $Mod-t to jump to a tag
