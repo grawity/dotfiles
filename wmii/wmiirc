@@ -133,21 +133,19 @@ update_load() {
 
 # rbar right-click menu
 show_system_action_menu() {
-	menu_SystemAction=(
-		"noop"
-		"reload wmiirc"
-		"shutdown"
-		"reboot"
+	local items=(
+		Reload
+		Shutdown
+		Reboot
 	)
-	default_SystemAction="noop"
-	show_9menu SystemAction
+	show_9menu SystemAction - "${items[@]}"
 }
 event_SystemAction() {
 	local action=$*
 	case $action in
-		"shutdown")		systemctl poweroff;;
-		"reboot")		systemctl reboot;;
-		"reload wmiirc")	wmiir xwrite /ctl "spawn \"$WMIIRC\"";;
+		Shutdown)	systemctl poweroff;;
+		Reboot)		systemctl reboot;;
+		Reload)		wmiir xwrite /ctl "spawn \"$WMIIRC\"";;
 	esac
 }
 Events["RightBarMouseDown zz_clock 3"]='show_system_action_menu'
