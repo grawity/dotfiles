@@ -1,0 +1,6 @@
+# Set group=0 to make new gnome-terminal windows open in the active
+# tag, rather than sticking to the client's previous tag.
+/^gnome-terminal-server:/	group=0
+/^x11:mpv:/			floating=on
+/^sonata:/			floating=on
+/^xev:/				floating=on

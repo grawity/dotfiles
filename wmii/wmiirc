@@ -370,15 +370,7 @@ InitConfig() {
 	!
 
 	if [[ -f "$CONFDIR/rules" ]]; then
-		wmiir write /rules < "$CONFDIR/rules"
-	else
-		# Set group=0 to make new gnome-terminal windows open in the active
-		# tag, rather than sticking to the client's previous tag.
-		wmiir write /rules <<-!
-			/^gnome-terminal-server:/ group=0
-			/^sonata:/ floating=on
-			/^xev:/ floating=on
-		!
+		grep '^[^#]' "$CONFDIR/rules" | wmiir write /rules
 	fi
 
 	if [[ -f "$CONFDIR/colrules" ]]; then
