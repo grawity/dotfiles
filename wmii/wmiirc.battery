@@ -3,8 +3,9 @@
 [[ $Battery ]] || exit 0
 
 update_battery_status() {
-	local level=$(</sys/class/power_supply/$Battery/capacity)
-	local status=$(</sys/class/power_supply/$Battery/status)
+	local level status
+	read -r level < /sys/class/power_supply/$Battery/capacity
+	read -r status < /sys/class/power_supply/$Battery/status
 
 	if [[ ${status,,} == "not charging" && $level -eq 100 ]]; then
 		status="charged"
