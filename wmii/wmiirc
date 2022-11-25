@@ -247,7 +247,7 @@ event() {
 			;;
 		Unresponsive)
 			local client=$1
-			zenity_unresponsive "$@"
+			dialog_unresponsive "$@"
 			;;
 		# Bar events
 		LeftBarMouseDown | LeftBarClick)
@@ -275,25 +275,15 @@ event() {
 	esac
 }
 
-zenity_unresponsive() {
-	local client=$1
-	local label=$(wmiir read /client/$client/label)
-	local msg=$(printf "The following client is not responding:\n\n%s\n\nWhat would you like to do?" "$label")
-	local zenity=(zenity --question --text="$msg" --ok-label="Wait" --cancel-label="Kill")
-	if ! wihack -transient "$client" "${zenity[@]}"; then
-		wmiir xwrite /client/$client/ctl "slay"
-	fi &
-}
-
 # Synthetic events
 client_pid() {
 	wmiir read /client/$1/ctl | awk '$1 == "pid" {print $2; exit} END {exit 1}'
 }
 
-zenity_client_info() {
+dialog_client_info() {
 	local client=$1
-	{
-		local props=$(wmiir read /client/$client/props)
+	local props=$(wmiir read /client/$client/props)
+	local msg=$(
 		IFS=":" read winst wclass wlabel <<< "$props"
 		echo -e "Instance:\t$winst"
 		echo -e "Class:\t$wclass"
@@ -307,27 +297,41 @@ zenity_client_info() {
 		wmiir read /client/$client/ctl | sed 's/^/\t/'
 		echo "Properties:"
 		wmiir read /client/$client/props | sed 's/^/\t/'
-	} | wmiir setsid -f wihack -transient "$client" \
-		zenity --text-info --title="Client $client"
+	)
+	wihack -transient "$client" xmessage -center "$msg" &
 }
 
-zenity_kill_client() {
+dialog_kill_client() {
 	local client=$1
-	local label=$(wmiir read /client/$client/label | wi_zenity_escape)
+	local label=$(wmiir read /client/$client/label)
 	local pid=$(client_pid "$client")
-	local process= msg=
+	local process=
 	if [[ $pid ]]
-		then process="<b>$(ps -o 'cmd=' $pid | wi_zenity_escape)</b> (PID $pid)"
-		else process="<i>unknown</i>"
+		then process="$(ps -o 'cmd=' $pid) (PID $pid)"
+		else process="unknown (no PID)"
 	fi
-	msg="Do you really want to disconnect the process that this window belongs to?"
-	msg+="\n\nWindow:\t$label\nProcess:\t$process"
-	(wihack -transient "$client" \
-			zenity --question \
-			--title="Disconnect process" \
-			--text="$msg" \
-			--ok-label="Cancel" --cancel-label="Disconnect" \
-			|| wmiir xwrite /client/$client/ctl "slay") &
+	local msg=$(
+		echo "Disconnect X client?"
+		echo ""
+		echo -e "Window:\n\t$label"
+		echo -e "Process:\n\t$process"
+	)
+	if wihack -transient "$client" xmessage -center -buttons kill:0,cancel "$msg"; then
+		wmiir xwrite /client/$client/ctl "slay"
+	fi &
+}
+
+dialog_unresponsive() {
+	local client=$1
+	local label=$(wmiir read /client/$client/label)
+	local msg=$(
+		echo "The following client is not responding:"
+		echo ""
+		echo "Window: $label"
+	)
+	if wihack -transient "$client" xmessage -center -buttons kill:0,wait "$msg"; then
+		wmiir xwrite /client/$client/ctl "slay"
+	fi &
 }
 
 show_client_menu() {
@@ -347,8 +351,8 @@ event_ClientAction() {
 		Close|Delete)	wmiir xwrite /client/$client/ctl "kill";;
 		Fullscreen)	wmiir xwrite /client/$client/ctl "fullscreen on";;
 		Float)		wmiir xwrite /tag/sel/ctl "send $client toggle";;
-		Info)		zenity_client_info $client;;
-		Kill)		zenity_kill_client $client;;
+		Info)		dialog_client_info $client;;
+		Kill)		dialog_kill_client $client;;
 	esac
 }
 Events["ClientMouseDown 3"]='show_client_menu "$client"'
@@ -368,10 +372,6 @@ event_DebugAction() {
 } >> "$XDG_RUNTIME_DIR/wmii.log" 2>&1
 
 ### Start wmiirc
-
-wi_zenity_escape() {
-	sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g'
-}
 
 InitConfig() {
 	wmiir write /ctl <<-!
