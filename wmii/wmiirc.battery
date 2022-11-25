@@ -3,8 +3,6 @@
 [[ $Battery ]] || exit 0
 
 update_battery_status() {
-	local BG=${NormalColors#* }
-
 	local level=$(</sys/class/power_supply/$Battery/capacity)
 	local status=$(</sys/class/power_supply/$Battery/status)
 
