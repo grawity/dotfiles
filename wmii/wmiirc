@@ -112,9 +112,11 @@ StartupJobs+=(wi_status_loop)
 
 # Built-in rbar items (clock and load)
 update_clock() {
+	local now
+	printf -v now '%(%a, %b %d %H:%M)T'
 	wmiir create /rbar/zz_clock <<-!
 		colors $NormalColors
-		label $(date '+%a, %b %d %H:%M')
+		label $now
 	!
 }
 
