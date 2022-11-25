@@ -454,7 +454,7 @@ if have fzf; then
 		local qry=${pre##*[ /=]}
 		local str=$(FZF_DEFAULT_COMMAND=$cmd fzf -q "$qry" --reverse --ansi \
 				--preview='ls -ldh --color=always {}' \
-				--preview-window=down,1,border-none)
+				--preview-window=down:1:noborder)
 		if [[ $str ]]; then
 			pre=${pre%"$qry"}
 			str=${str@Q}" "
