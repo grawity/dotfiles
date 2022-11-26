@@ -1,24 +1,27 @@
 #!/usr/bin/env bash
 
-if [[ $HOSTNAME == fujitsu ]]; then
-	#xset s $[5*60] &
 
-	#compton &
+case $HOSTNAME in
+	fujitsu)
+		#xset s $[5*60] &
 
-	#xss-lock ~/bin/lock-session auto &
+		#compton &
 
-	#xsettingsd &
-	#systemctl --user start xsettingsd
+		#xss-lock ~/bin/lock-session auto &
 
-	#/usr/lib/i386-linux-gnu/xfce4/notifyd/xfce4-notifyd &
-	#dunst &
+		#xsettingsd &
+		#systemctl --user start xsettingsd
 
-	#stalonetray &
-	#xfce4-panel &
+		#/usr/lib/i386-linux-gnu/xfce4/notifyd/xfce4-notifyd &
+		#dunst &
 
-	#nm-applet &
+		#stalonetray &
+		#xfce4-panel &
 
-	#upower-monitor &
-fi
+		#nm-applet &
+
+		#upower-monitor &
+		;;
+esac
 
 #gnome-terminal &
