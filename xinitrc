@@ -5,7 +5,6 @@ have() { type "$1" > /dev/null 2>&1; }
 
 bg_color='#222222'
 bg_image=~/.dotfiles/gui/noise.png
-default_session=${SX_DEFAULT_SESSION:-openbox}
 
 cd ~
 
@@ -36,7 +35,7 @@ if have hsetroot; then
 fi
 
 # Aliases for common session commands
-[ "$*" ] || set -- $default_session
+[ "$*" ] || set -- ${SX_DEFAULT_SESSION:-xterm}
 case $* in
 	e)		set -- enlightenment_start \
 			-i-really-know-what-i-am-doing-and-accept-full-responsibility-for-it;;
