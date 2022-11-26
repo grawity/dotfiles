@@ -67,4 +67,4 @@ export DESKTOP_SESSION
 [ -f ~/.Xkbmap ]	&& setxkbmap $(cat ~/.Xkbmap)
 
 # Start the WM
-exec "$@"
+"$@"
