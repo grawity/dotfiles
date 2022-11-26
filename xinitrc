@@ -61,6 +61,7 @@ esac
 export DESKTOP_SESSION
 
 # Load X-specific profile
+[ "$HOSTNAME" ]		|| HOSTNAME=$(hostname)
 [ -f /etc/xprofile ]	&& . /etc/xprofile
 [ -f ~/.xprofile ]	&& . ~/.xprofile
 [ -f ~/.Xresources ]	&& xrdb -merge ~/.Xresources
