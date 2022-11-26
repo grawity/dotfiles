@@ -63,8 +63,8 @@ export DESKTOP_SESSION
 # Load X-specific profile
 [ -f /etc/xprofile ]	&& . /etc/xprofile
 [ -f ~/.xprofile ]	&& . ~/.xprofile
-[ -f ~/.Xresources ]	&& xrdb -merge ~/.Xresources &
-[ -f ~/.Xkbmap ]	&& setxkbmap $(cat ~/.Xkbmap) &
+[ -f ~/.Xresources ]	&& xrdb -merge ~/.Xresources
+[ -f ~/.Xkbmap ]	&& setxkbmap $(cat ~/.Xkbmap)
 
 # Start the WM
 exec "$@"
