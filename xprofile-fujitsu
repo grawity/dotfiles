@@ -1,15 +1,10 @@
 # vim: ft=sh
 
-logger -t "xprofile" -- "($HOSTNAME) got args [$*]"
-
 if [ "$1" = fvwm ]; then
-	logger -t "xprofile" -- "loading fvwm background"
 	hsetroot -tile /usr/share/fvwm/default-config/images/background/bg1.png
 elif [ "$1" = icewm ]; then
-	logger -t "xprofile" -- "loading icewm background"
 	hsetroot -tile /usr/share/fvwm/default-config/images/background/bg3.png
 else
-	logger -t "xprofile" -- "loading default background"
 	#hsetroot -tile "$(find ~/Pictures/Wallpapers/Current/ -type f | shuf | head -1)"
 	~/.local/bin/wall
 fi
