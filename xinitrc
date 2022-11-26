@@ -23,8 +23,9 @@ elif have dbus-launch; then
 fi
 
 # Load common profile
-[ -f /etc/profile ]	&& . /etc/profile
-[ -f ~/.profile ]	&& . ~/.profile
+# XXX: Is this needed? Consider that xinit is usually invoked from shells anyway
+#[ -f /etc/profile ]	&& . /etc/profile
+#[ -f ~/.profile ]	&& . ~/.profile
 
 # Set background color
 if have xsetroot; then
