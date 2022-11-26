@@ -19,13 +19,11 @@ xbindkeys &
 
 xmodmap ~/.Xmodmap-PriorNext
 
-# Make sure to provide font smoothing parameters via XSETTINGS for libvte.
+# Provide font smoothing parameters via XSETTINGS for Pango/libvte.
 case $DESKTOP_SESSION in
-	gnome|gnome-*|xfce*)
-		# GNOME and Xfce have their own own XSETTINGS services.
+	gnome*|xfce*)
 		;;
 	*)
-		#xsettingsd &
-		systemctl --user start xsettingsd
+		xsettingsd &
 		;;
 esac

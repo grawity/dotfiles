@@ -4,6 +4,3 @@
 
 # Trigger screen-locker on DPMS-off
 spawn xss-lock -- lock-session --auto
-
-# Provide font settings to GTK/Pango
-systemctl --user start xsettingsd
