@@ -1,25 +1,24 @@
 #!/usr/bin/env bash
 
-#{ inotifywait -r -m -q -e close_write ~/.themes/wh-mod/openbox-3/themerc \
-#  | while read event; do
-#	openbox --reconfigure
-#  done; } &
-
 if [[ $HOSTNAME == fujitsu ]]; then
-	xset s $[5*60]
+	#xset s $[5*60] &
 
-	xss-lock ~/bin/lock-session auto &
+	#compton &
 
-	xsettingsd &
+	#xss-lock ~/bin/lock-session auto &
+
+	#xsettingsd &
+	#systemctl --user start xsettingsd
+
+	#/usr/lib/i386-linux-gnu/xfce4/notifyd/xfce4-notifyd &
+	#dunst &
 
 	#stalonetray &
-	xfce4-panel &
+	#xfce4-panel &
 
-	nm-applet &
+	#nm-applet &
 
-	upower-monitor &
-
-	start-dropbox &
+	#upower-monitor &
 fi
 
-gnome-terminal &
+#gnome-terminal &
