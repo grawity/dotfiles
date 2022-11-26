@@ -1,6 +1,1 @@
 #!bash
-
-#xsetroot -solid "#333333"
-
-# Trigger screen-locker on DPMS-off
-spawn xss-lock -- lock-session --auto

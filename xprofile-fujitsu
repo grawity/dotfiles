@@ -13,11 +13,11 @@ case $1 in
 		;;
 esac
 
-xbindkeys &
+#xbindkeys &
 
-/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+#/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 
-xmodmap ~/.Xmodmap-PriorNext
+#xmodmap ~/.Xmodmap-PriorNext
 
 # Provide font smoothing parameters via XSETTINGS for Pango/libvte.
 case $DESKTOP_SESSION in
