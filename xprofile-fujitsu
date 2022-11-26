@@ -1,13 +1,17 @@
 # vim: ft=sh
 
-if [ "$1" = fvwm ]; then
-	hsetroot -tile /usr/share/fvwm/default-config/images/background/bg1.png
-elif [ "$1" = icewm ]; then
-	hsetroot -tile /usr/share/fvwm/default-config/images/background/bg3.png
-else
-	#hsetroot -tile "$(find ~/Pictures/Wallpapers/Current/ -type f | shuf | head -1)"
-	~/.local/bin/wall
-fi
+case $1 in
+	fvwm)
+		hsetroot -tile /usr/share/fvwm/default-config/images/background/bg1.png
+		;;
+	icewm)
+		hsetroot -tile /usr/share/fvwm/default-config/images/background/bg3.png
+		;;
+	*)
+		#hsetroot -tile "$(find ~/Pictures/Wallpapers/Current/ -type f | shuf | head -1)"
+		~/.local/bin/wall
+		;;
+esac
 
 xbindkeys &
 
