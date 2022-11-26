@@ -1,5 +1,5 @@
 #!/bin/sh
-# ~/.xinitrc - `xinit`/`startx` startup script
+# ~/.xinitrc -- startup script for xinit/startx/sx
 
 have() { type "$1" > /dev/null 2>&1; }
 
@@ -9,12 +9,12 @@ default_session=${SX_DEFAULT_SESSION:-openbox}
 
 cd ~
 
-# Run ssh-agent
+# Ensure ssh-agent is available (for D-Bus as well)
 if [ ! "$SSH_AUTH_SOCK" ] && have ssh-agent; then
 	exec ssh-agent "$0" "$@" || exit
 fi
 
-# Prepare D-Bus
+# Ensure D-Bus session bus is available
 if [ "$DBUS_SESSION_BUS_ADDRESS" ]; then
 	dbus-update-activation-environment --systemd DISPLAY XAUTHORITY
 elif have dbus-run-session; then
@@ -31,8 +31,6 @@ fi
 if have xsetroot; then
 	xsetroot -solid "$bg_color" -cursor_name 'left_ptr'
 fi
-
-# Set background image
 if have hsetroot; then
 	hsetroot -solid "$bg_color" -tile "$bg_image" &
 fi
@@ -48,7 +46,7 @@ case $* in
 	openbox)	set -- openbox --startup ~/.config/openbox/autostart;;
 	xfce)		set -- xfce4-session;;
 	custom)		set -- ~/.xsession;;
-	*)		;; # Pass-through everything else
+	*)		;;
 esac
 
 # Tell ~/.xprofile about the session type
@@ -68,5 +66,5 @@ export DESKTOP_SESSION
 [ -f ~/.Xresources ]	&& xrdb -merge ~/.Xresources &
 [ -f ~/.Xkbmap ]	&& setxkbmap $(cat ~/.Xkbmap) &
 
-# Run the command
+# Start the WM
 exec "$@"
