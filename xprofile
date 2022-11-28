@@ -3,9 +3,15 @@
 #
 # This is shared between startx "sessions" and display manager (GDM) sessions.
 
+# Temporary
+if [ ! "$HOSTNAME" ]; then
+	logger -t xprofile -p err "Missing \$HOSTNAME for ~/.xprofile"
+	HOSTNAME=$(hostname)
+fi
+
 case $DESKTOP_SESSION in
-	gnome|gnome-*)
-		# GNOME Shell will handle this via GSettings.
+	gnome*)
+		# GNOME Shell will handle this via GSettings
 		;;
 	*)
 		case $HOSTNAME in

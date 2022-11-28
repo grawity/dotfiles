@@ -1,12 +1,11 @@
 #!bash
 
-[[ $Battery ]] || exit 0
+[[ $Battery ]] || return 0
 
 update_battery_status() {
-	local BG=${NormalColors#* }
-
-	local level=$(</sys/class/power_supply/$Battery/capacity)
-	local status=$(</sys/class/power_supply/$Battery/status)
+	local level status
+	read -r level < /sys/class/power_supply/$Battery/capacity
+	read -r status < /sys/class/power_supply/$Battery/status
 
 	if [[ ${status,,} == "not charging" && $level -eq 100 ]]; then
 		status="charged"
@@ -18,29 +17,30 @@ update_battery_status() {
 		*)		local text="${status,,} $level%";;
 	esac
 
-	local cur=$((level / 10))
-	local bar=$(gauge $cur 10)
+	local bar=$(gauge $[level/10] 10)
 
-	{
-		if [[ ${status,,} == "not charging" ]]; then
-			echo colors "$UrgentColors"
-		elif (( level >= 80 )); then
-			echo colors "$NormalColors"
-		elif (( level >= 65 )); then
-			echo colors "#bbbbbb ${NormalColors#* }"
-		elif (( level >= 50 )); then
-			echo colors "#ffffff ${NormalColors#* }"
-		elif (( level >= 35 )); then
-			echo colors "#ddbb44 ${NormalColors#* }"
-		elif (( level >= 20 )); then
-			echo colors "#ffdd88 ${NormalColors#* }"
-		elif (( level >= 10 )); then
-			echo colors "#ff3333 ${NormalColors#* }"
-		else
-			echo colors "$UrgentColors"
-		fi
-		echo label "$text [$bar]"
-	} | wmiir create "/rbar/zx_battery"
+	if [[ ${status,,} == "not charging" ]]; then
+		local colors="$UrgentColors"
+	elif (( level >= 80 )); then
+		local colors="$NormalColors"
+	elif (( level >= 65 )); then
+		local colors="#bbbbbb ${NormalColors#* }"
+	elif (( level >= 50 )); then
+		local colors="#ffffff ${NormalColors#* }"
+	elif (( level >= 35 )); then
+		local colors="#ddbb44 ${NormalColors#* }"
+	elif (( level >= 20 )); then
+		local colors="#ffdd88 ${NormalColors#* }"
+	elif (( level >= 10 )); then
+		local colors="#ff3333 ${NormalColors#* }"
+	else
+		local colors="$UrgentColors"
+	fi
+
+	wmiir create "/rbar/zx_battery" <<-!
+		colors $colors
+		label $text [$bar]
+	!
 }
 
 StatusFuncs+=(update_battery_status)

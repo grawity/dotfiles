@@ -452,9 +452,7 @@ if have fzf; then
 		local pre=${READLINE_LINE:0:READLINE_POINT}
 		local suf=${READLINE_LINE:READLINE_POINT}
 		local qry=${pre##*[ /=]}
-		local str=$(FZF_DEFAULT_COMMAND=$cmd fzf -q "$qry" --reverse --ansi \
-				--preview='ls -ldh --color=always {}' \
-				--preview-window=down,1,border-none)
+		local str=$(FZF_DEFAULT_COMMAND=$cmd fzf -q "$qry" --reverse --ansi)
 		if [[ $str ]]; then
 			pre=${pre%"$qry"}
 			str=${str@Q}" "

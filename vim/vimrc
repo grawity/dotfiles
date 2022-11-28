@@ -74,10 +74,6 @@ if has("termguicolors")
 	"endif
 endif
 
-if &term == "linux"
-	set bg=dark
-endif
-
 let g:lucius_style="light"
 "let g:lucius_style="dark"
 let g:molokai_original=1
@@ -90,6 +86,11 @@ let g:zenburn_subdued_LineNr=1
 
 if has("gui_running")
 	" configured in gvimrc
+elseif $TERM == "linux"
+	" Neovim: Work around &t_Co being frozen at 256 regardless of $TERM.
+	" (Note: Must use $TERM instead of &term, as the latter is not yet
+	" defined during init.vim parsing.)
+	color elflord
 elseif &t_Co >= 256
 	" modern terminals
 	if hostname() == "fujitsu" || $BRIGHT == "1"
@@ -131,7 +132,7 @@ set laststatus=2		" always display status line
 set splitbelow splitright
 set tabpagemax=20		" increase max tab pages
 
-if &t_Co > 16
+if &t_Co > 16 && $TERM != "linux"
 	setl cursorline
 	au WinEnter * setl cursorline
 	au WinLeave * setl nocursorline

@@ -1,32 +1,29 @@
 # vim: ft=sh
 
-logger -t "xprofile" -- "($HOSTNAME) got args [$*]"
-
-if [ "$1" = fvwm ]; then
-	logger -t "xprofile" -- "loading fvwm background"
-	hsetroot -tile /usr/share/fvwm/default-config/images/background/bg1.png
-elif [ "$1" = icewm ]; then
-	logger -t "xprofile" -- "loading icewm background"
-	hsetroot -tile /usr/share/fvwm/default-config/images/background/bg3.png
-else
-	logger -t "xprofile" -- "loading default background"
-	#hsetroot -tile "$(find ~/Pictures/Wallpapers/Current/ -type f | shuf | head -1)"
-	~/.local/bin/wall
-fi
-
-xbindkeys &
-
-/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
-
-xmodmap ~/.Xmodmap-PriorNext
-
-# Make sure to provide font smoothing parameters via XSETTINGS for libvte.
-case $DESKTOP_SESSION in
-	gnome|gnome-*|xfce*)
-		# GNOME and Xfce have their own own XSETTINGS services.
+case $1 in
+	fvwm)
+		hsetroot -tile /usr/share/fvwm/default-config/images/background/bg1.png
+		;;
+	icewm)
+		hsetroot -tile /usr/share/fvwm/default-config/images/background/bg3.png
 		;;
 	*)
-		#xsettingsd &
-		systemctl --user start xsettingsd
+		#hsetroot -tile "$(find ~/Pictures/Wallpapers/Current/ -type f | shuf | head -1)"
+		~/.local/bin/wall
+		;;
+esac
+
+#xbindkeys &
+
+#/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+
+#xmodmap ~/.Xmodmap-PriorNext
+
+# Provide font smoothing parameters via XSETTINGS for Pango/libvte.
+case $DESKTOP_SESSION in
+	gnome*|xfce*)
+		;;
+	*)
+		xsettingsd &
 		;;
 esac

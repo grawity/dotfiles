@@ -1,20 +1,19 @@
 #!/bin/sh
-# ~/.xinitrc - `xinit`/`startx` startup script
+# ~/.xinitrc -- startup script for xinit/startx/sx
 
 have() { type "$1" > /dev/null 2>&1; }
 
 bg_color='#222222'
 bg_image=~/.dotfiles/gui/noise.png
-default_session=${SX_DEFAULT_SESSION:-openbox}
 
 cd ~
 
-# Run ssh-agent
+# Ensure ssh-agent is available (for D-Bus as well)
 if [ ! "$SSH_AUTH_SOCK" ] && have ssh-agent; then
 	exec ssh-agent "$0" "$@" || exit
 fi
 
-# Prepare D-Bus
+# Ensure D-Bus session bus is available
 if [ "$DBUS_SESSION_BUS_ADDRESS" ]; then
 	dbus-update-activation-environment --systemd DISPLAY XAUTHORITY
 elif have dbus-run-session; then
@@ -24,21 +23,20 @@ elif have dbus-launch; then
 fi
 
 # Load common profile
-[ -f /etc/profile ]	&& . /etc/profile
-[ -f ~/.profile ]	&& . ~/.profile
+# XXX: Is this needed? Consider that xinit is usually invoked from shells anyway
+#[ -f /etc/profile ]	&& . /etc/profile
+#[ -f ~/.profile ]	&& . ~/.profile
 
 # Set background color
 if have xsetroot; then
 	xsetroot -solid "$bg_color" -cursor_name 'left_ptr'
 fi
-
-# Set background image
 if have hsetroot; then
 	hsetroot -solid "$bg_color" -tile "$bg_image" &
 fi
 
 # Aliases for common session commands
-[ "$*" ] || set -- $default_session
+[ "$*" ] || set -- ${SX_DEFAULT_SESSION:-xterm}
 case $* in
 	e)		set -- enlightenment_start \
 			-i-really-know-what-i-am-doing-and-accept-full-responsibility-for-it;;
@@ -48,7 +46,7 @@ case $* in
 	openbox)	set -- openbox --startup ~/.config/openbox/autostart;;
 	xfce)		set -- xfce4-session;;
 	custom)		set -- ~/.xsession;;
-	*)		;; # Pass-through everything else
+	*)		;;
 esac
 
 # Tell ~/.xprofile about the session type
@@ -63,10 +61,11 @@ esac
 export DESKTOP_SESSION
 
 # Load X-specific profile
+[ "$HOSTNAME" ]		|| HOSTNAME=$(hostname)
 [ -f /etc/xprofile ]	&& . /etc/xprofile
 [ -f ~/.xprofile ]	&& . ~/.xprofile
-[ -f ~/.Xresources ]	&& xrdb -merge ~/.Xresources &
-[ -f ~/.Xkbmap ]	&& setxkbmap $(cat ~/.Xkbmap) &
+[ -f ~/.Xresources ]	&& xrdb -merge ~/.Xresources
+[ -f ~/.Xkbmap ]	&& setxkbmap $(cat ~/.Xkbmap)
 
-# Run the command
-exec "$@"
+# Start the WM
+"$@"
