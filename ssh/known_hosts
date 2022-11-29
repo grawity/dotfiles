@@ -104,3 +104,4 @@ whoami.filippo.io ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtytJXz8x5gaNC/qj/Gaz0Sp
 # Automatically added entries
 [schare.valdikss.org.ru]:11011 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG6J94HFk5SCENT4XPD3Gm3KC6rcMohCwHMWLTalioz7
 connect.ban.ai ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMpIkmPwXP8243aB4dpU+3+Lz7xlC9RpTUd18VswI3x4
+multics.trnsz.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMpIkmPwXP8243aB4dpU+3+Lz7xlC9RpTUd18VswI3x4
