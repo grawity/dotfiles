@@ -43,6 +43,11 @@ Host wind-alt
 	HostName alt.wind.nullroute.lt
 	PKCS11Provider none
 
+Host vm-ampere.nullroute.lt
+	# Experimenting with HOME=/net/land/home/grawity
+	PreferredAuthentications gssapi-with-mic
+	GSSAPIDelegateCredentials yes
+
 Host bmc.*.nullroute.lt
 	# iLO
 	KexAlgorithms +diffie-hellman-group14-sha1
