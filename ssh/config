@@ -43,11 +43,6 @@ Host wind-alt
 	HostName alt.wind.nullroute.lt
 	PKCS11Provider none
 
-Host homegw
-	# RouterOS 6.48.3 seems to support RSA-SHA2 for host keys, but still doesn't
-	# accept such signatures for user keys. (XXX: Fixed in ROS 7.4beta2?)
-	PubkeyAcceptedAlgorithms +ssh-rsa
-
 Host bmc.*.nullroute.lt
 	# iLO
 	KexAlgorithms +diffie-hellman-group14-sha1
