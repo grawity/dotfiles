@@ -11,7 +11,7 @@ pager() { command ${PAGER:-less} "$@"; }
 alias aa-reload='apparmor_parser -r -T -W'
 bat() { if (( $# )) || [[ ! -t 0 ]]; then command bat "$@"; else acpi -i; fi; }
 btar() { tar -czf - "$@" | base64; }
-buntar() { base64 -d | tar -xvzf -; }
+buntar() { base64 -d | tar -xvvzf -; }
 alias bridge='bridge --color=auto'
 catsexp() { cat "$@" | sexp-conv -w $((COLUMNS-1)); }
 count() { sort "$@" | uniq -c | sort -n -r | pager; }
