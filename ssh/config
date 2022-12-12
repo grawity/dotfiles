@@ -43,8 +43,7 @@ Host wind-alt
 	HostName alt.wind.nullroute.lt
 	PKCS11Provider none
 
-Host gate
-	#HostName gate.nullroute.lt
+Host gate gate.nullroute.lt
 	HostKeyAlias gate.nullroute.lt
 	HostName sky.nullroute.lt
 	VerifyHostKeyDNS no
