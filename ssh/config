@@ -43,6 +43,14 @@ Host wind-alt
 	HostName alt.wind.nullroute.lt
 	PKCS11Provider none
 
+Host gate
+	#HostName gate.nullroute.lt
+	HostKeyAlias gate.nullroute.lt
+	HostName sky.nullroute.lt
+	VerifyHostKeyDNS no
+	User _gate
+	Port 2
+
 Host vm-ampere.nullroute.lt
 	# Experimenting with HOME=/net/land/home/grawity
 	PreferredAuthentications gssapi-with-mic
@@ -57,13 +65,6 @@ Host bmc.*.nullroute.lt
 Host *.nullroute.lt
 	GSSAPIAuthentication yes
 	ForwardAgent yes
-
-Host gate
-	HostkeyAlias gate.nullroute.lt
-	HostName sky.nullroute.lt
-	#HostName gate.nullroute.lt
-	User _gate
-	Port 2
 
 # -- Other hosts --
 
