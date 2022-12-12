@@ -58,6 +58,13 @@ Host *.nullroute.lt
 	GSSAPIAuthentication yes
 	ForwardAgent yes
 
+Host gate
+	HostkeyAlias gate.nullroute.lt
+	HostName sky.nullroute.lt
+	#HostName gate.nullroute.lt
+	User _gate
+	Port 2
+
 # -- Other hosts --
 
 Host aur
