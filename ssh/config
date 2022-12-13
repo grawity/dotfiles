@@ -50,7 +50,7 @@ Host gate gate.nullroute.lt
 	User _gate
 	Port 2
 
-Host vm-ampere.nullroute.lt
+Host vm-ampere.nullroute.lt vm-okeanos.nullroute.lt
 	# Experimenting with HOME=/net/land/home/grawity
 	PreferredAuthentications gssapi-with-mic
 	GSSAPIDelegateCredentials yes
