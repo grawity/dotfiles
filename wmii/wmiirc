@@ -368,12 +368,13 @@ event_DebugAction() {
 	dlog ">> $*"
 	local cmd=$1; shift
 	case $cmd in
-		.)	echo "Hello!";;
+		.|poke)	echo "Hello!";;
 		e|eval)	eval "$@";;
 		p)	declare -p "$@";;
 		ps)	wmiir setsid ps -f -o pgid,pid,comm,command -$(proctool getpgid);;
 		re)	wmiir xwrite /ctl "spawn \"$WMIIRC\"";;
 		rw)	wmiir xwrite /ctl "exec wmii";;
+		spawn)	wmiir xwrite /ctl "spawn $*";;
 		*)	echo "Unknown command '$cmd'";;
 	esac
 } >> "$XDG_RUNTIME_DIR/wmii.log" 2>&1
