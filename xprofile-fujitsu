@@ -2,17 +2,17 @@
 
 ~/.local/bin/wall $1
 
-#xbindkeys &
-
 #/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 
-#xmodmap ~/.Xmodmap-PriorNext
+# Global key bindings
+xbindkeys &
 
-# Provide font smoothing parameters via XSETTINGS for Pango/libvte.
+# Map front-panel arrow keys to PageUp/PageDown initially
+# (acpid will load PriorNext or NextPrior during orientation switch)
+xmodmap ~/.Xmodmap-PriorNext
+
+# Provide font smoothing parameters via XSETTINGS for Pango/libvte
 case $DESKTOP_SESSION in
-	gnome*|xfce*)
-		;;
-	*)
-		xsettingsd &
-		;;
+	gnome*|xfce*) ;;
+	*) xsettingsd & ;;
 esac
