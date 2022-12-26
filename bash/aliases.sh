@@ -6,7 +6,6 @@ do:() { (PS4=$'\e[32m+\e[m '; set -x; "$@") }
 
 editor() { command ${EDITOR:-vim} "$@"; }
 pager() { command ${PAGER:-less} "$@"; }
-browser() { command ${BROWSER:-xdg-open} "$@"; }
 
 alias aa-reload='apparmor_parser -r -T -W'
 bat() { if (( $# )) || [[ ! -t 0 ]]; then command bat "$@"; else acpi -i; fi; }
