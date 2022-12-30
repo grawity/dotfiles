@@ -6,21 +6,24 @@ test "$UID"      || UID=$(id -u)
 test "$USER"     || USER=$(id -un)
 test "$HOSTNAME" || HOSTNAME=$(hostname)
 
+# Enable allexport
 set -a
 
-# Exec path
-case $PATH in
-	*:$HOME/bin:*)
-		;;
-	*)
-		PATH="$HOME/code/obj/host.$HOSTNAME:$HOME/code/bin:$PATH"
-		PATH="$HOME/bin/obj/host.$HOSTNAME:$HOME/bin:$PATH"
-		PATH="$HOME/.local/bin:$PATH"
-		PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
-		PATH="$PATH:$HOME/code/bin/fallback"
-		PATH="$PATH:$HOME/bin/fallback"
-		;;
-esac
+# System path
+add_path() case :$PATH: in *:$1:*) ;; *) PATH=$1:$PATH;; esac
+path_add() case :$PATH: in *:$1:*) ;; *) PATH=$PATH:$1;; esac
+
+add_path ~/code/bin
+add_path ~/bin
+add_path ~/code/obj/host.$HOSTNAME
+add_path ~/bin/obj/host.$HOSTNAME
+
+path_add /usr/local/sbin
+path_add /usr/sbin
+path_add /sbin
+
+path_add ~/code/bin/fallback
+path_add ~/bin/fallback
 
 # http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
 #test "$XDG_CACHE_HOME"  || XDG_CACHE_HOME="$HOME/.cache"
