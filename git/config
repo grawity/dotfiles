@@ -196,6 +196,8 @@
 	directory = /net/ember/srv/http/default
 	directory = /net/wind/srv/http/default
 	directory = /net/land/srv/http/default
+	directory = /home/grawity/src/work/LOGIN/current
+	directory = /home/grawity/src/work/IDP/ssp-1.19
 
 [sendemail]
 	from = Mantas Mikulėnas <grawity@gmail.com>
