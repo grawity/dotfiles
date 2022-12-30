@@ -13,21 +13,11 @@ case $PATH in
 	*:$HOME/bin:*)
 		;;
 	*)
-		# Prepend ~/code (old paths)
-		PATH="$HOME/code/obj/host.$HOSTNAME:$PATH"
-		PATH="$HOME/code/bin:$PATH"
-		# Prepend ~/bin (new paths)
-		PATH="$HOME/bin/obj/host.$HOSTNAME:$PATH"
-		PATH="$HOME/bin:$PATH"
-		# Prepend host-specific bindir
+		PATH="$HOME/code/obj/host.$HOSTNAME:$HOME/code/bin:$PATH"
+		PATH="$HOME/bin/obj/host.$HOSTNAME:$HOME/bin:$PATH"
 		PATH="$HOME/.local/bin:$PATH"
-
-		# Append sbin, for Debian
 		PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
-
-		# Append personal fallback (old path)
 		PATH="$PATH:$HOME/code/bin/fallback"
-		# Append personal fallback (new path)
 		PATH="$PATH:$HOME/bin/fallback"
 		;;
 esac
