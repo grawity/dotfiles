@@ -458,11 +458,11 @@ if have fzf; then
 	}
 	if have fd; then
 		# Alt+[df] - local dir/all selection
-		bind -m emacs -x '"\ed": _fzfyank "fd --strip-cwd-prefix --color=always --exact-depth=1 --type=d"'
-		bind -m emacs -x '"\ef": _fzfyank "fd --strip-cwd-prefix --color=always --exact-depth=1"'
+		bind -m emacs -x '"\ed": _fzfyank "fd -I --strip-cwd-prefix --color=always --exact-depth=1 --type=d"'
+		bind -m emacs -x '"\ef": _fzfyank "fd -I --strip-cwd-prefix --color=always --exact-depth=1"'
 		# Alt+Shift+[DF] - recursive dir/all selection
-		bind -m emacs -x '"\eD": _fzfyank "fd --strip-cwd-prefix --color=always --type=d"'
-		bind -m emacs -x '"\eF": _fzfyank "fd --strip-cwd-prefix --color=always"'
+		bind -m emacs -x '"\eD": _fzfyank "fd -I --strip-cwd-prefix --color=always --type=d"'
+		bind -m emacs -x '"\eF": _fzfyank "fd -I --strip-cwd-prefix --color=always"'
 	else
 		# Alt+[df] - local dir/all selection
 		bind -m emacs -x '"\ed": _fzfyank "compgen -d | sort"'
