@@ -5,7 +5,6 @@ unalias -a
 do:() { (PS4=$'\e[32m+\e[m '; set -x; "$@") }
 
 editor() { command ${EDITOR:-vim} "$@"; }
-browser() { command ${BROWSER:-lynx} "$@"; }
 pager() { command ${PAGER:-less} "$@"; }
 
 alias aa-reload='apparmor_parser -r -T -W'
@@ -46,11 +45,6 @@ alias fff='fanficfare -f html'
 alias fiemap='xfs_io -r -c "fiemap -v"'
 alias foreach='while IFS= read -r'
 gerp() { grep $grepopt -ErIHn -Dskip --exclude-dir={.bzr,.git,.hg,.svn,_undo} "$@"; }
-getownip() {
-	curl -s http://whatismyip.akamai.com
-	#dig +short whoami.akamai.net. A @ns1-1.akamaitech.net.
-	#dig +short myip.opendns.com. A @resolver1.opendns.com.
-}
 gpgfp() { gpg --with-colons --fingerprint "$1" | awk -F: '/^fpr:/ {print $10}'; }
 alias gmpv='celluloid'
 alias gte='gnome-text-editor'
@@ -464,11 +458,11 @@ if have fzf; then
 	}
 	if have fd; then
 		# Alt+[df] - local dir/all selection
-		bind -m emacs -x '"\ed": _fzfyank "fd --strip-cwd-prefix --color=always --exact-depth=1 --type=d"'
-		bind -m emacs -x '"\ef": _fzfyank "fd --strip-cwd-prefix --color=always --exact-depth=1"'
+		bind -m emacs -x '"\ed": _fzfyank "fd -I --strip-cwd-prefix --color=always --exact-depth=1 --type=d"'
+		bind -m emacs -x '"\ef": _fzfyank "fd -I --strip-cwd-prefix --color=always --exact-depth=1"'
 		# Alt+Shift+[DF] - recursive dir/all selection
-		bind -m emacs -x '"\eD": _fzfyank "fd --strip-cwd-prefix --color=always --type=d"'
-		bind -m emacs -x '"\eF": _fzfyank "fd --strip-cwd-prefix --color=always"'
+		bind -m emacs -x '"\eD": _fzfyank "fd -I --strip-cwd-prefix --color=always --type=d"'
+		bind -m emacs -x '"\eF": _fzfyank "fd -I --strip-cwd-prefix --color=always"'
 	else
 		# Alt+[df] - local dir/all selection
 		bind -m emacs -x '"\ed": _fzfyank "compgen -d | sort"'

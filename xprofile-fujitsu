@@ -1,29 +1,18 @@
 # vim: ft=sh
 
-case $1 in
-	fvwm)
-		hsetroot -tile /usr/share/fvwm/default-config/images/background/bg1.png
-		;;
-	icewm)
-		hsetroot -tile /usr/share/fvwm/default-config/images/background/bg3.png
-		;;
-	*)
-		#hsetroot -tile "$(find ~/Pictures/Wallpapers/Current/ -type f | shuf | head -1)"
-		~/.local/bin/wall
-		;;
-esac
-
-#xbindkeys &
+~/.local/bin/wall $1
 
 #/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 
-#xmodmap ~/.Xmodmap-PriorNext
+# Global key bindings
+xbindkeys &
 
-# Provide font smoothing parameters via XSETTINGS for Pango/libvte.
+# Map front-panel arrow keys to PageUp/PageDown initially
+# (acpid will load PriorNext or NextPrior during orientation switch)
+xmodmap ~/.Xmodmap-PriorNext
+
+# Provide font smoothing parameters via XSETTINGS for Pango/libvte
 case $DESKTOP_SESSION in
-	gnome*|xfce*)
-		;;
-	*)
-		xsettingsd &
-		;;
+	gnome*|xfce*) ;;
+	*) xsettingsd & ;;
 esac
