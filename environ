@@ -18,6 +18,8 @@ add_path ~/bin
 add_path ~/code/obj/host.$HOSTNAME
 add_path ~/bin/obj/host.$HOSTNAME
 
+add_path ~/.local/bin
+
 path_add /usr/local/sbin
 path_add /usr/sbin
 path_add /sbin
