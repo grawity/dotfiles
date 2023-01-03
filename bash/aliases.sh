@@ -168,6 +168,11 @@ bind -m emacs -x '"\e,": ,'
 @cd() { cd "${1:+/net/$1}/${PWD#/net/*/}"; }
 @pwd() { echo "${1:+/net/$1}/${PWD#/net/*/}"; }
 
+for host in ember frost land myth rain sky star wind wolke; do
+	alias $host="on -D $host"
+	alias @$host="on -N $host"
+done
+
 # dates
 
 alias ssdate='date "+%Y%m%d"'
