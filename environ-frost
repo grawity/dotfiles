@@ -6,7 +6,4 @@ BORG_REPO="vol5:/vol5/Backup/Homes/$HOSTNAME.borg"
 # Temporary(?) for dist_scripts development
 KRB5_KTNAME="$HOME/tmp/foo.keytab"
 
-# Force Haswell driver as libva defaults to "iHD" otherwise
-LIBVA_DRIVER_NAME="i965"
-
 MOZ_ENABLE_WAYLAND="1"
