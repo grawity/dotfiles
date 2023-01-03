@@ -169,8 +169,8 @@ bind -m emacs -x '"\e,": ,'
 @pwd() { echo "${1:+/net/$1}/${PWD#/net/*/}"; }
 
 for host in ember frost land myth rain sky star wind wolke; do
-	alias $host="on -D $host"
-	alias @$host="on -N $host"
+	alias $host="on $host -D"
+	alias @$host="on $host -N"
 done
 
 # dates
