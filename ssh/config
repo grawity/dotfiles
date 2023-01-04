@@ -43,6 +43,12 @@ Host wind-alt
 	HostName alt.wind.nullroute.lt
 	PKCS11Provider none
 
+#if ember
+Host embergw-alt
+	HostName 10.147.241.58
+	HostkeyAlias embergw.nullroute.lt
+#endif
+
 Host gate gate.nullroute.lt
 	HostkeyAlias gate.nullroute.lt
 	HostName sky.nullroute.lt
@@ -123,6 +129,19 @@ Host uk-lnx1-console
 	HostName 10.34.1.14
 	HostkeyAlias ap-m7-14.utenos-kolegija.lt
 	User cons
+	PKCS11Provider p11-kit-proxy.so
+
+Host gw-core-alt
+#if ember
+	HostName 2001:778:0:1025::2
+	BindAddress 2001:778:0:1025::3
+#else
+	HostName 83.171.33.188
+	ProxyJump sky
+#endif
+	HostkeyAlias gw-core.utenos-kolegija.lt
+	User root
+	PKCS11Provider p11-kit-proxy.so
 
 Host *.utenos-kolegija.lt
 	PKCS11Provider p11-kit-proxy.so
