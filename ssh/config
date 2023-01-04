@@ -33,18 +33,18 @@ Host vm-vol5 vm-vol5.nullroute.lt
 
 Host ember-alt ember-bypass
 	# Direct uplink to sw-b56-edge that bypasses gw-core
-	HostKeyAlias ember.nullroute.lt
+	HostkeyAlias ember.nullroute.lt
 	HostName alt.ember.nullroute.lt
 	PKCS11Provider none
 
 Host wind-alt
 	# Alternative path to core via PTP-U2
-	HostKeyAlias wind.nullroute.lt
+	HostkeyAlias wind.nullroute.lt
 	HostName alt.wind.nullroute.lt
 	PKCS11Provider none
 
 Host gate gate.nullroute.lt
-	HostKeyAlias gate.nullroute.lt
+	HostkeyAlias gate.nullroute.lt
 	HostName sky.nullroute.lt
 	VerifyHostKeyDNS no
 	User _gate
@@ -121,7 +121,7 @@ Host vsiftp.vmssoftware.com
 Host uk-lnx1-console
 	# Serial port through AP-M7-14
 	HostName 10.34.1.14
-	HostKeyAlias ap-m7-14.utenos-kolegija.lt
+	HostkeyAlias ap-m7-14.utenos-kolegija.lt
 	User cons
 
 Host *.utenos-kolegija.lt
