@@ -3,7 +3,7 @@
 
 set -e
 
-PATH="$HOME/code/bin:$PATH"
+PATH="$HOME/bin:$HOME/code/bin:$PATH"
 FQDN=${FQDN:-$(fqdn)}
 
 . lib.bash || exit
