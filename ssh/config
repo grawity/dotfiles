@@ -176,7 +176,7 @@ Host *
 	ServerAliveInterval 10s
 #endif
 
-#if @(ember|frost|wind)
+#if @(ember|wind)
 # On hosts where NAT timeouts are not an issue, persist authenticated
 # connections for longer.
 Host *
