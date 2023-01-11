@@ -197,7 +197,11 @@ Host dune.nullroute.lt
 
 Host *
 	CanonicalizeHostname yes
+#if @(ember|wind|frost)
 	CanonicalDomains nullroute.lt utenos-kolegija.lt ukolegija.lt
+#else
+	CanonicalDomains nullroute.lt
+#endif
 	Protocol 2
 	HashKnownHosts no
 	VerifyHostKeyDNS yes
