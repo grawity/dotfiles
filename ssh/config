@@ -169,7 +169,7 @@ Match canonical host *
 	# ...but enable it for single-label names
 	GSSAPIAuthentication yes
 
-#if @(rain|midnight)
+#if @(rain|midnight|myth)
 Host *
 	# Telia's LTE CGNAT has an aggressive idle timeout (several minutes),
 	# so make sure to expire old connections when resuming from sleep.
