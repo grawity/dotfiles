@@ -120,7 +120,7 @@ set sort=threads
 #set use_threads=yes sort=date
 # NeoMutt - sort threads by last activity, not by start date, so that
 # old threads with new activity don't drown.
-set use_threads=yes sort=last-date
+#set use_threads=yes sort=last-date
 
 # Don't auto-collapse threads if they have unread messages
 unset collapse_unread
