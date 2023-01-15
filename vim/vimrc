@@ -105,50 +105,50 @@ else
 	silent! color slate
 endif
 
-" UI elements
+if &t_Co > 16 && $TERM != "linux"
+	"setl cursorline
+	"au WinEnter *		setl cursorline
+	"au WinLeave *		setl nocursorline
+	"au FocusGained *	setl cursorline
+	"au FocusLost *		setl nocursorline
+endif
 
-" Show current line,column in status bar
-" (Neovim 0.??: default enabled)
+""" UI elements
+
+" Show current line,column in status bar (Neovim 0.??: default on)
 set ruler
 
-set showmode
-set showcmd
-
-if has("nvim")
-	" Neovim 0.6 defaults to 'inccommand=split' to show a live preview of
-	" s///, disable it for now.
-	set inccommand=
+" Show filename & ruler as a per-file status bar
+if hostname() == "fujitsu"
+	set laststatus=1	" Only in split windows
+else
+	set laststatus=2	" Always (Nvim default)
 endif
 
-set linebreak			" soft word-wrap
-set display+=lastline		" show partial line if it doesn't fit
-"set showbreak=↵\ 		" prefix wrapped lines
-set display+=uhex		" show unprintable chars as <hex>
+set showmode			" Show '--INSERT--' in status
+set showcmd			" Show command being typed in status
+
+silent! set number		" Show line numbers
+silent! set numberwidth=4
+
+set linebreak			" Softwrap at word boundaries
+set display+=lastline		" Show partial line if it doesn't fit
+"set showbreak=↵\ 		" Prefix wrapped lines
+set display+=uhex		" Show unprintable chars as <hex>
 silent! set listchars=eol:¬,tab:→.,extends:»,precedes:«,trail:•
 
-silent! set number
-silent! set numberwidth=4
-set scrolloff=3			" scroll context lines
-set laststatus=2		" always display status line
+set scrolloff=3			" Context lines when scrolling
 set splitbelow splitright
-set tabpagemax=20		" increase max tab pages
+set tabpagemax=20		" Increase max tab pages
 
-if &t_Co > 16 && $TERM != "linux"
-	setl cursorline
-	au WinEnter * setl cursorline
-	au WinLeave * setl nocursorline
-	au FocusGained * setl cursorline
-	au FocusLost * setl nocursorline
-endif
-
-set wildmenu			" show menu when tab-completing :commands
+set wildmenu			" Show menu when tab-completing
 "set wildmode=list:longest
-silent! set wildignorecase
+silent! set wildignorecase	" Case-insensitive tab-completion
 
 set noerrorbells visualbell t_vb=	" turn off all bells
 
-set shortmess+=I		" do not show :intro message
-"set shortmess+=A		" do not warn about existing swapfiles
+set shortmess+=I		" Do not show :intro message on startup
+"set shortmess+=A		" Do not warn about existing swapfiles
 
 """ File input/output
 
@@ -173,15 +173,17 @@ if has("nvim")
 endif
 
 if !has("nvim")
+	" Move the .viminfo file out of $HOME
 	set viminfo+=n~/.vim/_viminfo
 endif
 
-" Swap file location – use // to include full path in swapnames
-if has("unix")
+" Move swapfiles to a central location (instead of next to original)
+if has("unix") && $USER != "root"
 	if has("nvim")
 		set backupdir-=.
 		set undofile
 	else
+		" Use // to include full path in swapfile names
 		set directory=~/.vim/_backup//
 		set backupdir=~/.vim/_backup//
 		silent! set undodir=~/.vim/_undo//
@@ -191,26 +193,28 @@ endif
 
 """ Text editing
 
-" tabs
-set tabstop=8
-"set softtabstop=4
-"set shiftwidth=8
-set smarttab copyindent preserveindent
+set smarttab
+" When autoindenting a new line, inherit tab/space usage from previous line
+set copyindent
+" When adjusting indent of a line, preserve tab/space usage
+set preserveindent
+
 set autoindent
+
+" Auto-indent after '{'
 set smartindent
-"set nocindent
+"set cindent
 set cinkeys=0{,0},0),:,!,o,O,e
-
-" When joining lines, don't add two spaces between sentences.
-" (This is now disabled by default as of Neovim 0.6)
-set nojoinspaces
-
 " Don't smartindent after keywords like 'for', 'do' etc.
 " (This retains smartindent after '{'.)
 set cinwords=
 
 " Note: To determine what re-enabled these options, use:
 "       :verbose set sw? et? si? cin?
+
+" When joining lines, don't add two spaces between sentences.
+" (This is now disabled by default as of Neovim 0.6)
+set nojoinspaces
 
 " Allow backspacing over autoindents; across line breaks; and deleting text
 " before the insert point. (Enabled by default in Neovim 0.5, probably, or
@@ -227,29 +231,32 @@ set formatoptions=tcrqnj
 set comments-=:%
 set comments-=:XCOMM
 
+" Don't highlight matching brackets by auto-moving the cursor
 set noshowmatch
-"silent! let loaded_matchparen=1
 
-" Searching
-
-set incsearch
-set ignorecase	    " enable //i by default
-set smartcase	    " ignorecase unless upper-case was used
-set gdefault	    " enable s///g by default
+set incsearch		" Live highlight // searches
+set ignorecase		" Assume //i by default
+set smartcase		" Don't assume //i if upper-case was used
+set gdefault		" Assume s///g by default
+if has("nvim")
+	" Disable live preview of s/// in Neovim 0.6+
+	set inccommand=
+endif
 
 """ Keyboard and custom commands
 
+" Alias accidental :W to :w
 com! -complete=file -bang -nargs=? W :w<bang> <args>
 
 nnoremap ; :
 nnoremap K <nop>
 nnoremap q :q
-nnoremap Q gq
 
-" stop smartindent from auto-unindenting when # is input
+" Stop smartindent from auto-unindenting when # is input
+" (should this be done via cinkeys instead?)
 inoremap # X#
 
-" navigate visible lines, not physical lines
+" Navigate visible lines, not physical lines, when soft-wrapped
 nnoremap k gk
 nnoremap j gj
 nnoremap <Up> gk
@@ -257,48 +264,54 @@ nnoremap <Down> gj
 inoremap <C-Up> <Esc>gka
 inoremap <C-Down> <Esc>gja
 
-" paste without yanking old text
+" Paste without yanking old text
 "vnoremap p "0p
 "vnoremap P "0P
 
-" jump between parens
+" Jump between parens using Tab
 nnoremap <Tab> %
 vnoremap <Tab> %
 
+" In :terminal windows, allow using Esc to escape insert mode
 if has("nvim") || has("terminal")
 	tnoremap <Esc> <C-\><C-n>
 	" other shortcuts:
 	" Vim 8.1 - http://vimhelp.appspot.com/terminal.txt.html
 endif
 
-" list buffers
+" List buffers
 nnoremap <Leader>b :ls<CR>:b<Space>
-" remove search highlight
+" Remove search highlight
 nnoremap <Leader>h :nohlsearch<CR>
-" rename word under cursor
+" Rename word under cursor
 nnoremap <Leader>rw :%s/\<<C-r><C-w>\>/
-" toggle spell checking
+" Toggle spell checking
 nnoremap <Leader>s :set spell!<CR>
-" sort CSS properties
+" Sort CSS properties
 nnoremap <Leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
-" display NERDtree
+" Display NERDtree
 nnoremap <Leader>t :NERDTreeToggle<CR>
-" display Tagbar
+" Display Tagbar
 nnoremap <Leader>T :TagbarToggle<CR>
-" reselect pasted text
+" Reselect pasted text
 nnoremap <Leader>v `[V`]
-" rewrap current paragraph
+" Rewrap current paragraph
 nnoremap <Leader>w gq}
-" strip trailing whitespace
+" Strip trailing whitespace
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=""<CR>
 
-" fix application-numpad mode
+" Define ':call JoinPara()' to join all space-separated paragraphs
+func! JoinPara()
+	:g/^\S/ .,/^$/-1 join
+endfunc
+
+" Fix application-numpad mode
 if !has("nvim")
 	" (Vim 8.1) with Num Lock off, Num5 is parsed as individual commands
 	map! <Esc>OE <Nop>
 endif
 
-" fix application-numpad mode in PuTTY
+" Fix application-numpad mode in PuTTY
 if !has("nvim") && $TERM =~ "^xterm"
 "	set iminsert=1
 "
@@ -377,13 +390,8 @@ if has("autocmd")
 	\ 0r %:h/_template.html
 
 	if has("nvim")
-		" Neovim 0.2.1: terminal buffers now have line numbers
+		" Neovim 0.2.1: terminal buffers now have line numbers --
+		" disable them again
 		au! TermOpen * setl nonumber norelativenumber
 	endif
 endif
-
-""" Plugins
-
-func! JoinPara()
-	:g/^\S/ .,/^$/-1 join
-endfunc
