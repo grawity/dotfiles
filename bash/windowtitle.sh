@@ -3,15 +3,15 @@
 case $TERM in
 	[xkE]term*|rxvt*|cygwin|dtterm|termite)
 		titlestring='\e]0;%s\a'
-		wnamestring=
+		wnamestring=''
 		;;
 	screen*|tmux*)
 		titlestring='\e]0;%s\a'
 		wnamestring='\ek%s\e\\'
 		;;
 	*)
-		titlestring=
-		wnamestring=
+		titlestring=''
+		wnamestring=''
 		;;
 esac
 
@@ -61,8 +61,8 @@ PROMPT_COMMAND+="${PROMPT_COMMAND+; }_update_title"
 
 _update_wname() {
 	# Set tmux window name to shortened tail of working directory
-	if [[ ${TMUX-} ]]; then
-		local t_pwd= t_dir= t_par=
+	if [[ ${TMUX-} && ! ${wname-} ]]; then
+		local wname= t_pwd= t_dir= t_par=
 		t_pwd=${PWD%/}/
 		t_pwd=${t_pwd/#"$HOME/"/"~/"}
 		if [[ "$t_pwd" == "~/" ]]; then
@@ -73,8 +73,10 @@ _update_wname() {
 			t_par=${t_par##*/}
 			t_dir=${t_pwd##*/}
 		fi
-		t_dir=${t_par::2}/${t_dir::5}
-		setwname "$t_dir"
+		wname=${t_par::2}/${t_dir::5}
+	fi
+	if [[ ${wname-} ]]; then
+		setwname "$wname"
 	fi
 }
 PROMPT_COMMAND+="${PROMPT_COMMAND+; }_update_wname"
