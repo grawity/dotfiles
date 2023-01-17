@@ -30,16 +30,11 @@ alias osc-tool='pkcs11-tool --module opensc-pkcs11.so'
 alias cryptoki-tool='pkcs11-tool --module /usr/lib/pkcs11/libopencryptoki.so'
 alias tpm11-tool='pkcs11-tool --module /usr/lib/pkcs11/libtpm2_pkcs11.so'
 cymruname() { arpaname "$1" | sed 's/\.in-addr\.arpa/.origin/i;
-                                   s/\.ip6\.arpa/.origin6/i;
-                                   s/$/.asn.cymru.com./'; }
+                                   s/\.ip6\.arpa/.origin6/i'; }
 cymrudig() { local n=$(cymruname "$1") && [[ $n ]] && dig +short "$n" TXT; }
-alias cymruwhois='whois -h whois.radb.net'
 alias facl='getfacl -pt'
-fc-fontformat() {
-	fc-list -f "%10{fontformat}: %{family}\n" \
-	| sed 's/,.*//' | sort -t: -k2 -u
-}
-fc-file() { fc-query -f "%{file}: %{family} (%{fontversion}, %{fontformat})\n" "$@"; }
+fc-lsformat() { fc-list -f "%10{fontformat}: %{family}\n" | sed 's/,.*//' | sort -t: -k2 -u; }
+fc-fileinfo() { fc-query -f "%{file}: %{family} (%{fontversion}, %{fontformat})\n" "$@"; }
 alias fanficfare='fanficfare -f html'
 alias fff='fanficfare -f html'
 alias fiemap='xfs_io -r -c "fiemap -v"'
@@ -82,7 +77,7 @@ alias lsh='ls -d .*'
 alias lsfonts="fc-list --format='%{family}\n' | sed 's/,.*//' | sort -u"
 lsftp() {
 	case $1 in
-	*:)	lftp "sftp://${1/:/}$PWD";;
+	*:.)	lftp "sftp://${1/:/}$PWD";;
 	*:/*)	lftp "sftp://${1/:/}";;
 	*:*)	lftp "sftp://${1/:/'/~/'}";;
 	*)	lftp "sftp://$1";;
@@ -111,7 +106,6 @@ rdu() { (( $# )) || set -- */; du -hsc "$@" | awk '$1 !~ /K/ || $2 == "total"' |
 alias re='hash -r && SILENT=1 . ~/.bashrc && echo reloaded .bashrc && :'
 alias ere='set -a && . ~/.profile && set +a && echo reloaded .profile && :'
 ressh() { ssh -v -S none "$@" "true"; }
-alias bgpmon='do: whois -h whois.bgpmon.net --'
 alias rawhois='do: whois -h whois.ra.net --'
 alias riswhois='do: whois -h riswhois.ripe.net --'
 alias rot13='tr N-ZA-Mn-za-m A-Za-z'
@@ -407,7 +401,7 @@ mytraceroute() { do: traceroute -s "$routed6" "$@"; }
 mytracert()    { do: sudo traceroute --icmp -6 -s "$routed6" "$@"; }
 mytracert6()   { do: tracert6 -s "$routed6" "$@"; }
 
-if [[ $HOSTNAME == @(wolke|sky|ember|star) ]]; then
+if [[ $HOSTNAME == @(wolke|sky|ember|star|land) ]]; then
 	//() {
 		sudo birdc "$@"
 	}
