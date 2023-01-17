@@ -1,10 +1,10 @@
 ! ~/.Xresources
 
 ! Use a larger font on high-DPI hosts
-#ifdef CLNT_midnight
+#if defined(CLNT_midnight) || defined(CLNT_frost)
 XTerm*vt100.font:		-*-fixed-medium-r-*-*-20-*-*-*-*-*-iso10646-*
-XTerm*vt100.faceName:		Monospace
-XTerm*vt100.faceSize:		12
+!XTerm*vt100.faceName:		Monospace
+!XTerm*vt100.faceSize:		12
 #endif
 
 ! Set a more useful $TERM
