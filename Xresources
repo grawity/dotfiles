@@ -1,7 +1,7 @@
 ! ~/.Xresources
 
 ! Use a larger font on high-DPI hosts
-#if defined(CLNT_midnight) || defined(CLNT_frost)
+#if defined(SRVR_midnight) || defined(SRVR_frost)
 XTerm*vt100.font:		-*-fixed-medium-r-*-*-20-*-*-*-*-*-iso10646-*
 !XTerm*vt100.faceName:		Monospace
 !XTerm*vt100.faceSize:		12
