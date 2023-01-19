@@ -247,6 +247,9 @@
 	# fix Home/End in PuTTY
 	generic = <Esc>[1~ move-first-line
 	generic = <Esc>[4~ move-last-line
+	# hack to reuse the extra paren keys on Lenovo laptops
+	generic = ( move-page-up
+	generic = ) move-page-down
 
 [tig "color"]
 	cursor = black green
