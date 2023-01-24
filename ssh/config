@@ -84,13 +84,7 @@ Host burble-ca
 	HostName shell.ca-bhs2.burble.dn42
 
 Host burble-fr
-	HostName shell.fr-rbx1.burble.dn42
-
-Host burble-fr2
 	HostName shell.fr-par1.burble.dn42
-
-Host burble-fr3
-	HostName shell.fr-nte2.burble.dn42
 
 Host burble-us
 	HostName shell.us-lax1.burble.dn42
