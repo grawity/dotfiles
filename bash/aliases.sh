@@ -50,6 +50,7 @@ hostname.bind() {
 	done
 }
 alias hup='pkill -HUP -x'
+hyls() { ls -C -w "$COLUMNS" --color --hyperlink "$@" | sed 's!file://!&/net/!g'; }
 alias init='telinit' # for systemd
 alias kssh='ssh \
 	-o PreferredAuthentications=gssapi-keyex,gssapi-with-mic \
