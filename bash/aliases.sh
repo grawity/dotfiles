@@ -50,7 +50,6 @@ hostname.bind() {
 	done
 }
 alias hup='pkill -HUP -x'
-hyls() { ls -C -w "$COLUMNS" --color --hyperlink "$@" | sed 's!file://!&/net/!g'; }
 alias init='telinit' # for systemd
 alias kssh='ssh \
 	-o PreferredAuthentications=gssapi-keyex,gssapi-with-mic \
@@ -252,9 +251,8 @@ case $OSTYPE in
 		;;
 esac
 alias ls="ls $lsopt"
-unset lsopt
 alias tree="tree $treeopt"
-unset treeopt
+hyls() { ls $lsopt -C -w "$COLUMNS" --color --hyperlink "$@" | sed 's!file://!&/net/!g'; }
 
 alias who='who -HT'
 
