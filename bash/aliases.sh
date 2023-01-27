@@ -251,8 +251,11 @@ case $OSTYPE in
 		;;
 esac
 alias ls="ls $lsopt"
+unset lsopt
 alias tree="tree $treeopt"
-hyls() { ls $lsopt -C -w "$COLUMNS" --color --hyperlink "$@" | sed 's!file://!&/net/!g'; }
+unset treeopt
+
+hyls() { ls -C -w "$COLUMNS" --color --hyperlink "$@" | sed 's!file://!&/net/!g'; }
 
 alias who='who -HT'
 
