@@ -22,11 +22,6 @@ elif have dbus-launch; then
 	exec dbus-launch --exit-with-session "$0" "$@" || exit
 fi
 
-# Load common profile
-# XXX: Is this needed? Consider that xinit is usually invoked from shells anyway
-#[ -f /etc/profile ]	&& . /etc/profile
-#[ -f ~/.profile ]	&& . ~/.profile
-
 # Set background color
 if have xsetroot; then
 	xsetroot -solid "$bg_color" -cursor_name 'left_ptr'
