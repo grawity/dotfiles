@@ -50,6 +50,7 @@ case $1 in
 	enlightenment_start)	DESKTOP_SESSION=enlightenment;;
 	mate-session)		DESKTOP_SESSION=mate;;
 	startkde)		DESKTOP_SESSION=kde-plasma;;
+	wmaker)			DESKTOP_SESSION=WindowMaker;;
 	xfce4-session)		DESKTOP_SESSION=xfce;;
 	xterm)			DESKTOP_SESSION=xterm;;
 esac

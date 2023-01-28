@@ -16,7 +16,9 @@ if [[ ${items@a} == *A* ]]; then
 	#fmts[name.root]='38;5;239|48;5;214'
 	#fmts[pwd]='38;5;241'
 	#fmts[vcs]='38;5;247'
+
 	fmts[name.self]='0'
+	fmts[name.root]='33'
 	fmts[pwd]='0'
 	fmts[vcs]='38;5;249'
 

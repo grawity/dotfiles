@@ -1,11 +1,11 @@
 # vim: ft=sh
 
-~/.local/bin/wall $1
-
-#/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+~/.local/bin/setwallpaper $1
 
 # Global key bindings
-xbindkeys &
+sxhkd &
+#systemctl --user import-environment PATH
+#systemctl --user start sxhkd
 
 # Map front-panel arrow keys to PageUp/PageDown initially
 # (acpid will load PriorNext or NextPrior during orientation switch)
