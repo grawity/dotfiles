@@ -125,11 +125,6 @@ else
 	set laststatus=2	" Always (Nvim default)
 endif
 
-" Hide command line by default (Neovim 0.8+)
-if has("nvim")
-	silent! set cmdheight=0
-endif
-
 set showmode			" Show '--INSERT--' in status
 set showcmd			" Show command being typed in status
 
