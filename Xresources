@@ -1,15 +1,13 @@
 ! ~/.Xresources
 
-#ifdef CLNT_fujitsu
-XTerm*vt100.faceName:		Monaco
-XTerm*vt100.faceSize:		10
-#endif
-
 ! Use a larger font on high-DPI hosts
 #if defined(SRVR_midnight) || defined(SRVR_frost)
 XTerm*vt100.font:		-*-fixed-medium-r-*-*-20-*-*-*-*-*-iso10646-*
-!XTerm*vt100.faceName:		Monospace
-!XTerm*vt100.faceSize:		12
+#endif
+
+#if defined(SRVR_fujitsu)
+XTerm*vt100.font:		-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+XTerm*vt100.background:		rgb:ee/ee/ec
 #endif
 
 ! Set a more useful $TERM
