@@ -6,9 +6,3 @@ VDPAU_DRIVER="va_gl"
 
 # 2019-03-09: Use /dev/tpm0 for IBM TSS tools
 TPM_INTERFACE_TYPE="dev"
-
-# Make libtpm2_pkcs11.so shut up about FAPI backend being unusable
-# (which it is because Windows handles provisioning the TPM on this machine)
-# As per https://github.com/tpm2-software/tpm2-pkcs11/blob/1.7.0/docs/FAPI.md
-TSS2_LOG="fapi+NONE"
-TPM2_PKCS11_BACKEND="esysdb"
