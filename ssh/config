@@ -189,6 +189,12 @@ Host dune.nullroute.lt
 	PKCS11Provider p11-kit-proxy.so
 #endif
 
+# Experiment for connections that last through suspend/resume
+#if @(fujitsu|midnight)
+Host *
+	CanonicalDomains sym nullroute.lt
+#endif
+
 Host *
 	CanonicalizeHostname yes
 #if @(ember|wind|frost)
