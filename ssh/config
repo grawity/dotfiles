@@ -163,8 +163,14 @@ Match canonical host *
 	# ...but enable it for single-label names
 	GSSAPIAuthentication yes
 
-#if @(rain|midnight|myth)
+#if @(rain|midnight|myth|fujitsu)
 Host *
+	CanonicalDomains sym nullroute.lt
+
+Match canonical host *.sym
+	#TCPKeepAlive no
+
+Match canonical host *,!*.sym
 	# Telia's LTE CGNAT has an aggressive idle timeout (several minutes),
 	# so make sure to expire old connections when resuming from sleep.
 	ServerAliveInterval 10s
@@ -187,12 +193,6 @@ Host *.* homegw !ember !*.nullroute.lt
 
 Host dune.nullroute.lt
 	PKCS11Provider p11-kit-proxy.so
-#endif
-
-# Experiment for connections that last through suspend/resume
-#if @(fujitsu|midnight)
-Host *
-	CanonicalDomains sym nullroute.lt
 #endif
 
 Host *
