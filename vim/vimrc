@@ -68,10 +68,9 @@ if has("termguicolors")
 	endif
 
 	" Terminals known to support RGB
-	" (disabled because Zenburn truecolor feels a bit off)
-	"if &term =~ "-direct$" || &term =~ "^\\(tmux\\|putty\\|xterm\\)-256color"
-	"	set termguicolors
-	"endif
+	if &term =~ "-direct$" || &term =~ "^\\(tmux\\|putty\\|xterm\\)-256color"
+		set termguicolors
+	endif
 endif
 
 let g:lucius_style="light"
