@@ -3,6 +3,14 @@
 " URL:          http://kippura.org/zenburnpage/
 " License:      GNU GPL <http://www.gnu.org/licenses/gpl.html>
 "
+" Edited to use non-tgc colors also in tgc mode:
+"   bgcolor = #1C1C1C
+"   statusbar bg	#313633 -> #303030
+"   comments (green)	#7f9f7f -> #87AF87
+"   strings (reddish)	#cc9393 -> #D78787
+"   functions (yellow)	#efef8f -> #FFFF87
+"
+"
 " Nothing too fancy, just some alien fruit salad to keep you in the zone.
 " This syntax file was designed to be used with dark environments and
 " low light situations. Of course, if it works during a daybright office, go
@@ -244,11 +252,11 @@ let g:colors_name="zenburn"
 hi Boolean         guifg=#dca3a3                              ctermfg=181
 hi Character       guifg=#dca3a3 gui=bold                     ctermfg=181 cterm=bold
 if exists("g:zenburn_italic_Comment") && g:zenburn_italic_Comment
-    hi Comment         guifg=#7f9f7f gui=italic                   ctermfg=108 cterm=italic
+    hi Comment         guifg=#87AF87 gui=italic                   ctermfg=108 cterm=italic
 else
-    hi Comment         guifg=#7f9f7f                              ctermfg=108
+    hi Comment         guifg=#87AF87                              ctermfg=108
 endif
-hi Comment         guifg=#7f9f7f                              ctermfg=108
+hi Comment         guifg=#87AF87                              ctermfg=108
 hi Conditional     guifg=#f0dfaf gui=bold                     ctermfg=223 cterm=bold
 hi Constant        guifg=#dca3a3 gui=bold                     ctermfg=181 cterm=bold
 hi Cursor          guifg=#000d18 guibg=#8faf9f gui=bold       ctermfg=233 ctermbg=109 cterm=bold
@@ -265,7 +273,7 @@ hi Exception       guifg=#c3bf9f gui=bold                     ctermfg=249 cterm=
 hi Float           guifg=#c0bed1                              ctermfg=251
 hi FoldColumn      guifg=#93b3a3 guibg=#3f4040
 hi Folded          guifg=#93b3a3 guibg=#3f4040
-hi Function        guifg=#efef8f                              ctermfg=228
+hi Function        guifg=#FFFF87                              ctermfg=228
 hi Identifier      guifg=#efdcbc                              ctermfg=223 cterm=none
 hi IncSearch       guifg=#f8f893 guibg=#385f38                ctermfg=228 ctermbg=23
 " grawity: Keyword un-bolded
@@ -289,10 +297,10 @@ hi SpecialComment  guifg=#82a282 gui=bold                     ctermfg=108 cterm=
 hi Special         guifg=#cfbfaf                              ctermfg=181
 hi SpecialKey      guifg=#9ece9e                              ctermfg=151
 hi Statement       guifg=#e3ceab gui=none                     ctermfg=187 cterm=none
-hi StatusLine      guifg=#313633 guibg=#ccdc90                ctermfg=236 ctermbg=186
+hi StatusLine      guifg=#303030 guibg=#ccdc90                ctermfg=236 ctermbg=186
 hi StatusLineNC    guifg=#2e3330 guibg=#88b090                ctermfg=235 ctermbg=108
 hi StorageClass    guifg=#c3bf9f gui=bold                     ctermfg=249 cterm=bold
-hi String          guifg=#cc9393                              ctermfg=174
+hi String          guifg=#D78787                              ctermfg=174
 hi Structure       guifg=#efefaf gui=bold                     ctermfg=229 cterm=bold
 hi Tag             guifg=#e89393 gui=bold                     ctermfg=181 cterm=bold
 hi Title           guifg=#efefef gui=bold                     ctermfg=255 ctermbg=NONE cterm=bold
@@ -351,9 +359,9 @@ if exists("g:zenburn_high_Contrast") && g:zenburn_high_Contrast
     hi MatchParen    guifg=#f8f893 guibg=#385f38 gui=bold  ctermfg=228 ctermbg=23 cterm=bold
     hi SignColumn    guibg=#181818                         ctermbg=233
     hi SpecialKey    guibg=#242424
-    hi TabLine       guifg=#88b090 guibg=#313633 gui=none  ctermbg=236 ctermfg=108 cterm=none
+    hi TabLine       guifg=#88b090 guibg=#303030 gui=none  ctermbg=236 ctermfg=108 cterm=none
     hi TabLineSel    guifg=#ccd990 guibg=#222222           ctermbg=235 ctermfg=186 cterm=bold
-    hi TabLineFill   guifg=#88b090 guibg=#313633 gui=none  ctermbg=236 ctermfg=108 cterm=none
+    hi TabLineFill   guifg=#88b090 guibg=#303030 gui=none  ctermbg=236 ctermfg=108 cterm=none
 else
     " Original, lighter background
     hi Normal        guifg=#dcdccc guibg=#3f3f3f           ctermfg=188 ctermbg=237
@@ -534,7 +542,7 @@ endif
 " Terminal support for Vim 8+
 if version >= 802
     let g:terminal_ansi_colors = [
-        \ '#1f1f1f', '#cc9393',
+        \ '#1f1f1f', '#D78787',
         \ '#5f7f5f', '#ffd7a7',
         \ '#8cb0d3', '#8f8f8f',
         \ '#71d3b4', '#dfe4cf',
