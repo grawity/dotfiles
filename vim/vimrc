@@ -68,7 +68,7 @@ if has("termguicolors")
 	endif
 
 	" Terminals known to support RGB
-	if &term =~ "-direct$" || &term =~ "^\\(tmux\\|putty\\|xterm\\)-256color"
+	if &term =~ "^\\(tmux\\|putty\\|xterm\\)-256color\\|.*-direct$\\|^foot$"
 		set termguicolors
 	endif
 endif

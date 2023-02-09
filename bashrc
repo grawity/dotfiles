@@ -70,7 +70,7 @@ fi
 
 # Don't load fancy prompt when SSH-ing from old terminals, e.g.
 # 'xterm-color' (old OS X 10.6 where everything blinks)
-if [[ $TERM == *-256color && $HOSTNAME != vm-* ]]; then
+if [[ $TERM == @(*-256color|foot) && $HOSTNAME != vm-* ]]; then
 	. ~/.dotfiles/bash/prompt.sh
 
 	if [[ -d /n && -e /etc/dist/hostids ]]; then
