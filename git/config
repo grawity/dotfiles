@@ -267,12 +267,10 @@
 
 [url "https://git.nullroute.lt/"]
 	insteadOf = :
-	insteadOf = nullroute:
 
 [url "star:/srv/git/"]
-	insteadOf = nullroute+ssh:
+	insteadOf = +:
 	pushInsteadOf = :
-	pushInsteadOf = nullroute:
 
 [url "star:lib/annexgit/"]
 	# used by git-annex
