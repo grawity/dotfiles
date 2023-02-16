@@ -262,6 +262,9 @@
 
 # Repository URL rewrites
 
+[url "https://github.com/"]
+	insteadOf = gh:
+
 [url "https://git.nullroute.lt/"]
 	insteadOf = :
 	insteadOf = nullroute:
