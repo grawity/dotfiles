@@ -262,9 +262,6 @@
 
 # Repository URL rewrites
 
-[url "https://github.com/"]
-	insteadOf = gh:
-
 [url "https://git.nullroute.lt/"]
 	insteadOf = :
 
@@ -292,7 +289,11 @@
 	pushInsteadOf = git://gist.github.com/
 	pushInsteadOf = https://gist.github.com/
 
+[url "https://github.com/"]
+	insteadOf = gh:
+
 [url "git@github.com:"]
+	pushInsteadOf = gh:
 	pushInsteadOf = git://github.com/
 	pushInsteadOf = https://github.com/
 
