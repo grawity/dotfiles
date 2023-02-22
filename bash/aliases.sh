@@ -32,6 +32,7 @@ alias tpm11-tool='pkcs11-tool --module /usr/lib/pkcs11/libtpm2_pkcs11.so'
 cymruname() { arpaname "$1" | sed 's/\.in-addr\.arpa/.origin/i;
                                    s/\.ip6\.arpa/.origin6/i'; }
 cymrudig() { local n=$(cymruname "$1") && [[ $n ]] && dig +short "$n" TXT; }
+etsn() { pwsh -nop -noe -c "etsn $* ; exit"; tput rmkx; }
 alias facl='getfacl -pt'
 fc-lsformat() { fc-list -f "%10{fontformat}: %{family}\n" | sed 's/,.*//' | sort -t: -k2 -u; }
 fc-fileinfo() { fc-query -f "%{file}: %{family} (%{fontversion}, %{fontformat})\n" "$@"; }
