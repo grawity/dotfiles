@@ -266,7 +266,7 @@
 	insteadOf = :
 
 [url "star:/srv/git/"]
-	insteadOf = +:
+	insteadOf = +
 	pushInsteadOf = :
 
 [url "star:lib/annexgit/"]
