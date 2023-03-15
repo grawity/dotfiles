@@ -75,6 +75,7 @@ alias lpt='sudo netstat -lpt --numeric-hosts'
 alias lpu='sudo netstat -lpu --numeric-hosts'
 alias lsd='ls -d */'
 alias lsh='ls -d .*'
+alias lss='ls -sSr'
 alias lsfonts="fc-list --format='%{family}\n' | sed 's/,.*//' | sort -u"
 lsftp() {
 	case $1 in
