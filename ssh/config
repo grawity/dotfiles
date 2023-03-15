@@ -67,7 +67,7 @@ Host bmc.*.nullroute.lt
 	HostKeyAlgorithms +ssh-rsa
 	User Administrator
 
-Host *.nullroute.lt
+Host *.nullroute.lt *.sym
 	GSSAPIAuthentication yes
 	ForwardAgent yes
 
