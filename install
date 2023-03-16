@@ -67,7 +67,7 @@ check_owner() {
 }
 
 umask 077
-export PATH="$HOME/bin:$HOME/code/bin:$PATH"
+export PATH="$HOME/bin:$HOME/bin/bin:$PATH" # TODO: bin/bin/sym
 
 . lib.bash || exit
 

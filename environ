@@ -35,8 +35,8 @@ EDITOR="vim"
 unset VISUAL
 
 # Interpreters
-PERL5LIB="$PREFIX/lib/perl5:$HOME/code/lib/perl5"
-PYTHONPATH="$HOME/code/lib/python"
+PERL5LIB="$PREFIX/lib/perl5:$HOME/bin/lib/perl5"
+PYTHONPATH="$HOME/bin/lib/python"
 
 IRBRC="$HOME/.dotfiles/irbrc"
 PYTHONSTARTUP="$HOME/.dotfiles/pythonrc"

@@ -3,7 +3,7 @@
 
 set -e
 
-PATH="$HOME/bin:$HOME/code/bin:$PATH"
+PATH="$HOME/bin:$HOME/bin/bin:$PATH" # TODO (libfilterfile in bin/bin)
 FQDN=${FQDN:-$(fqdn)}
 
 . lib.bash || exit

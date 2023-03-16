@@ -15,7 +15,7 @@ alias bridge='bridge --color=auto'
 catsexp() { cat "$@" | sexp-conv -w $((COLUMNS-1)); }
 count() { sort "$@" | uniq -c | sort -n -r | pager; }
 alias demo='PS1="\\n\\$ "'
-dist/pull() { ~/code/dist/pull "$@" && SILENT=1 . ~/.profile; }
+dist/pull() { ~/bin/dist/pull "$@" && SILENT=1 . ~/.profile; }
 alias dnstrace='dnstracer -s .'
 alias easy-rsa='easyrsa'
 alias ed='ed -p:'
@@ -56,7 +56,7 @@ alias kssh='ssh \
 	-o PreferredAuthentications=gssapi-keyex,gssapi-with-mic \
 	-o GSSAPIAuthentication=yes \
 	-o GSSAPIDelegateCredentials=yes'
-alias l='~/code/thirdparty/l'
+alias l='~/bin/thirdparty/l'
 alias ll='ls -l'
 alias loc='locate -A -b -i'
 alias logoff='logout'
