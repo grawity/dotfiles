@@ -16,9 +16,6 @@
 [submodule "vim/bundle/vim-bracketed-paste"]
 	path = vim/bundle/vim-bracketed-paste
 	url = https://github.com/ConradIrwin/vim-bracketed-paste.git
-[submodule "vim/bundle/vim-ps1"]
-	path = vim/bundle/powershell
-	url = https://github.com/PProvost/vim-ps1.git
 [submodule "vim/bundle/vim-indent-object"]
 	path = vim/bundle/indent-object
 	url = https://github.com/michaeljsmith/vim-indent-object.git
