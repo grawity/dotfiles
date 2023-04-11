@@ -29,7 +29,7 @@ endif
 
 set mouse=a
 
-if &term =~ "^xterm"
+if &term =~ "^xterm" && !has("nvim")
 	" The default 'xterm' mode is limited to 223 columns, and Windows
 	" Terminal oddly has a much lower 93-col limit for it.
 	"
@@ -39,8 +39,8 @@ if &term =~ "^xterm"
 	" Vim tries to autodetect sgr-capable terminals, but WT does not (yet)
 	" respond to \e[>c version query.
 	"
-	" Neovim always uses sgr and does not have ttymouse= option.
-	" (todo: why is this not in a !nvim guard, then?)
+	" Neovim always uses sgr and does not have ttymouse= option (although
+	" used to accept it before 0.9.0).
 	set ttymouse=sgr
 endif
 
