@@ -53,8 +53,8 @@ filetype plugin on
 filetype indent off
 
 augroup filetypedetect
-	" Override Arch's ftdetect/PKGBUILD.vim. (This must be run after
-	" pathogen, and before 'syntax on'.)
+	" Override Arch's ftdetect/PKGBUILD.vim
+	" (This must be done after pathogen but before 'syntax on'.)
 	au! BufNewFile,BufRead PKGBUILD
 augroup END
 
