@@ -5,7 +5,11 @@ if has("nvim-0.9.0")
 	let g:loaded_EditorConfig = 1
 endif
 
-execute pathogen#infect()
+if v:version < 800
+	" Vim 8.0 and Neovim already auto-load bundles from 'pack/*/start/',
+	" so they don't need to use pathogen.
+	execute pathogen#infect()
+endif
 
 set nocompatible
 
