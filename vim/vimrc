@@ -1,5 +1,10 @@
 " ~/.vimrc - |vimrc| - Vim configuration
 
+if has("nvim-0.9.0")
+	" Neovim 0.9.0: already has EditorConfig support; suppress the plugin
+	let g:loaded_EditorConfig = 1
+endif
+
 execute pathogen#infect()
 
 set nocompatible
