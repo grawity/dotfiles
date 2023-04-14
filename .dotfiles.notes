@@ -19,6 +19,7 @@ Already migrated to XDG in a release:
 ~/.freerdp/             ~/.config/freerdp/              1.1.0 (edf6e7258d0e)
 ~/.gconf/               ~/.config/gconf/                3.2.6 (fc28caa7be86)
 ~/.gconf.path           ~/.config/gconf.path            3.2.6 (fc28caa7be86)
+~/.gdb[early]init	~/.config/gdb/gdb[early]init
 ~/.gimp-2.8/            ~/.config/GIMP/2.10/            2.10
 ~/.git-credentials	~/.config/git/credentials	2.5.0 (17c7f4d8e4)
 ~/.gitconfig            ~/.config/git/config            1.7.12 (0d94427ef844)
@@ -132,6 +133,12 @@ Can be overridden indirectly via config:
 ~/.firestorm/
         $FIRESTORM_USER_DIR overrides, but see ~/.secondlife/
 
+~/.gdb_history
+	$GDBHISTFILE or 'set history filename <path>' in gdbinit:
+
+	set history save on
+	set history filename ~/.local/state/gdb/history
+
 ~/.gvimrc
         Same as ~/.vimrc, but with $GVIMINIT.
 
@@ -172,7 +179,6 @@ These support neither XDG Basedir nor custom environment variables, but can be
 run through an alias or wrapper script with a specific command line option.
 
 ~/.claws-mail/          --alternate-config-dir
-~/.gdbinit              gdb -nh -x <path>
 ~/.irssi/               --home=
 ~/.pinerc               -p
 ~/.stalonetrayrc        -c, --config
