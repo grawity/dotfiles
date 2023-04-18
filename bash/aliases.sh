@@ -166,7 +166,7 @@ bind -m emacs -x '"\e,": ,'
 
 for host in ember frost land myth rain sky star wind wolke; do
 	alias $host="on $host -D"
-	alias @$host="on $host -T"
+	alias @$host="@ $host"
 done
 
 # dates
