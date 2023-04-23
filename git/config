@@ -198,6 +198,7 @@
 	directory = /net/land/srv/http/default
 	directory = /home/grawity/src/work/LOGIN/current
 	directory = /home/grawity/src/work/IDP/ssp-1.19
+	directory = /net/land/srv/salt
 
 [sendemail]
 	from = Mantas Mikulėnas <grawity@gmail.com>
