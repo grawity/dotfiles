@@ -61,6 +61,10 @@ Host vm-ampere.nullroute.lt vm-okeanos.nullroute.lt
 	PreferredAuthentications gssapi-with-mic
 	GSSAPIDelegateCredentials yes
 
+Host bonfire bonfire.nullroute.lt
+	PreferredAuthentications gssapi-with-mic
+	GSSAPIDelegateCredentials yes
+
 Host bmc.*.nullroute.lt
 	# iLO
 	KexAlgorithms +diffie-hellman-group14-sha1
