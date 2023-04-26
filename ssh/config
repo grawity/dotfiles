@@ -69,7 +69,14 @@ Host bmc.*.nullroute.lt
 	# iLO
 	KexAlgorithms +diffie-hellman-group14-sha1
 	HostKeyAlgorithms +ssh-rsa
+	PubkeyAcceptedAlgorithms +ssh-rsa
 	User Administrator
+
+Host ptp-u2*.sym ptp-pico*.sym
+	KexAlgorithms +diffie-hellman-group1-sha1
+	HostKeyAlgorithms +ssh-rsa
+	PubkeyAcceptedAlgorithms +ssh-rsa
+	User root
 
 Host *.nullroute.lt *.sym
 	GSSAPIAuthentication yes
