@@ -56,12 +56,12 @@ Host gate gate.nullroute.lt
 	User _gate
 	Port 2
 
-Host vm-ampere.nullroute.lt vm-okeanos.nullroute.lt
+Host vm-ampere.nullroute.lt vm-ampere.sym
 	# Experimenting with HOME=/net/land/home/grawity
 	PreferredAuthentications gssapi-with-mic
 	GSSAPIDelegateCredentials yes
 
-Host bonfire bonfire.nullroute.lt
+Host bonfire.nullroute.lt bonfire.sym
 	PreferredAuthentications gssapi-with-mic
 	GSSAPIDelegateCredentials yes
 
@@ -72,7 +72,7 @@ Host bmc.*.nullroute.lt
 	PubkeyAcceptedAlgorithms +ssh-rsa
 	User Administrator
 
-Host ptp-u2*.sym ptp-pico*.sym
+Host ptp-u2*.sym ptp-pico*.sym kol-*.sym
 	KexAlgorithms +diffie-hellman-group1-sha1
 	HostKeyAlgorithms +ssh-rsa
 	PubkeyAcceptedAlgorithms +ssh-rsa
