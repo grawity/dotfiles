@@ -61,7 +61,7 @@ Host vm-ampere.nullroute.lt vm-ampere.sym
 	PreferredAuthentications gssapi-with-mic
 	GSSAPIDelegateCredentials yes
 
-Host bonfire.nullroute.lt bonfire.sym
+Host dust.nullroute.lt dust.sym
 	PreferredAuthentications gssapi-with-mic
 	GSSAPIDelegateCredentials yes
 
