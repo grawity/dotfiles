@@ -491,6 +491,9 @@ fi
 if have chafa; then
 	# Leave space for orig. command (1 line) + new prompt (3 lines)
 	alias imgrgb='chafa --symbols=vhalf,sextant --size=$[COLUMNS]x$[LINES-1-3]'
+	if [[ $TERM_PROGRAM == BlackBox ]]; then
+		alias imgrgb='chafa -f sixel -s $[COLUMNS]x$[LINES-1-3]'
+	fi
 fi
 
 if have step-cli; then
