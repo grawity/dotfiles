@@ -80,6 +80,10 @@ if has("termguicolors")
 	if &term =~ "^\\(tmux\\|putty\\|xterm\\)-256color\\|.*-direct$\\|^foot$"
 		set termguicolors
 	endif
+	" Neovim on Windows (both Qt GUI and Windows Terminal native)
+	if &term =~ "^\\(nvim\\|builtin_vtpcon\\)$"
+		set termguicolors
+	endif
 endif
 
 let g:lucius_style="light"
