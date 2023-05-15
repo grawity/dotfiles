@@ -19,6 +19,11 @@ if [[ -f ~/.mailcap ]]; then
 		text/{html,x-vcard} ;
 fi
 
+if [[ $TERM == *-@(256color|direct) ]]; then
+	# Neomutt 2023-05-12
+	echo "set color_directcolor=yes"
+fi
+
 if [[ $BRIGHT ]]; then
 	echo "source \"~/.dotfiles/muttrc.bright\""
 fi
