@@ -215,7 +215,7 @@ color error		brightwhite	red
 color hdrdefault	color241	default
 color header		color2		default	"^Date:"
 color header		color10		default	"^From:"
-color header		brightcolor10	default	"^Subject:"
+color header		bold color10	default	"^Subject:"
 color header		yellow		default	"^X-Bogosity: Unsure,"
 color header		brightyellow	default	"^X-Bogosity: Spam,"
 
@@ -235,10 +235,10 @@ color search		black		brightyellow
 #color index	yellow		default	'~h "^X-Bogosity: Spam,"'
 color index	brightwhite	default	~F # flagged
 color index	color11		default	~U # unseen
-color index	brightcolor11	default	"~F ~U"
+color index	bold color11	default	"~F ~U"
 color index	color240	default	~D # deleted
 color index 	color12		default	~T # tagged
-color index 	brightcolor12	default	"~T ~U"
+color index 	bold color12	default	"~T ~U"
 # last rule takes priority!
 
 spam "^X-Bogosity: Spam,.* spamicity=([0-9.]+)"		"bogus"
