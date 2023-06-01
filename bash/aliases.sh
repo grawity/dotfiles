@@ -164,7 +164,7 @@ bind -m emacs -x '"\e,": ,'
 @cd() { cd "${1:+/net/$1}/${PWD#/net/*/}"; }
 @pwd() { echo "${1:+/net/$1}/${PWD#/net/*/}"; }
 
-for host in ember frost land myth rain sky star wind wolke; do
+for host in dust ember frost land myth rain sky star wind wolke; do
 	alias $host="on $host -D"
 	alias @$host="@ $host"
 done
