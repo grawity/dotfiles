@@ -60,6 +60,8 @@ cd -P .				# resolve symlinks for the initial cwd
 
 complete -A directory cd
 
+bind -f ~/.dotfiles/inputrc
+
 . ~/.dotfiles/bash/aliases.sh
 
 if have kc.sh; then
