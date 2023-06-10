@@ -5,10 +5,6 @@ $include /etc/inputrc
 # Don't beep (e.g. when backspacing on empty input)
 set bell-style none
 
-# Bracketed paste is available in rl 8.0 but somewhat clumsy to use.
-# Enabled by default in rl 8.1, where it works much better (with "faces").
-#set enable-bracketed-paste on
-
 # Regain ability to paste multiple commands into some programs.
 $if Python
 set enable-bracketed-paste off
