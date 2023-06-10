@@ -46,6 +46,10 @@ shopt -s cmdhist		# store multi-line commands as single history entry
 shopt -s histappend		# append to $HISTFILE on exit
 shopt -s histreedit		# allow re-editing failed history subst
 
+if [[ -d ~/.local/state ]]; then
+	HISTFILE=~/.local/state/bash_history
+fi
+
 HISTSIZE=10000
 HISTFILESIZE=10000
 HISTCONTROL=ignoreboth
