@@ -1,4 +1,3 @@
-# The original Cn theme
 items[user:sfx]=' @ '
 if (( UID )); then
 	fmts[user:sfx]='38;5;252'
