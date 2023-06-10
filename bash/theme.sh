@@ -53,20 +53,11 @@ fi
 : ${FQDN:=$HOSTNAME}
 
 dir=${BASH_SOURCE[0]%/*}
-case $FQDN in
-    !(vm-*).nullroute.lt)
-	if [[ -e $dir/theme-$HOSTNAME.sh ]]; then
-		. $dir/theme-$HOSTNAME.sh
-	else
-		. $dir/theme-nullroute.sh
-	fi
-	;;
-
-    *)
-	#. $dir/theme-old.sh
+if [[ -e $dir/theme-$HOSTNAME.sh ]]; then
+	. $dir/theme-$HOSTNAME.sh
+else
 	. $dir/theme-default.sh
-	;;
-esac
+fi
 unset dir
 
 # Host themes overridden in bashrc-$HOSTNAME
