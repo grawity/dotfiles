@@ -104,9 +104,15 @@ elseif $TERM == "linux"
 	color elflord
 elseif &t_Co >= 256
 	" modern terminals
-	if hostname() == "fujitsu" || $BRIGHT == "1"
+	if $BRIGHT == "1"
 		let g:lucius_style="light"
-		color lucius
+		if hostname() == "frost"
+			color solarized
+		elseif hostname() == "fujitsu"
+			color lucius
+		else
+			color solarized
+		endif
 	else
 		color zenburn
 	endif
