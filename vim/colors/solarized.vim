@@ -26,6 +26,10 @@ endif
 if !exists("g:solarized_diffmode")
 	let g:solarized_diffmode = "normal"
 endif
+" Custom options
+if !exists("g:solarized_statusbar")
+	let g:solarized_statusbar = "light"
+endif
 
 " Colorscheme initialization
 hi clear
@@ -312,8 +316,15 @@ else
 	exe "hi! SpecialKey"	.s:fmt_bold	.s:fg_base00	.s:bg_base02
 	exe "hi! NonText"	.s:fmt_bold	.s:fg_base01	.s:bg_none
 endif
-exe "hi! StatusLine"	.s:fmt_none	.s:fg_base1	.s:bg_base02	.s:fmt_revbb
-exe "hi! StatusLineNC"	.s:fmt_none	.s:fg_base00	.s:bg_base02	.s:fmt_revbb
+if g:solarized_statusbar == "light"
+	" Low-contrast
+	exe "hi! StatusLine"	.s:fmt_none	.s:fg_base2	.s:bg_base02
+	exe "hi! StatusLineNC"	.s:fmt_none	.s:fg_base01	.s:bg_base02
+else
+	" Original high-contrast (black bg)
+	exe "hi! StatusLine"	.s:fmt_none	.s:fg_base1	.s:bg_base02	.s:fmt_revbb
+	exe "hi! StatusLineNC"	.s:fmt_none	.s:fg_base00	.s:bg_base02	.s:fmt_revbb
+endif
 exe "hi! Visual"	.s:fmt_none	.s:fg_base01	.s:bg_base03	.s:fmt_revbb
 exe "hi! Directory"	.s:fmt_none	.s:fg_blue	.s:bg_none
 exe "hi! ErrorMsg"	.s:fmt_revr	.s:fg_red	.s:bg_none
