@@ -65,7 +65,7 @@ Host dust.nullroute.lt dust.sym
 	PreferredAuthentications gssapi-with-mic
 	GSSAPIDelegateCredentials yes
 
-Host bmc.*.nullroute.lt
+Host bmc.*.nullroute.lt bmc.*.sym
 	# iLO
 	KexAlgorithms +diffie-hellman-group14-sha1
 	HostKeyAlgorithms +ssh-rsa
