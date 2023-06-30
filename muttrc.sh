@@ -21,7 +21,8 @@ fi
 
 if [[ $TERM == *-@(256color|direct) ]]; then
 	# Neomutt 2023-05-12
-	echo "set color_directcolor=yes"
+	# XXX: this makes 'indicator' muttrc.bright look like garbage
+	: echo "set color_directcolor=yes"
 fi
 
 if [[ $BRIGHT ]] || gettermbg -l >/dev/tty; then
