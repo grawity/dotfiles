@@ -64,6 +64,7 @@
 	detachedHead = false
 	pushNonFastForward = false
 	statusHints = false
+	diverging = false
 
 [am]
 	messageid = true
