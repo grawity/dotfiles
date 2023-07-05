@@ -6,8 +6,6 @@ if [[ $DISPLAY ]]; then
 	. ~/.dotfiles/bash/yank.sh
 fi
 
-## Aliases
-
 alias eof='IGNOREEOF=3'
 alias eris='ssh -t land sudo -u emiya tmux attach'
 alias gdm='sudo systemctl start gdm'
@@ -17,13 +15,6 @@ alias sensors='sensors -A'
 alias unrm='trash --restore'
 
 b64() { printf "%s" "$*" | base64 -w0; }
-
-gensid() {
-	local a=$(perl -e 'print int rand 0xFFFFFFFF')
-	local b=$(perl -e 'print int rand 0xFFFFFFFF')
-	local c=$(perl -e 'print int rand 0xFFFFFFFF')
-	echo "S-1-5-21-$a-$b-$c"
-}
 
 rand() { perl -e "print int rand $1"; }
 
@@ -80,8 +71,6 @@ sudo:() {
 		else do: "$@"
 	fi
 }
-
-## Smartcard hackery
 
 nssdb="sql:$HOME/.pki/nssdb"
 fxdb() { (nssdb="$HOME/.mozilla/firefox/ov6jazas.default"; "$@"); }
