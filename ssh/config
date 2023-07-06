@@ -5,12 +5,6 @@
 # Doesn't yet exist in Debian bullseye (OpenSSH 8.4)
 IgnoreUnknown PubkeyAcceptedAlgorithms
 
-Host blizzard.nullroute.lt
-	User mantas
-
-Host dune.nullroute.lt
-	User root
-
 #if star
 # Use direct IPv4 peering with better throughput (~900 Mbps IPv4 vs ~220 Mbps IPv6)
 Host ember.nullroute.lt
