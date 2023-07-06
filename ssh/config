@@ -5,12 +5,6 @@
 # Doesn't yet exist in Debian bullseye (OpenSSH 8.4)
 IgnoreUnknown PubkeyAcceptedAlgorithms
 
-Host ember-alt ember-bypass
-	# Direct uplink to sw-b56-edge that bypasses gw-core
-	HostkeyAlias ember.nullroute.lt
-	HostName alt.ember.nullroute.lt
-	PKCS11Provider none
-
 #if ember
 Host embergw-alt
 	HostName 10.147.241.58
