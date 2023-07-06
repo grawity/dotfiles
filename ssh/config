@@ -142,32 +142,6 @@ Match canonical host *
 	# ...but enable it for single-label names
 	GSSAPIAuthentication yes
 
-#if @(rain|midnight|myth|fujitsu)
-Host *
-	# Prioritize connections over .sym WireGuard, so that 'ssh ember' could
-	# use the lower-latency path via star, and would remain uninterrupted
-	# when wg-uk is brought up or down.
-	CanonicalDomains sym nullroute.lt
-
-Match canonical host *.sym
-	#TCPKeepAlive no
-
-Match canonical host *,!*.sym
-	# Telia's LTE CGNAT has an aggressive idle timeout (several minutes),
-	# so make sure to expire old connections when resuming from sleep.
-	ServerAliveInterval 10s
-#endif
-
-#if @(ember|wind)
-# On hosts where NAT timeouts are not an issue, persist authenticated
-# connections for longer.
-Host *
-	ControlPersist 1h
-#else
-Host *
-	ControlPersist 15s
-#endif
-
 #if @(ember|frost|midnight)
 Host *.* homegw !ember !*.nullroute.lt
 	PKCS11Provider p11-kit-proxy.so
