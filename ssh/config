@@ -37,12 +37,6 @@ Host ember-alt ember-bypass
 	HostName alt.ember.nullroute.lt
 	PKCS11Provider none
 
-Host wind-alt
-	# Alternative path to core via PTP-U2
-	HostkeyAlias wind.nullroute.lt
-	HostName alt.wind.nullroute.lt
-	PKCS11Provider none
-
 #if ember
 Host embergw-alt
 	HostName 10.147.241.58
