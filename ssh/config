@@ -18,11 +18,6 @@ Host gate gate.nullroute.lt
 	User _gate
 	Port 2
 
-Host vm-ampere.nullroute.lt vm-ampere.sym
-	# Experimenting with HOME=/net/land/home/grawity
-	PreferredAuthentications gssapi-with-mic
-	GSSAPIDelegateCredentials yes
-
 Host dust.nullroute.lt dust.sym
 	PreferredAuthentications gssapi-with-mic
 	GSSAPIDelegateCredentials yes
