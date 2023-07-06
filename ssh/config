@@ -120,8 +120,8 @@ Host bmc-*.utenos-kolegija.lt
 	User Administrator
 
 Host gw-b56.utenos-kolegija.lt gw-m18.utenos-kolegija.lt
-	# RouterOS 6.48.3 seems to support RSA-SHA2 for host keys, but still doesn't
-	# accept such signatures for user keys. (XXX: Fixed in ROS 7.4beta2?)
+	# RouterOS 6.48 supports RSA-SHA2 for host keys, but still doesn't
+	# accept SHA2-based signatures for user keys. (Fixed in ROS 7.4)
 	PubkeyAcceptedAlgorithms +ssh-rsa
 
 # -- Global settings --
