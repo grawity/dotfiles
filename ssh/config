@@ -123,13 +123,6 @@ Host vsiftp.vmssoftware.com
 
 # -- Work --
 
-Host uk-lnx1-console
-	# Serial port through AP-M7-14
-	HostName 10.34.1.14
-	HostkeyAlias ap-m7-14.utenos-kolegija.lt
-	User cons
-	PKCS11Provider p11-kit-proxy.so
-
 Host gw-core-alt
 #if ember
 	HostName 2001:778:0:1025::2
