@@ -93,14 +93,6 @@ Host gw-core-alt
 Host *.utenos-kolegija.lt
 	PKCS11Provider p11-kit-proxy.so
 
-Host ubnt
-	HostName 192.168.1.20
-	User ubnt
-	UserKnownHostsFile /dev/null
-	GlobalKnownHostsFile /dev/null
-	StrictHostKeyChecking no
-	ControlPersist no
-
 Host bmc-*.utenos-kolegija.lt
 	# iLO (import public key in "SSH2" format)
 	KexAlgorithms +diffie-hellman-group14-sha1
