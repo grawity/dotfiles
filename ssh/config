@@ -1,6 +1,8 @@
 # vim: ft=sshconfig
 # Target version: 8.4 (Debian buster-backports)
-# NOTE: The '#if' directives are processed by the 'ssh/generate' script, not OpenSSH.
+#
+# NOTE: The '#if <host>' directives are processed by the 'ssh/generate' script,
+# not by OpenSSH.
 
 # Doesn't yet exist in Debian bullseye (OpenSSH 8.4)
 IgnoreUnknown PubkeyAcceptedAlgorithms
@@ -130,6 +132,22 @@ Host * !*.sym
 	ServerAliveInterval 10s
 #endif
 
+#if @(ember|wind)
+Host *
+	# Persist authenticated connections, where timeouts are not an issue
+	# (on systems that are not suspended).
+	ControlMaster auto
+	ControlPersist 1h
+#else
+Host *
+	# Allow multiplexing but don't persist connections once closed.
+	# (Without this, "ControlMaster auto" would work differently; exiting
+	# the initial session would immediately close the mux and all muxed
+	# sessions, rather than backgrounding it.)
+	ControlMaster auto
+	ControlPersist 5s
+#endif
+
 Host *
 	CanonicalizeHostname yes
 #if @(ember|wind|frost)
@@ -142,7 +160,5 @@ Host *
 	VerifyHostKeyDNS yes
 	SendEnv LANG TZ
 	ControlPath ~/.ssh/S.%r@%h:%p
-	ControlMaster auto
-
 	# This defaults to 'no' on new versions, but still 'yes' on Debian's 8.4
 	CheckHostIP no
