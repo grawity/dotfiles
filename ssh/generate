@@ -11,6 +11,10 @@ FQDN=${FQDN:-$(fqdn)}
 
 progname='ssh/generate'
 
+if [[ $1 == -v ]]; then
+	FILTERDEBUG=1
+fi
+
 # generator
 
 generate() {
