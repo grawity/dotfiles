@@ -148,17 +148,23 @@ Host *
 	ControlPersist 5s
 #endif
 
+#if @(ember|frost)
 Host *
 	CanonicalizeHostname yes
-#if @(ember|wind|frost)
 	CanonicalDomains nullroute.lt utenos-kolegija.lt ukolegija.lt
 #else
+Host *
+	CanonicalizeHostname yes
 	CanonicalDomains nullroute.lt
 #endif
+
+Host *
 	Protocol 2
 	HashKnownHosts no
 	VerifyHostKeyDNS yes
 	SendEnv LANG TZ
 	ControlPath ~/.ssh/S.%r@%h:%p
-	# This defaults to 'no' on new versions, but still 'yes' on Debian's 8.4
+
+	# Do not add the resolved IP addresses to ~/.ssh/known_hosts. (This
+	# defaults to 'no' on new versions, but still 'yes' on Debian's 8.4)
 	CheckHostIP no
