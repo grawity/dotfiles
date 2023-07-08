@@ -163,10 +163,13 @@ Host *
 Host *
 	Protocol 2
 	CanonicalizeHostname yes
-	HashKnownHosts no
 	VerifyHostKeyDNS yes
 	SendEnv LANG TZ
 	ControlPath ~/.ssh/S.%r@%h:%p
+
+	# Re-disable known_hosts obfuscation on distros that enable it by
+	# default. (TODO: Which ones, exactly?)
+	HashKnownHosts no
 
 	# Do not add the resolved IP addresses to ~/.ssh/known_hosts. (This
 	# defaults to 'no' on new versions, but still 'yes' on Debian's 8.4)
