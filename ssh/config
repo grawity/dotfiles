@@ -80,10 +80,6 @@ Host vsiftp.vmssoftware.com
 
 # -- Work --
 
-Host uk-* !uk-*.* gw-core gw-b56 gw-m18 gw-captive
-	CanonicalizeHostname yes
-	CanonicalDomains utenos-kolegija.lt ukolegija.lt
-
 Host gw-core-alt
 #if ember
 	HostName 2001:778:0:1025::2
@@ -152,10 +148,17 @@ Host *
 	ControlPersist 5s
 #endif
 
+#if @(ember|frost)
+Host *
+	CanonicalDomains nullroute.lt utenos-kolegija.lt ukolegija.lt
+#else
+Host *
+	CanonicalDomains nullroute.lt
+#endif
+
 Host *
 	Protocol 2
 	CanonicalizeHostname yes
-	CanonicalDomains nullroute.lt
 	HashKnownHosts no
 	VerifyHostKeyDNS yes
 	SendEnv LANG TZ
