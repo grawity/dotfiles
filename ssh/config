@@ -9,6 +9,7 @@ IgnoreUnknown PubkeyAcceptedAlgorithms
 
 #if ember
 Host embergw-alt
+	# Direct through Ember eno2 <--> EmberGW
 	HostName 10.147.241.58
 	HostkeyAlias embergw.nullroute.lt
 #endif
@@ -80,19 +81,8 @@ Host vsiftp.vmssoftware.com
 
 # -- Work --
 
-Host gw-core-alt
-#if ember
-	HostName 2001:778:0:1025::2
-	BindAddress 2001:778:0:1025::3
-#else
-	HostName 83.171.33.188
-	ProxyJump sky
-#endif
-	HostkeyAlias gw-core.utenos-kolegija.lt
-	User root
-	PKCS11Provider p11-kit-proxy.so
-
 Host *.utenos-kolegija.lt
+	# Use UK key from TPM or eToken
 	PKCS11Provider p11-kit-proxy.so
 
 Host bmc-*.utenos-kolegija.lt
@@ -107,6 +97,19 @@ Host gw-b56.utenos-kolegija.lt gw-m18.utenos-kolegija.lt
 	# accept SHA2-based signatures for user keys. (Fixed in ROS 7.4)
 	PubkeyAcceptedAlgorithms +ssh-rsa
 
+Host gw-core-alt
+#if ember
+	# Direct connection via 'litnet' VLAN
+	HostName 2001:778:0:1025::2
+	BindAddress 2001:778:0:1025::3
+#else
+	HostName 83.171.33.188
+	ProxyJump sky
+#endif
+	HostkeyAlias gw-core.utenos-kolegija.lt
+	User root
+	PKCS11Provider p11-kit-proxy.so
+
 # -- Global settings --
 
 Match canonical host *.*
@@ -119,6 +122,7 @@ Match canonical host *
 
 #if @(ember|frost|midnight)
 Host *.* homegw !ember !*.nullroute.lt
+	# Use hardware key (TPM or eToken) for everything (except Kerberos hosts)
 	PKCS11Provider p11-kit-proxy.so
 
 Host dune.nullroute.lt
