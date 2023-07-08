@@ -150,16 +150,15 @@ Host *
 
 #if @(ember|frost)
 Host *
-	CanonicalizeHostname yes
 	CanonicalDomains nullroute.lt utenos-kolegija.lt ukolegija.lt
 #else
 Host *
-	CanonicalizeHostname yes
 	CanonicalDomains nullroute.lt
 #endif
 
 Host *
 	Protocol 2
+	CanonicalizeHostname yes
 	HashKnownHosts no
 	VerifyHostKeyDNS yes
 	SendEnv LANG TZ
