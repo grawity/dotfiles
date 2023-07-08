@@ -161,7 +161,6 @@ Host *
 #endif
 
 Host *
-	Protocol 2
 	CanonicalizeHostname yes
 	VerifyHostKeyDNS yes
 	SendEnv LANG TZ
