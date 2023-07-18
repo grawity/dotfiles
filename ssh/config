@@ -166,8 +166,7 @@ Host *
 	SendEnv LANG TZ
 	ControlPath ~/.ssh/S.%r@%h:%p
 
-	# Re-disable known_hosts obfuscation on distros that enable it by
-	# default. (TODO: Which ones, exactly?)
+	# Re-disable known_hosts obfuscation (enabled by default on Debian).
 	HashKnownHosts no
 
 	# Do not add the resolved IP addresses to ~/.ssh/known_hosts. (This
