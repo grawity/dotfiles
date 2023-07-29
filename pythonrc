@@ -41,5 +41,12 @@ def _init_():
     sys.ps1 = csi("") + csi(color) + name + csi("1") + ">>>" + csi("") + " "
     sys.ps2 = " " * len(name) + csi(";1;30") + "..." + csi("") + " "
 
+    # Pretty-printing for data structures
+    try:
+        import rich.pretty
+        rich.pretty.install()
+    except ImportError:
+        pass
+
 _init_()
 del _init_
