@@ -7,7 +7,16 @@ import os
 import re
 import subprocess
 import sys
-from pprint import pprint as pp
+
+from pprint import pprint
+pp = pprint
+
+# Replacement for help(obj)
+try:
+    from rich import inspect
+    hh = lambda *v, **kv: inspect(*v, methods=True, **kv)
+except ImportError:
+    hh = help
 
 def _init_():
     import atexit
