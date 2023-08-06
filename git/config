@@ -317,6 +317,9 @@
 	pushInsteadOf = aur:
 	pushInsteadOf = https://aur.archlinux.org/
 
+[url "https://gitlab.archlinux.org/archlinux/packaging/packages/"]
+	insteadOf = abs:
+
 # rewrites of obsolete repos (to be removed eventually)
 
 [url "https://git.archlinux.org/"]
