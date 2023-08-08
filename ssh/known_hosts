@@ -37,17 +37,20 @@ ptp-pico1a.sym ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDeR+2PP7w8rSGhJ4nzCRZJb8q0S
 ptp-u2-ap.sym ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgwDDEBuy/jFbxZHcnfsftlX+AY60657S73Fm2KuGtFZ9eNNV8kLG4oHJnPDqPGeRPB7qcqnAvFdCoMV76TxsY19ihP7j/Az9D++kwIwYVDct/IQ1viyRxjAuu/fGK1voyHSM++3gR4+A/nn+8DQ3Mh0FFuLvG0QP1+OwCuVW55qhtlIv
 ptp-u2-sta.sym ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgwC08vr4iAp+cCNDxV1SCsRK2utDaOFsrHObaRtKtHsi3fBcPEMMHtZ0od/4VQd/qAamtiIB1Fn/vdaEPnprSmyWHlR2ntKorKG8hdq+NKzjevver1mFFIMul2wE1HUUDOHE1WRcKko/lNpKW2yHU+IqOx1kB/o+uDPOZVQhqjQVCKWt
 # Linode - https://www.linode.com/docs/platform/manager/using-the-linode-shell-lish/
-lish-atlanta.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMm+yFvNDZoSTVaQguo6HWCEHnUWHGbN2TdGWm2Mt9rY
-lish-dallas.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJcl65P4PAsHH0l1MHq88Bm0oKMbYwm3l4xGN2LjHvMJ
-lish-frankfurt.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGo8YbY4IezOfWRYMvDb//40jDxPU4OEHWreKUHKFHWH
-lish-fremont.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHAIXJ8SyXG2St6DgT6gQmkQSsX3pyp5FcQoSy/R2x9i
-lish-london.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICt7/UlVU+egVeFrdyULqCR5ogybXiy16BBFlH0HPDqW
-lish-mum1.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHF1H5SsJpPFxsATljXO9QXDyZPK9a941LZedmP0x7O0
-lish-newark.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOkDzCKO0exTWOgIqqDF8T5faN49w+JXPvjk4yk2OomL
-lish-singapore.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKTySt/NM6rbUp+ifR0j6/kUqk2jVrK+qdQZdP8nYpKG
-lish-syd1.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOmiI8O9LsuJsgmOAcJ89jnguHaA/bLizlUq8xk+T3d6
-lish-tokyo2.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICIxuOiy0m5GSItA6CxCF/6MW6N6djcrbkwPmd9cJFiW
-lish-tor1.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOjHYC7vVGkqxa7CS46XFCWmDa6ZLLco/3XCljXKnUgz
+lish-atlanta.linode.com,lish-us-southeast.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJZipj5tggBJOOSiLjWVFDUGJZUPJojXvU5YrNR52fqy
+lish-chicago.linode.com,lish-us-ord.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAHmJZgvICSTiqhLEnnwYuHiaa5I2R48WzHwNdjLZS+A
+lish-dallas.linode.com,lish-us-central.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICXcopfxfW0U/pck8NCeTYyJ8XrRbqD7Q5AB497quQy2
+lish-fr-par.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHqQe6wUtF/yAYwHo4NVBks85eKIQjbPaABh7la7uWXd
+lish-frankfurt.linode.com,lish-eu-central.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGsdm9l4ZJSsnW3GQpWw7PCvuVynkKxfU1pjryDyMrBA
+lish-fremont.linode.com,lish-us-west.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMYhdlO61G63LU1zN7ob5sX2OTylZDJnb+wPM+021ytf
+lish-london.linode.com,lish-eu-west.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBoRHvSycVoH6/GM7J4ZpZMfDwgFuGvlaothCTKsZlth
+lish-mum1.linode.com,lish-ap-west.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPQ4/3rRuaJXz0tijKg9zvvtls1nG3JYfw5pJIVvk9q6
+lish-newark.linode.com,lish-us-east.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ7mADuDjgF1EIzowVbplOOdnjaxliupEc1PnwrN7WI1
+lish-singapore.linode.com,lish-ap-south.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHYHXVH6GnsLbjoPLPAa/E1bSLM29YWKKO324i8pqTjI
+lish-syd1.linode.com,lish-ap-southeast.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN2DcEv+VTthazJCtcY+KmHuQocZ08wtZ9OcBV3eQu+H
+lish-tokyo2.linode.com,lish-ap-northeast.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKmQRrus1CKuTbpDapubgtDkLl6uyVEKJKgMq6e7k9bb
+lish-tor1.linode.com,lish-ca-central.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILXok7wfp7tqxyVZnNzEihuIsVIugoVmNd0R4boGt+tq
+lish-us-iad.linode.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII7B2tR3bU+t6ASGrNOaBUimowlSoHPFUEjYIfS2rJfS
 # SDF - https://sdf.org/?tutorials/hostkeys
 *.sdf.org,*.freeshell.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJJk3a190w/1TZkzVKORvz/kwyKmFY144lVeDFm80p17
 *.sdf.org,*.freeshell.org ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1BBSaTBrKjpyDmIPt1t9oPvZpIxzm8D2kB/eLUoqXP9Eoicb3niMP8kWv1vhZQPGiQQ/q6sg+c92Bkk0ZiJTW9JdMJuaIfk+VDjGUV1US432mzq4581CFk/Q0HeHehrrAoqCKTcnp65/9UlnP3ljnyS1J0JE40YtjLIXfAeoJJKfKvrMhc1nOqn7NEMcmN8gY5ELr5R5ZUml0CsmurMDeIoeP9Ukf0PAc6uznv7JpL5GY+Eee8xXd8ehClZUY9kkvm6a6LIzPXtG5KXIYbGQkMrcDqWAdYOb2whfOICRbRLu16T8r30NjdHRjDq2kAH7upip4FqWGj96k+8ZmjA3f
