@@ -115,6 +115,7 @@ elseif &t_Co >= 256
 		endif
 	else
 		color zenburn
+		autocmd OptionSet background ++once if &bg ==# 'light' | color solarized | endif
 	endif
 else
 	" Fallback for obsolete terminals
