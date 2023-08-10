@@ -65,17 +65,17 @@ let colors_name="lucius"
 " Installation:
 " Copy the file to your vim colors directory and then do :colorscheme lucius.
 
-if !exists("g:lucius_style")
-    if &bg ==# "light"
-        let g:lucius_style = "light"
-    else
-        let g:lucius_style = "dark"
-    endif
+if exists("g:lucius_style")
+    let s:lucius_style = g:lucius_style
+elseif &bg ==# "light"
+    let s:lucius_style = "light"
+else
+    let s:lucius_style = "dark"
 endif
 
 " set colorcolumn=21,37,53,68,86,100
 
-if g:lucius_style == "dark"
+if s:lucius_style == "dark"
 
 
     hi Normal       guifg=#d7d7d7   guibg=#303030   ctermfg=188    ctermbg=236       gui=none      cterm=none
@@ -160,7 +160,7 @@ if g:lucius_style == "dark"
     hi Ignore       guifg=bg                        ctermfg=bg
 
 
-elseif g:lucius_style == "dark_dim"
+elseif s:lucius_style == "dark_dim"
 
 
     hi Normal       guifg=#bcbcbc   guibg=#303030   ctermfg=250    ctermbg=236       gui=none      cterm=none
@@ -245,7 +245,7 @@ elseif g:lucius_style == "dark_dim"
     hi Ignore       guifg=bg                        ctermfg=bg
 
 
-elseif g:lucius_style == "light"
+elseif s:lucius_style == "light"
 
 
     hi Normal       guifg=#444444   guibg=#eeeeee   ctermfg=238    ctermbg=255       gui=none      cterm=none
