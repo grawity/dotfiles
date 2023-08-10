@@ -105,12 +105,14 @@ elseif $TERM == "linux"
 elseif &t_Co >= 256
 	" modern terminals
 
-	if hostname() == "frost"	| let light = "lucius"
-	elseif hostname() == "fujitsu"	| let light = "lucius"
-	else				| let light = "solarized"
-	endif
-
+	let light = "solarized"
 	let dark = "zenburn"
+
+	if hostname() == "frost"
+		let light = "lucius"
+	elseif hostname() == "fujitsu"
+		let light = "lucius"
+	endif
 
 	if $BRIGHT == "1"
 		"let g:lucius_style="light"
