@@ -118,9 +118,10 @@ elseif &t_Co >= 256
 		"let g:lucius_style="light"
 		exe "color" light
 	else
-		exe "color" dark
+		" Note: Delay setting the regular (dark) theme as well, to
+		" avoid flashes on startup when terminal is slow to respond.
 		autocmd OptionSet background ++once
-		\ if &bg ==# 'light' | exe "color" light | endif
+		\ if &bg ==# 'light' | exe "color" light | else | exe "color" dark | endif
 	endif
 else
 	" Fallback for obsolete terminals
