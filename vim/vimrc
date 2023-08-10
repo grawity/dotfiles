@@ -103,26 +103,24 @@ elseif $TERM == "linux"
 	" defined during init.vim parsing.)
 	color elflord
 elseif &t_Co >= 256
-	" modern terminals
-
-	let light = "solarized"
-	let dark = "zenburn"
-
+	" Modern terminals
 	if hostname() == "frost"
 		let light = "lucius"
 	elseif hostname() == "fujitsu"
 		let light = "lucius"
+	else
+		let light = "solarized"
 	endif
 
-	if $BRIGHT == "1"
-		"let g:lucius_style="light"
-		exe "color" light
-	else
-		" Note: Delay setting the regular (dark) theme as well, to
-		" avoid flashes on startup when terminal is slow to respond.
-		autocmd OptionSet background ++once
-		\ if &bg ==# 'light' | exe "color" light | else | exe "color" dark | endif
-	endif
+	let dark = "zenburn"
+
+	if $BRIGHT == "1" | exe "color" light | else | exe "color" dark | endif
+
+	" On terminals that support bgcolor reporting, Neovim sets 'bg=light'
+	" asynchronously. (Note: This is not triggered for 'bg=dark', likely
+	" because that's already the default.)
+	autocmd OptionSet background ++once
+	\ if &bg ==# 'light' | exe "color" light | else | exe "color" dark | endif
 else
 	" Fallback for obsolete terminals
 	silent! color slate
