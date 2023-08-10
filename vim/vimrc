@@ -86,7 +86,7 @@ if has("termguicolors")
 	endif
 endif
 
-let g:lucius_style="light"
+"let g:lucius_style="light"
 "let g:lucius_style="dark"
 let g:solarized_contrast="high"
 let g:zenburn_disable_bold_CursorBars=1
@@ -104,18 +104,21 @@ elseif $TERM == "linux"
 	color elflord
 elseif &t_Co >= 256
 	" modern terminals
+
+	if hostname() == "frost"	| let light = "lucius"
+	elseif hostname() == "fujitsu"	| let light = "lucius"
+	else				| let light = "solarized"
+	endif
+
+	let dark = "zenburn"
+
 	if $BRIGHT == "1"
-		let g:lucius_style="light"
-		if hostname() == "frost"
-			color solarized
-		elseif hostname() == "fujitsu"
-			color lucius
-		else
-			color solarized
-		endif
+		"let g:lucius_style="light"
+		exe "color" light
 	else
-		color zenburn
-		autocmd OptionSet background ++once if &bg ==# 'light' | color solarized | endif
+		exe "color" dark
+		autocmd OptionSet background ++once
+		\ if &bg ==# 'light' | exe "color" light | endif
 	endif
 else
 	" Fallback for obsolete terminals
