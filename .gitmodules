@@ -28,3 +28,6 @@
 [submodule "vim/bundle/nerdtree"]
 	path = vim/bundle/nerdtree
 	url = https://github.com/preservim/nerdtree
+[submodule "vim/bundle/hjson"]
+	path = vim/bundle/hjson
+	url = https://github.com/hjson/vim-hjson
