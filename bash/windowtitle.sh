@@ -36,7 +36,7 @@ _show_status() {
 				status+=" or SIG$sig"
 			fi
 		fi
-		printf "\e[m\e[38;5;172m%s\e[m\n" "(returned $status)"
+		printf "\e[m\e[33m%s\e[m\n" "(returned $status)"
 	fi
 }
 PROMPT_COMMAND+="${PROMPT_COMMAND+; }_show_status"
