@@ -173,7 +173,7 @@ set sleep_time=0
 set menu_context=10
 set menu_scroll
 
-#set status_on_top
+set status_on_top
 set status_format="─── Folder %f (%?M?%M/?%m messages%?n?, %n new/unseen?%?o?, %o old/unread?%?d?, %d deleted?) %*─ %P ───"
 set compose_format="─── Composing (%l in %a parts) %*──"
 set pager_format="─── Message %C of %m: \"%s\" %*── %P ───"
