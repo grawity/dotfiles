@@ -62,6 +62,7 @@ Host burble-us
 
 Host eisner
 	HostName %h.encompasserve.org
+	Port 22867
 	HostKeyAlgorithms +ssh-rsa
 	PubkeyAcceptedAlgorithms +ssh-rsa
 	User mikulenas
