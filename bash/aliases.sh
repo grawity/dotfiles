@@ -111,11 +111,6 @@ ressh() { ssh -v -S none "$@" "true"; }
 alias rawhois='do: whois -h whois.ra.net --'
 alias riswhois='do: whois -h riswhois.ripe.net --'
 alias rot13='tr N-ZA-Mn-za-m A-Za-z'
-rpw() { tr -dc "A-Za-z0-9" < /dev/urandom | case $1 in
-		"") head -c 20 | sed -r "s/.{5}/-&/g; s/^-//";;
-		-*) head -c $((-$1)) | sed -r "s/.{5}/-&/g; s/^-//";;
-		*) head -c "$1";;
-	esac; echo; }
 alias run='spawn -c'
 sp() { printf '%s' "$@"; printf '\n'; }
 splitext() { split -dC "${2-32K}" "$1" "${1%.*}-" --additional-suffix=".${1##*.}"; }

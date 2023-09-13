@@ -57,14 +57,6 @@ rm() {
 	fi
 }
 
-rpw() {
-	local pw=$(command rpw "$@")
-	echo "$pw"
-	if [[ -t 1 ]]; then
-		clip "$pw"
-	fi
-}
-
 sudo:() {
 	if (( UID ))
 		then do: sudo "$@"
