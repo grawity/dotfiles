@@ -320,6 +320,10 @@ nnoremap <Leader>v `[V`]
 nnoremap <Leader>w gq}
 " Strip trailing whitespace
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=""<CR>
+" Add a header underline
+nnoremap <Leader><Leader>= yypVr=k
+nnoremap <Leader><Leader>~ yypVr~k
+nnoremap <Leader><Leader>- yypVr-k
 
 " Define ':call JoinPara()' to join all space-separated paragraphs
 func! JoinPara()
