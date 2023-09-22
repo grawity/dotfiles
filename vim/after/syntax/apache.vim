@@ -35,5 +35,12 @@ syn keyword apacheDeclaration SSLCARevocationCheck
 syn keyword apacheDeclaration SSLProxyCheckPeerName
 syn keyword apacheDeclaration SSLStaplingCache
 syn keyword apacheDeclaration SSLUseStapling
+syn keyword apacheDeclaration Session
+syn keyword apacheDeclaration SessionCookieName
+syn keyword apacheDeclaration SessionCookieName2
+syn keyword apacheDeclaration SessionCookieRemove
+syn keyword apacheDeclaration SessionCryptoPassphrase
+syn keyword apacheDeclaration SessionEnv
+syn keyword apacheDeclaration SessionHeader
 syn keyword apacheDeclaration StrictHostCheck
 syn match apacheSection "<\/\=\(If\|RequireAny\|RequireAll\)[^>]*>" contains=apacheAnything
