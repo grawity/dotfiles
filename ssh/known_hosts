@@ -12,7 +12,7 @@ wind,wind.sym,wind.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC3R1aAJuIBI
 wolke,wolke.sym,wolke.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDxeD56V+IW/7jqozEOtXfaN/+RO+OldNRCe7KBYW6kM
 vm-ampere,vm-ampere.sym,vm-ampere.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINsrwf2br3SEvqwLFENt3iGIjanIEGmqoEuXgN3webYW
 vm-litnet,vm-litnet.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBJ4IA1ea6+8pwTFvuxWxsI2MTC3KKbYEnhqkNyfZFJe
-vm-vol5,vm-vol5.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGlkMqWX/ofP4kzX0urd6kuFQ1ZIgK/dVAzAxpv5r+nn
+vm-vol5,vm-vol5.sym,vm-vol5.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGlkMqWX/ofP4kzX0urd6kuFQ1ZIgK/dVAzAxpv5r+nn
 # Nullroute - other
 alter,alter.sym,alter.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKtOiYsCew/PseuPbSBAqx16DZ9B5wkenM9qeadUIuwg
 bmc.dune.sym,bmc.dune.nullroute.lt ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDgzwFzfqz2AZdrUxga6tI6b5h70nq4k8qDp9o+B1fBHDCBEQDH/c4afdc9sb4Hw4xWN4HGHxzDn6gv5KSovMeEoKvs9vgrdBCtzSglZgpDJtuNmo+2gtCAtL1PV6JQZA0it9epnzD7Q7hrbInbEOUWTyuxfu41YCU23V+iIMu3hWMJ6T0PdocLKgiI9dEZIQKs9Xfl8TF/6Nobf5IdHk5vfFzYthdSgR7l62VRKSGRsjfxcNyNCS5It1v/QUIEjFN64K781MzVRiqV1DzIDeIBNPzEEMZMBpNbNyDmTFcgBaiKZAHp89B/sUEnuMiiPb32nOC2P90y6+gXAetqnXeD
