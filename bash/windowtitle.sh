@@ -44,16 +44,13 @@ PROMPT_COMMAND+="${PROMPT_COMMAND+; }_show_status"
 _update_title() {
 	# Set window title to "user@host ~/path"
 	if [[ ! ${title-} ]]; then
-		local title= t_user= t_host= t_display= t_path=
+		local title= t_user= t_host= t_path=
 		if [[ $USER != 'grawity' ]]; then
 			t_user="$USER@"
 		fi
-		if [[ ${DISPLAY-} && ( $DISPLAY != :* || ${SSH_TTY-} ) ]]; then
-			t_display=" ($DISPLAY)"
-		fi
 		t_path=${PWD/#"$HOME/"/'~/'}
 		t_host=$HOSTNAME
-		title="${t_user}${t_host} ${t_path}${t_display}"
+		title="${t_user}${t_host} ${t_path}"
 	fi
 	settitle "$title"
 }
