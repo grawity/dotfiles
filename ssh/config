@@ -21,6 +21,14 @@ Host gate gate.nullroute.lt
 	User _gate
 	Port 2
 
+Host ember.nullroute.lt ember.sym
+	ForwardX11 yes
+	ForwardX11Trusted yes
+
+Host myth.nullroute.lt myth.sym
+	ForwardX11 yes
+	ForwardX11Trusted yes
+
 Host dust.nullroute.lt dust.sym
 	PreferredAuthentications gssapi-with-mic
 	GSSAPIDelegateCredentials yes
