@@ -6,6 +6,8 @@
 
 # Doesn't yet exist in Debian bullseye (OpenSSH 8.4)
 IgnoreUnknown PubkeyAcceptedAlgorithms
+# New in 9.5
+IgnoreUnknown ObscureKeystrokeTiming
 
 #if ember
 Host embergw-alt
@@ -173,6 +175,7 @@ Host *
 	CanonicalizeHostname yes
 	VerifyHostKeyDNS yes
 	SendEnv LANG TZ
+	ObscureKeystrokeTiming no
 	ControlPath ~/.ssh/S.%r@%h:%p
 
 	# Re-disable known_hosts obfuscation (enabled by default on Debian).

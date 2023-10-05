@@ -1,6 +1,7 @@
 syn keyword sshconfigKeyword CanonicalDomains
 syn keyword sshconfigKeyword CanonicalizeHostname
 syn keyword sshconfigKeyword IgnoreUnknown
+syn keyword sshconfigKeyword ObscureKeystrokeTiming
 syn keyword sshconfigKeyword ProxyJump
 syn keyword sshconfigKeyword PubkeyAcceptedAlgorithms
 syn keyword sshconfigKeyword PubkeyAcceptedKeyTypes
