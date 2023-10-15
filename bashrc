@@ -15,10 +15,17 @@ have() { command -v "$1" >&/dev/null; }
 # size" sequence, and the terminal sometimes being slow to reply.
 export -n LINES COLUMNS
 
+# Assume that 'xterm'-emulating terminals support 256 colors.
 if [[ $TERM == @(screen|tmux|xterm) ]]; then
 	OLD_TERM="$TERM"
-	TERM="$TERM-256color"
+	export TERM="$TERM-256color"
+	# ...and assume that they support RGB colors as well. See also 'set
+	# tgc' in vimrc. (This isn't true for JuiceSSH yet, but it's fine.)
+	if [[ ! $COLORTERM ]]; then
+		export COLORTERM="truecolor"
+	fi
 fi
+
 
 export GPG_TTY=$(tty)
 export -n VTE_VERSION
