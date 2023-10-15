@@ -19,11 +19,11 @@ export -n LINES COLUMNS
 if [[ $TERM == @(screen|tmux|xterm) ]]; then
 	OLD_TERM="$TERM"
 	export TERM="$TERM-256color"
-	# ...and assume that they support RGB colors as well. See also 'set
-	# tgc' in vimrc. (This isn't true for JuiceSSH yet, but it's fine.)
-	if [[ ! $COLORTERM ]]; then
-		export COLORTERM="truecolor"
-	fi
+fi
+# ...and assume that they support RGB colors as well. See also 'set tgc' in
+# vimrc. (This isn't true for JuiceSSH yet, but it's fine.)
+if [[ $TERM == *-@(256color|direct) && ! $COLORTERM ]]; then
+	export COLORTERM="truecolor"
 fi
 
 
