@@ -4,12 +4,20 @@
 
 $ESC = [char] 0x1B
 
+# All hosts that need an ssh alias
+$AllHosts = @("dust", "ember", "land", "myth", "sky", "star", "wind", "wolke")
+
+# Only those hosts that need a non-FQDN stored password for \\foo
+$SmbHosts = @("ember", "myth", "wind")
+
 $uk = "utenos-kolegija.lt"
 $ukad = "ad.$uk"
 
 $env:PATH += ";$(Resolve-Path ~\Dropbox\Apps\iperf-3.1.3-win32)"
 
 $env:DISPLAY = "localhost:0"
+$env:PATH += ";$env:ProgramFiles\VcXsrv"
+#Function xauth {& "$env:ProgramFiles\VcXsrv\xauth.exe" $args}
 
 # --- Input ---
 
@@ -25,8 +33,14 @@ Set-PSReadlineKeyHandler -Chord Shift+SpaceBar -ScriptBlock {
 
 # --- Aliases ---
 
-# Remove-Alias is a 6.0 addition
-Function Remove-Alias($Name) {Remove-Item -Path Alias:$name -ErrorAction Ignore}
+# Backport Remove-Alias from 6.0+ and add our own similar helpers for env/func.
+Function Remove-Alias([Parameter(Mandatory)] $Name) {
+	Remove-Item -Path Alias:$Name -ErrorAction Ignore
+}
+Function Remove-Function([Parameter(Mandatory)] $Name) {
+	Remove-Item -Path Function:$Name -ErrorAction Ignore
+}
+
 Remove-Item -Path Alias:curl -ErrorAction Ignore
 Remove-Item -Path Alias:wget -ErrorAction Ignore
 Remove-Item -Path Alias:mount -ErrorAction Ignore
@@ -38,15 +52,31 @@ Set-Alias -Name who -Value qwinsta
 Set-Alias -Name which -Value where.exe
 Set-Alias -Name far -Value 'C:\Program Files\Far Manager\Far.exe'
 
-# touch nonexistent ==>  ni foo; New-Item foo
-# touch existent    ==>  (gi foo).LastWriteTime = date
-
-Function ad {ssh -q -t star "SILENT=1 . ~/.profile; ad $args"}
+Function ad {ssh -q -t star "SILENT=1 . ~/.profile; ad $(AtArgsToString $args)"}
+Function cisco($Name) {telnet cisco-${Name}.sym}
 Function f($Match) {Get-ChildItem -Filter "*$Match*" -Recurse | select FullName}
 Function hostname.bind($Address) {nslookup -cl=chaos -q=txt hostname.bind. $Address}
 Function id.server($Address) {nslookup -cl=chaos -q=txt id.server. $Address}
 Function irc {ssh -t star "LANG=en_US.UTF-8 tmux attach -t irc"}
+Function mkfile($Path, $Size) {fsutil file createnew "$Path" "$Size"}
 Function resolve($HostName) {Resolve-DnsName $HostName | ft Name,TTL,Type,Address}
+
+Function loc([Parameter(ValueFromRemainingArguments)] $Name) {
+	dbg "Running: locate $Name"
+	@("myth", "ember") | % {
+		$rhost = $_
+		say (hl "Results on $(bold $rhost):")
+		ssh $rhost "locate -Abi $Name | sed `"s:^`$HOME/:~/:`";"
+	}
+}
+
+Function touch($Name) {
+	# touch nonexistent ==> ni foo
+	# touch existent    ==> (gi foo).LastWriteTime = date
+	$item = if (Test-Path $Name) {Get-Item $Name} else {New-Item $Name}
+	$item.LastWriteTime = date
+	$item
+}
 
 Function kl {~\Dropbox\Projects\kl}
 Function klist {& "$env:SystemRoot\System32\klist.exe" $args}
@@ -56,54 +86,123 @@ Function kgethost($HostName) {cmdkey /list:$HostName}
 Function kssh {ssh -o PubkeyAuthentication=no $args}
 Function kplink {plink -no-antispoof -noagent $args}
 
+Function bold($String) {
+	"$ESC[1m$String$ESC[22m"
+}
 Function hl($String) {
 	"$ESC[48;5;238m$String$ESC[m"
+}
+Function hldbg($String) {
+	"$ESC[48;5;237m$ESC[95m$String$ESC[m"
 }
 Function hlerr($String) {
 	"$ESC[48;5;237m$ESC[91m$String$ESC[m"
 }
+Function say($Text) {Write-Information $Text -InformationAction Continue}
+Function dbg($Text) {if ($env:DEBUG) {say (hldbg $Text)}}
+Function debug($Value) {
+	if ($Value) {
+		$env:DEBUG = "$Value"
+		say (hldbg "Debug mode set to $Value.")
+	} else {
+		Remove-Item Env:\DEBUG -ErrorAction Ignore
+		say (hldbg "Debug mode disabled.")
+	}
+}
 
-Function at($HostName) {
-	#$dropbox = Resolve-Path -LiteralPath "~\Dropbox"
-	$wd = "$PWD\"
-	$IC = "CurrentCultureIgnoreCase"
+# on/at SSH commands
+
+Function AtMapPathToRemote($Directory, $HostName) {
+	$wd = "$Directory\"
 	if ($wd.StartsWith("Microsoft.PowerShell.Core\FileSystem::")) {
 		$wd = $wd.Substring("Microsoft.PowerShell.Core\FileSystem::".Length)
 	}
-	if ($wd.StartsWith("$HOME\Dropbox\", $IC)) {
+	dbg "Mapping local directory: $wd"
+	if ($wd -eq "$HOME\") {
+		$child = ""
+	} elseif ($wd.StartsWith("$HOME\Dropbox\", "CurrentCultureIgnoreCase")) {
 		$child = $wd.Substring("$HOME\".Length)
-	} elseif ($wd.StartsWith("$HOME\Music\", $IC)) {
+	} elseif ($wd.StartsWith("$HOME\Music\", "CurrentCultureIgnoreCase")) {
 		$child = $wd.Substring("$HOME\".Length)
-	} elseif ($wd.StartsWith("$HOME\Pictures\", $IC)) {
+	} elseif ($wd.StartsWith("$HOME\Pictures\", "CurrentCultureIgnoreCase")) {
 		$child = $wd.Substring("$HOME\".Length)
-	} elseif ($wd.StartsWith("\\$HostName\Home\", $IC)) {
+	} elseif ($wd.StartsWith("\\$HostName\Home\", "CurrentCultureIgnoreCase")) {
 		$child = $wd.Substring("\\$HostName\Home\".Length)
 	} else {
-		echo (hlerr "Current location '$wd' cannot be mapped to location on \\$HostName.")
+		$wd = $wd.TrimEnd("\")
+		say (hlerr "Current location '$(bold $wd)' cannot be mapped to location on \\$HostName.")
+		return $null
+	}
+	$rpath = $child.TrimEnd("\").Replace("\", "/")
+	return $rpath
+}
+
+Function AtInvokeShellHere($HostName, $Command) {
+	$rpath = AtMapPathToRemote $PWD $HostName
+	if ($null -eq $rpath) {
 		return
 	}
-	$rpath = $child.Replace("\", "/")
-	echo (hl "Current location mapped to '${HostName}:$rpath'")
+	echo (hl "Current location mapped to '$(bold "${HostName}:$rpath")'.")
 	$qpath = $rpath -replace '[$\\"`]', '\$0'
-	# Weird double quoting needed as ssh.exe itself seems to strip the "s
-	$cmd = "export SILENT=1; cd \`"$qpath\`" && bash"
+	if (-not $Command) {
+		$Command = "bash"
+	}
+	if ($PSVersionTable.PSVersion.Major -eq 5) {
+		# Weird double quoting needed as ssh.exe itself seems to strip the "s
+		$Command = "cd \`"$qpath\`" && $Command"
+	} else {
+		$Command = "cd `"$qpath`" && $Command"
+	}
+	AtInvokeShell $HostName $Command
+}
+
+Function AtInvokeShell($HostName, $Command) {
+	if (-not $Command) {
+		$Command = "bash"
+	}
+	$cmd = "export SILENT=1; . ~/.profile; $Command"
+	dbg "Running command: $cmd"
 	ssh -t $HostName "$cmd"
 }
 
-# All hosts that need an ssh alias
-$AllHosts = @("ember", "land", "myth", "sky", "star", "wind", "wolke")
-# Only those hosts that need a non-FQDN stored password for \\foo
-$SmbHosts = @("ember", "myth", "wind")
+Function AtQuoteArgv($Arguments) {
+	$special = '[\x00-\x20"^%~!@&?*<>|()\\=]'
+	$Arguments | % {
+		if ($_ -match $special) {
+			'"' + ($_) + '"'
+		} else {
+			$_
+		}
+	}
+}
+
+Function AtArgsToString($Arguments) {
+	$Arguments | % { dbg "Arg: <$_>" }
+	if ($Arguments.Length -eq 1) {
+		return "$Arguments"
+	} else {
+		return "$(AtQuoteArgv $Arguments)"
+	}
+}
+
+Function at($HostName, [Parameter(ValueFromRemainingArguments)] $Command) {
+	AtInvokeShellHere $HostName (AtArgsToString $Command)
+}
+
+Function on($HostName, [Parameter(ValueFromRemainingArguments)] $Command) {
+	say (hlerr "Remote execution on local paths via SMB not (yet?) implemented.")
+}
 
 $AllHosts | % {
 	Remove-Item -Path Function:$_ -ErrorAction Ignore
-	New-Item -Path Function:$_ -Value "ssh $_ `$args"
+	New-Item -Path Function:$_ -Value "AtInvokeShell $_ (AtArgsToString `$args)"
 	Remove-Item -Path Function:!$_ -ErrorAction Ignore
-	New-Item -Path Function:!$_ -Value "at $_ `$args"
+	New-Item -Path Function:!$_ -Value "AtInvokeShellHere $_ (AtArgsToString `$args)"
 } > $null
 
-Function farcolors {
-	Param($name)
+# Other random stuff
+
+Function farcolors($Name) {
 	$dir = "C:\Program Files\Far Manager\Addons\Colors\Interface"
 	if ($name) {
 		far /import "$dir\$name.farconfig"
@@ -113,8 +212,7 @@ Function farcolors {
 	}
 }
 
-Function Get-GenericCredential {
-	Param($name)
+Function Get-GenericCredential($Name) {
 	$cred = Get-StoredCredential -Target $name
 	if ($cred) {
 		return $cred
@@ -156,8 +254,7 @@ Function ukcred {
 	Get-GenericCredential "Utenos kolegija"
 }
 
-Function ukrsh {
-	Param($HostName)
+Function ukrsh($HostName) {
 	Enter-PSSession "$HostName.utenos-kolegija.lt" -Credential (ukcred) -Authentication Kerberos
 }
 
@@ -172,8 +269,7 @@ Function Test-IsElevated {
 	return $me.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 }
 
-Function Ping-DNS {
-	Param($af)
+Function Ping-DNS($af) {
 	$dns = (Get-NetIPConfiguration -InterfaceAlias Ethernet).DNSServer
 	if ($af -eq "-4") {
 		$dns = $dns | ? {$_.AddressFamily -eq 2}
@@ -184,12 +280,39 @@ Function Ping-DNS {
 	ping -t $dns
 }
 
-Function MoveTo-Attic {
-	Param($File)
+Function MoveTo-Attic($File) {
 	$year = (Get-Item $File).LastWriteTime.Year
 	$dest = "\\myth\Home\Attic\Misc\$year\"
 	Write-Host "Moving '$File' to '$dest'"
 	Move-Item $File $dest
+}
+
+Function rpw(
+	[int] $Length=20,
+	[switch] $LowerCase,
+	[switch] $Symbols,
+	[switch] $CopyToClipboard
+) {
+	$alphabet = "0123456789"
+	$alphabet += "abcdefghijklmnopqrstuvwxyz"
+	if (-not $LowerCase) {
+		$alphabet += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	}
+	if ($Symbols) {
+		$alphabet += "/.,+-!#=_@"
+	}
+	$alphabet = $alphabet.ToCharArray()
+	$buf = ""
+	for ($i = 0; $i -lt [math]::Abs($Length); $i++) {
+		if ($Length -gt 0 -and $i -gt 0 -and $i % 5 -eq 0) {
+			$buf += "-"
+		}
+		$buf += $alphabet | Get-Random
+	}
+	if ($CopyToClipboard) {
+		$buf | Set-Clipboard
+	}
+	return $buf
 }
 
 # --- Prompt ---
@@ -197,38 +320,72 @@ Function MoveTo-Attic {
 # Prompt() is called every time the prompt is shown, returns a string.
 # https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_prompts
 
-Function Shorten-Path {
-	Param($path)
+Function Shorten-Path($Path) {
 	# If we're passed a PathInfo, make sure to stringify it.
-	$path = "$path"
-	$lpath = $path.ToLower()
-	$lhome = $home.ToLower()
+	$Path = "$Path"
+	$lpath = $Path.ToLower()
+	$lhome = $HOME.ToLower()
 	if ($lpath -eq $lhome) {
 		return $HOME
 	} elseif ($lpath.StartsWith("$lhome\")) {
-		return "~\" + $path.Substring("$HOME\".Length)
+		return "~\" + $Path.Substring("$HOME\".Length)
 	} else {
-		return "$path"
+		return "$Path"
 	}
 }
 
+# $Global:__LastHistoryId = -1
+# https://devblogs.microsoft.com/commandline/shell-integration-in-the-windows-terminal/
+function Global:__Terminal-Get-LastExitCode {
+	if ($? -eq $True) { return 0 }
+	if ("$LastExitCode" -ne "") { return $LastExitCode }
+	return -1
+}
+
 Function Prompt {
+	# [1]: https://github.com/microsoft/terminal/issues/11000
+	#      https://devblogs.microsoft.com/commandline/shell-integration-in-the-windows-terminal/
+	$ft_prompt   = "$ESC]133;A$ESC\"
+	$ft_cmdstart = "$ESC]133;B$ESC\"
+	$ft_cmdexec  = "$ESC]133;C$ESC\"
+	$ft_cmdsucc  = "$ESC]133;D;0$ESC\"
+	$ft_cmdfail  = "$ESC]133;D;1$ESC\"
+
+	#$rawcwd = $executionContext.SessionState.Path.CurrentLocation
+	$rawcwd = Get-Location
+	$rawcwd = $rawcwd -replace "^Microsoft\.PowerShell\.Core\\FileSystem::\\\\", "\\"
+
+	# Replace $env:USERPROFILE with ~\
+	$cwd = Shorten-Path $rawcwd
+
 	$ver = "$($PSVersionTable.PSVersion.Major).$($PSVersionTable.PSVersion.Minor)"
-	$wd = Shorten-Path (Get-Location)
-	$dbg = "$(if (Test-Path variable:/PSDebugContext) {'[DBG]: '})"
-	$nest = "$(if ($NestedPromptLevel -ge 1) {' >>'})"
-	# $dbg and $nest come from the default Prompt() function
+	$dbg = if (Test-Path variable:/PSDebugContext) {"[DBG]: "}
+	$nest = if ($NestedPromptLevel -ge 1) {" >>"}
 
-	$wd = $wd -replace "^Microsoft\.PowerShell\.Core\\FileSystem::\\\\", "\\"
+	$out = ""
+	# End of command output (
+	
+	# Start of prompt (FinalTerm [1])
+	$out += "$ESC]133;A$ESC\"
+	# Current path
+	$out += "$ESC]9;9;${rawcwd}$ESC\"
+	# Prompt
+	$out += "$ESC[90m{$ESC[m"
+	$out += "$ESC[34m$ver $ESC[m"
+	$out += "$ESC[97m$cwd$ESC[m"
+	$out += "$ESC[90m}$ESC[m"
+	$out += "$nest"
+	$out += if (Test-IsElevated) {" #> "} else {" > "}
+	# End of prompt (start of command)
+	$out += "$ESC]133;B$ESC\"
+	return $out
 
-	#return "$($dbg)PS($($ver)) $($wd)$($nest)> "
-
-	Write-Host -NoNewLine -ForegroundColor DarkGray	"{"
-	#Write-Host -NoNewLine -ForegroundColor Blue	"PS $($ver) "
-	Write-Host -NoNewLine -ForegroundColor White	"$($wd)"
-	Write-Host -NoNewLine -ForegroundColor DarkGray	"}"
-	Write-Host -NoNewLine -ForegroundColor White	"$($nest)"
+	#Write-Host -NoNewLine -ForegroundColor DarkGray "{"
+	#Write-Host -NoNewLine -ForegroundColor Blue "$ver "
+	#Write-Host -NoNewLine -ForegroundColor White "$wd"
+	#Write-Host -NoNewLine -ForegroundColor DarkGray "}"
+	#Write-Host -NoNewLine -ForegroundColor White "$nest"
 	# PowerShell generally assumes the prompt will always end with "> "
 	# and will sometimes overdraw it (e.g. when in "quoted string" mode).
-	return " > "
+	#return " > "
 }
