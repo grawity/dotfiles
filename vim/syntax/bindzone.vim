@@ -28,7 +28,11 @@ syn match       zoneUnknown     contained /\S\+/
 
 syn match       zoneOwnerName   contained /^[^[:space:]!"#$%&'()*+,\/:;<=>?@[\]\^`{|}~]\+\(\s\|;\)\@=/ nextgroup=zoneTTL,zoneClass,zoneRRType skipwhite
 syn match       zoneOrigin      contained  /[^[:space:]!"#$%&'()*+,\/:;<=>?@[\]\^`{|}~]\+\(\s\|;\|$\)\@=/
-syn match       zoneDomain      contained  /[^[:space:]!"#$%&'()*+,\/:;<=>?@[\]\^`{|}~]\+\(\s\|;\|$\)\@=/
+" 2023-10 grawity: Remove '/' from exclusions, to allow it in unquoted HINFO
+" values (as all unquoted words are zoneDomain, even if they're not actually
+" domain name fields).
+"syn match       zoneDomain      contained  /[^[:space:]!"#$%&'()*+,\/:;<=>?@[\]\^`{|}~]\+\(\s\|;\|$\)\@=/
+syn match       zoneDomain      contained  /[^[:space:]!"#$%&'()*+,\:;<=>?@[\]\^`{|}~]\+\(\s\|;\|$\)\@=/
 
 syn match       zoneSpecial     contained /^[@*.]\s/
 syn match       zoneTTL         contained /\s\@<=\d[0-9WwDdHhMmSs]*\(\s\|$\)\@=/ nextgroup=zoneClass,zoneRRType skipwhite
