@@ -5,7 +5,7 @@
         "tabstospaces": true
     },
     "autoclose": false,
-    "colorscheme": "gotham-darksb",
+    "colorscheme": "twilight",
     "parsecursor": true,
     "softwrap": true,
     "statusformatl": "$(filename) $(modified)($(line),$(col)) $(status.paste)",
