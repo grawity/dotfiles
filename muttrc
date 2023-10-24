@@ -328,15 +328,20 @@ bind index G last-entry
 macro index * "<tag-pattern>.\n"
 macro index ^ "<tag-entry><previous-entry><previous-entry>"
 bind index \\ collapse-thread
-bind index \c? quit			# Backspace
+
+macro index ,l "<limit>all\n"
+macro index <Esc>l "<limit>all\n"
 
 bind pager \' previous-line		# [symmetric with <Enter>]
 bind pager \\ previous-line		# [symmetric with <Enter>]
 bind pager G bottom
-bind pager \c? exit			# Backspace
 
 bind pager <Esc>n noop
 bind pager <Esc>p check-traditional-pgp
+
+# Backspace 'quits' Mutt or 'exits' pager
+bind index \c? quit
+bind pager \c? exit
 
 # Sidebar
 bind index,pager <A-Up> sidebar-prev
