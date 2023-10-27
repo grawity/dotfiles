@@ -131,7 +131,7 @@ Match canonical host *
 	# ...but enable it for single-label names
 	GSSAPIAuthentication yes
 
-#if @(ember|frost|midnight)
+#if @(ember|frost|midnight|myth)
 Host *.* homegw !ember !*.nullroute.lt
 	# Use hardware key (TPM or eToken) for everything (except Kerberos hosts)
 	PKCS11Provider /usr/lib/p11-kit-proxy.so
