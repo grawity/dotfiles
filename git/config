@@ -21,6 +21,7 @@
 	export = "!set -x && touch \"$(git rev-parse --git-dir)/git-daemon-export-ok\""
 	fa = fetch --all
 	follow = log --oneline --follow --stat --summary --
+	fp = pull --ff-only
 	fpush = push --force-with-lease
 	ftime = "!date +'--date=%s' -r"
 	fetch-notes = "!set -x && git config --add remote.origin.fetch \"+refs/notes/*:refs/notes/*\" && git fetch origin"
@@ -41,6 +42,7 @@
 	re = rebase
 	rec = rebase --continue
 	refs = for-each-ref
+	rp = pull --rebase --autostash
 	sg = diff --cached
 	st = status
 	staged = diff --cached
