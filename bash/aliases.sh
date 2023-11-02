@@ -58,7 +58,6 @@ alias kssh='ssh \
 	-o GSSAPIDelegateCredentials=yes'
 alias l='~/bin/thirdparty/l'
 alias ll='ls -l'
-alias loc='locate -A -b -i'
 alias logoff='logout'
 if [[ $DESKTOP_SESSION ]]; then
 	alias logout='env logout'
