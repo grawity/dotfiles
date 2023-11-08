@@ -311,9 +311,9 @@ nnoremap <Leader>s :set spell!<CR>
 " Sort CSS properties
 nnoremap <Leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 " Display NERDtree
-nnoremap <Leader>t :NERDTreeToggle<CR>
+nnoremap <Leader>f :NERDTreeToggle<CR>
 " Display Tagbar
-nnoremap <Leader>T :TagbarToggle<CR>
+nnoremap <Leader>t :TagbarToggle<CR>
 " Reselect pasted text
 nnoremap <Leader>v `[V`]
 " Rewrap current paragraph
