@@ -43,4 +43,6 @@ syn keyword apacheDeclaration SessionCryptoPassphrase
 syn keyword apacheDeclaration SessionEnv
 syn keyword apacheDeclaration SessionHeader
 syn keyword apacheDeclaration StrictHostCheck
-syn match apacheSection "<\/\=\(If\|RequireAny\|RequireAll\)[^>]*>" contains=apacheAnything
+syn keyword apacheDeclaration UndefMacro
+syn keyword apacheDeclaration Use
+syn match apacheSection "<\/\=\(If\|Macro\|RequireAny\|RequireAll\)[^>]*>" contains=apacheAnything
