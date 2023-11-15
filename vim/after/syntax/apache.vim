@@ -44,5 +44,5 @@ syn keyword apacheDeclaration SessionEnv
 syn keyword apacheDeclaration SessionHeader
 syn keyword apacheDeclaration StrictHostCheck
 syn keyword apacheDeclaration UndefMacro
-syn keyword apacheDeclaration Use
+syn keyword Include Use
 syn match apacheSection "<\/\=\(If\|Macro\|RequireAny\|RequireAll\)[^>]*>" contains=apacheAnything
