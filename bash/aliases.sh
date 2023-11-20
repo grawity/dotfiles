@@ -142,6 +142,8 @@ alias unwine='tput rmkx' # Disable application keypad mode DECCKM+DECPNM
 xar() { xargs -r -d '\n' "$@"; }
 alias xf='ps xf -O ppid'
 alias xx='chmod a+rx'
+ydiff() { diff -u "`yesterday "${1?}"`" "$1" | tig; }
+yget() { ls -l "`yesterday "${1?}"`" "$1"; cp -vib "`yesterday "${1?}"`" "$1"; }
 alias '~'='grep -E'
 alias '~~'='grep -E -i'
 -() { cd -; }
