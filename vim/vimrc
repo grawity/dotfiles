@@ -169,7 +169,11 @@ set tabpagemax=20		" Increase max tab pages
 
 set wildmenu			" Show menu when tab-completing
 "set wildmode=list:longest
-silent! set wildignorecase	" Case-insensitive tab-completion
+
+" Case-insensitive tab-completion. (Note: This unfortunately breaks completing
+" across an autofs mount that's not yet mounted and visible, in both Vim and
+" Neovim.)
+"silent! set wildignorecase
 
 set noerrorbells visualbell t_vb=	" turn off all bells
 
