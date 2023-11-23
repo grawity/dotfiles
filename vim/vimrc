@@ -16,10 +16,15 @@ set nocompatible
 " Terminal features
 
 if has("nvim")
-	" Neovim 0.2.1: disable cursor styling using DEC sequences,
-	" as it is not properly reset on exit. (Note that this must
-	" go before 'set title')
+	" Neovim uses DEC sequences to change text cursor style, but
+	" there is no sequence to query the current style on startup
+	" so Neovim cannot properly reset it back on exit.
+
+	" Disable styling entirely (This must go before 'set title').
 	set guicursor=
+
+	" Or always reset it to a specific style.
+	"au VimLeave,VimSuspend * set guicursor=a:foo
 endif
 
 set title
