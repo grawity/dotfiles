@@ -119,6 +119,7 @@ alias telnets='telnet-ssl -z ssl'
 _thiscommand() { history 1 | sed "s/^\s*[0-9]\+\s\+([^)]\+)\s\+$1\s\+//"; }
 tigdiff() { diff -u "$@" | tig; }
 alias todo:='todo "$(_thiscommand todo:)" #'
+alias todos='unix2dos'
 alias traceroute='traceroute -N3'
 alias tracert='traceroute -I'
 alias try-openconnect='openconnect --verbose --authenticate'
