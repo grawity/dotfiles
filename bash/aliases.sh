@@ -409,7 +409,7 @@ if [[ $HOSTNAME == @(wolke|sky|ember|star|land) ]]; then
 	}
 	//path() {
 		sudo birdc show route all "$@" |
-		ssh wolke "perl ~/bin/bird-bgpath"
+		ssh wolke "perl ~/bin/net/bird-bgpath"
 	}
 	//proto() {
 		sudo birdc show protocols |
