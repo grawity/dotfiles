@@ -124,17 +124,18 @@ link ssh/known_hosts
 # Git
 link git ~/.config/git
 touch ~/.config/git/credentials
-
-# Tig
+chmod go= ~/.config/git/credentials
 mkdir -p ~/.local/share/tig
+chmod go= ~/.local/share/tig
 touch ~/.local/share/tig/history
+chmod go= ~/.local/share/tig/history
 
 # lftp
 link lftprc ~/.config/lftp/rc
 
 # msmtp
-chmod 600 msmtprc
 link msmtprc ~/.config/msmtp/config
+chmod go= msmtprc
 
 # tmux (XDG paths are supported starting with tmux 3.1)
 link tmux.conf ~/.config/tmux/tmux.conf
@@ -144,7 +145,7 @@ link vim ~/.vim
 link vim ~/.config/nvim
 link micro ~/.config/micro
 rm -f ~/.viminfo
-mkdir -p ~/.local/share/nvim/{backup,shada,swap,undo}
+mkdir -p -m go= ~/.local/share/nvim/{backup,shada,swap,undo}
 chmod go= ~/.local/share/nvim
 chmod go= ~/.config/micro
 
