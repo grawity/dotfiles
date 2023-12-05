@@ -1,5 +1,5 @@
 # vim: ft=sh:nowrap
-
+# Keyboard shortcuts to paste (yank) from the system clipboard
 # http://stackoverflow.com/a/1088763/49849
 
 _xdiscard() {
