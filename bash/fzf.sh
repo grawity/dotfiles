@@ -15,6 +15,7 @@ if have broot; then
 		rm -f "$tmp"
 		return $r
 	}
+	bind -m emacs -x '"\er": br'
 fi
 
 if have fzf; then
