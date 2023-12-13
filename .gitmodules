@@ -42,3 +42,6 @@
 	path = vim/bundle/hjson
 	url = https://github.com/hjson/vim-hjson
 	update = merge
+[submodule "vim/bundle/nightfox.nvim"]
+	path = vim/bundle/nightfox.nvim
+	url = https://github.com/EdenEast/nightfox.nvim
