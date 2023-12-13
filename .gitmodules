@@ -45,3 +45,6 @@
 [submodule "vim/bundle/nightfox.nvim"]
 	path = vim/bundle/nightfox.nvim
 	url = https://github.com/EdenEast/nightfox.nvim
+[submodule "vim/bundle/noctis.nvim"]
+	path = vim/bundle/noctis.nvim
+	url = https://github.com/talha-akram/noctis.nvim

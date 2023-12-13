@@ -429,3 +429,17 @@ if has("autocmd")
 		au! TermOpen * setl nonumber norelativenumber
 	endif
 endif
+
+" Plugins
+
+if has("nvim")
+	" https://github.com/lewis6991/gitsigns.nvim
+	if hostname() == "frost"
+		lua require('gitsigns').setup()
+	endif
+endif
+
+" Packer (todo)
+" use "EdenEast/nightfox.nvim"
+" use "nanozuki/tabby.nvim"
+" use "talha-akram/noctis.nvim"
