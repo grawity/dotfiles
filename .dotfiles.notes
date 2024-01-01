@@ -13,72 +13,72 @@ Already migrated to XDG in a release:
 
 ~/.AndroidStudio4.0	~/.config/Google/AndroidStudio2021.3/
 ~/.audacity-data/	[various]/audacity/		3.2.0?
-~/.curlrc               ~/.config/.curlrc               7.73 (4be1f8dc0)
-~/.d-feet/              ~/.config/d-feet/               0.1.15 (7f6104bbc5ab)
-~/.darcs/               [various]/darcs/                2.10
+~/.curlrc		~/.config/.curlrc		7.73 (4be1f8dc0)
+~/.d-feet/		~/.config/d-feet/		0.1.15 (7f6104bbc5ab)
+~/.darcs/		[various]/darcs/		2.10
 ~/.elinks/		~/.config/elinks/		0.17
-~/.freerdp/             ~/.config/freerdp/              1.1.0 (edf6e7258d0e)
-~/.gconf/               ~/.config/gconf/                3.2.6 (fc28caa7be86)
-~/.gconf.path           ~/.config/gconf.path            3.2.6 (fc28caa7be86)
+~/.freerdp/		~/.config/freerdp/		1.1.0 (edf6e7258d0e)
+~/.gconf/		~/.config/gconf/		3.2.6 (fc28caa7be86)
+~/.gconf.path		~/.config/gconf.path		3.2.6 (fc28caa7be86)
 ~/.gdb[early]init	~/.config/gdb/gdb[early]init
-~/.gimp-2.8/            ~/.config/GIMP/2.10/            2.10
+~/.gimp-2.8/		~/.config/GIMP/2.10/		2.10
 ~/.git-credentials	~/.config/git/credentials	2.5.0 (17c7f4d8e4)
-~/.gitconfig            ~/.config/git/config            1.7.12 (0d94427ef844)
-~/.gitignore            ~/.config/git/ignore            1.7.12 (0d94427ef844)
-~/.gitk                 ~/.config/git/gitk              1.9-rc1 (8f86339858c1)
-~/.gnucash/             ~/.config/gnucash/              3.0
+~/.gitconfig		~/.config/git/config		1.7.12 (0d94427ef844)
+~/.gitignore		~/.config/git/ignore		1.7.12 (0d94427ef844)
+~/.gitk			~/.config/git/gitk		1.9-rc1 (8f86339858c1)
+~/.gnucash/		~/.config/gnucash/		3.0
 ~/.gnuplot		~/.config/gnuplot/gnuplotrc	6.0
 ~/.gnuplot_history	~/.local/state/gnuplot_history	6.0
-~/.hgrc                 ~/.config/hg/hgrc               4.2 (354020079723)
-~/.irbrc                ~/.config/irb/irbrc
-~/.keybase/             [various]/keybase/              0.6.0 (99531f058b3b57)
-~/.lesshst              ~/.local/state/lesshst          608
-~/.lesshst              ~/.local/share/lesshst [note]   582
-~/.lesskey              ~/.config/lesskey               582
-~/.lftp/                ~/.config/lftp/
-~/.lftprc               ~/.config/lftp/rc
-~/.makepkg.conf         ~/.config/pacman/makepkg.conf   4.2.0
-~/.mpdconf              ~/.config/mpd/mpd.conf          0.18
-~/.mpoprc               ~/.config/mpop/config           1.2.7 (c70f9da)
-~/.mpv/                 ~/.config/mpv/                  ??? (cb250d)
-~/.muttrc               ~/.config/mutt/muttrc           mutt 1.8? (b17cd6731291)
-~/.muttrc               ~/.config/neomutt/config        neomutt ??? (239c0e93f8be)
-~/.msmtprc              ~/.config/msmtp/config          1.6.3 (af2f409)
-~/.offlineimaprc        ~/.config/offlineimap/config    6.5.6 (5150de5514d1)
-~/.oidentd.conf         ~/.config/oidentd.conf          post-2.3.2 (8a6e9654889)
-~/.pki/nssdb/           ~/.local/share/pki/nssdb/       nss 3.42 (7f21d4f49)
-~/.pulse/               ~/.config/pulse/                3.0 (9ab510a69216)
-~/.pulse-cookie         ~/.config/pulse/cookie          3.0, 6.0 (59a8618dcd91)
-~/.putty/               ~/.config/putty/                0.64 (9952b2d5bd5)
-~/.quodlibet/           ~/.config/quodlibet/            3.10.0 (4e9545b2fa0eff6)
-~/.rclone.conf          ~/.config/rclone/rclone.conf
-~/.tigrc                ~/.config/tig/config[note]      2.1.1 (1e6da9d)
-~/.tmux.conf            ~/.config/tmux/tmux.conf        3.1 (3.0a-152-g15d7e564)
-~/.VirtualBox/          ~/.local/share/VirtualBox/
-~/.weechat/             [various]/weechat/              3.2
-~/.wireshark/           ~/.config/wireshark/            1.12
+~/.hgrc			~/.config/hg/hgrc		4.2 (354020079723)
+~/.irbrc		~/.config/irb/irbrc
+~/.keybase/		[various]/keybase/		0.6.0 (99531f058b3b57)
+~/.lesshst		~/.local/state/lesshst		608
+~/.lesshst		~/.local/share/lesshst [note]	582
+~/.lesskey		~/.config/lesskey		582
+~/.lftp/		~/.config/lftp/
+~/.lftprc		~/.config/lftp/rc
+~/.makepkg.conf		~/.config/pacman/makepkg.conf	4.2.0
+~/.mpdconf		~/.config/mpd/mpd.conf		0.18
+~/.mpoprc		~/.config/mpop/config		1.2.7 (c70f9da)
+~/.mpv/			~/.config/mpv/			??? (cb250d)
+~/.muttrc		~/.config/mutt/muttrc		mutt 1.8? (b17cd6731291)
+~/.muttrc		~/.config/neomutt/config	neomutt ??? (239c0e93f8be)
+~/.msmtprc		~/.config/msmtp/config		1.6.3 (af2f409)
+~/.offlineimaprc	~/.config/offlineimap/config	6.5.6 (5150de5514d1)
+~/.oidentd.conf		~/.config/oidentd.conf		post-2.3.2 (8a6e9654889)
+~/.pki/nssdb/		~/.local/share/pki/nssdb/	nss 3.42 (7f21d4f49)
+~/.pulse/		~/.config/pulse/		3.0 (9ab510a69216)
+~/.pulse-cookie		~/.config/pulse/cookie		3.0, 6.0 (59a8618dcd91)
+~/.putty/		~/.config/putty/		0.64 (9952b2d5bd5)
+~/.quodlibet/		~/.config/quodlibet/		3.10.0 (4e9545b2fa0eff6)
+~/.rclone.conf		~/.config/rclone/rclone.conf
+~/.tigrc		~/.config/tig/config[note]	2.1.1 (1e6da9d)
+~/.tmux.conf		~/.config/tmux/tmux.conf	3.1 (3.0a-152-g15d7e564)
+~/.VirtualBox/		~/.local/share/VirtualBox/
+~/.weechat/		[various]/weechat/		3.2
+~/.wireshark/		~/.config/wireshark/		1.12
 
 
 Migrated to XDG in devel:
 
-~/.purple/              ~/.config/purple/               3.0
+~/.purple/		~/.config/purple/		3.0
 
 
 Notes:
 
 ~/.lesshst
-        If XDG_DATA_HOME isn't explicitly set, there is no fallback to the
-        default ~/.local/share/, but only to the legacy ~/.lesshst path.
-        (However, fallback *is* implemented for XDG_STATE_HOME to
-        ~/.local/state/.)
+	If XDG_DATA_HOME isn't explicitly set, there is no fallback to the
+	default ~/.local/share/, but only to the legacy ~/.lesshst path.
+	(However, fallback *is* implemented for XDG_STATE_HOME to
+	~/.local/state/.)
 
 ~/.lesskey
-        Unlike ~/.lesshst, this path does fallback to ~/.config/ if
-        XDG_CONFIG_HOME was not found in environment.
+	Unlike ~/.lesshst, this path does fallback to ~/.config/ if
+	XDG_CONFIG_HOME was not found in environment.
 
 ~/.tigrc
-        Instead of a standalone tigrc, configuration can be embedded in the Git
-        config file via [tig ...] sections.
+	Instead of a standalone tigrc, configuration can be embedded in the Git
+	config file via [tig ...] sections.
 
 
 Environment variable
@@ -90,51 +90,51 @@ be included if available in addition to environment.)
 Items marked "(xdg)" are already compliant in the current version, and included
 only for reference.
 
-~/.atom/                $ATOM_HOME
-~/.cabal/config         $CABAL_CONFIG
-~/.crawl/               $CRAWL_DIR (must end with "/")
-~/.crawlrc              $CRAWL_RC, or move to $CRAWL_DIR/init.txt
-~/.curlrc               (xdg) $CURL_HOME
-~/.cvspass              $CVS_PASSFILE
-~/.dvdcss/              $DVDCSS_CACHE
-~/.e16/                 $ECONFDIR, -P, --econfdir, see /usr/share/doc/e16/e16.html
-~/.elinks/              (xdg) $ELINKS_CONFDIR
-~/.gale/                $GALE_DIR
-~/.gemrc                $GEMRC (colon-separated list, acts as additional rc)
-~/.gnupg/               $GNUPGHOME, --home
-~/.gramps/              $GRAMPSHOME
-~/.gtkrc                $GTK_RC_FILES (colon-separated list)
-~/.gtkrc-2.0            $GTK2_RC_FILES (colon-separated list)
-~/.httpie/              $HTTPIE_CONFIG_DIR
-~/.ICEauthority         $ICEAUTHORITY
-~/.irbrc                $IRBRC
-~/.ipfs/                $IPFS_PATH
-~/.ldaprc               $LDAPCONF, $LDAP<opt>, see ldap.conf(5)
-~/.lesshst              (xdg) $LESSHISTFILE
-~/.mtoolsrc             $MTOOLSRC (acts as additional rc)
-~/.mysql_history        $MYSQL_HISTFILE
-~/.pip/pip.conf         $PIP_CONFIG_FILE, $PIP_<opt>
-~/.pip/pip.log          $PIP_LOG_FILE, [global] log_file =
-~/.screenrc             $SCREENRC
-~/.sqlite_history       $SQLITE_HISTORY
+~/.atom/		$ATOM_HOME
+~/.cabal/config		$CABAL_CONFIG
+~/.crawl/		$CRAWL_DIR (must end with "/")
+~/.crawlrc		$CRAWL_RC, or move to $CRAWL_DIR/init.txt
+~/.curlrc		(xdg) $CURL_HOME
+~/.cvspass		$CVS_PASSFILE
+~/.dvdcss/		$DVDCSS_CACHE
+~/.e16/			$ECONFDIR, -P, --econfdir, see /usr/share/doc/e16/e16.html
+~/.elinks/		(xdg) $ELINKS_CONFDIR
+~/.gale/		$GALE_DIR
+~/.gemrc		$GEMRC (colon-separated list, acts as additional rc)
+~/.gnupg/		$GNUPGHOME, --home
+~/.gramps/		$GRAMPSHOME
+~/.gtkrc		$GTK_RC_FILES (colon-separated list)
+~/.gtkrc-2.0		$GTK2_RC_FILES (colon-separated list)
+~/.httpie/		$HTTPIE_CONFIG_DIR
+~/.ICEauthority		$ICEAUTHORITY
+~/.irbrc		$IRBRC
+~/.ipfs/		$IPFS_PATH
+~/.ldaprc		$LDAPCONF, $LDAP<opt>, see ldap.conf(5)
+~/.lesshst		(xdg) $LESSHISTFILE
+~/.mtoolsrc		$MTOOLSRC (acts as additional rc)
+~/.mysql_history	$MYSQL_HISTFILE
+~/.pip/pip.conf		$PIP_CONFIG_FILE, $PIP_<opt>
+~/.pip/pip.log		$PIP_LOG_FILE, [global] log_file =
+~/.screenrc		$SCREENRC
+~/.sqlite_history	$SQLITE_HISTORY
 ~/.tpm2_pkcs11/		$TPM2_PKCS11_STORE
-~/.tkabber              $TKABBER_HOME
+~/.tkabber		$TKABBER_HOME
 ~/.unison/		$UNISON
-~/.VirtualBox/          (xdg) $VBOX_USER_HOME
-~/.weechat/             (xdg) $WEECHAT_HOME, -d, --dir
-~/.wgetrc               $WGETRC
+~/.VirtualBox/		(xdg) $VBOX_USER_HOME
+~/.weechat/		(xdg) $WEECHAT_HOME, -d, --dir
+~/.wgetrc		$WGETRC
 
 
 Can be overridden indirectly via config:
 
 ~/.cabal/*
-        Defined via various settings in $CABAL_CONFIG
+	Defined via various settings in $CABAL_CONFIG
 
 ~/.exodusviewer/
-        $EXODUSVIEWER_USER_DIR overrides, but see ~/.secondlife/
+	$EXODUSVIEWER_USER_DIR overrides, but see ~/.secondlife/
 
 ~/.firestorm/
-        $FIRESTORM_USER_DIR overrides, but see ~/.secondlife/
+	$FIRESTORM_USER_DIR overrides, but see ~/.secondlife/
 
 ~/.gdb_history
 	$GDBHISTFILE or 'set history filename <path>' in gdbinit:
@@ -143,36 +143,36 @@ Can be overridden indirectly via config:
 	set history filename ~/.local/state/gdb/history
 
 ~/.gvimrc
-        Same as ~/.vimrc, but with $GVIMINIT.
+	Same as ~/.vimrc, but with $GVIMINIT.
 
 ~/.lynx_cookies
-        Defined via 'cookie_file' in ~/.lynxrc
+	Defined via 'cookie_file' in ~/.lynxrc
 
 ~/.pip/pip.log
-        Location can be defined via pip.conf (see ~/.pip/pip.conf), but this
-        does not support tilde expansion for $HOME:
+	Location can be defined via pip.conf (see ~/.pip/pip.conf), but this
+	does not support tilde expansion for $HOME:
 
-        [global]
-        log_file = /home/foo/bar
+	[global]
+	log_file = /home/foo/bar
 
-        http://pip.readthedocs.org/en/latest/user_guide.html#environment-variables
+	http://pip.readthedocs.org/en/latest/user_guide.html#environment-variables
 
 ~/.secondlife/
-        $SECONDLIFE_USER_DIR overrides this in general, but you will need to
-        manually adjust the "chat log location" option.
+	$SECONDLIFE_USER_DIR overrides this in general, but you will need to
+	manually adjust the "chat log location" option.
 
 ~/.vimrc
-        Recent Vim versions use ~/.vim/vimrc by default. For older versions,
-        $VIMINIT can have an Ex command that sources an additional rc:
+	Recent Vim versions use ~/.vim/vimrc by default. For older versions,
+	$VIMINIT can have an Ex command that sources an additional rc:
 
-                export VIMINIT=":so ~/.vim/vimrc"
+		export VIMINIT=":so ~/.vim/vimrc"
 
-        (Note: This only applies to original Vim -- the Neovim fork is already
-        XDG-compliant and uses ~/.config/nvim/init.vim instead.)
+	(Note: This only applies to original Vim -- the Neovim fork is already
+	XDG-compliant and uses ~/.config/nvim/init.vim instead.)
 
 ~/VirtualBox VMs/
-        Location defined by main VirtualBox configuration (see ~/.VirtualBox/),
-        can be set via GUI or `VBoxManage setproperty machinefolder <path>`
+	Location defined by main VirtualBox configuration (see ~/.VirtualBox/),
+	can be set via GUI or `VBoxManage setproperty machinefolder <path>`
 
 
 Command-line override
@@ -181,28 +181,28 @@ Command-line override
 These support neither XDG Basedir nor custom environment variables, but can be
 run through an alias or wrapper script with a specific command line option.
 
-~/.claws-mail/          --alternate-config-dir
-~/.irssi/               --home=
-~/.pinerc               -p
-~/.stalonetrayrc        -c, --config
-~/.ttytterrc            -rc=
-~/.vidalia/             -datadir
-~/.wget-hsts            --hsts-file=
-~/.xbindkeysrc          -f, --file
-~/.xbindkeysrc.scm      -fg, --file-guile
-~/.xinitrc              startx <path>
-~/.xchat2/              -d, --cfgdir=
-~/.xsel.log             -l, --logfile
+~/.claws-mail/		--alternate-config-dir
+~/.irssi/		--home=
+~/.pinerc		-p
+~/.stalonetrayrc	-c, --config
+~/.ttytterrc		-rc=
+~/.vidalia/		-datadir
+~/.wget-hsts		--hsts-file=
+~/.xbindkeysrc		-f, --file
+~/.xbindkeysrc.scm	-fg, --file-guile
+~/.xinitrc		startx <path>
+~/.xchat2/		-d, --cfgdir=
+~/.xsel.log		-l, --logfile
 
 
 Notes:
 
 ~/.digrc
-        No option to load a different config, but everything that can be put in
-        .digrc can be directly specified via command-line options anyway.
+	No option to load a different config, but everything that can be put in
+	.digrc can be directly specified via command-line options anyway.
 
 ~/.pinerc
-        Windows gets both $PINERC and $PINECONF, but Unix gets neither.
+	Windows gets both $PINERC and $PINECONF, but Unix gets neither.
 
 The Java hack
 -------------
@@ -210,7 +210,7 @@ The Java hack
 For various Java programs that litter the home directory, the answer is "change
 the home directory". I have a wrapper script that basically runs:
 
-        java -Duser.home="$XDG_DATA_HOME/Java"
+	java -Duser.home="$XDG_DATA_HOME/Java"
 
 Don't forget to symlink ~/.java into the redirect directory.
 
@@ -229,17 +229,17 @@ Sad.
 ~/.balsa/
 ~/.bashrc		Passing options to shells is difficult
 ~/.bash_logout
-~/.bash_profile         Use ~/.profile
+~/.bash_profile		Use ~/.profile
 ~/.cargo/
 ~/.cmake/		Supports Windows and Haiku paths but not XDG
 ~/.dc++/
-~/.esd_auth             Obsolete, uninstall the PulseAudio module
+~/.esd_auth		Obsolete, uninstall the PulseAudio module
 ~/.fossil
-~/.gens/                Hardcoded in both Gens and Gens-gs
-~/.gnome-commander/     Command-line option doesn't work
-~/.gnome2/              Obsolete, safe to rm
-~/.gnome2_private/      Obsolete, safe to rm
-~/.gstreamer-0.10/      Obsolete, safe to rm (Gst1.0 is XDG)
+~/.gens/		Hardcoded in both Gens and Gens-gs
+~/.gnome-commander/	Command-line option doesn't work
+~/.gnome2/		Obsolete, safe to rm
+~/.gnome2_private/	Obsolete, safe to rm
+~/.gstreamer-0.10/	Obsolete, safe to rm (Gst1.0 is XDG)
 ~/.hatari/
 ~/.pine-debug[0-9]
 ~/.renpy/
@@ -250,52 +250,52 @@ Sad.
 
 Some paths have become API and are expected to be there by various programs:
 
-~/.dbus/                part of D-Bus spec, but optional - see note
-~/.netrc                curl, many other apps, Perl/Python modules expect it here
-~/.profile              sh, bash, various display managers expect it here
-~/.xprofile             various display managers (Xsession scripts) expect it here
-~/.ssh/                 libssh2, other programs will parse config & known_hosts
+~/.dbus/		part of D-Bus spec, but optional - see note
+~/.netrc		curl, many other apps, Perl/Python modules expect it here
+~/.profile		sh, bash, various display managers expect it here
+~/.xprofile		various display managers (Xsession scripts) expect it here
+~/.ssh/			libssh2, other programs will parse config & known_hosts
 
 
 Notes:
 
 ~/.dbus/
-        The path ~/.dbus/session-bus/$MACHINE_ID-$DISPLAY is part of the D-Bus
-        spec, however, it is only needed when "autolaunch" is being used.
+	The path ~/.dbus/session-bus/$MACHINE_ID-$DISPLAY is part of the D-Bus
+	spec, however, it is only needed when "autolaunch" is being used.
 
-        On systems which always pre-start a session bus and export its path to
-        DBUS_SESSION_BUS_SOCKET (whether via systemd or via dbus-run-session),
-        the ~/.dbus/ directory doesn't need to exist at all.
+	On systems which always pre-start a session bus and export its path to
+	DBUS_SESSION_BUS_SOCKET (whether via systemd or via dbus-run-session),
+	the ~/.dbus/ directory doesn't need to exist at all.
 
 ~/.kvirc4.rc
-        Hardcoded, but will use native KDE location if compiled with "KDE
-        support" enabled.
+	Hardcoded, but will use native KDE location if compiled with "KDE
+	support" enabled.
 
 ~/mbox
-        "Well-known" -- various mail apps move "seen" messages here from
-        /var/spool/mail.
+	"Well-known" -- various mail apps move "seen" messages here from
+	/var/spool/mail.
 
-        Can usually be disabled or relocated through the mail program's
-        configuration (e.g. via ~/.mailrc or $MBOX).
+	Can usually be disabled or relocated through the mail program's
+	configuration (e.g. via ~/.mailrc or $MBOX).
 
 ~/.netrc
-        "Well-known" -- mostly hardcoded, though some apps can be told to use a
-        different path.
+	"Well-known" -- mostly hardcoded, though some apps can be told to use a
+	different path.
 
 	curl: $CURLOPT_NETRC_FILE or --netrc-file can override.
-        inetutils-ftp: $NETRC or --netrc can override (as of 1.9.3).
-        s-nail: $NETRC can override.
+	inetutils-ftp: $NETRC or --netrc can override (as of 1.9.3).
+	s-nail: $NETRC can override.
 	Python (aiohttp): $NETRC can override.
-        lftp, netkit-ftp, w3m, wget: Hardcoded.
+	lftp, netkit-ftp, w3m, wget: Hardcoded.
 
 ~/.pki/nssdb/
-        Although upstream NSS is XDG-compliant as of 3.42 (commit 7f21d4f49)
-        and uses ~/.local/share/pki/nssdb/, this doesn't yet apply to Google
-        Chrome (v84) as it uses an older vendor fork of NSS in which the path
-        is still hardcoded.
+	Although upstream NSS is XDG-compliant as of 3.42 (commit 7f21d4f49)
+	and uses ~/.local/share/pki/nssdb/, this doesn't yet apply to Google
+	Chrome (v84) as it uses an older vendor fork of NSS in which the path
+	is still hardcoded.
 
-        (It also doesn't apply to Firefox/Thunderbird/Seamonkey which use per-
-        profile databases as they always have done.)
+	(It also doesn't apply to Firefox/Thunderbird/Seamonkey which use per-
+	profile databases as they always have done.)
 
 ~/.XCompose
 	The standard libX11 input method (XIM) supports $XCOMPOSEFILE (see the
@@ -338,16 +338,16 @@ Miscellaneous
     (which means you're limited to one language if you choose to override!)
 
 ~/.eclipse/
-        Just give up.
+	Just give up.
 
-        Option "-Dosgi.configuration.area=@user.home/.config/etc/etc" overrides
-        the location, but must be added to "$ECLIPSE_HOME/eclipse.ini" rather
-        than command line -- which means you must have write access to
-        $ECLIPSE_HOME, that is, carry your own copy of Eclipse, and I couldn't
-        really get it to work anyway (Arch's /usr/bin/eclipse has a hardcoded
-        $ECLIPSE_HOME).
+	Option "-Dosgi.configuration.area=@user.home/.config/etc/etc" overrides
+	the location, but must be added to "$ECLIPSE_HOME/eclipse.ini" rather
+	than command line -- which means you must have write access to
+	$ECLIPSE_HOME, that is, carry your own copy of Eclipse, and I couldn't
+	really get it to work anyway (Arch's /usr/bin/eclipse has a hardcoded
+	$ECLIPSE_HOME).
 
-        docs: <http://wiki.eclipse.org/Eclipse.ini>
+	docs: <http://wiki.eclipse.org/Eclipse.ini>
 
 ~/.forward – varies
   - most MTAs expect this path, and it's not like they can read .profile
@@ -398,8 +398,8 @@ Miscellaneous
   - however, 1 file remains (~/.opera/OperaAutoupdateChecker.sqlite)
 
 ~/.rnd
-        Not sure what exactly creates this, but at least for OpenSSL (??),
-        $RANDFILE can be used to move it into a different *directory*.
+	Not sure what exactly creates this, but at least for OpenSSL (??),
+	$RANDFILE can be used to move it into a different *directory*.
 
 ~/.terminfo/ (ncurses) – environment
   - $TERMINFO_DIRS overrides (colon-separated list):
