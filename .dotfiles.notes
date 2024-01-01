@@ -26,6 +26,8 @@ Already migrated to XDG in a release:
 ~/.gitignore            ~/.config/git/ignore            1.7.12 (0d94427ef844)
 ~/.gitk                 ~/.config/git/gitk              1.9-rc1 (8f86339858c1)
 ~/.gnucash/             ~/.config/gnucash/              3.0
+~/.gnuplot		~/.config/gnuplot/gnuplotrc	6.0
+~/.gnuplot_history	~/.local/state/gnuplot_history	6.0
 ~/.hgrc                 ~/.config/hg/hgrc               4.2 (354020079723)
 ~/.irbrc                ~/.config/irb/irbrc
 ~/.keybase/             [various]/keybase/              0.6.0 (99531f058b3b57)
