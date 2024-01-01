@@ -16,6 +16,7 @@ Already migrated to XDG in a release:
 ~/.curlrc               ~/.config/.curlrc               7.73 (4be1f8dc0)
 ~/.d-feet/              ~/.config/d-feet/               0.1.15 (7f6104bbc5ab)
 ~/.darcs/               [various]/darcs/                2.10
+~/.elinks/		~/.config/elinks/		0.17
 ~/.freerdp/             ~/.config/freerdp/              1.1.0 (edf6e7258d0e)
 ~/.gconf/               ~/.config/gconf/                3.2.6 (fc28caa7be86)
 ~/.gconf.path           ~/.config/gconf.path            3.2.6 (fc28caa7be86)
@@ -97,7 +98,7 @@ only for reference.
 ~/.cvspass              $CVS_PASSFILE
 ~/.dvdcss/              $DVDCSS_CACHE
 ~/.e16/                 $ECONFDIR, -P, --econfdir, see /usr/share/doc/e16/e16.html
-~/.elinks/              $ELINKS_CONFDIR
+~/.elinks/              (xdg) $ELINKS_CONFDIR
 ~/.gale/                $GALE_DIR
 ~/.gemrc                $GEMRC (colon-separated list, acts as additional rc)
 ~/.gnupg/               $GNUPGHOME, --home
