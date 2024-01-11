@@ -35,7 +35,7 @@ Host dust.nullroute.lt dust.sym
 	PreferredAuthentications gssapi-with-mic
 	GSSAPIDelegateCredentials yes
 
-Host windgw.sym
+Host airmaxgw.sym dunegw.sym embergw.sym windgw.sym
 	User admin
 
 Host bmc.*.nullroute.lt bmc.*.sym
@@ -50,6 +50,9 @@ Host ptp-u2*.sym ptp-pico*.sym kol-*.sym
 	HostKeyAlgorithms +ssh-rsa
 	PubkeyAcceptedAlgorithms +ssh-rsa
 	User root
+
+Host er-x.sym
+	User ubnt
 
 Host *.nullroute.lt *.sym
 	GSSAPIAuthentication yes
