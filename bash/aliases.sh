@@ -120,7 +120,7 @@ _thiscommand() { history 1 | sed "s/^\s*[0-9]\+\s\+([^)]\+)\s\+$1\s\+//"; }
 tigdiff() { diff -u "$@" | tig; }
 alias todo:='todo "$(_thiscommand todo:)" #'
 alias todos='unix2dos'
-alias traceroute='traceroute -N3'
+alias traceroute='traceroute -N1'
 alias tracert='traceroute -I'
 alias try-openconnect='openconnect --verbose --authenticate'
 alias try-openvpn='openvpn --verb 3 --dev null --{ifconfig,route}-noexec --client'
