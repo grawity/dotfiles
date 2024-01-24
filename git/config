@@ -61,6 +61,7 @@
 	ff = merge --ff-only
 	ch = cherry-pick
 	sparse = sparse-checkout
+	cp = cherry-pick
 
 [advice]
 	detachedHead = false
