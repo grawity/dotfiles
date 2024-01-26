@@ -83,6 +83,9 @@ Host eisner
 	PubkeyAcceptedAlgorithms +ssh-rsa
 	User mikulenas
 
+Host *.ngrok.com *.ngrok-agent.com
+	ControlMaster none
+
 Host sdf sdf.org
 	HostName tty.sdf.org
 
