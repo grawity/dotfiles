@@ -84,7 +84,7 @@ Host eisner
 	User mikulenas
 
 Host *.ngrok.com *.ngrok-agent.com
-	ControlMaster none
+	ControlPath none
 
 Host sdf sdf.org
 	HostName tty.sdf.org
