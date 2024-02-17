@@ -1,0 +1,9 @@
+#!bash
+
+if [[ $TERM == cygwin ]]; then
+	. ~/.dotfiles/bash/prompt.sh
+	fmts[a]='1;35'
+	fmts[b]='1;35'
+	fmts[c]='1;35'
+	fmts[d]='35'
+fi
