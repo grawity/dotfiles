@@ -60,13 +60,16 @@ Function id.server($Address) {nslookup -cl=chaos -q=txt id.server. $Address}
 Function irc {ssh -t star "LANG=en_US.UTF-8 tmux attach -t irc"}
 Function mkfile($Path, $Size) {fsutil file createnew "$Path" "$Size"}
 Function resolve($HostName) {Resolve-DnsName $HostName | ft Name,TTL,Type,Address}
+Function wup {winget list --upgrade-available}
+Function wupd($Package) {winget upgrade --id $Package}
+Function wupi($Package) {winget upgrade --id $Package --interactive}
 
 Function loc([Parameter(ValueFromRemainingArguments)] $Name) {
 	dbg "Running: locate $Name"
 	@("myth", "ember") | % {
 		$rhost = $_
 		say (hl "Results on $(bold $rhost):")
-		ssh $rhost "locate -Abi $Name | sed `"s:^`$HOME/:~/:`";"
+		ssh $rhost "locate -Abi $Name | grep -v '/\.old/' | sed `"s:^`$HOME/:~/:`";"
 	}
 }
 
@@ -85,6 +88,10 @@ Function kdelhost($HostName) {cmdkey /del:$HostName}
 Function kgethost($HostName) {cmdkey /list:$HostName}
 Function kssh {ssh -o PubkeyAuthentication=no $args}
 Function kplink {plink -no-antispoof -noagent $args}
+
+Function pgrep($String) {
+	Get-Process | ? { $_.CommandLine -like "*$String*" } | fl Id,Path,CommandLine
+}
 
 Function bold($String) {
 	"$ESC[1m$String$ESC[22m"
@@ -105,12 +112,21 @@ Function debug($Value) {
 		$env:DEBUG = "$Value"
 		say (hldbg "Debug mode set to $Value.")
 	} else {
-		Remove-Item Env:\DEBUG -ErrorAction Ignore
+		rm Env:\DEBUG -ErrorAction Ignore
 		say (hldbg "Debug mode disabled.")
 	}
 }
 
 # on/at SSH commands
+
+Function AtGetCurrentDir {
+	#$wd = Get-Location
+	$wd = "$PWD"
+	if ($wd.StartsWith("Microsoft.PowerShell.Core\FileSystem::")) {
+		$wd = $wd.Substring("Microsoft.PowerShell.Core\FileSystem::".Length)
+	}
+	return $wd
+}
 
 Function AtMapPathToRemote($Directory, $HostName) {
 	$wd = "$Directory\"
@@ -128,6 +144,8 @@ Function AtMapPathToRemote($Directory, $HostName) {
 		$child = $wd.Substring("$HOME\".Length)
 	} elseif ($wd.StartsWith("\\$HostName\Home\", "CurrentCultureIgnoreCase")) {
 		$child = $wd.Substring("\\$HostName\Home\".Length)
+	} elseif ($wd.StartsWith("\\$HostName\Attic\", "CurrentCultureIgnoreCase")) {
+		$child = "Attic/" + $wd.Substring("\\$HostName\Attic\".Length)
 	} else {
 		$wd = $wd.TrimEnd("\")
 		say (hlerr "Current location '$(bold $wd)' cannot be mapped to location on \\$HostName.")
@@ -160,16 +178,23 @@ Function AtInvokeShell($HostName, $Command) {
 	if (-not $Command) {
 		$Command = "bash"
 	}
-	$cmd = "export SILENT=1; . ~/.profile; $Command"
+	# Dust doesn't have the custom pam_env entry for locale, so we need /etc/profile.
+	$cmd = ". /etc/profile; SILENT=1 . ~/.profile; $Command"
 	dbg "Running command: $cmd"
 	ssh -t $HostName "$cmd"
 }
 
+Function AtShellQuote($Argument) {
+	return '"' + ($Argument -replace '["$`\\]', '\$0') + '"'
+}
+
 Function AtQuoteArgv($Arguments) {
-	$special = '[\x00-\x20"^%~!@&?*<>|()\\=]'
+	$special = '[\x00-\x20"^%~!@&?*<>|()$`\\=]'
 	$Arguments | % {
 		if ($_ -match $special) {
-			'"' + ($_) + '"'
+			# Deliberately don't escape $ or `, as we
+			# want remote expansion to still happen.
+			'"' + ($_ -replace '["\\]', '\$0') + '"'
 		} else {
 			$_
 		}
@@ -334,12 +359,18 @@ Function Shorten-Path($Path) {
 	}
 }
 
-# $Global:__LastHistoryId = -1
-# https://devblogs.microsoft.com/commandline/shell-integration-in-the-windows-terminal/
+# https://learn.microsoft.com/en-us/windows/terminal/tutorials/shell-integration
+$Global:__LastHistoryId = -1
 function Global:__Terminal-Get-LastExitCode {
-	if ($? -eq $True) { return 0 }
-	if ("$LastExitCode" -ne "") { return $LastExitCode }
-	return -1
+	if ($? -eq $True) {
+		return 0
+	}
+	$LastHistoryEntry = Get-History -Count 1
+	$IsPowerShellError = $Error[0].InvocationInfo.HistoryId -eq $LastHistoryEntry.Id
+	if ($IsPowerShellError) {
+		return -1
+	}
+	return $LastExitCode
 }
 
 Function Prompt {
@@ -351,10 +382,10 @@ Function Prompt {
 	$ft_cmdsucc  = "$ESC]133;D;0$ESC\"
 	$ft_cmdfail  = "$ESC]133;D;1$ESC\"
 
-	#$rawcwd = $executionContext.SessionState.Path.CurrentLocation
-	$rawcwd = Get-Location
-	$rawcwd = $rawcwd -replace "^Microsoft\.PowerShell\.Core\\FileSystem::\\\\", "\\"
+	# https://learn.microsoft.com/en-us/windows/terminal/tutorials/shell-integration
+	$gle = __Terminal-Get-LastExitCode
 
+	$rawcwd = AtGetCurrentDir
 	# Replace $env:USERPROFILE with ~\
 	$cwd = Shorten-Path $rawcwd
 
@@ -363,8 +394,20 @@ Function Prompt {
 	$nest = if ($NestedPromptLevel -ge 1) {" >>"}
 
 	$out = ""
+	$BEL = [char] 0x07
+
 	# End of command output (
-	
+	$LastHistoryEntry = Get-History -Count 1
+	if ($Global:__LastHistoryId -ne -1) {
+		# Don't provide a command line or exit code if there was no history entry (eg. ctrl+c, enter on no command)
+		if ($LastHistoryEntry.Id -eq $Global:__LastHistoryId) {
+			$out += "$ESC]133;D$ESC\"
+		} else {
+			$out += "$ESC]133;D;$gle$ESC\"
+		}
+	}
+	$Global:__LastHistoryId = $LastHistoryEntry.Id
+
 	# Start of prompt (FinalTerm [1])
 	$out += "$ESC]133;A$ESC\"
 	# Current path
@@ -379,13 +422,8 @@ Function Prompt {
 	# End of prompt (start of command)
 	$out += "$ESC]133;B$ESC\"
 	return $out
+}
 
-	#Write-Host -NoNewLine -ForegroundColor DarkGray "{"
-	#Write-Host -NoNewLine -ForegroundColor Blue "$ver "
-	#Write-Host -NoNewLine -ForegroundColor White "$wd"
-	#Write-Host -NoNewLine -ForegroundColor DarkGray "}"
-	#Write-Host -NoNewLine -ForegroundColor White "$nest"
-	# PowerShell generally assumes the prompt will always end with "> "
-	# and will sometimes overdraw it (e.g. when in "quoted string" mode).
-	#return " > "
+if ((AtGetCurrentDir).StartsWith("\\myth\", "CurrentCultureIgnoreCase")) {
+	AtInvokeShellHere "myth"
 }
