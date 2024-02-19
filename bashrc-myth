@@ -1,6 +1,6 @@
 #!bash
 
-if [[ $TERM == cygwin ]]; then
+if [[ $TERM == @(ansi|cygwin) ]]; then
 	. ~/.dotfiles/bash/prompt.sh
 	fmts[a]='1;35'
 	fmts[b]='1;35'
