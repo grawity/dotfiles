@@ -44,6 +44,7 @@ Already migrated to XDG in a release:
 ~/.muttrc		~/.config/mutt/muttrc		mutt 1.8? (b17cd6731291)
 ~/.muttrc		~/.config/neomutt/config	neomutt ??? (239c0e93f8be)
 ~/.msmtprc		~/.config/msmtp/config		1.6.3 (af2f409)
+~/.ncmpcpp/		~/.config/ncmpcpp/
 ~/.offlineimaprc	~/.config/offlineimap/config	6.5.6 (5150de5514d1)
 ~/.oidentd.conf		~/.config/oidentd.conf		post-2.3.2 (8a6e9654889)
 ~/.pki/nssdb/		~/.local/share/pki/nssdb/	nss 3.42 (7f21d4f49)
