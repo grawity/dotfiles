@@ -10,8 +10,9 @@ IgnoreUnknown PubkeyAcceptedAlgorithms
 IgnoreUnknown ObscureKeystrokeTiming
 
 #if ember
-Host embergw-alt
+Host EmberGW-alt
 	# Direct through Ember eno2 <--> EmberGW
+	User admin
 	HostName 10.147.241.58
 	HostkeyAlias embergw.nullroute.lt
 #endif
@@ -23,19 +24,23 @@ Host gate gate.nullroute.lt
 	User _gate
 	Port 2
 
+#if frost
 Host ember.nullroute.lt ember.sym
 	ForwardX11 yes
 	ForwardX11Trusted yes
+#endif
 
+#if midnight
 Host myth.nullroute.lt myth.sym
 	ForwardX11 yes
 	ForwardX11Trusted yes
+#endif
 
 Host dust.nullroute.lt dust.sym
 	PreferredAuthentications gssapi-with-mic
 	GSSAPIDelegateCredentials yes
 
-Host airmaxgw.sym dunegw.sym embergw.sym windgw.sym
+Host ArmxGW.sym DuneGW.sym EmberGW.sym WindGW.sym
 	User admin
 
 Host bmc.*.nullroute.lt bmc.*.sym
