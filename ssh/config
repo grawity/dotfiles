@@ -40,7 +40,7 @@ Host dust.nullroute.lt dust.sym
 	PreferredAuthentications gssapi-with-mic
 	GSSAPIDelegateCredentials yes
 
-Host ArmxGW.sym DuneGW.sym EmberGW.sym WindGW.sym
+host armxgw.sym dunegw.sym embergw.sym windgw.sym
 	User admin
 
 Host bmc.*.nullroute.lt bmc.*.sym
