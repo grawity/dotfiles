@@ -38,6 +38,9 @@ fi
 
 [[ $- == *i* ]] || return 0
 
+#set +h				# Disable command hashing
+shopt -s checkhash		# Re-check $PATH on hash failure
+
 set -o physical			# resolve symlinks when 'cd'ing
 shopt -s autocd 2>/dev/null	# assume 'cd' when trying to exec a directory
 shopt -s checkjobs 2> /dev/null	# print job status on exit
