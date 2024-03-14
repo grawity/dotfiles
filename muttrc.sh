@@ -25,7 +25,6 @@ if [[ $TERM == *-@(256color|direct) ]]; then
 	: echo "set color_directcolor=yes"
 fi
 
-#if [[ $BRIGHT ]] || gettermbg -l >/dev/tty; then
 if [[ $BRIGHT ]]; then
 	echo "source \"~/.dotfiles/muttrc.bright\""
 fi
