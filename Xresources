@@ -1,20 +1,10 @@
 ! ~/.Xresources
 
-! Use a larger font on high-DPI hosts
-#if defined(SRVR_midnight) || defined(SRVR_frost)
-XTerm*vt100.font:		-*-fixed-medium-r-*-*-20-*-*-*-*-*-iso10646-*
-#endif
-
-#if defined(SRVR_fujitsu)
-XTerm*vt100.font:		-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
-XTerm*vt100.background:		rgb:ee/ee/ec
-#endif
-
 ! Set a more useful $TERM
 XTerm.termName:			xterm-256color
 
 ! Define copy/paste keyboard shortcuts
-XTerm*vt100.translations:	#override			\n\
+XTerm*VT100.translations:	#override			\n\
 	Shift Ctrl <Key>C:	copy-selection(CLIPBOARD)	\n\
 	Shift Ctrl <Key>V:	insert-selection(CLIPBOARD)	\n\
 	Shift Ctrl <Key>N:	spawn-new-terminal()		\n
@@ -24,4 +14,38 @@ XTerm.backarrowKeyIsErase:	true
 XTerm.ptyInitialErase:		true
 
 ! Alt+keys generate ESC instead of special characters
-XTerm*vt100.metaSendsEscape:	true
+XTerm*VT100.metaSendsEscape:	true
+
+! Use a larger font on high-DPI hosts (which, sadly, is not as Unicode-complete)
+!
+! Note: XTerm 222 on etch sets .utf8Fonts.font via /etc/X11/app-defaults/XTerm,
+! which takes priority over the regular .font resource (but is not used at all
+! on newer versions), so both need to be specified.
+#if defined(SRVR_midnight) || defined(SRVR_frost)
+XTerm*VT100.font:		-*-fixed-medium-r-*-*-20-*-*-*-*-*-iso10646-*
+#endif
+#if defined(SRVR_blizzard)
+XTerm*VT100.font:		-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+#endif
+#if defined(SRVR_fujitsu)
+XTerm*VT100.font:		-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+#endif
+#if defined(SRVR_sunset)
+XTerm*VT100.font:		-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+XTerm*VT100.utf8Fonts.font:	-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+!XTerm*VT100.font:		-*-courier-medium-r-*-*-12-*-*-*-*-*-iso10646-*
+!XTerm*VT100.utf8Fonts.font:	-*-courier-medium-r-*-*-12-*-*-*-*-*-iso10646-*
+#endif
+
+#if defined(SRVR_fujitsu)
+XTerm*VT100.background:		rgb:ee/ee/ec
+#endif
+
+#if defined(SRVR_sunset)
+!XTerm*VT100.background:		rgb:e5/e5/e5
+#include ".dotfiles/vim/bundle/nightfox.nvim/extra/nightfox/nightfox.Xresources"
+#endif
+
+#if defined(SRVR_blizzard) || defined(SRVR_sunset)
+Xft.hintstyle:			hintslight
+#endif
