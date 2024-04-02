@@ -25,7 +25,10 @@ fi
 if [[ $TERM == *-@(256color|direct) && ! $COLORTERM ]]; then
 	export COLORTERM="truecolor"
 fi
-
+# Fix up TERM for Neovim, which needs 'putty-256color' for Home/End keys
+if [[ $TERM == xterm-256color ]] && isputty; then
+	export TERM="${TERM/#xterm/putty}"
+fi
 
 export GPG_TTY=$(tty)
 export -n VTE_VERSION
