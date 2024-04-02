@@ -23,10 +23,14 @@ fi
 # ...and assume that they support RGB colors as well. See also 'set tgc' in
 # vimrc. (This isn't true for JuiceSSH yet, but it's fine.)
 if [[ $TERM == *-@(256color|direct) && ! $COLORTERM ]]; then
-	export COLORTERM="truecolor"
+	if checkterm juicessh; then
+		export JUICESSH="yes"
+	else
+		export COLORTERM="truecolor"
+	fi
 fi
 # Fix up TERM for Neovim, which needs 'putty-256color' for Home/End keys
-if [[ $TERM == xterm-256color ]] && isputty; then
+if [[ $TERM == xterm-256color ]] && checkterm putty; then
 	export TERM="${TERM/#xterm/putty}"
 fi
 

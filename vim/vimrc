@@ -82,7 +82,9 @@ if has("termguicolors")
 	endif
 
 	" Terminals known to support RGB
-	if &term =~ "^\\(tmux\\|putty\\|xterm\\)-256color\\|.*-direct$\\|^foot$"
+	if $JUICESSH =~ "yes"
+		set notermguicolors
+	elseif &term =~ "^\\(tmux\\|putty\\|xterm\\)-256color\\|.*-direct$\\|^foot$"
 		set termguicolors
 	endif
 	" Neovim on Windows (both Qt GUI and Windows Terminal native)
