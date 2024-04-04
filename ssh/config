@@ -185,11 +185,17 @@ Host *
 	CanonicalDomains sym nullroute.lt
 #endif
 
+# Surprisingly, Debian's OpenSSH 8.4 complains despite IgnoreUnknown.
+#if fujitsu
+#else
+Host *
+	ObscureKeystrokeTiming no
+#endif
+
 Host *
 	CanonicalizeHostname yes
 	VerifyHostKeyDNS yes
 	SendEnv LANG TZ
-	ObscureKeystrokeTiming no
 	ControlPath ~/.ssh/S.%r@%h:%p
 
 	# Re-disable known_hosts obfuscation (enabled by default on Debian).
