@@ -61,7 +61,7 @@ let python_no_builtin_highlight=1
 filetype plugin on
 filetype indent off
 
-augroup filetypedetect
+augroup ftdetect_pkgbuild
 	" Override Arch's ftdetect/PKGBUILD.vim
 	" (This must be done after pathogen but before 'syntax on'.)
 	au! BufNewFile,BufRead PKGBUILD
