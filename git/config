@@ -255,9 +255,11 @@
 	generic = ) move-page-down
 
 [tig "color"]
-	cursor = black green
-	diff-add-highlight = black green
-	diff-del-highlight = black red
+	# Use high-contrast black (232) even if the terminal
+	# has low-contrast "dim brown/gray" black
+	cursor = color232 green
+	diff-add-highlight = color232 green
+	diff-del-highlight = color232 red
 	#diff-add-highlight = color83 color22
 	#diff-del-highlight = blue color52
 	title-blur = color60 default normal
