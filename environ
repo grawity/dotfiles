@@ -59,9 +59,18 @@ LESS_TERMCAP_ue="[23m"
 # Sysstat/iostat - enable colors (probably on by default, now)
 S_COLORS="auto"
 
+# Less - various options
+# -e	Quit at second EOF
+# -M	Detailed status/prompt
+# -q	Use visual instead of audible bell at EOF
+# -Q	Always use visual bell
+# -R	Pass through formatting sequences
+# -F	Immediately quit if one screen
+# -X	Don't use alternate screen
+# -z-3	Keep 3 line context when scrolling
+LESS="e M q R F X z-3"
+
 # Misc
-#GIT_MERGE_AUTOEDIT="no"
-LESS="e M q R F X z -3"
 MAKEFLAGS="-j $(nproc)"
 NSS_DEFAULT_DB_TYPE="sql"
 PIP_BREAK_SYSTEM_PACKAGES="1"
