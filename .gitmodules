@@ -46,7 +46,12 @@
 	path = vim/bundle/nightfox.nvim
 	url = https://github.com/EdenEast/nightfox.nvim
 	update = merge
-[submodule "vim/bundle/noctis.nvim"]
-	path = vim/bundle/noctis.nvim
-	url = https://github.com/talha-akram/noctis.nvim
-	update = merge
+[submodule "vim/bundle/lush.nvim"]
+	path = vim/bundle/lush.nvim
+	url = https://github.com/rktjmp/lush.nvim
+[submodule "vim/bundle/miasma.nvim"]
+	path = vim/bundle/miasma.nvim
+	url = https://github.com/xero/miasma.nvim
+[submodule "vim/bundle/zenbones.nvim"]
+	path = vim/bundle/zenbones.nvim
+	url = https://github.com/mcchrish/zenbones.nvim

@@ -437,7 +437,8 @@ endif
 if has("nvim")
 	" https://github.com/lewis6991/gitsigns.nvim
 	if hostname() == "frost"
-		lua require('gitsigns').setup()
+		"lua require("gitsigns").setup()
+		"lua require("tabby").setup()
 	endif
 endif
 
