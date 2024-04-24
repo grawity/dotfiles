@@ -175,7 +175,7 @@ set wildmenu			" Show menu when tab-completing
 " Case-insensitive tab-completion. (Note: This unfortunately breaks completing
 " across an autofs mount that's not yet mounted and visible, in both Vim and
 " Neovim.)
-"silent! set wildignorecase
+silent! set wildignorecase
 
 set noerrorbells visualbell t_vb=	" turn off all bells
 
