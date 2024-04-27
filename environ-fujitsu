@@ -6,3 +6,5 @@ BAT_THEME="OneHalfLight"
 #BAT_THEME="GitHub"
 
 GTK_OVERLAY_SCROLLING="0"
+
+MPD_HOST="myth"
