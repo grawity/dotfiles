@@ -48,18 +48,6 @@ PERL_CPANM_HOME="$HOME/.cache/cpanminus"
 PERL_MM_OPT="INSTALL_BASE=$PREFIX"
 PERL_MB_OPT="--install_base '$PREFIX'"
 
-# Tell `man` to use ~/bin/less
-if [ -x /usr/bin/less ]; then
-	PAGER="less"
-fi
-
-# Use "classic" render mode for manual pages (see grotty(1))
-GROFF_NO_SGR="1"
-
-# Less/man - set terminal title to "manpage(section)"
-#MANLESS="]0;\$MAN_PN ?ltline %lt?L/%L.:byte %bB?s/%s..?e (END):?pB %pB\\%.. "
-# (2022-08-05: Broken, part of the title string goes into Less status)
-
 # Sysstat/iostat - enable colors (probably on by default, now)
 S_COLORS="auto"
 
