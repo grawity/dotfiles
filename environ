@@ -48,9 +48,13 @@ PERL_CPANM_HOME="$HOME/.cache/cpanminus"
 PERL_MM_OPT="INSTALL_BASE=$PREFIX"
 PERL_MB_OPT="--install_base '$PREFIX'"
 
-# Less/man - render "underline" in manual pages as italics
-LESS_TERMCAP_us="[3m"
-LESS_TERMCAP_ue="[23m"
+# Tell `man` to use ~/bin/less
+if [ -x /usr/bin/less ]; then
+	PAGER="less"
+fi
+
+# Use "classic" render mode for manual pages (see grotty(1))
+GROFF_NO_SGR="1"
 
 # Less/man - set terminal title to "manpage(section)"
 #MANLESS="]0;\$MAN_PN ?ltline %lt?L/%L.:byte %bB?s/%s..?e (END):?pB %pB\\%.. "
