@@ -93,14 +93,16 @@ if has("termguicolors")
 	endif
 endif
 
-"let g:lucius_style="light"
-"let g:lucius_style="dark"
-let g:solarized_contrast="high"
-let g:zenburn_disable_bold_CursorBars=1
-let g:zenburn_high_Contrast=1
-let g:zenburn_old_Visual=1
-let g:zenburn_italic_Comment=1
-let g:zenburn_subdued_LineNr=1
+" Neovim: 'bg=light' is set asynchronously, so there's a flash of dark screen
+" before it switches to light style. Force the specific style for lucius.
+let g:lucius_style = "light"
+
+let g:solarized_contrast = "high"
+let g:zenburn_disable_bold_CursorBars = 1
+let g:zenburn_high_Contrast = 1
+let g:zenburn_old_Visual = 1
+let g:zenburn_italic_Comment = 1
+let g:zenburn_subdued_LineNr = 1
 
 if has("gui_running")
 	" configured in gvimrc
@@ -110,9 +112,6 @@ elseif $TERM == "linux"
 	" defined during init.vim parsing.)
 	color elflord
 elseif hostname() == "fujitsu"
-	" Neovim: 'bg=light' is set asynchronously, so there's a flash of dark
-	" screen before it switches to light style. Force the specific style.
-	let g:lucius_style = "light"
 	color lucius
 elseif &t_Co >= 256
 	" Modern terminals
@@ -124,13 +123,7 @@ elseif &t_Co >= 256
 		let dark = "zenburn"
 	endif
 
-	if $BRIGHT == "1"
-		let g:lucius_style = "light"
-		exe "color" light
-	else
-		let g:lucius_style = "dark"
-		exe "color" dark
-	endif
+	if $BRIGHT == "1" | exe "color" light | else | exe "color" dark | endif
 
 	" On terminals that support bgcolor reporting, Neovim sets 'bg=light'
 	" asynchronously. (Note: This is not triggered for 'bg=dark', likely
