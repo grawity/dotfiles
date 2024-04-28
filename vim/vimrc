@@ -206,29 +206,22 @@ if has("nvim")
 	set shada+=r/afs/,r/n/,r/net/
 endif
 
-if !has("nvim")
-	" Move the .viminfo file out of $HOME. For Vim 9.1.0327 and later, use
-	" the XDG location that it supports for vimrc (just for consistency).
-	if isdirectory(expand("~/.config/vim"))
-		set viminfo+=n~/.config/vim/_viminfo
-	else
-		set viminfo+=n~/.vim/_viminfo
-	endif
-endif
-
-" Move swapfiles to a central location (instead of next to original)
+" Move .viminfo out of $HOME (Vim only; Nvim uses shada), and move swapfiles
+" to a central location instead of next to original file (both Vim and Nvim).
 if has("unix") && $USER != "root"
+	" Use ~/.config/vim for Vim 9.1.0327 or later
+	" Use the // suffix to include full path in swapfile names
 	if has("nvim")
 		set backupdir-=.
 		set undofile
 	elseif isdirectory(expand("~/.config/vim"))
-		" Use // to include full path in swapfile names
+		set viminfo+=n~/.config/vim/_viminfo
 		set directory=~/.config/vim/_backup//
 		set backupdir=~/.config/vim/_backup//
 		silent! set undodir=~/.config/vim/_undo//
 		silent! set undofile
 	else
-		" Use // to include full path in swapfile names
+		set viminfo+=n~/.vim/_viminfo
 		set directory=~/.vim/_backup//
 		set backupdir=~/.vim/_backup//
 		silent! set undodir=~/.vim/_undo//
