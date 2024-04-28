@@ -39,6 +39,9 @@ let s:cterm0E = "175   "
 let s:cterm0F = "218   "
 let s:cterm0G = "95    "
 
+let s:ctermFG = 231
+let s:ctermBG = 175
+
 " Theme setup
 hi clear
 syntax reset
@@ -311,7 +314,7 @@ call <sid>hi("gitCommitSummary",  s:gui07, "", s:cterm07, "none", "none")
 " neovim terminal
 if has('nvim')
 hi! link TermCursor Cursor
-hi TermCursorNC ctermfg=231    ctermbg=175    guifg=s:gui00 guibg=s:gui09 guisp=NONE cterm=NONE gui=NONE
+exe "hi TermCursorNC ctermfg=".s:ctermFG." ctermbg=".s:ctermBG." guifg=s:gui00 guibg=s:gui09 guisp=NONE cterm=NONE gui=NONE"
   let g:terminal_color_0  = "#" . s:gui00
   let g:terminal_color_1  = "#" . s:gui0F
   let g:terminal_color_2  = "#" . s:gui02
