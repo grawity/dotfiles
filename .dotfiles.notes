@@ -55,6 +55,8 @@ Already migrated to XDG in a release:
 ~/.rclone.conf		~/.config/rclone/rclone.conf
 ~/.tigrc		~/.config/tig/config[note]	2.1.1 (1e6da9d)
 ~/.tmux.conf		~/.config/tmux/tmux.conf	3.1 (3.0a-152-g15d7e564)
+~/.vimrc		~/.config/vim/vimrc		Vim 9.1.0327
+~/.vimrc		~/.config/nvim/init.vim		Neovim
 ~/.VirtualBox/		~/.local/share/VirtualBox/
 ~/.weechat/		[various]/weechat/		3.2
 ~/.wireshark/		~/.config/wireshark/		1.12
@@ -163,8 +165,9 @@ Can be overridden indirectly via config:
 	manually adjust the "chat log location" option.
 
 ~/.vimrc
-	Recent Vim versions use ~/.vim/vimrc by default. For older versions,
-	$VIMINIT can have an Ex command that sources an additional rc:
+	Vim 9.1.0327 adds XDG compliance (see table). Before that, recent Vim
+	versions use ~/.vim/vimrc by default. For even older versions, $VIMINIT
+	can have an Ex command that sources an additional rc:
 
 		export VIMINIT=":so ~/.vim/vimrc"
 
