@@ -207,8 +207,13 @@ if has("nvim")
 endif
 
 if !has("nvim")
-	" Move the .viminfo file out of $HOME
-	set viminfo+=n~/.vim/_viminfo
+	" Move the .viminfo file out of $HOME. For Vim 9.1.0327 and later, use
+	" the XDG location that it supports for vimrc (just for consistency).
+	if isdirectory(expand("~/.config/vim"))
+		set viminfo+=n~/.config/vim/_viminfo
+	else
+		set viminfo+=n~/.vim/_viminfo
+	endif
 endif
 
 " Move swapfiles to a central location (instead of next to original)
@@ -216,6 +221,12 @@ if has("unix") && $USER != "root"
 	if has("nvim")
 		set backupdir-=.
 		set undofile
+	elseif isdirectory(expand("~/.config/vim"))
+		" Use // to include full path in swapfile names
+		set directory=~/.config/vim/_backup//
+		set backupdir=~/.config/vim/_backup//
+		silent! set undodir=~/.config/vim/_undo//
+		silent! set undofile
 	else
 		" Use // to include full path in swapfile names
 		set directory=~/.vim/_backup//
