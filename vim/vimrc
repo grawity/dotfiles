@@ -202,7 +202,8 @@ set autoread
 set hidden
 
 if has("nvim")
-	" Treat AFS/NFS paths as 'removable' and don't store them in shada
+	" Treat AFS/NFS paths as 'removable' and don't store them in shada,
+	" so that Neovim won't probe them on exit.
 	set shada+=r/afs/,r/n/,r/net/
 endif
 
