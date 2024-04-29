@@ -9,32 +9,17 @@ if [ ! "$HOSTNAME" ]; then
 	HOSTNAME=$(hostname)
 fi
 
-case $DESKTOP_SESSION in
-	gnome*)
-		# GNOME Shell will handle this via GSettings
+# Set touchpad preferences
+case $HOSTNAME,$DESKTOP_SESSION in
+	*,gnome*)
+		# GNOME handles this through GSettings.
 		;;
-	*)
-		case $HOSTNAME in
-			rain)
-				touchpad="ETPS/2 Elantech Touchpad" accel="0.7";;
-			frost)
-				touchpad="Synaptics s3203" accel="0.1";;
-			fujitsu)
-				touchpad="AlpsPS/2 ALPS GlidePoint" accel="0.0";;
-			*)
-				unset touchpad;;
-		esac
-
-		if [ "$touchpad" ]; then
-			# org.gnome.desktop.peripherals.touchpad tap-to-click true
-			xinput set-prop "$touchpad" "libinput Tapping Enabled" 1
-
-			# org.gnome.desktop.peripherals.touchpad natural-scroll true
-			xinput set-prop "$touchpad" "libinput Natural Scrolling Enabled" 1
-
-			# org.gnome.desktop.peripherals.touchpad speed $accel
-			xinput set-prop "$touchpad" "libinput Accel Speed" $accel
-		fi
+	fujitsu,*)
+		touchpad="AlpsPS/2 ALPS GlidePoint"
+		xinput set-prop "$touchpad" "libinput Tapping Enabled" 1
+		xinput set-prop "$touchpad" "libinput Natural Scrolling Enabled" 0
+		xinput set-prop "$touchpad" "libinput Accel Speed" 0.0
+		;;
 esac
 
 if [ -e ~/.dotfiles/xprofile-$HOSTNAME ]; then
