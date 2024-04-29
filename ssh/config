@@ -155,7 +155,7 @@ Host dune.nullroute.lt
 #endif
 
 #if @(fujitsu|rain|midnight|myth)
-Host * !*.sym
+Match canonical !host *.sym
 	# Telia LTE CGNAT has a very aggressive idle timeout (a few minutes),
 	# after which the connections will simply hang.
 	ServerAliveInterval 10s
