@@ -28,7 +28,8 @@ XTerm*VT100.font:		-*-fixed-medium-r-*-*-20-*-*-*-*-*-iso10646-*
 XTerm*VT100.font:		-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
 #endif
 #if defined(SRVR_fujitsu)
-XTerm*VT100.font:		-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+XTerm*VT100.font:		-*-lucidatypewriter-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+!XTerm*VT100.font:		-*-courier-medium-r-*-*-12-*-*-*-*-*-iso10646-*
 #endif
 #if defined(SRVR_sunset)
 XTerm*VT100.font:		-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
