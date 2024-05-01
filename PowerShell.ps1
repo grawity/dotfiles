@@ -13,7 +13,7 @@ $SmbHosts = @("ember", "myth", "wind")
 $uk = "utenos-kolegija.lt"
 $ukad = "ad.$uk"
 
-$env:PATH += ";$(Resolve-Path ~\Dropbox\Apps\iperf-3.1.3-win32)"
+$env:PATH += ";$(Resolve-Path ~)\Dropbox\Apps\iperf-3.1.3-win32"
 
 $env:DISPLAY = "localhost:0"
 $env:PATH += ";$env:ProgramFiles\VcXsrv"
@@ -54,7 +54,9 @@ Set-Alias -Name far -Value 'C:\Program Files\Far Manager\Far.exe'
 
 Function ad {ssh -q -t star "SILENT=1 . ~/.profile; ad $(AtArgsToString $args)"}
 Function cisco($Name) {telnet cisco-${Name}.sym}
+Function dl {!ember dl @args}
 Function f($Match) {Get-ChildItem -Filter "*$Match*" -Recurse | select FullName}
+Function env {dir Env:\}
 Function hostname.bind($Address) {nslookup -cl=chaos -q=txt hostname.bind. $Address}
 Function id.server($Address) {nslookup -cl=chaos -q=txt id.server. $Address}
 Function irc {ssh -t star "LANG=en_US.UTF-8 tmux attach -t irc"}
@@ -64,8 +66,34 @@ Function wup {winget list --upgrade-available}
 Function wupd($Package) {winget upgrade --id $Package}
 Function wupi($Package) {winget upgrade --id $Package --interactive}
 
-Function loc([Parameter(ValueFromRemainingArguments)] $Name) {
-	dbg "Running: locate $Name"
+Function xloc {loc -Graphical @args}
+Function loc([switch] $WholePath,
+             [switch] $Graphical,
+             [Parameter(ValueFromRemainingArguments)] $Name)
+{
+	if ("$Name" -eq "") {
+		return (hlerr "Search term cannot be empty")
+	}
+	$options = @()
+	if ($Graphical) {
+		if ($WholePath) {
+			$options += @("-matchpath")
+		} else {
+			$options += @("-nomatchpath")
+		}
+		dbg "Running: everything $options -s '$Name'"
+		& "C:\Program Files\Everything\Everything.exe" @options -s "$Name"
+	} else {
+		$options += @("-highlight", "-sort-path")
+		if ($WholePath) {
+			$options += @("-match-path")
+		}
+		dbg "Running: es $options $Name"
+		& "C:\Program Files\Everything\es.exe" @options @Name
+	}
+}
+Function rloc([Parameter(ValueFromRemainingArguments)] $Name) {
+	dbg "Running: locate -Abi $Name"
 	@("myth", "ember") | % {
 		$rhost = $_
 		say (hl "Results on $(bold $rhost):")
@@ -81,6 +109,15 @@ Function touch($Name) {
 	$item
 }
 
+Function MoveTo-Attic($File) {
+	$year = (Get-Item $File).LastWriteTime.Year
+	$dest = "\\myth\Home\Attic\Misc\$year\"
+	Write-Host "Moving '$File' to '$dest'"
+	Move-Item $File $dest
+}
+Set-Alias -Name attic -Value MoveTo-Attic
+Set-Alias -Name hide -Value MoveTo-Attic
+
 Function kl {~\Dropbox\Projects\kl}
 Function klist {& "$env:SystemRoot\System32\klist.exe" $args}
 Function kaddhost($HostName) {cmdkey /add:$HostName /user:grawity@NULLROUTE.LT /pass}
@@ -93,28 +130,19 @@ Function pgrep($String) {
 	Get-Process | ? { $_.CommandLine -like "*$String*" } | fl Id,Path,CommandLine
 }
 
-Function bold($String) {
-	"$ESC[1m$String$ESC[22m"
-}
-Function hl($String) {
-	"$ESC[48;5;238m$String$ESC[m"
-}
-Function hldbg($String) {
-	"$ESC[48;5;237m$ESC[95m$String$ESC[m"
-}
-Function hlerr($String) {
-	"$ESC[48;5;237m$ESC[91m$String$ESC[m"
-}
+Function bold($String) {"$ESC[1m$String$ESC[22m"}
+Function hl($String) {"$ESC[48;5;238m$String$ESC[m"}
+Function hldbg($String) {"$ESC[48;5;237m$ESC[95m$String$ESC[m"}
+Function hlerr($String) {"$ESC[48;5;237m$ESC[91m$String$ESC[m"}
 Function say($Text) {Write-Information $Text -InformationAction Continue}
 Function dbg($Text) {if ($env:DEBUG) {say (hldbg $Text)}}
-Function debug($Value) {
-	if ($Value) {
-		$env:DEBUG = "$Value"
-		say (hldbg "Debug mode set to $Value.")
-	} else {
-		rm Env:\DEBUG -ErrorAction Ignore
-		say (hldbg "Debug mode disabled.")
-	}
+Function debug($Value = "1") {
+	$env:DEBUG = "$Value"
+	say (hldbg "Debug mode set to $Value.")
+}
+Function undebug($Value) {
+	rm Env:\DEBUG -ErrorAction Ignore
+	say (hldbg "Debug mode disabled.")
 }
 
 # on/at SSH commands
@@ -174,14 +202,15 @@ Function AtInvokeShellHere($HostName, $Command) {
 	AtInvokeShell $HostName $Command
 }
 
-Function AtInvokeShell($HostName, $Command) {
+Function AtInvokeShell($HostName, $Command, $Terminal=$true) {
 	if (-not $Command) {
 		$Command = "bash"
 	}
 	# Dust doesn't have the custom pam_env entry for locale, so we need /etc/profile.
 	$cmd = ". /etc/profile; SILENT=1 . ~/.profile; $Command"
+	$topt = if ($Terminal) {"-t"} else {"-T"}
 	dbg "Running command: $cmd"
-	ssh -t $HostName "$cmd"
+	ssh $topt $HostName "$cmd"
 }
 
 Function AtShellQuote($Argument) {
@@ -227,6 +256,25 @@ $AllHosts | % {
 
 # Other random stuff
 
+Function dunesh {
+	if ($args) {
+		AtInvokeShell ember "dunesh $args" $false
+	} else {
+		AtInvokeShell ember "dunesh"
+	}
+}
+
+Function vmrc($VMName) {
+	if (-not $VMName) {
+		dunesh ls; return
+	}
+	$token = AtInvokeShell ember (AtArgsToString govc, vm.console, $VMName) $false
+	if ($token) {
+		dbg "Got token: $token"
+		start $token
+	}
+}
+
 Function farcolors($Name) {
 	$dir = "C:\Program Files\Far Manager\Addons\Colors\Interface"
 	if ($name) {
@@ -260,16 +308,16 @@ Function Store-KerberosPassword {
 
 	$cred = Get-Credential -Username "$princ" -Message "Enter Kerberos credentials:"
 	#$cred = $cred.GetNetworkCredential()
-	#$SmbHosts | ForEach-Object {
-	#	cmdkey /add:"$_" /user:"$($cred.UserName)" /pass:"$($cred.Password)"
-	#}
 	$SmbHosts | ForEach-Object {
-		New-StoredCredential `
-			-Target $_ `
-			-Type DomainPassword `
-			-Credential $cred `
-			-Persist Enterprise
-	} | Format-Table Type,TargetName,UserName,Persist
+		cmdkey /add:"$_" /user:"$($cred.UserName)" /pass:"$($cred.Password)"
+	}
+	#$SmbHosts | ForEach-Object {
+	#	New-StoredCredential `
+	#		-Target $_ `
+	#		-Type DomainPassword `
+	#		-Credential $cred `
+	#		-Persist Enterprise
+	#} | Format-Table Type,TargetName,UserName,Persist
 }
 
 Function ukcred {
@@ -303,13 +351,6 @@ Function Ping-DNS($af) {
 	}
 	$dns = $dns.ServerAddresses[0]
 	ping -t $dns
-}
-
-Function MoveTo-Attic($File) {
-	$year = (Get-Item $File).LastWriteTime.Year
-	$dest = "\\myth\Home\Attic\Misc\$year\"
-	Write-Host "Moving '$File' to '$dest'"
-	Move-Item $File $dest
 }
 
 Function rpw(
@@ -413,12 +454,26 @@ Function Prompt {
 	# Current path
 	$out += "$ESC]9;9;${rawcwd}$ESC\"
 	# Prompt
-	$out += "$ESC[90m{$ESC[m"
-	$out += "$ESC[34m$ver $ESC[m"
-	$out += "$ESC[97m$cwd$ESC[m"
-	$out += "$ESC[90m}$ESC[m"
-	$out += "$nest"
-	$out += if (Test-IsElevated) {" #> "} else {" > "}
+	if ($cwd.Length -gt 40) {
+		$out += "$ESC[90m" + "{" + "$ESC[m"
+		$out += "$ESC[97m" + "$cwd" + "$ESC[m"
+		$out += "$ESC[90m" + "}" + "$ESC[m"
+		$out += "$nest"
+		$out += [char] 0x0A
+		$out += "$ESC[90m" + "{" + "$ESC[m"
+		$out += "$ESC[34m" + "$ver" + "$ESC[m"
+		$out += "$ESC[90m" + "}" + "$ESC[m"
+	} else {
+		$out += "$ESC[90m" + "{" + "$ESC[m"
+		$out += "$ESC[34m" + "$ver" + "$ESC[m"
+		$out += " "
+		$out += "$ESC[97m" + "$cwd" + "$ESC[m"
+		$out += "$ESC[90m" + "}" + "$ESC[m"
+		$out += "$nest"
+	}
+	$out += if (Test-IsElevated) {"$ESC[31m"} else {"$ESC[34m"}
+	$out += if (Test-IsElevated) {" # "} else {" > "}
+	$out += "$ESC[m"
 	# End of prompt (start of command)
 	$out += "$ESC]133;B$ESC\"
 	return $out
