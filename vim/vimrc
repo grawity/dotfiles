@@ -116,7 +116,7 @@ elseif hostname() == "fujitsu"
 elseif &t_Co >= 256
 	" Modern terminals
 	if hostname() == "frost"
-		let light = "lucius"
+		let light = "shine"
 		let dark = "zenburn"
 	else
 		let light = "solarized"
