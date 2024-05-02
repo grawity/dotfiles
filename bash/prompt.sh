@@ -394,7 +394,7 @@ _awp_prompt() {
 	unset 'strs[mid]'
 
 	# Now fill the shrunken pwd:{head,tail}
-	items[pwd]=${PWD/#"//"/"/"}
+	items[pwd]=$PWD
 	_awp_update_pwd_slashn
 	_awp_update_pwd_collapse
 	_awp_fill_items 'mid'

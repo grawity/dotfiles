@@ -48,8 +48,7 @@ _update_title() {
 		if [[ $USER != 'grawity' ]]; then
 			t_user="$USER@"
 		fi
-		t_path=${PWD/#"//"/"/"}
-		t_path=${t_path/#"$HOME/"/'~/'}
+		t_path=${PWD/#"$HOME/"/'~/'}
 		t_host=$HOSTNAME
 		title="${t_user}${t_host} ${t_path}"
 	fi
@@ -62,7 +61,6 @@ _update_wname() {
 	if [[ ${TMUX-} && ! ${wname-} ]]; then
 		local wname= t_pwd= t_dir= t_par=
 		t_pwd=${PWD%/}/
-		t_pwd=${t_pwd/#"//"/"/"}
 		t_pwd=${t_pwd/#"$HOME/"/"~/"}
 		if [[ "$t_pwd" == "~/" ]]; then
 			t_par=${t_pwd%/*}
