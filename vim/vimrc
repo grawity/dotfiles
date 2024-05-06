@@ -106,6 +106,8 @@ let g:zenburn_subdued_LineNr = 1
 
 if has("gui_running")
 	" configured in gvimrc
+elseif $TERM == "vt100"
+	" HyperTerminal!
 elseif $TERM == "linux"
 	" Neovim: Work around &t_Co being frozen at 256 regardless of $TERM.
 	" (Note: Must use $TERM instead of &term, as the latter is not yet
