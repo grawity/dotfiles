@@ -16,3 +16,7 @@ case $DESKTOP_SESSION in
 	gnome*|xfce*) ;;
 	*) xsettingsd & ;;
 esac
+
+# VNC access
+# TODO: instead of reactivating this, make it enableable and start a .target here
+#systemctl --user start X0tigervnc &

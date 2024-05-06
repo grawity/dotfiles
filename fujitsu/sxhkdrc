@@ -1,0 +1,35 @@
+# sxhkdrc-fujitsu -- global keybindings for all WMs
+#
+# Use `pkill -USR1 sxhkd` to reload.
+#
+# (Note: Don't bind Super+L to "Lock session" as it conflicts with wmii)
+#
+# See also:
+# ~/.icewm/keys
+
+# Laptop hotkeys
+
+ctrl + XF86RotateWindows
+	fujitsu-rotate-screen --ccw
+
+XF86RotateWindows
+	fujitsu-rotate-screen --cw
+
+# Brightness Fn+ keys
+# (Raw value is always rounded *down* to the nearest discrete value, so we have
+# to increment by 15% to reach the next higher setting, whereas decrementing by
+# 15% would overshoot.)
+
+XF86MonBrightnessUp
+	xbacklight -inc 15%
+
+XF86MonBrightnessDown
+	xbacklight -dec 1%
+
+# General hotkeys
+
+super + Return
+	x-terminal-emulator
+
+alt + F2
+	dmenu_run
