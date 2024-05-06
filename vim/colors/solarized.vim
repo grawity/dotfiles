@@ -376,7 +376,7 @@ exe "hi! TabLine"	.s:fmt_none	.s:fg_base0	.s:bg_base02	.s:sp_base0
 exe "hi! TabLineFill"	.s:fmt_none	.s:fg_base0	.s:bg_base02	.s:sp_base0
 if g:solarized_statusbar == "light"
 	" Low-contrast
-	exe "hi! TabLineSel"	.s:fmt_none	.s:fg_base02	.s:bg_green	.s:sp_base0	.s:fmt_bold
+	exe "hi! TabLineSel"	.s:fmt_none	.s:fg_green	.s:bg_base02	.s:sp_base0	.s:fmt_revb
 else
 	" Original high-contrast (dark gray bg for active tab)
 	exe "hi! TabLineSel"	.s:fmt_none	.s:fg_base01	.s:bg_base2	.s:sp_base0	.s:fmt_revbbu
