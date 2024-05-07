@@ -117,13 +117,11 @@ elseif hostname() == "fujitsu"
 	color lucius
 elseif &t_Co >= 256
 	" Modern terminals
-	if hostname() == "frost"
-		let light = "shine"
-		let dark = "zenburn"
-	else
-		let light = "solarized"
-		let dark = "zenburn"
-	endif
+	let light = "solarized"
+	let dark = "zenburn"
+
+	" For black-on-white kgx
+	"if hostname() == "frost" | let light = "shine" | endif
 
 	if $BRIGHT == "1" | exe "color" light | else | exe "color" dark | endif
 
