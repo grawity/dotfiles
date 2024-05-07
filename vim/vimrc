@@ -350,6 +350,9 @@ func! JoinPara()
 	:g/^\S/ .,/^$/-1 join
 endfunc
 
+" Prevent C-Space from being interpreted as C-@ and re-inserting same text
+inoremap <C-Space> <Nop>
+
 " Fix application-numpad mode
 if !has("nvim")
 	" (Vim 8.1) with Num Lock off, Num5 is parsed as individual commands
