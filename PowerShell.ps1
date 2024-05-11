@@ -62,6 +62,7 @@ Function id.server($Address) {nslookup -cl=chaos -q=txt id.server. $Address}
 Function irc {ssh -t star "LANG=en_US.UTF-8 tmux attach -t irc"}
 Function mkfile($Path, $Size) {fsutil file createnew "$Path" "$Size"}
 Function resolve($HostName) {Resolve-DnsName $HostName | ft Name,TTL,Type,Address}
+Function tc {& 'C:\Program Files\Total Commander\TOTALCMD64.EXE' /t $PWD}
 Function wup {winget list --upgrade-available}
 Function wupd($Package) {winget upgrade --id $Package}
 Function wupi($Package) {winget upgrade --id $Package --interactive}
@@ -130,6 +131,7 @@ Function pgrep($String) {
 	Get-Process | ? { $_.CommandLine -like "*$String*" } | fl Id,Path,CommandLine
 }
 
+Function escm($Format, $String) {"$ESC[${Format}m$String$ESC[m"}
 Function bold($String) {"$ESC[1m$String$ESC[22m"}
 Function hl($String) {"$ESC[48;5;238m$String$ESC[m"}
 Function hldbg($String) {"$ESC[48;5;237m$ESC[95m$String$ESC[m"}
@@ -455,25 +457,34 @@ Function Prompt {
 	$out += "$ESC]9;9;${rawcwd}$ESC\"
 	# Prompt
 	if ($cwd.Length -gt 40) {
-		$out += "$ESC[90m" + "{" + "$ESC[m"
-		$out += "$ESC[97m" + "$cwd" + "$ESC[m"
-		$out += "$ESC[90m" + "}" + "$ESC[m"
+		$out += escm "90" "{"
+		$out += escm "97" "$cwd"
+		$out += escm "90" "}"
 		$out += "$nest"
 		$out += [char] 0x0A
-		$out += "$ESC[90m" + "{" + "$ESC[m"
-		$out += "$ESC[34m" + "$ver" + "$ESC[m"
-		$out += "$ESC[90m" + "}" + "$ESC[m"
+		$out += escm "90" "{"
+		$out += escm "34" "$ver"
+		$out += escm "90" "}"
 	} else {
-		$out += "$ESC[90m" + "{" + "$ESC[m"
-		$out += "$ESC[34m" + "$ver" + "$ESC[m"
+		$out += escm "90" "{"
+		$out += escm "34" "$ver"
 		$out += " "
-		$out += "$ESC[97m" + "$cwd" + "$ESC[m"
-		$out += "$ESC[90m" + "}" + "$ESC[m"
+		$out += escm "97" "$cwd"
+		$out += escm "90" "}"
 		$out += "$nest"
 	}
-	$out += if (Test-IsElevated) {"$ESC[31m"} else {"$ESC[34m"}
-	$out += if (Test-IsElevated) {" # "} else {" > "}
-	$out += "$ESC[m"
+#	if ($cwd.Length -gt 40) {
+#		$out += (escm "90" "{") + (escm "97" "$cwd") + (escm "90" "}")
+#		$out += "$nest"
+#		$out += [char] 0x0A
+#		$out += (escm "90" "{") + (escm "34" "$ver") + (escm "90" "}")
+#	} else {
+#		$out += (escm "90" "{") + (escm "34" "$ver")
+#		$out += " "
+#		$out += (escm "97" "$cwd") + (escm "90" "}")
+#		$out += "$nest"
+#	}
+	$out += if (Test-IsElevated) {escm 31 " # "} else {escm 34 " > "}
 	# End of prompt (start of command)
 	$out += "$ESC]133;B$ESC\"
 	return $out
