@@ -438,3 +438,9 @@ PS4="+\e[34m\${BASH_SOURCE:--}:\e[1m\$LINENO\e[m:\${FUNCNAME:+\e[33m\$FUNCNAME\e
 
 export -n PS1 PS2
 export PS4
+
+# 2024-05-01: Temporary workaround for VSCode shell integration
+# https://github.com/microsoft/vscode/pull/212491
+if [[ $VSCODE_IPC_HOOK_CLI ]]; then
+	PS2="... "
+fi
