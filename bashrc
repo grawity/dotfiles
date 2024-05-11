@@ -113,8 +113,8 @@ if [[ -f ~/.bashrc-$HOSTNAME ]]; then
 	. ~/.bashrc-$HOSTNAME
 fi
 
-if [[ ! $SILENT && ! $SUDO_USER ]]; then
-	have todo && todo
+if [[ ! $SILENT && ! $SUDO_USER && ! $VSCODE_IPC_HOOK_CLI ]]; then
+	have todo && todo || :
 fi
 
 true
