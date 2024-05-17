@@ -441,6 +441,6 @@ export PS4
 
 # 2024-05-01: Temporary workaround for VSCode shell integration
 # https://github.com/microsoft/vscode/pull/212491
-if [[ $VSCODE_IPC_HOOK_CLI ]]; then
+if [[ $TERM_PROGRAM == vscode ]]; then
 	PS2="... "
 fi

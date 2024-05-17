@@ -113,7 +113,7 @@ if [[ -f ~/.bashrc-$HOSTNAME ]]; then
 	. ~/.bashrc-$HOSTNAME
 fi
 
-if [[ ! $SILENT && ! $SUDO_USER && ! $VSCODE_IPC_HOOK_CLI ]]; then
+if [[ ! $SILENT && ! $SUDO_USER && $TERM_PROGRAM != vscode ]]; then
 	have todo && todo || :
 fi
 
