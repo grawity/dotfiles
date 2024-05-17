@@ -1,8 +1,12 @@
 " ~/.vimrc - |vimrc| - Vim configuration
 
-if has("nvim-0.9.0")
+if has("nvim-0.9")
 	" Neovim 0.9.0: already has EditorConfig support; suppress the plugin
 	let g:loaded_EditorConfig = 1
+endif
+if has("nvim-0.10")
+	" Neovim 0.10 already has an equivalent feature
+	let g:loaded_commentary = 1
 endif
 
 if v:version < 800
@@ -81,14 +85,17 @@ if has("termguicolors")
 		let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 	endif
 
-	" Terminals known to support RGB
-	if $JUICESSH =~ "yes"
+	" Neovim 0.10 autodetects termguicolor support; do nothing.
+	if has("nvim-0.10")
+		"
+	" Mosh doesn't support RGB.
+	elseif $JUICESSH =~ "yes"
 		set notermguicolors
+	" Terminals known to support RGB
 	elseif &term =~ "^\\(tmux\\|putty\\|xterm\\)-256color\\|.*-direct$\\|^foot$"
 		set termguicolors
-	endif
 	" Neovim on Windows (both Qt GUI and Windows Terminal native)
-	if &term =~ "^\\(nvim\\|builtin_vtpcon\\)$"
+	elseif &term =~ "^\\(nvim\\|builtin_vtpcon\\)$"
 		set termguicolors
 	endif
 endif
