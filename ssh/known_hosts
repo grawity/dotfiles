@@ -7,7 +7,7 @@ ampere,ampere.sym,ampere.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINsrwf
 dust,dust.sym,dust.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC07MUPjnT80qDodTXxaWVaJXo7ZC8gjleJRlzRfiZcc
 ember,ember.sym,ember.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILIURvamehmT7arjohbpIZPVrSlSl4svIXYY6cSAhkci
 land,land.sym,land.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMGQdF/KFEggFXoJRV0ulAOpVYqtb/AA9+n7lnrC/e2T
-river,river.sym,river.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH7WoC1uVfQSPGSV+gDaM597+OQe9LdP4kqRH6e1zarb
+litnet-vm,litnet-vm.sym,litnet-vm.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH7WoC1uVfQSPGSV+gDaM597+OQe9LdP4kqRH6e1zarb
 sky,sky.sym,sky.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBBncKhB30r4dMDtvb94l/A5AYLlPSNKJqpJAbKPA798
 star,star.sym,star.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHJ1CBZGIOTCzYIbGbfUrA8VviPCbjOntfgD7538H+vY
 wind,wind.sym,wind.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC3R1aAJuIBIpNvK+8xCkWqplmHEqghTTFPcI4DPE8Qe
