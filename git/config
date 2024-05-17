@@ -273,6 +273,7 @@
 [url "star:/srv/git/"]
 	insteadOf = %:
 	pushInsteadOf = :
+	pushInsteadOf = https://git.nullroute.lt/
 
 [url "star:lib/annexgit/"]
 	# used by git-annex
