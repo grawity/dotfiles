@@ -33,6 +33,11 @@ fi
 if [[ $TERM == xterm-256color ]] && checkterm putty; then
 	export TERM="${TERM/#xterm/putty}"
 fi
+if [[ $TERM == tmux-256color ]]; then
+	if gettermbg -l; then
+		export BRIGHT=1
+	fi
+fi
 
 export GPG_TTY=$(tty)
 export -n VTE_VERSION
