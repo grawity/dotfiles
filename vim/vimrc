@@ -120,6 +120,9 @@ elseif $TERM == "linux"
 	" (Note: Must use $TERM instead of &term, as the latter is not yet
 	" defined during init.vim parsing.)
 	color elflord
+elseif $TERM_PROGRAM == "vscode"
+	" Use something that retains the default (transparent) background.
+	color default
 elseif hostname() == "fujitsu"
 	color lucius
 elseif &t_Co >= 256
