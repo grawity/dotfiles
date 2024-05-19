@@ -295,8 +295,8 @@ hi SpecialComment  guifg=#82a282 gui=bold                     ctermfg=108 cterm=
 hi Special         guifg=#cfbfaf                              ctermfg=181
 hi SpecialKey      guifg=#9ece9e                              ctermfg=151
 hi Statement       guifg=#e3ceab gui=none                     ctermfg=187 cterm=none
-hi StatusLine      guifg=#303030 guibg=#ccdc90                ctermfg=236 ctermbg=186
-hi StatusLineNC    guifg=#2e3330 guibg=#88b090                ctermfg=235 ctermbg=108
+hi StatusLine      guifg=#303030 guibg=#ccdc90 gui=bold,reverse ctermfg=236 ctermbg=186 cterm=bold,reverse
+hi StatusLineNC    guifg=#2e3330 guibg=#88b090 gui=reverse      ctermfg=235 ctermbg=108 cterm=reverse
 hi StorageClass    guifg=#c3bf9f gui=bold                     ctermfg=249 cterm=bold
 hi String          guifg=#D78787                              ctermfg=174
 hi Structure       guifg=#efefaf gui=bold                     ctermfg=229 cterm=bold
@@ -310,6 +310,12 @@ hi VertSplit       guifg=#2e3330 guibg=#688060                ctermfg=236 ctermb
 hi VisualNOS       guifg=#333333 guibg=#f18c96 gui=bold,underline ctermfg=236 ctermbg=210 cterm=bold
 hi WarningMsg      guifg=#ffffff guibg=#333333 gui=bold       ctermfg=231 ctermbg=236 cterm=bold
 hi WildMenu        guifg=#cbecd0 guibg=#2c302d gui=underline  ctermfg=194 ctermbg=236 cterm=underline
+
+" interim as Neovim 0.10 no longer links these
+hi def link WinSeparator VertSplit
+hi def link QuickFixLine Search
+hi def link NormalFloat Pmenu
+hi def link FloatBorder WinSeparator
 
 " spellchecking, always "bright" term background
 hi SpellBad   guisp=#bc6c4c guifg=#dc8c6c  ctermfg=209 ctermbg=237
