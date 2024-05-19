@@ -330,6 +330,12 @@ elseif s:lucius_style == "light"
 
 endif
 
+" Neovim 0.10 fixes
+hi clear Delimiter	| hi link Delimiter	Special
+hi clear Function	| hi link Function	Identifier
+hi clear Operator	| hi link Operator	Statement
+hi clear QuickFixLine	| hi link QuickFixLine	Search
+hi clear String		| hi link String	Constant
 
 " Vimwiki Colors
 hi link VimwikiHeader1 BIdentifier
