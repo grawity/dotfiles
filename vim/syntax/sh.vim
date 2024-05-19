@@ -13,43 +13,41 @@ if exists("b:current_syntax")
   finish
 endif
 
-" AFAICT "." should be considered part of the iskeyword.  Using iskeywords in
-" syntax is dicey, so the following code permits the user to
-"  g:sh_isk set to a string	: specify iskeyword.
-"  g:sh_noisk exists	: don't change iskeyword
-"  g:sh_noisk does not exist	: (default) append "." to iskeyword
-if exists("g:sh_isk") && type(g:sh_isk) == 1	" user specifying iskeyword
- exe "setl isk=".g:sh_isk
-elseif !exists("g:sh_noisk")		" optionally prevent appending '.' to iskeyword
- setl isk+=.
-endif
-
-" trying to answer the question: which shell is /bin/sh, really?
-" If the user has not specified any of g:is_kornshell, g:is_bash, g:is_posix, g:is_sh, then guess.
-if !exists("g:is_kornshell") && !exists("g:is_bash") && !exists("g:is_posix") && !exists("g:is_sh")
+" If the shell script itself specifies which shell to use, use it
+if getline(1) =~ '\<ksh\>'
+ let b:is_kornshell = 1
+elseif getline(1) =~ '\<bash\>'
+ let b:is_bash      = 1
+elseif getline(1) =~ '\<dash\>'
+ let b:is_dash      = 1
+elseif !exists("g:is_kornshell") && !exists("g:is_bash") && !exists("g:is_posix") && !exists("g:is_sh") && !exists("g:is_dash")
+ " user did not specify which shell to use, and 
+ " the script itself does not specify which shell to use. FYI: /bin/sh is ambiguous.
+ " Assuming /bin/sh is executable, and if its a link, find out what it links to.
+ let s:shell = ""
  if executable("/bin/sh")
-  if     resolve("/bin/sh") =~ 'bash$'
-   let g:is_bash= 1
-  elseif resolve("/bin/sh") =~ 'ksh$'
-   let g:is_ksh = 1
-  endif
+  let s:shell = resolve("/bin/sh")
  elseif executable("/usr/bin/sh")
-  if     resolve("/usr/bin//sh") =~ 'bash$'
-   let g:is_bash= 1
-  elseif resolve("/usr/bin//sh") =~ 'ksh$'
-   let g:is_ksh = 1
-  endif
+  let s:shell = resolve("/usr/bin/sh")
  endif
+ if     s:shell =~ '\<ksh\>'
+  let b:is_kornshell= 1
+ elseif s:shell =~ '\<bash\>'
+  let b:is_bash = 1
+ elseif s:shell =~ '\<dash\>'
+  let b:is_dash = 1
+ endif
+ unlet s:shell
 endif
 
 " handling /bin/sh with is_kornshell/is_sh {{{1
-" b:is_sh is set when "#! /bin/sh" is found;
+" b:is_sh will be set when "#! /bin/sh" is found;
 " However, it often is just a masquerade by bash (typically Linux)
 " or kornshell (typically workstations with Posix "sh").
 " So, when the user sets "g:is_bash", "g:is_kornshell",
 " or "g:is_posix", a b:is_sh is converted into b:is_bash/b:is_kornshell,
 " respectively.
-if !exists("b:is_kornshell") && !exists("b:is_bash")
+if !exists("b:is_kornshell") && !exists("b:is_bash") && !exists("b:is_dash")
   if exists("g:is_posix") && !exists("g:is_kornshell")
    let g:is_kornshell= g:is_posix
   endif
@@ -63,9 +61,19 @@ if !exists("b:is_kornshell") && !exists("b:is_bash")
     if exists("b:is_sh")
       unlet b:is_sh
     endif
+  elseif exists("g:is_dash")
+    let b:is_dash= 1
+    if exists("b:is_sh")
+      unlet b:is_sh
+    endif
   else
     let b:is_sh= 1
   endif
+endif
+
+" if b:is_dash, set b:is_posix too
+if exists("b:is_dash")
+ let b:is_posix= 1
 endif
 
 " set up default g:sh_fold_enabled {{{1
@@ -86,6 +94,17 @@ if g:sh_fold_functions || g:sh_fold_heredoc
   " 	AND	g:sh_fold_enabled is manual (usual default)
   " 	implies	a desire for syntax-based folding
   setl fdm=syntax
+ endif
+endif
+
+" set up the syntax-highlighting for iskeyword
+if (v:version == 704 && has("patch-7.4.1142")) || v:version > 704
+ if !exists("g:sh_syntax_isk") || (exists("g:sh_syntax_isk") && g:sh_syntax_isk)
+  if exists("b:is_bash")
+   exe "syn iskeyword ".&iskeyword.",-,:"
+  else
+   exe "syn iskeyword ".&iskeyword.",-"
+  endif
  endif
 endif
 
@@ -218,7 +237,7 @@ endif
 " Here Strings: {{{1
 " =============
 " available for: bash; ksh (really should be ksh93 only) but not if its a posix
-if exists("b:is_bash") || (exists("b:is_kornshell") && !exists("g:is_posix"))
+if exists("b:is_bash") || (exists("b:is_kornshell") && !exists("b:is_posix"))
  syn match shRedir "<<<"	skipwhite
 endif
 
@@ -307,13 +326,20 @@ endif
 
 " Synchronization: {{{1
 " ================
-if !exists("sh_minlines")
-  let sh_minlines = 200
+if !exists("g:sh_minlines")
+ let s:sh_minlines = 200
+else
+ let s:sh_minlines= g:sh_minlines
 endif
-if !exists("sh_maxlines")
-  let sh_maxlines = 2 * sh_minlines
+if !exists("g:sh_maxlines")
+ let s:sh_maxlines = 2*s:sh_minlines
+ if s:sh_maxlines < 25
+  let s:sh_maxlines= 25
+ endif
+else
+ let s:sh_maxlines= g:sh_maxlines
 endif
-exec "syn sync minlines=" . sh_minlines . " maxlines=" . sh_maxlines
+exec "syn sync minlines=" . s:sh_minlines . " maxlines=" . s:sh_maxlines
 
 " Default Highlighting: {{{1
 " =====================
@@ -385,6 +411,8 @@ if exists("b:is_bash")
  let b:current_syntax = "bash"
 elseif exists("b:is_kornshell")
  let b:current_syntax = "ksh"
+elseif exists("b:is_posix")
+ let b:current_syntax = "posix"
 else
  let b:current_syntax = "sh"
 endif
