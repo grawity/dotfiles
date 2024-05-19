@@ -259,24 +259,43 @@ if !exists("g:sh_no_error")
 endif
 syn match  shDerefSimple	"\$[-#*@!?]"
 syn match  shDerefSimple	"\$\$"
-if exists("b:is_bash") || exists("b:is_kornshell")
+if exists("b:is_bash") || exists("b:is_kornshell") || exists("b:is_posix")
  syn region shDeref	matchgroup=PreProc start="\${##\=" end="}"	contains=@shDerefList
  syn region shDeref	matchgroup=PreProc start="\${\$\$" end="}"	contains=@shDerefList
+endif
+
+" ksh: ${.sh.*} variables: {{{1
+" ========================================
+if exists("b:is_kornshell")
+ syn match  shDerefVar	contained	"\.\+"	nextgroup=@shDerefVarList
+endif
+
+" ksh: ${!var[*]} array index list syntax: {{{1
+" ========================================
+if exists("b:is_kornshell") || exists("b:is_posix")
+ syn region shDeref	matchgroup=PreProc start="\${!" end="}"	contains=@shDerefVarArray
 endif
 
 " bash: ${!prefix*} and ${#parameter}: {{{1
 " ====================================
 if exists("b:is_bash")
- syn region shDeref	matchgroup=PreProc start="\${!" end="\*\=}"	contains=@shDerefList,shDerefOp
- syn match  shDerefVar	contained	"{\@<=!\k\+"		nextgroup=@shDerefVarList
+ syn region shDeref	matchgroup=PreProc start="\${!" end="\*\=}"	contains=@shDerefList,shDerefOffset
+ syn match  shDerefVar	contained	"{\@<=!\h\w*"		nextgroup=@shDerefVarList
+endif
+if exists("b:is_kornshell")
+ syn match  shDerefVar	contained	"{\@<=!\h\w*[[:alnum:]_.]*"	nextgroup=@shDerefVarList
 endif
 
-syn match  shDerefSpecial	contained	"{\@<=[-*@?0]"		nextgroup=shDerefOp,shDerefOpError
+syn match  shDerefSpecial	contained	"{\@<=[-*@?0]"		nextgroup=shDerefOp,shDerefOffset,shDerefOpError
 syn match  shDerefSpecial	contained	"\({[#!]\)\@<=[[:alnum:]*@_]\+"	nextgroup=@shDerefVarList,shDerefOp
-syn match  shDerefVar	contained	"{\@<=\k\+"		nextgroup=@shDerefVarList
+syn match  shDerefVar	contained	"{\@<=\h\w*"		nextgroup=@shDerefVarList
+syn match  shDerefVar	contained	'\d'                            nextgroup=@shDerefVarList
+if exists("b:is_kornshell") || exists("b:is_posix")
+  syn match  shDerefVar	contained	"{\@<=\h\w*[[:alnum:]_.]*"	nextgroup=@shDerefVarList
+endif
 
 " sh ksh bash : ${var[... ]...}  array reference: {{{1
-syn region  shDerefVarArray   contained	matchgroup=shDeref start="\[" end="]"	contains=@shCommandSubList nextgroup=shDerefOp,shDerefOpError
+syn region  shDerefVarArray   contained	matchgroup=shDeref start="\[" end="]"	contains=@shCommandSubList nextgroup=shDerefOp,shDerefOpError,shDerefOffset
 
 " Special ${parameter OPERATOR word} handling: {{{1
 " sh ksh bash : ${parameter:-word}    word is default value
@@ -291,16 +310,18 @@ syn region  shDerefVarArray   contained	matchgroup=shDeref start="\[" end="]"	co
 "        bash : ${parameter^^pattern} Case modification
 "        bash : ${parameter,pattern}  Case modification
 "        bash : ${parameter,,pattern} Case modification
+"        bash : ${@:start:qty}        display command line arguments from start to start+qty-1 (inferred)
+"        bash : ${parameter@operator} transforms parameter (operator∈[uULqEPARa])
 syn cluster shDerefPatternList	contains=shDerefPattern,shDerefString
 if !exists("g:sh_no_error")
  syn match shDerefOpError	contained	":[[:punct:]]"
 endif
 syn match  shDerefOp	contained	":\=[-=?]"	nextgroup=@shDerefPatternList
 syn match  shDerefOp	contained	":\=+"	nextgroup=@shDerefPatternList
-if exists("b:is_bash") || exists("b:is_kornshell")
- syn match  shDerefOp	contained	"#\{1,2}"	nextgroup=@shDerefPatternList
- syn match  shDerefOp	contained	"%\{1,2}"	nextgroup=@shDerefPatternList
- syn match  shDerefPattern	contained	"[^{}]\+"	contains=shDeref,shDerefSimple,shDerefPattern,shDerefString,shCommandSub,shDerefEscape nextgroup=shDerefPattern
+if exists("b:is_bash") || exists("b:is_kornshell") || exists("b:is_posix")
+ syn match  shDerefOp	contained	"#\{1,2}"		nextgroup=@shDerefPatternList
+ syn match  shDerefOp	contained	"%\{1,2}"		nextgroup=@shDerefPatternList
+ syn match  shDerefPattern	contained	"[^{}]\+"		contains=shDeref,shDerefSimple,shDerefPattern,shDerefString,shCommandSub,shDerefEscape nextgroup=shDerefPattern
  syn region shDerefPattern	contained	start="{" end="}"	contains=shDeref,shDerefSimple,shDerefString,shCommandSub nextgroup=shDerefPattern
  syn match  shDerefEscape	contained	'\%(\\\\\)*\\.'
 endif
@@ -308,16 +329,18 @@ if exists("b:is_bash")
  syn match  shDerefOp	contained	"[,^]\{1,2}"	nextgroup=@shDerefPatternList
  syn match  shDerefOp	contained	"@[uULQEPAKa]"
 endif
-syn region shDerefString	contained	matchgroup=shDerefDelim start=+\%(\\\)\@<!'+ end=+'+		contains=shStringSpecial
+syn region shDerefString	contained	matchgroup=shDerefDelim start=+\%(\\\)\@<!'+ end=+'+	contains=shStringSpecial
 syn region shDerefString	contained	matchgroup=shDerefDelim start=+\%(\\\)\@<!"+ skip=+\\"+ end=+"+	contains=@shDblQuoteList,shStringSpecial
 syn match  shDerefString	contained	"\\["']"	nextgroup=shDerefPattern
 
-if exists("b:is_bash")
- " bash : ${parameter:offset}
- " bash : ${parameter:offset:length}
+if exists("b:is_bash") || exists("b:is_kornshell") || exists("b:is_posix")
+ " bash ksh posix : ${parameter:offset}
+ " bash ksh posix : ${parameter:offset:length}
  syn region shDerefOp	contained	start=":[$[:alnum:]_]"me=e-1 end=":"me=e-1 end="}"me=e-1 contains=@shCommandSubList nextgroup=shDerefPOL
  syn match  shDerefPOL	contained	":[^}]\+"	contains=@shCommandSubList
+endif
 
+if exists("b:is_bash")
  " bash : ${parameter//pattern/string}
  " bash : ${parameter//pattern}
  syn match  shDerefPPS	contained	'/\{1,2}'	nextgroup=shDerefPPSleft
