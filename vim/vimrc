@@ -96,10 +96,6 @@ if has("termguicolors")
 	endif
 endif
 
-" Neovim: 'bg=light' is set asynchronously, so there's a flash of dark screen
-" before it switches to light style. Force the specific style for lucius.
-let g:lucius_style = "light"
-
 let g:solarized_contrast = "high"
 let g:zenburn_disable_bold_CursorBars = 1
 let g:zenburn_high_Contrast = 1
