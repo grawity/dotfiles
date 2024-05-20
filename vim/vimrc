@@ -298,7 +298,7 @@ nnoremap q :q
 inoremap # X#
 
 " Shift+arrows automatically enter Visual mode
-set keymodel=startsel,stopsel
+set keymodel=startsel
 
 " Mouse (and Shift-arrows via 'keymodel') highlight enters Select mode with
 " GUI-like 'replace on type' instead of Visual mode. (Ctrl-G switches it to
