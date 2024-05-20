@@ -1,4 +1,4 @@
-# vim: ft=sh
+#!bash
 
 if [[ $SSH_CONNECTION ]]; then
 	return

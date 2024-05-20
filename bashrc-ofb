@@ -1,4 +1,4 @@
-# vim: ft=sh
+#!bash
 
 unset fmts[name:pfx]
 unset items[ostype]

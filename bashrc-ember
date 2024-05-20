@@ -1,4 +1,4 @@
-# vim: ft=sh
+#!bash
 
 routed6='2a06:e881:108:1::4'
 
