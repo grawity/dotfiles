@@ -297,6 +297,14 @@ nnoremap q :q
 " (should this be done via cinkeys instead?)
 inoremap # X#
 
+" Shift+arrows automatically enter Visual mode
+set keymodel=startsel,stopsel
+
+" Mouse (and Shift-arrows via 'keymodel') highlight enters Select mode with
+" GUI-like 'replace on type' instead of Visual mode. (Ctrl-G switches it to
+" Visual.)
+set selectmode=mouse,key
+
 " Navigate visible lines, not physical lines, when soft-wrapped
 nnoremap k gk
 nnoremap j gj
