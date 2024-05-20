@@ -194,6 +194,7 @@ syn match   shMoreSpecial	"\%(\\\\\)*\\[\\"'`$()#]" nextgroup=shMoreSpecial cont
 "==========
 syn cluster	shCommentGroup	contains=shTodo,@Spell
 syn keyword	shTodo	contained		FIXME TODO XXX
+syn keyword	shTodo	contained		FIXME: TODO: XXX:
 syn match	shComment		"^\s*\zs#.*$"	contains=@shCommentGroup
 syn match	shComment		"\s\zs#.*$"	contains=@shCommentGroup
 syn match	shComment		"[();&|]\zs#.*$"
