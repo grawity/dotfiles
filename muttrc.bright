@@ -1,28 +1,31 @@
 # Mutt theme for black-on-white profile
 #
 # In gnome-terminal, 'white' bg results in a warm sand/gray background
+#
+# ITEM			FOREGROUND	BACKGROUND
+color normal		default		default
+color indicator		default		white		# List cursor
+color status		brightcolor255	green		# Pane headings
+color message		blue		default		# Regular popup messages
+color error		brightwhite	red		# Error popup messages
+color progress		brightwhite	blue		# Neomutt progress bar
 
-color normal		default default
-color message		default default
-color indicator		default white		# List cursor
-color status		brightwhite blue	# Pane headings
-color message		blue default		# Regular popup messages
-color error		brightwhite red		# Error popup messages
+# Message list (last matching rule takes priority)
+color index		yellow		default		~F	# Flagged
+color index		red		default		~U	# Unseen
+color index		brightred	default		"~F ~U"	# Flaged *and* unseen
+color index		color250	default		~D	# Deleted
+color index 		brightblue	color254	~T	# Tagged
 
-color hdrdefault	color247 default
-color header		blue default	"^Date:"
-color header		blue default	"^From:"
-color header		blue default	"^Subject:"
-color header		yellow default	"^X-Bogosity: Unsure,"
-color header		yellow default	"^X-Bogosity: Spam,"
+# Header colors in message pager
+color hdrdefault	color247	default
+color header		blue		default	"^Date:"
+color header		blue		default	"^From:"
+color header		blue		default	"^Subject:"
+color header		yellow		default	"^X-Bogosity: Unsure,"
+color header		yellow		default	"^X-Bogosity: Spam,"
 
-color index		yellow		default	~F # flagged
-color index		red		default	~U # unseen
-color index		brightred	default	"~F ~U"
-color index		color251	default	~D # deleted
-color index 		color12		default	~T # tagged
-color index 		brightcolor12	default	"~T ~U"
-
+# Message body colors
 color quoted		color168	default
 color quoted1		color172	default
 color quoted2		color70		default

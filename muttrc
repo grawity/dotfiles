@@ -201,46 +201,6 @@ set quote_regexp="^([|>#] ?)+|^[A-Z][a-z]+>"
 #  character from the matched text and recursively reapplying the regular
 #  expression until it fails to produce a match."
 
-# ITEM			FOREGROUND	BACKGROUND
-color normal		white		default
-
-# 'color progress' is neomutt-specific
-color tree		brightred	default
-color indicator		default		color24
-color status		brightmagenta	default
-color message		color255	default
-color progress		color255	color236
-color error		brightwhite	red
-
-color hdrdefault	color241	default
-color header		color2		default	"^Date:"
-color header		color10		default	"^From:"
-color header		bold color10	default	"^Subject:"
-color header		yellow		default	"^X-Bogosity: Unsure,"
-color header		brightyellow	default	"^X-Bogosity: Spam,"
-
-color attachment	yellow		default
-color quoted		color168	default
-color quoted1		color172	color233
-color quoted2		color70		color233
-color quoted3		color73		color232
-color quoted4		color148	color233
-color quoted5		color48		color234
-color signature		blue		default
-color tilde		blue		default
-color search		black		brightyellow
-
-#color index	brightred	default	'~h "^X-Priority: [12]$"'
-#color index	brightred	default	'~h "^X-Facebook-Notify: login_notification;"'
-#color index	yellow		default	'~h "^X-Bogosity: Spam,"'
-color index	brightwhite	default	~F # flagged
-color index	color11		default	~U # unseen
-color index	bold color11	default	"~F ~U"
-color index	color240	default	~D # deleted
-color index 	color12		default	~T # tagged
-color index 	bold color12	default	"~T ~U"
-# last rule takes priority!
-
 spam "^X-Bogosity: Spam,.* spamicity=([0-9.]+)"		"bogus"
 spam "^X-Bogosity: Unsure,.* spamicity=([0-9.]+)"	"unsure"
 spam "^Authentication-Results: [^;]+; spf=softfail"	"spf?"

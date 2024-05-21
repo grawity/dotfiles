@@ -27,6 +27,8 @@ fi
 
 if [[ $BRIGHT ]] || gettermbg -l; then
 	echo "source \"~/.dotfiles/muttrc.bright\""
+else
+	echo "source \"~/.dotfiles/muttrc.dark\""
 fi
 
 if [[ -f ~/.config/mutt/muttrc-"$HOSTNAME" ]]; then
