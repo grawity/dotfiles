@@ -8,7 +8,7 @@ color progress		color255	color60		# Neomutt progress bar
 #color tree		brightred	default		# └─> arrows
 
 # Message list (last matching rule takes priority)
-color index		color250	default			# Normal
+color index		default		default			# Normal
 color index		color174	default		"~F"	# Flagged
 color index		brightyellow	default		"~U"	# Unseen
 color index		brightred	default		"~U ~F"	# Flagged Unseen
