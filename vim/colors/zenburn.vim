@@ -562,3 +562,10 @@ else
 endif
 
 " TODO check for more obscure syntax groups that they're ok
+
+" diff.vim in Neovim 0.10 uses separate 'Added/Changed/Removed' styles, which
+" we don't yet style properly (the defaults look ok though, just not quite
+" zenburn-looking), so revert to the Vim original bindings.
+hi link diffRemoved Special
+hi link diffChanged PreProc
+hi link diffAdded Identifier

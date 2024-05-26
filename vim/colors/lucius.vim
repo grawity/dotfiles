@@ -110,3 +110,9 @@ hi link VimwikiHeader6 BType
 hi link TagbarAccessPublic Constant
 hi link TagbarAccessProtected Type
 hi link TagbarAccessPrivate PreProc
+
+" diff.vim in Neovim 0.10 uses separate 'Added/Changed/Removed' styles, which
+" we don't yet style properly, so revert to the Vim original bindings.
+hi link diffRemoved Special
+hi link diffChanged PreProc
+hi link diffAdded Identifier
