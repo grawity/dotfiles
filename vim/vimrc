@@ -342,6 +342,10 @@ endif
 nnoremap <Leader>b :ls<CR>:b<Space>
 " Remove search highlight
 nnoremap <Leader>h :nohlsearch<CR>
+" Toggle hidden chars listing
+nnoremap <Leader>n :set list!<CR>
+" Toggle line numbers
+nnoremap <Leader>N :set nu!<CR>
 " Rename word under cursor
 nnoremap <Leader>rw :%s/\<<C-r><C-w>\>/
 " Toggle spell checking
