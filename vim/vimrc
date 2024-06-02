@@ -108,28 +108,34 @@ let g:zenburn_italic_Comment = 1
 let g:zenburn_subdued_LineNr = 1
 
 if has("gui_running")
-	" configured in gvimrc
+	" Configured in gvimrc
 elseif $TERM == "vt100"
-	" HyperTerminal!
+	" Don't set anything fancy for HyperTerminal
 elseif $TERM == "linux"
-	" Neovim: Work around &t_Co being frozen at 256 regardless of $TERM.
-	" (Note: Must use $TERM instead of &term, as the latter is not yet
-	" defined during init.vim parsing.)
+	" Neovim: &t_Co is hardcoded to 256, so manually check $TERM for
+	" known-incompatible terminals where 256-color schemes look bad.
 	color elflord
 elseif $TERM_PROGRAM == "vscode"
 	" Use something that retains the default (transparent) background.
-	color default
+	if has("nvim-0.10") | color vim | else | color default | endif
 elseif hostname() == "fujitsu"
 	color lucius
 elseif &t_Co >= 256
-	" Modern terminals
+	" All other modern terminals
 	let light = "solarized"
 	let dark = "zenburn"
 
 	" For black-on-white kgx
 	"if hostname() == "frost" | let light = "shine" | endif
 
-	if $BRIGHT == "1" | exe "color" light | else | exe "color" dark | endif
+	if $BRIGHT == "1"
+		" Force &bg in case we're running inside Windows Terminal,
+		" which doesn't support reporting it at the moment.
+		set bg=light
+		exe "color" light
+	else
+		exe "color" dark
+	endif
 
 	" On terminals that support bgcolor reporting, Neovim sets 'bg=light'
 	" asynchronously. (Note: This is not triggered for 'bg=dark', likely
