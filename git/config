@@ -201,6 +201,7 @@
 	directory = /net/wolke/srv/http/default
 	directory = /srv/dns
 	directory = /srv/http/default
+	directory = /usr/local/nullroute
 
 [sendemail]
 	from = Mantas Mikulėnas <grawity@gmail.com>
