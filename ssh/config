@@ -43,7 +43,9 @@ Host dust.nullroute.lt dust.sym
 Host armxgw.sym dunegw.sym embergw.sym windgw.sym
 	User admin
 
-Host groove-*.sym
+Host groove-*.sym legacygw.sym
+	# For now Groove-M18 is still ROS6
+	PubkeyAcceptedAlgorithms +ssh-rsa
 	User admin
 
 Host bmc.*.nullroute.lt bmc.*.sym
