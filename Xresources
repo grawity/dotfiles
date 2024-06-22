@@ -61,8 +61,25 @@ XTerm*color15:                  rgb:ee/ee/ec
 #endif
 
 #if defined(SRVR_sunset)
-!XTerm*VT100.background:		rgb:e5/e5/e5
-#include ".dotfiles/vim/bundle/nightfox.nvim/extra/nightfox/nightfox.Xresources"
+! nightfox.nvim/extra/nightfox/nightfox.Xresources
+XTerm*background:		rgb:19/23/30
+XTerm*foreground:		rgb:cd/ce/cf
+XTerm*color0:			rgb:39/3b/44
+XTerm*color1:			rgb:c9/4f/6d
+XTerm*color2:			rgb:81/b2/9a
+XTerm*color3:			rgb:db/c0/74
+XTerm*color4:			rgb:71/9c/d6
+XTerm*color5:			rgb:9d/79/d6
+XTerm*color6:			rgb:63/cd/cf
+XTerm*color7:			rgb:df/df/e0
+XTerm*color8:			rgb:57/58/60
+XTerm*color9:			rgb:d1/69/83
+XTerm*color10:			rgb:8e/ba/a4
+XTerm*color11:			rgb:e0/c9/89
+XTerm*color12:			rgb:86/ab/dc
+XTerm*color13:			rgb:ba/a1/e2
+XTerm*color14:			rgb:7a/d5/d6
+XTerm*color15:			rgb:e4/e4/e5
 #endif
 
 #if defined(SRVR_blizzard) || defined(SRVR_sunset)
