@@ -31,12 +31,16 @@ XTerm*VT100.font:		-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
 XTerm*VT100.font:		-*-lucidatypewriter-medium-r-*-*-14-*-*-*-*-*-iso10646-*
 !XTerm*VT100.font:		-*-courier-medium-r-*-*-12-*-*-*-*-*-iso10646-*
 #endif
+
 #if defined(SRVR_sunset)
 Xft.dpi:			84
-XTerm*VT100.font:		-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
-XTerm*VT100.utf8Fonts.font:	-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+!XTerm*VT100.font:		-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+!XTerm*VT100.utf8Fonts.font:	-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
 !XTerm*VT100.font:		-*-courier-medium-r-*-*-12-*-*-*-*-*-iso10646-*
 !XTerm*VT100.utf8Fonts.font:	-*-courier-medium-r-*-*-12-*-*-*-*-*-iso10646-*
+XTerm*VT100.font:		-*-lucidatypewriter-medium-r-*-*-12-*-*-*-*-*-iso10646-*
+*background:			AntiqueWhite
+*foreground:			Black
 #endif
 
 #if defined(SRVR_fujitsu)
@@ -96,7 +100,8 @@ Xft.hintstyle:			hintslight
 ! emacs*pointerColor: Orchid
 ! emacs*cursorColor: Orchid
 
-! *background: AntiqueWhite rgb:FA/EB/D7
+!*background:			AntiqueWhite
+!*foreground:			Black
 
 !*background: DarkSlateGray
 !*foreground: Wheat
