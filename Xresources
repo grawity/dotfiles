@@ -1,4 +1,4 @@
-! ~/.Xresources
+! ~/.Xresources -- appres(1)
 
 ! Set a more useful $TERM
 XTerm.termName:			xterm-256color
@@ -32,6 +32,7 @@ XTerm*VT100.font:		-*-lucidatypewriter-medium-r-*-*-14-*-*-*-*-*-iso10646-*
 !XTerm*VT100.font:		-*-courier-medium-r-*-*-12-*-*-*-*-*-iso10646-*
 #endif
 #if defined(SRVR_sunset)
+Xft.dpi:			84
 XTerm*VT100.font:		-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
 XTerm*VT100.utf8Fonts.font:	-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
 !XTerm*VT100.font:		-*-courier-medium-r-*-*-12-*-*-*-*-*-iso10646-*
@@ -67,3 +68,18 @@ XTerm*color15:                  rgb:ee/ee/ec
 #if defined(SRVR_blizzard) || defined(SRVR_sunset)
 Xft.hintstyle:			hintslight
 #endif
+
+! From Mandrake 6 /root/.Xdefaults:
+! xterm*background: Black
+! xterm*foreground: Wheat
+! xterm*cursorColor: Orchid
+! xterm*scrollBar: true
+! emacs*Background: DarkSlateGray
+! emacs*Foreground: Wheat
+! emacs*pointerColor: Orchid
+! emacs*cursorColor: Orchid
+
+! *background: AntiqueWhite rgb:FA/EB/D7
+
+!*background: DarkSlateGray
+!*foreground: Wheat
