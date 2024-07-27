@@ -173,6 +173,11 @@ Host *
 	ControlMaster auto
 	ControlPersist 1h
 #else
+Host ember.nullroute.lt
+	# Don't multiplex connections that need high throughput (improves
+	# "annex get -J4" speed on LTE).
+	ControlPath none
+
 Host *
 	# Allow multiplexing but don't persist connections once closed.
 	# (Without this, "ControlMaster auto" would work differently; exiting
@@ -190,8 +195,8 @@ Host *
 	CanonicalDomains sym nullroute.lt
 #endif
 
-# Surprisingly, Debian's OpenSSH 8.4 complains despite IgnoreUnknown.
 #if fujitsu
+# Surprisingly, Debian's OpenSSH 8.4 complains despite IgnoreUnknown.
 #else
 Host *
 	ObscureKeystrokeTiming no

@@ -72,10 +72,13 @@
 	messageid = true
 
 [annex]
-	sshcaching = true
 	# 1 re-adjusts when the command exits,
 	# x>1 re-adjusts after every (x-1) files were processed
 	adjustedBranchRefresh = 1
+	# Disable SSH multiplexing, so that -J4 would be able to use multiple
+	# TCP connections.
+	sshCaching = false
+	adviceNoSshCaching = false
 
 [color]
 	ui = auto
