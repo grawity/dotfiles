@@ -468,15 +468,9 @@ endif
 
 " Plugins
 
-if has("nvim")
-	" https://github.com/lewis6991/gitsigns.nvim
-	if hostname() == "frost"
-		"lua require("gitsigns").setup()
-		"lua require("tabby").setup()
-	endif
+if has("nvim") && hostname() == "frost"
+	" Instead of converting the whole vimrc into Lua, load a separate
+	" ~/.dotfiles/vim/init.lua for now. Yes I could also do 'lua <<EOF'
+	" but that messes with syntax highlighting.
+	lua require("newstuff")
 endif
-
-" Packer (todo)
-" use "EdenEast/nightfox.nvim"
-" use "nanozuki/tabby.nvim"
-" use "talha-akram/noctis.nvim"
