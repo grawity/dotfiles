@@ -472,5 +472,6 @@ if has("nvim") && hostname() == "frost"
 	" Instead of converting the whole vimrc into Lua, load a separate
 	" ~/.dotfiles/vim/init.lua for now. Yes I could also do 'lua <<EOF'
 	" but that messes with syntax highlighting.
+	" Note to future self: consider ':lua vim.treesitter.start()'
 	lua require("newstuff")
 endif
