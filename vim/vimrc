@@ -464,6 +464,14 @@ if has("autocmd")
 		" disable them again
 		au! TermOpen * setl nonumber norelativenumber
 	endif
+
+	if has("nvim-0.10")
+		" At least on Arch, treesitter is available by default in 0.10+,
+		" so let's try to activate it for much nicer syntax highlighting.
+		"au BufNewFile,BufRead *.c,*.h
+		au FileType c,vim
+		\ lua vim.treesitter.start()
+	endif
 endif
 
 " Plugins
@@ -472,6 +480,5 @@ if has("nvim") && hostname() == "frost"
 	" Instead of converting the whole vimrc into Lua, load a separate
 	" ~/.dotfiles/vim/init.lua for now. Yes I could also do 'lua <<EOF'
 	" but that messes with syntax highlighting.
-	" Note to future self: consider ':lua vim.treesitter.start()'
 	lua require("newstuff")
 endif
