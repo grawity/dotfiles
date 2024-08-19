@@ -1,6 +1,4 @@
 augroup filetypedetect
-	au BufNewFile,BufRead accounts.db.txt setf accdb
-
 	au BufNewFile,BufRead /etc/apparmor.d/* setf apparmor
 
 	au BufNewFile,BufRead /etc/motd setf motd
@@ -56,11 +54,11 @@ augroup filetypedetect
 	au BufNewFile,BufRead *.pls setf dosini
 
 	" JavaScript
-	au BufNewFile,BufRead /etc/polkit-1/rules.d/* setf javascript
-	\ | setl ts=4 sw=4 et
-	au BufNewFile,BufRead /etc/cjdroute.conf setf javascript
-	\ | setl ts=4 sw=4 et
+	au BufNewFile,BufRead *.pac setf javascript
+	au BufNewFile,BufRead /etc/polkit-1/rules.d/* setf javascript | setl ts=4 sw=4 et
+	au BufNewFile,BufRead /etc/cjdroute.conf setf javascript | setl ts=4 sw=4 et
 
+	" LDIF
 	au BufNewFile,BufRead /tmp/ldapvi*,/tmp/ldbedit.* setf ldif
 
 	" Lua
