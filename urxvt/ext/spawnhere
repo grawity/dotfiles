@@ -1,0 +1,32 @@
+#!perl
+# ~/.urxvt/ext/spawnhere
+# urxvt extension to spawn a new terminal in current directory
+
+sub on_child_start {
+	my ($self, $pid) = @_;
+	$self->{shell_pid} = $pid;
+}
+
+sub on_action {
+	my ($self, $action) = @_;
+
+	if ($self->{shell_pid}) {
+		my $pid = $self->{shell_pid};
+		my $lnk = "/proc/$pid/cwd";
+		my $cwd;
+		if (eval {$cwd = readlink($lnk)}) {
+			warn "got cwd: $cwd";
+			$cwd =~ s/["`\$\\]/\\$&/g;
+			$action = "cd \"$cwd\"; $action";
+		} else {
+			warn "got no cwd: $@";
+		}
+	} else {
+		warn "shell pid not saved";
+	}
+
+	warn "spawning: $action";
+	system($action);
+
+	return ();
+}

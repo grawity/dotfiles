@@ -15,7 +15,8 @@ XTerm*VT100.translations:	#override			\n\
 
 Rxvt.keysym.Control-Shift-C:	eval:selection_to_clipboard
 Rxvt.keysym.Control-Shift-V:	eval:paste_clipboard
-Rxvt.keysym.Control-Shift-N:	eval:system("urxvt")
+!Rxvt.keysym.Control-Shift-N:	eval:system("urxvt")
+Rxvt.keysym.Control-Shift-N:	spawnhere:urxvt
 Rxvt.iso14755:			false
 
 ! Alt+keys generate ESC instead of special characters
