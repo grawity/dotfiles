@@ -44,8 +44,11 @@ XTerm*VT100*font:		-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
 !XTerm*VT100.utf8Fonts.font:	-*-courier-medium-r-*-*-12-*-*-*-*-*-iso10646-*
 !XTerm*VT100.font:		-*-lucidatypewriter-medium-r-*-*-12-*-*-*-*-*-iso10646-*
 ! "xterm" instance has priority over "XTerm" class
-xterm*background: DarkSlateGray
-xterm*foreground: Wheat
+xterm*background:		DarkSlateGray
+xterm*foreground:		Wheat
+Rxvt.font:			-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+Rxvt.background:		DarkSlateGray
+Rxvt.foreground:		Wheat
 #endif
 
 #if defined(SRVR_blizzard)
@@ -73,41 +76,41 @@ Xft.hintstyle:			hintslight
 ! nightfox.nvim/extra/nightfox/nightfox.Xresources
 XTerm*background:		rgb:19/23/30
 XTerm*foreground:		rgb:cd/ce/cf
-XTerm*color0:			rgb:39/3b/44
-XTerm*color1:			rgb:c9/4f/6d
-XTerm*color2:			rgb:81/b2/9a
-XTerm*color3:			rgb:db/c0/74
-XTerm*color4:			rgb:71/9c/d6
-XTerm*color5:			rgb:9d/79/d6
-XTerm*color6:			rgb:63/cd/cf
-XTerm*color7:			rgb:df/df/e0
-XTerm*color8:			rgb:57/58/60
-XTerm*color9:			rgb:d1/69/83
-XTerm*color10:			rgb:8e/ba/a4
-XTerm*color11:			rgb:e0/c9/89
-XTerm*color12:			rgb:86/ab/dc
-XTerm*color13:			rgb:ba/a1/e2
-XTerm*color14:			rgb:7a/d5/d6
-XTerm*color15:			rgb:e4/e4/e5
+*color0:			rgb:39/3b/44
+*color1:			rgb:c9/4f/6d
+*color2:			rgb:81/b2/9a
+*color3:			rgb:db/c0/74
+*color4:			rgb:71/9c/d6
+*color5:			rgb:9d/79/d6
+*color6:			rgb:63/cd/cf
+*color7:			rgb:df/df/e0
+*color8:			rgb:57/58/60
+*color9:			rgb:d1/69/83
+*color10:			rgb:8e/ba/a4
+*color11:			rgb:e0/c9/89
+*color12:			rgb:86/ab/dc
+*color13:			rgb:ba/a1/e2
+*color14:			rgb:7a/d5/d6
+*color15:			rgb:e4/e4/e5
 #endif
 
 #ifdef XTerm_Tango
 ! Import the Tango color scheme from GNOME Terminal
 XTerm*background:		rgb:ee/ee/ec
-XTerm*color0:			rgb:00/00/00
-XTerm*color1:			rgb:cc/00/00
-XTerm*color2:			rgb:4e/9a/06
-XTerm*color3:			rgb:c4/a0/00
-XTerm*color4:			rgb:34/65/a4
-XTerm*color5:			rgb:75/50/7b
-XTerm*color6:			rgb:06/98/9a
-XTerm*color7:			rgb:d3/d7/cf
-XTerm*color8:			rgb:55/57/53
-XTerm*color9:			rgb:ef/29/29
-XTerm*color10:			rgb:8a/e2/34
-XTerm*color11:			rgb:fc/e9/4f
-XTerm*color12:			rgb:72/9f/cf
-XTerm*color13:			rgb:ad/7f/a8
-XTerm*color14:			rgb:34/e2/e2
-XTerm*color15:			rgb:ee/ee/ec
+*color0:			rgb:00/00/00
+*color1:			rgb:cc/00/00
+*color2:			rgb:4e/9a/06
+*color3:			rgb:c4/a0/00
+*color4:			rgb:34/65/a4
+*color5:			rgb:75/50/7b
+*color6:			rgb:06/98/9a
+*color7:			rgb:d3/d7/cf
+*color8:			rgb:55/57/53
+*color9:			rgb:ef/29/29
+*color10:			rgb:8a/e2/34
+*color11:			rgb:fc/e9/4f
+*color12:			rgb:72/9f/cf
+*color13:			rgb:ad/7f/a8
+*color14:			rgb:34/e2/e2
+*color15:			rgb:ee/ee/ec
 #endif
