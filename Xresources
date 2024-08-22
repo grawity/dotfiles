@@ -34,7 +34,9 @@ Rxvt.urgentOnBell:		true
 ! which takes priority over the regular .font resource (but is not used at all
 ! on newer versions), so both need to be specified.
 #if defined(SRVR_midnight) || defined(SRVR_frost)
+! Has no bold; Xterm is ok at fake-emboldening it, Rxvt tries to shrink a larger bold size.
 XTerm*VT100.font:		-*-fixed-medium-r-*-*-20-*-*-*-*-*-iso10646-*
+Rxvt.font:			-*-lucidatypewriter-medium-*-*-*-18-*-*-*-*-*-iso10646-*
 #endif
 #if defined(SRVR_blizzard)
 XTerm*VT100.font:		-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
