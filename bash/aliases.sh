@@ -52,6 +52,7 @@ hostname.bind() {
 }
 alias hup='pkill -HUP -x'
 alias init='telinit' # for systemd
+alias ip='ip -color=auto'
 alias kssh='ssh \
 	-o PreferredAuthentications=gssapi-keyex,gssapi-with-mic \
 	-o GSSAPIAuthentication=yes \
@@ -120,7 +121,10 @@ _thiscommand() { history 1 | sed "s/^\s*[0-9]\+\s\+([^)]\+)\s\+$1\s\+//"; }
 tigdiff() { diff -u "$@" | tig; }
 alias todo:='todo "$(_thiscommand todo:)" #'
 alias todos='unix2dos'
-alias traceroute='traceroute -N1'
+if [[ $HOSTNAME != ofb ]]; then
+	# OFB still runs Ubuntu 18.04
+	alias traceroute='traceroute -N1'
+fi
 alias tracert='traceroute -I'
 alias try-openconnect='openconnect --verbose --authenticate'
 alias try-openvpn='openvpn --verb 3 --dev null --{ifconfig,route}-noexec --client'
@@ -230,7 +234,6 @@ case $OSTYPE in
 		eval $(dircolors ~/.dotfiles/dircolors)
 		alias df='df -Th'
 		alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs -xafs'
-		alias ip='ip --color=auto'
 		alias lsd='ls -d --indicator-style=none */'
 		alias lsh='ls -a --ignore="[^.]*"'
 		;;
