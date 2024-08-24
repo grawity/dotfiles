@@ -52,7 +52,6 @@ hostname.bind() {
 }
 alias hup='pkill -HUP -x'
 alias init='telinit' # for systemd
-alias ip='ip -color=auto'
 alias kssh='ssh \
 	-o PreferredAuthentications=gssapi-keyex,gssapi-with-mic \
 	-o GSSAPIAuthentication=yes \
@@ -124,6 +123,7 @@ alias todos='unix2dos'
 if [[ $HOSTNAME != ofb ]]; then
 	# OFB still runs Ubuntu 18.04
 	alias traceroute='traceroute -N1'
+	alias ip='ip --color=auto'
 fi
 alias tracert='traceroute -I'
 alias try-openconnect='openconnect --verbose --authenticate'
