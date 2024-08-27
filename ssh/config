@@ -77,14 +77,20 @@ Host aur
 Host shell.*.burble.dn42
 	User nullroute
 
-Host burble-ca
-	HostName shell.ca-bhs2.burble.dn42
-
 Host burble-fr
-	HostName shell.fr-par1.burble.dn42
+	HostName shell.fr.burble.dn42
 
-Host burble-us
-	HostName shell.us-lax1.burble.dn42
+Host burble-uk
+	HostName shell.uk.burble.dn42
+
+Host burble-de
+	HostName shell.de.burble.dn42
+
+Host burble-lax
+	HostName shell.lax.burble.dn42
+
+Host burble-nyc
+	HostName shell.nyc.burble.dn42
 
 Host eisner
 	HostName %h.encompasserve.org
