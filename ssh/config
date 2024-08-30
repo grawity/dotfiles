@@ -6,8 +6,6 @@
 
 # Doesn't yet exist in Debian bullseye (OpenSSH 8.4)
 IgnoreUnknown PubkeyAcceptedAlgorithms
-# New in 9.5
-IgnoreUnknown ObscureKeystrokeTiming
 
 #if ember
 Host EmberGW-alt
@@ -49,13 +47,14 @@ Host groove-*.sym legacygw.sym
 	User admin
 
 Host bmc.*.nullroute.lt bmc.*.sym
-	# iLO (import public key in "SSH2" format)
+	# iLO4 (import public key in "SSH2" format)
 	KexAlgorithms +diffie-hellman-group14-sha1
 	HostKeyAlgorithms +ssh-rsa
 	PubkeyAcceptedAlgorithms +ssh-rsa
 	User Administrator
 
 Host ptp-u2*.sym ptp-pico*.sym kol-*.sym
+	# airOS 4.x-6.x
 	KexAlgorithms +diffie-hellman-group1-sha1
 	HostKeyAlgorithms +ssh-rsa
 	PubkeyAcceptedAlgorithms +ssh-rsa
@@ -187,13 +186,6 @@ Host *
 #else
 Host *
 	CanonicalDomains sym nullroute.lt
-#endif
-
-#if fujitsu
-# Surprisingly, Debian's OpenSSH 8.4 complains despite IgnoreUnknown.
-#else
-Host *
-	ObscureKeystrokeTiming no
 #endif
 
 Host *
