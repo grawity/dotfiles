@@ -165,13 +165,6 @@ Host dune.nullroute.lt
 	PKCS11Provider /usr/lib/p11-kit-proxy.so
 #endif
 
-#if @(fujitsu|rain|midnight|myth)
-Match canonical !host *.sym
-	# Telia LTE CGNAT has a very aggressive idle timeout (a few minutes),
-	# after which the connections will simply hang.
-	ServerAliveInterval 10s
-#endif
-
 #if @(ember|wind)
 Host *
 	# Persist authenticated connections, where timeouts are not an issue
