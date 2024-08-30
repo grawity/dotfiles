@@ -142,11 +142,11 @@ Host gw-core-alt
 
 # -- Global settings --
 
-Match canonical host *.*
+Host *.*
 	# Disable GSSAPI for FQDNs that aren't our own
 	GSSAPIAuthentication no
 
-Match canonical host *
+Host *
 	# ...but enable it for single-label names
 	GSSAPIAuthentication yes
 
