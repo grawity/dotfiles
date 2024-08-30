@@ -8,7 +8,7 @@
 IgnoreUnknown PubkeyAcceptedAlgorithms
 
 #if ember
-Host EmberGW-alt
+Host embergw-alt
 	# Direct through Ember eno2 <--> EmberGW
 	User admin
 	HostName 10.147.241.58
