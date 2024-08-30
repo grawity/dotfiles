@@ -32,5 +32,5 @@ color quoted2		color70		default
 color quoted3		color73		default
 color quoted4		color148	default
 color quoted5		color48		default
-#color signature		blue		default
-#color tilde		blue		default
+color signature		blue		default
+color tilde		blue		default
