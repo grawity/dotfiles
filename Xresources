@@ -7,7 +7,7 @@ XTerm.termName:			xterm-256color
 XTerm.backarrowKeyIsErase:	true
 XTerm.ptyInitialErase:		true
 
-! Help lsix detect SIXEL support (default "vt420" doesn't have graphics)
+! Help lsix detect SIXEL support (default "vt420" does not have graphics)
 !XTerm*VT100.decTerminalID:	vt340
 XTerm*VT100.decGraphicsID:	vt340
 
