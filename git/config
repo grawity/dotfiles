@@ -40,7 +40,7 @@
 	rbs = rebase -i
 	re = rebase
 	rec = rebase --continue
-	refs = for-each-ref
+	ref = for-each-ref
 	rp = pull --rebase --autostash
 	sg = diff --cached
 	st = status
