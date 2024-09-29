@@ -93,7 +93,7 @@ Host burble-nyc
 	HostName shell.nyc.burble.dn42
 
 Host eisner
-	HostName %h.encompasserve.org
+	HostName %h.decus.org
 	Port 22867
 	HostKeyAlgorithms +ssh-rsa
 	PubkeyAcceptedAlgorithms +ssh-rsa
