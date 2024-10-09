@@ -4,18 +4,25 @@ if [[ ${items@a} != *A* ]]; then
 	return
 fi
 
-_gnome_remote_session_active() {
-	busctl --user --list tree org.gnome.Shell |
-		grep -q '^/org/gnome/Mutter/RemoteDesktop/Session/'
-}
-_lid_is_open() {
-	local v=$(busctl --system get-property \
-		org.freedesktop.UPower \
-		/org/freedesktop/UPower \
-		org.freedesktop.UPower \
-		LidIsClosed)
-	[[ $v != "b true" ]]
-}
+if (( UID == 0 )); then
+	# dbus-broker rudely disconnects
+	_gnome_remote_session_active() { false; }
+	_lid_is_open() { false; }
+else
+	_gnome_remote_session_active() {
+		busctl --user --list tree org.gnome.Shell |
+			grep -q '^/org/gnome/Mutter/RemoteDesktop/Session/'
+	}
+	_lid_is_open() {
+		local v=$(busctl --system get-property \
+			org.freedesktop.UPower \
+			/org/freedesktop/UPower \
+			org.freedesktop.UPower \
+			LidIsClosed)
+		[[ $v != "b true" ]]
+	}
+fi
+
 _frost_lid_check() {
 	items[rdp?]=""
 	if _gnome_remote_session_active; then
