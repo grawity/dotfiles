@@ -13,13 +13,13 @@ IgnoreUnknown ObscureKeystrokeTiming
 Host EmberGW-alt
 	# Direct through Ember eno2 <--> EmberGW
 	User admin
-	HostName 10.147.241.58
+	Hostname 10.147.241.58
 	HostkeyAlias embergw.nullroute.lt
 #endif
 
 Host gate gate.nullroute.lt
 	HostkeyAlias gate.nullroute.lt
-	HostName sky.nullroute.lt
+	Hostname sky.nullroute.lt
 	VerifyHostKeyDNS no
 	User _gate
 	Port 2
@@ -71,29 +71,29 @@ Host *.nullroute.lt *.sym
 # -- Other hosts --
 
 Host aur
-	HostName aur.archlinux.org
+	Hostname aur.archlinux.org
 	User aur
 
 Host shell.*.burble.dn42
 	User nullroute
 
 Host burble-fr
-	HostName shell.fr.burble.dn42
+	Hostname shell.fr.burble.dn42
 
 Host burble-uk
-	HostName shell.uk.burble.dn42
+	Hostname shell.uk.burble.dn42
 
 Host burble-de
-	HostName shell.de.burble.dn42
+	Hostname shell.de.burble.dn42
 
 Host burble-lax
-	HostName shell.lax.burble.dn42
+	Hostname shell.lax.burble.dn42
 
 Host burble-nyc
-	HostName shell.nyc.burble.dn42
+	Hostname shell.nyc.burble.dn42
 
 Host eisner
-	HostName %h.decus.org
+	Hostname %h.decus.org
 	Port 22867
 	HostKeyAlgorithms +ssh-rsa
 	PubkeyAcceptedAlgorithms +ssh-rsa
@@ -103,13 +103,13 @@ Host *.ngrok.com *.ngrok-agent.com
 	ControlPath none
 
 Host sdf sdf.org
-	HostName tty.sdf.org
+	Hostname tty.sdf.org
 
 Host sdf-eu sdf.eu
-	HostName sdf-eu.org
+	Hostname sdf-eu.org
 
 Host theos
-	HostName %h.kyriasis.com
+	Hostname %h.kyriasis.com
 
 Host vsiftp.vmssoftware.com
 	User VSIPUBLIC
@@ -131,10 +131,10 @@ Host bmc-*.utenos-kolegija.lt
 Host gw-core-alt
 #if ember
 	# Direct connection via 'litnet' VLAN
-	HostName 2001:778:0:1025::2
+	Hostname 2001:778:0:1025::2
 	BindAddress 2001:778:0:1025::3
 #else
-	HostName 83.171.33.188
+	Hostname 83.171.33.188
 	ProxyJump sky
 #endif
 	HostkeyAlias gw-core.utenos-kolegija.lt
