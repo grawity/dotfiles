@@ -41,6 +41,16 @@ _show_status() {
 }
 PROMPT_COMMAND+="${PROMPT_COMMAND+; }_show_status"
 
+_fix_double_slash() {
+	# When a symlink to / is present in a 'cd -P' argument
+	# (e.g. 'cd /.myth/hdd' where '/myth' => '/'), Bash
+	# duplicates the leading slash. Remove it.
+	if [[ $PWD == //* ]]; then
+		cd "${PWD#/}"
+	fi
+}
+PROMPT_COMMAND+="${PROMPT_COMMAND+; }_fix_double_slash"
+
 _update_title() {
 	# Set window title to "user@host ~/path"
 	if [[ ! ${title-} ]]; then
