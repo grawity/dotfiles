@@ -215,8 +215,10 @@
 [tig]
 	# [v2 opts]
 	main-view = id:no date:relative author:full,width=12 commit-title:graph=yes,refs,overflow=no
+	#main-view = id:no date:relative,use-author=yes author:full,width=12 commit-title:graph=yes,refs,overflow=no
 	# [v2.1 opts]
 	main-view-date = relative
+	#main-view-date-use-author = yes
 	main-view-author-width = 12
 	main-view-commit-title-graph = v1
 
