@@ -2,7 +2,7 @@
 # vim: ft=ruby:ts=4:sw=4:noet
 
 require 'irb/completion'
-require 'irb/ext/save-history'
+#require 'irb/ext/save-history'
 require 'pp'
 
 Proc.new{
