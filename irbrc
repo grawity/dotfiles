@@ -30,10 +30,13 @@ Proc.new{
 	}
 	IRB.conf[:PROMPT_MODE] = :my
 
-		# Tame down new 2.7 stuff until I get used to it
-	IRB.conf[:AUTO_INDENT] = false
-	IRB.conf[:USE_COLORIZE] = false
-
+	#IRB.conf[:NEWLINE_BEFORE_MULTILINE_OUTPUT] = false
+	
+	# Switch back to IRB::ReadlineInputMethod, as Reline has dynamic prompt
+	# switching (based on context at the end of the input line) which is very
+	# disorienting. (This unfortunately disables the auto-complete list but
+	# that's still worth it.)
+	IRB.conf[:USE_MULTILINE] = false
 }.call
 
 # Temporary until https://github.com/ruby/irb/issues/330 is fuxed
