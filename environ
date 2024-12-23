@@ -41,6 +41,9 @@ PYTHONPATH="$HOME/bin/lib/python"
 IRBRC="$HOME/.dotfiles/irbrc"
 PYTHONSTARTUP="$HOME/.dotfiles/pythonrc"
 
+# Turn off curses-based REPL in 3.13
+PYTHON_BASIC_REPL="1"
+
 # Default install base for npm and some other stuff
 PREFIX="$HOME/.local"
 
