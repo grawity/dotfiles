@@ -1,8 +1,10 @@
 # ~/.config/fish/config.fish
 # vim: ft=fish
 
-# Hide the startup message
-set -g fish_greeting ""
+if status is-interactive
+	# Hide the startup message
+	set -g fish_greeting ""
+end
 
 # Make `cd` follow symlinks
 # https://github.com/fish-shell/fish-shell/issues/3350
