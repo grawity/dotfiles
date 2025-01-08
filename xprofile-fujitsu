@@ -1,21 +1,26 @@
 # vim: ft=sh
 
-~/.local/bin/setwallpaper $1
+~/.local/bin/setwallpaper $1 &
+
+# Map front-panel arrow keys to PageUp/PageDown initially.
+# (acpid will load PriorNext or NextPrior on orientation switch)
+xmodmap ~/.Xmodmap-PriorNext &
+
+# See also:
+# ~/.icewm/startup
+#
+# (currently, nm-applet and sxhkd are run by icewm)
 
 # Global key bindings
-sxhkd &
+#sxhkd &
 #systemctl --user import-environment PATH
 #systemctl --user start sxhkd
 
-# Map front-panel arrow keys to PageUp/PageDown initially
-# (acpid will load PriorNext or NextPrior during orientation switch)
-xmodmap ~/.Xmodmap-PriorNext
-
 # Provide font smoothing parameters via XSETTINGS for Pango/libvte
-case $DESKTOP_SESSION in
-	gnome*|xfce*) ;;
-	*) xsettingsd & ;;
-esac
+#case $DESKTOP_SESSION in
+#	gnome*|xfce*) ;;
+#	*) xsettingsd & ;;
+#esac
 
 # VNC access
 # TODO: instead of reactivating this, make it enableable and start a .target here
