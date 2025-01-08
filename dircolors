@@ -14,7 +14,7 @@ RESET			0
 # Symlinks
 LINK			3;96
 #LINK			target
-ORPHAN			9;31;40
+ORPHAN			9;31
 #MULTIHARDLINK		0
 
 # Directories

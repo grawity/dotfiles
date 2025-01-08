@@ -17,7 +17,7 @@ sub on_action {
 		if (eval {$cwd = readlink($lnk)}) {
 			warn "got cwd: $cwd";
 			$cwd =~ s/["`\$\\]/\\$&/g;
-			$action = "cd \"$cwd\"; $action";
+			$action = "cd \"$cwd\"; ($action &)";
 		} else {
 			warn "got no cwd: $@";
 		}

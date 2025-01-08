@@ -224,7 +224,7 @@ set my_index_right="$my_index_r1$my_index_r2$my_index_r3"
 #   %g - IMAP labels
 #   %H - spam flags
 #   %M - number of messages in collapsed thread
-set my_d1="%[  today, %H:%M]"	# today
+set my_d1="%[ %b %d, %H:%M]"	# today
 set my_d2="%[ %b %d, %H:%M]"	# this month
 set my_d3="%[ %b %d, %H:%M]"	# this year
 set my_d4="%[   %Y %b %d]"		# older

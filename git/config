@@ -40,7 +40,7 @@
 	rbs = rebase -i
 	re = rebase
 	rec = rebase --continue
-	refs = for-each-ref
+	ref = for-each-ref
 	rp = pull --rebase --autostash
 	sg = diff --cached
 	st = status
@@ -195,15 +195,10 @@
 
 [safe]
 	# Allow repositories owned by other UIDs
-	directory = /net/ember/srv/http/default
-	directory = /net/land/srv/http/default
-	directory = /net/land/srv/salt
-	directory = /net/sky/srv/http/default
-	directory = /net/star/srv/http/default
-	directory = /net/wind/srv/http/default
-	directory = /net/wolke/srv/http/default
-	directory = /srv/dns
-	directory = /srv/http/default
+	# (Note: Adding NFS paths will cause Git to stat() them every time it
+	# consults this list, e.g. when `cd`-ing to /srv/dist.)
+	directory = /net/*
+	directory = /srv/*
 	directory = /usr/local/nullroute
 
 [sendemail]
@@ -220,8 +215,10 @@
 [tig]
 	# [v2 opts]
 	main-view = id:no date:relative author:full,width=12 commit-title:graph=yes,refs,overflow=no
+	#main-view = id:no date:relative,use-author=yes author:full,width=12 commit-title:graph=yes,refs,overflow=no
 	# [v2.1 opts]
 	main-view-date = relative
+	#main-view-date-use-author = yes
 	main-view-author-width = 12
 	main-view-commit-title-graph = v1
 
