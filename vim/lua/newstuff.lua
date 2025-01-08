@@ -1,5 +1,8 @@
 require("lazy").setup({
 	spec = {
+		{
+			url = "https://tpope.io/vim/eunuch.git",
+		},
 	},
 	performance = {
 		rtp = {
