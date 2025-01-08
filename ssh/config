@@ -199,7 +199,7 @@ Host *
 
 Host *
 	CanonicalizeHostname yes
-	VerifyHostKeyDNS yes
+	#VerifyHostKeyDNS yes
 	SendEnv LANG TZ
 	ControlPath ~/.ssh/S.%r@%h:%p
 
