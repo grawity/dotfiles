@@ -15,23 +15,23 @@ have() { command -v "$1" >&/dev/null; }
 # size" sequence, and the terminal sometimes being slow to reply.
 export -n LINES COLUMNS
 
-# Assume that 'xterm'-emulating terminals support 256 colors.
-if [[ $TERM == @(screen|tmux|xterm) ]]; then
+# Fix up TERM for Neovim, which needs 'putty(-256color)' for Home/End keys.
+if [[ $TERM == xterm ]] && isterm putty; then
+	export TERM="${TERM/#xterm/putty}"
+fi
+# Assume that xterm-emulating terminals support 256 colors.
+if [[ $TERM == @(putty|screen|tmux|xterm) ]]; then
 	OLD_TERM="$TERM"
 	export TERM="$TERM-256color"
 fi
 # ...and assume that they support RGB colors as well. See also 'set tgc' in
-# vimrc. (This isn't true for JuiceSSH yet, but it's fine.)
-if [[ $TERM == *-@(256color|direct) && ! $COLORTERM ]]; then
-	if isterm juicessh; then
+# vimrc. (With an exception for JuiceSSH and Mosh, which don't.)
+if [[ ! $COLORTERM ]]; then
+	if [[ $TERM == xterm-256color ]] && isterm juicessh; then
 		export JUICESSH="yes"
-	else
+	elif [[ $TERM == *-@(256color|direct) ]]; then
 		export COLORTERM="truecolor"
 	fi
-fi
-# Fix up TERM for Neovim, which needs 'putty-256color' for Home/End keys
-if [[ $TERM == xterm-256color ]] && isterm putty; then
-	export TERM="${TERM/#xterm/putty}"
 fi
 if [[ $TERM == tmux-256color ]]; then
 	if gettermbg -l; then
@@ -100,9 +100,8 @@ fi
 
 # Don't load fancy prompt when SSH-ing from old terminals, e.g.
 # 'xterm-color' (old OS X 10.6 where everything blinks)
-if [[ $TERM == @(*-256color|foot) && $HOSTNAME != vm-* ]]; then
+if [[ $COLORTERM == truecolor && $HOSTNAME != vm-* ]]; then
 	. ~/.dotfiles/bash/prompt.sh
-
 	if [[ -d /n && -e /etc/dist/hostids ]]; then
 		. ~/.dotfiles/bash/krbprompt.sh
 	fi
