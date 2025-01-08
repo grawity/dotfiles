@@ -119,7 +119,7 @@ alias telnets='telnet-ssl -z ssl'
 _thiscommand() { history 1 | sed "s/^\s*[0-9]\+\s\+([^)]\+)\s\+$1\s\+//"; }
 tigdiff() { diff -u "$@" | tig; }
 alias todo:='todo "$(_thiscommand todo:)" #'
-alias todos='unix2dos'
+alias todos='unix2dos --keepdate'
 if [[ $HOSTNAME != ofb ]]; then
 	# OFB still runs Ubuntu 18.04
 	alias traceroute='traceroute -N1'
