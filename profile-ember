@@ -1,5 +1,9 @@
 default_xsession="xfce4-session"
 
+case $TERM in ansi|hypertrm)
+	export LC_CTYPE=C
+esac
+
 # Are we connecting from fujitsu
 fp='SHA256:FTJDZhSNlpvpt5fAL/Ojbd6XZXxkQfTwPqCM4cmQZLM'
 if [ "$SSH_AUTH_SOCK" ] && ssh-add -l 2>/dev/null | grep -qs "$fp"; then

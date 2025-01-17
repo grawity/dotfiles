@@ -29,7 +29,7 @@ fi
 if [[ ! $COLORTERM ]]; then
 	if [[ $TERM == xterm-256color ]] && isterm juicessh; then
 		export JUICESSH="yes"
-	elif [[ $TERM == *-@(256color|direct) ]]; then
+	elif [[ $TERM == *-@(256color|direct) || $TERM == xterm-ghostty ]]; then
 		export COLORTERM="truecolor"
 	fi
 fi
@@ -100,7 +100,7 @@ fi
 
 # Don't load fancy prompt when SSH-ing from old terminals, e.g.
 # 'xterm-color' (old OS X 10.6 where everything blinks)
-if [[ $COLORTERM == truecolor && $HOSTNAME != vm-* ]]; then
+if [[ ($COLORTERM == truecolor || $TERM == *-256color) && $HOSTNAME != vm-* ]]; then
 	. ~/.dotfiles/bash/prompt.sh
 	if [[ -d /n && -e /etc/dist/hostids ]]; then
 		. ~/.dotfiles/bash/krbprompt.sh
