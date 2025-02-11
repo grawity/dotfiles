@@ -39,6 +39,9 @@ if [[ $TERM == tmux-256color ]]; then
 	fi
 fi
 
+# Temporary hack as WT 1.22 supports sixel but lsix doesn't recognize it.
+export LSIX_FORCE_SIXEL_SUPPORT="1"
+
 export GPG_TTY=$(tty)
 export -n VTE_VERSION
 
