@@ -1,0 +1,36 @@
+# vim: ft=ghostty
+font-family = ""
+font-family = "Monaco"
+font-feature = "-calt"
+font-size = 13
+adjust-font-baseline = 1
+# adjust-cell-height = 1
+# grapheme-width-method = legacy
+freetype-load-flags = no-force-autohint
+
+# theme = "Adwaita"
+# theme = "Adwaita Dark"
+# theme = "catppuccin-frappe"
+# theme = "catppuccin-mocha"
+#theme = "Monokai Pro Light Sun"
+#theme = "Monokai Pro Ristretto"
+#theme = "Monokai Remastered"
+# theme = "rose-pine-dawn"
+theme = "Solarized"
+# bold-is-bright = true
+
+# alpha-blending = native
+# alpha-blending = linear-corrected
+
+# keybind = ctrl+shift+equal=increase_font_size:1
+
+resize-overlay = never
+#gtk-titlebar = false
+#gtk-adwaita = true
+#adw-toolbar-style = raised-border
+#adw-toolbar-style = raised
+
+window-inherit-working-directory = true
+#shell-integration-features = false
+#gtk-single-instance = true
+#linux-cgroup = always
