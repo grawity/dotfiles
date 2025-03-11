@@ -375,6 +375,9 @@ endfunc
 " Prevent C-Space from being interpreted as C-@ and re-inserting same text
 inoremap <C-Space> <Nop>
 
+" Map Shift-Space to regular Space instead of ESC[32;2u in :terminal
+tnoremap <S-Space> <Space>
+
 " Fix application-numpad mode
 if !has("nvim")
 	" (Vim 8.1) with Num Lock off, Num5 is parsed as individual commands
