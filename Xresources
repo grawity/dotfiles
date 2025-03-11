@@ -50,7 +50,7 @@ XTerm*VT100.font:		-*-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*
 !XTerm*VT100.font:		-*-courier-medium-r-*-*-12-*-*-*-*-*-iso10646-*
 #endif
 
-#if defined(SRVR_sunset)
+#if defined(SRVR_sunset) || defined(SRVR_sunset_dunelab_sym)
 #define XTerm_Nightfox
 Xft.dpi:			84
 Xft.hintstyle:			hintslight
