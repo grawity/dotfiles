@@ -201,3 +201,7 @@ Host *
 	# Do not add the resolved IP addresses to ~/.ssh/known_hosts. (This
 	# defaults to 'no' on new versions, but still 'yes' on Debian's 8.4)
 	CheckHostIP no
+
+	# Don't automatically add extra hostkeys provided by server, since the
+	# feature insists on replacing the known_hosts symlink with plain file.
+	UpdateHostKeys no
