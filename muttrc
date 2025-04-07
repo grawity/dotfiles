@@ -184,7 +184,10 @@ unset help
 set xterm_set_titles
 
 # Set window title (Neomutt)
-set ts_enabled=yes
+#set ts_enabled=yes
+# 2025-02-24: Buggy with version 2025.01.13 - doesn't change title, instead
+# stray output shows in tty
+set ts_enabled=no
 set ts_status_format="Mutt %f (%?M?%M/?%m messages%?n?, %n new/unseen?%?o?, %o old/unread?)"
 
 #set sidebar_visible

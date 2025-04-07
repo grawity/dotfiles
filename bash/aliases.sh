@@ -20,6 +20,7 @@ alias dnstrace='dnstracer -s .'
 alias easy-rsa='easyrsa'
 alias ed='ed -p:'
 entity() { printf '&%s;<br>' "$@" | w3m -dump -T text/html; }
+alias hget='curl -R -L --remote-name-all'
 alias ccard-tool='pkcs11-tool --module libccpkip11.so'
 alias aladdin-tool='pkcs11-tool --module /usr/lib/sac-10.0/libeToken.so'
 alias etoken-tool='pkcs11-tool --module /usr/lib/libeToken.so'
