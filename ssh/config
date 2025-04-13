@@ -34,10 +34,6 @@ Host myth.nullroute.lt myth.sym
 	ForwardX11Trusted yes
 #endif
 
-Host dust.nullroute.lt dust.sym
-	PreferredAuthentications gssapi-with-mic
-	GSSAPIDelegateCredentials yes
-
 Host armxgw.sym dunegw.sym embergw.sym frostgw.sym windgw.sym homegw.sym homehap.sym
 	User admin
 
