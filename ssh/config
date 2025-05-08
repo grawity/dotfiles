@@ -34,7 +34,7 @@ Host myth.nullroute.lt myth.sym
 	ForwardX11Trusted yes
 #endif
 
-Host armxgw.sym dunegw.sym embergw.sym frostgw.sym windgw.sym homegw.sym homehap.sym
+Host armxgw.sym dunegw.sym embergw.sym frostgw.sym shoregw.sym windgw.sym homegw.sym
 	User admin
 
 Host groove-*.sym legacygw.sym
