@@ -3,6 +3,9 @@ require("lazy").setup({
 		{
 			url = "https://tpope.io/vim/eunuch.git",
 		},
+		{
+			url = "https://github.com/preservim/tagbar",
+		},
 	},
 	performance = {
 		rtp = {
