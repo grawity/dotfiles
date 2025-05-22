@@ -172,6 +172,10 @@ for host in dust ember frost land myth rain sky star wind wolke; do
 	alias @$host="@ $host"
 done; unset host
 
+for host in {Ember,Wind,Frost,Dune,Armx,Home}GW; do
+	alias ${host,,}="settitle -w $host; ssh $host"
+done; unset host
+
 # dates
 
 alias ssdate='date "+%Y%m%d"'
