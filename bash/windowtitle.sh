@@ -23,9 +23,9 @@ esac
 #	: ${nfspwd:=0}
 #fi
 
-settitle() { if [[ $titlestring ]]; then printf "$titlestring" "$*"; fi; }
+_settitle() { if [[ $titlestring ]]; then printf "$titlestring" "$*"; fi; }
 
-setwname() { if [[ $wnamestring ]]; then printf "$wnamestring" "$*"; fi; }
+_setwname() { if [[ $wnamestring ]]; then printf "$wnamestring" "$*"; fi; }
 
 _show_status() {
 	local status=$?
@@ -62,7 +62,7 @@ _update_title() {
 		t_host=$HOSTNAME
 		title="${t_user}${t_host} ${t_path}"
 	fi
-	settitle "$title"
+	_settitle "$title"
 }
 PROMPT_COMMAND+="${PROMPT_COMMAND+; }_update_title"
 
@@ -83,7 +83,7 @@ _update_wname() {
 		wname=${t_par::2}/${t_dir::5}
 	fi
 	if [[ ${wname-} ]]; then
-		setwname "$wname"
+		_setwname "$wname"
 	fi
 }
 PROMPT_COMMAND+="${PROMPT_COMMAND+; }_update_wname"
