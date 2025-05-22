@@ -172,7 +172,7 @@ for host in dust ember frost land myth rain sky star wind wolke; do
 	alias @$host="@ $host"
 done; unset host
 
-for host in {Ember,Wind,Frost,Dune,Armx,Home}GW; do
+for host in {Ember,Wind,Frost,Dune,Armx,Shore,Home}GW; do
 	alias ${host,,}="settitle -ww $host; ssh $host"
 done; unset host
 
