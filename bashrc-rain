@@ -2,7 +2,7 @@
 
 [[ $- != *i* ]] && return
 
-if [[ $DISPLAY ]]; then
+if [[ $DISPLAY || $WAYLAND_DISPLAY ]]; then
 	. ~/.dotfiles/bash/yank.sh
 fi
 

@@ -7,3 +7,7 @@ if [[ $TERM == @(ansi|cygwin) ]]; then
 	fmts[c]='1;35'
 	fmts[d]='35'
 fi
+
+if [[ $DISPLAY || $WAYLAND_DISPLAY ]]; then
+	. ~/.dotfiles/bash/yank.sh
+fi
