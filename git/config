@@ -280,9 +280,9 @@
 	# used by git-annex
 	insteadOf = annex:Attic/
 
-[url "vm-vol5:/vol5/"]
+[url "vol5:/vol5/Attic"]
 	# used by git-annex
-	insteadOf = vol5:
+	insteadOf = vol5:Attic
 
 # Other rewrites
 
