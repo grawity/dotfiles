@@ -117,8 +117,10 @@
 	whitespace = trailing-space, space-before-tab, blank-at-eof
 
 [credential]
-	#helper = libsecret
-	useHttpPath = false
+	helper = libsecret
+
+[credential "https://dev.azure.com"]
+	useHttpPath = true
 
 [delta]
 	features = decorations navigate
