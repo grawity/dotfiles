@@ -362,6 +362,9 @@
 	insteadOf = git://git.archlinux.org/svntogit/community.git
 	insteadOf = https://git.archlinux.org/svntogit/community.git
 
+[url "git@git.ukolegija.lt:"]
+	insteadOf = https://git.ukolegija.lt/
+
 # global annex config
 
 
