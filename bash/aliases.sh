@@ -113,6 +113,7 @@ alias rawhois='do: whois -h whois.ra.net --'
 alias riswhois='do: whois -h riswhois.ripe.net --'
 alias rot13='tr N-ZA-Mn-za-m A-Za-z'
 alias run='spawn -c'
+alias sixel='chafa -f sixels'
 sp() { printf '%s' "$@"; printf '\n'; }
 splitext() { split -dC "${2-32K}" "$1" "${1%.*}-" --additional-suffix=".${1##*.}"; }
 alias sudo='sudo ' # for alias expansion in sudo args
