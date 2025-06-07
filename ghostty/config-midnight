@@ -41,5 +41,8 @@ shell-integration = none
 #shell-integration-features = false
 #shell-integration-features = no-cursor no-title
 
+# Default is 'desktop' which autodetects how ghostty was started.
 #gtk-single-instance = true
+
+# Default is 'single-instance' due to startup overhead.
 #linux-cgroup = always
