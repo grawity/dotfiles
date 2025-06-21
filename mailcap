@@ -5,6 +5,9 @@ application/msword; libreoffice --cat %s; nametemplate=%s.doc; copiousoutput
 application/vnd.openxmlformats-officedocument.wordprocessingml.document; libreoffice %s; nametemplate=%s.docx
 application/vnd.openxmlformats-officedocument.wordprocessingml.document; libreoffice --cat %s; nametemplate=%s.docx; copiousoutput
 
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; libreoffice %s; nametemplate=%s.xlsx
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; libreoffice --cat %s; nametemplate=%s.xlsx; copiousoutput
+
 application/x-zip-compressed; vim %s; nametemplate=%s.zip; needsterminal
 application/x-zip-compressed; file-roller %s; nametemplate=%s.zip
 application/x-zip-compressed; zipinfo -2 /dev/stdin; copiousoutput

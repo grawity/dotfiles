@@ -201,7 +201,7 @@
 	# consults this list, e.g. when `cd`-ing to /srv/dist.)
 	directory = /net/*
 	directory = /srv/*
-	directory = /usr/local/nullroute
+	directory = /usr/local/*
 
 [sendemail]
 	from = Mantas Mikulėnas <grawity@gmail.com>
