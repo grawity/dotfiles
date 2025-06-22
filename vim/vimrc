@@ -140,8 +140,10 @@ elseif &t_Co >= 256
 	" On terminals that support bgcolor reporting, Neovim sets 'bg=light'
 	" asynchronously. (Note: This is not triggered for 'bg=dark', likely
 	" because that's already the default.)
+	if has("nvim")
 	autocmd OptionSet background ++once
 	\ if &bg ==# 'light' | exe "color" light | else | exe "color" dark | endif
+	endif
 else
 	" Fallback for obsolete terminals
 	silent! color slate
