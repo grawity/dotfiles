@@ -3,11 +3,11 @@
 
 set -e
 
-PATH="$HOME/bin:$HOME/bin/bin:$PATH" # TODO (libfilterfile in bin/bin)
+PATH="$HOME/bin:$PATH"
 FQDN=${FQDN:-$(fqdn)}
 
 . lib.bash || exit
-. libfilterfile.bash || exit
+. ~/bin/lib/libfilterfile.bash || exit
 
 progname='ssh/generate'
 
@@ -24,8 +24,10 @@ generate() {
 }
 
 srcdir=${BASH_SOURCE[0]%/*}
-input=( "$srcdir/config"
-	"$srcdir/config-$HOSTNAME" )
+input=(
+	"$srcdir/config"
+	"$srcdir/config-$HOSTNAME"
+)
 output="$HOME/.ssh/.generated-config-$HOSTNAME"
 
 if [[ ! -e ${input[0]} ]]; then
