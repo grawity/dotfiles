@@ -325,6 +325,9 @@
 [url "https://gitlab.archlinux.org/archlinux/packaging/packages/"]
 	insteadOf = abs:
 
+[url "git@gitlab.archlinux.org:"]
+	pushInsteadOf = https://gitlab.archlinux.org/
+
 # rewrites of obsolete repos (to be removed eventually)
 
 [url "https://git.archlinux.org/"]
