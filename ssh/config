@@ -59,6 +59,9 @@ Host ptp-u2*.sym ptp-pico*.sym kol-*.sym
 Host er-x.sym
 	User ubnt
 
+Host rut200.sym rutosgw.sym
+	User root
+
 Host *.nullroute.lt *.sym
 	GSSAPIAuthentication yes
 	ForwardAgent yes
