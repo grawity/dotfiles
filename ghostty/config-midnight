@@ -17,21 +17,19 @@ font-size = 13
 theme = "catppuccin-mocha"
 #theme = "Monokai Pro Light Sun"
 #theme = "Monokai Pro Ristretto"
-#theme = "Monokai Remastered"
 #theme = "rose-pine-dawn"
 #theme = "Solarized"
 #bold-is-bright = true
-
-# alpha-blending = native
-# alpha-blending = linear-corrected
 
 # keybind = ctrl+shift+equal=increase_font_size:1
 
 resize-overlay = never
 #gtk-titlebar = false
 #gtk-adwaita = true
+#gtk-adwaita = false
 #adw-toolbar-style = raised-border
 #adw-toolbar-style = raised
+window-show-tab-bar = always
 
 window-inherit-working-directory = true
 
@@ -45,4 +43,4 @@ shell-integration = none
 #gtk-single-instance = true
 
 # Default is 'single-instance' due to startup overhead.
-#linux-cgroup = always
+linux-cgroup = always
