@@ -100,6 +100,17 @@ Host eisner
 Host *.ngrok.com *.ngrok-agent.com
 	ControlPath none
 
+Host ppc-alpine
+	Hostname aludra.ppc64.be
+Host ppc-chimera
+	Hostname adhara.ppc64.be
+Host ppc-fedora
+	Hostname theta.ppc64.be
+Host ppc-freebsd
+	Hostname furud.ppc64.be
+Host ppc-arch
+	Hostname yeji.ppc64.be
+
 Host sdf sdf.org
 	Hostname tty.sdf.org
 
