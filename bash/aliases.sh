@@ -164,7 +164,7 @@ alias '~~'='grep -E -i'
 }
 ,,() { showfile "$@"; }
 alias open=,
-bind -m emacs -x '"\e,": ,'
+bind -m emacs -x '"\e,": xdg-open .'
 @cd() { cd "${1:+/net/$1}/${PWD#/net/*/}"; }
 @pwd() { echo "${1:+/net/$1}/${PWD#/net/*/}"; }
 
