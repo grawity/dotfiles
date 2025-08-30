@@ -1,0 +1,8 @@
+filetype: worklog
+detect:
+  filename: "[A-Z][a-z_ ]+log\\.txt$"
+rules:
+  - comment: "^\uFEFF?#.*$"
+  - constant: "^[0-9x]{4}-.*"
+  - identifier: "^\\s*- (([0-9x]{4}-[0-9x]{2}-[0-9x]{2}|[0-9x]{2}:[0-9x]{2})[ :])?"
+  - todo: "(TODO|XXX|FIXME):?"
