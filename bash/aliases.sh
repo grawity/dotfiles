@@ -287,7 +287,7 @@ man() {
 
 oldssh() {
 	ssh -o KexAlgorithms="+diffie-hellman-group1-sha1,diffie-hellman-group14-sha1" \
-	    -o HostKeyAlgorithms="+ssh-rsa,ssh-dss" \
+	    -o HostKeyAlgorithms="+ssh-rsa" \
 	    -o PubkeyAcceptedAlgorithms="+ssh-rsa" \
 	    -o Ciphers="+3des-cbc" \
 	    "$@";
