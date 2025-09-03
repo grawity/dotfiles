@@ -31,6 +31,6 @@ resize-overlay = never
 #adw-toolbar-style = raised
 
 window-inherit-working-directory = true
-#shell-integration-features = false
-#gtk-single-instance = true
+shell-integration-features = false
+gtk-single-instance = true
 #linux-cgroup = always
