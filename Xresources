@@ -7,9 +7,11 @@ XTerm.termName:			xterm-256color
 XTerm.backarrowKeyIsErase:	true
 XTerm.ptyInitialErase:		true
 
-! Help lsix detect SIXEL support (default "vt420" does not have graphics)
+! Help lsix detect SIXEL support (default "vt420" does not have graphics), and
+! avoid the 16-color limit on the SIXEL palette
 !XTerm*VT100.decTerminalID:	vt340
 XTerm*VT100.decGraphicsID:	vt340
+XTerm*VT100.numColorRegisters:	256
 
 ! Define copy/paste keyboard shortcuts
 XTerm*VT100.translations:	#override			\n\
