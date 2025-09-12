@@ -86,6 +86,7 @@ uk-blubtn24.utenos-kolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDGOz0OQDyrwE
 uk-blubtn26.utenos-kolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHD2Jj7M48Z28LS58KXFN+dcB+6QMa9Jcg/0SrkUhP1x
 uk-cacti.utenos-kolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN9xxtok5ulxl7YhFV34NIcu4wcf+M862q+iMERlYgel
 uk-captive.utenos-kolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINZP4k8zacH0ozYHeNjjeTSRixMmImNAeEfT/d+qEYam
+uk-dspace.utenos-kolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMbRBtcSAQWpfTOq9GcrdKrPIj4UkEUWo6q20RTkVVhl
 uk-mail3.utenos-kolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKRhtloRki4A652XSBOBOwcNBaG71zRT6SdI1Bu5q+Ck
 uk-unifi.utenos-kolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJj4MM1ZutJBOy4nfVMaYE1u7rXR0uvAMbSUlfXp6lvU
 git.utenos-kolegija.lt,git.ukolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKCDys46kgIfPvFI4S8GRkVsjSWkA2AMhDyIddTvLrDG
