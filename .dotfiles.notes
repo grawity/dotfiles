@@ -58,9 +58,9 @@ Already migrated to XDG in a release:
 ~/.vimrc		~/.config/vim/vimrc		Vim 9.1.0327
 ~/.vimrc		~/.config/nvim/init.vim		Neovim
 ~/.VirtualBox/		~/.local/share/VirtualBox/
+~/.vnc/			[various]/tigervnc/
 ~/.weechat/		[various]/weechat/		3.2
 ~/.wireshark/		~/.config/wireshark/		1.12
-
 
 Migrated to XDG in devel:
 
