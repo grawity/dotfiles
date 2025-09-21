@@ -3,9 +3,6 @@
 # 2025-06-08 grawity@myth: default font looks arguably better than Monaco does
 #font-family = "Monaco"
 
-# Disable Contextual Alternates (the dumb 'coding' ligatures)
-font-feature = "-calt"
-
 #font-size = 13
 # 2025-06-08 grawity@myth: baseline adjustment seems to be no longer needed
 #adjust-font-baseline = 1
@@ -26,24 +23,14 @@ theme = "Catppuccin Mocha"
 
 # keybind = ctrl+shift+equal=increase_font_size:1
 
-resize-overlay = never
+#resize-overlay = never
 #gtk-titlebar = false
 #gtk-adwaita = true
 #gtk-adwaita = false
-#adw-toolbar-style = raised-border
-#adw-toolbar-style = raised
-window-show-tab-bar = always
+#gtk-toolbar-style = flat
+#gtk-toolbar-style = raised-border
+#gtk-toolbar-style = raised
+#window-show-tab-bar = always
 
-window-inherit-working-directory = true
-
-# Don't auto-switch cursor style, and don't override our custom bashrc termtitle
-cursor-style = bar
-shell-integration = none
-#shell-integration-features = false
-#shell-integration-features = no-cursor no-title
-
-# Default is 'desktop' which autodetects how ghostty was started.
-#gtk-single-instance = true
-
-# Default is 'single-instance' due to startup overhead.
-linux-cgroup = always
+# Include global file (always processed after local settings)
+config-file = ~/.dotfiles/ghostty/config

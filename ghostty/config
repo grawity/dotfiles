@@ -1,0 +1,27 @@
+# vim: ft=ghostty
+
+# Disable Contextual Alternates (the dumb 'coding' ligatures)
+font-feature = "-calt"
+
+# Don't auto-switch cursor style, and don't override our custom bashrc termtitle
+cursor-style = bar
+
+# Don't override our custom terminal title.
+# (Keep 'shell-integration' in general as it provides cwd reporting and some
+# other things that 'shell-integration-features' does not include.)
+#shell-integration = none
+shell-integration-features = false
+#shell-integration-features = no-cursor,no-title
+
+# Open new windows in same cwd as the last active window
+window-inherit-working-directory = true
+
+# Run all windows in a single instance. (Default is 'detect')
+#gtk-single-instance = true
+
+# Create a separate systemd .scope per tab. (Default is 'single-instance', i.e.
+# only if gtk-single-instance is true, due to startup overhead.)
+linux-cgroup = always
+
+# Include local overrides (always processed after this file)
+config-file = ?~/.dotfiles/ghostty/config.local
