@@ -14,10 +14,10 @@
 #theme = "Adwaita"
 #theme = "Adwaita Dark"
 #theme = "Catppuccin Frappe"
-theme = "Catppuccin Mocha"
+#theme = "Catppuccin Mocha"
 #theme = "Monokai Pro Light Sun"
 #theme = "Monokai Pro Ristretto"
-#theme = "rose-pine-dawn"
+#theme = "Rose Pine Dawn"
 #theme = "Solarized"
 #bold-is-bright = true
 

@@ -14,8 +14,8 @@ freetype-load-flags = no-force-autohint,no-monochrome
 #theme = "Monokai Pro Light Sun"
 #theme = "Monokai Pro Ristretto"
 #theme = "Monokai Remastered"
-# theme = "rose-pine-dawn"
-theme = "Solarized"
+# theme = "Rose Pine Dawn"
+#theme = "Solarized"
 # bold-is-bright = true
 
 # alpha-blending = native
