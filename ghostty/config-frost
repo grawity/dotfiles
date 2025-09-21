@@ -10,8 +10,8 @@ freetype-load-flags = no-force-autohint,no-monochrome
 
 # theme = "Adwaita"
 # theme = "Adwaita Dark"
-# theme = "catppuccin-frappe"
-# theme = "catppuccin-mocha"
+# theme = "Catppuccin Frappe"
+# theme = "Catppuccin Mocha"
 #theme = "Monokai Pro Light Sun"
 #theme = "Monokai Pro Ristretto"
 #theme = "Monokai Remastered"
