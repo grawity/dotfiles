@@ -90,7 +90,11 @@ PROMPT_COMMAND+="${PROMPT_COMMAND+; }_update_wname"
 
 _update_termcwd() {
 	# Set current path
-	if [[ ${VTE_VERSION-}${TILIX_ID-}${TMUX-} || $TERM == *-@(256color|direct) ]]; then
+	if
+		[[ ${VTE_VERSION-}${TILIX_ID-}${TMUX-} ]] ||
+		[[ ${TERM_PROGRAM-} == @(ghostty) ]] ||
+		[[ $TERM == *-@(256color|direct|ghostty) ]]
+	then
 		local p_path=$PWD
 		if (( nfspwd )) && [[ $p_path != /net/* ]]; then
 			p_path="/net/${HOSTNAME}${p_path}"
