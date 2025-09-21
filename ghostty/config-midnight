@@ -1,36 +1,4 @@
 # vim: ft=ghostty
-#font-family = ""
-# 2025-06-08 grawity@myth: default font looks arguably better than Monaco does
-#font-family = "Monaco"
-
-#font-size = 13
-# 2025-06-08 grawity@myth: baseline adjustment seems to be no longer needed
-#adjust-font-baseline = 1
-# adjust-cell-height = 1
-# grapheme-width-method = legacy
-# 2025-06-08 grawity@myth: default flags now look *slightly* better with monaco
-#freetype-load-flags = no-force-autohint
-
-#theme = "Adwaita"
-#theme = "Adwaita Dark"
-#theme = "Catppuccin Frappe"
-#theme = "Catppuccin Mocha"
-#theme = "Monokai Pro Light Sun"
-#theme = "Monokai Pro Ristretto"
-#theme = "Rose Pine Dawn"
-#theme = "Solarized"
-#bold-is-bright = true
-
-# keybind = ctrl+shift+equal=increase_font_size:1
-
-#resize-overlay = never
-#gtk-titlebar = false
-#gtk-adwaita = true
-#gtk-adwaita = false
-#gtk-toolbar-style = flat
-#gtk-toolbar-style = raised-border
-#gtk-toolbar-style = raised
-#window-show-tab-bar = always
 
 # Include global file (always processed after this file regardless of position)
 config-file = ~/.dotfiles/ghostty/config
