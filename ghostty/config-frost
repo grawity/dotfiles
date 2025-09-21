@@ -30,5 +30,5 @@ freetype-load-flags = no-force-autohint,no-monochrome
 #gtk-toolbar-style = raised
 #gtk-toolbar-style = raised-border
 
-# Include global file (always processed after local settings)
+# Include global file (always processed after this file regardless of position)
 config-file = ~/.dotfiles/ghostty/config

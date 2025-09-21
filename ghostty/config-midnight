@@ -32,5 +32,5 @@
 #gtk-toolbar-style = raised
 #window-show-tab-bar = always
 
-# Include global file (always processed after local settings)
+# Include global file (always processed after this file regardless of position)
 config-file = ~/.dotfiles/ghostty/config
