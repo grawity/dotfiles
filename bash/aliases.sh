@@ -227,6 +227,7 @@ case $OSTYPE in
 		alias dff='df -xtmpfs -xdevtmpfs -xrootfs -xecryptfs -xafs'
 		alias lsd='ls -d --indicator-style=none */'
 		alias lsh='ls -a --ignore="[^.]*"'
+		alias tar='tar --rsh-command=/bin/ssh'
 		;;
 	freebsd*)
 		lsopt="$lsopt -G"
