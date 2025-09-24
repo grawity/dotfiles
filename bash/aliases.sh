@@ -113,7 +113,6 @@ alias rawhois='do: whois -h whois.ra.net --'
 alias riswhois='do: whois -h riswhois.ripe.net --'
 alias rot13='tr N-ZA-Mn-za-m A-Za-z'
 alias run='spawn -c'
-alias sixel='chafa -f sixels'
 sp() { printf '%s' "$@"; printf '\n'; }
 splitext() { split -dC "${2-32K}" "$1" "${1%.*}-" --additional-suffix=".${1##*.}"; }
 alias sudo='sudo ' # for alias expansion in sudo args
@@ -414,14 +413,6 @@ if [[ $HOSTNAME == @(wolke|sky|ember|star|land) ]]; then
 fi
 
 . ~/.dotfiles/bash/fzf.sh
-
-if have chafa; then
-	# Leave space for orig. command (1 line) + new prompt (3 lines)
-	alias imgrgb='chafa --symbols=vhalf --size=$[COLUMNS]x$[LINES-1-3]'
-	if [[ $TERM_PROGRAM == BlackBox ]]; then
-		alias imgrgb='chafa -f sixel -s $[COLUMNS]x$[LINES-1-3]'
-	fi
-fi
 
 if have step-cli; then
 	# Arch's unusual packaging
