@@ -4,8 +4,7 @@
 # NOTE: The '#if <host>' directives are processed by the 'ssh/generate' script,
 # not by OpenSSH.
 
-# Doesn't yet exist in Debian bullseye (OpenSSH 8.4)
-IgnoreUnknown PubkeyAcceptedAlgorithms
+IgnoreUnknown PubkeyAcceptedAlgorithms,WarnWeakCrypto
 
 #if ember
 Host embergw-alt
@@ -68,6 +67,7 @@ Host rut200.sym rutosgw.sym
 Host *.nullroute.lt *.sym
 	GSSAPIAuthentication yes
 	ForwardAgent yes
+	WarnWeakCrypto no
 
 # -- Other hosts --
 
@@ -135,6 +135,7 @@ Host *.utenos-kolegija.lt
 
 Host bmc-*.utenos-kolegija.lt
 	# iLO (import public key in "SSH2" format)
+	WarnWeakCrypto no
 	KexAlgorithms +diffie-hellman-group14-sha1
 	HostKeyAlgorithms +ssh-rsa
 	PubkeyAcceptedAlgorithms +ssh-rsa
