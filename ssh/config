@@ -39,23 +39,12 @@ Host armxgw.sym dunegw.sym embergw.sym frostgw.sym shoregw.sym windgw.sym homegw
 Host *.armxgw.sym *.dunegw.sym *.embergw.sym *.frostgw.sym *.shoregw.sym *.windgw.sym
 	User admin
 
-Host groove-*.sym legacygw.sym
-	# For now Groove-M18 is still ROS6
-	PubkeyAcceptedAlgorithms +ssh-rsa
-	User admin
-
 Host bmc.*.nullroute.lt bmc.*.sym
-	# iLO4 (import public key in "SSH2" format)
-	KexAlgorithms +diffie-hellman-group14-sha1
-	HostKeyAlgorithms +ssh-rsa
-	PubkeyAcceptedAlgorithms +ssh-rsa
 	User Administrator
 
 Host ptp-u2*.sym ptp-pico*.sym kol-*.sym
 	# airOS 4.x-6.x
 	KexAlgorithms +diffie-hellman-group1-sha1
-	HostKeyAlgorithms +ssh-rsa
-	PubkeyAcceptedAlgorithms +ssh-rsa
 	User root
 
 Host er-x.sym
@@ -69,8 +58,12 @@ Host *.nullroute.lt *.symlink.lt *.sym
 	ForwardAgent yes
 
 Host *.sym
-	# Some hosts don't support ML-KEM, but the internal network also
-	# carries a lot of non-SSH and non-TLS traffic anyway.
+	# Allow old ciphers for internal hosts. The internal network already
+	# carries a lot of non-SSH and non-TLS traffic, so it relies on link-
+	# or network-layer security in any case.
+	KexAlgorithms +diffie-hellman-group14-sha1
+	HostKeyAlgorithms +ssh-rsa
+	PubkeyAcceptedAlgorithms +ssh-rsa
 	WarnWeakCrypto no
 
 # -- Other hosts --
