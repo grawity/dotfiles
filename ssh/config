@@ -174,11 +174,26 @@ Host dune.nullroute.lt
 	PKCS11Provider /usr/lib/p11-kit-proxy.so
 #endif
 
-# TEMPORARY
-# https://bugzilla.mindrot.org/show_bug.cgi?id=3872
+#if @(ember|wind)
 Host *
+	# Persist authenticated connections, where timeouts are not an issue
+	# (on systems that are not suspended).
+	ControlMaster auto
+	ControlPersist 1h
+#else
+Host ember.nullroute.lt
+	# Don't multiplex connections that need high throughput (improves
+	# "annex get -J4" speed on LTE).
 	ControlPath none
-	ControlPersist no
+
+Host *
+	# Allow multiplexing but don't persist connections once closed.
+	# (Without this, "ControlMaster auto" would work differently; exiting
+	# the initial session would immediately close the mux and all muxed
+	# sessions, rather than backgrounding it.)
+	ControlMaster auto
+	ControlPersist 5s
+#endif
 
 #if @(ember|frost)
 Host *
