@@ -64,9 +64,13 @@ Host er-x.sym
 Host rut200.sym rutosgw.sym
 	User root
 
-Host *.nullroute.lt *.sym
+Host *.nullroute.lt *.symlink.lt *.sym
 	GSSAPIAuthentication yes
 	ForwardAgent yes
+
+Host *.sym
+	# Some hosts don't support ML-KEM, but the internal network also
+	# carries a lot of non-SSH and non-TLS traffic anyway.
 	WarnWeakCrypto no
 
 # -- Other hosts --
@@ -96,6 +100,7 @@ Host burble-nyc
 Host eisner
 	Hostname %h.decus.org
 	Port 22867
+	WarnWeakCrypto no
 	HostKeyAlgorithms +ssh-rsa
 	PubkeyAcceptedAlgorithms +ssh-rsa
 	User mikulenas
@@ -105,14 +110,24 @@ Host *.ngrok.com *.ngrok-agent.com
 
 Host ppc-alpine
 	Hostname aludra.ppc64.be
+	AddressFamily inet6
+
 Host ppc-chimera
 	Hostname adhara.ppc64.be
+	AddressFamily inet6
+
 Host ppc-fedora
 	Hostname theta.ppc64.be
+	AddressFamily inet6
+	GSSAPIAuthentication no
+
 Host ppc-freebsd
 	Hostname furud.ppc64.be
+	AddressFamily inet6
+
 Host ppc-arch
 	Hostname yeji.ppc64.be
+	AddressFamily inet6
 
 Host sdf sdf.org
 	Hostname tty.sdf.org
@@ -122,10 +137,6 @@ Host sdf-eu sdf.eu
 
 Host theos
 	Hostname %h.kyriasis.com
-
-Host vsiftp.vmssoftware.com
-	User VSIPUBLIC
-	HostKeyAlgorithms +ssh-rsa
 
 # -- Work --
 
@@ -165,13 +176,14 @@ Host *
 	GSSAPIAuthentication yes
 
 #if @(ember|frost|midnight|myth)
-Host *.* *gw.sym !ember !*.nullroute.lt !*.sym
+## 2025-10: commented out to see if it's still necessary, or if I can rely on ssh-pkcs11 (agent)
+#Host *.* *gw.sym !ember !*.nullroute.lt !*.sym
 	# Use hardware key (TPM or eToken) for everything (except Kerberos hosts).
 	# Avoid it for Kerberos hosts as it adds ~0.1s on Frost.
-	PKCS11Provider /usr/lib/p11-kit-proxy.so
+#	PKCS11Provider /usr/lib/p11-kit-proxy.so
 
-Host dune.nullroute.lt
-	PKCS11Provider /usr/lib/p11-kit-proxy.so
+#Host dune.nullroute.lt
+#	PKCS11Provider /usr/lib/p11-kit-proxy.so
 #endif
 
 #if @(ember|wind)
