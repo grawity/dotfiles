@@ -1,5 +1,11 @@
 # vim: ft=ghostty
 
+# Initial window dimensions
+# 2025-10-11: Disabled for now, as the "initial" size isn't actually initial
+# but causes a visible resize from 80x25.
+#window-width = 90
+#window-height = 35
+
 # Default to 13pt
 font-size = 13
 
@@ -13,7 +19,7 @@ cursor-style = bar
 # (Keep 'shell-integration' in general as it provides cwd reporting and some
 # other things that 'shell-integration-features' does not include.)
 # 2025-09-21: Disable 'shell-integration' as it eats multiline prompts when
-# resizing the window; bash/windowtitle.sh already reports cwd.
+# resizing the window; our own bash/windowtitle.sh already reports cwd.
 shell-integration = none
 #shell-integration-features = false
 #shell-integration-features = no-cursor,no-title
