@@ -136,7 +136,7 @@ Host theos
 Host *.utenos-kolegija.lt *.ukolegija.lt
 	# Use UK key from TPM or eToken
 	PKCS11Provider /usr/lib/p11-kit-proxy.so
-#if ember
+#if @(ember|frost)
 	WarnWeakCrypto no
 #endif
 
@@ -147,6 +147,9 @@ Host bmc-*.utenos-kolegija.lt
 	HostKeyAlgorithms +ssh-rsa
 	PubkeyAcceptedAlgorithms +ssh-rsa
 	User Administrator
+
+Host gw-b56.utenos-kolegija.lt gw-m18.utenos-kolegija.lt
+	User admin
 
 Host gw-core-alt
 #if ember
