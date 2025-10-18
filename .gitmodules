@@ -55,3 +55,6 @@
 [submodule "vim/bundle/zenbones.nvim"]
 	path = vim/bundle/zenbones.nvim
 	url = https://github.com/mcchrish/zenbones.nvim
+[submodule "vim/bundle/lazy.nvim"]
+	path = vim/bundle/lazy.nvim
+	url = https://github.com/folke/lazy.nvim
