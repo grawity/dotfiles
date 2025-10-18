@@ -28,7 +28,7 @@ if has("nvim")
 	set guicursor=
 
 	" Or always reset it to a specific style.
-	"au VimLeave,VimSuspend * set guicursor=a:foo
+	"au VimLeave,VimSuspend * set guicursor=a:ver30
 endif
 
 set title
