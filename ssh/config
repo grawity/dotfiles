@@ -135,7 +135,7 @@ Host theos
 
 Host *.utenos-kolegija.lt *.ukolegija.lt
 	# Use UK key from TPM or eToken
-	PKCS11Provider /usr/lib/p11-kit-proxy.so
+#	PKCS11Provider /usr/lib/p11-kit-proxy.so
 #if @(ember|frost)
 	WarnWeakCrypto no
 #endif
@@ -162,7 +162,7 @@ Host gw-core-alt
 #endif
 	HostkeyAlias gw-core.utenos-kolegija.lt
 	User root
-	PKCS11Provider /usr/lib/p11-kit-proxy.so
+#	PKCS11Provider /usr/lib/p11-kit-proxy.so
 
 # -- Global settings --
 
