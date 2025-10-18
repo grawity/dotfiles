@@ -1,11 +1,8 @@
 require("lazy").setup({
 	spec = {
-		{
-			url = "https://tpope.io/vim/eunuch.git",
-		},
-		{
-			url = "https://github.com/preservim/tagbar",
-		},
+		--{ "EdenEast/nightfox.nvim" },
+		{ url = "https://tpope.io/vim/eunuch.git" },
+		{ url = "https://github.com/preservim/tagbar" },
 	},
 	performance = {
 		rtp = {
