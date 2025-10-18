@@ -481,7 +481,7 @@ endif
 
 " Plugins
 
-if has("nvim") && (hostname() == "frost" || hostname() == "ember")
+if has("nvim") && hostname() =~ '^\(frost\|ember\|myth\)$'
 	" Instead of converting the whole vimrc into Lua, load a separate
 	" ~/.dotfiles/vim/init.lua for now. Yes I could also do 'lua <<EOF'
 	" but that messes with syntax highlighting.
