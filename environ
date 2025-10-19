@@ -14,7 +14,7 @@ set -a
 
 # System path
 add_path ~/bin
-add_path ~/bin/bin
+add_path ~/bin/misc
 add_path ~/bin/obj/host.$HOSTNAME
 add_path ~/.local/bin
 
