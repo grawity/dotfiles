@@ -230,3 +230,6 @@ Host *
 	# Don't automatically add extra hostkeys provided by server, since the
 	# feature insists on replacing the known_hosts symlink with plain file.
 	UpdateHostKeys no
+
+	# Disable PQ cryptography warnings in general
+	WarnWeakCrypto no
