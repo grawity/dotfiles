@@ -62,6 +62,7 @@ ukip() {
 			#sudo: ip addr add 169.254.0.42/16 dev $dev scope link
 			sudo: ip addr add 192.168.0.42/24 dev $dev
 			sudo: ip addr add 192.168.1.42/24 dev $dev
+			sudo: ip addr add 192.168.88.42/24 dev $dev
 			;;
 		down)
 			sudo: ip addr flush dev $dev
