@@ -2,6 +2,7 @@
 @cert-authority *.nullroute.lt,*.sym ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINi9073+XIwMND7qY5fFcz3tu2Oqp5ehgFAV0APFiyRq Nullroute host CA r1 (2018-03-23)
 @cert-authority *.ukolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPYO6xBHkUDn6qrOWiywrA89Pd4u31sfyP43XIZZ0EF/ Utenos kolegija host CA r1 (2018-05-10)
 @cert-authority *.utenos-kolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPYO6xBHkUDn6qrOWiywrA89Pd4u31sfyP43XIZZ0EF/ Utenos kolegija host CA r1 (2018-05-10)
+@cert-authority *.burble.dn42 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK5AQLbckPOLNC9gNFSoR6YfHuUA0jY0I7TTd99GUoXK
 # Nullroute - servers
 ampere,ampere.sym,ampere.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINsrwf2br3SEvqwLFENt3iGIjanIEGmqoEuXgN3webYW
 dust,dust.sym,dust.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC07MUPjnT80qDodTXxaWVaJXo7ZC8gjleJRlzRfiZcc
@@ -161,7 +162,6 @@ vcs.savannah.gnu.org,git.savannah.gnu.org ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAzF
 download.savannah.gnu.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA8YxNp3ZcNUw0lruMr9ysUm1pwcB4YZLJwke31erVA7
 git.ukolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKCDys46kgIfPvFI4S8GRkVsjSWkA2AMhDyIddTvLrDG
 10.147.241.26 ssh-rsa AAAAB3NzaC1yc2EAAAABAwAAAQEA0fbbRdgn6IoCxBfsztFiL8dEOzRltsnJvFewlCHdxl2t/tXd3p8Am/Wlncv29Qt7sTDSj9mJ0ZZ5tgQtD7YevWS111kLidEstlzilr/LopuQOSEtXe66WPmtH29KILmU67jnRgm+7WF39hSWzQl21he8qVBIj12flxy6nT63YpGcHbjX9He+CXixO0TvZZtJE8c81aLYsgC3Pgl5ou9eEoDgT5H9lzXkFnh0RLWCW+WSnOQdkyMniUH2/SK5LYW/oyWnlknqtn94ECcBEMIfdvaB5H1rd0ZHx1uJtCQKMSYhx6apZQ3mYAQ7Z/nzpR4zq5XSKmT0OZDeRygOERlsfw==
-shell.fr.burble.dn42 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJGzJe3hHpJfaXY+LJ6YSxL5mngMKiqDgZg9gRQU6Uxh
 sirius.ppc64.be ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDKmX4U8TFjAXVO/E1Rt3GIOOpti6lqgBCb7vhWLziTx
 theta.ppc64.be ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGYNsiPrW7tMo/FoKWDuR4IGxtynG/CMdKbi6HtVYbYS
 aludra.ppc64.be ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKrKU0PbFOsiXD70TOKZtyjgh3d4lHiQzBl037t3AXKe
