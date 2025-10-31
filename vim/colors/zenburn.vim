@@ -83,13 +83,6 @@
 "
 "      let g:zenburn_color_also_Ignore = 1
 "
-" * To increase the contrast/brightness of the Visual selection, use
-"
-"      let g:zenburn_alternate_Visual = 1
-"
-"   Note: if the old-style Visual is used, this increases the contrast.
-"   Otherwise it chooses a brighter background; see g:zenburn_old_Visual
-"
 " * To use alternate colouring for Error message, use
 "
 "      let g:zenburn_alternate_Error = 1
@@ -201,10 +194,6 @@ endif
 
 if ! exists("g:zenburn_force_dark_Background")
     let g:zenburn_force_dark_Background = 0
-endif
-
-if ! exists("g:zenburn_alternate_Visual")
-    let g:zenburn_alternate_Visual = 0
 endif
 
 if ! exists("g:zenburn_alternate_Include")
@@ -419,36 +408,13 @@ if exists("g:zenburn_transparent") && g:zenburn_transparent
 endif
 
 if exists("g:zenburn_old_Visual") && g:zenburn_old_Visual
-    if exists("g:zenburn_alternate_Visual") && g:zenburn_alternate_Visual
-        " Visual with more contrast, thanks to Steve Hall & Cream posse
-        " gui=none fixes weird highlight problem in at least GVim 7.0.66, thanks to Kurt Maier
-        hi Visual          guifg=#000000 guibg=#71d3b4 gui=none  ctermfg=16  ctermbg=79  cterm=none
-        hi VisualNOS       guifg=#000000 guibg=#71d3b4 gui=none  ctermfg=16  ctermbg=79  cterm=none
-    else
-        " use default visual
-        hi Visual          guifg=#233323 guibg=#71d3b4 gui=none  ctermfg=235 ctermbg=79  cterm=none
-        hi VisualNOS       guifg=#233323 guibg=#71d3b4 gui=none  ctermfg=235 ctermbg=79  cterm=none
-    endif
+    "hi Visual        guifg=#000000 guibg=#71d3b4 gui=none  ctermfg=16  ctermbg=79  cterm=none
+    "hi VisualNOS     guifg=#000000 guibg=#71d3b4 gui=none  ctermfg=16  ctermbg=79  cterm=none
+    hi Visual        guifg=#233323 guibg=#71d3b4 gui=none  ctermfg=235 ctermbg=79  cterm=none
+    hi VisualNOS     guifg=#233323 guibg=#71d3b4 gui=none  ctermfg=235 ctermbg=79  cterm=none
 else
-    " new Visual style
-    if exists("g:zenburn_alternate_Visual") && g:zenburn_alternate_Visual
-        " brighter than the high/low contrast options below
-        hi Visual        guibg=#304a3d  ctermbg=23
-        hi VisualNos     guibg=#304a3d  ctermbg=23
-    elseif exists("g:zenburn_high_Contrast") && g:zenburn_high_Contrast
-        " high contrast
-        "TODO no nice greenish in console, 65 is closest. use full black instead,
-        "although i like the green..!
-        hi Visual        guibg=#0f0f0f  ctermbg=232
-        hi VisualNOS     guibg=#0f0f0f  ctermbg=232
-        if exists("g:zenburn_transparent") && g:zenburn_transparent
-            hi Visual ctermbg=235
-        endif
-    else
-        " low contrast
-        hi Visual        guibg=#2f2f2f  ctermbg=235
-        hi VisualNOS     guibg=#2f2f2f  ctermbg=235
-    endif
+    hi Visual        guibg=#304a3d  ctermbg=23
+    hi VisualNos     guibg=#304a3d  ctermbg=23
 endif
 
 if exists("g:zenburn_alternate_Error") && g:zenburn_alternate_Error
