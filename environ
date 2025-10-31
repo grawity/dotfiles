@@ -13,9 +13,9 @@ path_add() { case :$PATH: in *:$1:*) ;; *) PATH=$PATH:$1;; esac; }
 set -a
 
 # System path
-add_path ~/bin
 add_path ~/bin/misc
 add_path ~/bin/obj/host.$HOSTNAME
+add_path ~/bin
 add_path ~/.local/bin
 
 path_add /usr/local/sbin
