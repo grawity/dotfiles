@@ -262,7 +262,6 @@ hi FoldColumn      guifg=#93b3a3 guibg=#3f4040
 hi Folded          guifg=#93b3a3 guibg=#3f4040
 hi Function        guifg=#FFFF87                              ctermfg=228
 hi Identifier      guifg=#efdcbc                              ctermfg=223 cterm=none
-hi IncSearch       guifg=#f8f893 guibg=#385f38                ctermfg=228 ctermbg=23
 " grawity: Keyword un-bolded
 hi Keyword         guifg=#f0dfaf                              ctermfg=223
 hi Macro           guifg=#ffcfaf gui=bold                     ctermfg=223 cterm=bold
@@ -277,7 +276,6 @@ hi PreCondit       guifg=#dfaf8f gui=bold                     ctermfg=180 cterm=
 hi PreProc         guifg=#ffcfaf                              ctermfg=223
 hi Question        guifg=#ffffff gui=bold                     ctermfg=231 cterm=bold
 hi Repeat          guifg=#ffd7a7 gui=bold                     ctermfg=223 cterm=bold
-hi Search          guifg=#ffffe0 guibg=#284f28                ctermfg=230 ctermbg=22
 hi SignColumn      guifg=#9fafaf gui=bold                     ctermfg=109 cterm=bold
 hi SpecialChar     guifg=#dca3a3 gui=bold                     ctermfg=181 cterm=bold
 hi SpecialComment  guifg=#82a282 gui=bold                     ctermfg=108 cterm=bold
@@ -300,7 +298,16 @@ hi VisualNOS       guifg=#333333 guibg=#f18c96 gui=bold,underline ctermfg=236 ct
 hi WarningMsg      guifg=#ffffff guibg=#333333 gui=bold       ctermfg=231 ctermbg=236 cterm=bold
 hi WildMenu        guifg=#cbecd0 guibg=#2c302d gui=underline  ctermfg=194 ctermbg=236 cterm=underline
 
-" interim as Neovim 0.10 no longer links these
+" grawity: make IncSearch more distinct from Search
+" - during /foo or :%s///c, current match is 'IncSearch' while inactive
+"   matches are 'Search'
+" - after confirming a search, current match is 'CurSearch' while other
+"   matches remain 'Search'
+" - the Nvim default is to link IncSearch to CurSearch, so just use that
+hi Search          guifg=#ffffe0 guibg=#284f28                ctermfg=230 ctermbg=22
+"hi IncSearch       guifg=#f8f893 guibg=#385f38                ctermfg=228 ctermbg=23
+
+" grawity: interim as Neovim 0.10 no longer links these
 hi def link WinSeparator VertSplit
 hi def link QuickFixLine Search
 hi def link NormalFloat Pmenu
