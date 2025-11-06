@@ -92,11 +92,10 @@ set auto_subscribe
 ### Composing
 
 set realname="Mantas Mikulėnas"
-#set from="grawity@nullroute.lt"
-set from="grawity@gmail.com"
+set from="grawity@nullroute.lt"
 
 # Don't reply-all to own addresses
-alternates "^(grawity|mantas)(\\+.+)?@nullroute\.lt$"
+alternates "^(grawity|mantas)(\\+.+)?@(nullroute|symlink)\.lt$"
 alternates "^grawity(\\+.+)?@gmail\.com$"
 alternates "^mantas(:.+)?@u(tenos-)?kolegija\.lt$"
 
