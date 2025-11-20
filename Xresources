@@ -79,6 +79,11 @@ Rxvt.foreground:		Wheat
 Xft.hintstyle:			hintslight
 #endif
 
+#if defined(SRVR_nx8220)
+XTerm*background:		black
+XTerm*foreground:		white
+#endif
+
 ! From Mandrake 6 /root/.Xdefaults:
 ! xterm*background: Black
 ! xterm*foreground: Wheat
