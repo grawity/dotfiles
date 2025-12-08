@@ -76,19 +76,22 @@ Host shell.*.burble.dn42
 	User nullroute
 
 Host burble-fr
-	Hostname shell.fr.burble.dn42
+	Hostname shell.fr-rbx1.burble.dn42
 
 Host burble-uk
-	Hostname shell.uk.burble.dn42
+	Hostname shell.uk-lon1.burble.dn42
 
 Host burble-de
-	Hostname shell.de.burble.dn42
+	Hostname shell.de-fra2.burble.dn42
+
+Host burble-ca
+	Hostname shell.ca-bhs1.burble.dn42
+
+Host burble-ash
+	Hostname shell.us-ash1.burble.dn42
 
 Host burble-lax
-	Hostname shell.lax.burble.dn42
-
-Host burble-nyc
-	Hostname shell.nyc.burble.dn42
+	Hostname shell.us-lax1.burble.dn42
 
 Host eisner
 	Hostname %h.decus.org
