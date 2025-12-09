@@ -73,7 +73,7 @@ Host aur
 	User aur
 
 Host shell.*.burble.dn42
-	User nullroute
+	User symlink
 
 Host burble-fr
 	Hostname shell.fr-rbx1.burble.dn42
