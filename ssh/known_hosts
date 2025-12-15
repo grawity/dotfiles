@@ -2,7 +2,7 @@
 @cert-authority *.nullroute.lt,*.symlink.lt,*.sym ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINi9073+XIwMND7qY5fFcz3tu2Oqp5ehgFAV0APFiyRq Nullroute host CA r1 (2018-03-23)
 @cert-authority *.ukolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPYO6xBHkUDn6qrOWiywrA89Pd4u31sfyP43XIZZ0EF/ Utenos kolegija host CA r1 (2018-05-10)
 @cert-authority *.utenos-kolegija.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPYO6xBHkUDn6qrOWiywrA89Pd4u31sfyP43XIZZ0EF/ Utenos kolegija host CA r1 (2018-05-10)
-@cert-authority *.burble.dn42 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK5AQLbckPOLNC9gNFSoR6YfHuUA0jY0I7TTd99GUoXK
+@cert-authority *.burble.com,*.burble.dn42 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK5AQLbckPOLNC9gNFSoR6YfHuUA0jY0I7TTd99GUoXK
 # Nullroute - servers
 ampere,ampere.sym,ampere.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINsrwf2br3SEvqwLFENt3iGIjanIEGmqoEuXgN3webYW
 dust,dust.sym,dust.nullroute.lt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC07MUPjnT80qDodTXxaWVaJXo7ZC8gjleJRlzRfiZcc
@@ -174,3 +174,6 @@ route-server.newyork.ny.ibone.comcast.net ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQ
 haxxed.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICafcjR7mi5swA+HilMrE2GzeifKi7kIHuXCsXAqvqwr
 m7-kst-ap ssh-rsa AAAAB3NzaC1yc2EAAAABAwAAAQEAoJrJp3R6M35oE2y7CcPR18sz0XWz3ANF8esacvvik4T87d2uggKSodEcKRnY5sU/Wkdag7hGJgYBHUxju19zR1Y5npP/36Al4F4TPxPfQmOZVOpe7kCyGn8Mi3ZOZiCPv8aWrKMdQ0pCSeiINXOVbRSld0haQiPfQxSAYLM4ueKCr5MlIj6gQ5EuD9jQ1WBvdJZkHBSgFQmhBsYm+/f0UwkBdzy+/LZqCDzKActgPpocBLoMBB8bMcJGS63hFSdprY8NV5dzbCjGki36+TDgKC2e0CCgHoDp3GP38FloHRo3rt7cdWhYHygWfXEe98mQhweNJ1GiC7tQPd/WPFXO9w==
 connect.ban.ai ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHYUjhpOgeZSrc0PAUtuioYiduW0Cs2nTggamng78Ev5
+frog.catgirls.systems ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHVXBWCk6YOtreBGHcQYEV3qJCpEIp1oYhLDcOkuReMY
+kaeru.catgirls.systems ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBvaqX18iQNXrWxoHbY/6DYrkK1DGE/sNZBgpJFyBnlL
+algol.ppc64.be ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAADm96tkiSTa9pjmRycXFfSt7elzwVPJdPfJMrJKabv
