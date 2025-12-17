@@ -6,21 +6,6 @@
 
 IgnoreUnknown PubkeyAcceptedAlgorithms,WarnWeakCrypto
 
-#if ember
-Host embergw-alt
-	# Direct through Ember eno2 <--> EmberGW
-	User admin
-	Hostname 10.147.241.58
-	HostkeyAlias embergw.nullroute.lt
-#endif
-
-Host gate gate.nullroute.lt
-	HostkeyAlias gate.nullroute.lt
-	Hostname sky.nullroute.lt
-	VerifyHostKeyDNS no
-	User _gate
-	Port 2
-
 #if frost
 Host ember.nullroute.lt ember.sym
 	ForwardX11 yes
