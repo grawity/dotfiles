@@ -106,24 +106,19 @@ Host *.ngrok.com *.ngrok-agent.com
 
 Host ppc-alpine
 	Hostname aludra.ppc64.be
-	AddressFamily inet6
 
 Host ppc-chimera
 	Hostname adhara.ppc64.be
-	AddressFamily inet6
 
 Host ppc-fedora
 	Hostname theta.ppc64.be
-	AddressFamily inet6
 	GSSAPIAuthentication no
 
 Host ppc-freebsd
 	Hostname furud.ppc64.be
-	AddressFamily inet6
 
 Host ppc-arch
 	Hostname yeji.ppc64.be
-	AddressFamily inet6
 
 Host sdf sdf.org
 	Hostname tty.sdf.org
