@@ -64,7 +64,6 @@ Host *.sym
 	KexAlgorithms +diffie-hellman-group14-sha1
 	HostKeyAlgorithms +ssh-rsa
 	PubkeyAcceptedAlgorithms +ssh-rsa
-	WarnWeakCrypto no
 
 # -- Other hosts --
 
@@ -96,7 +95,6 @@ Host burble-lax
 Host eisner
 	Hostname %h.decus.org
 	Port 22867
-	WarnWeakCrypto no
 	HostKeyAlgorithms +ssh-rsa
 	PubkeyAcceptedAlgorithms +ssh-rsa
 	User mikulenas
@@ -131,14 +129,8 @@ Host theos
 
 # -- Work --
 
-Host *.utenos-kolegija.lt *.ukolegija.lt
-#if @(ember|frost)
-	WarnWeakCrypto no
-#endif
-
 Host bmc-*.utenos-kolegija.lt
 	# iLO (import public key in "SSH2" format)
-	WarnWeakCrypto no
 	KexAlgorithms +diffie-hellman-group14-sha1
 	HostKeyAlgorithms +ssh-rsa
 	PubkeyAcceptedAlgorithms +ssh-rsa
