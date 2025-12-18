@@ -5,23 +5,23 @@
 #font-family = "Monaco"
 font-size = 11.6
 #adjust-font-baseline = 1
+#adjust-cell-height = 1
 
 # 2025-10: next ghostty version defaults to the newly added 'light' hinting
 #freetype-load-flags = light
 #freetype-load-flags = no-light
 
-# adjust-cell-height = 1
 # grapheme-width-method = legacy
-freetype-load-flags = no-force-autohint,no-monochrome
+#freetype-load-flags = no-force-autohint,no-monochrome
 
 # theme = "Adwaita"
 # theme = "Adwaita Dark"
 # theme = "Catppuccin Frappe"
 # theme = "Catppuccin Mocha"
-#theme = "Monokai Pro Light Sun"
+theme = "Monokai Pro Light Sun"
 #theme = "Monokai Pro Ristretto"
 #theme = "Monokai Remastered"
-# theme = "Rose Pine Dawn"
+#theme = "Rose Pine Dawn"
 #theme = "Solarized"
 # bold-is-bright = true
 
