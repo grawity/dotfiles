@@ -103,6 +103,9 @@ Host ppc-freebsd
 Host ppc-arch
 	Hostname yeji.ppc64.be
 
+Host aix.ppc64.be
+	KexAlgorithms -mlkem768x25519-sha256
+
 Host sdf sdf.org
 	Hostname tty.sdf.org
 
