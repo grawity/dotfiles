@@ -1,8 +1,10 @@
+# Global Ghostty configuration (~/.config/ghostty/config)
 # vim: ft=ghostty
 
 # Initial window dimensions
 # 2025-10-11: Disabled for now, as the "initial" size isn't actually initial
-# but causes a visible resize from 80x25.
+# but causes a visible resize from 80x25, which then leads to the window being
+# off-center.
 #window-width = 90
 #window-height = 35
 

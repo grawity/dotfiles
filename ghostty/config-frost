@@ -1,8 +1,15 @@
 # vim: ft=ghostty
-font-family = ""
-font-family = "Monaco"
+# ln -s config-frost config.local
+
+#font-family = ""
+#font-family = "Monaco"
 font-size = 11.6
-adjust-font-baseline = 1
+#adjust-font-baseline = 1
+
+# 2025-10: next ghostty version defaults to the newly added 'light' hinting
+#freetype-load-flags = light
+#freetype-load-flags = no-light
+
 # adjust-cell-height = 1
 # grapheme-width-method = legacy
 freetype-load-flags = no-force-autohint,no-monochrome
@@ -29,6 +36,3 @@ freetype-load-flags = no-force-autohint,no-monochrome
 #gtk-toolbar-style = flat
 #gtk-toolbar-style = raised
 #gtk-toolbar-style = raised-border
-
-# Include global file (always processed after this file regardless of position)
-config-file = ~/.dotfiles/ghostty/config
