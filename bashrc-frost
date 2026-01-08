@@ -58,14 +58,16 @@ ukip() {
 		up)
 			do:   nmcli dev set $dev managed no
 			sudo: ip link set $dev up
-			sudo: ip addr flush dev $dev
+			sudo: ip -4 addr flush dev $dev
+			sudo: ip -6 addr flush dev $dev scope global
 			#sudo: ip addr add 169.254.0.42/16 dev $dev scope link
 			sudo: ip addr add 192.168.0.42/24 dev $dev
 			sudo: ip addr add 192.168.1.42/24 dev $dev
 			sudo: ip addr add 192.168.88.42/24 dev $dev
 			;;
 		down)
-			sudo: ip addr flush dev $dev
+			sudo: ip -4 addr flush dev $dev
+			sudo: ip -6 addr flush dev $dev scope global
 			do:   nmcli dev set $dev managed yes
 			;;
 		*)
