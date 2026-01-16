@@ -261,7 +261,7 @@
 	# Use high-contrast black (232) even if the terminal
 	# has low-contrast "dim brown/gray" black
 	cursor = color232 green normal
-	cursor-blur = green color232 normal
+	cursor-blur = color232 green normal
 	diff-add-highlight = color232 green
 	diff-del-highlight = color232 red
 	#diff-add-highlight = color83 color22
