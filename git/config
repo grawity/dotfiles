@@ -260,13 +260,14 @@
 [tig "color"]
 	# Use high-contrast black (232) even if the terminal
 	# has low-contrast "dim brown/gray" black
-	cursor = color232 green
+	cursor = color232 green normal
+	cursor-blur = green color232 normal
 	diff-add-highlight = color232 green
 	diff-del-highlight = color232 red
 	#diff-add-highlight = color83 color22
 	#diff-del-highlight = blue color52
-	title-blur = color60 default normal
 	title-focus = color189 color60 bold
+	title-blur = color60 default bold
 
 # Repository URL rewrites
 
