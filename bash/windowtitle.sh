@@ -1,7 +1,7 @@
 # Show status, update window title after command
 
 case $TERM in
-	[xkE]term*|rxvt*|putty*|cygwin|dtterm|termite)
+	[xkE]term*|rxvt*|putty*|contour|cygwin|dtterm|termite)
 		titlestring='\e]0;%s\a'
 		wnamestring=''
 		;;

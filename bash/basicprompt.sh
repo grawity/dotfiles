@@ -16,6 +16,6 @@ else
 	fi
 fi
 
-if [[ $TERM == @(xterm|screen|tmux)* ]]; then
+if [[ $TERM == @(xterm|screen|tmux|contour)?(-*) ]]; then
 	PS1+='\[\e]2;\u@\h \w\e\\\]'
 fi
