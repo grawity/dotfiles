@@ -197,11 +197,12 @@
 
 [safe]
 	# Allow repositories owned by other UIDs
-	# (Note: Adding NFS paths will cause Git to stat() them every time it
-	# consults this list, e.g. when `cd`-ing to /srv/dist.)
-	directory = /net/*
 	directory = /srv/*
 	directory = /usr/local/*
+	# (Note: Adding NFS paths will cause Git to stat() them every time it
+	# consults this list, i.e. it will stat("/net/*") and cause automountd
+	# syslog spew on EVERY Bash git-prompt update.)
+	#directory = /net/*
 
 [sendemail]
 	from = Mantas Mikulėnas <grawity@gmail.com>
