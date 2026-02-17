@@ -7,7 +7,7 @@ if [[ $DISPLAY || $WAYLAND_DISPLAY ]]; then
 fi
 
 alias eof='IGNOREEOF=3'
-alias eris='ssh -t land sudo -u emiya tmux attach'
+alias eris='ssh -t wolke sudo -u emiya tmux attach'
 alias gdm='sudo systemctl start gdm'
 alias ip='ip -c'
 alias RM='/bin/rm -I'
