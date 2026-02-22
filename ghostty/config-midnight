@@ -1,15 +1,11 @@
 # vim: ft=ghostty
-#font-family = ""
-# 2025-06-08 grawity@myth: default font looks arguably better than Monaco does
-#font-family = "Monaco"
+font-family = "Monaco"
+font-size = 13
 
-#font-size = 13
 # 2025-06-08 grawity@myth: baseline adjustment seems to be no longer needed
 #adjust-font-baseline = 1
 # adjust-cell-height = 1
 # grapheme-width-method = legacy
-# 2025-06-08 grawity@myth: default flags now look *slightly* better with monaco
-#freetype-load-flags = no-force-autohint
 
 #theme = "Adwaita"
 #theme = "Adwaita Dark"
