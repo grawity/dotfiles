@@ -63,10 +63,10 @@ Host burble-fr
 	Hostname shell.fr-rbx1.burble.dn42
 
 Host burble-uk
-	Hostname shell.uk-lon1.burble.dn42
+	Hostname shell.uk-lon6.burble.dn42
 
 Host burble-de
-	Hostname shell.de-fra2.burble.dn42
+	Hostname shell.de-fra1.burble.dn42
 
 Host burble-ca
 	Hostname shell.ca-bhs1.burble.dn42
@@ -75,7 +75,7 @@ Host burble-ash
 	Hostname shell.us-ash1.burble.dn42
 
 Host burble-lax
-	Hostname shell.us-lax1.burble.dn42
+	Hostname shell.us-lax2.burble.dn42
 
 Host eisner
 	Hostname %h.decus.org
