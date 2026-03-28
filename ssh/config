@@ -56,8 +56,27 @@ Host aur
 	Hostname aur.archlinux.org
 	User aur
 
-Host shell.*.burble.dn42
+Host burble-?? shell.*.burble.dn42
 	User symlink
+	PreferredAuthentications publickey
+
+#if theos.kyriasis.com
+Host burble-fr
+	Hostname fd42:4242:2601:1006:72ef:f1ff:febb:d521
+	HostkeyAlias shell.fr-rbx1.burble.dn42
+
+Host burble-uk
+	Hostname fd42:4242:2601:1007:72ef:f1ff:febb:d521
+	HostkeyAlias shell.uk-lon6.burble.dn42
+
+Host burble-de
+	Hostname fd42:4242:2601:1011:72ef:f1ff:febb:d521
+	HostkeyAlias shell.de-fra1.burble.dn42
+
+Host burble-ca
+	Hostname fd42:4242:2601:100c:72ef:f1ff:febb:d521
+	HostkeyAlias shell.ca-bhs1.burble.dn42
+#endif
 
 Host burble-fr
 	Hostname shell.fr-rbx1.burble.dn42
