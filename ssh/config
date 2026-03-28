@@ -60,7 +60,8 @@ Host burble-?? shell.*.burble.dn42
 	User symlink
 	PreferredAuthentications publickey
 
-#if theos.kyriasis.com
+#/if theos.kyriasis.com
+#if 1
 Host burble-fr
 	Hostname fd42:4242:2601:1006:72ef:f1ff:febb:d521
 	HostkeyAlias shell.fr-rbx1.burble.dn42

@@ -15,12 +15,24 @@ if [[ $1 == -v ]]; then
 	FILTERDEBUG=1
 fi
 
+match() {
+	local arg=$1
+	debug "evaluating condition '$arg'"
+	case $arg in
+		1)	debug "always true"; true;;
+		0)	debug "always false"; false;;
+		host=*)	match_hostname "${arg#*=}";;
+		*=*)	err "line $nr: bad match '$arg'";;
+		*)	match_hostname "$arg";;
+	esac
+}
+
 # generator
 
 generate() {
 	echo "# GENERATED FILE, DO NOT BOTHER EDITING"
 	echo "# Updated on $(date) by $USER@$HOSTNAME"
-	cat "${input[@]}" 2>/dev/null | filter_file match_hostname
+	cat "${input[@]}" 2>/dev/null | filter_file match
 }
 
 srcdir=${BASH_SOURCE[0]%/*}
