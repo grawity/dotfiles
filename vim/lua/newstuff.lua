@@ -13,3 +13,5 @@ require("lazy").setup({
 		},
 	},
 })
+
+-- with Nvim 0.12, see also ':help vim-pack' for a built-in alternative
