@@ -41,7 +41,7 @@ alias fanficfare='fanficfare -f html'
 alias fff='fanficfare -f html'
 alias fiemap='xfs_io -r -c "fiemap -v"'
 alias foreach='while IFS= read -r'
-gerp() { grep $grepopt -ErIHn -Dskip --exclude-dir={.bzr,.git,.hg,.svn,_undo} "$@"; }
+gerp() { grep $grepopt -ErIHn -Dskip --exclude-dir={.bzr,.git,.hg,.svn,.obsidian,_undo} "$@"; }
 gpgfp() { gpg --with-colons --fingerprint "$1" | awk -F: '/^fpr:/ {print $10}'; }
 alias gmpv='celluloid'
 alias gte='gnome-text-editor'
@@ -113,6 +113,8 @@ alias rawhois='do: whois -h whois.ra.net --'
 alias riswhois='do: whois -h riswhois.ripe.net --'
 alias rot13='tr N-ZA-Mn-za-m A-Za-z'
 alias run='spawn -c'
+alias notes='cd ~/Dropbox/Notes'
+alias site='cd ~/Dropbox/Notes/Nullroute/Website'
 sp() { printf '%s' "$@"; printf '\n'; }
 splitext() { split -dC "${2-32K}" "$1" "${1%.*}-" --additional-suffix=".${1##*.}"; }
 alias sudo='sudo ' # for alias expansion in sudo args
