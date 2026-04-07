@@ -25,7 +25,12 @@ if has("nvim")
 	" so Neovim cannot properly reset it back on exit.
 
 	" Disable styling entirely (This must go before 'set title').
-	set guicursor=
+	"
+	" 2026-04-07: Nvim 0.12.1 completely broke it, force-"resetting" to
+	" the block shape instead of terminal default shape, so for now it's
+	" actually better to let Nvim control the cursor and have bashrc reset
+	" it at the prompt.
+	"set guicursor=
 
 	" Or always reset it to a specific style.
 	"au VimLeave,VimSuspend * set guicursor=a:ver30
