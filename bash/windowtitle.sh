@@ -104,3 +104,14 @@ _update_termcwd() {
 	fi
 }
 PROMPT_COMMAND+="${PROMPT_COMMAND+; }_update_termcwd"
+
+_reset_cursor() {
+	# Reset cursor shape to terminal default, because Nvim 0.12.1 doesn't
+	# do that (and apparently the alleged fix is what broke it even more).
+	# https://github.com/neovim/neovim/commit/5b5b7eb8d4b9af8447d224241838e0fed8471fa6
+	# https://ghostty.org/docs/vt/csi/decscusr
+	printf '\e[0 q'
+}
+if [[ $TERM == @(xterm|tmux)* ]]; then
+	PROMPT_COMMAND+="${PROMPT_COMMAND+; }_reset_cursor"
+fi
