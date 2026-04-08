@@ -152,6 +152,7 @@ alias xf='ps xf -O ppid'
 alias xx='chmod a+rx'
 ydiff() { diff -u "`yesterday "${1?}"`" "$1" | tig; }
 yget() { ls -l "`yesterday "${1?}"`" "$1"; cp -vib "`yesterday "${1?}"`" "$1"; }
+alias zt1='zerotier-cli'
 alias '~'='grep -E'
 alias '~~'='grep -E -i'
 -() { cd -; }
