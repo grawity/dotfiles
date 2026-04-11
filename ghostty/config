@@ -17,6 +17,9 @@ font-feature = "-calt"
 # Don't auto-switch cursor style, and don't override our custom bashrc termtitle
 cursor-style = bar
 
+# currently (in 1.3.x) buggy with gtk overlay scrollbars
+scrollbar = never
+
 # Don't override our custom terminal title.
 # (Keep 'shell-integration' in general as it provides cwd reporting and some
 # other things that 'shell-integration-features' does not include.)
