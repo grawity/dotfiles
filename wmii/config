@@ -1,9 +1,0 @@
-#!bash
-case $HOSTNAME in
-	fujitsu)
-		StatusMpd=0
-		StatusPulse=0
-		StatusLoad=0
-		Battery="CMB1"
-		;;
-esac

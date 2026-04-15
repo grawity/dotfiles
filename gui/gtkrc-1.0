@@ -1,9 +1,0 @@
-# ~/.gtkrc
-
-include "/usr/share/themes/Delightfully-Smooth/gtk/gtkrc"
-
-style "default" {
-	fontset = "-*-helvetica-medium-r-*-*-14-*-*-*-*-*-iso10646-*,*-iso10646-*,*"
-}
-
-class "GtkWidget" style "default"
